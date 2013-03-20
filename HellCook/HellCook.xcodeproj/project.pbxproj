@@ -10,6 +10,7 @@
 		BA02634516D7579700298803 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634416D7579700298803 /* AppDelegate.m */; };
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
 		BA02635216D75E4F00298803 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02635116D75E4F00298803 /* Common.m */; };
+		BA05128616FA14C10091D3C6 /* UIImage+Retina4.m in Sources */ = {isa = PBXBuildFile; fileRef = BA05128516FA14C10091D3C6 /* UIImage+Retina4.m */; };
 		BA0DC16B16D4C3A500E4CED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0DC16A16D4C3A500E4CED9 /* UIKit.framework */; };
 		BA0DC16D16D4C3A500E4CED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0DC16C16D4C3A500E4CED9 /* Foundation.framework */; };
 		BA0DC16F16D4C3A500E4CED9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0DC16E16D4C3A500E4CED9 /* CoreGraphics.framework */; };
@@ -18,13 +19,19 @@
 		BA0DC17D16D4C3A500E4CED9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC17C16D4C3A500E4CED9 /* Default.png */; };
 		BA0DC17F16D4C3A500E4CED9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC17E16D4C3A500E4CED9 /* Default@2x.png */; };
 		BA0DC18116D4C3A500E4CED9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC18016D4C3A500E4CED9 /* Default-568h@2x.png */; };
+		BA3F5E5616FA284E00493260 /* libNYXImagesKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5516FA284E00493260 /* libNYXImagesKit.a */; };
+		BA3F5E6116FA295B00493260 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5F16FA290200493260 /* CoreImage.framework */; };
+		BA3F5E6216FA295B00493260 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5D16FA28F800493260 /* QuartzCore.framework */; };
+		BA3F5E6316FA295B00493260 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5B16FA28E200493260 /* ImageIO.framework */; };
+		BA3F5E6416FA295B00493260 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5916FA28DA00493260 /* AssetsLibrary.framework */; };
+		BA3F5E6516FA295B00493260 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5716FA28D000493260 /* Accelerate.framework */; };
+		BA3F5E6716FA297800493260 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = BA3F5E6616FA297800493260 /* Images */; };
 		BACCF83616ECFC420094F1E5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BACCF82B16ECFC420094F1E5 /* .gitignore */; };
 		BACCF83716ECFC420094F1E5 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82D16ECFC420094F1E5 /* FMDatabase.m */; };
 		BACCF83816ECFC420094F1E5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82F16ECFC420094F1E5 /* FMDatabaseAdditions.m */; };
 		BACCF83916ECFC420094F1E5 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF83116ECFC420094F1E5 /* FMDatabasePool.m */; };
 		BACCF83A16ECFC420094F1E5 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF83316ECFC420094F1E5 /* FMDatabaseQueue.m */; };
 		BACCF83B16ECFC420094F1E5 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF83516ECFC420094F1E5 /* FMResultSet.m */; };
-		BACCF85616ECFC8B0094F1E5 /* libNYXImagesKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF85516ECFC8B0094F1E5 /* libNYXImagesKit.a */; };
 		BACCF86016ECFF310094F1E5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF85F16ECFF310094F1E5 /* CFNetwork.framework */; };
 		BACCF86216ECFF3C0094F1E5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF86116ECFF3C0094F1E5 /* SystemConfiguration.framework */; };
 		BACCF86416ECFF440094F1E5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF86316ECFF440094F1E5 /* MobileCoreServices.framework */; };
@@ -54,6 +61,8 @@
 		BA02634816D759CB00298803 /* PPRevealSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRevealSideViewController.m; sourceTree = "<group>"; };
 		BA02635016D75E4F00298803 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Common.h; path = Classes/Common/Common.h; sourceTree = "<group>"; };
 		BA02635116D75E4F00298803 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Common.m; path = Classes/Common/Common.m; sourceTree = "<group>"; };
+		BA05128416FA14C10091D3C6 /* UIImage+Retina4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Retina4.h"; path = "Classes/Common/UIImage+Retina4.h"; sourceTree = "<group>"; };
+		BA05128516FA14C10091D3C6 /* UIImage+Retina4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Retina4.m"; path = "Classes/Common/UIImage+Retina4.m"; sourceTree = "<group>"; };
 		BA0DC16716D4C3A500E4CED9 /* HellCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HellCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0DC16A16D4C3A500E4CED9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BA0DC16C16D4C3A500E4CED9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,6 +74,13 @@
 		BA0DC17C16D4C3A500E4CED9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BA0DC17E16D4C3A500E4CED9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		BA0DC18016D4C3A500E4CED9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BA3F5E5516FA284E00493260 /* libNYXImagesKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNYXImagesKit.a; path = HellCook/Libs/NYXImagesKit/libNYXImagesKit.a; sourceTree = "<group>"; };
+		BA3F5E5716FA28D000493260 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		BA3F5E5916FA28DA00493260 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		BA3F5E5B16FA28E200493260 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		BA3F5E5D16FA28F800493260 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BA3F5E5F16FA290200493260 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		BA3F5E6616FA297800493260 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = Resources/Images; sourceTree = "<group>"; };
 		BACCF82B16ECFC420094F1E5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BACCF82C16ECFC420094F1E5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		BACCF82D16ECFC420094F1E5 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -87,7 +103,6 @@
 		BACCF85216ECFC770094F1E5 /* UIImage+Resizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resizing.h"; sourceTree = "<group>"; };
 		BACCF85316ECFC770094F1E5 /* UIImage+Rotating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotating.h"; sourceTree = "<group>"; };
 		BACCF85416ECFC770094F1E5 /* UIImage+Saving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Saving.h"; sourceTree = "<group>"; };
-		BACCF85516ECFC8B0094F1E5 /* libNYXImagesKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNYXImagesKit.a; path = HellCook/Libs/NYXImagesKit/libNYXImagesKit.a; sourceTree = "<group>"; };
 		BACCF85F16ECFF310094F1E5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		BACCF86116ECFF3C0094F1E5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BACCF86316ECFF440094F1E5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -127,6 +142,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA3F5E6116FA295B00493260 /* CoreImage.framework in Frameworks */,
+				BA3F5E6216FA295B00493260 /* QuartzCore.framework in Frameworks */,
+				BA3F5E6316FA295B00493260 /* ImageIO.framework in Frameworks */,
+				BA3F5E6416FA295B00493260 /* AssetsLibrary.framework in Frameworks */,
+				BA3F5E6516FA295B00493260 /* Accelerate.framework in Frameworks */,
 				BACCF89616ED0D630094F1E5 /* libicucore.dylib in Frameworks */,
 				BACCF89016ED0D090094F1E5 /* libsqlite3.0.dylib in Frameworks */,
 				BACCF88E16ED0CFB0094F1E5 /* libiconv.dylib in Frameworks */,
@@ -139,7 +159,7 @@
 				BACCF86016ECFF310094F1E5 /* CFNetwork.framework in Frameworks */,
 				BA0DC16B16D4C3A500E4CED9 /* UIKit.framework in Frameworks */,
 				BA0DC16D16D4C3A500E4CED9 /* Foundation.framework in Frameworks */,
-				BACCF85616ECFC8B0094F1E5 /* libNYXImagesKit.a in Frameworks */,
+				BA3F5E5616FA284E00493260 /* libNYXImagesKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +180,7 @@
 		BA02634116D756EB00298803 /* Resoueces */ = {
 			isa = PBXGroup;
 			children = (
+				BA3F5E6616FA297800493260 /* Images */,
 			);
 			name = Resoueces;
 			sourceTree = "<group>";
@@ -190,6 +211,8 @@
 			children = (
 				BA02635016D75E4F00298803 /* Common.h */,
 				BA02635116D75E4F00298803 /* Common.m */,
+				BA05128416FA14C10091D3C6 /* UIImage+Retina4.h */,
+				BA05128516FA14C10091D3C6 /* UIImage+Retina4.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -197,9 +220,6 @@
 		BA0DC15E16D4C3A500E4CED9 = {
 			isa = PBXGroup;
 			children = (
-				BACCF89516ED0D630094F1E5 /* libicucore.dylib */,
-				BACCF88F16ED0D090094F1E5 /* libsqlite3.0.dylib */,
-				BACCF88D16ED0CFB0094F1E5 /* libiconv.dylib */,
 				BA0DC17016D4C3A500E4CED9 /* HellCook */,
 				BA0DC16916D4C3A500E4CED9 /* Frameworks */,
 				BA0DC16816D4C3A500E4CED9 /* Products */,
@@ -217,9 +237,17 @@
 		BA0DC16916D4C3A500E4CED9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BACCF85516ECFC8B0094F1E5 /* libNYXImagesKit.a */,
+				BA3F5E5516FA284E00493260 /* libNYXImagesKit.a */,
+				BACCF89516ED0D630094F1E5 /* libicucore.dylib */,
+				BACCF88F16ED0D090094F1E5 /* libsqlite3.0.dylib */,
+				BACCF88D16ED0CFB0094F1E5 /* libiconv.dylib */,
 				BACCF86716ECFFFA0094F1E5 /* libxml2.dylib */,
 				BACCF86516ECFF780094F1E5 /* libz.dylib */,
+				BA3F5E5F16FA290200493260 /* CoreImage.framework */,
+				BA3F5E5D16FA28F800493260 /* QuartzCore.framework */,
+				BA3F5E5B16FA28E200493260 /* ImageIO.framework */,
+				BA3F5E5916FA28DA00493260 /* AssetsLibrary.framework */,
+				BA3F5E5716FA28D000493260 /* Accelerate.framework */,
 				BACCF88B16ED0C2C0094F1E5 /* Security.framework */,
 				BACCF86316ECFF440094F1E5 /* MobileCoreServices.framework */,
 				BACCF86116ECFF3C0094F1E5 /* SystemConfiguration.framework */,
@@ -404,6 +432,7 @@
 				BA0DC17F16D4C3A500E4CED9 /* Default@2x.png in Resources */,
 				BA0DC18116D4C3A500E4CED9 /* Default-568h@2x.png in Resources */,
 				BACCF83616ECFC420094F1E5 /* .gitignore in Resources */,
+				BA3F5E6716FA297800493260 /* Images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +463,7 @@
 				BACCF88816ED0BD60094F1E5 /* MKNetworkEngine.m in Sources */,
 				BACCF88916ED0BD60094F1E5 /* MKNetworkOperation.m in Sources */,
 				BACCF88A16ED0BD60094F1E5 /* Reachability.m in Sources */,
+				BA05128616FA14C10091D3C6 /* UIImage+Retina4.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

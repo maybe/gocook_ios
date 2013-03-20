@@ -35,6 +35,9 @@
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [[self class] Generalstyle];
+    
     return YES;
 }
 
@@ -56,6 +59,14 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+}
+
++ (void)Generalstyle {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
+    //navigationbar
+    UINavigationBar *navigationBar = [UINavigationBar appearance];
+    [navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+    
 }
 
 @end
