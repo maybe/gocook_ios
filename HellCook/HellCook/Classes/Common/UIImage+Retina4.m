@@ -1,5 +1,5 @@
 //
-//  UIImage_Retina4.m
+//  UIImage+Retina4.m
 //  HellCook
 //
 //  Created by panda on 2/22/13.

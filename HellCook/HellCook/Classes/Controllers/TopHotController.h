@@ -9,6 +9,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UITableViewController
+@interface TopHotController : UITableViewController
 
 @end

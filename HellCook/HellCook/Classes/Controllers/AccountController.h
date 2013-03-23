@@ -1,5 +1,5 @@
 //
-//  TopHotController.h
+//  AccountController.h
 //  HellCook
 //
 //  Created by panda on 2/22/13.
@@ -9,6 +9,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UITableViewController
+@interface AccountController : UITableViewController
 
 @end

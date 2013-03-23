@@ -1,3 +1,12 @@
+//
+//  TopHotController.h
+//  HellCook
+//
+//  Created by panda on 2/22/13.
+//  Copyright (c) 2013 panda. All rights reserved.
+//
+
+
 #import "MainViewController.h"
 #import "LeftViewController.h"
 
@@ -20,7 +29,7 @@
 {
     [super viewDidLoad];
 
-    self.title = @"Main";
+    self.title = @"今日热门";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Left"
                                                                              style:UIBarButtonItemStyleBordered
@@ -40,6 +49,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     LeftViewController *left = [[LeftViewController alloc] initWithStyle:UITableViewStylePlain];
     [self.revealSideViewController preloadViewController:left forSide:PPRevealSideDirectionLeft];
     HC_RELEASE(left);

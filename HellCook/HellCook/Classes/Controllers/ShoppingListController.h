@@ -9,6 +9,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UITableViewController
+@interface ShoppingListController : UITableViewController
 
 @end

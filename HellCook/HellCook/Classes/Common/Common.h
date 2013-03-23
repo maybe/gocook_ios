@@ -40,6 +40,8 @@
 
 #define HCSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
 
+#define _offset 40
+
 @interface Common : NSObject
 
 @end

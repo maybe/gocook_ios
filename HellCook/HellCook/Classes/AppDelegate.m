@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Common.h"
-#import "MainViewController.h"
+#import "TopHotController.h"
 
 @implementation AppDelegate
 
@@ -20,7 +20,7 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    MainViewController *main = [[MainViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    TopHotController *main = [[TopHotController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
     
     self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
@@ -66,7 +66,13 @@
     //navigationbar
     UINavigationBar *navigationBar = [UINavigationBar appearance];
     [navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+ 
     
+    [[UINavigationBar appearance] setTitleTextAttributes: @{
+                                UITextAttributeTextColor: [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0],
+                          UITextAttributeTextShadowColor: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8],
+                         UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 0.5f)],
+     }];
 }
 
 @end

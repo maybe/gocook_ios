@@ -1,18 +1,18 @@
 //
-//  LeftViewController.m
-//  EasySample
+//  TopHotController.h
+//  HellCook
 //
-//  Created by Marian PAUL on 12/06/12.
-//  Copyright (c) 2012 Marian PAUL aka ipodishima — iPuP SARL. All rights reserved.
+//  Created by panda on 2/22/13.
+//  Copyright (c) 2013 panda. All rights reserved.
 //
 
-#import "LeftViewController.h"
+#import "AccountController.h"
 
-@interface LeftViewController ()
+@interface AccountController ()
 
 @end
 
-@implementation LeftViewController
+@implementation AccountController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,12 +26,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImageView* titleImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Images/leftPageTitle.png" ]];
+    [titleImageView setFrame:CGRectMake(0, 0, 59, 27)];
+    self.navigationItem.titleView = titleImageView;
+}
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidUnload
@@ -57,7 +61,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 20;
+    return 30;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,26 +72,16 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    if (self.navigationController)
-        cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
-    else
-        cell.textLabel.text = [NSString stringWithFormat:@"Left %d", indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Main %d", indexPath.row];
     
     return cell;
 }
+
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 @end

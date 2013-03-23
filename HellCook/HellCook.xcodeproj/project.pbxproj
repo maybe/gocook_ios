@@ -26,6 +26,9 @@
 		BA3F5E6416FA295B00493260 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5916FA28DA00493260 /* AssetsLibrary.framework */; };
 		BA3F5E6516FA295B00493260 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5716FA28D000493260 /* Accelerate.framework */; };
 		BA3F5E6716FA297800493260 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = BA3F5E6616FA297800493260 /* Images */; };
+		BA73C94716FE1469008284D8 /* TopHotController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94616FE1469008284D8 /* TopHotController.m */; };
+		BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94916FE1F23008284D8 /* ShoppingListController.m */; };
+		BA73C94D16FE3138008284D8 /* AccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94C16FE3138008284D8 /* AccountController.m */; };
 		BACCF83616ECFC420094F1E5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BACCF82B16ECFC420094F1E5 /* .gitignore */; };
 		BACCF83716ECFC420094F1E5 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82D16ECFC420094F1E5 /* FMDatabase.m */; };
 		BACCF83816ECFC420094F1E5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82F16ECFC420094F1E5 /* FMDatabaseAdditions.m */; };
@@ -50,8 +53,6 @@
 		BACCF88E16ED0CFB0094F1E5 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF88D16ED0CFB0094F1E5 /* libiconv.dylib */; };
 		BACCF89016ED0D090094F1E5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF88F16ED0D090094F1E5 /* libsqlite3.0.dylib */; };
 		BACCF89616ED0D630094F1E5 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF89516ED0D630094F1E5 /* libicucore.dylib */; };
-		BAEFA66916E652D80044B36C /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEFA66616E652D80044B36C /* LeftViewController.m */; };
-		BAEFA66A16E652D80044B36C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEFA66816E652D80044B36C /* MainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,12 @@
 		BA3F5E5D16FA28F800493260 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BA3F5E5F16FA290200493260 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		BA3F5E6616FA297800493260 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = Resources/Images; sourceTree = "<group>"; };
+		BA73C94516FE1469008284D8 /* TopHotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopHotController.h; path = Classes/Controllers/TopHotController.h; sourceTree = "<group>"; };
+		BA73C94616FE1469008284D8 /* TopHotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopHotController.m; path = Classes/Controllers/TopHotController.m; sourceTree = "<group>"; };
+		BA73C94816FE1F23008284D8 /* ShoppingListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListController.h; path = Classes/Controllers/ShoppingListController.h; sourceTree = "<group>"; };
+		BA73C94916FE1F23008284D8 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingListController.m; path = Classes/Controllers/ShoppingListController.m; sourceTree = "<group>"; };
+		BA73C94B16FE3138008284D8 /* AccountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountController.h; path = Classes/Controllers/AccountController.h; sourceTree = "<group>"; };
+		BA73C94C16FE3138008284D8 /* AccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountController.m; path = Classes/Controllers/AccountController.m; sourceTree = "<group>"; };
 		BACCF82B16ECFC420094F1E5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BACCF82C16ECFC420094F1E5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		BACCF82D16ECFC420094F1E5 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -131,10 +138,6 @@
 		BACCF88D16ED0CFB0094F1E5 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		BACCF88F16ED0D090094F1E5 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		BACCF89516ED0D630094F1E5 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		BAEFA66516E652D80044B36C /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeftViewController.h; path = Classes/Controllers/LeftViewController.h; sourceTree = "<group>"; };
-		BAEFA66616E652D80044B36C /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeftViewController.m; path = Classes/Controllers/LeftViewController.m; sourceTree = "<group>"; };
-		BAEFA66716E652D80044B36C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/Controllers/MainViewController.h; sourceTree = "<group>"; };
-		BAEFA66816E652D80044B36C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/Controllers/MainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,10 +371,12 @@
 		BAEFA66416E652C20044B36C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BAEFA66516E652D80044B36C /* LeftViewController.h */,
-				BAEFA66616E652D80044B36C /* LeftViewController.m */,
-				BAEFA66716E652D80044B36C /* MainViewController.h */,
-				BAEFA66816E652D80044B36C /* MainViewController.m */,
+				BA73C94B16FE3138008284D8 /* AccountController.h */,
+				BA73C94C16FE3138008284D8 /* AccountController.m */,
+				BA73C94816FE1F23008284D8 /* ShoppingListController.h */,
+				BA73C94916FE1F23008284D8 /* ShoppingListController.m */,
+				BA73C94516FE1469008284D8 /* TopHotController.h */,
+				BA73C94616FE1469008284D8 /* TopHotController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -447,8 +452,6 @@
 				BA02634516D7579700298803 /* AppDelegate.m in Sources */,
 				BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */,
 				BA02635216D75E4F00298803 /* Common.m in Sources */,
-				BAEFA66916E652D80044B36C /* LeftViewController.m in Sources */,
-				BAEFA66A16E652D80044B36C /* MainViewController.m in Sources */,
 				BACCF83716ECFC420094F1E5 /* FMDatabase.m in Sources */,
 				BACCF83816ECFC420094F1E5 /* FMDatabaseAdditions.m in Sources */,
 				BACCF83916ECFC420094F1E5 /* FMDatabasePool.m in Sources */,
@@ -464,6 +467,9 @@
 				BACCF88916ED0BD60094F1E5 /* MKNetworkOperation.m in Sources */,
 				BACCF88A16ED0BD60094F1E5 /* Reachability.m in Sources */,
 				BA05128616FA14C10091D3C6 /* UIImage+Retina4.m in Sources */,
+				BA73C94716FE1469008284D8 /* TopHotController.m in Sources */,
+				BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */,
+				BA73C94D16FE3138008284D8 /* AccountController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
