@@ -7,42 +7,49 @@
 //
 
 #import "AccountController.h"
+#import "QuartzCore/QuartzCore.h"
+
 
 @interface AccountController ()
 
 @end
 
 @implementation AccountController
+@synthesize tableView;
+@synthesize bannerImageView;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     UIImageView* titleImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Images/leftPageTitle.png" ]];
+    self.title = @"111";
     [titleImageView setFrame:CGRectMake(0, 0, 59, 27)];
-    self.navigationItem.titleView = titleImageView;
+    self.navigationController.navigationItem.titleView = titleImageView;
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+    
+    [self.navigationController.navigationBar.superview setAutoresizesSubviews:NO];
+    [self.navigationController.navigationBar setTranslucent:YES];
+
+    [super viewDidLoad];
+    
 }
-
-
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    [self.navigationController.navigationBar.superview setCenter:CGPointMake(_sideWindowWidth/2, _navigationBarHeight/2)];
+    [self.navigationController.navigationBar.superview setBounds:CGRectMake(0, 0, _sideWindowWidth, _navigationBarHeight)];
+
+    [self.navigationController.navigationBar setCenter:CGPointMake(_sideWindowWidth/2, _navigationBarHeight/2)];
+    [self.navigationController.navigationBar setBounds:CGRectMake(0, 0, _sideWindowWidth, _navigationBarHeight)];
+    
     [super viewWillAppear:animated];
 }
+
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -67,7 +74,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];

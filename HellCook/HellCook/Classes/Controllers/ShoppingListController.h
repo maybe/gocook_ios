@@ -9,6 +9,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShoppingListController : UITableViewController
+@interface ShoppingListController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+{
+    UITableView* tableView;
+}
+
+@property (nonatomic, retain) IBOutlet UITableView* tableView;
 
 @end

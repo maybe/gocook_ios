@@ -19,6 +19,7 @@
 		BA0DC17D16D4C3A500E4CED9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC17C16D4C3A500E4CED9 /* Default.png */; };
 		BA0DC17F16D4C3A500E4CED9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC17E16D4C3A500E4CED9 /* Default@2x.png */; };
 		BA0DC18116D4C3A500E4CED9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC18016D4C3A500E4CED9 /* Default-568h@2x.png */; };
+		BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */; };
 		BA3F5E5616FA284E00493260 /* libNYXImagesKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5516FA284E00493260 /* libNYXImagesKit.a */; };
 		BA3F5E6116FA295B00493260 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5F16FA290200493260 /* CoreImage.framework */; };
 		BA3F5E6216FA295B00493260 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5D16FA28F800493260 /* QuartzCore.framework */; };
@@ -29,6 +30,9 @@
 		BA73C94716FE1469008284D8 /* TopHotController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94616FE1469008284D8 /* TopHotController.m */; };
 		BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94916FE1F23008284D8 /* ShoppingListController.m */; };
 		BA73C94D16FE3138008284D8 /* AccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94C16FE3138008284D8 /* AccountController.m */; };
+		BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA73C95416FE37D9008284D8 /* AccountView.xib */; };
+		BA8705C316FF405500BA7039 /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8705C216FF405400BA7039 /* CustomNavigationBar.m */; };
+		BA8705C616FF4C0600BA7039 /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8705C516FF4C0600BA7039 /* CustomNavigationController.m */; };
 		BACCF83616ECFC420094F1E5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BACCF82B16ECFC420094F1E5 /* .gitignore */; };
 		BACCF83716ECFC420094F1E5 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82D16ECFC420094F1E5 /* FMDatabase.m */; };
 		BACCF83816ECFC420094F1E5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82F16ECFC420094F1E5 /* FMDatabaseAdditions.m */; };
@@ -75,6 +79,7 @@
 		BA0DC17C16D4C3A500E4CED9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BA0DC17E16D4C3A500E4CED9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		BA0DC18016D4C3A500E4CED9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingListView.xib; sourceTree = "<group>"; };
 		BA3F5E5516FA284E00493260 /* libNYXImagesKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNYXImagesKit.a; path = HellCook/Libs/NYXImagesKit/libNYXImagesKit.a; sourceTree = "<group>"; };
 		BA3F5E5716FA28D000493260 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		BA3F5E5916FA28DA00493260 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -88,6 +93,11 @@
 		BA73C94916FE1F23008284D8 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingListController.m; path = Classes/Controllers/ShoppingListController.m; sourceTree = "<group>"; };
 		BA73C94B16FE3138008284D8 /* AccountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountController.h; path = Classes/Controllers/AccountController.h; sourceTree = "<group>"; };
 		BA73C94C16FE3138008284D8 /* AccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountController.m; path = Classes/Controllers/AccountController.m; sourceTree = "<group>"; };
+		BA73C95416FE37D9008284D8 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
+		BA8705C116FF405400BA7039 /* CustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNavigationBar.h; path = Classes/Views/CustomNavigationBar.h; sourceTree = "<group>"; };
+		BA8705C216FF405400BA7039 /* CustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNavigationBar.m; path = Classes/Views/CustomNavigationBar.m; sourceTree = "<group>"; };
+		BA8705C416FF4C0600BA7039 /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNavigationController.h; path = Classes/Views/CustomNavigationController.h; sourceTree = "<group>"; };
+		BA8705C516FF4C0600BA7039 /* CustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNavigationController.m; path = Classes/Views/CustomNavigationController.m; sourceTree = "<group>"; };
 		BACCF82B16ECFC420094F1E5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BACCF82C16ECFC420094F1E5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		BACCF82D16ECFC420094F1E5 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -173,7 +183,9 @@
 			isa = PBXGroup;
 			children = (
 				BA02635316D75E5800298803 /* Common */,
-				BAEFA66416E652C20044B36C /* Controllers */,
+				BAEFA66416E652C20044B36C /* Controller */,
+				BA73C94F16FE367F008284D8 /* Model */,
+				BA73C94E16FE3668008284D8 /* View */,
 				BA02634316D7579700298803 /* AppDelegate.h */,
 				BA02634416D7579700298803 /* AppDelegate.m */,
 			);
@@ -183,6 +195,7 @@
 		BA02634116D756EB00298803 /* Resoueces */ = {
 			isa = PBXGroup;
 			children = (
+				BA73C95316FE37D9008284D8 /* NIB */,
 				BA3F5E6616FA297800493260 /* Images */,
 			);
 			name = Resoueces;
@@ -287,6 +300,42 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BA73C94E16FE3668008284D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA8705C716FF5AF600BA7039 /* Custom */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BA73C94F16FE367F008284D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BA73C95316FE37D9008284D8 /* NIB */ = {
+			isa = PBXGroup;
+			children = (
+				BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */,
+				BA73C95416FE37D9008284D8 /* AccountView.xib */,
+			);
+			name = NIB;
+			path = Resources/NIB;
+			sourceTree = "<group>";
+		};
+		BA8705C716FF5AF600BA7039 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				BA8705C116FF405400BA7039 /* CustomNavigationBar.h */,
+				BA8705C216FF405400BA7039 /* CustomNavigationBar.m */,
+				BA8705C416FF4C0600BA7039 /* CustomNavigationController.h */,
+				BA8705C516FF4C0600BA7039 /* CustomNavigationController.m */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
 		BACCF82A16ECFC420094F1E5 /* fmdb */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,7 +417,7 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
-		BAEFA66416E652C20044B36C /* Controllers */ = {
+		BAEFA66416E652C20044B36C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				BA73C94B16FE3138008284D8 /* AccountController.h */,
@@ -378,7 +427,7 @@
 				BA73C94516FE1469008284D8 /* TopHotController.h */,
 				BA73C94616FE1469008284D8 /* TopHotController.m */,
 			);
-			name = Controllers;
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,6 +487,8 @@
 				BA0DC18116D4C3A500E4CED9 /* Default-568h@2x.png in Resources */,
 				BACCF83616ECFC420094F1E5 /* .gitignore in Resources */,
 				BA3F5E6716FA297800493260 /* Images in Resources */,
+				BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */,
+				BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +521,8 @@
 				BA73C94716FE1469008284D8 /* TopHotController.m in Sources */,
 				BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */,
 				BA73C94D16FE3138008284D8 /* AccountController.m in Sources */,
+				BA8705C316FF405500BA7039 /* CustomNavigationBar.m in Sources */,
+				BA8705C616FF4C0600BA7039 /* CustomNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

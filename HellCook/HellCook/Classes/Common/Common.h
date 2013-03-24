@@ -41,6 +41,8 @@
 #define HCSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
 
 #define _offset 40
+#define _sideWindowWidth 280
+#define _navigationBarHeight 44
 
 @interface Common : NSObject
 

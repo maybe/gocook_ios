@@ -9,6 +9,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AccountController : UITableViewController
+
+@interface AccountController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+{
+    UITableView* tableView;
+    UIImageView* bannerImageView;
+}
+
+@property (nonatomic, retain) IBOutlet UITableView* tableView;
+@property (nonatomic, retain) IBOutlet UIImageView* bannerImageView;
 
 @end
