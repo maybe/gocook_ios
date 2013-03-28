@@ -9,6 +9,7 @@
 #import "AccountController.h"
 #import "QuartzCore/QuartzCore.h"
 #import "RegisterController.h"
+#import "LoginController.h"
 #import "UINavigationController+Autorotate.h"
 
 
@@ -33,22 +34,20 @@
     self.navigationController.navigationBar.clipsToBounds = NO;
 
     self.view.clipsToBounds = YES;
-    
-    [self initAccountView];
+  
+    [self hideAccountView];
+    [self hideLoginView];
     
     [super viewDidLoad];
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    [self hideAccountView];
+    [self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight_NoStBar)];
+
     [self showLoginView];
 
-    [self.navigationController.view setFrame:CGRectMake(0, 0, 280, 480)];
-
     [super viewWillAppear:animated];
-
 }
 
 
@@ -113,7 +112,7 @@
 - (id)loginButton
 {
     if (!loginButton) {
-        loginButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 200, 120, 30)];
+        loginButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 100, 120, 30)];
         [loginButton setTitle:@"用邮箱登录" forState:UIControlStateNormal];
         UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
         UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
@@ -135,7 +134,7 @@
 - (id)registerButton
 {
     if (!registerButton) {
-        registerButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 250, 120, 30)];
+        registerButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 150, 120, 30)];
         [registerButton setTitle:@"注册新帐号" forState:UIControlStateNormal];
         UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
         UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
@@ -153,31 +152,23 @@
     return registerButton;
 }
 
-- (void)initAccountView
-{
-    [bannerImageView setImage: [UIImage imageNamed:@"Images/recipeGroup7.png"]];
-}
 
 - (void)openLoginWindow
 {
-    NSLog(@"111");
-    AccountController* m = [[AccountController alloc] initWithNibName:@"AccountView" bundle:nil];    
-    [self.navigationController pushViewController:m animated:YES];
+    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+    if (self.navigationController) {
+        [self.navigationController presentViewController:m animated:YES completion:nil];
+    }
+//    AccountController* m = [[AccountController alloc] initWithNibName:@"AccountView" bundle:nil];
+//    [self.navigationController pushViewController:m animated:YES];
 }
 
 - (void)openRegisterWindow
 {
-    NSLog(@"222");
-//    RegisterController* m = [[RegisterController alloc]init];
-////    if (self.parentViewController) {
-////        [self.parentViewController presentViewController:m animated:YES completion:nil];
-////
-////    }
-//    if (self.navigationController) {
-//        [self.navigationController presentViewController:m animated:YES completion:nil];
-//
-//    }
-    [self.navigationController popViewControllerAnimated:YES];
+    RegisterController* m = [[RegisterController alloc]initWithNibName:@"RegisterView" bundle:nil];
+    if (self.navigationController) {
+        [self.navigationController presentViewController:m animated:YES completion:nil];
+    }
 }
 
 @end

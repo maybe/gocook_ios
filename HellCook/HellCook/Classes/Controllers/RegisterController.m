@@ -14,56 +14,78 @@
 
 @implementation RegisterController
 @synthesize navgationItem;
-@synthesize button;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+  }
+  return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    [self setLeftButton];
-    
-    [button addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)setLeftButton
-{
-    UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 45, 30)];
-    [leftBarButtonView addTarget:self action:@selector(returnTo) forControlEvents:UIControlEventTouchUpInside];
-    [leftBarButtonView setBackgroundImage:
-     [UIImage imageNamed:@"Images/commonBackBackgroundNormal.png"]
-                                 forState:UIControlStateNormal];
-    
-    [leftBarButtonView setBackgroundImage:
-     [UIImage imageNamed:@"Images/commonBackBackgroundHighlighted.png"]
-                                 forState:UIControlStateHighlighted];
-    
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
-    [leftBarButtonView setTitle:@"返回" forState:UIControlStateNormal];
-    
-    [self.navgationItem setLeftBarButtonItem:leftBarButtonItem];
-
+  [super viewDidLoad];
+  [self setLeftButton];
+  [self setRightButton];
 }
 
 - (BOOL)shouldAutorotate {
-    
-    return NO;
+  
+  return NO;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-    
-    return UIInterfaceOrientationMaskAll;
+  
+  return UIInterfaceOrientationMaskAll;
 }
 
--(void)returnTo
+
+- (void)setLeftButton
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+  [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
+  [leftBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/commonBackBackgroundNormal.png"]
+                               forState:UIControlStateNormal];
+  [leftBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/commonBackBackgroundHighlighted.png"]
+                               forState:UIControlStateHighlighted];
+  [leftBarButtonView setTitle:@"  返回 " forState:UIControlStateNormal];
+  [leftBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+  
+  UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
+  
+  [self.navgationItem setLeftBarButtonItem:leftBarButtonItem];
+  
+}
+
+- (void)setRightButton
+{
+  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
+  [rightBarButtonView addTarget:self action:@selector(onRegister) forControlEvents:UIControlEventTouchUpInside];
+  [rightBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
+                                forState:UIControlStateNormal];
+  [rightBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"]
+                                forState:UIControlStateHighlighted];
+  [rightBarButtonView setTitle:@"注册" forState:UIControlStateNormal];
+  [rightBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+  
+  UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
+  
+  [self.navgationItem setRightBarButtonItem:rightBarButtonItem];
+}
+
+-(void)returnToPrev
+{
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)onRegister
+{
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

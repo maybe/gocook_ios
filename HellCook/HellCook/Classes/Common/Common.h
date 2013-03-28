@@ -45,12 +45,14 @@
 #define _screenHeight [[UIScreen mainScreen] bounds].size.height
 #define _screenWidth [[UIScreen mainScreen] bounds].size.width
 #define _stateBarHeight 20
-#define _mainHeight (_screenHeight - _stateBarHeight)
-#define _mainWidth _mcreenWidth
+#define _navigationBarHeight 44
+#define _screenHeight_NoStBar (_screenHeight - _stateBarHeight)
+#define _screenHeight_NoStBar_NoNavBar (_screenHeight - _stateBarHeight - _navigationBarHeight)
 
 #define _offset 40
 #define _sideWindowWidth (_screenWidth - _offset)
-#define _navigationBarHeight 44
+
+
 
 @interface Common : NSObject
 

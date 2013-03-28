@@ -29,14 +29,15 @@
 		BA3F5E6716FA297800493260 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = BA3F5E6616FA297800493260 /* Images */; };
 		BA6CEC9C1702297D00EDFC24 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6CEC9A1702297D00EDFC24 /* RegisterController.m */; };
 		BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6CEC9E170229A100EDFC24 /* RegisterView.xib */; };
-		BA6CECA8170292FF00EDFC24 /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6CECA6170292FD00EDFC24 /* ModalViewController.m */; };
-		BA6CECA9170292FF00EDFC24 /* ModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6CECA7170292FE00EDFC24 /* ModalViewController.xib */; };
 		BA73C94716FE1469008284D8 /* TopHotController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94616FE1469008284D8 /* TopHotController.m */; };
 		BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94916FE1F23008284D8 /* ShoppingListController.m */; };
 		BA73C94D16FE3138008284D8 /* AccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94C16FE3138008284D8 /* AccountController.m */; };
 		BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA73C95416FE37D9008284D8 /* AccountView.xib */; };
 		BA829BE51704880100B0341A /* TopHotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE41704880100B0341A /* TopHotView.xib */; };
 		BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */; };
+		BA829BEA1704995300B0341A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE91704995300B0341A /* LoginView.xib */; };
+		BA829BED17049B0700B0341A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BEC17049B0500B0341A /* LoginController.m */; };
+		BA829BF017049DE400B0341A /* DefaultGroupedTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BEF17049DE400B0341A /* DefaultGroupedTableCell.m */; };
 		BACCF83616ECFC420094F1E5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BACCF82B16ECFC420094F1E5 /* .gitignore */; };
 		BACCF83716ECFC420094F1E5 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82D16ECFC420094F1E5 /* FMDatabase.m */; };
 		BACCF83816ECFC420094F1E5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82F16ECFC420094F1E5 /* FMDatabaseAdditions.m */; };
@@ -94,9 +95,6 @@
 		BA6CEC991702297D00EDFC24 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterController.h; path = Classes/Controllers/RegisterController.h; sourceTree = "<group>"; };
 		BA6CEC9A1702297D00EDFC24 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterController.m; path = Classes/Controllers/RegisterController.m; sourceTree = "<group>"; };
 		BA6CEC9E170229A100EDFC24 /* RegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterView.xib; sourceTree = "<group>"; };
-		BA6CECA5170292FC00EDFC24 /* ModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModalViewController.h; path = "../../../iOSDemo/PPRevealSideViewController-master/PPRevealSideViewController/ModalViewController.h"; sourceTree = "<group>"; };
-		BA6CECA6170292FD00EDFC24 /* ModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModalViewController.m; path = "../../../iOSDemo/PPRevealSideViewController-master/PPRevealSideViewController/ModalViewController.m"; sourceTree = "<group>"; };
-		BA6CECA7170292FE00EDFC24 /* ModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ModalViewController.xib; path = "../../../iOSDemo/PPRevealSideViewController-master/PPRevealSideViewController/ModalViewController.xib"; sourceTree = "<group>"; };
 		BA73C94516FE1469008284D8 /* TopHotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopHotController.h; path = Classes/Controllers/TopHotController.h; sourceTree = "<group>"; };
 		BA73C94616FE1469008284D8 /* TopHotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopHotController.m; path = Classes/Controllers/TopHotController.m; sourceTree = "<group>"; };
 		BA73C94816FE1F23008284D8 /* ShoppingListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListController.h; path = Classes/Controllers/ShoppingListController.h; sourceTree = "<group>"; };
@@ -107,6 +105,11 @@
 		BA829BE41704880100B0341A /* TopHotView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopHotView.xib; sourceTree = "<group>"; };
 		BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Autorotate.h"; path = "Classes/Common/UINavigationController+Autorotate.h"; sourceTree = "<group>"; };
 		BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Autorotate.m"; path = "Classes/Common/UINavigationController+Autorotate.m"; sourceTree = "<group>"; };
+		BA829BE91704995300B0341A /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
+		BA829BEB17049B0400B0341A /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginController.h; path = Classes/Controllers/LoginController.h; sourceTree = "<group>"; };
+		BA829BEC17049B0500B0341A /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginController.m; path = Classes/Controllers/LoginController.m; sourceTree = "<group>"; };
+		BA829BEE17049DE400B0341A /* DefaultGroupedTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultGroupedTableCell.h; path = Classes/Views/Custom/DefaultGroupedTableCell.h; sourceTree = "<group>"; };
+		BA829BEF17049DE400B0341A /* DefaultGroupedTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultGroupedTableCell.m; path = Classes/Views/Custom/DefaultGroupedTableCell.m; sourceTree = "<group>"; };
 		BACCF82B16ECFC420094F1E5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BACCF82C16ECFC420094F1E5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		BACCF82D16ECFC420094F1E5 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -329,6 +332,7 @@
 		BA73C95316FE37D9008284D8 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				BA829BE91704995300B0341A /* LoginView.xib */,
 				BA6CEC9E170229A100EDFC24 /* RegisterView.xib */,
 				BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */,
 				BA73C95416FE37D9008284D8 /* AccountView.xib */,
@@ -341,6 +345,8 @@
 		BA8705C716FF5AF600BA7039 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				BA829BEE17049DE400B0341A /* DefaultGroupedTableCell.h */,
+				BA829BEF17049DE400B0341A /* DefaultGroupedTableCell.m */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -429,9 +435,6 @@
 		BAEFA66416E652C20044B36C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BA6CECA5170292FC00EDFC24 /* ModalViewController.h */,
-				BA6CECA6170292FD00EDFC24 /* ModalViewController.m */,
-				BA6CECA7170292FE00EDFC24 /* ModalViewController.xib */,
 				BA73C94B16FE3138008284D8 /* AccountController.h */,
 				BA73C94C16FE3138008284D8 /* AccountController.m */,
 				BA73C94816FE1F23008284D8 /* ShoppingListController.h */,
@@ -440,6 +443,8 @@
 				BA73C94616FE1469008284D8 /* TopHotController.m */,
 				BA6CEC991702297D00EDFC24 /* RegisterController.h */,
 				BA6CEC9A1702297D00EDFC24 /* RegisterController.m */,
+				BA829BEB17049B0400B0341A /* LoginController.h */,
+				BA829BEC17049B0500B0341A /* LoginController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -504,8 +509,8 @@
 				BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */,
 				BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */,
 				BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */,
-				BA6CECA9170292FF00EDFC24 /* ModalViewController.xib in Resources */,
 				BA829BE51704880100B0341A /* TopHotView.xib in Resources */,
+				BA829BEA1704995300B0341A /* LoginView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,8 +544,9 @@
 				BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */,
 				BA73C94D16FE3138008284D8 /* AccountController.m in Sources */,
 				BA6CEC9C1702297D00EDFC24 /* RegisterController.m in Sources */,
-				BA6CECA8170292FF00EDFC24 /* ModalViewController.m in Sources */,
 				BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */,
+				BA829BED17049B0700B0341A /* LoginController.m in Sources */,
+				BA829BF017049DE400B0341A /* DefaultGroupedTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

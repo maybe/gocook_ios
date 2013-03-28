@@ -11,11 +11,8 @@
 @interface RegisterController : UIViewController
 {
     UINavigationItem* navgationItem;
-    UIButton* button;
 }
 
 @property (nonatomic, retain) IBOutlet UINavigationItem* navgationItem;
-@property (nonatomic, retain) IBOutlet UIButton* button;
-
 
 @end
