@@ -15,39 +15,33 @@
 @implementation ShoppingListController
 @synthesize tableView;
 
-
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
     [self setRightButton];
-
-    UIImageView* titleImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Images/leftPageTitle.png" ]];
-    [titleImageView setFrame:CGRectMake(0, 0, 59, 27)];
-    self.navigationController.navigationItem.titleView = titleImageView;
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];            
-
-    [self.navigationController.navigationBar setTranslucent:YES];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
     
-    self.title = @"购买清单";
+    self.navigationController.navigationBar.clipsToBounds = NO;
+    self.view.clipsToBounds = YES;
     
-
-}
-
-- (void) emptyShoppingList:(id)sender
-{
+    self.navigationItem.title = @"购买清单";
+    
+    [super viewDidLoad];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    [self.navigationController.navigationBar setBounds:CGRectMake(-20, 0, _sideWindowWidth, _navigationBarHeight)];
-    [self.navigationController.navigationBar setFrame:CGRectMake(-20, 0, _sideWindowWidth, _navigationBarHeight)];
-    [self.navigationController.navigationBar setCenter:CGPointMake(20+_sideWindowWidth/2, _navigationBarHeight/2)];
-     
-    [super viewWillAppear:animated];
+    [self.navigationController.view setFrame:CGRectMake(40, 0, _sideWindowWidth, 480)];
 
+    [super viewWillAppear:animated];
 }
+
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
 
 - (void)viewDidUnload
 {
@@ -92,6 +86,10 @@
 }
 
 
+- (void) emptyShoppingList:(id)sender
+{
+}
+
 - (void)setRightButton
 {
     UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 45, 30)];
@@ -111,6 +109,7 @@
     
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
+    
 }
 
 @end

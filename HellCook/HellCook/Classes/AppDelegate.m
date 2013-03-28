@@ -9,34 +9,34 @@
 #import "AppDelegate.h"
 #import "Common.h"
 #import "TopHotController.h"
+#import "ShoppingListController.h"
+#import "AccountController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize revealSideViewController = _revealSideViewController;
+@synthesize leftNavController = _leftNavController;
+@synthesize centerNavController = _centerNavController;
+@synthesize rightNavController = _rightNavController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    TopHotController *main = [[TopHotController alloc] initWithStyle:UITableViewStyleGrouped];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
-    
-    self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
-    
-    [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
-    [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
-    
-    self.window.rootViewController = self.revealSideViewController;
-    
-    HC_RELEASE(main);
-    HC_RELEASE(nav);
-    
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    
     [[self class] Generalstyle];
+
+    [self resetCenterNavController];
+    [self resetLeftNavController];
+    [self resetRightNavController];
+    
+    [self resetRevealSideviewController];
+    
+    self.window.rootViewController = _revealSideViewController;
+    
+    self.window.backgroundColor = [UIColor blackColor];
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -66,12 +66,52 @@
     //navigationbar
     UINavigationBar *navigationBar = [UINavigationBar appearance];
     [navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
-    
+//    
     [[UINavigationBar appearance] setTitleTextAttributes: @{
                                 UITextAttributeTextColor: [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0],
                           UITextAttributeTextShadowColor: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8],
                          UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 0.5f)],
      }];
+}
+
+- (void)resetLeftNavController
+{
+    AccountController* accountController = [[AccountController alloc] initWithNibName:@"AccountView" bundle:nil];
+    _leftNavController = [[UINavigationController alloc] initWithRootViewController:accountController];
+    _leftNavController.navigationBarHidden = NO;
+    _leftNavController.view.clipsToBounds = YES;
+    _leftNavController.navigationBar.clipsToBounds = YES;
+    _leftNavController.view.bounds = CGRectMake(0, 0, _sideWindowWidth, 480);
+}
+
+- (void)resetRightNavController
+{
+    ShoppingListController* slController = [[ShoppingListController alloc] initWithNibName:@"ShoppingListView" bundle:nil];
+    _rightNavController = [[UINavigationController alloc] initWithRootViewController:slController];
+    _rightNavController.navigationBarHidden = NO;
+    _rightNavController.view.clipsToBounds = YES;
+    _rightNavController.navigationBar.clipsToBounds = YES;
+    _rightNavController.view.frame = CGRectMake(40, 0, _sideWindowWidth, 480);
+}
+
+- (void)resetCenterNavController
+{
+    TopHotController *mainController = [[TopHotController alloc] initWithNibName:@"TopHotView" bundle:nil];
+    _centerNavController = [[UINavigationController alloc] initWithRootViewController:mainController];
+
+}
+
+- (void)resetRevealSideviewController
+{
+    _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_centerNavController];
+    _revealSideViewController.delegate = self;
+    
+    [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionLeft |PPRevealSideDirectionRight];
+    [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
+    [self.revealSideViewController setOption:PPRevealSideOptionsResizeSideView];
+    
+    [self.revealSideViewController preloadViewController:_leftNavController forSide:PPRevealSideDirectionLeft withOffset:_offset];
+    [self.revealSideViewController preloadViewController:_rightNavController forSide:PPRevealSideDirectionRight withOffset:_offset];
 }
 
 @end

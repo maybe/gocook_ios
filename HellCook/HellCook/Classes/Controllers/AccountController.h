@@ -14,9 +14,14 @@
 {
     UITableView* tableView;
     UIImageView* bannerImageView;
+    UIButton* loginButton;
+    UIButton* registerButton;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet UIImageView* bannerImageView;
+@property (nonatomic, retain) UIButton* loginButton;
+@property (nonatomic, retain) UIButton* registerButton;
+
 
 @end

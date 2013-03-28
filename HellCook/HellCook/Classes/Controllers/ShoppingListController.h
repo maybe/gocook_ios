@@ -12,6 +12,7 @@
 @interface ShoppingListController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView* tableView;
+    UIImageView* fakeNavBarView;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

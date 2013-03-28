@@ -40,8 +40,16 @@
 
 #define HCSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
 
+#define isRetina4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define _screenHeight [[UIScreen mainScreen] bounds].size.height
+#define _screenWidth [[UIScreen mainScreen] bounds].size.width
+#define _stateBarHeight 20
+#define _mainHeight (_screenHeight - _stateBarHeight)
+#define _mainWidth _mcreenWidth
+
 #define _offset 40
-#define _sideWindowWidth 280
+#define _sideWindowWidth (_screenWidth - _offset)
 #define _navigationBarHeight 44
 
 @interface Common : NSObject

@@ -7,8 +7,8 @@
 //
 
 #import "UIImage+Retina4.h"
-#import <objc/objc-runtime.h>
-
+#import <objc/runtime.h>
+#import <objc/message.h>
 
 @implementation UIImage (Retina4)
 

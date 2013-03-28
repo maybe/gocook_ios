@@ -27,12 +27,16 @@
 		BA3F5E6416FA295B00493260 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5916FA28DA00493260 /* AssetsLibrary.framework */; };
 		BA3F5E6516FA295B00493260 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5716FA28D000493260 /* Accelerate.framework */; };
 		BA3F5E6716FA297800493260 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = BA3F5E6616FA297800493260 /* Images */; };
+		BA6CEC9C1702297D00EDFC24 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6CEC9A1702297D00EDFC24 /* RegisterController.m */; };
+		BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6CEC9E170229A100EDFC24 /* RegisterView.xib */; };
+		BA6CECA8170292FF00EDFC24 /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6CECA6170292FD00EDFC24 /* ModalViewController.m */; };
+		BA6CECA9170292FF00EDFC24 /* ModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6CECA7170292FE00EDFC24 /* ModalViewController.xib */; };
 		BA73C94716FE1469008284D8 /* TopHotController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94616FE1469008284D8 /* TopHotController.m */; };
 		BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94916FE1F23008284D8 /* ShoppingListController.m */; };
 		BA73C94D16FE3138008284D8 /* AccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94C16FE3138008284D8 /* AccountController.m */; };
 		BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA73C95416FE37D9008284D8 /* AccountView.xib */; };
-		BA8705C316FF405500BA7039 /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8705C216FF405400BA7039 /* CustomNavigationBar.m */; };
-		BA8705C616FF4C0600BA7039 /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8705C516FF4C0600BA7039 /* CustomNavigationController.m */; };
+		BA829BE51704880100B0341A /* TopHotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE41704880100B0341A /* TopHotView.xib */; };
+		BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */; };
 		BACCF83616ECFC420094F1E5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BACCF82B16ECFC420094F1E5 /* .gitignore */; };
 		BACCF83716ECFC420094F1E5 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82D16ECFC420094F1E5 /* FMDatabase.m */; };
 		BACCF83816ECFC420094F1E5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82F16ECFC420094F1E5 /* FMDatabaseAdditions.m */; };
@@ -87,6 +91,12 @@
 		BA3F5E5D16FA28F800493260 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BA3F5E5F16FA290200493260 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		BA3F5E6616FA297800493260 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = Resources/Images; sourceTree = "<group>"; };
+		BA6CEC991702297D00EDFC24 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterController.h; path = Classes/Controllers/RegisterController.h; sourceTree = "<group>"; };
+		BA6CEC9A1702297D00EDFC24 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterController.m; path = Classes/Controllers/RegisterController.m; sourceTree = "<group>"; };
+		BA6CEC9E170229A100EDFC24 /* RegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterView.xib; sourceTree = "<group>"; };
+		BA6CECA5170292FC00EDFC24 /* ModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModalViewController.h; path = "../../../iOSDemo/PPRevealSideViewController-master/PPRevealSideViewController/ModalViewController.h"; sourceTree = "<group>"; };
+		BA6CECA6170292FD00EDFC24 /* ModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModalViewController.m; path = "../../../iOSDemo/PPRevealSideViewController-master/PPRevealSideViewController/ModalViewController.m"; sourceTree = "<group>"; };
+		BA6CECA7170292FE00EDFC24 /* ModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ModalViewController.xib; path = "../../../iOSDemo/PPRevealSideViewController-master/PPRevealSideViewController/ModalViewController.xib"; sourceTree = "<group>"; };
 		BA73C94516FE1469008284D8 /* TopHotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopHotController.h; path = Classes/Controllers/TopHotController.h; sourceTree = "<group>"; };
 		BA73C94616FE1469008284D8 /* TopHotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopHotController.m; path = Classes/Controllers/TopHotController.m; sourceTree = "<group>"; };
 		BA73C94816FE1F23008284D8 /* ShoppingListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListController.h; path = Classes/Controllers/ShoppingListController.h; sourceTree = "<group>"; };
@@ -94,10 +104,9 @@
 		BA73C94B16FE3138008284D8 /* AccountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountController.h; path = Classes/Controllers/AccountController.h; sourceTree = "<group>"; };
 		BA73C94C16FE3138008284D8 /* AccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountController.m; path = Classes/Controllers/AccountController.m; sourceTree = "<group>"; };
 		BA73C95416FE37D9008284D8 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
-		BA8705C116FF405400BA7039 /* CustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNavigationBar.h; path = Classes/Views/CustomNavigationBar.h; sourceTree = "<group>"; };
-		BA8705C216FF405400BA7039 /* CustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNavigationBar.m; path = Classes/Views/CustomNavigationBar.m; sourceTree = "<group>"; };
-		BA8705C416FF4C0600BA7039 /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNavigationController.h; path = Classes/Views/CustomNavigationController.h; sourceTree = "<group>"; };
-		BA8705C516FF4C0600BA7039 /* CustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNavigationController.m; path = Classes/Views/CustomNavigationController.m; sourceTree = "<group>"; };
+		BA829BE41704880100B0341A /* TopHotView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopHotView.xib; sourceTree = "<group>"; };
+		BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Autorotate.h"; path = "Classes/Common/UINavigationController+Autorotate.h"; sourceTree = "<group>"; };
+		BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Autorotate.m"; path = "Classes/Common/UINavigationController+Autorotate.m"; sourceTree = "<group>"; };
 		BACCF82B16ECFC420094F1E5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BACCF82C16ECFC420094F1E5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		BACCF82D16ECFC420094F1E5 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -229,6 +238,8 @@
 				BA02635116D75E4F00298803 /* Common.m */,
 				BA05128416FA14C10091D3C6 /* UIImage+Retina4.h */,
 				BA05128516FA14C10091D3C6 /* UIImage+Retina4.m */,
+				BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */,
+				BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -318,8 +329,10 @@
 		BA73C95316FE37D9008284D8 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				BA6CEC9E170229A100EDFC24 /* RegisterView.xib */,
 				BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */,
 				BA73C95416FE37D9008284D8 /* AccountView.xib */,
+				BA829BE41704880100B0341A /* TopHotView.xib */,
 			);
 			name = NIB;
 			path = Resources/NIB;
@@ -328,10 +341,6 @@
 		BA8705C716FF5AF600BA7039 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				BA8705C116FF405400BA7039 /* CustomNavigationBar.h */,
-				BA8705C216FF405400BA7039 /* CustomNavigationBar.m */,
-				BA8705C416FF4C0600BA7039 /* CustomNavigationController.h */,
-				BA8705C516FF4C0600BA7039 /* CustomNavigationController.m */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -420,12 +429,17 @@
 		BAEFA66416E652C20044B36C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BA6CECA5170292FC00EDFC24 /* ModalViewController.h */,
+				BA6CECA6170292FD00EDFC24 /* ModalViewController.m */,
+				BA6CECA7170292FE00EDFC24 /* ModalViewController.xib */,
 				BA73C94B16FE3138008284D8 /* AccountController.h */,
 				BA73C94C16FE3138008284D8 /* AccountController.m */,
 				BA73C94816FE1F23008284D8 /* ShoppingListController.h */,
 				BA73C94916FE1F23008284D8 /* ShoppingListController.m */,
 				BA73C94516FE1469008284D8 /* TopHotController.h */,
 				BA73C94616FE1469008284D8 /* TopHotController.m */,
+				BA6CEC991702297D00EDFC24 /* RegisterController.h */,
+				BA6CEC9A1702297D00EDFC24 /* RegisterController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -489,6 +503,9 @@
 				BA3F5E6716FA297800493260 /* Images in Resources */,
 				BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */,
 				BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */,
+				BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */,
+				BA6CECA9170292FF00EDFC24 /* ModalViewController.xib in Resources */,
+				BA829BE51704880100B0341A /* TopHotView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,8 +538,9 @@
 				BA73C94716FE1469008284D8 /* TopHotController.m in Sources */,
 				BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */,
 				BA73C94D16FE3138008284D8 /* AccountController.m in Sources */,
-				BA8705C316FF405500BA7039 /* CustomNavigationBar.m in Sources */,
-				BA8705C616FF4C0600BA7039 /* CustomNavigationController.m in Sources */,
+				BA6CEC9C1702297D00EDFC24 /* RegisterController.m in Sources */,
+				BA6CECA8170292FF00EDFC24 /* ModalViewController.m in Sources */,
+				BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +618,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Fan (3T4XTKEX83)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HellCook/HellCook-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -609,6 +628,7 @@
 					"\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0EDC141D-AE92-459C-96E6-952F96A97767";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -618,6 +638,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Fan (3T4XTKEX83)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HellCook/HellCook-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -627,6 +648,7 @@
 					"\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0EDC141D-AE92-459C-96E6-952F96A97767";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};

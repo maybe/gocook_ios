@@ -9,6 +9,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TopHotController : UITableViewController
+@interface TopHotController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView* tableView;
+    UISearchBar* searchBar;
+}
+
+@property (nonatomic, retain) IBOutlet UITableView* tableView;
+@property (nonatomic, retain) IBOutlet UISearchBar* searchBar;
 
 @end

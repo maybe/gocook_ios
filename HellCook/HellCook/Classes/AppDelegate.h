@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, PPRevealSideViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) PPRevealSideViewController *revealSideViewController;
+@property (strong, nonatomic) UINavigationController *leftNavController;
+@property (strong, nonatomic) UINavigationController *centerNavController;
+@property (strong, nonatomic) UINavigationController *rightNavController;
+
 
 + (void) Generalstyle;
 

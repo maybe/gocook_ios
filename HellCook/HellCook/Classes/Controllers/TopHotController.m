@@ -1,41 +1,30 @@
 #import "TopHotController.h"
 #import "AccountController.h"
 #import "ShoppingListController.h"
-#import "CustomNavigationBar.h"
-#import "CustomNavigationController.h"
+#import "AppDelegate.h"
+#import "UINavigationController+Autorotate.h"
+#import "RegisterController.h"
 
 @interface TopHotController ()
-{
-    AccountController *m_AccountController;
-    ShoppingListController* m_SlController;
-}
+
 @end
 
 @implementation TopHotController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize tableView;
+@synthesize searchBar;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     self.title = @"今日热门";
+
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.clipsToBounds = NO;
+
     
     [self setLeftButton];
     [self setRightButton];
-    
-    [self.navigationController.navigationBar setTranslucent:NO];
-    
-    m_AccountController = [[AccountController alloc] initWithNibName:@"AccountView" bundle:nil];
-    m_SlController = [[ShoppingListController alloc] initWithNibName:@"ShoppingListView" bundle:nil];
-    
 }
 
 - (void) showLeft:(id)sender
@@ -51,45 +40,39 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    CustomNavigationController *nl = [[CustomNavigationController alloc] initWithRootViewController:m_AccountController];    
-    [self.revealSideViewController preloadViewController:nl forSide:PPRevealSideDirectionLeft withOffset:_offset];
-
-    
-    CustomNavigationController* nr = [[CustomNavigationController alloc]initWithRootViewController:m_SlController];
-    [self.revealSideViewController preloadViewController:nr forSide:PPRevealSideDirectionRight withOffset:_offset];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (BOOL)shouldAutorotate {
+    
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return 30;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -104,14 +87,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    LeftViewController *left = [[LeftViewController alloc] initWithStyle:UITableViewStylePlain];
-//
-//    // We don't want to be able to pan on nav bar to see the left side when we pushed a controller
-//    [self.revealSideViewController unloadViewControllerForSide:PPRevealSideDirectionLeft];
-//    
-//    [self.navigationController pushViewController:left animated:YES];
-//    
-//    HC_RELEASE(left);
+    [self.navigationController pushViewController:[[RegisterController alloc]initWithNibName:@"RegisterView" bundle:nil] animated:YES];
 }
 
 - (void)setLeftButton
