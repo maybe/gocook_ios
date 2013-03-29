@@ -76,12 +76,12 @@
 
 - (void)resetLeftNavController
 {
-    AccountController* accountController = [[AccountController alloc] initWithNibName:@"AccountView" bundle:nil];
-    _leftNavController = [[UINavigationController alloc] initWithRootViewController:accountController];
-    _leftNavController.navigationBarHidden = NO;
-    _leftNavController.view.clipsToBounds = YES;
-    _leftNavController.navigationBar.clipsToBounds = YES;
-    _leftNavController.view.bounds = CGRectMake(0, 0, _sideWindowWidth, 480);
+  AccountController* accountController = [[AccountController alloc] initWithNibName:@"AccountView" bundle:nil];
+  _leftNavController = [[UINavigationController alloc] initWithRootViewController:accountController];
+  _leftNavController.navigationBarHidden = NO;
+  _leftNavController.view.clipsToBounds = YES;
+  _leftNavController.navigationBar.clipsToBounds = YES;
+  _leftNavController.view.bounds = CGRectMake(0, 0, _sideWindowWidth, 480);
 }
 
 - (void)resetRightNavController

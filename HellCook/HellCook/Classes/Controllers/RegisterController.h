@@ -7,12 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KeyboardHandlerDelegate.h"
 
-@interface RegisterController : UIViewController
+@class RegisterAvatarView;
+@class KeyboardHandler;
+@interface RegisterController : UIViewController<UITextFieldDelegate,
+                                  UIImagePickerControllerDelegate,
+                                  UINavigationControllerDelegate,
+                                  KeyboardHandlerDelegate>
 {
-    UINavigationItem* navgationItem;
+  UITableView* tableView;
+  UINavigationItem* navgationItem;
+  NSMutableArray* cellContentList;
+    
+  UITextField* nickField;
+  UITextField* emailField;
+  UITextField* passwordField;
+  UITextField* repasswordField;
+  
+  RegisterAvatarView* headImageView;
+  
+  KeyboardHandler *keyboard;
 }
 
 @property (nonatomic, retain) IBOutlet UINavigationItem* navgationItem;
+@property (nonatomic, retain) IBOutlet UITableView* tableView;
 
 @end

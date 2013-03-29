@@ -4,17 +4,22 @@
 
 -(BOOL)shouldAutorotate
 {
-    return [self.viewControllers.lastObject shouldAutorotate];
+  return [self.viewControllers.lastObject shouldAutorotate];
 }
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    return [self.viewControllers.lastObject supportedInterfaceOrientations];
+  NSUInteger result = [self.viewControllers.lastObject supportedInterfaceOrientations];
+  return result;
 }
 
 -(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
-    return [self.viewControllers.lastObject preferredInterfaceOrientationForPresentation];
+  UIInterfaceOrientation result = [self.viewControllers.lastObject preferredInterfaceOrientationForPresentation];
+  if (result == 0) {
+    result = UIInterfaceOrientationPortrait;
+  }
+  return result;
 }
 
 //for iOS5

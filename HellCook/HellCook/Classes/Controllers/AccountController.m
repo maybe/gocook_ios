@@ -23,31 +23,30 @@
 @synthesize loginButton;
 @synthesize registerButton;
 
-
 - (void)viewDidLoad
 {
-    UIImageView* titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 59, 27)];
-    [titleImageView setImage:[UIImage imageNamed:@"Images/leftPageTitle.png"]];
-    self.navigationItem.titleView = titleImageView;
+  UIImageView* titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 59, 27)];
+  [titleImageView setImage:[UIImage imageNamed:@"Images/leftPageTitle.png"]];
+  self.navigationItem.titleView = titleImageView;
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.clipsToBounds = NO;
+  [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
+  self.navigationController.navigationBar.clipsToBounds = NO;
 
-    self.view.clipsToBounds = YES;
+  self.view.clipsToBounds = YES;
   
-    [self hideAccountView];
-    [self hideLoginView];
-    
-    [super viewDidLoad];
+  [self hideAccountView];
+  [self hideLoginView];
+  
+  [super viewDidLoad];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    [self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight_NoStBar)];
+  [self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight_NoStBar)];
+  
+  [self showLoginView];
 
-    [self showLoginView];
-
-    [super viewWillAppear:animated];
+  [super viewWillAppear:animated];
 }
 
 

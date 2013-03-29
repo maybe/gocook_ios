@@ -32,10 +32,9 @@
   [self.tableView setScrollEnabled:NO];
   CGRect frame = self.tableView.tableHeaderView.frame;
   frame.size.height = 24;
-  
-  self.navgationItem.title = @"登录";
-  
   self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
+  
+  self.navgationItem.title = @"登录";  
   
   [self setLeftButton];
   [self setRightButton];
@@ -166,6 +165,9 @@
 -(BOOL)CanbecomeFirstResponder {
   return YES;
 }
+
+
+#pragma mark - Navi Button
 
 - (void)setLeftButton
 {

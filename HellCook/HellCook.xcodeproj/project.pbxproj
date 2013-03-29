@@ -38,6 +38,9 @@
 		BA829BEA1704995300B0341A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE91704995300B0341A /* LoginView.xib */; };
 		BA829BED17049B0700B0341A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BEC17049B0500B0341A /* LoginController.m */; };
 		BA829BF017049DE400B0341A /* DefaultGroupedTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BEF17049DE400B0341A /* DefaultGroupedTableCell.m */; };
+		BA829BF317055CD400B0341A /* RegisterAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF217055CD400B0341A /* RegisterAvatarView.m */; };
+		BA829BF717057FCB00B0341A /* KeyboardHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF617057FCA00B0341A /* KeyboardHandler.m */; };
+		BA829BFA1705877800B0341A /* UIView+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */; };
 		BACCF83616ECFC420094F1E5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BACCF82B16ECFC420094F1E5 /* .gitignore */; };
 		BACCF83716ECFC420094F1E5 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82D16ECFC420094F1E5 /* FMDatabase.m */; };
 		BACCF83816ECFC420094F1E5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82F16ECFC420094F1E5 /* FMDatabaseAdditions.m */; };
@@ -110,6 +113,13 @@
 		BA829BEC17049B0500B0341A /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginController.m; path = Classes/Controllers/LoginController.m; sourceTree = "<group>"; };
 		BA829BEE17049DE400B0341A /* DefaultGroupedTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultGroupedTableCell.h; path = Classes/Views/Custom/DefaultGroupedTableCell.h; sourceTree = "<group>"; };
 		BA829BEF17049DE400B0341A /* DefaultGroupedTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultGroupedTableCell.m; path = Classes/Views/Custom/DefaultGroupedTableCell.m; sourceTree = "<group>"; };
+		BA829BF117055CD400B0341A /* RegisterAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterAvatarView.h; path = Classes/Views/RegisterAvatarView.h; sourceTree = "<group>"; };
+		BA829BF217055CD400B0341A /* RegisterAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterAvatarView.m; path = Classes/Views/RegisterAvatarView.m; sourceTree = "<group>"; };
+		BA829BF417057F6200B0341A /* KeyboardHandlerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardHandlerDelegate.h; path = Classes/Common/KeyboardHandlerDelegate.h; sourceTree = "<group>"; };
+		BA829BF517057FCA00B0341A /* KeyboardHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardHandler.h; path = Classes/Common/KeyboardHandler.h; sourceTree = "<group>"; };
+		BA829BF617057FCA00B0341A /* KeyboardHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardHandler.m; path = Classes/Common/KeyboardHandler.m; sourceTree = "<group>"; };
+		BA829BF81705877600B0341A /* UIView+FindFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FindFirstResponder.h"; path = "Classes/Common/UIView+FindFirstResponder.h"; sourceTree = "<group>"; };
+		BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FindFirstResponder.m"; path = "Classes/Common/UIView+FindFirstResponder.m"; sourceTree = "<group>"; };
 		BACCF82B16ECFC420094F1E5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BACCF82C16ECFC420094F1E5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		BACCF82D16ECFC420094F1E5 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -243,6 +253,11 @@
 				BA05128516FA14C10091D3C6 /* UIImage+Retina4.m */,
 				BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */,
 				BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */,
+				BA829BF417057F6200B0341A /* KeyboardHandlerDelegate.h */,
+				BA829BF517057FCA00B0341A /* KeyboardHandler.h */,
+				BA829BF617057FCA00B0341A /* KeyboardHandler.m */,
+				BA829BF81705877600B0341A /* UIView+FindFirstResponder.h */,
+				BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -318,6 +333,8 @@
 			isa = PBXGroup;
 			children = (
 				BA8705C716FF5AF600BA7039 /* Custom */,
+				BA829BF117055CD400B0341A /* RegisterAvatarView.h */,
+				BA829BF217055CD400B0341A /* RegisterAvatarView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -547,6 +564,9 @@
 				BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */,
 				BA829BED17049B0700B0341A /* LoginController.m in Sources */,
 				BA829BF017049DE400B0341A /* DefaultGroupedTableCell.m in Sources */,
+				BA829BF317055CD400B0341A /* RegisterAvatarView.m in Sources */,
+				BA829BF717057FCB00B0341A /* KeyboardHandler.m in Sources */,
+				BA829BFA1705877800B0341A /* UIView+FindFirstResponder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
