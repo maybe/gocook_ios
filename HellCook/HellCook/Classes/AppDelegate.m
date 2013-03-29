@@ -11,6 +11,7 @@
 #import "TopHotController.h"
 #import "ShoppingListController.h"
 #import "AccountController.h"
+#import "NetManager.h"
 
 @implementation AppDelegate
 
@@ -22,23 +23,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    [[self class] Generalstyle];
-
-    [self resetCenterNavController];
-    [self resetLeftNavController];
-    [self resetRightNavController];
-    
-    [self resetRevealSideviewController];
-    
-    self.window.rootViewController = _revealSideViewController;
-    
-    self.window.backgroundColor = [UIColor blackColor];
-    [self.window makeKeyAndVisible];
-    
-    return YES;
+  
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  
+  [[self class] Generalstyle];
+  
+  [self resetCenterNavController];
+  [self resetLeftNavController];
+  [self resetRightNavController];
+  
+  [self resetRevealSideviewController];
+  
+  self.window.rootViewController = _revealSideViewController;
+  
+  self.window.backgroundColor = [UIColor blackColor];
+  [self.window makeKeyAndVisible];
+  
+  [NetManager sharedInstance];
+  
+  return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -62,16 +65,16 @@
 }
 
 + (void)Generalstyle {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
-    //navigationbar
-    UINavigationBar *navigationBar = [UINavigationBar appearance];
-    [navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
-//    
-    [[UINavigationBar appearance] setTitleTextAttributes: @{
-                                UITextAttributeTextColor: [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0],
-                          UITextAttributeTextShadowColor: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8],
-                         UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 0.5f)],
-     }];
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
+  //navigationbar
+  UINavigationBar *navigationBar = [UINavigationBar appearance];
+  [navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+  
+  [[UINavigationBar appearance] setTitleTextAttributes: @{
+                              UITextAttributeTextColor: [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0],
+                        UITextAttributeTextShadowColor: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8],
+                       UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 0.5f)],
+   }];
 }
 
 - (void)resetLeftNavController
@@ -86,32 +89,32 @@
 
 - (void)resetRightNavController
 {
-    ShoppingListController* slController = [[ShoppingListController alloc] initWithNibName:@"ShoppingListView" bundle:nil];
-    _rightNavController = [[UINavigationController alloc] initWithRootViewController:slController];
-    _rightNavController.navigationBarHidden = NO;
-    _rightNavController.view.clipsToBounds = YES;
-    _rightNavController.navigationBar.clipsToBounds = YES;
-    _rightNavController.view.frame = CGRectMake(40, 0, _sideWindowWidth, 480);
+  ShoppingListController* slController = [[ShoppingListController alloc] initWithNibName:@"ShoppingListView" bundle:nil];
+  _rightNavController = [[UINavigationController alloc] initWithRootViewController:slController];
+  _rightNavController.navigationBarHidden = NO;
+  _rightNavController.view.clipsToBounds = YES;
+  _rightNavController.navigationBar.clipsToBounds = YES;
+  _rightNavController.view.frame = CGRectMake(40, 0, _sideWindowWidth, 480);
 }
 
 - (void)resetCenterNavController
 {
-    TopHotController *mainController = [[TopHotController alloc] initWithNibName:@"TopHotView" bundle:nil];
-    _centerNavController = [[UINavigationController alloc] initWithRootViewController:mainController];
-
+  TopHotController *mainController = [[TopHotController alloc] initWithNibName:@"TopHotView" bundle:nil];
+  _centerNavController = [[UINavigationController alloc] initWithRootViewController:mainController];
+  
 }
 
 - (void)resetRevealSideviewController
 {
-    _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_centerNavController];
-    _revealSideViewController.delegate = self;
-    
-    [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionLeft |PPRevealSideDirectionRight];
-    [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
-    [self.revealSideViewController setOption:PPRevealSideOptionsResizeSideView];
-    
-    [self.revealSideViewController preloadViewController:_leftNavController forSide:PPRevealSideDirectionLeft withOffset:_offset];
-    [self.revealSideViewController preloadViewController:_rightNavController forSide:PPRevealSideDirectionRight withOffset:_offset];
+  _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_centerNavController];
+  _revealSideViewController.delegate = self;
+  
+  [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionLeft |PPRevealSideDirectionRight];
+  [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
+  [self.revealSideViewController setOption:PPRevealSideOptionsResizeSideView];
+  
+  [self.revealSideViewController preloadViewController:_leftNavController forSide:PPRevealSideDirectionLeft withOffset:_offset];
+  [self.revealSideViewController preloadViewController:_rightNavController forSide:PPRevealSideDirectionRight withOffset:_offset];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "LoginController.h"
 #import "DefaultGroupedTableCell.h"
+#import "NetManager.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
@@ -47,6 +48,13 @@
 {
   [super viewWillAppear:animated];
   [usernameField becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  if (self.loginOperation) {
+    [self.loginOperation cancel];
+  }
 }
 
 - (BOOL)shouldAutorotate {
@@ -159,7 +167,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
-
+  
 }
 
 -(BOOL)CanbecomeFirstResponder {
@@ -210,9 +218,49 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+#pragma mark - Net
+
 -(void)onLogin
 {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  NSString* username = usernameField.text;
+  NSString* password = passwordField.text;
+  
+  self.loginOperation = [[[NetManager sharedInstance] accountEngine]
+                          loginWithUser:username AndPass:password
+                          completionHandler:^(NSMutableDictionary *resultDic) {[self LoginCallBack:resultDic];}
+                          errorHandler:^(NSError *error) {}
+                         ];
+  
 }
+
+- (void)LoginCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0) {
+    [[[UIAlertView alloc] initWithTitle:@"Welcome!"
+                                message:[NSString stringWithFormat:@"%@", resultDic[@"username"]]
+                               delegate:nil
+                      cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
+                      otherButtonTitles:nil] show];
+  }
+  else
+  {
+    [usernameField resignFirstResponder];
+    [passwordField resignFirstResponder];
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+		
+    HUD.mode = MBProgressHUDModeCustomView;
+    
+    HUD.delegate = self;
+    HUD.labelText = @"登录失败";
+    
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
+  }
+}
+                         
 
 @end

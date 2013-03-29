@@ -52,7 +52,9 @@
 #define _offset 40
 #define _sideWindowWidth (_screenWidth - _offset)
 
+#define ApplicationDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
+#define _myHostName @"localhost"
 
 @interface Common : NSObject
 

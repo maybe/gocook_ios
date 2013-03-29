@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface LoginController : UIViewController<UITextFieldDelegate>
+@interface LoginController : UIViewController<UITextFieldDelegate, MBProgressHUDDelegate>
 {
+  MBProgressHUD *HUD;
+  
   UINavigationItem* navgationItem;
   UITableView* tableView;
   NSMutableArray* cellList;
@@ -19,5 +22,7 @@
 
 @property (nonatomic, retain) IBOutlet UINavigationItem* navgationItem;
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
+@property (strong, nonatomic) MKNetworkOperation *loginOperation;
+
 
 @end
