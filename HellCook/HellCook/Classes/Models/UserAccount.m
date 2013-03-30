@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 panda. All rights reserved.
 //
 
-#import "User.h"
+#import "UserAccount.h"
 #import "GCDSingleton.h"
 
-@implementation User
+@implementation UserAccount
 @synthesize username,signature,password;
 
 + (id)sharedInstance
@@ -24,7 +24,7 @@
   return self;
 }
 
-- (NSComparisonResult)compare:(User *)otherObject {
+- (NSComparisonResult)compare:(UserAccount *)otherObject {
   return [self.username localizedCaseInsensitiveCompare:otherObject.username];
 }
 

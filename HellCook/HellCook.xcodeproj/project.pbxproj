@@ -29,7 +29,7 @@
 		BA3F5E6716FA297800493260 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = BA3F5E6616FA297800493260 /* Images */; };
 		BA6CEC9C1702297D00EDFC24 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6CEC9A1702297D00EDFC24 /* RegisterController.m */; };
 		BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6CEC9E170229A100EDFC24 /* RegisterView.xib */; };
-		BA6F2C151705A52200B2C7C7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C141705A52200B2C7C7 /* User.m */; };
+		BA6F2C151705A52200B2C7C7 /* UserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C141705A52200B2C7C7 /* UserAccount.m */; };
 		BA6F2C1D1705DC9B00B2C7C7 /* AccountEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C1C1705DC9B00B2C7C7 /* AccountEngine.m */; };
 		BA6F2C201705DE9600B2C7C7 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C1F1705DE9600B2C7C7 /* NetManager.m */; };
 		BA73C94716FE1469008284D8 /* TopHotController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94616FE1469008284D8 /* TopHotController.m */; };
@@ -103,8 +103,8 @@
 		BA6CEC9A1702297D00EDFC24 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterController.m; path = Classes/Controllers/RegisterController.m; sourceTree = "<group>"; };
 		BA6CEC9E170229A100EDFC24 /* RegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterView.xib; sourceTree = "<group>"; };
 		BA6F2C121705A41900B2C7C7 /* GCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDSingleton.h; path = Classes/Common/GCDSingleton.h; sourceTree = "<group>"; };
-		BA6F2C131705A52200B2C7C7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Classes/Models/User.h; sourceTree = "<group>"; };
-		BA6F2C141705A52200B2C7C7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Classes/Models/User.m; sourceTree = "<group>"; };
+		BA6F2C131705A52200B2C7C7 /* UserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserAccount.h; path = Classes/Models/UserAccount.h; sourceTree = "<group>"; };
+		BA6F2C141705A52200B2C7C7 /* UserAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserAccount.m; path = Classes/Models/UserAccount.m; sourceTree = "<group>"; };
 		BA6F2C1B1705DC9B00B2C7C7 /* AccountEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountEngine.h; path = Classes/NetWork/AccountEngine.h; sourceTree = "<group>"; };
 		BA6F2C1C1705DC9B00B2C7C7 /* AccountEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountEngine.m; path = Classes/NetWork/AccountEngine.m; sourceTree = "<group>"; };
 		BA6F2C1E1705DE9600B2C7C7 /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetManager.h; path = Classes/NetWork/NetManager.h; sourceTree = "<group>"; };
@@ -369,8 +369,8 @@
 		BA73C94F16FE367F008284D8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BA6F2C131705A52200B2C7C7 /* User.h */,
-				BA6F2C141705A52200B2C7C7 /* User.m */,
+				BA6F2C131705A52200B2C7C7 /* UserAccount.h */,
+				BA6F2C141705A52200B2C7C7 /* UserAccount.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -605,7 +605,7 @@
 				BA829BF317055CD400B0341A /* RegisterAvatarView.m in Sources */,
 				BA829BF717057FCB00B0341A /* KeyboardHandler.m in Sources */,
 				BA829BFA1705877800B0341A /* UIView+FindFirstResponder.m in Sources */,
-				BA6F2C151705A52200B2C7C7 /* User.m in Sources */,
+				BA6F2C151705A52200B2C7C7 /* UserAccount.m in Sources */,
 				BA6F2C1D1705DC9B00B2C7C7 /* AccountEngine.m in Sources */,
 				BA6F2C201705DE9600B2C7C7 /* NetManager.m in Sources */,
 				BABE0A14170627560056BF9D /* MBProgressHUD.m in Sources */,

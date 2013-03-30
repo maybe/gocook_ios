@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface User : NSObject
+@interface UserAccount : NSObject
 {
   NSString* username;
   NSString* password;
@@ -20,6 +20,6 @@
 @property (nonatomic, retain) NSString* signature;
 
 + (id)sharedInstance;
-- (NSComparisonResult)compare:(User *)otherObject;
+- (NSComparisonResult)compare:(UserAccount *)otherObject;
 
 @end
