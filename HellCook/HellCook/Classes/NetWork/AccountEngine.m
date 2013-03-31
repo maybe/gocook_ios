@@ -36,4 +36,37 @@
   return op;
 }
 
+
+- (MKNetworkOperation*)RegisterWithEmail:(NSString*)email AndNick:(NSString*)nick
+                                AndPass:(NSString*)pass AndRePass:(NSString*)repass
+                          AndAvatarPath:(NSString*)avatar
+                      completionHandler:(RegResponseBlock) completionBlock
+                           errorHandler:(MKNKErrorBlock) errorBlock
+{
+  NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+  [dic setValue:email forKey:@"email"];
+  [dic setValue:nick forKey:@"nickname"];
+  [dic setValue:pass forKey:@"password"];
+  [dic setValue:repass forKey:@"repassword"];
+  
+  MKNetworkOperation *op = [self operationWithPath:@"user/register"
+                                            params:dic
+                                        httpMethod:@"POST"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    NSLog(@"%@",completedOperation.responseString);
+    
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+
 @end

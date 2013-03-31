@@ -11,7 +11,10 @@
 #import "RegisterController.h"
 #import "LoginController.h"
 #import "UINavigationController+Autorotate.h"
-
+#import "UserAccount.h"
+#import "AccountTableViewCell.h"
+#import "AccountTableViewGridCell.h"
+#import "User.h"
 
 @interface AccountController ()
 
@@ -22,6 +25,7 @@
 @synthesize bannerImageView;
 @synthesize loginButton;
 @synthesize registerButton;
+@synthesize cellContentArray;
 
 - (void)viewDidLoad
 {
@@ -37,6 +41,8 @@
   [self hideAccountView];
   [self hideLoginView];
   
+  [self initCellContentArray];
+  
   [super viewDidLoad];
 }
 
@@ -44,7 +50,14 @@
 {
   [self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight_NoStBar)];
   
-  [self showLoginView];
+  if ([[[User sharedInstance] account] isLogin]) {
+    [self hideLoginView];
+    [self showAccountView];
+  }
+  else{
+    [self hideAccountView];
+    [self showLoginView];
+  }
 
   [super viewWillAppear:animated];
 }
@@ -59,20 +72,68 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 30;
+    return cellContentArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
+- (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+  NSMutableDictionary* dic = [cellContentArray objectAtIndex:indexPath.row];
+  if ([[dic allKeys]containsObject:@"image"]) {
+    return 63;
+  }
+  return 88;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  static NSString *CellIdentifier = @"Cell";
+  BOOL isGridCell = NO;
+  
+  NSMutableDictionary* dic = [cellContentArray objectAtIndex:indexPath.row];
+  if (![[dic allKeys]containsObject:@"image"]) {
+    CellIdentifier = @"GridCell";
+    isGridCell = YES;
+  }
+  else{
+    CellIdentifier = @"Cell";
+  }
+  
+  UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (!cell) {
+    if (isGridCell) {
+      cell = [[AccountTableViewGridCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GridCell"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Main %d", indexPath.row];
-    
-    return cell;
+    else{
+      cell = [[AccountTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+  }
+  
+  if (isGridCell) {
+    AccountTableViewGridCell* aCell = (AccountTableViewGridCell*)cell;
+    aCell.countLabel1.text = @"0";
+    aCell.nameLabel1.text = [dic valueForKey:@"title1"];
+    aCell.countLabel2.text = @"0";
+    aCell.nameLabel2.text = [dic valueForKey:@"title2"];
+    aCell.countLabel3.text = @"0";
+    aCell.nameLabel3.text = [dic valueForKey:@"title3"];
+    aCell.countLabel4.text = @"0";
+    aCell.nameLabel4.text = [dic valueForKey:@"title4"];
+    aCell.countLabel5.text = @"0";
+    aCell.nameLabel5.text = [dic valueForKey:@"title5"];
+  }
+  else
+  {
+    AccountTableViewCell* aCell = (AccountTableViewCell*)cell;
+    [aCell.imageView setImage:[UIImage imageNamed:[dic valueForKey:@"image"]]];
+    [aCell.titleLabel setText:[dic valueForKey:@"title"]];
+    if (indexPath.row == cellContentArray.count - 1) {
+      aCell.bottomlineView.hidden = YES;
+    }
+    else
+      aCell.bottomlineView.hidden = NO;
+  }
+  return cell;
 }
 
 
@@ -151,6 +212,31 @@
     return registerButton;
 }
 
+- (void)initCellContentArray
+{
+  cellContentArray = [[NSMutableArray alloc]init];
+  NSMutableDictionary *cellDic;
+  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
+             @"Images/leftPageHot.png",@"image", @"今日热门",@"title",nil];
+  [cellContentArray addObject:cellDic];
+  
+  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
+             @"0",@"count1", @"关注",@"title1",
+             @"0",@"count2", @"粉丝",@"title2",
+             @"0",@"count3", @"收藏",@"title3",
+             @"0",@"count4", @"作品",@"title4",
+             @"0",@"count5", @"菜谱",@"title5",nil];
+  [cellContentArray addObject:cellDic];
+  
+  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
+             @"Images/leftPageLogout.png",@"image", @"退出",@"title",nil];
+  [cellContentArray addObject:cellDic];
+  
+  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
+             @"Images/leftPageScore.png",@"image", @"帮助我们评分",@"title",nil];
+  [cellContentArray addObject:cellDic];
+}
+
 
 - (void)openLoginWindow
 {
@@ -158,8 +244,6 @@
     if (self.navigationController) {
         [self.navigationController presentViewController:m animated:YES completion:nil];
     }
-//    AccountController* m = [[AccountController alloc] initWithNibName:@"AccountView" bundle:nil];
-//    [self.navigationController pushViewController:m animated:YES];
 }
 
 - (void)openRegisterWindow

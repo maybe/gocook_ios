@@ -13,13 +13,18 @@
   NSString* username;
   NSString* password;
   NSString* signature;
+  BOOL isLogin;
+  NSString* avatar;
 }
 
 @property (nonatomic, retain) NSString* username;
 @property (nonatomic, retain) NSString* password;
 @property (nonatomic, retain) NSString* signature;
+@property BOOL isLogin;
+@property (nonatomic, retain) NSString* avatar;
 
-+ (id)sharedInstance;
 - (NSComparisonResult)compare:(UserAccount *)otherObject;
+
+- (BOOL)isLogin;
 
 @end

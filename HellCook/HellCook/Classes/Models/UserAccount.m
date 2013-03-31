@@ -7,25 +7,20 @@
 //
 
 #import "UserAccount.h"
-#import "GCDSingleton.h"
 
 @implementation UserAccount
-@synthesize username,signature,password;
-
-+ (id)sharedInstance
-{
-  DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
-    return [[self alloc] init];
-  });
-}
+@synthesize username,signature,password,isLogin,avatar;
 
 -(id)init{
-  if(self=[super init]){}
+  if(self=[super init]){
+    isLogin = NO;
+  }
   return self;
 }
 
 - (NSComparisonResult)compare:(UserAccount *)otherObject {
   return [self.username localizedCaseInsensitiveCompare:otherObject.username];
 }
+
 
 @end

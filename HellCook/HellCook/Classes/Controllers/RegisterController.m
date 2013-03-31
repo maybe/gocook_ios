@@ -11,6 +11,8 @@
 #import "RegisterAvatarView.h"
 #import "KeyboardHandler.h"
 #import "UIView+FindFirstResponder.h"
+#import "NetManager.h"
+#import "User.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
@@ -293,9 +295,57 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+#pragma mark - Net
+
 -(void)onRegister
 {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  NSString* email = emailField.text;
+  NSString* nickname = nickField.text;
+  NSString* password = passwordField.text;
+  NSString* repassword = repasswordField.text;
+
+  
+  self.registerOperation = [[[NetManager sharedInstance] accountEngine]
+                            RegisterWithEmail:email AndNick:nickname
+                            AndPass:password AndRePass:repassword AndAvatarPath:@""
+                            completionHandler:^(NSMutableDictionary *resultDic) {
+                              [self RegisterCallBack:resultDic];}
+                            errorHandler:^(NSError *error) {}
+                            ];
+  
 }
+
+- (void)RegisterCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result != 0 || resultDic == nil)
+  {
+    [emailField resignFirstResponder];
+    [nickField resignFirstResponder];
+    [passwordField resignFirstResponder];
+    [repasswordField resignFirstResponder];
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+		
+    HUD.mode = MBProgressHUDModeCustomView;
+    
+    HUD.delegate = self;
+    HUD.labelText = @"注册失败";
+    
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
+  }
+  else {
+    User* user = [User sharedInstance];
+    user.account.username = resultDic[@"username"];
+    user.account.isLogin = YES;
+    user.account.avatar = resultDic[@"icon"];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+  }
+}
+
 
 @end

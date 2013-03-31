@@ -27,6 +27,10 @@
 		BA3F5E6416FA295B00493260 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5916FA28DA00493260 /* AssetsLibrary.framework */; };
 		BA3F5E6516FA295B00493260 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5716FA28D000493260 /* Accelerate.framework */; };
 		BA3F5E6716FA297800493260 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = BA3F5E6616FA297800493260 /* Images */; };
+		BA6069921707D0430060C251 /* AccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069911707D0430060C251 /* AccountTableViewCell.m */; };
+		BA6069951707D5ED0060C251 /* AccountTableViewGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069941707D5ED0060C251 /* AccountTableViewGridCell.m */; };
+		BA60699E17080F340060C251 /* UserCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA60699D17080F340060C251 /* UserCollection.m */; };
+		BA6069A1170810C80060C251 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069A0170810C80060C251 /* User.m */; };
 		BA6CEC9C1702297D00EDFC24 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6CEC9A1702297D00EDFC24 /* RegisterController.m */; };
 		BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6CEC9E170229A100EDFC24 /* RegisterView.xib */; };
 		BA6F2C151705A52200B2C7C7 /* UserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C141705A52200B2C7C7 /* UserAccount.m */; };
@@ -99,6 +103,14 @@
 		BA3F5E5D16FA28F800493260 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BA3F5E5F16FA290200493260 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		BA3F5E6616FA297800493260 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = Resources/Images; sourceTree = "<group>"; };
+		BA6069901707D0430060C251 /* AccountTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountTableViewCell.h; path = Classes/Views/AccountTableViewCell.h; sourceTree = "<group>"; };
+		BA6069911707D0430060C251 /* AccountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewCell.m; path = Classes/Views/AccountTableViewCell.m; sourceTree = "<group>"; };
+		BA6069931707D5EC0060C251 /* AccountTableViewGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountTableViewGridCell.h; path = Classes/Views/AccountTableViewGridCell.h; sourceTree = "<group>"; };
+		BA6069941707D5ED0060C251 /* AccountTableViewGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewGridCell.m; path = Classes/Views/AccountTableViewGridCell.m; sourceTree = "<group>"; };
+		BA60699C17080F340060C251 /* UserCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserCollection.h; path = Classes/Models/UserCollection.h; sourceTree = "<group>"; };
+		BA60699D17080F340060C251 /* UserCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserCollection.m; path = Classes/Models/UserCollection.m; sourceTree = "<group>"; };
+		BA60699F170810C80060C251 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Classes/Models/User.h; sourceTree = "<group>"; };
+		BA6069A0170810C80060C251 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Classes/Models/User.m; sourceTree = "<group>"; };
 		BA6CEC991702297D00EDFC24 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterController.h; path = Classes/Controllers/RegisterController.h; sourceTree = "<group>"; };
 		BA6CEC9A1702297D00EDFC24 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterController.m; path = Classes/Controllers/RegisterController.m; sourceTree = "<group>"; };
 		BA6CEC9E170229A100EDFC24 /* RegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterView.xib; sourceTree = "<group>"; };
@@ -360,6 +372,10 @@
 			isa = PBXGroup;
 			children = (
 				BA8705C716FF5AF600BA7039 /* Custom */,
+				BA6069931707D5EC0060C251 /* AccountTableViewGridCell.h */,
+				BA6069941707D5ED0060C251 /* AccountTableViewGridCell.m */,
+				BA6069901707D0430060C251 /* AccountTableViewCell.h */,
+				BA6069911707D0430060C251 /* AccountTableViewCell.m */,
 				BA829BF117055CD400B0341A /* RegisterAvatarView.h */,
 				BA829BF217055CD400B0341A /* RegisterAvatarView.m */,
 			);
@@ -371,6 +387,10 @@
 			children = (
 				BA6F2C131705A52200B2C7C7 /* UserAccount.h */,
 				BA6F2C141705A52200B2C7C7 /* UserAccount.m */,
+				BA60699C17080F340060C251 /* UserCollection.h */,
+				BA60699D17080F340060C251 /* UserCollection.m */,
+				BA60699F170810C80060C251 /* User.h */,
+				BA6069A0170810C80060C251 /* User.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -609,6 +629,10 @@
 				BA6F2C1D1705DC9B00B2C7C7 /* AccountEngine.m in Sources */,
 				BA6F2C201705DE9600B2C7C7 /* NetManager.m in Sources */,
 				BABE0A14170627560056BF9D /* MBProgressHUD.m in Sources */,
+				BA6069921707D0430060C251 /* AccountTableViewCell.m in Sources */,
+				BA6069951707D5ED0060C251 /* AccountTableViewGridCell.m in Sources */,
+				BA60699E17080F340060C251 /* UserCollection.m in Sources */,
+				BA6069A1170810C80060C251 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

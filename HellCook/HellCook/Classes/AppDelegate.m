@@ -12,6 +12,7 @@
 #import "ShoppingListController.h"
 #import "AccountController.h"
 #import "NetManager.h"
+#import "User.h"
 
 @implementation AppDelegate
 
@@ -40,6 +41,7 @@
   [self.window makeKeyAndVisible];
   
   [NetManager sharedInstance];
+  [User sharedInstance];
   
   return YES;
 }

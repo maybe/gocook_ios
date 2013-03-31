@@ -9,6 +9,7 @@
 #import "LoginController.h"
 #import "DefaultGroupedTableCell.h"
 #import "NetManager.h"
+#import "User.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
@@ -228,7 +229,8 @@
   
   self.loginOperation = [[[NetManager sharedInstance] accountEngine]
                           loginWithUser:username AndPass:password
-                          completionHandler:^(NSMutableDictionary *resultDic) {[self LoginCallBack:resultDic];}
+                          completionHandler:^(NSMutableDictionary *resultDic) {
+                            [self LoginCallBack:resultDic];}
                           errorHandler:^(NSError *error) {}
                          ];
   
@@ -238,11 +240,11 @@
 {
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0) {
-    [[[UIAlertView alloc] initWithTitle:@"Welcome!"
-                                message:[NSString stringWithFormat:@"%@", resultDic[@"username"]]
-                               delegate:nil
-                      cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
-                      otherButtonTitles:nil] show];
+    UserAccount* userAccount = [[User sharedInstance] account];
+    userAccount.username = resultDic[@"username"];
+    userAccount.isLogin = YES;
+    
+    [self dismissViewControllerAnimated:YES completion:nil];    
   }
   else
   {
