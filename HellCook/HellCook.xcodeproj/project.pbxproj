@@ -31,6 +31,9 @@
 		BA6069951707D5ED0060C251 /* AccountTableViewGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069941707D5ED0060C251 /* AccountTableViewGridCell.m */; };
 		BA60699E17080F340060C251 /* UserCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA60699D17080F340060C251 /* UserCollection.m */; };
 		BA6069A1170810C80060C251 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069A0170810C80060C251 /* User.m */; };
+		BA6069A91708CA800060C251 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069A41708CA800060C251 /* UIImage+Alpha.m */; };
+		BA6069AA1708CA800060C251 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069A61708CA800060C251 /* UIImage+Resize.m */; };
+		BA6069AB1708CA800060C251 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069A81708CA800060C251 /* UIImage+RoundedCorner.m */; };
 		BA6CEC9C1702297D00EDFC24 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6CEC9A1702297D00EDFC24 /* RegisterController.m */; };
 		BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6CEC9E170229A100EDFC24 /* RegisterView.xib */; };
 		BA6F2C151705A52200B2C7C7 /* UserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C141705A52200B2C7C7 /* UserAccount.m */; };
@@ -111,6 +114,12 @@
 		BA60699D17080F340060C251 /* UserCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserCollection.m; path = Classes/Models/UserCollection.m; sourceTree = "<group>"; };
 		BA60699F170810C80060C251 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Classes/Models/User.h; sourceTree = "<group>"; };
 		BA6069A0170810C80060C251 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Classes/Models/User.m; sourceTree = "<group>"; };
+		BA6069A31708CA800060C251 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		BA6069A41708CA800060C251 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		BA6069A51708CA800060C251 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		BA6069A61708CA800060C251 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		BA6069A71708CA800060C251 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		BA6069A81708CA800060C251 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		BA6CEC991702297D00EDFC24 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterController.h; path = Classes/Controllers/RegisterController.h; sourceTree = "<group>"; };
 		BA6CEC9A1702297D00EDFC24 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterController.m; path = Classes/Controllers/RegisterController.m; sourceTree = "<group>"; };
 		BA6CEC9E170229A100EDFC24 /* RegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterView.xib; sourceTree = "<group>"; };
@@ -252,6 +261,7 @@
 		BA02634216D7570400298803 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				BA6069A21708CA800060C251 /* UIImage-Categories */,
 				BABE0A111706274D0056BF9D /* MBProgressHUD */,
 				BACCF86916ED0BD60094F1E5 /* MKNetworkKit */,
 				BACCF84916ECFC770094F1E5 /* NYXImagesKit */,
@@ -355,6 +365,20 @@
 				BA0DC18016D4C3A500E4CED9 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BA6069A21708CA800060C251 /* UIImage-Categories */ = {
+			isa = PBXGroup;
+			children = (
+				BA6069A31708CA800060C251 /* UIImage+Alpha.h */,
+				BA6069A41708CA800060C251 /* UIImage+Alpha.m */,
+				BA6069A51708CA800060C251 /* UIImage+Resize.h */,
+				BA6069A61708CA800060C251 /* UIImage+Resize.m */,
+				BA6069A71708CA800060C251 /* UIImage+RoundedCorner.h */,
+				BA6069A81708CA800060C251 /* UIImage+RoundedCorner.m */,
+			);
+			name = "UIImage-Categories";
+			path = "Libs/UIImage-Categories";
 			sourceTree = "<group>";
 		};
 		BA6F2C1A1705DC7C00B2C7C7 /* NetWork */ = {
@@ -633,6 +657,9 @@
 				BA6069951707D5ED0060C251 /* AccountTableViewGridCell.m in Sources */,
 				BA60699E17080F340060C251 /* UserCollection.m in Sources */,
 				BA6069A1170810C80060C251 /* User.m in Sources */,
+				BA6069A91708CA800060C251 /* UIImage+Alpha.m in Sources */,
+				BA6069AA1708CA800060C251 /* UIImage+Resize.m in Sources */,
+				BA6069AB1708CA800060C251 /* UIImage+RoundedCorner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

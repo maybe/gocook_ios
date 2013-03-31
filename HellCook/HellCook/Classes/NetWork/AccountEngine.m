@@ -53,6 +53,10 @@
                                             params:dic
                                         httpMethod:@"POST"];
   
+  if (avatar&&![avatar isEqualToString:@""]) {
+    [op addFile:avatar forKey:@"avatar"];
+  }
+  
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     NSLog(@"%@",completedOperation.responseString);
     

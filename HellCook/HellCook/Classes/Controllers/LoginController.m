@@ -242,6 +242,7 @@
   if (result == 0) {
     UserAccount* userAccount = [[User sharedInstance] account];
     userAccount.username = resultDic[@"username"];
+    userAccount.avatar = resultDic[@"icon"];
     userAccount.isLogin = YES;
     
     [self dismissViewControllerAnimated:YES completion:nil];    

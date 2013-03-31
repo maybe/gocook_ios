@@ -13,6 +13,7 @@
 #import "UIView+FindFirstResponder.h"
 #import "NetManager.h"
 #import "User.h"
+#import "UIImage+Resize.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
@@ -219,7 +220,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
   
   //Find the image url.
-  //NSString *tempFilePath = [(NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL] absoluteString];
+  //self.pickedImagePath = [(NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL] absoluteString];
   
   // Dismiss the camera
   [self dismissViewControllerAnimated:YES completion:nil];
@@ -304,11 +305,22 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   NSString* nickname = nickField.text;
   NSString* password = passwordField.text;
   NSString* repassword = repasswordField.text;
+  
+  NSString  *pngPath = @"";
 
+  UIImage* uploadImage = headImageView.upImageView.image;
+  if (uploadImage!=headImageView.defaultImage) {
+    pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploadtmp.png"];
+    if (uploadImage.size.width>800) {
+      uploadImage = [uploadImage resizedImage:CGSizeMake(800.0f, uploadImage.size.height*800.0f/uploadImage.size.width) interpolationQuality:kCGInterpolationDefault];
+    }
+    // Write image to PNG
+    [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
+  }
   
   self.registerOperation = [[[NetManager sharedInstance] accountEngine]
                             RegisterWithEmail:email AndNick:nickname
-                            AndPass:password AndRePass:repassword AndAvatarPath:@""
+                            AndPass:password AndRePass:repassword AndAvatarPath:pngPath
                             completionHandler:^(NSMutableDictionary *resultDic) {
                               [self RegisterCallBack:resultDic];}
                             errorHandler:^(NSError *error) {}

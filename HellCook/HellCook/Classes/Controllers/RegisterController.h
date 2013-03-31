@@ -37,6 +37,7 @@
 @property (nonatomic, retain) IBOutlet UINavigationItem* navgationItem;
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (strong, nonatomic) MKNetworkOperation *registerOperation;
+@property (nonatomic, retain) NSString* pickedImagePath;
 
 
 @end
