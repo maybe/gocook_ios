@@ -16,6 +16,7 @@
   UIImageView* bannerImageView;
   UIButton* loginButton;
   UIButton* registerButton;
+  UIButton* debugOptonButton;
   NSMutableArray* cellContentArray;
 }
 

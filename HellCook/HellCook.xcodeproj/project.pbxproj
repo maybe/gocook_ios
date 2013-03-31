@@ -34,6 +34,8 @@
 		BA6069A91708CA800060C251 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069A41708CA800060C251 /* UIImage+Alpha.m */; };
 		BA6069AA1708CA800060C251 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069A61708CA800060C251 /* UIImage+Resize.m */; };
 		BA6069AB1708CA800060C251 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069A81708CA800060C251 /* UIImage+RoundedCorner.m */; };
+		BA6069AD1708E3DA0060C251 /* DebugOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6069AC1708E3DA0060C251 /* DebugOption.xib */; };
+		BA6069B01708E4C10060C251 /* DebugOptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069AF1708E4C00060C251 /* DebugOptionController.m */; };
 		BA6CEC9C1702297D00EDFC24 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6CEC9A1702297D00EDFC24 /* RegisterController.m */; };
 		BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6CEC9E170229A100EDFC24 /* RegisterView.xib */; };
 		BA6F2C151705A52200B2C7C7 /* UserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C141705A52200B2C7C7 /* UserAccount.m */; };
@@ -120,6 +122,9 @@
 		BA6069A61708CA800060C251 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		BA6069A71708CA800060C251 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		BA6069A81708CA800060C251 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		BA6069AC1708E3DA0060C251 /* DebugOption.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugOption.xib; sourceTree = "<group>"; };
+		BA6069AE1708E4BF0060C251 /* DebugOptionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugOptionController.h; path = Classes/Controllers/DebugOptionController.h; sourceTree = "<group>"; };
+		BA6069AF1708E4C00060C251 /* DebugOptionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DebugOptionController.m; path = Classes/Controllers/DebugOptionController.m; sourceTree = "<group>"; };
 		BA6CEC991702297D00EDFC24 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterController.h; path = Classes/Controllers/RegisterController.h; sourceTree = "<group>"; };
 		BA6CEC9A1702297D00EDFC24 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterController.m; path = Classes/Controllers/RegisterController.m; sourceTree = "<group>"; };
 		BA6CEC9E170229A100EDFC24 /* RegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterView.xib; sourceTree = "<group>"; };
@@ -427,6 +432,7 @@
 				BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */,
 				BA73C95416FE37D9008284D8 /* AccountView.xib */,
 				BA829BE41704880100B0341A /* TopHotView.xib */,
+				BA6069AC1708E3DA0060C251 /* DebugOption.xib */,
 			);
 			name = NIB;
 			path = Resources/NIB;
@@ -544,6 +550,8 @@
 				BA6CEC9A1702297D00EDFC24 /* RegisterController.m */,
 				BA829BEB17049B0400B0341A /* LoginController.h */,
 				BA829BEC17049B0500B0341A /* LoginController.m */,
+				BA6069AE1708E4BF0060C251 /* DebugOptionController.h */,
+				BA6069AF1708E4C00060C251 /* DebugOptionController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -610,6 +618,7 @@
 				BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */,
 				BA829BE51704880100B0341A /* TopHotView.xib in Resources */,
 				BA829BEA1704995300B0341A /* LoginView.xib in Resources */,
+				BA6069AD1708E3DA0060C251 /* DebugOption.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,6 +669,7 @@
 				BA6069A91708CA800060C251 /* UIImage+Alpha.m in Sources */,
 				BA6069AA1708CA800060C251 /* UIImage+Resize.m in Sources */,
 				BA6069AB1708CA800060C251 /* UIImage+RoundedCorner.m in Sources */,
+				BA6069B01708E4C10060C251 /* DebugOptionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

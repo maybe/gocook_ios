@@ -10,7 +10,7 @@
 #import "GCDSingleton.h"
 
 @implementation NetManager
-@synthesize accountEngine;
+@synthesize accountEngine,host;
 
 + (id)sharedInstance
 {
@@ -22,6 +22,7 @@
 - (id)init{
   if(self=[super init])
   {
+    host = _myHostName;
     [self InitEngines];
   }
   return self;
@@ -29,9 +30,15 @@
 
 - (void)InitEngines
 {
-  self.accountEngine = [[AccountEngine alloc] initWithHostName:_myHostName
-                                            customHeaderFields: @{@"x-client-identifier" : @"Mobile"}];
+  [self InitAccountengine];
 
 }
+
+- (void)InitAccountengine
+{
+  self.accountEngine = [[AccountEngine alloc] initWithHostName:host
+                                            customHeaderFields: @{@"x-client-identifier" : @"Mobile"}];
+}
+
 
 @end

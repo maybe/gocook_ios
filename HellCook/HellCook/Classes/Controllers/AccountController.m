@@ -15,6 +15,7 @@
 #import "AccountTableViewCell.h"
 #import "AccountTableViewGridCell.h"
 #import "User.h"
+#import "DebugOptionController.h"
 
 @interface AccountController ()
 
@@ -141,6 +142,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  if (indexPath.row == cellContentArray.count-1) {
+    [self openDebugOption];
+  }
 }
 
 
@@ -149,12 +153,15 @@
 {
     [[self loginButton] setHidden:NO];
     [[self registerButton] setHidden:NO];
+  [[self debugOptonButton] setHidden:NO];
 }
 
 - (void)hideLoginView
 {
     [[self loginButton] setHidden:YES];
     [[self registerButton] setHidden:YES];
+  [[self debugOptonButton] setHidden:YES];
+
 }
 
 - (void)showAccountView
@@ -212,6 +219,29 @@
     return registerButton;
 }
 
+- (id)debugOptonButton
+{
+  if (!debugOptonButton) {
+    debugOptonButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 200, 120, 30)];
+    [debugOptonButton setTitle:@"Debug Option" forState:UIControlStateNormal];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
+    UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+    [debugOptonButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
+    
+    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
+    UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+    [debugOptonButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
+    
+    [debugOptonButton addTarget:self action:@selector(openDebugOption) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:debugOptonButton];
+    [self.view bringSubviewToFront:debugOptonButton];
+  }
+  return debugOptonButton;
+}
+
+
+
 - (void)initCellContentArray
 {
   cellContentArray = [[NSMutableArray alloc]init];
@@ -235,6 +265,10 @@
   cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
              @"Images/leftPageScore.png",@"image", @"帮助我们评分",@"title",nil];
   [cellContentArray addObject:cellDic];
+  
+  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
+             @"Images/leftPageScore.png",@"image", @"Debug Options",@"title",nil];
+  [cellContentArray addObject:cellDic];
 }
 
 
@@ -252,6 +286,12 @@
     if (self.navigationController) {
         [self.navigationController presentViewController:m animated:YES completion:nil];
     }
+}
+
+- (void)openDebugOption
+{
+  DebugOptionController* doController = [[DebugOptionController alloc]initWithNibName:@"DebugOption" bundle:nil];
+  [self.navigationController presentViewController:doController animated:YES completion:nil];
 }
 
 @end

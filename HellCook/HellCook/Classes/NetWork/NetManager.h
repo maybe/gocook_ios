@@ -12,11 +12,15 @@
 @interface NetManager : NSObject
 {
   AccountEngine *accountEngine;
+  NSString* host;
 }
 
 @property (strong, nonatomic) AccountEngine *accountEngine;
+@property (strong, nonatomic) NSString* host;
+
 
 + (id)sharedInstance;
 - (id)init;
+- (void)InitEngines;
 
 @end
