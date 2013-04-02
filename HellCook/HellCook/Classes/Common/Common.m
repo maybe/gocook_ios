@@ -10,4 +10,9 @@
 
 @implementation Common
 
++ (NSString *)dataFilePath:(NSString*)filePath {
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  return [documentsDirectory stringByAppendingPathComponent:filePath];
+}
 @end

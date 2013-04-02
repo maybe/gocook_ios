@@ -54,8 +54,10 @@
 
 #define ApplicationDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
-#define _myHostName @"localhost"
+#define _defaultHostName @"localhost"
 
 @interface Common : NSObject
+
++ (NSString *)dataFilePath:(NSString*)filePath;
 
 @end

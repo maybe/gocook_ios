@@ -23,7 +23,7 @@
       [self.titleLabel setFont: [UIFont systemFontOfSize:16]];
       [titleLabel setBackgroundColor: [UIColor clearColor]];
 
-      bottomlineView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 62, 280, 1)];
+      bottomlineView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 62, 280, 1.2)];
       imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 20, 23, 23)];
 
       [imageView setBackgroundColor: [UIColor clearColor]];

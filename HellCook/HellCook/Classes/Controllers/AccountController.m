@@ -16,6 +16,9 @@
 #import "AccountTableViewGridCell.h"
 #import "User.h"
 #import "DebugOptionController.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+Blurring.h"
+#import "NetManager.h"
 
 @interface AccountController ()
 
@@ -24,9 +27,11 @@
 @implementation AccountController
 @synthesize tableView;
 @synthesize bannerImageView;
+@synthesize avataImageVIew;
 @synthesize loginButton;
 @synthesize registerButton;
 @synthesize cellContentArray;
+@synthesize nameLabel;
 
 - (void)viewDidLoad
 {
@@ -39,7 +44,14 @@
 
   self.view.clipsToBounds = YES;
   
-  [self hideAccountView];
+  nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(70, 70, 180, 30)];
+  bannerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 280, 120)];
+  avataImageVIew = [[UIImageView alloc]initWithFrame:CGRectMake(15, 65, 40, 40)];
+  
+  [self.view addSubview:bannerImageView];
+  [self.view addSubview:avataImageVIew];
+  [self.view addSubview:nameLabel];
+  
   [self hideLoginView];
   
   [self initCellContentArray];
@@ -50,6 +62,10 @@
 - (void) viewWillAppear:(BOOL)animated
 {
   [self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight_NoStBar)];
+  
+  if ([[[User sharedInstance] account] isLogin] && [[[User sharedInstance] account] shouldResetLogin]) {
+    [self resetAccountView];
+  }
   
   if ([[[User sharedInstance] account] isLogin]) {
     [self hideLoginView];
@@ -145,6 +161,9 @@
   if (indexPath.row == cellContentArray.count-1) {
     [self openDebugOption];
   }
+  else if (indexPath.row == 2){
+    [self logout];
+  }
 }
 
 
@@ -166,15 +185,35 @@
 
 - (void)showAccountView
 {
-    [tableView setHidden:NO];
-    [bannerImageView setHidden:NO];
+  [tableView setHidden:NO];
+  [bannerImageView setHidden:NO];
+  [avataImageVIew setHidden:NO];
+  [nameLabel setHidden:NO];
 }
 
 - (void)hideAccountView
 {
-    [tableView setHidden:YES];
-    [bannerImageView setHidden:YES];
+  [tableView setHidden:YES];
+  [bannerImageView setHidden:YES];
+  [avataImageVIew setHidden:YES];
+  [nameLabel setHidden:YES];
 }
+
+- (void)resetAccountView
+{
+  nameLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+  nameLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
+  nameLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+  nameLabel.backgroundColor = [UIColor clearColor];
+  nameLabel.font = [UIFont boldSystemFontOfSize:20];
+  
+  [nameLabel setText: [[[User sharedInstance] account] username]];
+  
+  [self setAccountAvatar];
+  [[[User sharedInstance] account] setShouldResetLogin:NO];
+}
+
+
 
 - (id)loginButton
 {
@@ -292,6 +331,41 @@
 {
   DebugOptionController* doController = [[DebugOptionController alloc]initWithNibName:@"DebugOption" bundle:nil];
   [self.navigationController presentViewController:doController animated:YES completion:nil];
+}
+
+- (void)logout
+{
+  [[[User sharedInstance] account] logout];
+  [self showLoginView];
+  [self hideAccountView];
+}
+
+
+- (void)setAccountAvatar
+{
+  UserAccount* account = [[User sharedInstance] account];
+  if (account.avatar && ![account.avatar isEqual:@""]) {
+    [avataImageVIew setContentMode:UIViewContentModeScaleAspectFill];
+    [avataImageVIew setClipsToBounds:YES];
+    
+    NetManager* netManager = [NetManager sharedInstance];
+    
+    
+    NSString* avatarUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, account.avatar];
+    
+    [avataImageVIew setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:nil];
+    avataImageVIew.layer.cornerRadius = 4.0;
+    avataImageVIew.layer.masksToBounds = YES;
+    avataImageVIew.layer.borderColor = [UIColor clearColor].CGColor;
+    avataImageVIew.layer.borderWidth = 1.0;
+    
+    [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
+    [bannerImageView setClipsToBounds:YES];
+    [bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:nil options:0  andGaussianBlurWithBias:20];
+  }
+  
+
+
 }
 
 @end

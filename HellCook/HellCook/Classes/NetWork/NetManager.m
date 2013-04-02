@@ -22,7 +22,7 @@
 - (id)init{
   if(self=[super init])
   {
-    host = _myHostName;
+    host = _defaultHostName;
     [self InitEngines];
   }
   return self;

@@ -14,6 +14,8 @@
 #import "NetManager.h"
 #import "User.h"
 #import "UIImage+Resize.h"
+#import "UIImage+Resizing.h"
+#import "DBHandler.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
@@ -311,9 +313,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   UIImage* uploadImage = headImageView.upImageView.image;
   if (uploadImage!=headImageView.defaultImage) {
     pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploadtmp.png"];
-    if (uploadImage.size.width>800) {
-      uploadImage = [uploadImage resizedImage:CGSizeMake(800.0f, uploadImage.size.height*800.0f/uploadImage.size.width) interpolationQuality:kCGInterpolationDefault];
-    }
+    uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(100, 100) interpolationQuality:kCGInterpolationHigh];
+    uploadImage = [uploadImage cropToSize:CGSizeMake(100, 100) usingMode:NYXCropModeTopCenter];
     // Write image to PNG
     [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
   }
@@ -355,6 +356,17 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     user.account.isLogin = YES;
     user.account.avatar = resultDic[@"icon"];
     
+    NSMutableDictionary* dic = nil;
+    dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
+           resultDic[@"username"], @"username",
+           passwordField.text, @"password",
+           resultDic[@"icon"], @"avatar", nil];
+    
+    DBHandler* dbHandler = [DBHandler sharedInstance];
+    [dbHandler setAccount:dic];
+    
+    [[[User sharedInstance] account] setShouldResetLogin:YES];
+
     [self dismissViewControllerAnimated:YES completion:nil];
   }
 }

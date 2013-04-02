@@ -13,6 +13,7 @@
 #import "AccountController.h"
 #import "NetManager.h"
 #import "User.h"
+#import "DBHandler.h"
 
 @implementation AppDelegate
 
@@ -41,6 +42,7 @@
   [self.window makeKeyAndVisible];
   
   [NetManager sharedInstance];
+  [DBHandler sharedInstance];
   [User sharedInstance];
   
   return YES;
@@ -66,6 +68,8 @@
 {
 }
 
+#pragma mark  general style
+
 + (void)Generalstyle {
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
   //navigationbar
@@ -78,6 +82,9 @@
                        UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 0.5f)],
    }];
 }
+
+
+#pragma mark  setting nav
 
 - (void)resetLeftNavController
 {

@@ -18,23 +18,23 @@
       [self setBackgroundColor: [UIColor clearColor]];
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
       
-      self.bottomLine1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 43, 280, 1)];
+      self.bottomLine1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 43, 280, 1.2)];
       [self.bottomLine1 setImage: [UIImage imageNamed:@"Images/line.png"]];
      // [self.bottomLine1 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
 
-      self.bottomLine2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 87, 280, 1)];
+      self.bottomLine2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 87, 280, 1.2)];
       [self.bottomLine2 setImage: [UIImage imageNamed:@"Images/line.png"]];
      // [self.bottomLine2 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
       
-      self.sepLine1 = [[UIImageView alloc]initWithFrame:CGRectMake(140-21, 0+21, 43, 1)];
+      self.sepLine1 = [[UIImageView alloc]initWithFrame:CGRectMake(140-21, 0+21, 43, 1.2)];
       [self.sepLine1 setImage: [UIImage imageNamed:@"Images/line.png"]];
       self.sepLine1.transform = CGAffineTransformMakeRotation(M_PI_2);
      // [self.sepLine1 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
-      self.sepLine2 = [[UIImageView alloc]initWithFrame:CGRectMake(93-21, 44+21, 43, 1)];
+      self.sepLine2 = [[UIImageView alloc]initWithFrame:CGRectMake(93-21, 44+21, 43, 1.2)];
       [self.sepLine2 setImage: [UIImage imageNamed:@"Images/line.png"]];
       self.sepLine2.transform = CGAffineTransformMakeRotation(M_PI_2);
      // [self.sepLine2 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
-      self.sepLine3 = [[UIImageView alloc]initWithFrame:CGRectMake(186-21, 44+21, 43, 1)];
+      self.sepLine3 = [[UIImageView alloc]initWithFrame:CGRectMake(186-21, 44+21, 43, 1.2)];
       [self.sepLine3 setImage: [UIImage imageNamed:@"Images/line.png"]];
       self.sepLine3.transform = CGAffineTransformMakeRotation(M_PI_2);
      // [self.sepLine3 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];

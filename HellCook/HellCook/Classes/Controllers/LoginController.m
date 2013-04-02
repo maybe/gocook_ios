@@ -10,6 +10,7 @@
 #import "DefaultGroupedTableCell.h"
 #import "NetManager.h"
 #import "User.h"
+#import "DBHandler.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
@@ -238,12 +239,22 @@
 
 - (void)LoginCallBack:(NSMutableDictionary*) resultDic
 {
+  UserAccount* userAccount = [[User sharedInstance] account];
+  
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0) {
-    UserAccount* userAccount = [[User sharedInstance] account];
     userAccount.username = resultDic[@"username"];
     userAccount.avatar = resultDic[@"icon"];
-    userAccount.isLogin = YES;
+    
+    NSMutableDictionary* dic = nil;
+    dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
+           resultDic[@"username"], @"username",
+           passwordField.text, @"password",
+           resultDic[@"icon"], @"avatar", nil];
+    
+    [userAccount login:dic];
+    
+    [[[User sharedInstance] account] setShouldResetLogin:YES];
     
     [self dismissViewControllerAnimated:YES completion:nil];    
   }
@@ -259,11 +270,10 @@
     
     HUD.delegate = self;
     HUD.labelText = @"登录失败";
-    
+        
     [HUD show:YES];
     [HUD hide:YES afterDelay:2];
   }
 }
-                         
 
 @end
