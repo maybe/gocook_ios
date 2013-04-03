@@ -37,12 +37,10 @@
   //初始化
   if (![[NSFileManager defaultManager] fileExistsAtPath:settingPath]) {
     NSMutableDictionary *defDictionary = [[NSMutableDictionary alloc] init];
-    [defDictionary setObject:@"1" forKey:@"imageOn"];
-    [defDictionary setObject:@"0" forKey:@"autoMail"];
-    [defDictionary setObject:@"1" forKey:@"historyOn"];
-    [defDictionary setObject:@"0" forKey:@"font"];
+    [defDictionary setObject:@"localhost" forKey:@"host"];
     [defDictionary writeToFile:settingPath atomically:YES];
   }
+  [self loadSettings];
 }
 
 - (NSMutableDictionary*)loadSettings
@@ -52,17 +50,8 @@
   NSString *filePath = [Common dataFilePath:kSettingFileName];
   if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
     NSMutableDictionary* tmpDic = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
-    if ([tmpDic objectForKey:@"imageOn"]==nil) {
-      [tmpDic setObject:@"1" forKey:@"imageOn"];
-    }
-    if ([tmpDic objectForKey:@"autoMail"]==nil) {
-      [tmpDic setObject:@"0" forKey:@"autoMail"];
-    }
-    if ([tmpDic objectForKey:@"historyOn"]==nil) {
-      [tmpDic setObject:@"1" forKey:@"historyOn"];
-    }
-    if ([tmpDic objectForKey:@"font"]==nil) {
-      [tmpDic setObject:@"0" forKey:@"font"];
+    if ([tmpDic objectForKey:@"host"]==nil) {
+      [tmpDic setObject:@"localhost" forKey:@"host"];
     }
     
     [settingDictionary setDictionary:tmpDic];

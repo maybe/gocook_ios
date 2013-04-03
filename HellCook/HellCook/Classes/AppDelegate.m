@@ -13,6 +13,7 @@
 #import "AccountController.h"
 #import "NetManager.h"
 #import "User.h"
+#import "ConfigHandler.h"
 #import "DBHandler.h"
 
 @implementation AppDelegate
@@ -41,6 +42,7 @@
   self.window.backgroundColor = [UIColor blackColor];
   [self.window makeKeyAndVisible];
   
+  [ConfigHandler sharedInstance];
   [NetManager sharedInstance];
   [DBHandler sharedInstance];
   [User sharedInstance];

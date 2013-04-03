@@ -8,6 +8,7 @@
 
 #import "DebugOptionController.h"
 #import "NetManager.h"
+#import "ConfigHandler.h"
 
 @interface DebugOptionController ()
 
@@ -74,6 +75,8 @@
   NetManager* netManager = [NetManager sharedInstance];
   netManager.host = ipField.text;
   [netManager InitEngines];//重启
+  [[[ConfigHandler sharedInstance] settingDictionary] setObject:netManager.host forKey:@"host"];
+  [[ConfigHandler sharedInstance] saveSettings];
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -249,6 +249,7 @@
     NSMutableDictionary* dic = nil;
     dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
            resultDic[@"username"], @"username",
+           usernameField.text, @"email",
            passwordField.text, @"password",
            resultDic[@"icon"], @"avatar", nil];
     

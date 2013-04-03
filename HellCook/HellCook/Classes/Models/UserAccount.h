@@ -12,6 +12,7 @@
 {
   NSString* username;
   NSString* password;
+  NSString* email;
   NSString* signature;
   BOOL isLogin;
   BOOL shouldResetLogin;
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) NSString* username;
 @property (nonatomic, retain) NSString* password;
 @property (nonatomic, retain) NSString* signature;
+@property (nonatomic, retain) NSString* email;
 @property BOOL isLogin;
 @property BOOL shouldResetLogin;
 @property (nonatomic, retain) NSString* avatar;

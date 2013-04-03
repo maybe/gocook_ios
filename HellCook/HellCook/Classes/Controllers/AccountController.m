@@ -56,6 +56,14 @@
   
   [self initCellContentArray];
   
+  CGRect viewframe = self.view.frame;
+  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewframe];
+  
+  CGRect tableframe = self.tableView.frame;
+  tableframe.size.height = _screenHeight_NoStBar_NoNavBar-120;
+  [self.tableView setFrame:tableframe];
+  
   [super viewDidLoad];
 }
 
@@ -97,9 +105,12 @@
 {
   NSMutableDictionary* dic = [cellContentArray objectAtIndex:indexPath.row];
   if ([[dic allKeys]containsObject:@"image"]) {
+    if (indexPath.row == cellContentArray.count-1) {
+      return 83;
+    }
     return 63;
   }
-  return 88;
+  return 100;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -363,9 +374,11 @@
     [bannerImageView setClipsToBounds:YES];
     [bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:nil options:0  andGaussianBlurWithBias:20];
   }
-  
+}
 
-
+- (void)onClickCountGrid:(UIButton*)sender
+{
+  NSLog(@"%d",sender.tag);
 }
 
 @end

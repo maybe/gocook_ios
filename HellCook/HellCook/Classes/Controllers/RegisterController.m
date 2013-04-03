@@ -359,6 +359,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     NSMutableDictionary* dic = nil;
     dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
            resultDic[@"username"], @"username",
+           emailField.text, @"email",
            passwordField.text, @"password",
            resultDic[@"icon"], @"avatar", nil];
     

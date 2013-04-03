@@ -7,6 +7,7 @@
 //
 
 #import "NetManager.h"
+#import "ConfigHandler.h"
 #import "GCDSingleton.h"
 
 @implementation NetManager
@@ -22,7 +23,7 @@
 - (id)init{
   if(self=[super init])
   {
-    host = _defaultHostName;
+    host = [[[ConfigHandler sharedInstance] settingDictionary] objectForKey:@"host"];
     [self InitEngines];
   }
   return self;
