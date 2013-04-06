@@ -47,6 +47,7 @@
 		BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA73C95416FE37D9008284D8 /* AccountView.xib */; };
 		BA79118C1710706F00BC77C9 /* MainTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118B1710706F00BC77C9 /* MainTopTableViewCell.m */; };
 		BA79118F1710786500BC77C9 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118E1710786500BC77C9 /* Recipe.m */; };
+		BA7911921710896800BC77C9 /* MainCatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7911911710896800BC77C9 /* MainCatTableViewCell.m */; };
 		BA829BE51704880100B0341A /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE41704880100B0341A /* MainView.xib */; };
 		BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */; };
 		BA829BEA1704995300B0341A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE91704995300B0341A /* LoginView.xib */; };
@@ -172,6 +173,8 @@
 		BA79118B1710706F00BC77C9 /* MainTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTopTableViewCell.m; path = Classes/Views/MainTopTableViewCell.m; sourceTree = "<group>"; };
 		BA79118D1710786500BC77C9 /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recipe.h; path = Classes/Models/Recipe.h; sourceTree = "<group>"; };
 		BA79118E1710786500BC77C9 /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recipe.m; path = Classes/Models/Recipe.m; sourceTree = "<group>"; };
+		BA7911901710896700BC77C9 /* MainCatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatTableViewCell.h; path = Classes/Views/MainCatTableViewCell.h; sourceTree = "<group>"; };
+		BA7911911710896800BC77C9 /* MainCatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatTableViewCell.m; path = Classes/Views/MainCatTableViewCell.m; sourceTree = "<group>"; };
 		BA829BE41704880100B0341A /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Autorotate.h"; path = "Classes/Common/UINavigationController+Autorotate.h"; sourceTree = "<group>"; };
 		BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Autorotate.m"; path = "Classes/Common/UINavigationController+Autorotate.m"; sourceTree = "<group>"; };
@@ -478,6 +481,8 @@
 				BA6069911707D0430060C251 /* AccountTableViewCell.m */,
 				BA79118A1710706F00BC77C9 /* MainTopTableViewCell.h */,
 				BA79118B1710706F00BC77C9 /* MainTopTableViewCell.m */,
+				BA7911901710896700BC77C9 /* MainCatTableViewCell.h */,
+				BA7911911710896800BC77C9 /* MainCatTableViewCell.m */,
 				BA829BF117055CD400B0341A /* RegisterAvatarView.h */,
 				BA829BF217055CD400B0341A /* RegisterAvatarView.m */,
 				BA50F3551710418600E3B6CE /* SearchBarView.h */,
@@ -855,6 +860,7 @@
 				BA50F3541710413D00E3B6CE /* SearchBarView.m in Sources */,
 				BA79118C1710706F00BC77C9 /* MainTopTableViewCell.m in Sources */,
 				BA79118F1710786500BC77C9 /* Recipe.m in Sources */,
+				BA7911921710896800BC77C9 /* MainCatTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,8 @@
 //
 
 #import "MainTopTableViewCell.h"
+#import "QuartzCore/QuartzCore.h"
+
 
 @implementation MainTopTableViewCell
 @synthesize leftView, rightView;
@@ -15,6 +17,12 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+      [self setBackgroundColor: [UIColor clearColor]];
+      [self setFrame:CGRectMake(0, 0, 320, 116)];
+      [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+      
+      [self addSubview: [self leftView]];
+      [self addSubview: [self rightView]];
     }
     return self;
 }
@@ -23,9 +31,34 @@
 - (UIView*)leftView
 {
   if (!leftView) {
-    leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 150, 100)];
-    UIImageView* imageView = [[UIImageView alloc]initWithImage:@""];
+    leftView = [[UIView alloc]initWithFrame:CGRectMake(10, 13, 145, 90)];
     
+    UIImageView* imageView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"Images/tmptophot.png"]];
+    [imageView setContentMode:UIViewContentModeScaleAspectFill];
+    [imageView setFrame:CGRectMake(0, 0, 145, 90)];
+    [leftView addSubview:imageView];
+    UIView* maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 145, 25)];
+    UIColor* maskColor = [UIColor colorWithRed:29.0f/255.0f green:29.0f/255.0f blue:29.0f/255.0f alpha:0.8];
+    [maskView setBackgroundColor:maskColor];
+    [leftView addSubview:maskView];
+    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(28, 67, 90, 20)];
+    [label setFont: [UIFont systemFontOfSize:14]];
+    [label setText:@"本周最受欢迎"];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setBackgroundColor:[UIColor clearColor]];
+    label.textColor = [UIColor whiteColor];
+    [leftView addSubview:label];
+    
+    [leftView setBackgroundColor:[UIColor blackColor]];
+
+    leftView.layer.cornerRadius = 6.0;
+    leftView.layer.masksToBounds = YES;
+    leftView.layer.borderColor = [UIColor clearColor].CGColor;
+    leftView.layer.borderWidth = 1.0;
+    leftView.layer.shadowOffset = CGSizeMake(0, 3);
+    leftView.layer.shadowOpacity = 0.5;
+    leftView.layer.shadowColor = [UIColor blackColor].CGColor;
+    [leftView setClipsToBounds:YES];
     
   }
   return leftView;
@@ -34,7 +67,31 @@
 - (UIView*)rightView
 {
   if (!rightView) {
+    rightView = [[UIView alloc]initWithFrame:CGRectMake(165, 13, 145, 90)];
+    UIImageView* imageView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"Images/tmptophot.png"]];
+    [imageView setContentMode:UIViewContentModeScaleAspectFill];
+    [imageView setFrame:CGRectMake(0, 0, 145, 90)];
+    [rightView addSubview:imageView];
+    UIView* maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 145, 25)];
+    UIColor* maskColor = [UIColor colorWithRed:29.0f/255.0f green:29.0f/255.0f blue:29.0f/255.0f alpha:0.8];
+    [maskView setBackgroundColor:maskColor];
+    [rightView addSubview:maskView];
+    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(28, 67, 90, 20)];
+    [label setFont: [UIFont systemFontOfSize:14]];
+    [label setText:@"本日最受欢迎"];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    label.textColor = [UIColor whiteColor];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [rightView addSubview:label];
     
+    rightView.layer.cornerRadius = 6.0;
+    rightView.layer.masksToBounds = YES;
+    rightView.layer.borderColor = [UIColor clearColor].CGColor;
+    rightView.layer.borderWidth = 1.0;
+    rightView.layer.shadowOffset = CGSizeMake(0, 3);
+    rightView.layer.shadowOpacity = 0.5;
+    rightView.layer.shadowColor = [UIColor blackColor].CGColor;
+    [rightView setClipsToBounds:YES];
   }
   return rightView;
 }

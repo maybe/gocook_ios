@@ -4,6 +4,7 @@
 #import "AppDelegate.h"
 #import "UINavigationController+Autorotate.h"
 #import "RegisterController.h"
+#import "MainTopTableViewCell.h"
 
 @interface MainController ()
 
@@ -72,20 +73,47 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 30;
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (indexPath.row == 0) {
+    return 116;
+  }
+  return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+  static NSString *CellIdentifier = @"CatCell";
+  BOOL isTopCell = NO;
+  
+  if (indexPath.row == 0) {
+    CellIdentifier = @"TopCell";
+    isTopCell = YES;
+  }
+  else{
+    CellIdentifier = @"CatCell";
+  }
+  
+  UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (!cell) {
+    if (isTopCell) {
+      cell = [[MainTopTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Main %d", indexPath.row];
+    else {
+      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+  }
+  
+  if (isTopCell) {
     
-    return cell;
+  }
+  else
+    cell.textLabel.text = [NSString stringWithFormat:@"Main %d", indexPath.row];
+
+  return cell;
 }
 
 
