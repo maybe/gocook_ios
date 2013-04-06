@@ -1,9 +1,9 @@
 //
-//  NormalGroupedTableCell.h
-//  LilyBBS
+//  DefaultGroupedTableCell.h
+//  HC
 //
-//  Created by panda on 11-12-13.
-//  Copyright (c) 2011年 __MyCompanyName__. All rights reserved.
+//  Created by panda on 13-1-11.
+//  Copyright (c) 2013 panda. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

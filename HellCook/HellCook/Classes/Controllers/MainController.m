@@ -1,44 +1,50 @@
-#import "TopHotController.h"
+#import "MainController.h"
 #import "AccountController.h"
 #import "ShoppingListController.h"
 #import "AppDelegate.h"
 #import "UINavigationController+Autorotate.h"
 #import "RegisterController.h"
 
-@interface TopHotController ()
+@interface MainController ()
 
 @end
 
-@implementation TopHotController
-@synthesize tableView;
-@synthesize searchBar;
+@implementation MainController
+@synthesize tableView, searchBarView;
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
 
-    self.title = @"今日热门";
+  self.title = @"今日热门";
 
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.clipsToBounds = NO;
+  self.navigationController.navigationBar.clipsToBounds = NO;
 
+  
+  [self setLeftButton];
+  [self setRightButton];
+  
+  searchBarView = [[SearchBarView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+  [self.view addSubview:searchBarView];
     
-    [self setLeftButton];
-    [self setRightButton];
+  [super viewDidLoad];
 }
 
 - (void) showLeft:(id)sender
 {
-    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
+  [searchBarView hideMaskView];
+  [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
 }
 
 - (void) showRight:(id)sender
 {
-    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:_offset animated:YES];
+  [searchBarView hideMaskView];
+  [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:_offset animated:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
+  [self.view setFrame:CGRectMake(0, 0, 199, 199)];
+
     [super viewWillAppear:animated];
 }
 
@@ -136,6 +142,11 @@
     
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
+}
+
+- (void)goSearch
+{
+  NSLog(@"%@",@"go to search!");
 }
 
 @end

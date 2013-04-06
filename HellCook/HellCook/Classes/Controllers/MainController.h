@@ -8,14 +8,16 @@
 
 
 #import <UIKit/UIKit.h>
+#import "SearchBarView.h"
 
-@interface TopHotController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MainController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
-    UITableView* tableView;
-    UISearchBar* searchBar;
+  UITableView* tableView;
+  SearchBarView* searchBarView;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet UISearchBar* searchBar;
+@property (nonatomic, retain)SearchBarView* searchBarView;
 
 @end

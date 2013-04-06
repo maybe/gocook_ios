@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Common.h"
-#import "TopHotController.h"
+#import "MainController.h"
 #import "ShoppingListController.h"
 #import "AccountController.h"
 #import "NetManager.h"
@@ -95,7 +95,7 @@
   _leftNavController.navigationBarHidden = NO;
   _leftNavController.view.clipsToBounds = YES;
   _leftNavController.navigationBar.clipsToBounds = YES;
-  _leftNavController.view.bounds = CGRectMake(0, 0, _sideWindowWidth, 480);
+  _leftNavController.view.bounds = CGRectMake(0, 0, _sideWindowWidth, _screenHeight_NoStBar);
 }
 
 - (void)resetRightNavController
@@ -105,14 +105,14 @@
   _rightNavController.navigationBarHidden = NO;
   _rightNavController.view.clipsToBounds = YES;
   _rightNavController.navigationBar.clipsToBounds = YES;
-  _rightNavController.view.frame = CGRectMake(40, 0, _sideWindowWidth, 480);
+  _rightNavController.view.frame = CGRectMake(40, 0, _sideWindowWidth, _screenHeight_NoStBar);
 }
 
 - (void)resetCenterNavController
 {
-  TopHotController *mainController = [[TopHotController alloc] initWithNibName:@"TopHotView" bundle:nil];
+  MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];
   _centerNavController = [[UINavigationController alloc] initWithRootViewController:mainController];
-  
+  _centerNavController.view.autoresizesSubviews = NO;
 }
 
 - (void)resetRevealSideviewController

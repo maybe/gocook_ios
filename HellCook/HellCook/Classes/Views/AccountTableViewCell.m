@@ -1,9 +1,9 @@
 //
-//  ArticleTitleTableViewCell.m
-//  HellCook
+//  AccountTableViewCell.m
+//  HC
 //
-//  Created by panda on 11-11-27.
-//  Copyright (c) 2011 panda. All rights reserved.
+//  Created by panda on 13-1-11.
+//  Copyright (c) 2013 panda. All rights reserved.
 //
 
 #import "AccountTableViewCell.h"

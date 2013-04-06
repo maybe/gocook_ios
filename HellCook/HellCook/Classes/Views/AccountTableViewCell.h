@@ -1,9 +1,9 @@
 //
-//  ArticleTitleTableViewCell.h
-//  LilyBBS
+//  AccountTableViewCell.h
+//  HC
 //
-//  Created by panda on 11-11-27.
-//  Copyright (c) 2011年 __MyCompanyName__. All rights reserved.
+//  Created by panda on 13-1-11.
+//  Copyright (c) 2013 panda. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -1,9 +1,9 @@
 //
-//  UploadImageView.m
-//  LilyBBS
+//  RegisterAvatarView.m
+//  HC
 //
-//  Created by panda on 12-1-11.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by panda on 13-1-11.
+//  Copyright (c) 2013 panda. All rights reserved.
 //
 
 #import "RegisterAvatarView.h"
@@ -13,10 +13,9 @@
 
 - (id)initWithFrame:(CGRect)frame
 {  
-  if([super initWithFrame:frame]){
-    self=[super initWithFrame:frame];
+  if(self=[super initWithFrame:frame]){
+    [self InitLayout];
   }
-  [self InitLayout];
   return self;
 }
 

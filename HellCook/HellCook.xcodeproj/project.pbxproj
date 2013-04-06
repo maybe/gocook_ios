@@ -26,6 +26,7 @@
 		BA3F5E6416FA295B00493260 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5916FA28DA00493260 /* AssetsLibrary.framework */; };
 		BA3F5E6516FA295B00493260 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5716FA28D000493260 /* Accelerate.framework */; };
 		BA3F5E6716FA297800493260 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = BA3F5E6616FA297800493260 /* Images */; };
+		BA50F3541710413D00E3B6CE /* SearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA50F3531710413D00E3B6CE /* SearchBarView.m */; };
 		BA6069921707D0430060C251 /* AccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069911707D0430060C251 /* AccountTableViewCell.m */; };
 		BA6069951707D5ED0060C251 /* AccountTableViewGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069941707D5ED0060C251 /* AccountTableViewGridCell.m */; };
 		BA60699E17080F340060C251 /* UserCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA60699D17080F340060C251 /* UserCollection.m */; };
@@ -40,11 +41,13 @@
 		BA6F2C151705A52200B2C7C7 /* UserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C141705A52200B2C7C7 /* UserAccount.m */; };
 		BA6F2C1D1705DC9B00B2C7C7 /* AccountEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C1C1705DC9B00B2C7C7 /* AccountEngine.m */; };
 		BA6F2C201705DE9600B2C7C7 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C1F1705DE9600B2C7C7 /* NetManager.m */; };
-		BA73C94716FE1469008284D8 /* TopHotController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94616FE1469008284D8 /* TopHotController.m */; };
+		BA73C94716FE1469008284D8 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94616FE1469008284D8 /* MainController.m */; };
 		BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94916FE1F23008284D8 /* ShoppingListController.m */; };
 		BA73C94D16FE3138008284D8 /* AccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94C16FE3138008284D8 /* AccountController.m */; };
 		BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA73C95416FE37D9008284D8 /* AccountView.xib */; };
-		BA829BE51704880100B0341A /* TopHotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE41704880100B0341A /* TopHotView.xib */; };
+		BA79118C1710706F00BC77C9 /* MainTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118B1710706F00BC77C9 /* MainTopTableViewCell.m */; };
+		BA79118F1710786500BC77C9 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118E1710786500BC77C9 /* Recipe.m */; };
+		BA829BE51704880100B0341A /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE41704880100B0341A /* MainView.xib */; };
 		BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */; };
 		BA829BEA1704995300B0341A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE91704995300B0341A /* LoginView.xib */; };
 		BA829BED17049B0700B0341A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BEC17049B0500B0341A /* LoginController.m */; };
@@ -130,6 +133,8 @@
 		BA3F5E5D16FA28F800493260 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BA3F5E5F16FA290200493260 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		BA3F5E6616FA297800493260 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = Resources/Images; sourceTree = "<group>"; };
+		BA50F3531710413D00E3B6CE /* SearchBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchBarView.m; path = Classes/Views/SearchBarView.m; sourceTree = "<group>"; };
+		BA50F3551710418600E3B6CE /* SearchBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchBarView.h; path = Classes/Views/SearchBarView.h; sourceTree = "<group>"; };
 		BA6069901707D0430060C251 /* AccountTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountTableViewCell.h; path = Classes/Views/AccountTableViewCell.h; sourceTree = "<group>"; };
 		BA6069911707D0430060C251 /* AccountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewCell.m; path = Classes/Views/AccountTableViewCell.m; sourceTree = "<group>"; };
 		BA6069931707D5EC0060C251 /* AccountTableViewGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountTableViewGridCell.h; path = Classes/Views/AccountTableViewGridCell.h; sourceTree = "<group>"; };
@@ -156,14 +161,18 @@
 		BA6F2C1C1705DC9B00B2C7C7 /* AccountEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountEngine.m; path = Classes/NetWork/AccountEngine.m; sourceTree = "<group>"; };
 		BA6F2C1E1705DE9600B2C7C7 /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetManager.h; path = Classes/NetWork/NetManager.h; sourceTree = "<group>"; };
 		BA6F2C1F1705DE9600B2C7C7 /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetManager.m; path = Classes/NetWork/NetManager.m; sourceTree = "<group>"; };
-		BA73C94516FE1469008284D8 /* TopHotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopHotController.h; path = Classes/Controllers/TopHotController.h; sourceTree = "<group>"; };
-		BA73C94616FE1469008284D8 /* TopHotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopHotController.m; path = Classes/Controllers/TopHotController.m; sourceTree = "<group>"; };
+		BA73C94516FE1469008284D8 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainController.h; path = Classes/Controllers/MainController.h; sourceTree = "<group>"; };
+		BA73C94616FE1469008284D8 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainController.m; path = Classes/Controllers/MainController.m; sourceTree = "<group>"; };
 		BA73C94816FE1F23008284D8 /* ShoppingListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListController.h; path = Classes/Controllers/ShoppingListController.h; sourceTree = "<group>"; };
 		BA73C94916FE1F23008284D8 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingListController.m; path = Classes/Controllers/ShoppingListController.m; sourceTree = "<group>"; };
 		BA73C94B16FE3138008284D8 /* AccountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountController.h; path = Classes/Controllers/AccountController.h; sourceTree = "<group>"; };
 		BA73C94C16FE3138008284D8 /* AccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountController.m; path = Classes/Controllers/AccountController.m; sourceTree = "<group>"; };
 		BA73C95416FE37D9008284D8 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
-		BA829BE41704880100B0341A /* TopHotView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopHotView.xib; sourceTree = "<group>"; };
+		BA79118A1710706F00BC77C9 /* MainTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTopTableViewCell.h; path = Classes/Views/MainTopTableViewCell.h; sourceTree = "<group>"; };
+		BA79118B1710706F00BC77C9 /* MainTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTopTableViewCell.m; path = Classes/Views/MainTopTableViewCell.m; sourceTree = "<group>"; };
+		BA79118D1710786500BC77C9 /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recipe.h; path = Classes/Models/Recipe.h; sourceTree = "<group>"; };
+		BA79118E1710786500BC77C9 /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recipe.m; path = Classes/Models/Recipe.m; sourceTree = "<group>"; };
+		BA829BE41704880100B0341A /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Autorotate.h"; path = "Classes/Common/UINavigationController+Autorotate.h"; sourceTree = "<group>"; };
 		BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Autorotate.m"; path = "Classes/Common/UINavigationController+Autorotate.m"; sourceTree = "<group>"; };
 		BA829BE91704995300B0341A /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
@@ -467,8 +476,12 @@
 				BA6069941707D5ED0060C251 /* AccountTableViewGridCell.m */,
 				BA6069901707D0430060C251 /* AccountTableViewCell.h */,
 				BA6069911707D0430060C251 /* AccountTableViewCell.m */,
+				BA79118A1710706F00BC77C9 /* MainTopTableViewCell.h */,
+				BA79118B1710706F00BC77C9 /* MainTopTableViewCell.m */,
 				BA829BF117055CD400B0341A /* RegisterAvatarView.h */,
 				BA829BF217055CD400B0341A /* RegisterAvatarView.m */,
+				BA50F3551710418600E3B6CE /* SearchBarView.h */,
+				BA50F3531710413D00E3B6CE /* SearchBarView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -476,6 +489,8 @@
 		BA73C94F16FE367F008284D8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BA79118D1710786500BC77C9 /* Recipe.h */,
+				BA79118E1710786500BC77C9 /* Recipe.m */,
 				BA6F2C131705A52200B2C7C7 /* UserAccount.h */,
 				BA6F2C141705A52200B2C7C7 /* UserAccount.m */,
 				BA60699C17080F340060C251 /* UserCollection.h */,
@@ -493,7 +508,7 @@
 				BA6CEC9E170229A100EDFC24 /* RegisterView.xib */,
 				BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */,
 				BA73C95416FE37D9008284D8 /* AccountView.xib */,
-				BA829BE41704880100B0341A /* TopHotView.xib */,
+				BA829BE41704880100B0341A /* MainView.xib */,
 				BA6069AC1708E3DA0060C251 /* DebugOption.xib */,
 			);
 			name = NIB;
@@ -688,8 +703,8 @@
 				BA73C94C16FE3138008284D8 /* AccountController.m */,
 				BA73C94816FE1F23008284D8 /* ShoppingListController.h */,
 				BA73C94916FE1F23008284D8 /* ShoppingListController.m */,
-				BA73C94516FE1469008284D8 /* TopHotController.h */,
-				BA73C94616FE1469008284D8 /* TopHotController.m */,
+				BA73C94516FE1469008284D8 /* MainController.h */,
+				BA73C94616FE1469008284D8 /* MainController.m */,
 				BA6CEC991702297D00EDFC24 /* RegisterController.h */,
 				BA6CEC9A1702297D00EDFC24 /* RegisterController.m */,
 				BA829BEB17049B0400B0341A /* LoginController.h */,
@@ -760,7 +775,7 @@
 				BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */,
 				BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */,
 				BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */,
-				BA829BE51704880100B0341A /* TopHotView.xib in Resources */,
+				BA829BE51704880100B0341A /* MainView.xib in Resources */,
 				BA829BEA1704995300B0341A /* LoginView.xib in Resources */,
 				BA6069AD1708E3DA0060C251 /* DebugOption.xib in Resources */,
 			);
@@ -792,7 +807,7 @@
 				BACCF88916ED0BD60094F1E5 /* MKNetworkOperation.m in Sources */,
 				BACCF88A16ED0BD60094F1E5 /* Reachability.m in Sources */,
 				BA05128616FA14C10091D3C6 /* UIImage+Retina4.m in Sources */,
-				BA73C94716FE1469008284D8 /* TopHotController.m in Sources */,
+				BA73C94716FE1469008284D8 /* MainController.m in Sources */,
 				BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */,
 				BA73C94D16FE3138008284D8 /* AccountController.m in Sources */,
 				BA6CEC9C1702297D00EDFC24 /* RegisterController.m in Sources */,
@@ -837,6 +852,9 @@
 				BAE67BF9170B70C300414AD5 /* UIView+Screenshot.m in Sources */,
 				BAE67BFA170B70C300414AD5 /* NYXProgressiveImageView.m in Sources */,
 				BAE67BFB170B70C300414AD5 /* NYXImagesHelper.m in Sources */,
+				BA50F3541710413D00E3B6CE /* SearchBarView.m in Sources */,
+				BA79118C1710706F00BC77C9 /* MainTopTableViewCell.m in Sources */,
+				BA79118F1710786500BC77C9 /* Recipe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
