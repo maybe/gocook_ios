@@ -5,6 +5,7 @@
 #import "UINavigationController+Autorotate.h"
 #import "RegisterController.h"
 #import "MainTopTableViewCell.h"
+#import "MainCatTableViewCell.h"
 
 @interface MainController ()
 
@@ -73,15 +74,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return 30;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (indexPath.row == 0) {
-    return 116;
+    return 121;
   }
-  return 44;
+  return 64;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,7 +104,7 @@
       cell = [[MainTopTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     else {
-      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+      cell = [[MainCatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
   }
   

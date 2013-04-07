@@ -23,6 +23,10 @@
       
       [self addSubview: [self leftView]];
       [self addSubview: [self rightView]];
+      
+      UIImageView *dotline = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Images/homeHeaderSeperator@2x.png"]];
+      [dotline setFrame:CGRectMake(0, 115, 320, 1)];
+      [self addSubview:dotline];
     }
     return self;
 }
@@ -37,6 +41,10 @@
     [imageView setContentMode:UIViewContentModeScaleAspectFill];
     [imageView setFrame:CGRectMake(0, 0, 145, 90)];
     [leftView addSubview:imageView];
+    
+    UIImageView* maskImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Images/topmask.png"]];
+    [maskImageView setFrame:CGRectMake(0, 0, 145, 90)];    
+    
     UIView* maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 145, 25)];
     UIColor* maskColor = [UIColor colorWithRed:29.0f/255.0f green:29.0f/255.0f blue:29.0f/255.0f alpha:0.8];
     [maskView setBackgroundColor:maskColor];
@@ -49,15 +57,15 @@
     label.textColor = [UIColor whiteColor];
     [leftView addSubview:label];
     
-    [leftView setBackgroundColor:[UIColor blackColor]];
+    [leftView addSubview:maskImageView];
 
-    leftView.layer.cornerRadius = 6.0;
-    leftView.layer.masksToBounds = YES;
-    leftView.layer.borderColor = [UIColor clearColor].CGColor;
-    leftView.layer.borderWidth = 1.0;
-    leftView.layer.shadowOffset = CGSizeMake(0, 3);
-    leftView.layer.shadowOpacity = 0.5;
-    leftView.layer.shadowColor = [UIColor blackColor].CGColor;
+   // leftView.layer.cornerRadius = 5.0;
+  //  leftView.layer.masksToBounds = YES;
+//    leftView.layer.borderColor = [UIColor clearColor].CGColor;
+//    leftView.layer.borderWidth = 1.0;
+//    leftView.layer.shadowOffset = CGSizeMake(0, 3);
+//    leftView.layer.shadowOpacity = 0.5;
+//    leftView.layer.shadowColor = [UIColor blackColor].CGColor;
     [leftView setClipsToBounds:YES];
     
   }
@@ -72,6 +80,10 @@
     [imageView setContentMode:UIViewContentModeScaleAspectFill];
     [imageView setFrame:CGRectMake(0, 0, 145, 90)];
     [rightView addSubview:imageView];
+    
+    UIImageView* maskImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Images/topmask.png"]];
+    [maskImageView setFrame:CGRectMake(0, 0, 145, 90)];
+    
     UIView* maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 145, 25)];
     UIColor* maskColor = [UIColor colorWithRed:29.0f/255.0f green:29.0f/255.0f blue:29.0f/255.0f alpha:0.8];
     [maskView setBackgroundColor:maskColor];
@@ -84,14 +96,15 @@
     [label setBackgroundColor:[UIColor clearColor]];
     [rightView addSubview:label];
     
-    rightView.layer.cornerRadius = 6.0;
-    rightView.layer.masksToBounds = YES;
-    rightView.layer.borderColor = [UIColor clearColor].CGColor;
-    rightView.layer.borderWidth = 1.0;
-    rightView.layer.shadowOffset = CGSizeMake(0, 3);
-    rightView.layer.shadowOpacity = 0.5;
-    rightView.layer.shadowColor = [UIColor blackColor].CGColor;
+    [rightView addSubview:maskImageView];
+
+    
+  //  rightView.layer.cornerRadius = 5.0;
+//    rightView.layer.masksToBounds = YES;
+//    rightView.layer.borderColor = [UIColor clearColor].CGColor;
+//    rightView.layer.borderWidth = 1.0;
     [rightView setClipsToBounds:YES];
+
   }
   return rightView;
 }

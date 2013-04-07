@@ -11,10 +11,12 @@
 @interface MainCatTableViewCell : UITableViewCell{
   UILabel* titleLabel;
   UIView* imageContainer;
+  UIImageView* backImageView;
 }
 
 @property (nonatomic, retain) UILabel* titleLabel;
 @property (nonatomic, retain) UIView* imageContainer;
+@property (nonatomic, retain) UIImageView* backImageView;
 
 - (UIView*)titleLabel;
 - (UIView*)imageContainer;
