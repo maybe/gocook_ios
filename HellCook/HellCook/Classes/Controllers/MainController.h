@@ -19,5 +19,6 @@
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet UISearchBar* searchBar;
 @property (nonatomic, retain)SearchBarView* searchBarView;
+@property (strong, nonatomic) MKNetworkOperation *netOperation;
 
 @end

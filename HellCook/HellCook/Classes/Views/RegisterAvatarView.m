@@ -24,6 +24,8 @@
   [self setBackgroundColor:[UIColor whiteColor]];
   defaultImage = [UIImage imageNamed:@"Images/defaultUpload.png"];
   upImageView = [[UIImageView alloc]initWithImage:defaultImage];
+  [upImageView setContentMode:UIViewContentModeScaleAspectFill];
+  [upImageView setClipsToBounds:YES];
   [upImageView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
   [self addSubview:upImageView];
   

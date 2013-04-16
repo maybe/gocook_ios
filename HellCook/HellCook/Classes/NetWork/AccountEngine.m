@@ -57,6 +57,12 @@
     [op addFile:avatar forKey:@"avatar"];
   }
   
+  NSString* aStr;
+  
+  aStr = [[NSString alloc] initWithData:[[op readonlyRequest] HTTPBody] encoding:NSASCIIStringEncoding];
+
+   NSLog(@"%@",  aStr);
+    
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     NSLog(@"%@",completedOperation.responseString);
     

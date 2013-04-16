@@ -56,6 +56,7 @@
 		BA829BF317055CD400B0341A /* RegisterAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF217055CD400B0341A /* RegisterAvatarView.m */; };
 		BA829BF717057FCB00B0341A /* KeyboardHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF617057FCA00B0341A /* KeyboardHandler.m */; };
 		BA829BFA1705877800B0341A /* UIView+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */; };
+		BA8B4A9C171DC0E100A83BBA /* RecipeEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B4A9B171DC0E100A83BBA /* RecipeEngine.m */; };
 		BABE0A14170627560056BF9D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BABE0A13170627560056BF9D /* MBProgressHUD.m */; };
 		BACCF83616ECFC420094F1E5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BACCF82B16ECFC420094F1E5 /* .gitignore */; };
 		BACCF83716ECFC420094F1E5 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82D16ECFC420094F1E5 /* FMDatabase.m */; };
@@ -190,6 +191,8 @@
 		BA829BF617057FCA00B0341A /* KeyboardHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardHandler.m; path = Classes/Common/KeyboardHandler.m; sourceTree = "<group>"; };
 		BA829BF81705877600B0341A /* UIView+FindFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FindFirstResponder.h"; path = "Classes/Common/UIView+FindFirstResponder.h"; sourceTree = "<group>"; };
 		BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FindFirstResponder.m"; path = "Classes/Common/UIView+FindFirstResponder.m"; sourceTree = "<group>"; };
+		BA8B4A9A171DC0E100A83BBA /* RecipeEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeEngine.h; path = Classes/NetWork/RecipeEngine.h; sourceTree = "<group>"; };
+		BA8B4A9B171DC0E100A83BBA /* RecipeEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeEngine.m; path = Classes/NetWork/RecipeEngine.m; sourceTree = "<group>"; };
 		BABE0A12170627560056BF9D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		BABE0A13170627560056BF9D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		BACCF82B16ECFC420094F1E5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -463,6 +466,8 @@
 		BA6F2C1A1705DC7C00B2C7C7 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
+				BA8B4A9A171DC0E100A83BBA /* RecipeEngine.h */,
+				BA8B4A9B171DC0E100A83BBA /* RecipeEngine.m */,
 				BA6F2C1B1705DC9B00B2C7C7 /* AccountEngine.h */,
 				BA6F2C1C1705DC9B00B2C7C7 /* AccountEngine.m */,
 				BA6F2C1E1705DE9600B2C7C7 /* NetManager.h */,
@@ -861,6 +866,7 @@
 				BA79118C1710706F00BC77C9 /* MainTopTableViewCell.m in Sources */,
 				BA79118F1710786500BC77C9 /* Recipe.m in Sources */,
 				BA7911921710896800BC77C9 /* MainCatTableViewCell.m in Sources */,
+				BA8B4A9C171DC0E100A83BBA /* RecipeEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

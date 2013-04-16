@@ -6,6 +6,7 @@
 #import "RegisterController.h"
 #import "MainTopTableViewCell.h"
 #import "MainCatTableViewCell.h"
+#import "NetManager.h"
 
 @interface MainController ()
 
@@ -27,7 +28,8 @@
   
   searchBarView = [[SearchBarView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
   [self.view addSubview:searchBarView];
-    
+  
+  [self getIOSMainData];
   [super viewDidLoad];
 }
 
@@ -176,6 +178,24 @@
 - (void)goSearch
 {
   NSLog(@"%@",@"go to search!");
+}
+
+
+#pragma mark - Net
+
+-(void)getIOSMainData
+{
+  self.netOperation = [[[NetManager sharedInstance] recipeEngine]
+                        getIOSMainDataWithCompletionHandler:^(NSMutableDictionary *resultDic) {
+                           [self getIOSMainCallBack:resultDic];}
+                        errorHandler:^(NSError *error) {}
+                        ];
+  
+}
+
+- (void)getIOSMainCallBack:(NSMutableDictionary*) resultDic
+{
+  NSLog(@"%@",resultDic[@"recommend_items"][0][@"name"]);
 }
 
 @end
