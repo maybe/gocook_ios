@@ -14,6 +14,9 @@
 {
   UITableView* tableView;
   SearchBarView* searchBarView;
+  
+  NSMutableArray* catArray;
+  NSDictionary* iosMainDataDic;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

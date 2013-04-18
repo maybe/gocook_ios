@@ -11,12 +11,19 @@
 @interface MainTopTableViewCell : UITableViewCell{
   UIView* leftView;
   UIView* rightView;
+  
+  UIImageView*  leftImageView;
+  UIImageView*  rightImageView;
 }
 
 @property (nonatomic, retain) UIView* leftView;
 @property (nonatomic, retain) UIView* rightView;
+@property (nonatomic, retain) UIImageView* leftImageView;
+@property (nonatomic, retain) UIImageView* rightImageView;
 
 - (UIView*)leftView;
 - (UIView*)rightView;
+
+- (void)setData:(NSDictionary*) dictionary;
 
 @end

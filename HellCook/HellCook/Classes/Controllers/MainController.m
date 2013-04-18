@@ -76,7 +76,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 30;
+    return catArray.count+1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -111,10 +111,13 @@
   }
   
   if (isTopCell) {
-    
+    MainTopTableViewCell* aCell = (MainTopTableViewCell*)cell;
+    [aCell setData:iosMainDataDic];
   }
-  else
-    cell.textLabel.text = [NSString stringWithFormat:@"Main %d", indexPath.row];
+  else{
+    MainCatTableViewCell* aCell = (MainCatTableViewCell*)cell;
+    [aCell setData:[catArray objectAtIndex:(indexPath.row-1)]];
+  }
 
   return cell;
 }
@@ -195,7 +198,9 @@
 
 - (void)getIOSMainCallBack:(NSMutableDictionary*) resultDic
 {
-  NSLog(@"%@",resultDic[@"recommend_items"][0][@"name"]);
+  iosMainDataDic = [[NSDictionary alloc]initWithDictionary:resultDic];
+  catArray = [[NSMutableArray alloc]initWithArray:resultDic[@"recommend_items"]];
+  [self.tableView reloadData];
 }
 
 @end

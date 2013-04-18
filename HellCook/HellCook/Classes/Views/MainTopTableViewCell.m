@@ -8,10 +8,11 @@
 
 #import "MainTopTableViewCell.h"
 #import "QuartzCore/QuartzCore.h"
-
+#import "UIImageView+WebCache.h"
+#import "NetManager.h"
 
 @implementation MainTopTableViewCell
-@synthesize leftView, rightView;
+@synthesize leftView, rightView, leftImageView, rightImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -37,10 +38,10 @@
   if (!leftView) {
     leftView = [[UIView alloc]initWithFrame:CGRectMake(10, 13, 145, 90)];
     
-    UIImageView* imageView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"Images/tmptophot.png"]];
-    [imageView setContentMode:UIViewContentModeScaleAspectFill];
-    [imageView setFrame:CGRectMake(0, 0, 145, 90)];
-    [leftView addSubview:imageView];
+    leftImageView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"Images/tmptophot.png"]];
+    [leftImageView setContentMode:UIViewContentModeScaleAspectFill];
+    [leftImageView setFrame:CGRectMake(0, 0, 145, 90)];
+    [leftView addSubview:leftImageView];
     
     UIImageView* maskImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Images/topmask.png"]];
     [maskImageView setFrame:CGRectMake(0, 0, 145, 90)];    
@@ -76,10 +77,10 @@
 {
   if (!rightView) {
     rightView = [[UIView alloc]initWithFrame:CGRectMake(165, 13, 145, 90)];
-    UIImageView* imageView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"Images/tmptophot.png"]];
-    [imageView setContentMode:UIViewContentModeScaleAspectFill];
-    [imageView setFrame:CGRectMake(0, 0, 145, 90)];
-    [rightView addSubview:imageView];
+    rightImageView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"Images/tmptophot.png"]];
+    [rightImageView setContentMode:UIViewContentModeScaleAspectFill];
+    [rightImageView setFrame:CGRectMake(0, 0, 145, 90)];
+    [rightView addSubview:rightImageView];
     
     UIImageView* maskImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Images/topmask.png"]];
     [maskImageView setFrame:CGRectMake(0, 0, 145, 90)];
@@ -107,6 +108,20 @@
 
   }
   return rightView;
+}
+
+
+- (void)setData:(NSDictionary*) dictionary
+{  
+  NetManager* netManager = [NetManager sharedInstance];
+      
+  NSString* leftImageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, dictionary[@"tophot_img"]];
+      
+  [leftImageView setImageWithURL:[NSURL URLWithString:leftImageUrl] placeholderImage:nil];
+
+  NSString* rightImageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, dictionary[@"topnew_img"]];
+  
+  [rightImageView setImageWithURL:[NSURL URLWithString:rightImageUrl] placeholderImage:nil];
 }
 
 @end

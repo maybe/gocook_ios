@@ -21,4 +21,6 @@
 - (UIView*)titleLabel;
 - (UIView*)imageContainer;
 
+- (void)setData:(NSMutableDictionary*) dictionary;
+
 @end

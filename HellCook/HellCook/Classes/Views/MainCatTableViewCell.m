@@ -8,6 +8,8 @@
 
 #import "MainCatTableViewCell.h"
 #import "QuartzCore/QuartzCore.h"
+#import "UIImageView+WebCache.h"
+#import "NetManager.h"
 
 
 @implementation MainCatTableViewCell
@@ -41,7 +43,7 @@
     [titleLabel setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
     [titleLabel setFont: [UIFont systemFontOfSize:14]];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
-    [titleLabel setText:@"家常菜"];
+    [titleLabel setText:@""];
   }
   return titleLabel;
 }
@@ -52,8 +54,9 @@
     imageContainer = [[UIView alloc]initWithFrame:CGRectMake(113, 9, 372, 45)];
     for (int i = 0; i < 4; i++) {
       UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i*49, 0, 45, 45)];
-      [imageView setImage: [UIImage imageNamed:@"Images/tmpcat.png"]];
+      //[imageView setImage: [UIImage imageNamed:@"Images/tmpcat.png"]];
       [imageView setContentMode:UIViewContentModeScaleAspectFill];
+      [imageView setClipsToBounds:YES];
       [imageContainer addSubview:imageView];
     }
     for (int i = 0; i < 4; i++) {
@@ -65,5 +68,27 @@
   }
   return imageContainer;
 }
+
+- (void)setData:(NSMutableDictionary*) dictionary
+{
+  [titleLabel setText:dictionary[@"name"]];
+  
+  for (int i = 0; i < 4; i++) {
+    UIImageView* imageView = [[imageContainer subviews] objectAtIndex:i];
+    //[imageView setImage: [UIImage imageNamed:@"Images/tmpcat.png"]];
+    int imageLen = [dictionary[@"images"] count];
+    if (i<imageLen) {
+      NetManager* netManager = [NetManager sharedInstance];
+      
+      NSString* imageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, [dictionary[@"images"] objectAtIndex:i]];
+      
+      [imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
+    }
+    else{
+      [imageView setImage:nil];
+    }
+  }
+}
+
 
 @end
