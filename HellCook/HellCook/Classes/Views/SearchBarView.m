@@ -105,7 +105,7 @@
   
   NSString* keyword =[[self getSearchKeyword] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
   
-  if ([keyword isEqualToString:@""]) {
+  if (![keyword isEqualToString:@""]) {
     if ([[self viewController] respondsToSelector:@selector(goSearch)]) {
       [[self viewController] performSelector:@selector(goSearch)];
     }
