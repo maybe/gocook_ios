@@ -112,6 +112,9 @@
 {
   MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];
   _centerNavController = [[UINavigationController alloc] initWithRootViewController:mainController];
+  CGRect viewframe = _centerNavController.view.frame;
+  viewframe.size.height = _screenHeight;
+  [_centerNavController.view setFrame:viewframe];
   _centerNavController.view.autoresizesSubviews = NO;
 }
 

@@ -7,6 +7,8 @@
 #import "MainTopTableViewCell.h"
 #import "MainCatTableViewCell.h"
 #import "NetManager.h"
+#import "TopListController.h"
+#import "SearchController.h"
 
 @interface MainController ()
 
@@ -127,7 +129,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   // [self.navigationController pushViewController:[[RegisterController alloc]initWithNibName:@"RegisterView" bundle:nil] animated:YES];
+  if (indexPath.row != 0) {
+    [self.navigationController pushViewController:[[SearchController alloc]initWithNibName:@"SearchView" bundle:nil keyword:catArray[indexPath.row-1][@"name"]] animated:YES];
+  }
+}
+
+- (void)selectTopNewCell
+{
+  TopListController* topController = [[TopListController alloc]initWithNibName:@"TopListView" bundle:nil];
+  topController.topListType = TLT_TopNew;
+  [self.navigationController pushViewController:topController animated:YES];
+}
+
+- (void)selectTopHotCell
+{
+  TopListController* topController = [[TopListController alloc]initWithNibName:@"TopListView" bundle:nil];
+  topController.topListType = TLT_TopHot;
+  [self.navigationController pushViewController:topController animated:YES];
 }
 
 - (void)setLeftButton
@@ -180,7 +198,8 @@
 
 - (void)goSearch
 {
-  NSLog(@"%@",@"go to search!");
+  if (![[searchBarView getSearchKeyword] isEqualToString:@""])
+    [self.navigationController pushViewController:[[SearchController alloc]initWithNibName:@"SearchView" bundle:nil keyword:[searchBarView getSearchKeyword]] animated:YES];
 }
 
 
@@ -188,7 +207,7 @@
 
 -(void)getIOSMainData
 {
-  self.netOperation = [[[NetManager sharedInstance] recipeEngine]
+  self.netOperation = [[[NetManager sharedInstance] cookEngine]
                         getIOSMainDataWithCompletionHandler:^(NSMutableDictionary *resultDic) {
                            [self getIOSMainCallBack:resultDic];}
                         errorHandler:^(NSError *error) {}

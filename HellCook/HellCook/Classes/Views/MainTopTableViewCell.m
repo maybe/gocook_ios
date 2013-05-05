@@ -69,6 +69,10 @@
 //    leftView.layer.shadowColor = [UIColor blackColor].CGColor;
     [leftView setClipsToBounds:YES];
     
+    UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 145, 90)];
+    [button addTarget:nil action:@selector(selectTopHotCell) forControlEvents:UIControlEventTouchUpInside];
+
+    [leftView addSubview:button];
   }
   return leftView;
 }
@@ -105,7 +109,11 @@
 //    rightView.layer.borderColor = [UIColor clearColor].CGColor;
 //    rightView.layer.borderWidth = 1.0;
     [rightView setClipsToBounds:YES];
-
+    
+    UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 145, 90)];
+    [button addTarget:nil action:@selector(selectTopNewCell) forControlEvents:UIControlEventTouchUpInside];
+    
+    [rightView addSubview:button];
   }
   return rightView;
 }

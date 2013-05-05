@@ -23,5 +23,7 @@
 - (void)InitLayout;
 - (void)showMaskView;
 - (void)hideMaskView;
+- (NSString*)getSearchKeyword;
+- (void)setSearchKeyword:(NSString*)keyword;
 
 @end

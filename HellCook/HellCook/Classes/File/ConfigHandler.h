@@ -25,5 +25,4 @@
 - (NSMutableDictionary*)loadSettings;
 - (void)saveSettings;
 
-
 @end

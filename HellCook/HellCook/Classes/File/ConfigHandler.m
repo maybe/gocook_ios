@@ -12,6 +12,7 @@
 #import "NetManager.h"
 
 #define kSettingFileName @"setting.plist"
+#define kServerFileName @"server.plist"
 
 @implementation ConfigHandler
 @synthesize settingDictionary,settingPath;

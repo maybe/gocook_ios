@@ -61,10 +61,10 @@
   
   aStr = [[NSString alloc] initWithData:[[op readonlyRequest] HTTPBody] encoding:NSASCIIStringEncoding];
 
-   NSLog(@"%@",  aStr);
+   //NSLog(@"%@",  aStr);
     
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    NSLog(@"%@",completedOperation.responseString);
+    //NSLog(@"%@",completedOperation.responseString);
     
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);

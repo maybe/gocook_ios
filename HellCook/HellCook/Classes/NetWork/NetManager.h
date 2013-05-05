@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "AccountEngine.h"
-#import "RecipeEngine.h"
+#import "CookEngine.h"
 
 @interface NetManager : NSObject
 {
   AccountEngine *accountEngine;
-  RecipeEngine *recipeEngine;
+  CookEngine *cookEngine;
   NSString* host;
 }
 
 @property (strong, nonatomic) AccountEngine *accountEngine;
-@property (strong, nonatomic) RecipeEngine *recipeEngine;
+@property (strong, nonatomic) CookEngine *cookEngine;
 @property (strong, nonatomic) NSString* host;
 
 

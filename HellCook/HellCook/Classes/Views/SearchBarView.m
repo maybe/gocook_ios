@@ -102,12 +102,27 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
   [self hideMaskView];
-  if ([[self viewController] respondsToSelector:@selector(goSearch)]) {
-    [[self viewController] performSelector:@selector(goSearch)];
+  
+  NSString* keyword =[[self getSearchKeyword] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+  
+  if ([keyword isEqualToString:@""]) {
+    if ([[self viewController] respondsToSelector:@selector(goSearch)]) {
+      [[self viewController] performSelector:@selector(goSearch)];
+    }
   }
   return YES;
 }
 
+
+- (NSString*) getSearchKeyword
+{
+  return searchField.text;
+}
+
+- (void)setSearchKeyword:(NSString*)keyword
+{
+  [searchField setText:keyword];
+}
 
 //to get the next responder controller
 - (UIViewController*)viewController {
