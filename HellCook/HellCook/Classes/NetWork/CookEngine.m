@@ -82,9 +82,7 @@
 {
   
   NSString* encodingKey = [[NSString alloc] initWithString: [key  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-  
-  NSLog(@"%@",encodingKey);
-  
+    
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"index/search?keyword=%@&page=%d",encodingKey,page]
                                             params:nil
                                         httpMethod:@"GET"];

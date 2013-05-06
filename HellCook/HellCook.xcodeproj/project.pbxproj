@@ -88,6 +88,11 @@
 		BAE38C881736C33300936382 /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C861736C33200936382 /* SearchController.m */; };
 		BAE38C8B1736C36000936382 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE38C8A1736C36000936382 /* SearchView.xib */; };
 		BAE38C8E1736D1E200936382 /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C8D1736D1E100936382 /* SearchTableViewCell.m */; };
+		BAE38C931737561500936382 /* NSObject+AssociativeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C901737561400936382 /* NSObject+AssociativeObject.m */; };
+		BAE38C941737561500936382 /* UIImage+GenerateFromView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C921737561400936382 /* UIImage+GenerateFromView.m */; };
+		BAE38C981737978600936382 /* RecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C961737978400936382 /* RecipeDetailController.m */; };
+		BAE38C9B1737984C00936382 /* RecipeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE38C9A1737984B00936382 /* RecipeDetailView.xib */; };
+		BAE38C9E1737D35300936382 /* UIZoomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C9D1737D35300936382 /* UIZoomNavigationController.m */; };
 		BAE67BB1170B439E00414AD5 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE67BAA170B439E00414AD5 /* UIImage+Alpha.m */; };
 		BAE67BB2170B439E00414AD5 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE67BAC170B439E00414AD5 /* UIImage+Resize.m */; };
 		BAE67BB3170B439E00414AD5 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE67BAE170B439E00414AD5 /* UIImage+RoundedCorner.m */; };
@@ -250,6 +255,15 @@
 		BAE38C8A1736C36000936382 /* SearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		BAE38C8C1736D1E100936382 /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewCell.h; path = Classes/Views/SearchTableViewCell.h; sourceTree = "<group>"; };
 		BAE38C8D1736D1E100936382 /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewCell.m; path = Classes/Views/SearchTableViewCell.m; sourceTree = "<group>"; };
+		BAE38C8F1737561400936382 /* NSObject+AssociativeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AssociativeObject.h"; path = "Classes/Common/NSObject+AssociativeObject.h"; sourceTree = "<group>"; };
+		BAE38C901737561400936382 /* NSObject+AssociativeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AssociativeObject.m"; path = "Classes/Common/NSObject+AssociativeObject.m"; sourceTree = "<group>"; };
+		BAE38C911737561400936382 /* UIImage+GenerateFromView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+GenerateFromView.h"; path = "Classes/Common/UIImage+GenerateFromView.h"; sourceTree = "<group>"; };
+		BAE38C921737561400936382 /* UIImage+GenerateFromView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+GenerateFromView.m"; path = "Classes/Common/UIImage+GenerateFromView.m"; sourceTree = "<group>"; };
+		BAE38C951737978300936382 /* RecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeDetailController.h; path = Classes/Controllers/RecipeDetailController.h; sourceTree = "<group>"; };
+		BAE38C961737978400936382 /* RecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeDetailController.m; path = Classes/Controllers/RecipeDetailController.m; sourceTree = "<group>"; };
+		BAE38C9A1737984B00936382 /* RecipeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeDetailView.xib; sourceTree = "<group>"; };
+		BAE38C9C1737D35300936382 /* UIZoomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIZoomNavigationController.h; path = Classes/Common/UIZoomNavigationController.h; sourceTree = "<group>"; };
+		BAE38C9D1737D35300936382 /* UIZoomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIZoomNavigationController.m; path = Classes/Common/UIZoomNavigationController.m; sourceTree = "<group>"; };
 		BAE67BA9170B439E00414AD5 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		BAE67BAA170B439E00414AD5 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		BAE67BAB170B439E00414AD5 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -388,10 +402,16 @@
 				BA02635016D75E4F00298803 /* Common.h */,
 				BA02635116D75E4F00298803 /* Common.m */,
 				BA6F2C121705A41900B2C7C7 /* GCDSingleton.h */,
+				BAE38C8F1737561400936382 /* NSObject+AssociativeObject.h */,
+				BAE38C901737561400936382 /* NSObject+AssociativeObject.m */,
+				BAE38C911737561400936382 /* UIImage+GenerateFromView.h */,
+				BAE38C921737561400936382 /* UIImage+GenerateFromView.m */,
 				BA05128416FA14C10091D3C6 /* UIImage+Retina4.h */,
 				BA05128516FA14C10091D3C6 /* UIImage+Retina4.m */,
 				BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */,
 				BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */,
+				BAE38C9C1737D35300936382 /* UIZoomNavigationController.h */,
+				BAE38C9D1737D35300936382 /* UIZoomNavigationController.m */,
 				BA829BF417057F6200B0341A /* KeyboardHandlerDelegate.h */,
 				BA829BF517057FCA00B0341A /* KeyboardHandler.h */,
 				BA829BF617057FCA00B0341A /* KeyboardHandler.m */,
@@ -534,6 +554,7 @@
 		BA73C95316FE37D9008284D8 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				BAE38C9A1737984B00936382 /* RecipeDetailView.xib */,
 				BAE38C831736997500936382 /* TopListView.xib */,
 				BA829BE91704995300B0341A /* LoginView.xib */,
 				BA6CEC9E170229A100EDFC24 /* RegisterView.xib */,
@@ -747,6 +768,8 @@
 				BA6069AF1708E4C00060C251 /* DebugOptionController.m */,
 				BAE38C851736C33100936382 /* SearchController.h */,
 				BAE38C861736C33200936382 /* SearchController.m */,
+				BAE38C951737978300936382 /* RecipeDetailController.h */,
+				BAE38C961737978400936382 /* RecipeDetailController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -816,6 +839,7 @@
 				BA6069AD1708E3DA0060C251 /* DebugOption.xib in Resources */,
 				BAE38C841736997500936382 /* TopListView.xib in Resources */,
 				BAE38C8B1736C36000936382 /* SearchView.xib in Resources */,
+				BAE38C9B1737984C00936382 /* RecipeDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,6 +923,10 @@
 				BAE38C801735899D00936382 /* TopListTableViewCell.m in Sources */,
 				BAE38C881736C33300936382 /* SearchController.m in Sources */,
 				BAE38C8E1736D1E200936382 /* SearchTableViewCell.m in Sources */,
+				BAE38C931737561500936382 /* NSObject+AssociativeObject.m in Sources */,
+				BAE38C941737561500936382 /* UIImage+GenerateFromView.m in Sources */,
+				BAE38C981737978600936382 /* RecipeDetailController.m in Sources */,
+				BAE38C9E1737D35300936382 /* UIZoomNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

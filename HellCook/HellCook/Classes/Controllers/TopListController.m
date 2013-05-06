@@ -9,6 +9,7 @@
 #import "TopListController.h"
 #import "TopListTableViewCell.h"
 #import "NetManager.h"
+#import "RecipeDetailController.h"
 
 @interface TopListController ()
 
@@ -103,7 +104,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  // [self.navigationController pushViewController:[[RegisterController alloc]initWithNibName:@"RegisterView" bundle:nil] animated:YES];
+   [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil] animated:YES];
 }
 
 

@@ -15,6 +15,7 @@
 #import "User.h"
 #import "ConfigHandler.h"
 #import "DBHandler.h"
+#import "UIZoomNavigationController.h"
 
 @implementation AppDelegate
 
@@ -111,7 +112,7 @@
 - (void)resetCenterNavController
 {
   MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];
-  _centerNavController = [[UINavigationController alloc] initWithRootViewController:mainController];
+  _centerNavController = [[UIZoomNavigationController alloc] initWithRootViewController:mainController];
   CGRect viewframe = _centerNavController.view.frame;
   viewframe.size.height = _screenHeight;
   [_centerNavController.view setFrame:viewframe];
