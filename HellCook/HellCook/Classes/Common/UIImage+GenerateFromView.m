@@ -12,7 +12,7 @@
 
 + (UIImage *)imageFromUIView:(UIView *)aView {
     CGSize pageSize = aView.frame.size;
-    UIGraphicsBeginImageContextWithOptions(pageSize, aView.opaque, 0);
+    UIGraphicsBeginImageContextWithOptions(pageSize, NO, 1);
     CGContextRef context = UIGraphicsGetCurrentContext();
     [aView.layer renderInContext:context];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();

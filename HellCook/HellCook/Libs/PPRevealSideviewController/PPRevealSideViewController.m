@@ -76,10 +76,19 @@ static const CGFloat MAX_TRIGGER_OFFSET = 100.0;
 @synthesize options = _options;
 @synthesize bouncingOffset = _bouncingOffset;
 @synthesize delegate = _delegate;
+@synthesize isSwipeEnabled = _isSwipeEnabled;
+
+- (void)setSwipeEnabled:(BOOL)able
+{
+  self.isSwipeEnabled = able;
+}
 
 - (id) initWithRootViewController:(UIViewController*)rootViewController {
     self = [super init];
     if (self) {
+      
+        self.isSwipeEnabled = YES;
+      
         // set default options
         self.options = PPRevealSideOptionsShowShadows | PPRevealSideOptionsBounceAnimations | PPRevealSideOptionsCloseCompletlyBeforeOpeningNewDirection;
         
@@ -1247,7 +1256,10 @@ static const CGFloat MAX_TRIGGER_OFFSET = 100.0;
 
 
 - (void) gestureRecognizerDidPan:(UIPanGestureRecognizer*)panGesture {
-    
+  
+  if (!self.isSwipeEnabled) {
+    return;
+  }
     if(_animationInProgress) return;
     
     CGPoint currentPoint = [panGesture translationInView:self.view];

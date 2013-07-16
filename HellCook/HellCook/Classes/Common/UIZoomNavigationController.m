@@ -108,7 +108,6 @@ static NSString *const snapShotKey = @"snapShotKey";
   {
     controller = [super popViewControllerAnimated:animated];
     [self removeSnapshotForViewController:controller];
-    [controller.view setHidden:NO];
     return controller;
   }
 }

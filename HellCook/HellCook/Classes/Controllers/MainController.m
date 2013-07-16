@@ -49,9 +49,12 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+  [self.revealSideViewController setIsSwipeEnabled:YES];
   [self.view setFrame:CGRectMake(0, 0, 199, 199)];
+//  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//  [self.revealSideViewController preloadViewController:appDelegate.leftNavController forSide:PPRevealSideDirectionLeft];
 
-    [super viewWillAppear:animated];
+  [super viewWillAppear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -136,6 +139,7 @@
 
 - (void)selectTopNewCell
 {
+  [self.revealSideViewController setIsSwipeEnabled:NO];
   TopListController* topController = [[TopListController alloc]initWithNibName:@"TopListView" bundle:nil];
   topController.topListType = TLT_TopNew;
   [self.navigationController pushViewController:topController animated:YES];
@@ -143,6 +147,7 @@
 
 - (void)selectTopHotCell
 {
+  [self.revealSideViewController setIsSwipeEnabled:NO];
   TopListController* topController = [[TopListController alloc]initWithNibName:@"TopListView" bundle:nil];
   topController.topListType = TLT_TopHot;
   [self.navigationController pushViewController:topController animated:YES];
@@ -199,7 +204,10 @@
 - (void)goSearch
 {
   if (![[searchBarView getSearchKeyword] isEqualToString:@""])
+  {
+    [self.revealSideViewController setIsSwipeEnabled:NO];
     [self.navigationController pushViewController:[[SearchController alloc]initWithNibName:@"SearchView" bundle:nil keyword:[searchBarView getSearchKeyword]] animated:YES];
+  }
 }
 
 

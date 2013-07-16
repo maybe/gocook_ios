@@ -54,7 +54,7 @@
 
 #define ApplicationDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
-#define _defaultHostName @"localhost"
+#define _defaultHostName @"verypanda.com"
 
 @interface Common : NSObject
 

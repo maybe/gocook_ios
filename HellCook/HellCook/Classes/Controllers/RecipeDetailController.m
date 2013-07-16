@@ -13,30 +13,124 @@
 @end
 
 @implementation RecipeDetailController
+@synthesize tableView,netOperation,recipeDataDic,cellContentArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+  }
+  return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  CGRect viewframe = self.view.frame;
+  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewframe];
+  
+  CGRect tableframe = self.tableView.frame;
+  tableframe.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.tableView setFrame:tableframe];
+    
+  [super viewDidLoad];
+  
+  [self setLeftButton];
+  
+  [self.navigationController.navigationBar setHidden:YES];
+
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
+  [super didReceiveMemoryWarning];
 }
 
-- (BOOL)isSupportPanPop
+- (void)viewWillAppear:(BOOL)animated
 {
-  return YES;
+  [self.navigationController.navigationBar setHidden:YES];
+  [super viewWillAppear:animated];
+  self.title = @"最热菜谱";
+  
 }
+
+- (BOOL)shouldAutorotate {
+  
+  return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+  
+  return UIInterfaceOrientationMaskAll;
+}
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  return cellContentArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return 210;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  static NSString *CellIdentifier = @"TopListTableViewCell";
+  
+  UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (!cell) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+  }
+  
+  //[cell setData:topArray[indexPath.row]];
+  
+  return cell;
+}
+
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil] animated:YES];
+}
+
+
+- (void)setLeftButton
+{
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, 60, 30)];
+  [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
+  UIImage *stretchedBackground = [[UIImage imageNamed:@"Images/recipeBack.png"] stretchableImageWithLeftCapWidth:14 topCapHeight:0];
+  
+  [leftBarButtonView setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
+  [leftBarButtonView setBackgroundImage:stretchedBackground forState:UIControlStateHighlighted];
+  
+  [leftBarButtonView setTitle:@"" forState:UIControlStateNormal];
+  [leftBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+  
+  //UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
+  
+  //[self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+  [self.view addSubview:leftBarButtonView];
+}
+
+- (void)returnToPrev
+{
+  if ([netOperation isExecuting]) {
+    [netOperation cancel];
+  }
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 -(BOOL)isSupportAnimPushPop
 {

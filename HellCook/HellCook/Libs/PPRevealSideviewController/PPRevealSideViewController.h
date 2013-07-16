@@ -237,6 +237,14 @@ If you want to pop a new center controller, then do the following :
 
 @property (nonatomic, readonly) PPRevealSideDirection sideDirectionOpened;
 
+
+
+/**
+ Enable/Disable Swipe
+ */
+@property BOOL isSwipeEnabled;
+- (void)setSwipeEnabled:(BOOL)able;
+
 /**---------------------------------------------------------------------------------------
  * @name Init method
  *  ---------------------------------------------------------------------------------------

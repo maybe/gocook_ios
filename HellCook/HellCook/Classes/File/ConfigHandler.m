@@ -38,7 +38,7 @@
   //初始化
   if (![[NSFileManager defaultManager] fileExistsAtPath:settingPath]) {
     NSMutableDictionary *defDictionary = [[NSMutableDictionary alloc] init];
-    [defDictionary setObject:@"localhost" forKey:@"host"];
+    [defDictionary setObject:@"verypanda.com" forKey:@"host"];
     [defDictionary writeToFile:settingPath atomically:YES];
   }
   [self loadSettings];
@@ -52,7 +52,7 @@
   if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
     NSMutableDictionary* tmpDic = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
     if ([tmpDic objectForKey:@"host"]==nil) {
-      [tmpDic setObject:@"localhost" forKey:@"host"];
+      [tmpDic setObject:@"verypanda.com" forKey:@"host"];
     }
     
     [settingDictionary setDictionary:tmpDic];

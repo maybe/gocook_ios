@@ -532,6 +532,7 @@
 				BA829BF217055CD400B0341A /* RegisterAvatarView.m */,
 				BA50F3551710418600E3B6CE /* SearchBarView.h */,
 				BA50F3531710413D00E3B6CE /* SearchBarView.m */,
+				BAE38C9F1739577A00936382 /* RecipeDetail */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -646,6 +647,14 @@
 				BACCF88016ED0BD60094F1E5 /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		BAE38C9F1739577A00936382 /* RecipeDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = RecipeDetail;
+			path = Classes/Views/RecipeDetail;
 			sourceTree = "<group>";
 		};
 		BAE67BA8170B439E00414AD5 /* UIImage+Categories */ = {
@@ -1006,6 +1015,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Fan (3T4XTKEX83)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Fan (3T4XTKEX83)";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HellCook/HellCook-Prefix.pch";
@@ -1016,7 +1026,8 @@
 					"\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0EDC141D-AE92-459C-96E6-952F96A97767";
+				PROVISIONING_PROFILE = "15C6C8B7-407F-415D-82FA-B8BB1F0C7AA2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15C6C8B7-407F-415D-82FA-B8BB1F0C7AA2";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1028,6 +1039,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Fan (3T4XTKEX83)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Fan (3T4XTKEX83)";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HellCook/HellCook-Prefix.pch";
@@ -1038,7 +1050,8 @@
 					"\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0EDC141D-AE92-459C-96E6-952F96A97767";
+				PROVISIONING_PROFILE = "15C6C8B7-407F-415D-82FA-B8BB1F0C7AA2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15C6C8B7-407F-415D-82FA-B8BB1F0C7AA2";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};

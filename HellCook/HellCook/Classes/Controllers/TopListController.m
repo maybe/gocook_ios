@@ -50,6 +50,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+  [self.navigationController.navigationBar setHidden:NO];
+  
   [super viewWillAppear:animated];
   if (topListType == TLT_TopHot)
     self.title = @"最热菜谱";
