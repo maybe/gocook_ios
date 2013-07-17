@@ -7,6 +7,8 @@
 //
 
 #import "RecipeDetailController.h"
+#import "RecipeDetailHeaderTableViewCell.h"
+#import "NetManager.h"
 
 @interface RecipeDetailController ()
 
@@ -15,11 +17,14 @@
 @implementation RecipeDetailController
 @synthesize tableView,netOperation,recipeDataDic,cellContentArray;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
   }
+  
+  mRecipeId = recipeId;
+  
   return self;
 }
 
@@ -38,6 +43,8 @@
   [self setLeftButton];
   
   [self.navigationController.navigationBar setHidden:YES];
+  
+  [self getRecipeDetailData:mRecipeId];
 
 }
 
@@ -74,24 +81,41 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return cellContentArray.count;
+  return kTotalDetailCellNum;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return 210;
+  RecipeDetailBaseTableViewCell* cell = [self GetTableCell:indexPath.row];
+  [cell setData: recipeDataDic];
+  [cell CalculateCellHeight];
+  return [cell GetCellHeight];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *CellIdentifier = @"TopListTableViewCell";
+  RecipeDetailBaseTableViewCell* cell = [self GetTableCell:indexPath.row];
   
-  UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (!cell) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+  [cell setData: recipeDataDic];
+  [cell CalculateCellHeight];
+  [cell ReformCell];
+
+  return cell;
+}
+
+- (RecipeDetailBaseTableViewCell*)GetTableCell:(NSInteger)index
+{
+  NSString* CellIdentifier = NULL;
+  if (index == kDetailHeaderCell) {
+    CellIdentifier = @"HeaderCell";
   }
+  else
+    CellIdentifier = @"NormalCell";
   
-  //[cell setData:topArray[indexPath.row]];
+  RecipeDetailBaseTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (!cell) {
+    cell = [[RecipeDetailHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+  }
   
   return cell;
 }
@@ -135,6 +159,27 @@
 -(BOOL)isSupportAnimPushPop
 {
   return YES;
+}
+
+#pragma mark - Net
+
+-(void)getRecipeDetailData:(NSInteger)recipeId
+{
+  self.netOperation = [[[NetManager sharedInstance] hellEngine]
+                       getRecipeDetailData:recipeId
+                       CompletionHandler:^(NSMutableDictionary *resultDic) {
+                         [self getRecipeDetailCallBack:resultDic];}
+                       errorHandler:^(NSError *error) {}];
+}
+
+- (void)getRecipeDetailCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0) {
+    recipeDataDic = [[NSDictionary alloc]initWithDictionary:resultDic[@"result_recipe"]];
+  }
+  
+  [self.tableView reloadData];
 }
 
 @end

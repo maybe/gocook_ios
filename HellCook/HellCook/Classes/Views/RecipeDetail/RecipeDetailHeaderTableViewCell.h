@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecipeDetailBaseTableViewCell.h"
 
-@interface RecipeDetailHeaderTableViewCell : UITableViewCell{
+@interface RecipeDetailHeaderTableViewCell : RecipeDetailBaseTableViewCell{
   UILabel* titleLabel;
   UILabel* introLabel;
   UIButton* collectButton;
   UIButton* buyButton;
   UIImageView* imageView;
+    
+  CGFloat mTitleLabelTop;
+  CGFloat mIntroLabelTop;
+  CGFloat mTitleLabelHeight;
+  CGFloat mIntroLabelHeight;
 }
 
 @property (nonatomic, retain) UILabel* titleLabel;
@@ -24,10 +30,7 @@
 
 - (UILabel*)titleLabel;
 - (UILabel*)introLabel;
-- (UIImageView*)imageView;
 - (UIButton*)collectButton;
 - (UIButton*)buyButton;
-
-- (void)setData:(NSMutableDictionary*) dictionary;
 
 @end

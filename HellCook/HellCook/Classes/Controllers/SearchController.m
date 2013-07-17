@@ -133,7 +133,7 @@
 
 -(void)getSearchData
 {
-    self.netOperation = [[[NetManager sharedInstance] cookEngine]
+    self.netOperation = [[[NetManager sharedInstance] hellEngine]
                          searchWithKey:searchKey AndPage:(curPage+1)
                          CompletionHandler:^(NSMutableDictionary *resultDic) {
                            [self getSearchResultCallBack:resultDic];}

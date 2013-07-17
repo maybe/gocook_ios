@@ -7,18 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AccountEngine.h"
-#import "CookEngine.h"
+#import "HellEngine.h"
 
 @interface NetManager : NSObject
 {
-  AccountEngine *accountEngine;
-  CookEngine *cookEngine;
+  HellEngine *hellEngine;
   NSString* host;
 }
 
-@property (strong, nonatomic) AccountEngine *accountEngine;
-@property (strong, nonatomic) CookEngine *cookEngine;
+@property (strong, nonatomic) HellEngine *hellEngine;
 @property (strong, nonatomic) NSString* host;
 
 

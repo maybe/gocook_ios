@@ -106,7 +106,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil] animated:YES];
+  NSString* recipeIdStr = topArray[indexPath.row][@"recipe_id"];
+  NSInteger recipeId = [recipeIdStr intValue];
+  
+  [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId ] animated:YES];
 }
 
 
@@ -141,7 +144,7 @@
 -(void)getTopListData
 {
   if (topListType == TLT_TopHot) {
-    self.netOperation = [[[NetManager sharedInstance] cookEngine]
+    self.netOperation = [[[NetManager sharedInstance] hellEngine]
                          getTopHotDataWithPage:(curPage+1)
                          CompletionHandler:^(NSMutableDictionary *resultDic) {
                            [self getTopCallBack:resultDic];}
@@ -151,7 +154,7 @@
   }
   else
   {
-    self.netOperation = [[[NetManager sharedInstance] cookEngine]
+    self.netOperation = [[[NetManager sharedInstance] hellEngine]
                          getTopNewDataWithPage:(curPage+1)
                          CompletionHandler:^(NSMutableDictionary *resultDic) {
                            [self getTopCallBack:resultDic];}

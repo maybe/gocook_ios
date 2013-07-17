@@ -319,8 +319,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
   }
   
-  self.registerOperation = [[[NetManager sharedInstance] accountEngine]
-                            RegisterWithEmail:email AndNick:nickname
+  self.registerOperation = [[[NetManager sharedInstance] hellEngine]
+                            registerWithEmail:email AndNick:nickname
                             AndPass:password AndRePass:repassword AndAvatarPath:pngPath
                             completionHandler:^(NSMutableDictionary *resultDic) {
                               [self RegisterCallBack:resultDic];}

@@ -215,7 +215,7 @@
 
 -(void)getIOSMainData
 {
-  self.netOperation = [[[NetManager sharedInstance] cookEngine]
+  self.netOperation = [[[NetManager sharedInstance] hellEngine]
                         getIOSMainDataWithCompletionHandler:^(NSMutableDictionary *resultDic) {
                            [self getIOSMainCallBack:resultDic];}
                         errorHandler:^(NSError *error) {}

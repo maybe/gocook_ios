@@ -11,7 +11,7 @@
 #import "GCDSingleton.h"
 
 @implementation NetManager
-@synthesize accountEngine,host,cookEngine;
+@synthesize hellEngine,host;
 
 + (id)sharedInstance
 {
@@ -31,19 +31,12 @@
 
 - (void)InitEngines
 {
-  [self InitAccountEngine];
-  [self InitCookEngine];
+  [self InitHellEngine];
 }
 
-- (void)InitAccountEngine
+- (void)InitHellEngine
 {
-  self.accountEngine = [[AccountEngine alloc] initWithHostName:host
-                                            customHeaderFields: @{@"x-client-identifier" : @"Mobile"}];
-}
-
-- (void)InitCookEngine
-{
-  self.cookEngine = [[CookEngine alloc] initWithHostName:host
+  self.hellEngine = [[HellEngine alloc] initWithHostName:host
                                             customHeaderFields: @{@"x-client-identifier" : @"Mobile"}];
 }
 

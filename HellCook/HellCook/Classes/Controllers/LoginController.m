@@ -228,7 +228,7 @@
   NSString* username = usernameField.text;
   NSString* password = passwordField.text;
   
-  self.loginOperation = [[[NetManager sharedInstance] accountEngine]
+  self.loginOperation = [[[NetManager sharedInstance] hellEngine]
                           loginWithUser:username AndPass:password
                           completionHandler:^(NSMutableDictionary *resultDic) {
                             [self LoginCallBack:resultDic];}

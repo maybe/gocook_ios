@@ -8,11 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum{
+  kDetailHeaderCell = 0,
+  kDetailMaterialCell,
+  kDetailStepsCell,
+  kDetailFooterCell,
+  kTotalDetailCellNum
+} DetailCellType;
+
+@class RecipeDetailBaseTableViewCell;
 @interface RecipeDetailController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
   UITableView* tableView;
   NSDictionary* recipeDataDic;
   NSMutableArray* cellContentArray;
+  
+  NSInteger mRecipeId;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
@@ -20,5 +31,8 @@
 @property (nonatomic, retain) NSDictionary* recipeDataDic;
 @property (nonatomic, retain) NSMutableArray* cellContentArray;
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId;
+
+- (RecipeDetailBaseTableViewCell*)GetTableCell:(NSInteger)index;
 
 @end
