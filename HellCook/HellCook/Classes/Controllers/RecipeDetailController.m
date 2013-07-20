@@ -100,7 +100,8 @@
   RecipeDetailBaseTableViewCell* cell = [self GetTableCell:indexPath.row];
   
   [cell setData: recipeDataDic];
-  [cell CalculateCellHeight];
+  if (indexPath.row != kDetailStepsCell)
+    [cell CalculateCellHeight];
   [cell ReformCell];
 
   return cell;
