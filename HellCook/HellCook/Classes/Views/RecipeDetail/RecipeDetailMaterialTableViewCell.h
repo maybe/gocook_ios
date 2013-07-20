@@ -7,25 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecipeDetailBaseTableViewCell.h"
 
-@interface TopListTableViewCell : UITableViewCell{
-  UILabel* titleLabel;
-  UILabel* materialLabel;
-  UIImageView* imageView;
-  UIImageView* maskImageView;
+@interface RecipeDetailMaterialTableViewCell : RecipeDetailBaseTableViewCell{
+  UILabel* mTitleLabel;
+  UILabel* mTemplateMaterialLabel;
+  NSMutableArray* mLineArray;
+  NSMutableArray* mMaterialLabelArray;
+  NSMutableArray* mWeightLabelArray;
+    
+  CGFloat mTitleLabelTop;
+  CGFloat mTitleLabelHeight;
+  
+  CGFloat mMaterialTop;
+  CGFloat mMaterialOneHeight;
 }
 
-@property (nonatomic, retain) UILabel* titleLabel;
-@property (nonatomic, retain) UILabel* materialLabel;
-@property (nonatomic, retain) UIImageView* imageView;
-@property (nonatomic, retain) UIImageView* maskImageView;
+@property (nonatomic, retain) UILabel* mTitleLabel;
+@property (nonatomic, retain) NSMutableArray* mMaterialLabelArray;
+@property (nonatomic, retain) NSMutableArray* mWeightLabelArray;
+@property (nonatomic, retain) NSMutableArray* mLineArray;
 
-- (UILabel*)titleLabel;
-- (UILabel*)materialLabel;
-- (UIImageView*)imageView;
-- (UIImageView*)maskImageView;
-
-
-- (void)setData:(NSMutableDictionary*) dictionary;
+- (UILabel*)mTitleLabel;
+- (UILabel*)createMaterialLabel;
 
 @end

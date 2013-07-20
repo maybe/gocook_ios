@@ -29,6 +29,8 @@
 		BA50F3541710413D00E3B6CE /* SearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA50F3531710413D00E3B6CE /* SearchBarView.m */; };
 		BA56F2AE179547AF001E8909 /* RecipeDetailHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56F2A6179547AF001E8909 /* RecipeDetailHeaderTableViewCell.m */; };
 		BA56F2B41795AAD2001E8909 /* RecipeDetailBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56F2B31795AAD1001E8909 /* RecipeDetailBaseTableViewCell.m */; };
+		BA56F2B7179665A5001E8909 /* RecipeDetailMaterialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56F2B6179665A4001E8909 /* RecipeDetailMaterialTableViewCell.m */; };
+		BA56F2BA17971B36001E8909 /* RecipeDetailStepsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56F2B917971B36001E8909 /* RecipeDetailStepsTableViewCell.m */; };
 		BA6069921707D0430060C251 /* AccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069911707D0430060C251 /* AccountTableViewCell.m */; };
 		BA6069951707D5ED0060C251 /* AccountTableViewGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069941707D5ED0060C251 /* AccountTableViewGridCell.m */; };
 		BA60699E17080F340060C251 /* UserCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA60699D17080F340060C251 /* UserCollection.m */; };
@@ -153,6 +155,10 @@
 		BA56F2A6179547AF001E8909 /* RecipeDetailHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailHeaderTableViewCell.m; sourceTree = "<group>"; };
 		BA56F2B21795AAD1001E8909 /* RecipeDetailBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailBaseTableViewCell.h; sourceTree = "<group>"; };
 		BA56F2B31795AAD1001E8909 /* RecipeDetailBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailBaseTableViewCell.m; sourceTree = "<group>"; };
+		BA56F2B5179665A4001E8909 /* RecipeDetailMaterialTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailMaterialTableViewCell.h; sourceTree = "<group>"; };
+		BA56F2B6179665A4001E8909 /* RecipeDetailMaterialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailMaterialTableViewCell.m; sourceTree = "<group>"; };
+		BA56F2B817971B35001E8909 /* RecipeDetailStepsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailStepsTableViewCell.h; sourceTree = "<group>"; };
+		BA56F2B917971B36001E8909 /* RecipeDetailStepsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailStepsTableViewCell.m; sourceTree = "<group>"; };
 		BA6069901707D0430060C251 /* AccountTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountTableViewCell.h; path = Classes/Views/AccountTableViewCell.h; sourceTree = "<group>"; };
 		BA6069911707D0430060C251 /* AccountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewCell.m; path = Classes/Views/AccountTableViewCell.m; sourceTree = "<group>"; };
 		BA6069931707D5EC0060C251 /* AccountTableViewGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountTableViewGridCell.h; path = Classes/Views/AccountTableViewGridCell.h; sourceTree = "<group>"; };
@@ -657,6 +663,10 @@
 				BA56F2B31795AAD1001E8909 /* RecipeDetailBaseTableViewCell.m */,
 				BA56F2A5179547AF001E8909 /* RecipeDetailHeaderTableViewCell.h */,
 				BA56F2A6179547AF001E8909 /* RecipeDetailHeaderTableViewCell.m */,
+				BA56F2B5179665A4001E8909 /* RecipeDetailMaterialTableViewCell.h */,
+				BA56F2B6179665A4001E8909 /* RecipeDetailMaterialTableViewCell.m */,
+				BA56F2B817971B35001E8909 /* RecipeDetailStepsTableViewCell.h */,
+				BA56F2B917971B36001E8909 /* RecipeDetailStepsTableViewCell.m */,
 			);
 			name = RecipeDetail;
 			path = Classes/Views/RecipeDetail;
@@ -942,6 +952,8 @@
 				BAE38C9E1737D35300936382 /* UIZoomNavigationController.m in Sources */,
 				BA56F2AE179547AF001E8909 /* RecipeDetailHeaderTableViewCell.m in Sources */,
 				BA56F2B41795AAD2001E8909 /* RecipeDetailBaseTableViewCell.m in Sources */,
+				BA56F2B7179665A5001E8909 /* RecipeDetailMaterialTableViewCell.m in Sources */,
+				BA56F2BA17971B36001E8909 /* RecipeDetailStepsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

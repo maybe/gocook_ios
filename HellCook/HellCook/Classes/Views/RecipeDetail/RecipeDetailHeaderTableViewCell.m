@@ -136,7 +136,7 @@
   CGRect introRect = CGRectMake(32, mIntroLabelTop, 256, mIntroLabelHeight);
   [introLabel setFrame: introRect];
 
-  CGRect selfRect = CGRectMake(0, 0, 320, mIntroLabelHeight);
+  CGRect selfRect = CGRectMake(0, 0, 320, mCellHeight);
   [self setFrame:selfRect];
 }
 

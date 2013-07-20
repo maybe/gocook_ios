@@ -8,6 +8,8 @@
 
 #import "RecipeDetailController.h"
 #import "RecipeDetailHeaderTableViewCell.h"
+#import "RecipeDetailMaterialTableViewCell.h"
+#import "RecipeDetailStepsTableViewCell.h"
 #import "NetManager.h"
 
 @interface RecipeDetailController ()
@@ -81,7 +83,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return kTotalDetailCellNum;
+  return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,17 +108,23 @@
 - (RecipeDetailBaseTableViewCell*)GetTableCell:(NSInteger)index
 {
   NSString* CellIdentifier = NULL;
-  if (index == kDetailHeaderCell) {
+  if (index == kDetailHeaderCell)
     CellIdentifier = @"HeaderCell";
-  }
-  else
-    CellIdentifier = @"NormalCell";
-  
+  else if (index == kDetailMaterialCell)
+    CellIdentifier = @"MaterialCell";
+  else if (index == kDetailStepsCell)
+    CellIdentifier = @"StepCell";
+
   RecipeDetailBaseTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (!cell) {
+  if (!cell && [CellIdentifier isEqualToString:@"HeaderCell"]) {
     cell = [[RecipeDetailHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
-  
+  else if (!cell && [CellIdentifier isEqualToString:@"MaterialCell"]) {
+    cell = [[RecipeDetailMaterialTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+  }
+  else if (!cell && [CellIdentifier isEqualToString:@"StepCell"]) {
+    cell = [[RecipeDetailStepsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+  }
   return cell;
 }
 
@@ -125,7 +133,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil] animated:YES];
+  //[self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil] animated:YES];
 }
 
 
