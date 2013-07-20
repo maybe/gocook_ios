@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RecipeDetailBaseTableViewCell.h"
+#import "LineSpaceLabel.h"
 
 @interface RecipeDetailHeaderTableViewCell : RecipeDetailBaseTableViewCell{
   UILabel* titleLabel;
@@ -20,6 +21,7 @@
   CGFloat mIntroLabelTop;
   CGFloat mTitleLabelHeight;
   CGFloat mIntroLabelHeight;
+  CGFloat mCollButtonTop;
 }
 
 @property (nonatomic, retain) UILabel* titleLabel;

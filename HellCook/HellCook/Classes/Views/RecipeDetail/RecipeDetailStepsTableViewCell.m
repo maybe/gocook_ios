@@ -38,8 +38,8 @@
 {
   if (!mTitleLabel) {
     mTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 150, 256, 10)];
-    [mTitleLabel setTextColor:[UIColor blackColor]];
-    [mTitleLabel setFont: [UIFont boldSystemFontOfSize:17]];
+    [mTitleLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
+    [mTitleLabel setFont: [UIFont boldSystemFontOfSize:18]];
     mTitleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     mTitleLabel.numberOfLines = 0;
     [mTitleLabel setBackgroundColor:[UIColor clearColor]];
@@ -51,8 +51,8 @@
 - (UILabel*)createStepNumberLabel
 {
   UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(64, 0, 224, 10)];
-  [label setTextColor:[UIColor blackColor]];
-  [label setFont: [UIFont boldSystemFontOfSize:17]];
+  [label setFont: [UIFont boldSystemFontOfSize:28]];
+  [label setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
   label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
   [label setBackgroundColor:[UIColor clearColor]];
@@ -63,8 +63,8 @@
 - (UILabel*)createStepContentLabel
 {
   UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(64, 0, 224, 10)];
-  [label setTextColor:[UIColor blackColor]];
-  [label setFont: [UIFont systemFontOfSize:14]];
+  [label setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
+  [label setFont: [UIFont systemFontOfSize:15]];
   label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
   [label setBackgroundColor:[UIColor clearColor]];
@@ -101,24 +101,25 @@
   //计算用料高度
   for (int i = 0; i < mStepContentLabelArray.count; i++) {
     
+    //图片高度
     UIImageView* imageview = [mStepImageArray objectAtIndex:i];
     if (![imageview isHidden]) {
       mCellHeight += 90;
+      mCellHeight += 10;
       mStepOneImageHeight = 90;
     }
     
+    //文字高度
     UILabel* label1 = [mStepContentLabelArray objectAtIndex:i];
     CGSize stepLabelSize = [label1.text sizeWithFont:label1.font constrainedToSize:CGSizeMake(224, 1000) lineBreakMode:NSLineBreakByWordWrapping];
-    mCellHeight += 10;
-    mCellHeight += stepLabelSize.height;
-    mCellHeight += 10;
-    
+    mCellHeight += stepLabelSize.height;    
     mStepOneContentHeight = stepLabelSize.height;
     
     UILabel* label2 = [mStepNumberLabelArray objectAtIndex:i];
     CGSize stepNumberSize = [label2.text sizeWithFont:label2.font constrainedToSize:CGSizeMake(224, 1000) lineBreakMode:NSLineBreakByWordWrapping];
-
     mStepOneNumberHeight = stepNumberSize.height;
+    
+    mCellHeight += 20;
   }
   
   mCellHeight += 20;
@@ -126,34 +127,58 @@
 
 - (void)ReformCell
 {
+  
+  //离title高度
+  mCellHeight = 10;
+  
+  //计算title高度
+  CGSize titleLabelSize = [mTitleLabel.text sizeWithFont:mTitleLabel.font constrainedToSize:CGSizeMake(256, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+  
+  mTitleLabelTop = mCellHeight;
+  mCellHeight += titleLabelSize.height;
+  mTitleLabelHeight = titleLabelSize.height;
+  
   CGRect titleRect = CGRectMake(32, mTitleLabelTop, 256, mTitleLabelHeight);
   [mTitleLabel setFrame: titleRect];
+  
+  mCellHeight += 20;
+  
+  mStepTop = mCellHeight;
   
   //计算用料高度
   for (int i = 0; i < mStepContentLabelArray.count; i++) {
     
-    CGFloat image_y = mStepTop + (mStepOneImageHeight + mStepOneContentHeight + 30) * i;
-    CGFloat number_y = image_y;
-    CGFloat content_y = 0;
+    UILabel* label2 = [mStepNumberLabelArray objectAtIndex:i];
+    CGSize stepNumberSize = [label2.text sizeWithFont:label2.font constrainedToSize:CGSizeMake(224, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+    mStepOneNumberHeight = stepNumberSize.height;
+    [label2 setFrame:CGRectMake(32, mCellHeight - 2, 224, mStepOneNumberHeight)];
+    
+    //图片高度
     UIImageView* imageview = [mStepImageArray objectAtIndex:i];
-    if ([imageview isHidden]) {
-      content_y = image_y;
+    if (![imageview isHidden]) {
+      mStepOneImageHeight = 90;
+      [imageview setFrame:CGRectMake(64, mCellHeight, 120, mStepOneImageHeight)];
+      mCellHeight += 90;
+      mCellHeight += 10;
     }
-    else {
-      content_y = image_y + mStepOneImageHeight + 10;
-    }
     
-    [imageview setFrame:CGRectMake(64, image_y, 120, mStepOneImageHeight)];
+    //文字高度
+    UILabel* label1 = [mStepContentLabelArray objectAtIndex:i];
+    CGSize stepLabelSize = [label1.text sizeWithFont:label1.font constrainedToSize:CGSizeMake(224, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+    mStepOneContentHeight = stepLabelSize.height;
+    [label1 setFrame:CGRectMake(64, mCellHeight, 224, mStepOneContentHeight)];
     
-    UILabel* label1 = [mStepNumberLabelArray objectAtIndex:i];
-    [label1 setFrame:CGRectMake(32, number_y, 224, mStepOneNumberHeight)];
+    mCellHeight += stepLabelSize.height;
     
-    UILabel* label2 = [mStepContentLabelArray objectAtIndex:i];
-    [label2 setFrame:CGRectMake(64, content_y, 224, mStepOneContentHeight)];
+    mCellHeight += 20;
   }
+  
+  mCellHeight += 20;
+  
   
   CGRect selfRect = CGRectMake(0, 0, 320, mCellHeight);
   [self setFrame:selfRect];
+  
 }
 
 
@@ -195,7 +220,7 @@
     NSDictionary* pDic = [stepArray objectAtIndex:i];
     
     UILabel* label1 = [mStepNumberLabelArray objectAtIndex:i];
-    [label1 setText: [NSString stringWithFormat:@"%d", i]];
+    [label1 setText: [NSString stringWithFormat:@"%d", i+1]];
     
     UILabel* label2 = [mStepContentLabelArray objectAtIndex:i];
     [label2 setText:pDic[@"content"]];

@@ -17,15 +17,16 @@
 @end
 
 @implementation RecipeDetailController
-@synthesize tableView,netOperation,recipeDataDic,cellContentArray;
+@synthesize tableView,netOperation,recipeDataDic,cellContentArray,mPrevTitle;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId withPrevTitle:(NSString*) prevName
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
   }
   
   mRecipeId = recipeId;
+  mPrevTitle = [[NSString alloc]initWithString:prevName];
   
   return self;
 }
@@ -33,11 +34,11 @@
 - (void)viewDidLoad
 {
   CGRect viewframe = self.view.frame;
-  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
+  viewframe.size.height = _screenHeight_NoStBar;
   [self.view setFrame:viewframe];
   
   CGRect tableframe = self.tableView.frame;
-  tableframe.size.height = _screenHeight_NoStBar_NoNavBar;
+  tableframe.size.height = _screenHeight_NoStBar;
   [self.tableView setFrame:tableframe];
     
   [super viewDidLoad];
@@ -146,9 +147,14 @@
   [leftBarButtonView setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
   [leftBarButtonView setBackgroundImage:stretchedBackground forState:UIControlStateHighlighted];
   
-  [leftBarButtonView setTitle:@"" forState:UIControlStateNormal];
+  [leftBarButtonView setTitle:mPrevTitle forState:UIControlStateNormal];
   [leftBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+  [leftBarButtonView.titleLabel setTextColor:[UIColor colorWithRed:234.0/255.0 green:232.0/255.0 blue:230.0/255.0 alpha:1.0]];
   
+  
+  CGSize titleLabelSize = [mPrevTitle sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(256, 20) lineBreakMode:NSLineBreakByWordWrapping];
+
+  [leftBarButtonView setFrame:CGRectMake(20, 10, titleLabelSize.width + 20, 30)];
   //UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
   
   //[self.navigationItem setLeftBarButtonItem:leftBarButtonItem];

@@ -48,9 +48,9 @@
 - (UILabel*)titleLabel
 {
   if (!titleLabel) {
-    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(124, 17, 150, 20)];
-    [titleLabel setTextColor:[UIColor whiteColor]];
-    [titleLabel setFont: [UIFont systemFontOfSize:14]];
+    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(124, 24, 168, 20)];
+    [titleLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
+    [titleLabel setFont: [UIFont boldSystemFontOfSize:16]];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setText:@""];
   }
@@ -60,9 +60,10 @@
 - (UILabel*)materialLabel
 {
   if (!materialLabel) {
-    materialLabel = [[UILabel alloc]initWithFrame:CGRectMake(124, 40, 150, 20)];
-    [materialLabel setTextColor:[UIColor whiteColor]];
-    [materialLabel setFont: [UIFont systemFontOfSize:12]];
+    materialLabel = [[UILabel alloc]initWithFrame:CGRectMake(124, 50, 168, 20)];
+    [materialLabel setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
+
+    [materialLabel setFont: [UIFont systemFontOfSize:14]];
     [materialLabel setBackgroundColor:[UIColor clearColor]];
     [materialLabel setText:@""];
   }
@@ -73,7 +74,13 @@
 {
   [titleLabel setText:dictionary[@"name"]];
   
-  [materialLabel setText:dictionary[@"materials"]];
+  NSArray* materialArray = [dictionary[@"materials"] componentsSeparatedByString:@"|"];
+  
+  NSString* materialStr = @"";
+  for (int i = 0; i < materialArray.count; i = i + 2) {
+    materialStr = [materialStr stringByAppendingFormat:@"%@ " ,[materialArray objectAtIndex:i]];
+  }
+  [materialLabel setText: materialStr];
   
   NetManager* netManager = [NetManager sharedInstance];
       

@@ -28,6 +28,7 @@
     
     mMaterialLabelArray = [[NSMutableArray alloc]init];
     mWeightLabelArray = [[NSMutableArray alloc]init];
+    mLineArray = [[NSMutableArray alloc]init];
   }
   return self;
 }
@@ -38,7 +39,8 @@
   if (!mTitleLabel) {
     mTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 150, 256, 10)];
     [mTitleLabel setTextColor:[UIColor blackColor]];
-    [mTitleLabel setFont: [UIFont boldSystemFontOfSize:17]];
+    [mTitleLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
+    [mTitleLabel setFont: [UIFont boldSystemFontOfSize:18]];
     mTitleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     mTitleLabel.numberOfLines = 0;
     [mTitleLabel setBackgroundColor:[UIColor clearColor]];
@@ -51,12 +53,21 @@
 {
   UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(32, 150, 256, 10)];
   [label setTextColor:[UIColor blackColor]];
-  [label setFont: [UIFont systemFontOfSize:14]];
+  [label setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
+  [label setFont: [UIFont systemFontOfSize:15]];
   label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
   [label setBackgroundColor:[UIColor clearColor]];
   [label setText:@""];
   return label;
+}
+
+-(UIImageView*)createLine
+{
+  UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(30, 0, 260, 1)];
+  [imageView setImage: [UIImage imageNamed:@"Images/line.png"]];
+  
+  return imageView;
 }
 
 - (void)CalculateCellHeight
@@ -102,6 +113,15 @@
     
     UILabel* label2 = [mWeightLabelArray objectAtIndex:i];
     [label2 setFrame:CGRectMake(160, y, 256, mMaterialOneHeight)];
+    
+    UIImageView* imageView = [mLineArray objectAtIndex:i];
+    [imageView setFrame:CGRectMake(30, y-10, 260, 1)];
+    
+    if (i == mMaterialLabelArray.count - 1) {
+      UIImageView* lastImageView = [mLineArray objectAtIndex:i+1];
+      CGFloat last_y = mMaterialTop + (20 + mMaterialOneHeight) * (i + 1) + 10;
+      [lastImageView setFrame:CGRectMake(30, last_y - 10, 260, 1)];
+    }
   }
   
   CGRect selfRect = CGRectMake(0, 0, 320, mCellHeight);
@@ -118,19 +138,32 @@
     for (int i = 0; i < materialCount - labelcount; i++) {
       UILabel* label1 = [self createMaterialLabel];
       [mMaterialLabelArray addObject: label1];
+      
       UILabel* label2 = [self createMaterialLabel];
       [mWeightLabelArray addObject: label2];
+      
+      UIImageView* image = [self createLine];
+      [mLineArray addObject:image];
+      
       [self addSubview:label1];
       [self addSubview:label2];
+      [self addSubview:image];
     }
+    
+    UIImageView* lastImageView = [self createLine];
+    [mLineArray addObject:lastImageView];
+    [self addSubview:lastImageView];
+
   }
   else if (mMaterialLabelArray.count > materialCount) {
     int labelcount = mMaterialLabelArray.count;
     for (int i = 0; i < labelcount - materialCount; i++) {
       [[mMaterialLabelArray lastObject] removeFromSuperview];
       [[mWeightLabelArray lastObject] removeFromSuperview];
+      [[mLineArray lastObject] removeFromSuperview];
       [mMaterialLabelArray removeLastObject];
       [mWeightLabelArray removeLastObject];
+      [mLineArray removeLastObject];
     }
   }
   

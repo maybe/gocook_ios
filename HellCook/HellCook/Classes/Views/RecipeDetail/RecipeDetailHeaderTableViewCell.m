@@ -41,8 +41,8 @@
 {
   if (!titleLabel) {
     titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 150, 256, CGFLOAT_MAX)];
-    [titleLabel setTextColor:[UIColor blackColor]];
-    [titleLabel setFont: [UIFont boldSystemFontOfSize:17]];
+    [titleLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
+    [titleLabel setFont: [UIFont boldSystemFontOfSize:22]];
     titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     titleLabel.numberOfLines = 0;
     [titleLabel setBackgroundColor:[UIColor clearColor]];
@@ -55,8 +55,8 @@
 {
   if (!introLabel) {
     introLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 150, 256, CGFLOAT_MAX)];
-    [introLabel setTextColor:[UIColor blackColor]];
-    [introLabel setFont: [UIFont systemFontOfSize:14]];
+    [introLabel setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
+    [introLabel setFont: [UIFont systemFontOfSize:16]];
     introLabel.numberOfLines = 0;
     introLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [introLabel setBackgroundColor:[UIColor clearColor]];
@@ -68,8 +68,9 @@
 - (UIButton*)buyButton
 {
   if (!buyButton) {
-    buyButton = [[UIButton alloc]initWithFrame:CGRectMake(180, 100, 120, 30)];
-    [buyButton setTitle:@"购买清单" forState:UIControlStateNormal];
+    buyButton = [[UIButton alloc]initWithFrame:CGRectMake(180, 100, 120, 34)];
+    [buyButton setTitle:@"+ 购买清单" forState:UIControlStateNormal];
+    [buyButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [buyButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
@@ -87,8 +88,9 @@
 - (UIButton*)collectButton
 {
   if (!collectButton) {
-    collectButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 100, 120, 30)];
+    collectButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 100, 120, 34)];
     [collectButton setTitle:@"收藏" forState:UIControlStateNormal];
+    [collectButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [collectButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
@@ -118,12 +120,16 @@
   mCellHeight += titleLabelSize.height;
   mTitleLabelHeight = titleLabelSize.height;
   
+  mCellHeight += 12;
+  
   //计算描述信息高度
   CGSize introLabelSize = [introLabel.text sizeWithFont:introLabel.font constrainedToSize:CGSizeMake(256, 1000) lineBreakMode:NSLineBreakByWordWrapping];
 
   mIntroLabelTop = mCellHeight;
   mCellHeight += introLabelSize.height;
   mIntroLabelHeight = introLabelSize.height;
+  
+  mCollButtonTop = mCellHeight +30;
   
   mCellHeight += 100;
 }
@@ -135,7 +141,10 @@
   
   CGRect introRect = CGRectMake(32, mIntroLabelTop, 256, mIntroLabelHeight);
   [introLabel setFrame: introRect];
-
+  
+  [collectButton setFrame:CGRectMake(30, mCollButtonTop, 120, 34)];
+  [buyButton setFrame:CGRectMake(168, mCollButtonTop, 120, 34)];
+  
   CGRect selfRect = CGRectMake(0, 0, 320, mCellHeight);
   [self setFrame:selfRect];
 }

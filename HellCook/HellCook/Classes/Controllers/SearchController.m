@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "NetManager.h"
 #import "SearchTableViewCell.h"
+#import "RecipeDetailController.h"
 
 @interface SearchController ()
 
@@ -59,6 +60,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+  [self.navigationController.navigationBar setHidden:NO];
   self.title = searchKey;
   [searchBarView setSearchKeyword:searchKey];
   [super viewWillAppear:animated];
@@ -113,6 +115,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   // [self.navigationController pushViewController:[[RegisterController alloc]initWithNibName:@"RegisterView" bundle:nil] animated:YES];
+  NSString* recipeIdStr = recipeArray[indexPath.row][@"recipe_id"];
+  NSInteger recipeId = [recipeIdStr intValue];
+  
+  [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId withPrevTitle:self.title] animated:YES];
 }
 
 

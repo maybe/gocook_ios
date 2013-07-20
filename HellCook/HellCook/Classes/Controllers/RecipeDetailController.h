@@ -24,14 +24,17 @@ typedef enum{
   NSMutableArray* cellContentArray;
   
   NSInteger mRecipeId;
+  
+  NSString* mPrevTitle;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
 @property (nonatomic, retain) NSDictionary* recipeDataDic;
 @property (nonatomic, retain) NSMutableArray* cellContentArray;
+@property (nonatomic, retain) NSString* mPrevTitle;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId withPrevTitle:(NSString*) prevName;
 
 - (RecipeDetailBaseTableViewCell*)GetTableCell:(NSInteger)index;
 

@@ -11,6 +11,8 @@
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
 		BA02635216D75E4F00298803 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02635116D75E4F00298803 /* Common.m */; };
 		BA05128616FA14C10091D3C6 /* UIImage+Retina4.m in Sources */ = {isa = PBXBuildFile; fileRef = BA05128516FA14C10091D3C6 /* UIImage+Retina4.m */; };
+		BA0873E2179AFC1F00A270D5 /* LineSpaceLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0873E1179AFC1F00A270D5 /* LineSpaceLabel.m */; };
+		BA0873E4179AFD3200A270D5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0873E3179AFD3200A270D5 /* CoreText.framework */; };
 		BA0DC16B16D4C3A500E4CED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0DC16A16D4C3A500E4CED9 /* UIKit.framework */; };
 		BA0DC16D16D4C3A500E4CED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0DC16C16D4C3A500E4CED9 /* Foundation.framework */; };
 		BA0DC16F16D4C3A500E4CED9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0DC16E16D4C3A500E4CED9 /* CoreGraphics.framework */; };
@@ -131,6 +133,9 @@
 		BA02635116D75E4F00298803 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Common.m; path = Classes/Common/Common.m; sourceTree = "<group>"; };
 		BA05128416FA14C10091D3C6 /* UIImage+Retina4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Retina4.h"; path = "Classes/Common/UIImage+Retina4.h"; sourceTree = "<group>"; };
 		BA05128516FA14C10091D3C6 /* UIImage+Retina4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Retina4.m"; path = "Classes/Common/UIImage+Retina4.m"; sourceTree = "<group>"; };
+		BA0873E0179AFC1F00A270D5 /* LineSpaceLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineSpaceLabel.h; path = Classes/Common/LineSpaceLabel.h; sourceTree = "<group>"; };
+		BA0873E1179AFC1F00A270D5 /* LineSpaceLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineSpaceLabel.m; path = Classes/Common/LineSpaceLabel.m; sourceTree = "<group>"; };
+		BA0873E3179AFD3200A270D5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		BA0DC16716D4C3A500E4CED9 /* HellCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HellCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0DC16A16D4C3A500E4CED9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BA0DC16C16D4C3A500E4CED9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -333,6 +338,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA0873E4179AFD3200A270D5 /* CoreText.framework in Frameworks */,
 				BA6069D5170ADE680060C251 /* MapKit.framework in Frameworks */,
 				BA3F5E6116FA295B00493260 /* CoreImage.framework in Frameworks */,
 				BA3F5E6216FA295B00493260 /* QuartzCore.framework in Frameworks */,
@@ -426,6 +432,8 @@
 				BA829BF617057FCA00B0341A /* KeyboardHandler.m */,
 				BA829BF81705877600B0341A /* UIView+FindFirstResponder.h */,
 				BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */,
+				BA0873E0179AFC1F00A270D5 /* LineSpaceLabel.h */,
+				BA0873E1179AFC1F00A270D5 /* LineSpaceLabel.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -450,6 +458,7 @@
 		BA0DC16916D4C3A500E4CED9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA0873E3179AFD3200A270D5 /* CoreText.framework */,
 				BACCF89516ED0D630094F1E5 /* libicucore.dylib */,
 				BACCF88F16ED0D090094F1E5 /* libsqlite3.0.dylib */,
 				BACCF88D16ED0CFB0094F1E5 /* libiconv.dylib */,
@@ -954,6 +963,7 @@
 				BA56F2B41795AAD2001E8909 /* RecipeDetailBaseTableViewCell.m in Sources */,
 				BA56F2B7179665A5001E8909 /* RecipeDetailMaterialTableViewCell.m in Sources */,
 				BA56F2BA17971B36001E8909 /* RecipeDetailStepsTableViewCell.m in Sources */,
+				BA0873E2179AFC1F00A270D5 /* LineSpaceLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1039,6 +1049,7 @@
 				GCC_PREFIX_HEADER = "HellCook/HellCook-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "HellCook/HellCook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"/**",
@@ -1063,6 +1074,7 @@
 				GCC_PREFIX_HEADER = "HellCook/HellCook-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "HellCook/HellCook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"/**",

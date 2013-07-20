@@ -30,5 +30,6 @@
 
 - (UILabel*)mTitleLabel;
 - (UILabel*)createMaterialLabel;
+- (UIImageView*)createLine;
 
 @end
