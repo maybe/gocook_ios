@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface MyCollectionController : UIViewController
+{
+  UITableView *tableView;
+  NSInteger curPage;
+  NSArray *myCollectionArray;
+}
+
+@property (nonatomic, retain) IBOutlet UITableView* tableView;
+@property (strong, nonatomic) MKNetworkOperation *netOperation;
 
 @end
