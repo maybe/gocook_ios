@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E3D90B017A48ACF009AE04F /* MyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D90AE17A48ACE009AE04F /* MyCollectionController.m */; };
+		5E3D90B117A48ACF009AE04F /* MyCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3D90AF17A48ACF009AE04F /* MyCollectionView.xib */; };
+		5E3D90B417A4CC5F009AE04F /* MyCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D90B317A4CC5F009AE04F /* MyCollectionTableViewCell.m */; };
+		5EE6971B17A21FF600214286 /* MainPage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE6971A17A21FF600214286 /* MainPage.png */; };
 		BA02634516D7579700298803 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634416D7579700298803 /* AppDelegate.m */; };
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
 		BA02635216D75E4F00298803 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02635116D75E4F00298803 /* Common.m */; };
@@ -125,6 +129,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E3D90AD17A48ACD009AE04F /* MyCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionController.h; sourceTree = "<group>"; };
+		5E3D90AE17A48ACE009AE04F /* MyCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionController.m; sourceTree = "<group>"; };
+		5E3D90AF17A48ACF009AE04F /* MyCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyCollectionView.xib; path = ../../MyCollectionView.xib; sourceTree = "<group>"; };
+		5E3D90B217A4CC5E009AE04F /* MyCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionTableViewCell.h; sourceTree = "<group>"; };
+		5E3D90B317A4CC5F009AE04F /* MyCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionTableViewCell.m; sourceTree = "<group>"; };
+		5EE6971A17A21FF600214286 /* MainPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MainPage.png; path = ../MainPage.png; sourceTree = "<group>"; };
 		BA02634316D7579700298803 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		BA02634416D7579700298803 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		BA02634716D759CB00298803 /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
@@ -381,6 +391,7 @@
 		BA02634116D756EB00298803 /* Resoueces */ = {
 			isa = PBXGroup;
 			children = (
+				5EE6971A17A21FF600214286 /* MainPage.png */,
 				BA73C95316FE37D9008284D8 /* NIB */,
 				BA3F5E6616FA297800493260 /* Images */,
 			);
@@ -548,6 +559,8 @@
 				BA829BF217055CD400B0341A /* RegisterAvatarView.m */,
 				BA50F3551710418600E3B6CE /* SearchBarView.h */,
 				BA50F3531710413D00E3B6CE /* SearchBarView.m */,
+				5E3D90B217A4CC5E009AE04F /* MyCollectionTableViewCell.h */,
+				5E3D90B317A4CC5F009AE04F /* MyCollectionTableViewCell.m */,
 				BAE38C9F1739577A00936382 /* RecipeDetail */,
 			);
 			name = View;
@@ -580,6 +593,7 @@
 				BA73C95416FE37D9008284D8 /* AccountView.xib */,
 				BA829BE41704880100B0341A /* MainView.xib */,
 				BA6069AC1708E3DA0060C251 /* DebugOption.xib */,
+				5E3D90AF17A48ACF009AE04F /* MyCollectionView.xib */,
 			);
 			name = NIB;
 			path = Resources/NIB;
@@ -803,6 +817,8 @@
 				BAE38C861736C33200936382 /* SearchController.m */,
 				BAE38C951737978300936382 /* RecipeDetailController.h */,
 				BAE38C961737978400936382 /* RecipeDetailController.m */,
+				5E3D90AD17A48ACD009AE04F /* MyCollectionController.h */,
+				5E3D90AE17A48ACE009AE04F /* MyCollectionController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -873,6 +889,8 @@
 				BAE38C841736997500936382 /* TopListView.xib in Resources */,
 				BAE38C8B1736C36000936382 /* SearchView.xib in Resources */,
 				BAE38C9B1737984C00936382 /* RecipeDetailView.xib in Resources */,
+				5EE6971B17A21FF600214286 /* MainPage.png in Resources */,
+				5E3D90B117A48ACF009AE04F /* MyCollectionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,6 +982,8 @@
 				BA56F2B7179665A5001E8909 /* RecipeDetailMaterialTableViewCell.m in Sources */,
 				BA56F2BA17971B36001E8909 /* RecipeDetailStepsTableViewCell.m in Sources */,
 				BA0873E2179AFC1F00A270D5 /* LineSpaceLabel.m in Sources */,
+				5E3D90B017A48ACF009AE04F /* MyCollectionController.m in Sources */,
+				5E3D90B417A4CC5F009AE04F /* MyCollectionTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
