@@ -11,8 +11,13 @@
 @interface UserCollection : NSObject
 {
   NSInteger collectCount;
+  NSMutableArray *myCollectionArray;
 }
 
 @property NSInteger collectCount;
+@property (nonatomic, retain) NSMutableArray* myCollectionArray;
+
+- (NSInteger) collectCount;
+- (void) SetMyCollectionArray:(NSArray*)newColletionArray;
 
 @end

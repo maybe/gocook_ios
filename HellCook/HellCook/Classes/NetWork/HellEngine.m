@@ -87,7 +87,7 @@
                                         httpMethod:@"GET"];
   
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    //NSLog(@"%@",completedOperation.responseString);
+//    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];
@@ -175,12 +175,36 @@
                               errorHandler:(MKNKErrorBlock) errorBlock
 {
   
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"recipe/index?id=%d",recipeId]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:
+                                                    @"recipe/index?id=%d",recipeId]
                                             params:nil
                                         httpMethod:@"GET"];
   
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+
+- (MKNetworkOperation*)getMyCollectionDataByPage:(NSInteger)page
+                         CompletionHandler:(myCollectionResponseBlock)completionBlock
+                              errorHandler:(MKNKErrorBlock) errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/mycoll?page=%d",page]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+//    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];

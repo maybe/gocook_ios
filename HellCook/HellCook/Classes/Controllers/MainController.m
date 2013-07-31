@@ -36,8 +36,7 @@
 }
 
 - (void) showLeft:(id)sender
-{
-  [searchBarView hideMaskView];
+{  [searchBarView hideMaskView];
   [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
 }
 

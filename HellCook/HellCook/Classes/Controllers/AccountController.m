@@ -19,6 +19,8 @@
 #import "UIImageView+WebCache.h"
 #import "UIImage+Blurring.h"
 #import "NetManager.h"
+#import "MyCollectionController.h"
+
 
 @interface AccountController ()
 
@@ -32,6 +34,7 @@
 @synthesize registerButton;
 @synthesize cellContentArray;
 @synthesize nameLabel;
+
 
 - (void)viewDidLoad
 {
@@ -98,6 +101,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return cellContentArray.count;
+  
 }
 
 
@@ -139,7 +143,7 @@
   
   if (isGridCell) {
     AccountTableViewGridCell* aCell = (AccountTableViewGridCell*)cell;
-    aCell.countLabel1.text = @"0";
+    aCell.countLabel1.text = @"1";
     aCell.nameLabel1.text = [dic valueForKey:@"title1"];
     aCell.countLabel2.text = @"0";
     aCell.nameLabel2.text = [dic valueForKey:@"title2"];
@@ -181,15 +185,15 @@
 #pragma mark - Login view
 - (void)showLoginView
 {
-    [[self loginButton] setHidden:NO];
-    [[self registerButton] setHidden:NO];
+  [[self loginButton] setHidden:NO];
+  [[self registerButton] setHidden:NO];
   [[self debugOptonButton] setHidden:NO];
 }
 
 - (void)hideLoginView
 {
-    [[self loginButton] setHidden:YES];
-    [[self registerButton] setHidden:YES];
+  [[self loginButton] setHidden:YES];
+  [[self registerButton] setHidden:YES];
   [[self debugOptonButton] setHidden:YES];
 
 }
@@ -379,6 +383,17 @@
 - (void)onClickCountGrid:(UIButton*)sender
 {
   NSLog(@"%d",sender.tag);
+  if (sender.tag == 10003)//我的收藏
+  {
+    if (self.navigationController)
+    {
+      [self.navigationController pushViewController:[[MyCollectionController alloc] initWithNibName:@"MyCollectionView" bundle:nil] animated:YES];
+    }
+  }
+}
+
+- (void)viewDidUnload {
+  [super viewDidUnload];
 }
 
 @end

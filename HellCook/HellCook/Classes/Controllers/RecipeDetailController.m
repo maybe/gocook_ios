@@ -167,7 +167,12 @@
   if ([netOperation isExecuting]) {
     [netOperation cancel];
   }
-  [self.navigationController popViewControllerAnimated:YES];
+  
+  if ([mPrevTitle isEqualToString:@"我的收藏"]) {
+    [self dismissViewControllerAnimated:YES completion:nil];
+  }
+  else
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

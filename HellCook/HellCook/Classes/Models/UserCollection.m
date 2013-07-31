@@ -10,12 +10,22 @@
 
 @implementation UserCollection
 @synthesize collectCount;
+@synthesize myCollectionArray;
 
 -(id)init{
   if(self=[super init]){
     collectCount = 0;
+    myCollectionArray = [[NSMutableArray alloc] init];
   }
   return self;
+}
+
+- (void) SetMyCollectionArray:(NSArray*)newColletionArray
+{
+  [myCollectionArray removeAllObjects];
+  [myCollectionArray addObjectsFromArray:newColletionArray];
+  
+  collectCount = [myCollectionArray count];
 }
 
 @end

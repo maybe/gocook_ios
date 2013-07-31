@@ -16,8 +16,10 @@
 @property (strong, nonatomic) UINavigationController *leftNavController;
 @property (strong, nonatomic) UIZoomNavigationController *centerNavController;
 @property (strong, nonatomic) UINavigationController *rightNavController;
-
+@property (strong, nonatomic) UIImageView *startView;
 
 + (void) Generalstyle;
+- (void) ShowStartImage;
+- (void) ChangeStartImage:(NSTimer *)timer;
 
 @end

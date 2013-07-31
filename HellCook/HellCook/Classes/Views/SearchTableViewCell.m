@@ -13,7 +13,7 @@
 
 
 @implementation SearchTableViewCell
-@synthesize titleLabel, materialLabel, imageView, maskImageView;;
+@synthesize titleLabel, materialLabel, imageView, maskImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

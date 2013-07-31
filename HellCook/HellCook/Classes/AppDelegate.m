@@ -47,6 +47,8 @@
   [NetManager sharedInstance];
   [DBHandler sharedInstance];
   [User sharedInstance];
+
+//  [self ShowStartImage];
   
   return YES;
 }
@@ -130,6 +132,19 @@
   
   [self.revealSideViewController preloadViewController:_leftNavController forSide:PPRevealSideDirectionLeft withOffset:_offset];
   [self.revealSideViewController preloadViewController:_rightNavController forSide:PPRevealSideDirectionRight withOffset:_offset];
+}
+
+- (void) ShowStartImage
+{
+  UIImage *startImg = [UIImage imageNamed:@"MainPage.png"];
+  _startView = [[UIImageView alloc] initWithImage:startImg];
+  [self.window addSubview:_startView];
+  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(ChangeStartImage:) userInfo:nil repeats:NO];
+}
+
+- (void) ChangeStartImage:(NSTimer *)timer
+{
+  [_startView removeFromSuperview];
 }
 
 @end
