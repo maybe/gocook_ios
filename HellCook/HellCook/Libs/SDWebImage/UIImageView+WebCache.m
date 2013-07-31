@@ -7,6 +7,8 @@
  */
 
 #import "UIImageView+WebCache.h"
+#import "UIImage+Resize.h"
+#import "UIImage+Blurring.h"
 
 @implementation UIImageView (WebCache)
 
@@ -45,7 +47,9 @@
   
   // Remove in progress downloader from queue
   [manager cancelForDelegate:self];
-    
+  
+  self.image = [placeholder gaussianBlurWithBias:bias];
+  
   NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"blur", @"transformation",
                             [NSString stringWithFormat:@"%d",bias], @"bias", nil];
   

@@ -20,6 +20,7 @@
 #import "UIImage+Blurring.h"
 #import "NetManager.h"
 #import "MyCollectionController.h"
+#import "UIImage+Blurring.h"
 
 
 @interface AccountController ()
@@ -174,7 +175,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (indexPath.row == cellContentArray.count-1) {
-    [self openDebugOption];
+    //[self openDebugOption];
   }
   else if (indexPath.row == 2){
     [self logout];
@@ -353,31 +354,42 @@
   [[[User sharedInstance] account] logout];
   [self showLoginView];
   [self hideAccountView];
+  
 }
 
 
 - (void)setAccountAvatar
 {
   UserAccount* account = [[User sharedInstance] account];
+  NetManager* netManager = [NetManager sharedInstance];
+  
+  NSString* avatarUrl = nil;
+  
   if (account.avatar && ![account.avatar isEqual:@""]) {
-    [avataImageVIew setContentMode:UIViewContentModeScaleAspectFill];
-    [avataImageVIew setClipsToBounds:YES];
-    
-    NetManager* netManager = [NetManager sharedInstance];
-    
-    
-    NSString* avatarUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, account.avatar];
-    
-    [avataImageVIew setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:nil];
-    avataImageVIew.layer.cornerRadius = 4.0;
-    avataImageVIew.layer.masksToBounds = YES;
-    avataImageVIew.layer.borderColor = [UIColor clearColor].CGColor;
-    avataImageVIew.layer.borderWidth = 1.0;
-    
-    [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
-    [bannerImageView setClipsToBounds:YES];
-    [bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:nil options:0  andGaussianBlurWithBias:20];
+    avatarUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, account.avatar];
   }
+  
+  [avataImageVIew setContentMode:UIViewContentModeScaleAspectFill];
+  [avataImageVIew setClipsToBounds:YES];
+  
+  if (avatarUrl) {
+    [avataImageVIew setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+  }else {
+    [avataImageVIew setImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+  }
+  avataImageVIew.layer.cornerRadius = 4.0;
+  avataImageVIew.layer.masksToBounds = YES;
+  avataImageVIew.layer.borderColor = [UIColor clearColor].CGColor;
+  avataImageVIew.layer.borderWidth = 1.0;
+  
+  [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
+  [bannerImageView setClipsToBounds:YES];
+  if (avatarUrl) {
+    [bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"] options:0  andGaussianBlurWithBias:20];
+  } else {
+    [bannerImageView setImage: [[UIImage imageNamed:@"Images/avatar.jpg"] gaussianBlurWithBias:20]];
+  }
+  
 }
 
 - (void)onClickCountGrid:(UIButton*)sender
