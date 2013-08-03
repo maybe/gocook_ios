@@ -44,6 +44,7 @@
   [self loadSettings];
 }
 
+
 - (NSMutableDictionary*)loadSettings
 {
   [settingDictionary removeAllObjects];
