@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyIntroductionViewController.h"
 
 @interface MyselfRootViewController : UIViewController
 {
+  __weak IBOutlet UINavigationItem *navigationItem;
   __weak IBOutlet UITabBar *tabBar;
   UIView *menuView;
   UILabel *introductionLabel;
@@ -20,6 +22,10 @@
   UIButton *followBtn;
   UIButton *fanBtn;
   UIButton *recipeBtn;
+  
+  UIViewController *currentViewController;
+  UIViewController *myIntroductionViewController;
+  
 }
 
 @property (strong, nonatomic) IBOutlet UIView *menuView;
