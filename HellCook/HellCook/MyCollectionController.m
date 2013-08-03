@@ -17,7 +17,7 @@
 @end
 
 @implementation MyCollectionController
-@synthesize tableView;
+@synthesize tableView, mShouldRefresh;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,8 +36,10 @@
   self.navigationItem.title = @"我的收藏";
   
   CGRect tableframe = self.tableView.frame;
-  tableframe.size.height = _screenHeight_NoStBar_NoNavBar-44;
+  tableframe.size.height = _screenHeight_NoStBar_NoNavBar - 44;
   [self.tableView setFrame:tableframe];
+  
+  [self setLeftButton];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -115,6 +117,32 @@
 }
 
 
+#pragma mark - Return Button
+- (void)setLeftButton
+{
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+  [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
+  [leftBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/commonBackBackgroundNormal.png"]
+                               forState:UIControlStateNormal];
+  [leftBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/commonBackBackgroundHighlighted.png"]
+                               forState:UIControlStateHighlighted];
+  [leftBarButtonView setTitle:@"返回" forState:UIControlStateNormal];
+  [leftBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+  
+  UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
+  
+  [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+}
+
+- (void)returnToPrev
+{
+  if ([self.netOperation isExecuting]) {
+    [self.netOperation cancel];
+  }
+  [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark - Net
 

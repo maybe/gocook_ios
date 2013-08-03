@@ -13,9 +13,12 @@
   UITableView *tableView;
   NSInteger curPage;
   NSArray *myCollectionArray;
+  
+  BOOL mShouldRefresh;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
+@property BOOL mShouldRefresh;
 
 @end
