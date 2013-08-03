@@ -56,6 +56,8 @@
 
 #define _defaultHostName @"localhost"
 
+#define _TabBarHeight 49
+
 @interface Common : NSObject
 
 + (NSString *)dataFilePath:(NSString*)filePath;

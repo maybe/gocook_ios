@@ -21,6 +21,7 @@
 #import "NetManager.h"
 #import "MyCollectionController.h"
 #import "UIImage+Blurring.h"
+#import "MyselfRootViewController.h"
 
 
 @interface AccountController ()
@@ -180,6 +181,10 @@
   else if (indexPath.row == 2){
     [self logout];
   }
+  else
+  {
+    NSInteger tmp = indexPath.row;
+  }
 }
 
 
@@ -227,6 +232,17 @@
   
   [self setAccountAvatar];
   [[[User sharedInstance] account] setShouldResetLogin:NO];
+  
+  nameLabel.userInteractionEnabled = YES;
+  UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapNameLabel:)];  
+  [nameLabel addGestureRecognizer:tapGestureTel];
+
+}
+
+- (IBAction)tapNameLabel:(id)sender
+{
+  MyselfRootViewController *pViewController = [[MyselfRootViewController alloc] initWithNibName:@"MyselfRootView" bundle:nil];
+  [self.navigationController presentModalViewController:pViewController animated:NO];
 }
 
 

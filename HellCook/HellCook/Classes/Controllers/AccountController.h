@@ -30,5 +30,6 @@
 @property (nonatomic, retain) UIButton* registerButton;
 @property (nonatomic, retain) NSMutableArray* cellContentArray;
 
+-(IBAction)tapNameLabel:(id)sender;
 
 @end
