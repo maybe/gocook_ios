@@ -49,7 +49,7 @@
   [NetManager sharedInstance];// net manager reads host from config
   [User sharedInstance];
 
-//  [self ShowStartImage];
+  //[self ShowStartImage];
   
   return YES;
 }
@@ -137,8 +137,9 @@
 
 - (void) ShowStartImage
 {
-  UIImage *startImg = [UIImage imageNamed:@"MainPage.png"];
+  UIImage *startImg = [UIImage imageNamed:@"Default.png"];
   _startView = [[UIImageView alloc] initWithImage:startImg];
+  [_startView setFrame:CGRectMake(0, 0, _screenHeight_NoStBar, _screenWidth)];
   [self.window addSubview:_startView];
   [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(ChangeStartImage:) userInfo:nil repeats:NO];
 }

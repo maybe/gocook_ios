@@ -7,16 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E28916F17ACE80C00463535 /* RecipeItemImageDeSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E28916D17ACE80C00463535 /* RecipeItemImageDeSelected.png */; };
-		5E28917017ACE80C00463535 /* RecipeItemImageSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E28916E17ACE80C00463535 /* RecipeItemImageSelected.png */; };
-		5E28917217ACE95C00463535 /* TabBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E28917117ACE95C00463535 /* TabBarBackground.png */; };
-		5E3D90B017A48ACF009AE04F /* MyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D90AE17A48ACE009AE04F /* MyCollectionController.m */; };
-		5E3D90B117A48ACF009AE04F /* MyCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3D90AF17A48ACF009AE04F /* MyCollectionView.xib */; };
-		5E3D90B417A4CC5F009AE04F /* MyCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D90B317A4CC5F009AE04F /* MyCollectionTableViewCell.m */; };
-		5E5CD1EE17AA83980013E5D7 /* MyselfRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CD1EC17AA83980013E5D7 /* MyselfRootViewController.m */; };
-		5E5CD1EF17AA83980013E5D7 /* MyselfRootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CD1ED17AA83980013E5D7 /* MyselfRootView.xib */; };
-		5E5CD1F117AB4A4A0013E5D7 /* MenuViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CD1F017AB4A4A0013E5D7 /* MenuViewBackground.png */; };
-		5EE6971B17A21FF600214286 /* MainPage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE6971A17A21FF600214286 /* MainPage.png */; };
 		BA02634516D7579700298803 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634416D7579700298803 /* AppDelegate.m */; };
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
 		BA02635216D75E4F00298803 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02635116D75E4F00298803 /* Common.m */; };
@@ -64,9 +54,10 @@
 		BA79118C1710706F00BC77C9 /* MainTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118B1710706F00BC77C9 /* MainTopTableViewCell.m */; };
 		BA79118F1710786500BC77C9 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118E1710786500BC77C9 /* Recipe.m */; };
 		BA7911921710896800BC77C9 /* MainCatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7911911710896800BC77C9 /* MainCatTableViewCell.m */; };
-		BA7CC60517AD037400A6C8AE /* MyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC60417AD037300A6C8AE /* MyCollectionController.m */; };
-		BA7CC60817AD038F00A6C8AE /* MyCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC60717AD038F00A6C8AE /* MyCollectionTableViewCell.m */; };
-		BA7CC60A17AD03A300A6C8AE /* MyCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA7CC60917AD03A300A6C8AE /* MyCollectionView.xib */; };
+		BA7CC60F17AD168000A6C8AE /* MyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC60C17AD168000A6C8AE /* MyCollectionController.m */; };
+		BA7CC61017AD168000A6C8AE /* MyselfRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC60E17AD168000A6C8AE /* MyselfRootViewController.m */; };
+		BA7CC61217AD16BF00A6C8AE /* MyselfRootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA7CC61117AD16BF00A6C8AE /* MyselfRootView.xib */; };
+		BA7CC61817AD17B100A6C8AE /* MyCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC61717AD17B100A6C8AE /* MyCollectionTableViewCell.m */; };
 		BA829BE51704880100B0341A /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE41704880100B0341A /* MainView.xib */; };
 		BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */; };
 		BA829BEA1704995300B0341A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE91704995300B0341A /* LoginView.xib */; };
@@ -138,19 +129,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5E28916D17ACE80C00463535 /* RecipeItemImageDeSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecipeItemImageDeSelected.png; sourceTree = "<group>"; };
-		5E28916E17ACE80C00463535 /* RecipeItemImageSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecipeItemImageSelected.png; sourceTree = "<group>"; };
-		5E28917117ACE95C00463535 /* TabBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarBackground.png; sourceTree = "<group>"; };
-		5E3D90AD17A48ACD009AE04F /* MyCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionController.h; sourceTree = "<group>"; };
-		5E3D90AE17A48ACE009AE04F /* MyCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionController.m; sourceTree = "<group>"; };
-		5E3D90AF17A48ACF009AE04F /* MyCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyCollectionView.xib; path = ../../MyCollectionView.xib; sourceTree = "<group>"; };
-		5E3D90B217A4CC5E009AE04F /* MyCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionTableViewCell.h; sourceTree = "<group>"; };
-		5E3D90B317A4CC5F009AE04F /* MyCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionTableViewCell.m; sourceTree = "<group>"; };
-		5E5CD1EB17AA83980013E5D7 /* MyselfRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfRootViewController.h; sourceTree = "<group>"; };
-		5E5CD1EC17AA83980013E5D7 /* MyselfRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfRootViewController.m; sourceTree = "<group>"; };
-		5E5CD1ED17AA83980013E5D7 /* MyselfRootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyselfRootView.xib; path = ../../MyselfRootView.xib; sourceTree = "<group>"; };
-		5E5CD1F017AB4A4A0013E5D7 /* MenuViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuViewBackground.png; sourceTree = "<group>"; };
-		5EE6971A17A21FF600214286 /* MainPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MainPage.png; path = ../MainPage.png; sourceTree = "<group>"; };
 		BA02634316D7579700298803 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		BA02634416D7579700298803 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		BA02634716D759CB00298803 /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
@@ -229,11 +207,14 @@
 		BA79118E1710786500BC77C9 /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recipe.m; path = Classes/Models/Recipe.m; sourceTree = "<group>"; };
 		BA7911901710896700BC77C9 /* MainCatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatTableViewCell.h; path = Classes/Views/MainCatTableViewCell.h; sourceTree = "<group>"; };
 		BA7911911710896800BC77C9 /* MainCatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatTableViewCell.m; path = Classes/Views/MainCatTableViewCell.m; sourceTree = "<group>"; };
-		BA7CC60317AD037200A6C8AE /* MyCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollectionController.h; path = Classes/Controllers/MyCollectionController.h; sourceTree = "<group>"; };
-		BA7CC60417AD037300A6C8AE /* MyCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionController.m; path = Classes/Controllers/MyCollectionController.m; sourceTree = "<group>"; };
-		BA7CC60617AD038F00A6C8AE /* MyCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollectionTableViewCell.h; path = HellCook/Classes/Views/MyCollectionTableViewCell.h; sourceTree = SOURCE_ROOT; };
-		BA7CC60717AD038F00A6C8AE /* MyCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionTableViewCell.m; path = HellCook/Classes/Views/MyCollectionTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		BA7CC60917AD03A300A6C8AE /* MyCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCollectionView.xib; sourceTree = "<group>"; };
+		BA7CC60B17AD168000A6C8AE /* MyCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollectionController.h; path = Classes/Controllers/MyCollectionController.h; sourceTree = "<group>"; };
+		BA7CC60C17AD168000A6C8AE /* MyCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionController.m; path = Classes/Controllers/MyCollectionController.m; sourceTree = "<group>"; };
+		BA7CC60D17AD168000A6C8AE /* MyselfRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyselfRootViewController.h; path = Classes/Controllers/MyselfRootViewController.h; sourceTree = "<group>"; };
+		BA7CC60E17AD168000A6C8AE /* MyselfRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyselfRootViewController.m; path = Classes/Controllers/MyselfRootViewController.m; sourceTree = "<group>"; };
+		BA7CC61117AD16BF00A6C8AE /* MyselfRootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyselfRootView.xib; sourceTree = "<group>"; };
+		BA7CC61617AD17B100A6C8AE /* MyCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollectionTableViewCell.h; path = Classes/Views/MyCollectionTableViewCell.h; sourceTree = "<group>"; };
+		BA7CC61717AD17B100A6C8AE /* MyCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionTableViewCell.m; path = Classes/Views/MyCollectionTableViewCell.m; sourceTree = "<group>"; };
 		BA829BE41704880100B0341A /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Autorotate.h"; path = "Classes/Common/UINavigationController+Autorotate.h"; sourceTree = "<group>"; };
 		BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Autorotate.m"; path = "Classes/Common/UINavigationController+Autorotate.m"; sourceTree = "<group>"; };
@@ -412,11 +393,6 @@
 		BA02634116D756EB00298803 /* Resoueces */ = {
 			isa = PBXGroup;
 			children = (
-				5E28917117ACE95C00463535 /* TabBarBackground.png */,
-				5E28916D17ACE80C00463535 /* RecipeItemImageDeSelected.png */,
-				5E28916E17ACE80C00463535 /* RecipeItemImageSelected.png */,
-				5E5CD1F017AB4A4A0013E5D7 /* MenuViewBackground.png */,
-				5EE6971A17A21FF600214286 /* MainPage.png */,
 				BA73C95316FE37D9008284D8 /* NIB */,
 				BA3F5E6616FA297800493260 /* Images */,
 			);
@@ -584,6 +560,8 @@
 				BA829BF217055CD400B0341A /* RegisterAvatarView.m */,
 				BA50F3551710418600E3B6CE /* SearchBarView.h */,
 				BA50F3531710413D00E3B6CE /* SearchBarView.m */,
+				BA7CC61617AD17B100A6C8AE /* MyCollectionTableViewCell.h */,
+				BA7CC61717AD17B100A6C8AE /* MyCollectionTableViewCell.m */,
 				BAE38C9F1739577A00936382 /* RecipeDetail */,
 			);
 			name = View;
@@ -607,6 +585,7 @@
 		BA73C95316FE37D9008284D8 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				BA7CC61117AD16BF00A6C8AE /* MyselfRootView.xib */,
 				BAE38C9A1737984B00936382 /* RecipeDetailView.xib */,
 				BAE38C831736997500936382 /* TopListView.xib */,
 				BA829BE91704995300B0341A /* LoginView.xib */,
@@ -617,8 +596,6 @@
 				BA829BE41704880100B0341A /* MainView.xib */,
 				BA6069AC1708E3DA0060C251 /* DebugOption.xib */,
 				BA7CC60917AD03A300A6C8AE /* MyCollectionView.xib */,
-				5E3D90AF17A48ACF009AE04F /* MyCollectionView.xib */,
-				5E5CD1ED17AA83980013E5D7 /* MyselfRootView.xib */,
 			);
 			name = NIB;
 			path = Resources/NIB;
@@ -715,8 +692,6 @@
 				BA56F2B6179665A4001E8909 /* RecipeDetailMaterialTableViewCell.m */,
 				BA56F2B817971B35001E8909 /* RecipeDetailStepsTableViewCell.h */,
 				BA56F2B917971B36001E8909 /* RecipeDetailStepsTableViewCell.m */,
-				BA7CC60617AD038F00A6C8AE /* MyCollectionTableViewCell.h */,
-				BA7CC60717AD038F00A6C8AE /* MyCollectionTableViewCell.m */,
 			);
 			name = RecipeDetail;
 			path = Classes/Views/RecipeDetail;
@@ -844,12 +819,10 @@
 				BAE38C861736C33200936382 /* SearchController.m */,
 				BAE38C951737978300936382 /* RecipeDetailController.h */,
 				BAE38C961737978400936382 /* RecipeDetailController.m */,
-				BA7CC60317AD037200A6C8AE /* MyCollectionController.h */,
-				BA7CC60417AD037300A6C8AE /* MyCollectionController.m */,
-				5E3D90AD17A48ACD009AE04F /* MyCollectionController.h */,
-				5E3D90AE17A48ACE009AE04F /* MyCollectionController.m */,
-				5E5CD1EB17AA83980013E5D7 /* MyselfRootViewController.h */,
-				5E5CD1EC17AA83980013E5D7 /* MyselfRootViewController.m */,
+				BA7CC60B17AD168000A6C8AE /* MyCollectionController.h */,
+				BA7CC60C17AD168000A6C8AE /* MyCollectionController.m */,
+				BA7CC60D17AD168000A6C8AE /* MyselfRootViewController.h */,
+				BA7CC60E17AD168000A6C8AE /* MyselfRootViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -920,15 +893,7 @@
 				BAE38C841736997500936382 /* TopListView.xib in Resources */,
 				BAE38C8B1736C36000936382 /* SearchView.xib in Resources */,
 				BAE38C9B1737984C00936382 /* RecipeDetailView.xib in Resources */,
-				5EE6971B17A21FF600214286 /* MainPage.png in Resources */,
-
-				BA7CC60A17AD03A300A6C8AE /* MyCollectionView.xib in Resources */,
-				5E3D90B117A48ACF009AE04F /* MyCollectionView.xib in Resources */,
-				5E5CD1EF17AA83980013E5D7 /* MyselfRootView.xib in Resources */,
-				5E5CD1F117AB4A4A0013E5D7 /* MenuViewBackground.png in Resources */,
-				5E28916F17ACE80C00463535 /* RecipeItemImageDeSelected.png in Resources */,
-				5E28917017ACE80C00463535 /* RecipeItemImageSelected.png in Resources */,
-				5E28917217ACE95C00463535 /* TabBarBackground.png in Resources */,
+				BA7CC61217AD16BF00A6C8AE /* MyselfRootView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1020,11 +985,9 @@
 				BA56F2B7179665A5001E8909 /* RecipeDetailMaterialTableViewCell.m in Sources */,
 				BA56F2BA17971B36001E8909 /* RecipeDetailStepsTableViewCell.m in Sources */,
 				BA0873E2179AFC1F00A270D5 /* LineSpaceLabel.m in Sources */,
-				BA7CC60517AD037400A6C8AE /* MyCollectionController.m in Sources */,
-				BA7CC60817AD038F00A6C8AE /* MyCollectionTableViewCell.m in Sources */,
-				5E3D90B017A48ACF009AE04F /* MyCollectionController.m in Sources */,
-				5E3D90B417A4CC5F009AE04F /* MyCollectionTableViewCell.m in Sources */,
-				5E5CD1EE17AA83980013E5D7 /* MyselfRootViewController.m in Sources */,
+				BA7CC60F17AD168000A6C8AE /* MyCollectionController.m in Sources */,
+				BA7CC61017AD168000A6C8AE /* MyselfRootViewController.m in Sources */,
+				BA7CC61817AD17B100A6C8AE /* MyCollectionTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

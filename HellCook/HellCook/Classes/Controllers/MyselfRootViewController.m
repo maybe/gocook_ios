@@ -30,7 +30,7 @@
     // Do any additional setup after loading the view from its nib.
   //设置tabbar背景图
   UIImageView *tabBarBgView = [[UIImageView alloc] initWithFrame:tabBar.bounds];
-  [tabBarBgView setImage:[UIImage imageNamed:@"TabBarBackground.png"]];
+  [tabBarBgView setImage:[UIImage imageNamed:@"Images/TabBarBackground.png"]];
   [tabBarBgView setContentMode:UIViewContentModeScaleToFill];
   [tabBar insertSubview:tabBarBgView atIndex:1];
   //设置item字体颜色
@@ -39,7 +39,7 @@
   [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor blackColor] }
                                            forState:UIControlStateHighlighted]; 
   //设置item背景图
-  [[tabBar.items objectAtIndex:0] setFinishedSelectedImage:[UIImage imageNamed:@"RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"RecipeItemImageDeSelected"]];
+  [[tabBar.items objectAtIndex:0] setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
   
   [tabBar setSelectedItem:[tabBar.items objectAtIndex:0]];
 }

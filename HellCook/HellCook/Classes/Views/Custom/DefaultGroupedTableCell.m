@@ -41,17 +41,17 @@
   if (self.theCellStyle == CellStyle_Single)
   {
     rowBackground = [UIImage imageNamed:@"Images/TableCellSingle.png"];
-    selectionBackground = [UIImage imageNamed:@"TableCellSingleSelected.png"];
+    selectionBackground = [UIImage imageNamed:@"Images/TableCellSingleSelected.png"];
   }
   else if (self.theCellStyle == CellStyle_Top)
   {
     rowBackground = [UIImage imageNamed:@"Images/TableCellHeader.png"];
-    selectionBackground = [UIImage imageNamed:@"TableCellHeaderSelected.png"];
+    selectionBackground = [UIImage imageNamed:@"Images/TableCellHeaderSelected.png"];
   }
   else if (self.theCellStyle == CellStyle_Bottom)
   {
     rowBackground = [UIImage imageNamed:@"Images/TableCellFooter.png"];
-    selectionBackground = [UIImage imageNamed:@"TableCellFooterSelected.png"];
+    selectionBackground = [UIImage imageNamed:@"Images/TableCellFooterSelected.png"];
   }
   else
   {
