@@ -37,6 +37,11 @@
 
 - (void)login:(NSMutableDictionary*)dic
 {
+  username = [dic valueForKey:@"username"];
+  email = [dic valueForKey:@"email"];
+  password = [dic valueForKey:@"password"];
+  avatar = [dic valueForKey:@"avatar"];
+  
   DBHandler* dbHandler = [DBHandler sharedInstance];
   [dbHandler setAccount:dic];
   

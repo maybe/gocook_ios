@@ -225,6 +225,19 @@
 
 -(void)onLogin
 {
+  HUD = [[MBProgressHUD alloc] initWithView:self.view];
+  [self.view addSubview:HUD];
+  
+  HUD.mode = MBProgressHUDModeText;
+  
+  HUD.delegate = self;
+  HUD.labelText = @"登录中";
+  
+  [HUD show:YES];
+  
+  [usernameField resignFirstResponder];
+  [passwordField resignFirstResponder];
+  
   NSString* username = usernameField.text;
   NSString* password = passwordField.text;
   
@@ -239,31 +252,14 @@
 
 - (void)LoginCallBack:(NSMutableDictionary*) resultDic
 {
-  UserAccount* userAccount = [[User sharedInstance] account];
+  [HUD hide:NO];
   
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0) {
-    userAccount.username = resultDic[@"username"];
-    userAccount.avatar = resultDic[@"icon"];
-    
-    NSMutableDictionary* dic = nil;
-    dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
-           resultDic[@"username"], @"username",
-           usernameField.text, @"email",
-           passwordField.text, @"password",
-           resultDic[@"icon"], @"avatar", nil];
-    
-    [userAccount login:dic];
-    
-    [[[User sharedInstance] account] setShouldResetLogin:YES];
-    
     [self dismissViewControllerAnimated:YES completion:nil];    
   }
   else
   {
-    [usernameField resignFirstResponder];
-    [passwordField resignFirstResponder];
-    
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
 		

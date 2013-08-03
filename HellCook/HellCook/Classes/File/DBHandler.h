@@ -5,6 +5,8 @@
 //  Created by panda on 11-12-11.
 //  Copyright (c) 2013 panda. All rights reserved.
 //
+//  account db存放用户登录数据
+
 
 #import <Foundation/Foundation.h>
 #import "GCDSingleton.h"

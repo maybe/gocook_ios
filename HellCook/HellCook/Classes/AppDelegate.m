@@ -43,9 +43,10 @@
   self.window.backgroundColor = [UIColor blackColor];
   [self.window makeKeyAndVisible];
   
+  //注意启动顺序
   [ConfigHandler sharedInstance];
-  [NetManager sharedInstance];
   [DBHandler sharedInstance];
+  [NetManager sharedInstance];// net manager reads host from config
   [User sharedInstance];
 
 //  [self ShowStartImage];

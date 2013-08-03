@@ -37,7 +37,8 @@
             [rs stringForColumn:@"username"], @"username",
             [rs stringForColumn:@"email"], @"email",
             [rs stringForColumn:@"password"], @"password",
-            [rs stringForColumn:@"avatar"], @"avatar", nil];
+            [rs stringForColumn:@"avatar"], @"avatar",
+            [rs stringForColumn:@"session"], @"session",nil];
     }
     [db close];
   }
@@ -49,7 +50,7 @@
   //[self delAccount];
   if ([self openDB])
   {
-    [db executeUpdate:@"INSERT INTO account (username, email,password, avatar) VALUES (?,?,?,?);", accountDic[@"username"], accountDic[@"email"], accountDic[@"password"], accountDic[@"avatar"]];
+    [db executeUpdate:@"INSERT INTO account (username, email,password, avatar, session) VALUES (?,?,?,?,?);", accountDic[@"username"], accountDic[@"email"], accountDic[@"password"], accountDic[@"avatar"], accountDic[@"session"]];
     [db close];
     return YES;
   }
@@ -78,7 +79,7 @@
   
   if (!accountTableName)
   {
-    [db executeUpdate:@"CREATE TABLE account(username text, email text, password text, avatar text)"];
+    [db executeUpdate:@"CREATE TABLE account(username text, email text, password text, avatar text, session text)"];
   }
   
   [self closeDB];

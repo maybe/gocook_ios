@@ -7,7 +7,8 @@
 //
 
 #import "HellEngine.h"
-
+#import "UserAccount.h"
+#import "User.h"
 
 @implementation HellEngine
 
@@ -25,6 +26,30 @@
   
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+
+      // save login info
+      if (jsonObject!=nil && [[jsonObject objectForKey:@"result"] intValue] == 0) {
+        
+        UserAccount* userAccount = [[User sharedInstance] account];
+        
+        userAccount.username = jsonObject[@"username"];
+        userAccount.avatar = jsonObject[@"icon"];
+        
+        NSString* session = completedOperation.readonlyResponse.allHeaderFields[@"Set-Cookie"];
+        
+        NSMutableDictionary* dic = nil;
+        dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
+               jsonObject[@"username"], @"username",
+               username, @"email",
+               pass, @"password",
+               session, @"session",
+               jsonObject[@"icon"], @"avatar", nil];
+        
+        [userAccount login:dic];
+        
+        [[[User sharedInstance] account] setShouldResetLogin:YES];
+      }
+      
       completionBlock(jsonObject);
     }];
   }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {

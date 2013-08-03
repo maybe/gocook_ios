@@ -8,6 +8,7 @@
 
 #import "NetManager.h"
 #import "ConfigHandler.h"
+#import "DBHandler.h"
 #import "GCDSingleton.h"
 
 @implementation NetManager
@@ -36,8 +37,15 @@
 
 - (void)InitHellEngine
 {
-  self.hellEngine = [[HellEngine alloc] initWithHostName:host
-                                            customHeaderFields: @{@"x-client-identifier" : @"Mobile"}];
+  NSMutableDictionary* dic = [[NSMutableDictionary alloc]init];
+  dic[@"x-client-identifier"] = @"Mobile";
+  
+  DBHandler* dbHandler = [DBHandler sharedInstance];
+  if ([[dbHandler getAccount] objectForKey:@"session"] != nil) {
+    dic[@"Set-Cookie"] = [[dbHandler getAccount] objectForKey:@"session"];
+  }
+  
+  self.hellEngine = [[HellEngine alloc] initWithHostName:host customHeaderFields: dic];
 }
 
 @end
