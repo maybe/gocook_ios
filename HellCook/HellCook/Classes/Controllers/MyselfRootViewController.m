@@ -27,8 +27,8 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+  [super viewDidLoad];
+  
   //设置tabbar背景图
   UIImageView *tabBarBgView = [[UIImageView alloc] initWithFrame:myTabBar.bounds];
   [tabBarBgView setImage:[UIImage imageNamed:@"Images/TabBarBackground.png"]];
@@ -48,11 +48,15 @@
   [self setRightButton];
   [myTabBar setSelectedItem:[myTabBar.items objectAtIndex:0]];
   [self changeToMyIntroductionViewController];
+
+  CGRect viewframe = self.view.frame;
+  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewframe];
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
+  [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
@@ -104,7 +108,7 @@
 
 -(void)returnToPrev
 {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
 }
 
 -(void)onEdit

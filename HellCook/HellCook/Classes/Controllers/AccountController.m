@@ -22,7 +22,9 @@
 #import "MyCollectionController.h"
 #import "UIImage+Blurring.h"
 #import "MyselfRootViewController.h"
-
+#import "AppDelegate.h"
+#import "UIZoomNavigationController.h"
+#import "MainController.h"
 
 @interface AccountController ()
 
@@ -176,14 +178,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (indexPath.row == cellContentArray.count-1) {
-    //[self openDebugOption];
+    [self openDebugOption];
   }
   else if (indexPath.row == 2){
     [self logout];
   }
+  else if (indexPath.row == 0){
+    MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];    
+    [ApplicationDelegate.centerNavController setViewControllers:@[mainController] animated:NO];
+    [self.revealSideViewController popViewControllerAnimated:YES];
+  }
   else
   {
-    NSInteger tmp = indexPath.row;
   }
 }
 
@@ -242,7 +248,13 @@
 - (IBAction)tapNameLabel:(id)sender
 {
   MyselfRootViewController *pViewController = [[MyselfRootViewController alloc] initWithNibName:@"MyselfRootView" bundle:nil];
-  [self.navigationController presentModalViewController:pViewController animated:NO];
+  //[self.navigationController presentModalViewController:pViewController animated:NO];
+  
+  [ApplicationDelegate.centerNavController setViewControllers:@[pViewController] animated:NO];
+  
+  //[self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:_offset animated:YES];
+
+  [self.revealSideViewController popViewControllerAnimated:YES];
 }
 
 
