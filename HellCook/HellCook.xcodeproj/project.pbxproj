@@ -10,6 +10,7 @@
 		5E13568F17AD34D6009C623B /* MyIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E13568D17AD34D5009C623B /* MyIntroductionViewController.m */; };
 		5E13569217AD37AF009C623B /* MyIntroductionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E13569117AD37AF009C623B /* MyIntroductionView.xib */; };
 		5E13569617AD3AC5009C623B /* MyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E13569417AD3AC4009C623B /* MyFollowViewController.m */; };
+		5E13569917AD3AED009C623B /* MyFollowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E13569817AD3AED009C623B /* MyFollowView.xib */; };
 		BA02634516D7579700298803 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634416D7579700298803 /* AppDelegate.m */; };
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
 		BA02635216D75E4F00298803 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02635116D75E4F00298803 /* Common.m */; };
@@ -137,6 +138,7 @@
 		5E13569117AD37AF009C623B /* MyIntroductionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyIntroductionView.xib; sourceTree = "<group>"; };
 		5E13569317AD3AC4009C623B /* MyFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFollowViewController.h; path = Classes/Controllers/MyFollowViewController.h; sourceTree = "<group>"; };
 		5E13569417AD3AC4009C623B /* MyFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFollowViewController.m; path = Classes/Controllers/MyFollowViewController.m; sourceTree = "<group>"; };
+		5E13569817AD3AED009C623B /* MyFollowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFollowView.xib; sourceTree = "<group>"; };
 		BA02634316D7579700298803 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		BA02634416D7579700298803 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		BA02634716D759CB00298803 /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 		BA73C95316FE37D9008284D8 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				5E13569817AD3AED009C623B /* MyFollowView.xib */,
 				5E13569117AD37AF009C623B /* MyIntroductionView.xib */,
 				BA7CC61117AD16BF00A6C8AE /* MyselfRootView.xib */,
 				BAE38C9A1737984B00936382 /* RecipeDetailView.xib */,
@@ -908,6 +911,7 @@
 				BAE38C9B1737984C00936382 /* RecipeDetailView.xib in Resources */,
 				BA7CC61217AD16BF00A6C8AE /* MyselfRootView.xib in Resources */,
 				5E13569217AD37AF009C623B /* MyIntroductionView.xib in Resources */,
+				5E13569917AD3AED009C623B /* MyFollowView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

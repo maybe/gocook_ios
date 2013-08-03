@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MyIntroductionViewController.h"
+#import "MyFollowViewController.h"
 
 @interface MyselfRootViewController : UIViewController
 {
   __weak IBOutlet UINavigationItem *navigationItem;
-  __weak IBOutlet UITabBar *tabBar;
+  __weak IBOutlet UITabBar *myTabBar;
   UIView *menuView;
   UILabel *introductionLabel;
   UILabel *followLabel;//关注
@@ -24,8 +25,8 @@
   UIButton *recipeBtn;
   
   UIViewController *currentViewController;
-  UIViewController *myIntroductionViewController;
-  
+  MyIntroductionViewController *myIntroductionViewController;
+  MyFollowViewController *myFollowViewController;
 }
 
 @property (strong, nonatomic) IBOutlet UIView *menuView;

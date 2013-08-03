@@ -30,23 +30,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
   //设置tabbar背景图
-  UIImageView *tabBarBgView = [[UIImageView alloc] initWithFrame:tabBar.bounds];
+  UIImageView *tabBarBgView = [[UIImageView alloc] initWithFrame:myTabBar.bounds];
   [tabBarBgView setImage:[UIImage imageNamed:@"Images/TabBarBackground.png"]];
   [tabBarBgView setContentMode:UIViewContentModeScaleToFill];
-  [tabBar insertSubview:tabBarBgView atIndex:1];
+  [myTabBar insertSubview:tabBarBgView atIndex:1];
   //设置item字体颜色
-  for (int i=0; i<[tabBar.items count]; i++)
+  for (int i=0; i<[myTabBar.items count]; i++)
   {
-    [(UITabBarItem*)[tabBar.items objectAtIndex:0] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor redColor] } forState:UIControlStateNormal];
-    [(UITabBarItem*)[tabBar.items objectAtIndex:0] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor blackColor] } forState:UIControlStateNormal];
+    [(UITabBarItem*)[myTabBar.items objectAtIndex:0] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor redColor] } forState:UIControlStateNormal];
+    [(UITabBarItem*)[myTabBar.items objectAtIndex:0] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor blackColor] } forState:UIControlStateNormal];
   }
   //设置item背景图
-  [[tabBar.items objectAtIndex:0] setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
+  [[myTabBar.items objectAtIndex:0] setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
   
   self.navigationItem.title = [[[User sharedInstance] account] username];
   [self setLeftButton];
   [self setRightButton];
-  [tabBar setSelectedItem:[tabBar.items objectAtIndex:0]];
+  [myTabBar setSelectedItem:[myTabBar.items objectAtIndex:0]];
+  [self changeToMyIntroductionViewController];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,7 +57,7 @@
 }
 
 - (void)viewDidUnload {
-  tabBar = nil;
+  myTabBar = nil;
   navigationItem = nil;
   [super viewDidUnload];
 }
@@ -111,6 +112,33 @@
   
 }
 
+- (void)changeToMyIntroductionViewController
+{
+  if (myIntroductionViewController == nil)
+  {
+    myIntroductionViewController =
+    [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil];
+  }
+  [self.view insertSubview:myIntroductionViewController.view belowSubview:myTabBar];
+  
+  if (currentViewController != nil)
+    [currentViewController.view removeFromSuperview];
+  currentViewController = myIntroductionViewController;
+}
+
+- (void)changeToMyFollowViewController
+{
+  if (myFollowViewController == nil)
+  {
+    myFollowViewController =
+    [[MyFollowViewController alloc] initWithNibName:@"MyFollowView" bundle:nil];
+  }
+  [self.view insertSubview:myFollowViewController.view belowSubview:myTabBar];
+  
+  if (currentViewController != nil)
+    [currentViewController.view removeFromSuperview];
+  currentViewController = myFollowViewController;
+}
 
 
 #pragma TabBar Delegate
@@ -120,14 +148,23 @@
   switch ( item.tag )
   {
     case 0://个人简介
+    {
+      [self changeToMyIntroductionViewController];
       break;
+    }
     case 1://关注
+    {
+      [self changeToMyFollowViewController];
+      break;
+    }
       break;
     case 2://粉丝
       break;
     case 3://菜谱
       break;
   }
+  
+  
 }
 
 @end
