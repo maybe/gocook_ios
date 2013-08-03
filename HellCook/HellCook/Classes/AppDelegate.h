@@ -10,6 +10,10 @@
 
 @class UIZoomNavigationController;
 @interface AppDelegate : UIResponder <UIApplicationDelegate, PPRevealSideViewControllerDelegate>
+{
+  NSTimer *connectionTimer; //timer对象
+  BOOL done;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) PPRevealSideViewController *revealSideViewController;
@@ -17,9 +21,9 @@
 @property (strong, nonatomic) UIZoomNavigationController *centerNavController;
 @property (strong, nonatomic) UINavigationController *rightNavController;
 @property (strong, nonatomic) UIImageView *startView;
+@property (nonatomic, retain) NSTimer *connectionTimer;
+@property BOOL done;
 
 + (void) Generalstyle;
-- (void) ShowStartImage;
-- (void) ChangeStartImage:(NSTimer *)timer;
 
 @end

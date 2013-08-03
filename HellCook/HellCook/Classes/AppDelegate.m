@@ -24,9 +24,18 @@
 @synthesize leftNavController = _leftNavController;
 @synthesize centerNavController = _centerNavController;
 @synthesize rightNavController = _rightNavController;
+@synthesize connectionTimer, done;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  
+  //等待3秒进入首页
+  self.connectionTimer=[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:NO];
+  [[NSRunLoop currentRunLoop] addTimer:self.connectionTimer forMode:NSDefaultRunLoopMode];
+  do{
+    [[NSRunLoop currentRunLoop]runUntilDate:[NSDate dateWithTimeIntervalSinceNow:2.0]];
+  }while (!done);
+  
   
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
@@ -48,8 +57,6 @@
   [DBHandler sharedInstance];
   [NetManager sharedInstance];// net manager reads host from config
   [User sharedInstance];
-
-  //[self ShowStartImage];
   
   return YES;
 }
@@ -135,18 +142,8 @@
   [self.revealSideViewController preloadViewController:_rightNavController forSide:PPRevealSideDirectionRight withOffset:_offset];
 }
 
-- (void) ShowStartImage
-{
-  UIImage *startImg = [UIImage imageNamed:@"Default.png"];
-  _startView = [[UIImageView alloc] initWithImage:startImg];
-  [_startView setFrame:CGRectMake(0, 0, _screenHeight_NoStBar, _screenWidth)];
-  [self.window addSubview:_startView];
-  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(ChangeStartImage:) userInfo:nil repeats:NO];
-}
-
-- (void) ChangeStartImage:(NSTimer *)timer
-{
-  [_startView removeFromSuperview];
+-(void)timerFired:(NSTimer *)timer{
+  done=YES;
 }
 
 @end
