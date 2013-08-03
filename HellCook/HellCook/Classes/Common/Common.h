@@ -46,8 +46,10 @@
 #define _screenWidth [[UIScreen mainScreen] bounds].size.width
 #define _stateBarHeight 20
 #define _navigationBarHeight 44
+#define _tabBarHeight 49
 #define _screenHeight_NoStBar (_screenHeight - _stateBarHeight)
 #define _screenHeight_NoStBar_NoNavBar (_screenHeight - _stateBarHeight - _navigationBarHeight)
+#define _screenHeight_NoStBar_NoNavBar_NoTabBar (_screenHeight - _stateBarHeight - _navigationBarHeight - _tabBarHeight)
 
 #define _offset 40
 #define _sideWindowWidth (_screenWidth - _offset)
@@ -55,8 +57,6 @@
 #define ApplicationDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
 #define _defaultHostName @"localhost"
-
-#define _TabBarHeight 49
 
 @interface Common : NSObject
 

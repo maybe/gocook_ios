@@ -52,6 +52,8 @@
   CGRect viewframe = self.view.frame;
   viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.view setFrame:viewframe];
+    
+  [myTabBar setFrame:CGRectMake(0, _screenHeight - _tabBarHeight - _navigationBarHeight - _stateBarHeight, _screenWidth, _tabBarHeight)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -169,6 +171,16 @@
   }
   
   
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (BOOL)shouldAutorotate {
+  
+  return NO;
 }
 
 @end

@@ -39,7 +39,4 @@
 @property (strong, nonatomic) IBOutlet UIButton *fanBtn;
 @property (strong, nonatomic) IBOutlet UIButton *recipeBtn;
 
-
-- (IBAction)tapMenuView:(id)sender;
-
 @end
