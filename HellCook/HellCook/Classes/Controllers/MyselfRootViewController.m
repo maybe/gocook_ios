@@ -56,10 +56,12 @@
   [myTabBar setFrame:CGRectMake(0, _screenHeight - _tabBarHeight - _navigationBarHeight - _stateBarHeight, _screenWidth, _tabBarHeight)];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-  [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super viewWillAppear:animated];
+  if (myIntroductionViewController.view.superview != nil) {
+    [myIntroductionViewController viewWillAppear:animated];
+  }
 }
 
 - (void)viewDidUnload {
