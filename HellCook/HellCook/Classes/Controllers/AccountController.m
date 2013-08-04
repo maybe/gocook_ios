@@ -25,6 +25,7 @@
 #import "AppDelegate.h"
 #import "UIZoomNavigationController.h"
 #import "MainController.h"
+#import "HomePageController.h"
 
 @interface AccountController ()
 
@@ -247,10 +248,11 @@
 
 - (IBAction)tapNameLabel:(id)sender
 {
-  MyselfRootViewController *pViewController = [[MyselfRootViewController alloc] initWithNibName:@"MyselfRootView" bundle:nil];
-  //[self.navigationController presentModalViewController:pViewController animated:NO];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil];
   
-  [ApplicationDelegate.centerNavController setViewControllers:@[pViewController] animated:NO];
+  // MyselfRootViewController *pViewController = [[MyselfRootViewController alloc] initWithNibName:@"MyselfRootView" bundle:nil];
+  
+  [ApplicationDelegate.centerNavController setViewControllers:@[pHomePageController] animated:NO];
   
   //[self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:_offset animated:YES];
 

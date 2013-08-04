@@ -242,4 +242,26 @@
   return op;
 }
 
+
+- (MKNetworkOperation*)getMyRecipesDataByPage:(NSInteger)page
+                            CompletionHandler:(myRecipesResponseBlock)completionBlock
+                                 errorHandler:(MKNKErrorBlock) errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/myrecipes?page=%d",page]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
 @end

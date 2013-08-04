@@ -59,9 +59,9 @@
 		BA79118F1710786500BC77C9 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118E1710786500BC77C9 /* Recipe.m */; };
 		BA7911921710896800BC77C9 /* MainCatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7911911710896800BC77C9 /* MainCatTableViewCell.m */; };
 		BA7CC60F17AD168000A6C8AE /* MyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC60C17AD168000A6C8AE /* MyCollectionController.m */; };
-		BA7CC61017AD168000A6C8AE /* MyselfRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC60E17AD168000A6C8AE /* MyselfRootViewController.m */; };
-		BA7CC61217AD16BF00A6C8AE /* MyselfRootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA7CC61117AD16BF00A6C8AE /* MyselfRootView.xib */; };
 		BA7CC61817AD17B100A6C8AE /* MyCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC61717AD17B100A6C8AE /* MyCollectionTableViewCell.m */; };
+		BA7CC61C17AD5BB900A6C8AE /* MyRecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */; };
+		BA7CC61F17AD5BE700A6C8AE /* MyRecipesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA7CC61E17AD5BE600A6C8AE /* MyRecipesView.xib */; };
 		BA829BE51704880100B0341A /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE41704880100B0341A /* MainView.xib */; };
 		BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */; };
 		BA829BEA1704995300B0341A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE91704995300B0341A /* LoginView.xib */; };
@@ -70,6 +70,9 @@
 		BA829BF317055CD400B0341A /* RegisterAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF217055CD400B0341A /* RegisterAvatarView.m */; };
 		BA829BF717057FCB00B0341A /* KeyboardHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF617057FCA00B0341A /* KeyboardHandler.m */; };
 		BA829BFA1705877800B0341A /* UIView+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */; };
+		BABAE9CE17AE46A90099BE45 /* MyRecipesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9CD17AE46A90099BE45 /* MyRecipesTableViewCell.m */; };
+		BABAE9D217AE779F0099BE45 /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9D017AE779F0099BE45 /* HomePageController.m */; };
+		BABAE9D517AE7D0F0099BE45 /* HomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABAE9D417AE7D0F0099BE45 /* HomePageView.xib */; };
 		BABE0A14170627560056BF9D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BABE0A13170627560056BF9D /* MBProgressHUD.m */; };
 		BAC44C5C173581BF004E95F0 /* TopListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC44C5A173581BF004E95F0 /* TopListController.m */; };
 		BACCF83616ECFC420094F1E5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BACCF82B16ECFC420094F1E5 /* .gitignore */; };
@@ -220,11 +223,11 @@
 		BA7CC60917AD03A300A6C8AE /* MyCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCollectionView.xib; sourceTree = "<group>"; };
 		BA7CC60B17AD168000A6C8AE /* MyCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollectionController.h; path = Classes/Controllers/MyCollectionController.h; sourceTree = "<group>"; };
 		BA7CC60C17AD168000A6C8AE /* MyCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionController.m; path = Classes/Controllers/MyCollectionController.m; sourceTree = "<group>"; };
-		BA7CC60D17AD168000A6C8AE /* MyselfRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyselfRootViewController.h; path = Classes/Controllers/MyselfRootViewController.h; sourceTree = "<group>"; };
-		BA7CC60E17AD168000A6C8AE /* MyselfRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyselfRootViewController.m; path = Classes/Controllers/MyselfRootViewController.m; sourceTree = "<group>"; };
-		BA7CC61117AD16BF00A6C8AE /* MyselfRootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyselfRootView.xib; sourceTree = "<group>"; };
 		BA7CC61617AD17B100A6C8AE /* MyCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollectionTableViewCell.h; path = Classes/Views/MyCollectionTableViewCell.h; sourceTree = "<group>"; };
 		BA7CC61717AD17B100A6C8AE /* MyCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionTableViewCell.m; path = Classes/Views/MyCollectionTableViewCell.m; sourceTree = "<group>"; };
+		BA7CC61917AD5BB600A6C8AE /* MyRecipesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesController.h; path = Classes/Controllers/MyRecipesController.h; sourceTree = "<group>"; };
+		BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesController.m; path = Classes/Controllers/MyRecipesController.m; sourceTree = "<group>"; };
+		BA7CC61E17AD5BE600A6C8AE /* MyRecipesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRecipesView.xib; sourceTree = "<group>"; };
 		BA829BE41704880100B0341A /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Autorotate.h"; path = "Classes/Common/UINavigationController+Autorotate.h"; sourceTree = "<group>"; };
 		BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Autorotate.m"; path = "Classes/Common/UINavigationController+Autorotate.m"; sourceTree = "<group>"; };
@@ -240,6 +243,11 @@
 		BA829BF617057FCA00B0341A /* KeyboardHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardHandler.m; path = Classes/Common/KeyboardHandler.m; sourceTree = "<group>"; };
 		BA829BF81705877600B0341A /* UIView+FindFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FindFirstResponder.h"; path = "Classes/Common/UIView+FindFirstResponder.h"; sourceTree = "<group>"; };
 		BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FindFirstResponder.m"; path = "Classes/Common/UIView+FindFirstResponder.m"; sourceTree = "<group>"; };
+		BABAE9CC17AE46A90099BE45 /* MyRecipesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesTableViewCell.h; path = Classes/Views/MyRecipesTableViewCell.h; sourceTree = "<group>"; };
+		BABAE9CD17AE46A90099BE45 /* MyRecipesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesTableViewCell.m; path = Classes/Views/MyRecipesTableViewCell.m; sourceTree = "<group>"; };
+		BABAE9CF17AE779E0099BE45 /* HomePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageController.h; path = Classes/Controllers/HomePageController.h; sourceTree = "<group>"; };
+		BABAE9D017AE779F0099BE45 /* HomePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageController.m; path = Classes/Controllers/HomePageController.m; sourceTree = "<group>"; };
+		BABAE9D417AE7D0F0099BE45 /* HomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageView.xib; sourceTree = "<group>"; };
 		BABE0A12170627560056BF9D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		BABE0A13170627560056BF9D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		BAC44C59173581BF004E95F0 /* TopListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopListController.h; path = Classes/Controllers/TopListController.h; sourceTree = "<group>"; };
@@ -572,6 +580,8 @@
 				BA50F3531710413D00E3B6CE /* SearchBarView.m */,
 				BA7CC61617AD17B100A6C8AE /* MyCollectionTableViewCell.h */,
 				BA7CC61717AD17B100A6C8AE /* MyCollectionTableViewCell.m */,
+				BABAE9CC17AE46A90099BE45 /* MyRecipesTableViewCell.h */,
+				BABAE9CD17AE46A90099BE45 /* MyRecipesTableViewCell.m */,
 				BAE38C9F1739577A00936382 /* RecipeDetail */,
 			);
 			name = View;
@@ -595,9 +605,9 @@
 		BA73C95316FE37D9008284D8 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				BABAE9D417AE7D0F0099BE45 /* HomePageView.xib */,
 				5E13569817AD3AED009C623B /* MyFollowView.xib */,
 				5E13569117AD37AF009C623B /* MyIntroductionView.xib */,
-				BA7CC61117AD16BF00A6C8AE /* MyselfRootView.xib */,
 				BAE38C9A1737984B00936382 /* RecipeDetailView.xib */,
 				BAE38C831736997500936382 /* TopListView.xib */,
 				BA829BE91704995300B0341A /* LoginView.xib */,
@@ -608,6 +618,7 @@
 				BA829BE41704880100B0341A /* MainView.xib */,
 				BA6069AC1708E3DA0060C251 /* DebugOption.xib */,
 				BA7CC60917AD03A300A6C8AE /* MyCollectionView.xib */,
+				BA7CC61E17AD5BE600A6C8AE /* MyRecipesView.xib */,
 			);
 			name = NIB;
 			path = Resources/NIB;
@@ -833,12 +844,14 @@
 				BAE38C961737978400936382 /* RecipeDetailController.m */,
 				BA7CC60B17AD168000A6C8AE /* MyCollectionController.h */,
 				BA7CC60C17AD168000A6C8AE /* MyCollectionController.m */,
-				BA7CC60D17AD168000A6C8AE /* MyselfRootViewController.h */,
-				BA7CC60E17AD168000A6C8AE /* MyselfRootViewController.m */,
 				5E13568C17AD34D5009C623B /* MyIntroductionViewController.h */,
 				5E13568D17AD34D5009C623B /* MyIntroductionViewController.m */,
 				5E13569317AD3AC4009C623B /* MyFollowViewController.h */,
 				5E13569417AD3AC4009C623B /* MyFollowViewController.m */,
+				BA7CC61917AD5BB600A6C8AE /* MyRecipesController.h */,
+				BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */,
+				BABAE9CF17AE779E0099BE45 /* HomePageController.h */,
+				BABAE9D017AE779F0099BE45 /* HomePageController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -909,9 +922,10 @@
 				BAE38C841736997500936382 /* TopListView.xib in Resources */,
 				BAE38C8B1736C36000936382 /* SearchView.xib in Resources */,
 				BAE38C9B1737984C00936382 /* RecipeDetailView.xib in Resources */,
-				BA7CC61217AD16BF00A6C8AE /* MyselfRootView.xib in Resources */,
 				5E13569217AD37AF009C623B /* MyIntroductionView.xib in Resources */,
 				5E13569917AD3AED009C623B /* MyFollowView.xib in Resources */,
+				BA7CC61F17AD5BE700A6C8AE /* MyRecipesView.xib in Resources */,
+				BABAE9D517AE7D0F0099BE45 /* HomePageView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1004,10 +1018,12 @@
 				BA56F2BA17971B36001E8909 /* RecipeDetailStepsTableViewCell.m in Sources */,
 				BA0873E2179AFC1F00A270D5 /* LineSpaceLabel.m in Sources */,
 				BA7CC60F17AD168000A6C8AE /* MyCollectionController.m in Sources */,
-				BA7CC61017AD168000A6C8AE /* MyselfRootViewController.m in Sources */,
 				BA7CC61817AD17B100A6C8AE /* MyCollectionTableViewCell.m in Sources */,
 				5E13568F17AD34D6009C623B /* MyIntroductionViewController.m in Sources */,
 				5E13569617AD3AC5009C623B /* MyFollowViewController.m in Sources */,
+				BA7CC61C17AD5BB900A6C8AE /* MyRecipesController.m in Sources */,
+				BABAE9CE17AE46A90099BE45 /* MyRecipesTableViewCell.m in Sources */,
+				BABAE9D217AE779F0099BE45 /* HomePageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,7 +22,7 @@
   NSMutableArray* cellContentArray;
 }
 
-@property (nonatomic, retain) UITableView* tableView;
+@property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) UIImageView* bannerImageView;
 @property (nonatomic, retain) UIImageView* avataImageVIew;
 @property (nonatomic, retain) UILabel* nameLabel;
