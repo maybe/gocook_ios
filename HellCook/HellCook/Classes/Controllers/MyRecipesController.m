@@ -35,6 +35,13 @@
 {
   [super viewDidLoad];
   [self resetTableHeader];
+  
+  CGRect viewframe = self.view.frame;
+  viewframe.size.height = _screenHeight_NoStBar_NoNavBar_NoTabBar;
+  [self.view setFrame:viewframe];
+  [self.tableView setFrame:viewframe];
+  
+  mMyRecipeArray = [[NSMutableArray alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -44,6 +51,8 @@
   curPage = 0;
   [mMyRecipeArray removeAllObjects];
   [self getRecipesData];
+  [self initLoadingView];
+  [self showLoadingView];
 }
 
 #pragma mark - Table view data source
@@ -222,6 +231,12 @@
   [uploadButton addTarget:self action:@selector(openLoginWindow) forControlEvents:UIControlEventTouchUpInside];
     
   [self.tableView.tableHeaderView addSubview:uploadButton];
+  
+  UIImage* dotImage = [UIImage imageNamed:@"Images/homeHeaderSeperator.png"];
+  UIImageView* dotImageView = [[UIImageView alloc]initWithImage:dotImage];
+  [dotImageView setFrame:CGRectMake(0, 71, 320, 1)];
+  
+  [self.tableView.tableHeaderView addSubview:dotImageView];
 }
 
 

@@ -19,7 +19,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-      [self setBackgroundColor: [UIColor clearColor]];
+      [self setBackgroundColor: [UIColor blackColor]];
       [self setFrame:CGRectMake(0, 0, 320, 90)];
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
       
@@ -37,7 +37,7 @@
       
       UIImage* dotImage = [UIImage imageNamed:@"Images/homeHeaderSeperator.png"];
       UIImageView* dotImageView = [[UIImageView alloc]initWithImage:dotImage];
-      [dotImageView setFrame:CGRectMake(0, 89, 320, 1)];
+      [dotImageView setFrame:CGRectMake(0, 88, 320, 1)];
       
       [self addSubview:dotImageView];
     }
