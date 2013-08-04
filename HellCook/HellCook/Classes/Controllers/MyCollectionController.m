@@ -36,9 +36,10 @@
     // Do any additional setup after loading the view from its nib
   self.navigationItem.title = @"我的收藏";
   
-  CGRect tableframe = self.tableView.frame;
-  tableframe.size.height = _screenHeight_NoStBar_NoNavBar;
-  [self.tableView setFrame:tableframe];
+  CGRect viewframe = self.view.frame;
+  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewframe];
+  [self.tableView setFrame:viewframe];
   
   [self setLeftButton];
 }
@@ -70,7 +71,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+  return 90;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
