@@ -9,6 +9,7 @@
 #import "HomePageController.h"
 #import "MyIntroductionViewController.h"
 #import "MyFollowViewController.h"
+#import "MyRecipesController.h"
 
 @interface HomePageController ()
 
@@ -35,7 +36,9 @@
   
   MyFollowViewController* pFollowController = [[MyFollowViewController alloc] initWithNibName:@"MyFollowView" bundle:nil];
   
-  NSArray *viewControllerArray = [NSArray arrayWithObjects:pIntroController, pFollowController, nil];
+  MyRecipesController* pMyRecipesController = [[MyRecipesController alloc] initWithNibName:@"HomePageView" bundle:nil];
+  
+  NSArray *viewControllerArray = [NSArray arrayWithObjects:pIntroController, pFollowController, pMyRecipesController, nil];
   self.viewControllers = viewControllerArray;
   
   [self setTabBar];

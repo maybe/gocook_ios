@@ -161,8 +161,8 @@
   }
   else if (result == 1){
     LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
-    if (self.navigationController) {
-      [self.navigationController presentViewController:m animated:YES completion:nil];
+    if (self.tabBarController) {
+      [self.tabBarController presentViewController:m animated:YES completion:nil];
     }
   }
 }

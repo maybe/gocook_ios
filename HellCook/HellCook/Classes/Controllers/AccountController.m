@@ -21,7 +21,6 @@
 #import "NetManager.h"
 #import "MyCollectionController.h"
 #import "UIImage+Blurring.h"
-#import "MyselfRootViewController.h"
 #import "AppDelegate.h"
 #import "UIZoomNavigationController.h"
 #import "MainController.h"
