@@ -11,6 +11,7 @@
 #import "RecipeDetailController.h"
 #import "MyCollectionTableViewCell.h"
 #import "User.h"
+#import "LoginController.h"
 
 @interface MyCollectionController ()
 
@@ -160,13 +161,19 @@
 - (void)getMyCollectionDataCallBack:(NSMutableDictionary*) resultDic
 {
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result != 1)
+  if (result == 0)
   {
     myCollectionArray = [[NSArray alloc] initWithArray:resultDic[@"result_recipes"]];
     [tableView reloadData];
 //    NSDictionary *dic = [[NSDictionary alloc] initWithDictionary:valueArray[0]];
     
     [[[User sharedInstance] collection] SetMyCollectionArray:myCollectionArray];
+  }
+  else if (result == 1){
+    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+    if (self.navigationController) {
+      [self.navigationController presentViewController:m animated:YES completion:nil];
+    }
   }
 }
 
