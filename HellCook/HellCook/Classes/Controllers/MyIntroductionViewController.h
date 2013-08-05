@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MyIntroductionViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
 
 @end

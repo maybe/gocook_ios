@@ -25,8 +25,12 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+  CGRect tableframe = self.myTableView.frame;
+  tableframe.size.height = _screenHeight_NoStBar - _navigationBarHeight - _tabBarHeight;
+  [self.myTableView setFrame:tableframe];
+
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -41,4 +45,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setMyTableView:nil];
+    [super viewDidUnload];
+}
 @end

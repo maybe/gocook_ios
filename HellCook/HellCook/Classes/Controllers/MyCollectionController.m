@@ -18,22 +18,27 @@
 @end
 
 @implementation MyCollectionController
-@synthesize tableView, mShouldRefresh;
+@synthesize tableView;
+@synthesize mLoadingActivity;
+@synthesize netOperation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        curPage = 0;
+      curPage = 0;
+      mShouldRefresh = TRUE;
+      myCollectionArray = [[NSMutableArray alloc] init];
+      [self initLoadingView];
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib
+  [super viewDidLoad];
+  // Do any additional setup after loading the view from its nib
   self.navigationItem.title = @"我的收藏";
   
   CGRect viewframe = self.view.frame;
@@ -53,6 +58,36 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)initLoadingView
+{
+  CGRect frame = self.tableView.tableFooterView.frame;
+  frame.size.height = 50;
+  self.tableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
+  //CGFloat tablewidth = self.tableView.frame.size.width;
+  mLoadingActivity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+  [mLoadingActivity setCenter:CGPointMake(160, 25)];
+  [mLoadingActivity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+  [self.tableView.tableFooterView addSubview:mLoadingActivity];
+  [mLoadingActivity stopAnimating];
+}
+
+- (void)showLoadingView
+{
+  CGRect frame = self.tableView.tableFooterView.frame;
+  frame.size.height = 50;
+  [self.tableView.tableFooterView setFrame:frame];
+  [mLoadingActivity startAnimating];
+}
+
+- (void)deleteLoadingView
+{
+  CGRect frame = self.tableView.tableFooterView.frame;
+  frame.size.height = 3;
+  [mLoadingActivity stopAnimating];
+  [mLoadingActivity setHidden:YES];
+  self.tableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
 }
 
 
@@ -102,6 +137,18 @@
   [self.navigationController presentViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId withPrevTitle:@"我的收藏"] animated:YES completion:nil];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+  // 下拉到最底部时显示更多数据
+  if(scrollView.contentOffset.y + 20 >= ((scrollView.contentSize.height - scrollView.frame.size.height)))
+  {
+    if (![self.netOperation isExecuting] && mShouldRefresh) {
+      [self showLoadingView];
+      [self getMyCollectionData];
+    }
+  }
+}
+
 
 #pragma mark - Return Button
 - (void)setLeftButton
@@ -135,7 +182,7 @@
 -(void)getMyCollectionData
 {
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                       getMyCollectionDataByPage:curPage
+                       getMyCollectionDataByPage:(curPage+1)
                        CompletionHandler:^(NSMutableDictionary *resultDic) {
                          [self getMyCollectionDataCallBack:resultDic];}
                        errorHandler:^(NSError *error) {}
@@ -148,15 +195,46 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
-    myCollectionArray = [[NSArray alloc] initWithArray:resultDic[@"result_recipes"]];
-    [tableView reloadData];
-//    NSDictionary *dic = [[NSDictionary alloc] initWithDictionary:valueArray[0]];
+    int totalCount = [resultDic[@"total"] intValue];
+    totalPage = totalCount/10 + (totalCount % 10 > 0 ? 1 : 0);
+    int originsize = myCollectionArray.count;
+    int addsize = [(NSArray*)resultDic[@"result_recipes"] count];
+    if (addsize > 0)
+    {
+      curPage++;
+      [myCollectionArray addObjectsFromArray:resultDic[@"result_recipes"]];
+      
+      if (originsize == 0)
+      {
+        [self.tableView reloadData];
+      }
+      else
+      {
+        NSMutableArray* indexpathArray = [[NSMutableArray alloc]init];
+        for (int i = 0; i<addsize; i++)
+        {
+          NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i+originsize inSection:0];
+          [indexpathArray addObject:indexPath];
+        }
+        
+        [self.tableView beginUpdates];
+        [self.tableView insertRowsAtIndexPaths:indexpathArray withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+      }
+    }
+    
+    if (curPage >= totalPage)
+      mShouldRefresh = FALSE;
+    if (!mShouldRefresh)
+      [self deleteLoadingView];
     
     [[[User sharedInstance] collection] SetMyCollectionArray:myCollectionArray];
   }
-  else if (result == 1){
+  else if (result == 1)
+  {
     LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
-    if (self.navigationController) {
+    if (self.navigationController)
+    {
       [self.navigationController presentViewController:m animated:YES completion:nil];
     }
   }

@@ -12,13 +12,15 @@
 {
   UITableView *tableView;
   NSInteger curPage;
-  NSArray *myCollectionArray;
+  NSMutableArray *myCollectionArray;
   
   BOOL mShouldRefresh;
+  NSInteger totalPage;
+  UIActivityIndicatorView* mLoadingActivity;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
-@property BOOL mShouldRefresh;
+@property (nonatomic, retain) UIActivityIndicatorView* mLoadingActivity;
 
 @end
