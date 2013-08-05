@@ -36,9 +36,10 @@
     // Do any additional setup after loading the view from its nib
   self.navigationItem.title = @"我的收藏";
   
-  CGRect tableframe = self.tableView.frame;
-  tableframe.size.height = _screenHeight_NoStBar_NoNavBar - 44;
-  [self.tableView setFrame:tableframe];
+  CGRect viewframe = self.view.frame;
+  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewframe];
+  [self.tableView setFrame:viewframe];
   
   [self setLeftButton];
 }
@@ -65,28 +66,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  if (myCollectionArray.count == 0)
-  {
-    [self.tableView setHidden:YES];
-  }
-  else
-  {
-    [self.tableView setHidden:NO];
-  }
-  
   return myCollectionArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if (myCollectionArray.count == 0)
-  {
-    return 0;
-  }
-  else
-  {
-    return 90;
-  }
+  return 90;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

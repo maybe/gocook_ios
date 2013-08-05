@@ -36,7 +36,7 @@
   
   MyFollowViewController* pFollowController = [[MyFollowViewController alloc] initWithNibName:@"MyFollowView" bundle:nil];
   
-  MyRecipesController* pMyRecipesController = [[MyRecipesController alloc] initWithNibName:@"HomePageView" bundle:nil];
+  MyRecipesController* pMyRecipesController = [[MyRecipesController alloc] initWithNibName:@"MyRecipesView" bundle:nil];
   
   NSArray *viewControllerArray = [NSArray arrayWithObjects:pIntroController, pFollowController, pMyRecipesController, nil];
   self.viewControllers = viewControllerArray;

@@ -429,7 +429,7 @@
   {
     if (self.navigationController)
     {
-      [self.navigationController pushViewController:[[MyCollectionController alloc] initWithNibName:@"MyCollectionView" bundle:nil] animated:YES];
+      [self.navigationController pushViewController:[[MyCollectionController alloc] initWithNibName:@"MyRecipesView" bundle:nil] animated:YES];
     }
   }
 }

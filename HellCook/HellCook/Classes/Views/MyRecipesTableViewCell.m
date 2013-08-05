@@ -37,7 +37,7 @@
       
       UIImage* dotImage = [UIImage imageNamed:@"Images/homeHeaderSeperator.png"];
       UIImageView* dotImageView = [[UIImageView alloc]initWithImage:dotImage];
-      [dotImageView setFrame:CGRectMake(0, 89, 320, 1)];
+      [dotImageView setFrame:CGRectMake(0, 88, 320, 1)];
       
       [self addSubview:dotImageView];
     }
