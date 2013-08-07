@@ -22,5 +22,6 @@
 + (id)sharedInstance;
 - (id)init;
 - (void)InitEngines;
+- (void)ResetHellEngine; //重登录使用
 
 @end

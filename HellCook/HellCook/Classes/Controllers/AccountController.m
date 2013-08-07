@@ -381,6 +381,7 @@
 
 - (void)logout
 {
+  [[NetManager sharedInstance] ResetHellEngine];
   [[[User sharedInstance] account] logout];
   [self showLoginView];
   [self hideAccountView];

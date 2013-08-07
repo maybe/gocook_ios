@@ -32,17 +32,33 @@
 {
   [super viewDidLoad];
   
+  //设置tabbar背景图
+  UIImageView *tabBarBgView = [[UIImageView alloc] initWithFrame:self.tabBar.bounds];
+  [tabBarBgView setImage:[UIImage imageNamed:@"Images/TabBarBackground.png"]];
+  [tabBarBgView setContentMode:UIViewContentModeScaleToFill];
+  [self.tabBar insertSubview:tabBarBgView atIndex:1];
+  
   MyIntroductionViewController* pIntroController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil];
+  [pIntroController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor redColor] } forState:UIControlStateNormal];
+  [pIntroController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor blackColor] } forState:UIControlStateNormal];
+  [pIntroController.tabBarItem  setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
+  pIntroController.tabBarItem.title = @"个人介绍";
   
   MyFollowViewController* pFollowController = [[MyFollowViewController alloc] initWithNibName:@"MyFollowView" bundle:nil];
-  
+  [pFollowController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor redColor] } forState:UIControlStateNormal];
+  [pFollowController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor blackColor] } forState:UIControlStateNormal];
+  [pFollowController.tabBarItem  setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
+  pFollowController.tabBarItem.title = @"我的粉丝";
+
   MyRecipesController* pMyRecipesController = [[MyRecipesController alloc] initWithNibName:@"MyRecipesView" bundle:nil];
+  [pMyRecipesController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor redColor] } forState:UIControlStateNormal];
+  [pMyRecipesController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor blackColor] } forState:UIControlStateNormal];
+  [pMyRecipesController.tabBarItem  setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
+  pMyRecipesController.tabBarItem.title = @"我的菜谱";
   
   NSArray *viewControllerArray = [NSArray arrayWithObjects:pIntroController, pFollowController, pMyRecipesController, nil];
   self.viewControllers = viewControllerArray;
-  
-  [self setTabBar];
-  
+    
   //self.navigationItem.title = [[[User sharedInstance] account] username];
   
   [self setLeftButton];
@@ -58,23 +74,6 @@
 
 
 #pragma mark - Navi Button
-
-- (void)setTabBar
-{
-  //设置tabbar背景图
-  UIImageView *tabBarBgView = [[UIImageView alloc] initWithFrame:self.tabBar.bounds];
-  [tabBarBgView setImage:[UIImage imageNamed:@"Images/TabBarBackground.png"]];
-  [tabBarBgView setContentMode:UIViewContentModeScaleToFill];
-  [self.tabBar insertSubview:tabBarBgView atIndex:1];
-  //设置item字体颜色
-  for (int i=0; i<[self.tabBar.items count]; i++)
-  {
-    [(UITabBarItem*)[self.tabBar.items objectAtIndex:0] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor redColor] } forState:UIControlStateNormal];
-    [(UITabBarItem*)[self.tabBar.items objectAtIndex:0] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor blackColor] } forState:UIControlStateNormal];
-  }
-  //设置item背景图
-  [[self.tabBar.items objectAtIndex:0] setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
-}
 
 - (void)setLeftButton
 {
