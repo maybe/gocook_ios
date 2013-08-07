@@ -9,5 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface MyIntroductionIntroCell : UITableViewCell
+{
+  UILabel *introLabel;
+  CGFloat mCellHeight;
+}
+
+@property (nonatomic, retain) UILabel* introLabel;
+
+
+- (void)caculateCellHeight:(NSString*)strIntro;
+- (CGFloat)GetCellHeight;
 
 @end

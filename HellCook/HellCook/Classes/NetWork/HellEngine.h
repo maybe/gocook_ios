@@ -19,6 +19,7 @@ typedef void (^searchResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^recipeDetailDataResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^myCollectionResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^myRecipesResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^myIntroductionResponseBlock)(NSMutableDictionary* resultDic);
 
 // 登录
 - (MKNetworkOperation*)loginWithUser:(NSString*)username AndPass:(NSString*)pass
@@ -65,5 +66,9 @@ typedef void (^myRecipesResponseBlock)(NSMutableDictionary* resultDic);
 - (MKNetworkOperation*)getMyRecipesDataByPage:(NSInteger)page
                                CompletionHandler:(myRecipesResponseBlock)completionBlock
                                     errorHandler:(MKNKErrorBlock) errorBlock;
+
+//获取个人信息
+- (MKNetworkOperation*)getMyIntroductionDataWithCompletionHandler:(myRecipesResponseBlock)completionBlock
+                                                errorHandler:(MKNKErrorBlock) errorBlock;
 
 @end

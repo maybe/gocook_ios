@@ -9,12 +9,24 @@
 #import "MyIntroductionIntroCell.h"
 
 @implementation MyIntroductionIntroCell
+@synthesize introLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+      mCellHeight = _screenHeight_NoStBar-_navigationBarHeight-150;
+      [self setBackgroundColor: [UIColor clearColor]];
+      [self setFrame:CGRectMake(0, 0, 320, mCellHeight)];
+      [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+      
+      introLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 15, 280, mCellHeight-30)];
+      [introLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
+      introLabel.lineBreakMode = NSLineBreakByWordWrapping;
+      introLabel.numberOfLines = 0;
+      [introLabel setBackgroundColor:[UIColor clearColor]];
+      
+      [self addSubview:introLabel];
     }
     return self;
 }
@@ -24,6 +36,29 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (CGFloat)GetCellHeight
+{
+  return mCellHeight;
+}
+
+- (void)caculateCellHeight:(NSString*)strIntro
+{
+  introLabel.text = strIntro;
+  CGSize contentSize = [introLabel.text sizeWithFont:introLabel.font constrainedToSize:CGSizeMake(300, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+  if ((contentSize.height+20) > mCellHeight)
+  {
+    mCellHeight = contentSize.height+20;
+    
+    CGRect cellRect = self.frame;
+    cellRect.size.height = mCellHeight;
+    [self setFrame:cellRect];
+  }
+  
+  CGRect labelRect = introLabel.frame;
+  labelRect.size.height = contentSize.height;
+  [introLabel setFrame:labelRect];
 }
 
 @end

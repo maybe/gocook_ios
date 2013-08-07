@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MyIntroductionViewController : UIViewController
+{
+  NSMutableDictionary *pMyInfo;
+}
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@property (strong, nonatomic) MKNetworkOperation *netOperation;
 
 @end
