@@ -10,6 +10,7 @@
 #import "MyRecipesTableViewCell.h"
 #import "NetManager.h"
 #import "LoginController.h"
+#import "MyRecipesEditController.h"
 
 @interface MyRecipesController ()
 
@@ -228,7 +229,7 @@
   UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
   [uploadButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
   
-  [uploadButton addTarget:self action:@selector(openLoginWindow) forControlEvents:UIControlEventTouchUpInside];
+  [uploadButton addTarget:self action:@selector(onCreateRecipe) forControlEvents:UIControlEventTouchUpInside];
     
   [self.tableView.tableHeaderView addSubview:uploadButton];
   
@@ -239,5 +240,10 @@
   [self.tableView.tableHeaderView addSubview:dotImageView];
 }
 
+- (void)onCreateRecipe
+{
+  MyRecipesEditController* pEditController = [[MyRecipesEditController alloc]initWithNibName:@"MyRecipesEditView" bundle:nil];
+  [self.tabBarController.navigationController pushViewController:pEditController animated:YES];
+}
 
 @end

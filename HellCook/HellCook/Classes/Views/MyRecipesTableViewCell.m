@@ -13,7 +13,7 @@
 
 
 @implementation MyRecipesTableViewCell
-@synthesize titleLabel, materialLabel, imageView, maskImageView;
+@synthesize titleLabel, materialLabel, delButton, modifyButton, imageView, maskImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -40,6 +40,8 @@
       [dotImageView setFrame:CGRectMake(0, 88, 320, 1)];
       
       [self addSubview:dotImageView];
+      
+      [self setAdminButtons];
     }
     return self;
 }
@@ -70,6 +72,35 @@
   return materialLabel;
 }
 
+- (void)setAdminButtons
+{
+  modifyButton = [[UIButton alloc]initWithFrame:CGRectMake(250, 10, 60, 30)];
+  [modifyButton setTitle:@"修改" forState:UIControlStateNormal];
+  [modifyButton.titleLabel setFont: [UIFont boldSystemFontOfSize:13]];
+  UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
+  UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:5 topCapHeight:5];
+  [modifyButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
+  
+  UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
+  UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:5 topCapHeight:5];
+  [modifyButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
+  
+  [modifyButton addTarget:self action:@selector(modifyMyRecipe) forControlEvents:UIControlEventTouchUpInside];
+
+  
+  delButton = [[UIButton alloc]initWithFrame:CGRectMake(250, 50, 60, 30)];
+  [delButton setTitle:@"删除" forState:UIControlStateNormal];
+  [delButton.titleLabel setFont: [UIFont boldSystemFontOfSize:13]];
+  [delButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
+  
+  [delButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
+  
+  [delButton addTarget:self action:@selector(openLoginWindow) forControlEvents:UIControlEventTouchUpInside];
+  
+  [self addSubview:modifyButton];
+  [self addSubview:delButton];
+}
+
 - (void)setData:(NSMutableDictionary*) dictionary
 {
   [titleLabel setText:dictionary[@"name"]];
@@ -87,6 +118,9 @@
   NSString* imageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, dictionary[@"image"]];
         
   [imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
+  
+  [delButton setAssociativeObject:dictionary[@"recipe_id"] forKey:@"recipe_id"];
+  [modifyButton setAssociativeObject:dictionary[@"recipe_id"] forKey:@"recipe_id"];
 }
 
 
