@@ -76,6 +76,10 @@
 		BABAE9CE17AE46A90099BE45 /* MyRecipesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9CD17AE46A90099BE45 /* MyRecipesTableViewCell.m */; };
 		BABAE9D217AE779F0099BE45 /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9D017AE779F0099BE45 /* HomePageController.m */; };
 		BABAE9D517AE7D0F0099BE45 /* HomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABAE9D417AE7D0F0099BE45 /* HomePageView.xib */; };
+		BABAE9D917AFFBE50099BE45 /* MyRecipesEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9D717AFFBE30099BE45 /* MyRecipesEditController.m */; };
+		BABAE9DD17AFFC4A0099BE45 /* MyRecipesEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABAE9DC17AFFC4A0099BE45 /* MyRecipesEditView.xib */; };
+		BABAE9E117B14D890099BE45 /* MyRecipeEditAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9E017B14D890099BE45 /* MyRecipeEditAvatarView.m */; };
+		BABAE9E917B15E760099BE45 /* CPTextViewPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9E817B15E760099BE45 /* CPTextViewPlaceholder.m */; };
 		BABE0A14170627560056BF9D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BABE0A13170627560056BF9D /* MBProgressHUD.m */; };
 		BAC44C5C173581BF004E95F0 /* TopListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC44C5A173581BF004E95F0 /* TopListController.m */; };
 		BACCF83616ECFC420094F1E5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BACCF82B16ECFC420094F1E5 /* .gitignore */; };
@@ -257,6 +261,13 @@
 		BABAE9CF17AE779E0099BE45 /* HomePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageController.h; path = Classes/Controllers/HomePageController.h; sourceTree = "<group>"; };
 		BABAE9D017AE779F0099BE45 /* HomePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageController.m; path = Classes/Controllers/HomePageController.m; sourceTree = "<group>"; };
 		BABAE9D417AE7D0F0099BE45 /* HomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageView.xib; sourceTree = "<group>"; };
+		BABAE9D617AFFBE30099BE45 /* MyRecipesEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesEditController.h; path = Classes/Controllers/HomePageRecipes/MyRecipesEditController.h; sourceTree = "<group>"; };
+		BABAE9D717AFFBE30099BE45 /* MyRecipesEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesEditController.m; path = Classes/Controllers/HomePageRecipes/MyRecipesEditController.m; sourceTree = "<group>"; };
+		BABAE9DC17AFFC4A0099BE45 /* MyRecipesEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRecipesEditView.xib; sourceTree = "<group>"; };
+		BABAE9DF17B14D890099BE45 /* MyRecipeEditAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipeEditAvatarView.h; path = Classes/Views/MyRecipes/MyRecipeEditAvatarView.h; sourceTree = "<group>"; };
+		BABAE9E017B14D890099BE45 /* MyRecipeEditAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipeEditAvatarView.m; path = Classes/Views/MyRecipes/MyRecipeEditAvatarView.m; sourceTree = "<group>"; };
+		BABAE9E717B15E760099BE45 /* CPTextViewPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTextViewPlaceholder.h; sourceTree = "<group>"; };
+		BABAE9E817B15E760099BE45 /* CPTextViewPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTextViewPlaceholder.m; sourceTree = "<group>"; };
 		BABE0A12170627560056BF9D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		BABE0A13170627560056BF9D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		BAC44C59173581BF004E95F0 /* TopListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopListController.h; path = Classes/Controllers/TopListController.h; sourceTree = "<group>"; };
@@ -429,6 +440,7 @@
 		BA02634216D7570400298803 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				BABAE9E617B15E760099BE45 /* CPTextViewPlaceholder */,
 				BAE67BD3170B70C200414AD5 /* NYXImagesKit */,
 				BAE67BB5170B45AD00414AD5 /* SDWebImage */,
 				BAE67BA8170B439E00414AD5 /* UIImage+Categories */,
@@ -597,6 +609,7 @@
 				5EAFA04217B102BF008B6C64 /* MyIntroductionIntroCell.m */,
 				5EAFA04417B26A09008B6C64 /* MyFollowTableViewCell.h */,
 				5EAFA04517B26A0C008B6C64 /* MyFollowTableViewCell.m */,
+				BABAE9DE17B008BD0099BE45 /* MyRecipes */,
 				BAE38C9F1739577A00936382 /* RecipeDetail */,
 			);
 			name = View;
@@ -634,6 +647,7 @@
 				BA6069AC1708E3DA0060C251 /* DebugOption.xib */,
 				BA7CC60917AD03A300A6C8AE /* MyCollectionView.xib */,
 				BA7CC61E17AD5BE600A6C8AE /* MyRecipesView.xib */,
+				BABAE9DC17AFFC4A0099BE45 /* MyRecipesEditView.xib */,
 			);
 			name = NIB;
 			path = Resources/NIB;
@@ -646,6 +660,36 @@
 				BA829BEF17049DE400B0341A /* DefaultGroupedTableCell.m */,
 			);
 			name = Custom;
+			sourceTree = "<group>";
+		};
+		BABAE9DB17AFFBF50099BE45 /* MyRecipes */ = {
+			isa = PBXGroup;
+			children = (
+				BA7CC61917AD5BB600A6C8AE /* MyRecipesController.h */,
+				BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */,
+				BABAE9D617AFFBE30099BE45 /* MyRecipesEditController.h */,
+				BABAE9D717AFFBE30099BE45 /* MyRecipesEditController.m */,
+			);
+			name = MyRecipes;
+			sourceTree = "<group>";
+		};
+		BABAE9DE17B008BD0099BE45 /* MyRecipes */ = {
+			isa = PBXGroup;
+			children = (
+				BABAE9DF17B14D890099BE45 /* MyRecipeEditAvatarView.h */,
+				BABAE9E017B14D890099BE45 /* MyRecipeEditAvatarView.m */,
+			);
+			name = MyRecipes;
+			sourceTree = "<group>";
+		};
+		BABAE9E617B15E760099BE45 /* CPTextViewPlaceholder */ = {
+			isa = PBXGroup;
+			children = (
+				BABAE9E717B15E760099BE45 /* CPTextViewPlaceholder.h */,
+				BABAE9E817B15E760099BE45 /* CPTextViewPlaceholder.m */,
+			);
+			name = CPTextViewPlaceholder;
+			path = Libs/CPTextViewPlaceholder;
 			sourceTree = "<group>";
 		};
 		BABE0A111706274D0056BF9D /* MBProgressHUD */ = {
@@ -863,10 +907,9 @@
 				5E13568D17AD34D5009C623B /* MyIntroductionViewController.m */,
 				5E13569317AD3AC4009C623B /* MyFollowViewController.h */,
 				5E13569417AD3AC4009C623B /* MyFollowViewController.m */,
-				BA7CC61917AD5BB600A6C8AE /* MyRecipesController.h */,
-				BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */,
 				BABAE9CF17AE779E0099BE45 /* HomePageController.h */,
 				BABAE9D017AE779F0099BE45 /* HomePageController.m */,
+				BABAE9DB17AFFBF50099BE45 /* MyRecipes */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -941,6 +984,7 @@
 				5E13569917AD3AED009C623B /* MyFollowView.xib in Resources */,
 				BA7CC61F17AD5BE700A6C8AE /* MyRecipesView.xib in Resources */,
 				BABAE9D517AE7D0F0099BE45 /* HomePageView.xib in Resources */,
+				BABAE9DD17AFFC4A0099BE45 /* MyRecipesEditView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,6 +1086,9 @@
 				5EAFA04017AFE20A008B6C64 /* MyIntroductionPicCell.m in Sources */,
 				5EAFA04317B102C1008B6C64 /* MyIntroductionIntroCell.m in Sources */,
 				5EAFA04617B26A0E008B6C64 /* MyFollowTableViewCell.m in Sources */,
+				BABAE9D917AFFBE50099BE45 /* MyRecipesEditController.m in Sources */,
+				BABAE9E117B14D890099BE45 /* MyRecipeEditAvatarView.m in Sources */,
+				BABAE9E917B15E760099BE45 /* CPTextViewPlaceholder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

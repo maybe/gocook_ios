@@ -1,14 +1,13 @@
 //
-//  RegisterController.m
+//  MyRecipesEditController.m
 //  HellCook
 //
-//  Created by panda on 3/27/13.
+//  Created by panda on 8/5/13.
 //  Copyright (c) 2013 panda. All rights reserved.
 //
 
-#import "RegisterController.h"
-#import "DefaultGroupedTableCell.h"
-#import "RegisterAvatarView.h"
+#import "MyRecipesEditController.h"
+#import "MyRecipeEditAvatarView.h"
 #import "KeyboardHandler.h"
 #import "UIView+FindFirstResponder.h"
 #import "NetManager.h"
@@ -16,19 +15,19 @@
 #import "UIImage+Resize.h"
 #import "UIImage+Resizing.h"
 #import "DBHandler.h"
+#import "DefaultGroupedTableCell.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
-#define kTableCellFooter  48
+#define kTableCellFooter  160
 #define kTableCellSingle  50
 
-@interface RegisterController ()
+@interface MyRecipesEditController ()
 
 @end
 
-@implementation RegisterController
-@synthesize navgationItem;
-@synthesize tableView;
+@implementation MyRecipesEditController
+@synthesize tableView, nameField, introTextView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,42 +42,35 @@
   [self setLeftButton];
   [self setRightButton];
   
-  nickField = [[UITextField alloc]init];
-  emailField = [[UITextField alloc]init];
-  passwordField = [[UITextField alloc]init];
-  repasswordField = [[UITextField alloc]init];
-
+  nameField = [[UITextField alloc]init];
+  introTextView = [[CPTextViewPlaceholder alloc]init];
+  
   cellContentList = [[NSMutableArray alloc]init];
   NSMutableDictionary *cellDic;
   cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
-             @"cellNick",@"Identifier", @"昵称",@"placeHolder",
-             nickField, @"textfield",@"text",@"type",nil];
+             @"cellName",@"Identifier", @"菜谱名称",@"placeHolder",
+             nameField, @"textfield",@"text",@"type",nil];
   [cellContentList addObject:cellDic];
   
   cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
-             @"cellEmail",@"Identifier", @"email",@"placeHolder",
-             emailField, @"textfield",@"text",@"type",nil];
-  [cellContentList addObject:cellDic];
-  
-  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
-             @"cellPass",@"Identifier", @"密码",@"placeHolder",
-             passwordField, @"textfield",@"pass",@"type",nil];
-  [cellContentList addObject:cellDic];
-  
-  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
-             @"cellRePass",@"Identifier", @"重复密码",@"placeHolder",
-             repasswordField, @"textfield",@"pass",@"type",nil];
+             @"cellIntro",@"Identifier", @"菜谱简介",@"placeHolder",
+             introTextView, @"textview",@"text",@"type",nil];
   [cellContentList addObject:cellDic];
   
   CGRect frame = self.tableView.tableHeaderView.frame;
   frame.size.height = 184;
   self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
   CGFloat tablewidth = self.tableView.frame.size.width;
-  headImageView = [[RegisterAvatarView alloc]initWithFrame:CGRectMake(tablewidth/2-75, 30, 150, 150)];
+  headImageView = [[MyRecipeEditAvatarView alloc]initWithFrame:CGRectMake(tablewidth/2-75, 30, 150, 150)];
   [self.tableView.tableHeaderView addSubview:headImageView];
   
   //keyboard
   keyboard = [[KeyboardHandler alloc] init];
+  
+  CGRect viewframe = self.view.frame;
+  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewframe];
+  [self.tableView setFrame:viewframe];
   
   [super viewDidLoad];
 }
@@ -86,7 +78,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   keyboard.delegate = self;
-
+  
   [super viewWillAppear:animated];
 }
 
@@ -138,27 +130,41 @@
   
   NSMutableDictionary* dic = [cellContentList objectAtIndex:indexPath.row];
   UITextField* textField = [dic objectForKey:@"textfield"];
+  CPTextViewPlaceholder* textView = [dic objectForKey:@"textview"];
   
   DefaultGroupedTableCell *cell = [aTableView dequeueReusableCellWithIdentifier:[dic objectForKey:@"Identifier"]];
   
   if (cell == nil) {
     cell = [[DefaultGroupedTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: [dic objectForKey:@"Identifier"]];
-    [cell addSubview:textField];
+    if (textField) {
+      [cell addSubview:textField];
+    }else {
+      [cell addSubview:textView];
+    }
   }
-  [textField setDelegate:self];
-  [textField setFrame:CGRectMake(30, 15, 200, 34)];
-  [textField setPlaceholder:[dic objectForKey:@"placeHolder"]];
-  [textField setBackgroundColor: [UIColor clearColor]];
-  [textField setDelegate:self];
-  textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  textField.keyboardType = UIKeyboardTypeDefault;
-  textField.autocorrectionType = UITextAutocorrectionTypeNo;
-  [textField setFont:[UIFont systemFontOfSize:14]];
-  textField.returnKeyType = UIReturnKeyDone;
-  if ([[dic objectForKey:@"type"] isEqual: @"pass"]) {
-    [textField setSecureTextEntry:YES];
+  
+  if (textField) {
+    [textField setDelegate:self];
+    [textField setFrame:CGRectMake(30, 15, 200, 34)];
+    [textField setPlaceholder:[dic objectForKey:@"placeHolder"]];
+    [textField setBackgroundColor: [UIColor clearColor]];
+    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textField.keyboardType = UIKeyboardTypeDefault;
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    [textField setFont:[UIFont systemFontOfSize:14]];
+    textField.returnKeyType = UIReturnKeyDone;
+  } else if (textView) {
+    textView.delegate = self;
+    [textView setFrame:CGRectMake(20, 5, 300, 120)];
+    [textView setBackgroundColor: [UIColor clearColor]];
+    textView.placeholder = [dic objectForKey:@"placeHolder"];
+    textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textView.keyboardType = UIKeyboardTypeDefault;
+    textView.autocorrectionType = UITextAutocorrectionTypeNo;
+    [textView setFont:[UIFont systemFontOfSize:14]];
+    textView.returnKeyType = UIReturnKeyDone;
   }
-
+  
   cell.tableCellBodyHeight = kTableCellBody;
   cell.tableCellHeaderHeight = kTableCellHeader;
   cell.tableCellFooterHeight = kTableCellFooter;
@@ -187,8 +193,23 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
-  
+  NSLog(@"%@", @"111");
 }
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+  NSLog(@"%@", @"111");
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+  if ([text isEqualToString:@"\n"]) {
+    [textView resignFirstResponder];
+    return NO;
+  }
+  return YES;
+} 
+
 
 #pragma mark - Avatar View
 - (void)setHeaderView
@@ -227,7 +248,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   
   // Dismiss the camera
   [self dismissViewControllerAnimated:YES completion:nil];
-    
+  
   [headImageView.upImageView setImage:image];
 }
 
@@ -236,7 +257,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)keyboardSizeChanged:(CGSize)delta
 {
   UIView* frView = [self.tableView findFirstResponder];
-  if ([frView isKindOfClass:[UITextField class]]) {
+  if ([frView isKindOfClass:[UITextField class]] || [frView isKindOfClass:[CPTextViewPlaceholder class]]) {
     if (delta.height > 0) {
       CGPoint realOrigin = [frView convertPoint:frView.frame.origin toView:nil];
       if (realOrigin.y + frView.frame.size.height  > _screenHeight - delta.height) {
@@ -272,7 +293,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   
   UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
   
-  [self.navgationItem setLeftBarButtonItem:leftBarButtonItem];
+  [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
   
 }
 
@@ -291,12 +312,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   
   UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
   
-  [self.navgationItem setRightBarButtonItem:rightBarButtonItem];
+  [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
 
 -(void)returnToPrev
 {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -304,13 +325,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 -(void)onRegister
 {
-  NSString* email = emailField.text;
-  NSString* nickname = nickField.text;
-  NSString* password = passwordField.text;
-  NSString* repassword = repasswordField.text;
   
   NSString  *pngPath = @"";
-
+  
   UIImage* uploadImage = headImageView.upImageView.image;
   if (uploadImage!=headImageView.defaultImage) {
     pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploadtmp.png"];
@@ -320,14 +337,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
   }
   
-  self.registerOperation = [[[NetManager sharedInstance] hellEngine]
-                            registerWithEmail:email AndNick:nickname
-                            AndPass:password AndRePass:repassword AndAvatarPath:pngPath
-                            completionHandler:^(NSMutableDictionary *resultDic) {
-                              [self RegisterCallBack:resultDic];}
-                            errorHandler:^(NSError *error) {}
-                            ];
-  
 }
 
 - (void)RegisterCallBack:(NSMutableDictionary*) resultDic
@@ -335,41 +344,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result != 0 || resultDic == nil)
   {
-    [emailField resignFirstResponder];
-    [nickField resignFirstResponder];
-    [passwordField resignFirstResponder];
-    [repasswordField resignFirstResponder];
     
-    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.view addSubview:HUD];
-		
-    HUD.mode = MBProgressHUDModeCustomView;
+  } else {
     
-    HUD.delegate = self;
-    HUD.labelText = @"注册失败";
-    
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:2];
-  }
-  else {
-    User* user = [User sharedInstance];
-    user.account.username = resultDic[@"username"];
-    user.account.isLogin = YES;
-    user.account.avatar = resultDic[@"icon"];
-    
-    NSMutableDictionary* dic = nil;
-    dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
-           resultDic[@"username"], @"username",
-           emailField.text, @"email",
-           passwordField.text, @"password",
-           resultDic[@"icon"], @"avatar", nil];
-    
-    DBHandler* dbHandler = [DBHandler sharedInstance];
-    [dbHandler setAccount:dic];
-    
-    [[[User sharedInstance] account] setShouldResetLogin:YES];
-
-    [self dismissViewControllerAnimated:YES completion:nil];
   }
 }
 

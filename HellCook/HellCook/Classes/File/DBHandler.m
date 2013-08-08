@@ -30,7 +30,12 @@
   NSMutableDictionary* dic = nil;
 
   if ([self openDB])
-  {    
+  {
+    FMResultSet *rs1 = [db executeQuery:@"SELECT count(*) FROM account;"];
+    if ([rs1 next]) {
+      NSLog(@"%d", [rs1 intForColumnIndex:0]);
+    }
+    
     FMResultSet *rs = [db executeQuery:@"SELECT * FROM account;"];
     if ([rs next]) {
       dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
@@ -40,6 +45,7 @@
             [rs stringForColumn:@"avatar"], @"avatar",
             [rs stringForColumn:@"session"], @"session",nil];
     }
+    NSLog(@"%@", [rs stringForColumn:@"session"]);
     [db close];
   }
   return dic;
@@ -47,10 +53,13 @@
 
 - (BOOL)setAccount:(NSMutableDictionary*)accountDic
 {
-  //[self delAccount];
+  [self delAccount];
   if ([self openDB])
   {
-    [db executeUpdate:@"INSERT INTO account (username, email,password, avatar, session) VALUES (?,?,?,?,?);", accountDic[@"username"], accountDic[@"email"], accountDic[@"password"], accountDic[@"avatar"], accountDic[@"session"]];
+    NSLog(@"%@", accountDic[@"session"]);
+    NSString* session_str = [[accountDic[@"session"] componentsSeparatedByString:@";"] objectAtIndex:0];
+    
+    [db executeUpdate:@"INSERT INTO account (username, email,password, avatar, session) VALUES (?,?,?,?,?);", accountDic[@"username"], accountDic[@"email"], accountDic[@"password"], accountDic[@"avatar"], session_str];
     [db close];
     return YES;
   }

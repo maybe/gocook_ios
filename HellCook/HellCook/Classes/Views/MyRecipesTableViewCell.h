@@ -13,18 +13,24 @@
   UILabel* materialLabel;
   UIImageView* imageView;
   UIImageView* maskImageView;
+  UIButton* delButton;
+  UIButton* modifyButton;
 }
 
 @property (nonatomic, retain) UILabel* titleLabel;
 @property (nonatomic, retain) UILabel* materialLabel;
 @property (nonatomic, retain) UIImageView* imageView;
 @property (nonatomic, retain) UIImageView* maskImageView;
+@property (nonatomic, retain) UIButton* delButton;
+@property (nonatomic, retain) UIButton* modifyButton;
+
 
 - (UILabel*)titleLabel;
 - (UILabel*)materialLabel;
 - (UIImageView*)imageView;
 - (UIImageView*)maskImageView;
 
+- (void)setAdminButtons;
 
 - (void)setData:(NSMutableDictionary*) dictionary;
 

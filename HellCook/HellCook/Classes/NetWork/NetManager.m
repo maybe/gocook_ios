@@ -48,4 +48,12 @@
   self.hellEngine = [[HellEngine alloc] initWithHostName:host customHeaderFields: dic];
 }
 
+- (void)ResetHellEngine
+{
+  NSMutableDictionary* dic = [[NSMutableDictionary alloc]init];
+  dic[@"x-client-identifier"] = @"Mobile";
+  
+  self.hellEngine = [[HellEngine alloc] initWithHostName:host customHeaderFields: dic];
+}
+
 @end

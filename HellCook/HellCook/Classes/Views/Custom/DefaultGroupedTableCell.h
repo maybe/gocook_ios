@@ -20,11 +20,13 @@ typedef enum CellStyleT {
   CellStyle theCellStyle;
   NSInteger tableCellBodyHeight;
   NSInteger tableCellHeaderHeight;
+  NSInteger tableCellFooterHeight;
   UIImageView* sepImageView;
 }
 @property (nonatomic, assign)CellStyle theCellStyle;
 @property (nonatomic, assign)NSInteger tableCellBodyHeight;
 @property (nonatomic, assign)NSInteger tableCellHeaderHeight;
+@property (nonatomic, assign)NSInteger tableCellFooterHeight;
 @property (nonatomic, retain)UIImageView* sepImageView;
 
 - (void)setCellStyle:(NSInteger)_count Index:(NSInteger)_index;

@@ -15,5 +15,6 @@
     #import "Common.h"
     #import "MKNetworkKit.h"
     #import "UIImage+Retina4.h"
-    #import "MKNetworkKit.h"
+    #import "NSObject+AssociativeObject.h"
+
 #endif
