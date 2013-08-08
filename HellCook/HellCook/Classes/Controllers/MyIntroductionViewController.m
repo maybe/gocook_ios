@@ -7,8 +7,6 @@
 //
 
 #import "MyIntroductionViewController.h"
-#import "MyIntroductionPicCell.h"
-#import "MyIntroductionIntroCell.h"
 #import "NetManager.h"
 #import "LoginController.h"
 
@@ -18,6 +16,7 @@
 
 @implementation MyIntroductionViewController
 @synthesize netOperation;
+@synthesize pPicCell,pIntroCell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,6 +24,9 @@
     if (self) {
         // Custom initialization
       pMyInfo = [[NSMutableDictionary alloc] init];
+ 
+      pPicCell = [[MyIntroductionPicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionPicCell"];
+      pIntroCell = [[MyIntroductionIntroCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionIntroCell"];
     }
     return self;
 }
@@ -80,22 +82,14 @@
   }
   else
   {
-    static NSString *CellIdentifier = @"MyIntroductionIntroCell";
-    
-    MyIntroductionIntroCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell)
-    {
-      cell = [[MyIntroductionIntroCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-
     if ([pMyInfo count] > 0)
     {
       if (pMyInfo[@"intro"]!=[NSNull null])
       {
-        [cell caculateCellHeight:pMyInfo[@"intro"]];
+        [pIntroCell caculateCellHeight:pMyInfo[@"intro"]];
       }
     }
-    return [cell GetCellHeight];
+    return [pIntroCell GetCellHeight];
   }
   
 }
@@ -104,40 +98,24 @@
 {
   if (indexPath.row == 0)
   {
-    static NSString *CellIdentifier = @"MyIntroductionPicCell";
-    
-    MyIntroductionPicCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell)
-    {
-      cell = [[MyIntroductionPicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
     if ([pMyInfo count] > 0)
     {
-      [cell setData:pMyInfo];
+      [pPicCell setData:pMyInfo];
     }
         
-    return cell;
+    return pPicCell;
   }
   else
   {
-    static NSString *CellIdentifier = @"MyIntroductionIntroCell";
-    
-    MyIntroductionIntroCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell)
-    {
-      cell = [[MyIntroductionIntroCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
     if ([pMyInfo count] > 0)
     {
       if (pMyInfo[@"intro"]!=[NSNull null])
       {
-        [cell caculateCellHeight:pMyInfo[@"intro"]];
+        [pIntroCell caculateCellHeight:pMyInfo[@"intro"]];
       }
     }
     
-    return cell;
+    return pIntroCell;
   }
 }
 

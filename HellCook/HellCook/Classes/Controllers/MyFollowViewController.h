@@ -9,5 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @interface MyFollowViewController : UIViewController
+{
+  NSInteger curPage;
+  NSMutableArray *myFollowsArray;
+  BOOL mShouldRefresh;
+  NSInteger totalPage;
+  UIActivityIndicatorView* mLoadingActivity;
+}
+
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@property (strong, nonatomic) MKNetworkOperation *netOperation;
+@property (nonatomic, retain) UIActivityIndicatorView* mLoadingActivity;
 
 @end

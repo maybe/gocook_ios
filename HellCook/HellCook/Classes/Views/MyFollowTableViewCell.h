@@ -9,5 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @interface MyFollowTableViewCell : UITableViewCell
+{
+  UIImageView *avataImageView;
+  UILabel *nameLabel;
+  UILabel *fanLabel;
+  UILabel *recipeLabel;
+}
+
+@property (nonatomic, retain) UIImageView* avataImageView;
+@property (nonatomic, retain) UILabel* nameLabel;
+@property (nonatomic, retain) UILabel* fanLabel;
+@property (nonatomic, retain) UILabel* recipeLabel;
 
 @end

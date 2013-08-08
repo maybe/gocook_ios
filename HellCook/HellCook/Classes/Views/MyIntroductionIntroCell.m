@@ -47,9 +47,9 @@
 {
   introLabel.text = strIntro;
   CGSize contentSize = [introLabel.text sizeWithFont:introLabel.font constrainedToSize:CGSizeMake(300, 1000) lineBreakMode:NSLineBreakByWordWrapping];
-  if ((contentSize.height+20) > mCellHeight)
+  if ((contentSize.height+30) > mCellHeight)
   {
-    mCellHeight = contentSize.height+20;
+    mCellHeight = contentSize.height+30;
     
     CGRect cellRect = self.frame;
     cellRect.size.height = mCellHeight;

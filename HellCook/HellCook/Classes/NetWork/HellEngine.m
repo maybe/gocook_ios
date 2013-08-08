@@ -272,6 +272,29 @@
                                         httpMethod:@"GET"];
   
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+//    NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+
+- (MKNetworkOperation*)getMyFollowDataByPage:(NSInteger)page
+                           CompletionHandler:(myFollowResponseBlock)completionBlock
+                                errorHandler:(MKNKErrorBlock) errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/mywatch?page=%d",page]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
