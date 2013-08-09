@@ -42,13 +42,13 @@
   [pIntroController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor redColor] } forState:UIControlStateNormal];
   [pIntroController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor blackColor] } forState:UIControlStateNormal];
   [pIntroController.tabBarItem  setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
-  pIntroController.tabBarItem.title = @"个人介绍";
+  pIntroController.tabBarItem.title = @"个人简介";
   
   MyFollowViewController* pFollowController = [[MyFollowViewController alloc] initWithNibName:@"MyFollowView" bundle:nil];
   [pFollowController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor redColor] } forState:UIControlStateNormal];
   [pFollowController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor blackColor] } forState:UIControlStateNormal];
   [pFollowController.tabBarItem  setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
-  pFollowController.tabBarItem.title = @"我的粉丝";
+  pFollowController.tabBarItem.title = @"我的关注";
 
   MyRecipesController* pMyRecipesController = [[MyRecipesController alloc] initWithNibName:@"MyRecipesView" bundle:nil];
   [pMyRecipesController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor redColor] } forState:UIControlStateNormal];

@@ -9,10 +9,11 @@
 #import "MyFollowTableViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "QuartzCore/QuartzCore.h"
+#import "NetManager.h"
 
 @implementation MyFollowTableViewCell
 @synthesize avataImageView;
-@synthesize nameLabel,fanLabel,recipeLabel;
+@synthesize nameLabel,fanLabel,recipeLabel,sepImageView;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -33,21 +34,18 @@
     avataImageView.layer.borderColor = [UIColor clearColor].CGColor;
     avataImageView.layer.borderWidth = 1.0;
     //nameLabel
-    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 20, 180, 15)];
-    nameLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 17, 180, 25)];
     nameLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
     nameLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     nameLabel.backgroundColor = [UIColor clearColor];
-    nameLabel.font = [UIFont boldSystemFontOfSize:15];
-    //fanLabel
-    fanLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 40, 180, 10)];
-    fanLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-    fanLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    fanLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
-    fanLabel.backgroundColor = [UIColor clearColor];
-    [fanLabel.font fontWithSize:10];
+    nameLabel.font = [UIFont boldSystemFontOfSize:25];
+    //seperator image
+    sepImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 89, 320, 1)];
+    [sepImageView setImage:[UIImage imageNamed:@"Images/TableCellSeparater.png"]];
     
-    
+    [self addSubview:avataImageView];
+    [self addSubview:nameLabel];
+    [self addSubview:sepImageView];
   }
   return self;
 }
@@ -57,6 +55,28 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setData:(NSMutableDictionary*)dict
+{
+  if (dict[@"name"]!=[NSNull null] && ![dict[@"name"] isEqual:@""])
+  {
+    [nameLabel setText: dict[@"name"]];
+  }
+  else
+  {
+    [nameLabel setText:@""];
+  }
+  
+  if (dict[@"portrait"]!=[NSNull null] && ![dict[@"portrait"] isEqual:@""])
+  {
+    NSString* avatarUrl = [NSString stringWithFormat: @"http://%@/%@", [[NetManager sharedInstance] host], dict[@"portrait"]];
+    [avataImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+  }
+  else
+  {
+    [avataImageView setImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+  }
 }
 
 @end

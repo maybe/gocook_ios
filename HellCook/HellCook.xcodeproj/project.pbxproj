@@ -14,6 +14,7 @@
 		5EAFA04017AFE20A008B6C64 /* MyIntroductionPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFA03F17AFE209008B6C64 /* MyIntroductionPicCell.m */; };
 		5EAFA04317B102C1008B6C64 /* MyIntroductionIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFA04217B102BF008B6C64 /* MyIntroductionIntroCell.m */; };
 		5EAFA04617B26A0E008B6C64 /* MyFollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFA04517B26A0C008B6C64 /* MyFollowTableViewCell.m */; };
+		5EEB7E0817B3EFAB00BCB1CB /* MyFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E0617B3EFAB00BCB1CB /* MyFansViewController.m */; };
 		BA02634516D7579700298803 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634416D7579700298803 /* AppDelegate.m */; };
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
 		BA02635216D75E4F00298803 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02635116D75E4F00298803 /* Common.m */; };
@@ -155,6 +156,8 @@
 		5EAFA04217B102BF008B6C64 /* MyIntroductionIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroductionIntroCell.m; path = Classes/Views/MyIntroductionIntroCell.m; sourceTree = "<group>"; };
 		5EAFA04417B26A09008B6C64 /* MyFollowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFollowTableViewCell.h; path = Classes/Views/MyFollowTableViewCell.h; sourceTree = "<group>"; };
 		5EAFA04517B26A0C008B6C64 /* MyFollowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFollowTableViewCell.m; path = Classes/Views/MyFollowTableViewCell.m; sourceTree = "<group>"; };
+		5EEB7E0517B3EFAB00BCB1CB /* MyFansViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFansViewController.h; path = Classes/Controllers/MyFansViewController.h; sourceTree = "<group>"; };
+		5EEB7E0617B3EFAB00BCB1CB /* MyFansViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFansViewController.m; path = Classes/Controllers/MyFansViewController.m; sourceTree = "<group>"; };
 		BA02634316D7579700298803 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		BA02634416D7579700298803 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		BA02634716D759CB00298803 /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
@@ -907,6 +910,8 @@
 				5E13568D17AD34D5009C623B /* MyIntroductionViewController.m */,
 				5E13569317AD3AC4009C623B /* MyFollowViewController.h */,
 				5E13569417AD3AC4009C623B /* MyFollowViewController.m */,
+				5EEB7E0517B3EFAB00BCB1CB /* MyFansViewController.h */,
+				5EEB7E0617B3EFAB00BCB1CB /* MyFansViewController.m */,
 				BABAE9CF17AE779E0099BE45 /* HomePageController.h */,
 				BABAE9D017AE779F0099BE45 /* HomePageController.m */,
 				BABAE9DB17AFFBF50099BE45 /* MyRecipes */,
@@ -1089,6 +1094,7 @@
 				BABAE9D917AFFBE50099BE45 /* MyRecipesEditController.m in Sources */,
 				BABAE9E117B14D890099BE45 /* MyRecipeEditAvatarView.m in Sources */,
 				BABAE9E917B15E760099BE45 /* CPTextViewPlaceholder.m in Sources */,
+				5EEB7E0817B3EFAB00BCB1CB /* MyFansViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

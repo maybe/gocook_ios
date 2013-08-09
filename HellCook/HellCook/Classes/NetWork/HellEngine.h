@@ -21,6 +21,7 @@ typedef void (^myCollectionResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^myRecipesResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^myIntroductionResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^myFollowResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^myFansResponseBlock)(NSMutableDictionary* resultDic);
 
 // 登录
 - (MKNetworkOperation*)loginWithUser:(NSString*)username AndPass:(NSString*)pass
@@ -75,6 +76,11 @@ typedef void (^myFollowResponseBlock)(NSMutableDictionary* resultDic);
 //获取我的关注
 - (MKNetworkOperation*)getMyFollowDataByPage:(NSInteger)page
                            CompletionHandler:(myFollowResponseBlock)completionBlock
+                                errorHandler:(MKNKErrorBlock) errorBlock;
+
+//获取我的粉丝
+- (MKNetworkOperation*)getMyFansDataByPage:(NSInteger)page
+                           CompletionHandler:(myFansResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock;
 
 @end

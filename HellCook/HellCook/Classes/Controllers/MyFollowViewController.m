@@ -9,6 +9,7 @@
 #import "MyFollowViewController.h"
 #import "NetManager.h"
 #import "LoginController.h"
+#import "MyFollowTableViewCell.h"
 
 @interface MyFollowViewController ()
 
@@ -85,6 +86,62 @@
   [mLoadingActivity setHidden:YES];
   self.myTableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
 }
+
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  return myFollowsArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return 90;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  static NSString *CellIdentifier = @"MyFollowTableViewCell";
+  
+  MyFollowTableViewCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (!cell)
+  {
+    cell = [[MyFollowTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+  }
+  
+  [cell setData:myFollowsArray[indexPath.row]];
+  
+  return cell;
+}
+
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+  // 下拉到最底部时显示更多数据
+  if(scrollView.contentOffset.y + 20 >= ((scrollView.contentSize.height - scrollView.frame.size.height)))
+  {
+    if (![self.netOperation isExecuting] && mShouldRefresh) {
+      [self showLoadingView];
+      [self getMyFollowData];
+    }
+  }
+}
+
+
 
 #pragma mark - Net
 
