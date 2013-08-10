@@ -15,6 +15,7 @@
   NSMutableDictionary *pMyInfo;
   MyIntroductionPicCell *pPicCell;
   MyIntroductionIntroCell *pIntroCell;
+  BOOL bSessionInvalid;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;

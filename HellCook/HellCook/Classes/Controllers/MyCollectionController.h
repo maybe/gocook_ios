@@ -14,9 +14,10 @@
   NSInteger curPage;
   NSMutableArray *myCollectionArray;
   
-  BOOL mShouldRefresh;
+  BOOL bShouldRefresh;
   NSInteger totalPage;
   UIActivityIndicatorView* mLoadingActivity;
+  BOOL bSessionInvalid;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

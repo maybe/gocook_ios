@@ -23,8 +23,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+      bSessionInvalid = FALSE;
+      
       pMyInfo = [[NSMutableDictionary alloc] init];
- 
       pPicCell = [[MyIntroductionPicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionPicCell"];
       pIntroCell = [[MyIntroductionIntroCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionIntroCell"];
     }
@@ -34,7 +35,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+  // Do any additional setup after loading the view from its nib.
   CGRect tableframe = self.myTableView.frame;
   tableframe.size.height = _screenHeight_NoStBar - _navigationBarHeight;
   [self.myTableView setFrame:tableframe];
@@ -46,6 +47,11 @@
 {
   [super viewWillAppear:animated];
   
+  if (bSessionInvalid)
+  {
+    bSessionInvalid = FALSE;
+    [self getMyIntroductionData];
+  }
 }
 
 - (void)didReceiveMemoryWarning
@@ -146,6 +152,7 @@
   }
   else if (result == 1)
   {
+    bSessionInvalid = TRUE;
     LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
     if (self.navigationController)
     {

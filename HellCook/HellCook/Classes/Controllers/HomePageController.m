@@ -11,6 +11,7 @@
 #import "MyFollowViewController.h"
 #import "MyRecipesController.h"
 #import "MyFansViewController.h"
+#include "User.h"
 
 @interface HomePageController ()
 
@@ -67,7 +68,7 @@
   NSArray *viewControllerArray = [NSArray arrayWithObjects:pIntroController, pFollowController, pFanController, pMyRecipesController, nil];
   self.viewControllers = viewControllerArray;
     
-  //self.navigationItem.title = [[[User sharedInstance] account] username];
+  self.navigationItem.title = [[[User sharedInstance] account] username];
   
   [self setLeftButton];
   [self setRightButton];

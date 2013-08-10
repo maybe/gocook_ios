@@ -12,9 +12,10 @@
 {
   NSInteger curPage;
   NSMutableArray *myFansArray;
-  BOOL mShouldRefresh;
+  BOOL bShouldRefresh;
   NSInteger totalPage;
   UIActivityIndicatorView* mLoadingActivity;
+  BOOL bSessionInvalid;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;

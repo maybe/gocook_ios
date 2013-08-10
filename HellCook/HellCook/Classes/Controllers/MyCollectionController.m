@@ -28,7 +28,8 @@
     if (self) {
         // Custom initialization
       curPage = 0;
-      mShouldRefresh = TRUE;
+      bShouldRefresh = TRUE;
+      bSessionInvalid = FALSE;
       myCollectionArray = [[NSMutableArray alloc] init];
       [self initLoadingView];
     }
@@ -52,6 +53,12 @@
 - (void) viewWillAppear:(BOOL)animated
 {
   [self getMyCollectionData];
+  
+  if (bSessionInvalid)
+  {
+    bSessionInvalid = FALSE;
+    [self getMyCollectionData];
+  }
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,7 +149,7 @@
   // 下拉到最底部时显示更多数据
   if(scrollView.contentOffset.y + 20 >= ((scrollView.contentSize.height - scrollView.frame.size.height)))
   {
-    if (![self.netOperation isExecuting] && mShouldRefresh) {
+    if (![self.netOperation isExecuting] && bShouldRefresh) {
       [self showLoadingView];
       [self getMyCollectionData];
     }
@@ -224,8 +231,8 @@
     }
     
     if (curPage >= totalPage)
-      mShouldRefresh = FALSE;
-    if (!mShouldRefresh)
+      bShouldRefresh = FALSE;
+    if (!bShouldRefresh)
       [self deleteLoadingView];
     
     [[[User sharedInstance] collection] SetMyCollectionArray:myCollectionArray];

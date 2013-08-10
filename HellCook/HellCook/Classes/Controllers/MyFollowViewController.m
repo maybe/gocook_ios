@@ -25,6 +25,8 @@
     if (self) {
         // Custom initialization
       curPage = 0;
+      bSessionInvalid = FALSE;
+      bShouldRefresh = TRUE;
       myFollowsArray = [[NSMutableArray alloc] init];
       [self initLoadingView];
     }
@@ -44,6 +46,11 @@
 {
   [super viewWillAppear:animated];
   
+  if (bSessionInvalid)
+  {
+    bSessionInvalid = FALSE;
+    [self getMyFollowData];
+  }
 }
 
 - (void)didReceiveMemoryWarning
@@ -134,7 +141,7 @@
   // 下拉到最底部时显示更多数据
   if(scrollView.contentOffset.y + 20 >= ((scrollView.contentSize.height - scrollView.frame.size.height)))
   {
-    if (![self.netOperation isExecuting] && mShouldRefresh) {
+    if (![self.netOperation isExecuting] && bShouldRefresh) {
       [self showLoadingView];
       [self getMyFollowData];
     }
@@ -189,12 +196,13 @@
     }
     
     if (curPage >= totalPage)
-      mShouldRefresh = FALSE;
-    if (!mShouldRefresh)
+      bShouldRefresh = FALSE;
+    if (!bShouldRefresh)
       [self deleteLoadingView];
   }
   else if (result == 1)
   {
+    bSessionInvalid = TRUE;
     LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
     if (self.navigationController)
     {
