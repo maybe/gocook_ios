@@ -14,13 +14,17 @@
 @interface MyRecipesStepController : UIViewController<KeyboardHandlerDelegate,
                                                       RecipeStepCellInputDelegate,
                                                       UITableViewDataSource,
-                                                      UITableViewDelegate>
+                                                      UITableViewDelegate,
+                                                      UINavigationControllerDelegate,
+                                                      UIImagePickerControllerDelegate>
 {
   UITableView* tableView;
   NSMutableArray* cellContentList;
   KeyboardHandler *keyboard;
+  UIButton* imagePickerButton;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
+@property (strong, nonatomic) MKNetworkOperation *uploadOperation;
 
 @end

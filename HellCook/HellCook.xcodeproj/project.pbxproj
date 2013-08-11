@@ -412,12 +412,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA3F5E6416FA295B00493260 /* AssetsLibrary.framework in Frameworks */,
 				BA0873E4179AFD3200A270D5 /* CoreText.framework in Frameworks */,
 				BA6069D5170ADE680060C251 /* MapKit.framework in Frameworks */,
 				BA3F5E6116FA295B00493260 /* CoreImage.framework in Frameworks */,
 				BA3F5E6216FA295B00493260 /* QuartzCore.framework in Frameworks */,
 				BA3F5E6316FA295B00493260 /* ImageIO.framework in Frameworks */,
-				BA3F5E6416FA295B00493260 /* AssetsLibrary.framework in Frameworks */,
 				BA3F5E6516FA295B00493260 /* Accelerate.framework in Frameworks */,
 				BACCF89616ED0D630094F1E5 /* libicucore.dylib in Frameworks */,
 				BACCF89016ED0D090094F1E5 /* libsqlite3.0.dylib in Frameworks */,
@@ -533,12 +533,12 @@
 		BA0DC16916D4C3A500E4CED9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BA0873E3179AFD3200A270D5 /* CoreText.framework */,
 				BACCF89516ED0D630094F1E5 /* libicucore.dylib */,
 				BACCF88F16ED0D090094F1E5 /* libsqlite3.0.dylib */,
 				BACCF88D16ED0CFB0094F1E5 /* libiconv.dylib */,
 				BACCF86716ECFFFA0094F1E5 /* libxml2.dylib */,
 				BACCF86516ECFF780094F1E5 /* libz.dylib */,
+				BA0873E3179AFD3200A270D5 /* CoreText.framework */,
 				BA6069D4170ADE670060C251 /* MapKit.framework */,
 				BA3F5E5F16FA290200493260 /* CoreImage.framework */,
 				BA3F5E5D16FA28F800493260 /* QuartzCore.framework */,

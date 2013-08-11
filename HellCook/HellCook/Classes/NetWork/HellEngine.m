@@ -331,4 +331,30 @@
   return op;
 }
 
+- (MKNetworkOperation*)uploadStepTmpImage:(NSString*)imagePath
+                                withIndex:(NSInteger)index
+                        completionHandler:(uploadStepTmpImageResponseBlock)completionBlock
+                             errorHandler:(MKNKErrorBlock) errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:@"recipe/upload_step_photo"
+                                            params:nil
+                                        httpMethod:@"POST"];
+  
+  if (imagePath&&![imagePath isEqualToString:@""]) {
+    [op addFile:imagePath forKey:@"step"];
+  }
+    
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){    
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject, index);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
 @end

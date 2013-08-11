@@ -159,7 +159,7 @@
     textView.delegate = self;
     [textView setFrame:CGRectMake(20, 5, 300, 120)];
     [textView setBackgroundColor: [UIColor clearColor]];
-    textView.placeholder = [dic objectForKey:@"placeHolder"];
+    [textView setPlaceholder: [dic objectForKey:@"placeHolder"]];
     textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
     textView.keyboardType = UIKeyboardTypeDefault;
     textView.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -233,9 +233,6 @@
   }
   picker.allowsEditing = NO;
   [self presentViewController:picker animated:YES completion:nil];
-  
-  
-  
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker
