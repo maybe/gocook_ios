@@ -36,6 +36,9 @@
     return;
   }
   
+  // hack by panda
+  _shouldDrawPlaceholder = NO;
+  
   _placeholder = string;
   [self _updateShouldDrawPlaceholder];
 }
