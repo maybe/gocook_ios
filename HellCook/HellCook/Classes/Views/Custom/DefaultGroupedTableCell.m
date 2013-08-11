@@ -40,8 +40,12 @@
   
   if (self.theCellStyle == CellStyle_Single)
   {
-    rowBackground = [UIImage imageNamed:@"Images/TableCellSingle.png"];
-    selectionBackground = [UIImage imageNamed:@"Images/TableCellSingleSelected.png"];
+    UIImage* tmpRowBackground = [UIImage imageNamed:@"Images/TableCellSingle.png"];
+    rowBackground = [tmpRowBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+
+    UIImage* tmpSelectionBackground = [UIImage imageNamed:@"Images/TableCellSingleSelected.png"];
+    selectionBackground = [tmpSelectionBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+
   }
   else if (self.theCellStyle == CellStyle_Top)
   {
@@ -57,7 +61,7 @@
     rowBackground = [tmpRowBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     
     UIImage* tmpSelectionBackground = [UIImage imageNamed:@"Images/TableCellFooterSelected.png"];
-    selectionBackground = [tmpSelectionBackground stretchableImageWithLeftCapWidth:5 topCapHeight:5];
+    selectionBackground = [tmpSelectionBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
   }
   else
   {    

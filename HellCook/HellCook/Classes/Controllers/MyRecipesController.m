@@ -11,6 +11,7 @@
 #import "NetManager.h"
 #import "LoginController.h"
 #import "MyRecipesEditController.h"
+#import "User.h"
 
 @interface MyRecipesController ()
 
@@ -242,6 +243,9 @@
 
 - (void)onCreateRecipe
 {
+  //初始化创建数据
+  [[[User sharedInstance] recipe] resetCreateRecipeData];
+  
   MyRecipesEditController* pEditController = [[MyRecipesEditController alloc]initWithNibName:@"MyRecipesEditView" bundle:nil];
   [self.tabBarController.navigationController pushViewController:pEditController animated:YES];
 }

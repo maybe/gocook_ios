@@ -8,13 +8,50 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Recipe : NSObject
+@interface RecipeData : NSObject
 {
-  NSMutableDictionary* mainTopDic;//最受欢迎和最新
-  NSMutableDictionary* mainCatDic;//分类
+  NSInteger recipe_id;
+  NSInteger user_id;
+  NSString* create_time;
+  NSString* name;
+  NSString* description;
+  NSInteger collected_count;
+  NSInteger dish_count;
+  NSInteger comment_count;
+  NSInteger browse_count;
+  NSString* catgory;
+  NSString* cover_img;
+  NSMutableArray* materials;
+  NSMutableArray* recipe_steps;
+  NSString* tips;
 }
 
-@property (nonatomic, retain) NSDictionary* mainTopDic;
-@property (nonatomic, retain) NSDictionary* mainCatDic;
+@property NSInteger recipe_id;
+@property NSInteger user_id;
+@property (nonatomic, retain) NSString* create_time;
+@property (nonatomic, retain) NSString* name;
+@property (nonatomic, retain) NSString* description;
+@property NSInteger collected_count;
+@property NSInteger dish_count;
+@property NSInteger comment_count;
+@property NSInteger browse_count;
+@property (nonatomic, retain) NSString* catgory;
+@property (nonatomic, retain) NSString* cover_img;
+@property (nonatomic, retain) NSMutableArray* materials;
+@property (nonatomic, retain) NSMutableArray* recipe_steps;
+@property (nonatomic, retain) NSString* tips;
+
+@end
+
+@interface Recipe : NSObject
+{
+  RecipeData* mCreateRecipeData;
+  RecipeData* mModifyRecipeData;
+}
+
+-(RecipeData*)getCreateRecipeData;
+-(void)resetCreateRecipeData;
+-(RecipeData*)getModifyRecipeData;
+-(void)resetModifyRecipeData;
 
 @end

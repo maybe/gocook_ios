@@ -11,7 +11,7 @@
 
 
 @implementation User
-@synthesize account, collection;
+@synthesize account, collection, recipe;
 
 + (id)sharedInstance
 {
@@ -25,6 +25,7 @@
   if(self=[super init]){
     collection = [[UserCollection alloc]init];
     account = [[UserAccount alloc]init];
+    recipe = [[Recipe alloc]init];
   }
   return self;
 }

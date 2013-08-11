@@ -16,6 +16,7 @@
 #import "UIImage+Resizing.h"
 #import "DBHandler.h"
 #import "DefaultGroupedTableCell.h"
+#import "MyRecipesMaterialController.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
@@ -43,7 +44,7 @@
   [self setRightButton];
   
   nameField = [[UITextField alloc]init];
-  introTextView = [[CPTextViewPlaceholder alloc]init];
+  introTextView = [[SSTextView alloc]init];
   
   cellContentList = [[NSMutableArray alloc]init];
   NSMutableDictionary *cellDic;
@@ -130,7 +131,7 @@
   
   NSMutableDictionary* dic = [cellContentList objectAtIndex:indexPath.row];
   UITextField* textField = [dic objectForKey:@"textfield"];
-  CPTextViewPlaceholder* textView = [dic objectForKey:@"textview"];
+  SSTextView* textView = [dic objectForKey:@"textview"];
   
   DefaultGroupedTableCell *cell = [aTableView dequeueReusableCellWithIdentifier:[dic objectForKey:@"Identifier"]];
   
@@ -153,6 +154,7 @@
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
     [textField setFont:[UIFont systemFontOfSize:14]];
     textField.returnKeyType = UIReturnKeyDone;
+    [textField setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
   } else if (textView) {
     textView.delegate = self;
     [textView setFrame:CGRectMake(20, 5, 300, 120)];
@@ -163,6 +165,7 @@
     textView.autocorrectionType = UITextAutocorrectionTypeNo;
     [textView setFont:[UIFont systemFontOfSize:14]];
     textView.returnKeyType = UIReturnKeyDone;
+    [textView setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
   }
   
   cell.tableCellBodyHeight = kTableCellBody;
@@ -193,12 +196,10 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
-  NSLog(@"%@", @"111");
 }
 
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
-  NSLog(@"%@", @"111");
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -257,7 +258,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)keyboardSizeChanged:(CGSize)delta
 {
   UIView* frView = [self.tableView findFirstResponder];
-  if ([frView isKindOfClass:[UITextField class]] || [frView isKindOfClass:[CPTextViewPlaceholder class]]) {
+  if ([frView isKindOfClass:[UITextField class]] || [frView isKindOfClass:[SSTextView class]]) {
     if (delta.height > 0) {
       CGPoint realOrigin = [frView convertPoint:frView.frame.origin toView:nil];
       if (realOrigin.y + frView.frame.size.height  > _screenHeight - delta.height) {
@@ -269,7 +270,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     }
     else{
       CGRect frame = self.tableView.frame;
-      frame.origin.y =  _navigationBarHeight;
+      frame.origin.y =  0;
       self.tableView.frame = frame;
     }
   }
@@ -300,14 +301,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)setRightButton
 {
   UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
-  [rightBarButtonView addTarget:self action:@selector(onRegister) forControlEvents:UIControlEventTouchUpInside];
+  [rightBarButtonView addTarget:self action:@selector(onNext) forControlEvents:UIControlEventTouchUpInside];
   [rightBarButtonView setBackgroundImage:
    [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
                                 forState:UIControlStateNormal];
   [rightBarButtonView setBackgroundImage:
    [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"]
                                 forState:UIControlStateHighlighted];
-  [rightBarButtonView setTitle:@"注册" forState:UIControlStateNormal];
+  [rightBarButtonView setTitle:@"下一步" forState:UIControlStateNormal];
   [rightBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
   
   UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
@@ -320,35 +321,31 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-#pragma mark - Net
-
--(void)onRegister
+-(void)onNext
 {
-  
-  NSString  *pngPath = @"";
-  
-  UIImage* uploadImage = headImageView.upImageView.image;
-  if (uploadImage!=headImageView.defaultImage) {
-    pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploadtmp.png"];
-    uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(100, 100) interpolationQuality:kCGInterpolationHigh];
-    uploadImage = [uploadImage cropToSize:CGSizeMake(100, 100) usingMode:NYXCropModeTopCenter];
-    // Write image to PNG
-    [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
+  NSString *trimedName = @"";
+  if (nameField.text) {
+    trimedName = [nameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  }
+
+  NSString *trimedDesc = @"";
+  if (introTextView.text) {
+    trimedDesc = [introTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
   }
   
-}
-
-- (void)RegisterCallBack:(NSMutableDictionary*) resultDic
-{
-  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result != 0 || resultDic == nil)
-  {
-    
-  } else {
-    
+  if ([trimedName isEqualToString:@""]) {
+    return;
   }
+  
+  RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  pRecipeData.name = [[NSString alloc]initWithString: trimedName];
+  
+  if (![trimedDesc isEqualToString:@""]) {
+    pRecipeData.description = [[NSString alloc]initWithString: trimedDesc];
+  }
+  
+  MyRecipesMaterialController* pController = [[MyRecipesMaterialController alloc] initWithNibName:@"MyRecipesMatieralView" bundle:nil];
+  [self.navigationController pushViewController:pController animated:YES];
 }
-
 
 @end

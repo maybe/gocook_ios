@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KeyboardHandlerDelegate.h"
 #import "MBProgressHUD.h"
-#import "CPTextViewPlaceholder.h"
+#import "SSTextView.h"
 
 @class MyRecipeEditAvatarView;
 @class KeyboardHandler;
@@ -24,7 +24,7 @@
   NSMutableArray* cellContentList;
   
   UITextField* nameField;
-  CPTextViewPlaceholder* introTextView;
+  SSTextView* introTextView;
   
   MyRecipeEditAvatarView* headImageView;
   
@@ -33,6 +33,6 @@
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) UITextField* nameField;
-@property (nonatomic, retain) CPTextViewPlaceholder* introTextView;
+@property (nonatomic, retain) SSTextView* introTextView;
 
 @end
