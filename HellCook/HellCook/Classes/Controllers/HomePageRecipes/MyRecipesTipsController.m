@@ -6,20 +6,25 @@
 //  Copyright (c) 2013 panda. All rights reserved.
 //
 
-#import "MyRecipesMaterialController.h"
-#import "MyRecipeMaterialTableViewCell.h"
+#import "MyRecipesTipsController.h"
 #import "KeyboardHandler.h"
 #import "UIView+FindFirstResponder.h"
+#import "NetManager.h"
 #import "User.h"
+#import "DBHandler.h"
 #import "DefaultGroupedTableCell.h"
-#import "MyRecipesStepController.h"
 
-@interface MyRecipesMaterialController ()
+#define kTableCellHeader  48
+#define kTableCellBody    45
+#define kTableCellFooter  160
+#define kTableCellSingle  200
+
+@interface MyRecipesTipsController ()
 
 @end
 
-@implementation MyRecipesMaterialController
-@synthesize tableView;
+@implementation MyRecipesTipsController
+@synthesize tableView, tipsTextView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,13 +39,11 @@
   [self setLeftButton];
   [self setRightButton];
   
-  CGRect frameHeader = self.tableView.tableHeaderView.frame;
-  frameHeader.size.height = 44;
-  self.tableView.tableHeaderView = [[MyRecipeMaterialTableViewHeader alloc]initWithFrame:frameHeader];
+  tipsTextView = [[SSTextView alloc]init];
   
-  CGRect frameFooter = self.tableView.tableFooterView.frame;
-  frameFooter.size.height = 44;
-  self.tableView.tableFooterView = [[MyRecipeMaterialTableViewFooter alloc]initWithFrame:frameFooter];
+  CGRect frame = self.tableView.tableHeaderView.frame;
+  frame.size.height = 44;
+  self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
   
   //keyboard
   keyboard = [[KeyboardHandler alloc] init];
@@ -50,9 +53,10 @@
   [self.view setFrame:viewframe];
   [self.tableView setFrame:viewframe];
   
-  cellContentList = [[NSMutableArray alloc]init];
   RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
-  [cellContentList addObjectsFromArray: pRecipeData.materials];
+  if (pRecipeData.tips) {
+    [tipsTextView setText:pRecipeData.tips];
+  }
   
   [super viewDidLoad];
 }
@@ -91,34 +95,43 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return cellContentList.count;
+  return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return 44;
+    return kTableCellSingle;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   
-  NSString* Identifier = @"MaterialCell";
-  
-  MyRecipeMaterialTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:Identifier];
+  DefaultGroupedTableCell *cell = [aTableView dequeueReusableCellWithIdentifier:@"TipsCell"];
   
   if (cell == nil) {
-    cell = [[MyRecipeMaterialTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: Identifier];
+    cell = [[DefaultGroupedTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: @"TipsCell"];
+
+    tipsTextView.delegate = self;
+    [tipsTextView setFrame:CGRectMake(20, 5, 280, 185)];
+    [tipsTextView setBackgroundColor: [UIColor clearColor]];
+    [tipsTextView setPlaceholder: @"小贴士"];
+    tipsTextView.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    tipsTextView.keyboardType = UIKeyboardTypeDefault;
+    tipsTextView.autocorrectionType = UITextAutocorrectionTypeNo;
+    [tipsTextView setFont:[UIFont systemFontOfSize:14]];
+    tipsTextView.returnKeyType = UIReturnKeyDone;
+    [tipsTextView setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
+    
+    cell.tableCellBodyHeight = kTableCellBody;
+    cell.tableCellHeaderHeight = kTableCellHeader;
+    cell.tableCellFooterHeight = kTableCellFooter;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    [cell setCellStyle:1 Index:indexPath.row];
+    
+    [cell addSubview:tipsTextView];
   }
   
-  [cell setDelegate: self];
-  [cell setData: [cellContentList objectAtIndex: indexPath.row]];
-  
   return cell;
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"ResignMyRecipeMaterialTextField" object:nil];
 }
 
 #pragma mark - Table view delegate
@@ -127,21 +140,26 @@
 {
 }
 
-#pragma mark - Add line
-- (void)addMaterialLine
+
+#pragma mark - Textreturn
+-(void)textViewDidBeginEditing:(UITextView *)textView
 {
-  NSMutableDictionary* pMaterialLineDic = [[NSMutableDictionary alloc]init];
-  [pMaterialLineDic setObject:@"" forKey:@"material"];
-  [pMaterialLineDic setObject:@"" forKey:@"weight"];
-  [cellContentList addObject: pMaterialLineDic];
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+  if ([text isEqualToString:@"\n"]) {
+    [textView resignFirstResponder];
+    return NO;
+  }
+  return YES;
+} 
+
+
+#pragma mark - Avatar View
+- (void)setHeaderView
+{
   
-  NSMutableArray* indexpathArray = [[NSMutableArray alloc]init];
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:cellContentList.count-1 inSection:0];
-  [indexpathArray addObject:indexPath];
-  
-  [self.tableView beginUpdates];
-  [self.tableView insertRowsAtIndexPaths:indexpathArray withRowAnimation:UITableViewRowAnimationNone];
-  [self.tableView endUpdates];
 }
 
 #pragma mark - Keyboard
@@ -149,13 +167,16 @@
 - (void)keyboardSizeChanged:(CGSize)delta
 {
   UIView* frView = [self.tableView findFirstResponder];
-  if ([frView isKindOfClass:[UITextField class]]) {
+  if ([frView isKindOfClass:[UITextField class]] || [frView isKindOfClass:[SSTextView class]]) {
     if (delta.height > 0) {
       CGPoint realOrigin = [frView convertPoint:frView.frame.origin toView:nil];
       if (realOrigin.y + frView.frame.size.height  > _screenHeight - delta.height) {
-        CGFloat deltaHeight = realOrigin.y + frView.frame.size.height - ( _screenHeight - delta.height) + 10;
+        CGFloat deltaHeight = realOrigin.y + frView.frame.size.height - ( _screenHeight - delta.height) -30;
         CGRect frame = self.tableView.frame;
         frame.origin.y -= deltaHeight;
+        if (-frame.origin.y > delta.height) {
+          frame.origin.y = - delta.height;
+        }
         self.tableView.frame = frame;
       }
     }
@@ -209,53 +230,30 @@
 
 -(void)returnToPrev
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"ResignMyRecipeMaterialTextField" object:nil];
+  NSString *trimedDesc = @"";
+  if (tipsTextView.text) {
+    trimedDesc = [tipsTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  }
   
-  [self setDataToRecipe];
+  RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  pRecipeData.tips = [[NSString alloc]initWithString: trimedDesc];
+  
   [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)onNext
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"ResignMyRecipeMaterialTextField" object:nil];
-  
-  [self setDataToRecipe];
-  
-  MyRecipesStepController* stepController = [[MyRecipesStepController alloc] initWithNibName:@"MyRecipesStepView" bundle:nil];
-  [self.navigationController pushViewController:stepController animated:YES];
-}
 
-#pragma mark - Set Data to Recipe
--(void)setDataToRecipe
-{  
+  NSString *trimedDesc = @"";
+  if (tipsTextView.text) {
+    trimedDesc = [tipsTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  }
+  
   RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
-  
-  [pRecipeData.materials removeAllObjects];
-  
-  for (int i = 0; i < cellContentList.count; i++) {
-    NSString* materialStr = [cellContentList[i][@"material"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString* weightStr = [cellContentList[i][@"weight"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    if (![materialStr isEqualToString:@""]) {
-      
-      NSMutableDictionary* pDic = [[NSMutableDictionary alloc]init];
-      
-      pDic[@"material"] = [[NSString alloc]initWithString:materialStr];
-      pDic[@"weight"] = [[NSString alloc]initWithString:weightStr];
-      
-      [pRecipeData.materials addObject:pDic];
-    }
-  }
-}
-
-- (void)changeInputData:(NSString*)data On:(NSInteger)type WithIndex:(NSInteger)index
-{
-  // 0: material
-  if (type == 0) {
-    cellContentList[index][@"material"] = [[NSString alloc]initWithString:data];
-  } else {
-    cellContentList[index][@"weight"] = [[NSString alloc]initWithString:data];    
-  }
+  pRecipeData.tips = [[NSString alloc]initWithString: trimedDesc];
+//  
+//  MyRecipesMaterialController* pController = [[MyRecipesMaterialController alloc] initWithNibName:@"MyRecipesMatieralView" bundle:nil];
+//  [self.navigationController pushViewController:pController animated:YES];
 }
 
 @end

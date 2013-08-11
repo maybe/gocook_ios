@@ -13,6 +13,7 @@
 #import "UIImage+Resize.h"
 #import "UIImage+Resizing.h"
 #import "NetManager.h"
+#import "MyRecipesTipsController.h"
 
 @interface MyRecipesStepController ()
 
@@ -288,7 +289,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)setRightButton
 {
   UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
-  [rightBarButtonView addTarget:self action:@selector(onRegister) forControlEvents:UIControlEventTouchUpInside];
+  [rightBarButtonView addTarget:self action:@selector(onNext) forControlEvents:UIControlEventTouchUpInside];
   [rightBarButtonView setBackgroundImage:
    [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
                                 forState:UIControlStateNormal];
@@ -311,6 +312,15 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)onNext
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"ResignMyRecipeStepTextView" object:nil];
+  
+  [self setDataToRecipe];
+  
+  MyRecipesTipsController* pController = [[MyRecipesTipsController alloc]initWithNibName:@"MyRecipesTipsView" bundle:nil];
+  [self.navigationController pushViewController:pController animated:YES];
+}
 
 #pragma mark - Set Data to Recipe
 -(void)setDataToRecipe

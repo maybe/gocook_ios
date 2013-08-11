@@ -39,6 +39,8 @@
 		BA3E044917B68B8C007F1E86 /* MyRecipeStepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E044817B68B8C007F1E86 /* MyRecipeStepTableViewCell.m */; };
 		BA3E044B17B6B257007F1E86 /* MyRecipesStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA3E044A17B6B257007F1E86 /* MyRecipesStepView.xib */; };
 		BA3E045517B760CE007F1E86 /* SSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E045417B760CE007F1E86 /* SSTextView.m */; };
+		BA3E045817B7E962007F1E86 /* MyRecipesTipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E045717B7E961007F1E86 /* MyRecipesTipsController.m */; };
+		BA3E045A17B7E9DF007F1E86 /* MyRecipesTipsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA3E045917B7E9DF007F1E86 /* MyRecipesTipsView.xib */; };
 		BA3F5E6116FA295B00493260 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5F16FA290200493260 /* CoreImage.framework */; };
 		BA3F5E6216FA295B00493260 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5D16FA28F800493260 /* QuartzCore.framework */; };
 		BA3F5E6316FA295B00493260 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5B16FA28E200493260 /* ImageIO.framework */; };
@@ -204,6 +206,9 @@
 		BA3E044A17B6B257007F1E86 /* MyRecipesStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRecipesStepView.xib; sourceTree = "<group>"; };
 		BA3E045317B760CE007F1E86 /* SSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSTextView.h; path = HellCook/Libs/SSTextView/SSTextView.h; sourceTree = SOURCE_ROOT; };
 		BA3E045417B760CE007F1E86 /* SSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSTextView.m; path = HellCook/Libs/SSTextView/SSTextView.m; sourceTree = SOURCE_ROOT; };
+		BA3E045617B7E960007F1E86 /* MyRecipesTipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesTipsController.h; path = Classes/Controllers/HomePageRecipes/MyRecipesTipsController.h; sourceTree = "<group>"; };
+		BA3E045717B7E961007F1E86 /* MyRecipesTipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesTipsController.m; path = Classes/Controllers/HomePageRecipes/MyRecipesTipsController.m; sourceTree = "<group>"; };
+		BA3E045917B7E9DF007F1E86 /* MyRecipesTipsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRecipesTipsView.xib; sourceTree = "<group>"; };
 		BA3F5E5716FA28D000493260 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		BA3F5E5916FA28DA00493260 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		BA3F5E5B16FA28E200493260 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -687,6 +692,7 @@
 				BABAE9DC17AFFC4A0099BE45 /* MyRecipesEditView.xib */,
 				BA3E043F17B3F572007F1E86 /* MyRecipesMatieralView.xib */,
 				BA3E044A17B6B257007F1E86 /* MyRecipesStepView.xib */,
+				BA3E045917B7E9DF007F1E86 /* MyRecipesTipsView.xib */,
 			);
 			name = NIB;
 			path = Resources/NIB;
@@ -712,6 +718,8 @@
 				BA3E043D17B3ECCB007F1E86 /* MyRecipesMaterialController.m */,
 				BA3E044417B68B62007F1E86 /* MyRecipesStepController.h */,
 				BA3E044517B68B63007F1E86 /* MyRecipesStepController.m */,
+				BA3E045617B7E960007F1E86 /* MyRecipesTipsController.h */,
+				BA3E045717B7E961007F1E86 /* MyRecipesTipsController.m */,
 			);
 			name = MyRecipes;
 			sourceTree = "<group>";
@@ -1027,6 +1035,7 @@
 				5EEB7E0B17B3F01C00BCB1CB /* MyFansView.xib in Resources */,
 				BA3E044017B3F572007F1E86 /* MyRecipesMatieralView.xib in Resources */,
 				BA3E044B17B6B257007F1E86 /* MyRecipesStepView.xib in Resources */,
+				BA3E045A17B7E9DF007F1E86 /* MyRecipesTipsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,6 +1146,7 @@
 				BA3E044617B68B65007F1E86 /* MyRecipesStepController.m in Sources */,
 				BA3E044917B68B8C007F1E86 /* MyRecipeStepTableViewCell.m in Sources */,
 				BA3E045517B760CE007F1E86 /* SSTextView.m in Sources */,
+				BA3E045817B7E962007F1E86 /* MyRecipesTipsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
