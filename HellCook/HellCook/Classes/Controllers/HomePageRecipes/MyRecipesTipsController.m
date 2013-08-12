@@ -297,9 +297,6 @@
   
   pUploadRecipeDic[@"steps"] = stepString;
   
-  NSLog(@"%@", pUploadRecipeDic);
-  
-  
   self.uploadOperation = [[[NetManager sharedInstance] hellEngine]
                           createRecipe: pUploadRecipeDic
                           completionHandler:^(NSMutableDictionary *resultDic) {
