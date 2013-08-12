@@ -41,6 +41,7 @@
 		BA3E045517B760CE007F1E86 /* SSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E045417B760CE007F1E86 /* SSTextView.m */; };
 		BA3E045817B7E962007F1E86 /* MyRecipesTipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E045717B7E961007F1E86 /* MyRecipesTipsController.m */; };
 		BA3E045A17B7E9DF007F1E86 /* MyRecipesTipsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA3E045917B7E9DF007F1E86 /* MyRecipesTipsView.xib */; };
+		BA3E046917B8CC41007F1E86 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E046817B8CC41007F1E86 /* ODRefreshControl.m */; };
 		BA3F5E6116FA295B00493260 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5F16FA290200493260 /* CoreImage.framework */; };
 		BA3F5E6216FA295B00493260 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5D16FA28F800493260 /* QuartzCore.framework */; };
 		BA3F5E6316FA295B00493260 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5B16FA28E200493260 /* ImageIO.framework */; };
@@ -209,6 +210,8 @@
 		BA3E045617B7E960007F1E86 /* MyRecipesTipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesTipsController.h; path = Classes/Controllers/HomePageRecipes/MyRecipesTipsController.h; sourceTree = "<group>"; };
 		BA3E045717B7E961007F1E86 /* MyRecipesTipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesTipsController.m; path = Classes/Controllers/HomePageRecipes/MyRecipesTipsController.m; sourceTree = "<group>"; };
 		BA3E045917B7E9DF007F1E86 /* MyRecipesTipsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRecipesTipsView.xib; sourceTree = "<group>"; };
+		BA3E046717B8CC41007F1E86 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
+		BA3E046817B8CC41007F1E86 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		BA3F5E5716FA28D000493260 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		BA3F5E5916FA28DA00493260 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		BA3F5E5B16FA28E200493260 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -469,6 +472,7 @@
 		BA02634216D7570400298803 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				BA3E046617B8CC41007F1E86 /* ODRefreshControl */,
 				BA3E044F17B75E0C007F1E86 /* SSTextView */,
 				BAE67BD3170B70C200414AD5 /* NYXImagesKit */,
 				BAE67BB5170B45AD00414AD5 /* SDWebImage */,
@@ -594,6 +598,16 @@
 			);
 			name = SSTextView;
 			path = Libs/PlaceholderTextView;
+			sourceTree = "<group>";
+		};
+		BA3E046617B8CC41007F1E86 /* ODRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				BA3E046717B8CC41007F1E86 /* ODRefreshControl.h */,
+				BA3E046817B8CC41007F1E86 /* ODRefreshControl.m */,
+			);
+			name = ODRefreshControl;
+			path = Libs/ODRefreshControl;
 			sourceTree = "<group>";
 		};
 		BA6069B11709EE8C0060C251 /* File */ = {
@@ -1147,6 +1161,7 @@
 				BA3E044917B68B8C007F1E86 /* MyRecipeStepTableViewCell.m in Sources */,
 				BA3E045517B760CE007F1E86 /* SSTextView.m in Sources */,
 				BA3E045817B7E962007F1E86 /* MyRecipesTipsController.m in Sources */,
+				BA3E046917B8CC41007F1E86 /* ODRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
