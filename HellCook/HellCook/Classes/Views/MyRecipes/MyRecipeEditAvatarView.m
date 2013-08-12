@@ -9,7 +9,7 @@
 #import "MyRecipeEditAvatarView.h"
 
 @implementation MyRecipeEditAvatarView
-@synthesize selectButton,upImageView,defaultImage;
+@synthesize selectButton,upImageView,defaultImage,selectImageButton;
 
 - (id)initWithFrame:(CGRect)frame
 {  
@@ -29,6 +29,12 @@
   [upImageView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
   [self addSubview:upImageView];
   
+  selectImageButton = [[UIButton alloc]init];
+  [selectImageButton setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+  [selectImageButton setBackgroundColor:[UIColor clearColor]];
+  [selectImageButton addTarget:[self viewController] action:@selector(onSelectImageButton) forControlEvents:UIControlEventTouchUpInside];
+  [self addSubview:selectImageButton];
+  
   selectButton = [[UIButton alloc]init];
   [selectButton setFrame:CGRectMake(self.frame.size.width/2-30, 100, 60, 28)];
 
@@ -40,10 +46,10 @@
   UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
   [selectButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
   
-  [selectButton setTitle:@"选择" forState:UIControlStateNormal];
+  [selectButton setTitle:@"未选择" forState:UIControlStateNormal];
   [selectButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
 
-  [selectButton addTarget:[self viewController] action:@selector(loadImagePicker) forControlEvents:UIControlEventTouchUpInside];
+  [selectButton addTarget:[self viewController] action:@selector(onSelectButton:) forControlEvents:UIControlEventTouchUpInside];
   
   [self addSubview:selectButton];
 }

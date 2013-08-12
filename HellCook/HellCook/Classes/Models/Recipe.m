@@ -23,6 +23,7 @@
     browse_count = 0;
     catgory = @"";
     cover_img = @"";
+    cover_image_obj = nil;
     materials = [[NSMutableArray alloc]init];
     recipe_steps = [[NSMutableArray alloc]init];
     tips = @"";

@@ -34,5 +34,6 @@
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) UITextField* nameField;
 @property (nonatomic, retain) SSTextView* introTextView;
+@property (strong, nonatomic) MKNetworkOperation *uploadOperation;
 
 @end

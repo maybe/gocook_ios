@@ -24,7 +24,7 @@
 @end
 
 @implementation MyRecipesTipsController
-@synthesize tableView, tipsTextView;
+@synthesize tableView, tipsTextView, uploadOperation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -251,9 +251,74 @@
   
   RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
   pRecipeData.tips = [[NSString alloc]initWithString: trimedDesc];
-//  
-//  MyRecipesMaterialController* pController = [[MyRecipesMaterialController alloc] initWithNibName:@"MyRecipesMatieralView" bundle:nil];
-//  [self.navigationController pushViewController:pController animated:YES];
+  
+  
+  NSMutableDictionary* pUploadRecipeDic = [[NSMutableDictionary alloc]init];
+  pUploadRecipeDic[@"name"] = pRecipeData.name;
+  pUploadRecipeDic[@"desc"] = pRecipeData.description;
+  
+  pUploadRecipeDic[@"cover_img"] = pRecipeData.cover_img;
+
+  
+  NSString* materialString = [[NSString alloc]init];
+  for (int i = 0; i < pRecipeData.materials.count; i++) {
+    NSString* m = pRecipeData.materials[i][@"material"];
+    NSString* w = pRecipeData.materials[i][@"weight"];
+    if (i == 0) {
+      materialString = [materialString stringByAppendingFormat:@"%@|%@",m,w];
+    } else {
+      materialString = [materialString stringByAppendingFormat:@"|%@|%@",m,w];
+    }
+  }
+  
+  pUploadRecipeDic[@"materials"] = materialString;
+  pUploadRecipeDic[@"tips"] = pRecipeData.tips;
+  
+  NSString* stepString = [[NSString alloc]init];
+  stepString = [stepString stringByAppendingString:@"{\"steps\":["];
+  
+  for (int i = 0; i < pRecipeData.recipe_steps.count; i++) {
+    NSString* pFirstTag = @",";
+    if (i == 0) {
+      pFirstTag = @"";
+    }
+    
+    stepString = [stepString stringByAppendingFormat:@"%@{\"no\":%d,", pFirstTag, i+1];
+    stepString = [stepString stringByAppendingFormat:@"\"content\":\"%@\",", pRecipeData.recipe_steps[i][@"step"]];
+    
+    if (pRecipeData.recipe_steps[i][@"imageUrl"]) {
+      stepString = [stepString stringByAppendingFormat:@"\"img\":\"%@\"}", pRecipeData.recipe_steps[i][@"imageUrl"]];
+    } else {
+      stepString = [stepString stringByAppendingFormat:@"\"img\":\"%@\"}", @""];
+    }
+  }
+  
+  stepString = [stepString stringByAppendingString:@"]}"]; 
+  
+  pUploadRecipeDic[@"steps"] = stepString;
+  
+  NSLog(@"%@", pUploadRecipeDic);
+  
+  
+  self.uploadOperation = [[[NetManager sharedInstance] hellEngine]
+                          createRecipe: pUploadRecipeDic
+                          completionHandler:^(NSMutableDictionary *resultDic) {
+                            [self createCallBack:resultDic];}
+                          errorHandler:^(NSError *error) {}
+                          ];
+}
+
+-(void)createCallBack:(NSMutableDictionary*)resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0)
+  {
+    NSLog(@"success");
+  }
+  else if (result == 1){
+    //TODO:
+  }
+  
 }
 
 @end

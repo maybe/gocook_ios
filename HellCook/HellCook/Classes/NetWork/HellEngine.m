@@ -331,6 +331,32 @@
   return op;
 }
 
+- (MKNetworkOperation*)uploadCoverTmpImage:(NSString*)imagePath
+                         completionHandler:(uploadCoverTmpImageResponseBlock)completionBlock
+                              errorHandler:(MKNKErrorBlock) errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:@"recipe/upload_cover_photo"
+                                            params:nil
+                                        httpMethod:@"POST"];
+  
+  if (imagePath&&![imagePath isEqualToString:@""]) {
+    [op addFile:imagePath forKey:@"cover"];
+  }
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+
 - (MKNetworkOperation*)uploadStepTmpImage:(NSString*)imagePath
                                 withIndex:(NSInteger)index
                         completionHandler:(uploadStepTmpImageResponseBlock)completionBlock
@@ -355,6 +381,31 @@
   [self enqueueOperation:op];
   
   return op;
+}
+
+
+- (MKNetworkOperation*)createRecipe:(NSDictionary*)uploadDic
+                  completionHandler:(createRecipeResponseBlock)completionBlock
+                       errorHandler:(MKNKErrorBlock) errorBlock
+{
+  
+  MKNetworkOperation *op = [self operationWithPath:@"recipe/create"
+                                            params:uploadDic
+                                        httpMethod:@"POST"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+        //NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+
 }
 
 @end

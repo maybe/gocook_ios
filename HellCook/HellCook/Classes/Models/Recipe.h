@@ -21,6 +21,7 @@
   NSInteger browse_count;
   NSString* catgory;
   NSString* cover_img;
+  UIImage* cover_image_obj;
   NSMutableArray* materials;
   NSMutableArray* recipe_steps;
   NSString* tips;

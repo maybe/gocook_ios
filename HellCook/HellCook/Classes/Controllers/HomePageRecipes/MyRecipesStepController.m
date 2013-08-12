@@ -204,9 +204,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   UIImage* uploadImage = cell.upImageView.image;
   
   if (uploadImage!=cell.defaultImage) {
-    pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploaSstepRmp.png"];
-    uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(100, 100) interpolationQuality:kCGInterpolationHigh];
-    uploadImage = [uploadImage cropToSize:CGSizeMake(100, 100) usingMode:NYXCropModeTopCenter];
+    pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploaStepTmp.png"];
+    uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(600, 600) interpolationQuality:kCGInterpolationHigh];
+    uploadImage = [uploadImage cropToSize:CGSizeMake(600, 600) usingMode:NYXCropModeTopCenter];
     // Write image to PNG
     [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
   }
