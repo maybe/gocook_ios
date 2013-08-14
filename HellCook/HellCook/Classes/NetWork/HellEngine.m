@@ -347,8 +347,20 @@
 //  NSLog(@"%@",  aStr);
   
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    NSLog(@"%@",completedOperation.responseString);
+    //NSLog(@"%@",completedOperation.responseString);
     
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
 - (MKNetworkOperation*)uploadCoverTmpImage:(NSString*)imagePath
                          completionHandler:(uploadCoverTmpImageResponseBlock)completionBlock
                               errorHandler:(MKNKErrorBlock) errorBlock
@@ -386,8 +398,20 @@
   }
   
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    NSLog(@"%@",completedOperation.responseString);
+    //NSLog(@"%@",completedOperation.responseString);
     
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
 
 - (MKNetworkOperation*)uploadStepTmpImage:(NSString*)imagePath
                                 withIndex:(NSInteger)index
