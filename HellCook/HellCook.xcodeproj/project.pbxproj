@@ -17,6 +17,9 @@
 		5EEB7E0817B3EFAB00BCB1CB /* MyFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E0617B3EFAB00BCB1CB /* MyFansViewController.m */; };
 		5EEB7E0B17B3F01C00BCB1CB /* MyFansView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EEB7E0A17B3F01C00BCB1CB /* MyFansView.xib */; };
 		5EEB7E0E17B4C55600BCB1CB /* MyFansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E0D17B4C55600BCB1CB /* MyFansTableViewCell.m */; };
+		5EEB7E1617B7AE5700BCB1CB /* MyIntroEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1517B7AE5700BCB1CB /* MyIntroEditViewController.m */; };
+		5EEB7E1817B7AE7100BCB1CB /* MyIntroEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1717B7AE7100BCB1CB /* MyIntroEditView.xib */; };
+		5EEB7E1B17B7B47200BCB1CB /* MyIntroAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1A17B7B47200BCB1CB /* MyIntroAvatarView.m */; };
 		BA02634516D7579700298803 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634416D7579700298803 /* AppDelegate.m */; };
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
 		BA02635216D75E4F00298803 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02635116D75E4F00298803 /* Common.m */; };
@@ -169,6 +172,11 @@
 		5EEB7E0A17B3F01C00BCB1CB /* MyFansView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFansView.xib; sourceTree = "<group>"; };
 		5EEB7E0C17B4C55600BCB1CB /* MyFansTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFansTableViewCell.h; sourceTree = "<group>"; };
 		5EEB7E0D17B4C55600BCB1CB /* MyFansTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFansTableViewCell.m; sourceTree = "<group>"; };
+		5EEB7E1417B7AE5700BCB1CB /* MyIntroEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroEditViewController.h; path = Classes/Controllers/MyIntroEditViewController.h; sourceTree = "<group>"; };
+		5EEB7E1517B7AE5700BCB1CB /* MyIntroEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroEditViewController.m; path = Classes/Controllers/MyIntroEditViewController.m; sourceTree = "<group>"; };
+		5EEB7E1717B7AE7100BCB1CB /* MyIntroEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyIntroEditView.xib; sourceTree = "<group>"; };
+		5EEB7E1917B7B47200BCB1CB /* MyIntroAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroAvatarView.h; path = Classes/Views/MyIntroAvatarView.h; sourceTree = "<group>"; };
+		5EEB7E1A17B7B47200BCB1CB /* MyIntroAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroAvatarView.m; path = Classes/Views/MyIntroAvatarView.m; sourceTree = "<group>"; };
 		BA02634316D7579700298803 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		BA02634416D7579700298803 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		BA02634716D759CB00298803 /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
@@ -641,6 +649,8 @@
 				5EAFA03F17AFE209008B6C64 /* MyIntroductionPicCell.m */,
 				5EAFA04117B102BE008B6C64 /* MyIntroductionIntroCell.h */,
 				5EAFA04217B102BF008B6C64 /* MyIntroductionIntroCell.m */,
+				5EEB7E1917B7B47200BCB1CB /* MyIntroAvatarView.h */,
+				5EEB7E1A17B7B47200BCB1CB /* MyIntroAvatarView.m */,
 				5EAFA04417B26A09008B6C64 /* MyFollowTableViewCell.h */,
 				5EAFA04517B26A0C008B6C64 /* MyFollowTableViewCell.m */,
 				5EEB7E0C17B4C55600BCB1CB /* MyFansTableViewCell.h */,
@@ -673,6 +683,7 @@
 				5E13569817AD3AED009C623B /* MyFollowView.xib */,
 				5EEB7E0A17B3F01C00BCB1CB /* MyFansView.xib */,
 				5E13569117AD37AF009C623B /* MyIntroductionView.xib */,
+				5EEB7E1717B7AE7100BCB1CB /* MyIntroEditView.xib */,
 				BAE38C9A1737984B00936382 /* RecipeDetailView.xib */,
 				BAE38C831736997500936382 /* TopListView.xib */,
 				BA829BE91704995300B0341A /* LoginView.xib */,
@@ -942,6 +953,8 @@
 				BA7CC60C17AD168000A6C8AE /* MyCollectionController.m */,
 				5E13568C17AD34D5009C623B /* MyIntroductionViewController.h */,
 				5E13568D17AD34D5009C623B /* MyIntroductionViewController.m */,
+				5EEB7E1417B7AE5700BCB1CB /* MyIntroEditViewController.h */,
+				5EEB7E1517B7AE5700BCB1CB /* MyIntroEditViewController.m */,
 				5E13569317AD3AC4009C623B /* MyFollowViewController.h */,
 				5E13569417AD3AC4009C623B /* MyFollowViewController.m */,
 				5EEB7E0517B3EFAB00BCB1CB /* MyFansViewController.h */,
@@ -1027,6 +1040,7 @@
 				5EEB7E0B17B3F01C00BCB1CB /* MyFansView.xib in Resources */,
 				BA3E044017B3F572007F1E86 /* MyRecipesMatieralView.xib in Resources */,
 				BA3E044B17B6B257007F1E86 /* MyRecipesStepView.xib in Resources */,
+				5EEB7E1817B7AE7100BCB1CB /* MyIntroEditView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,6 +1151,8 @@
 				BA3E044617B68B65007F1E86 /* MyRecipesStepController.m in Sources */,
 				BA3E044917B68B8C007F1E86 /* MyRecipeStepTableViewCell.m in Sources */,
 				BA3E045517B760CE007F1E86 /* SSTextView.m in Sources */,
+				5EEB7E1617B7AE5700BCB1CB /* MyIntroEditViewController.m in Sources */,
+				5EEB7E1B17B7B47200BCB1CB /* MyIntroAvatarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

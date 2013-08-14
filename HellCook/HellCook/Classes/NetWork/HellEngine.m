@@ -331,4 +331,60 @@
   return op;
 }
 
+
+- (MKNetworkOperation*)uploadBasicInfoWithDict:(NSMutableDictionary*)dict
+                             completionHandler:(uploadBasicInfoResponseBlock)completionBlock
+                                  errorHandler:(MKNKErrorBlock)errorBlock
+{
+  NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dict];
+  
+  MKNetworkOperation *op = [self operationWithPath:@"user/changebasicinfo"
+                                            params:dic
+                                        httpMethod:@"POST"];
+  
+//  NSString* aStr;
+//  aStr = [[NSString alloc] initWithData:[[op readonlyRequest] HTTPBody] encoding:NSASCIIStringEncoding];
+//  NSLog(@"%@",  aStr);
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    NSLog(@"%@",completedOperation.responseString);
+    
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+- (MKNetworkOperation*)uploadAvatarByPath:(NSString*)path
+                        CompletionHandler:(uploadAvatarResponseBlock)completionBlock
+                             errorHandler:(MKNKErrorBlock) errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:@"user/changeavatar"
+                                            params:nil
+                                        httpMethod:@"POST"];
+  if (path && ![path isEqualToString:@""]) {
+    [op addFile:path forKey:@"avatar"];
+  }
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    NSLog(@"%@",completedOperation.responseString);
+    
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
 @end

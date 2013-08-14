@@ -7,7 +7,49 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KeyboardHandlerDelegate.h"
+#import "MBProgressHUD.h"
+#import "SSTextView.h"
+#import "MyIntroductionPicCell.h"
+#import "MyIntroAvatarView.h"
 
-@interface MyIntroEditViewController : UIViewController
+@class KeyboardHandler;
+@interface MyIntroEditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,KeyboardHandlerDelegate>
+{
+  UITableView* myTableView;
+  NSMutableArray* cellContentList;
+  NSMutableDictionary *data;
+  
+  UITextField* nameField;
+  UITextField* careerField;
+  UITextField* provinceField;
+  UITextField* cityField;
+  SSTextView* introTextView;
+  UITextField *ageField;
+  UIButton *maleBtn;
+  UIButton *femaleBtn;
+  UIButton *otherBtn;
+  
+  MyIntroAvatarView* headImageView;
+  
+  KeyboardHandler *keyboard;
+}
+
+@property (nonatomic, retain) IBOutlet UITableView* myTableView;
+@property (nonatomic, retain) UITextField* nameField;
+@property (nonatomic, retain) UITextField* careerField;
+@property (nonatomic, retain) UITextField* provinceField;
+@property (nonatomic, retain) UITextField* cityField;
+@property (nonatomic, retain) SSTextView* introTextView;
+@property (nonatomic, retain) UITextField *ageField;
+@property (nonatomic, retain) UIButton *maleBtn;
+@property (nonatomic, retain) UIButton *femaleBtn;
+@property (nonatomic, retain) UIButton *otherBtn;
+@property (strong, nonatomic) MKNetworkOperation *netOperation;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil data:(NSMutableDictionary*)dict;
+- (IBAction) maleBtnPressed;
+- (IBAction) femaleBtnPressed;
+- (IBAction) otherBtnPressed;
 
 @end

@@ -9,6 +9,7 @@
 #import "MyIntroductionViewController.h"
 #import "NetManager.h"
 #import "LoginController.h"
+#import "MyIntroEditViewController.h"
 
 @interface MyIntroductionViewController ()
 
@@ -36,6 +37,7 @@
 {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
+  [self setRightButton];
   CGRect tableframe = self.myTableView.frame;
   tableframe.size.height = _screenHeight_NoStBar - _navigationBarHeight;
   [self.myTableView setFrame:tableframe];
@@ -65,7 +67,29 @@
     [super viewDidUnload];
 }
 
+- (void)setRightButton
+{
+  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
+  [rightBarButtonView addTarget:self action:@selector(edit) forControlEvents:UIControlEventTouchUpInside];
+  [rightBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
+                                forState:UIControlStateNormal];
+  [rightBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"]
+                                forState:UIControlStateHighlighted];
+  [rightBarButtonView setTitle:@"编辑" forState:UIControlStateNormal];
+  [rightBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+  
+  UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
+  
+  [self.tabBarController.navigationItem setRightBarButtonItem:rightBarButtonItem];
+}
 
+- (void)edit
+{
+  MyIntroEditViewController *pController = [[MyIntroEditViewController alloc] initWithNibName:@"MyIntroEditView" bundle:nil data:pMyInfo];
+  [self.tabBarController.navigationController pushViewController:pController animated:YES];
+}
 
 
 #pragma mark - Table view data source

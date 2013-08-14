@@ -71,7 +71,7 @@
   self.navigationItem.title = [[[User sharedInstance] account] username];
   
   [self setLeftButton];
-  [self setRightButton];
+  //[self setRightButton];
   
   CGRect viewframe = self.view.frame;
   [self.view setBackgroundColor:[UIColor redColor]];
@@ -127,7 +127,7 @@
 
 -(void)onEdit
 {
-  
+
 }
 
 

@@ -22,6 +22,9 @@ typedef void (^myRecipesResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^myIntroductionResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^myFollowResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^myFansResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^uploadBasicInfoResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^uploadAvatarResponseBlock)(NSMutableDictionary* resultDic);
+
 
 // 登录
 - (MKNetworkOperation*)loginWithUser:(NSString*)username AndPass:(NSString*)pass
@@ -83,4 +86,13 @@ typedef void (^myFansResponseBlock)(NSMutableDictionary* resultDic);
                            CompletionHandler:(myFansResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock;
 
+// 上传个人基本信息
+- (MKNetworkOperation*)uploadBasicInfoWithDict:(NSMutableDictionary*)dict
+                       completionHandler:(uploadBasicInfoResponseBlock)completionBlock
+                            errorHandler:(MKNKErrorBlock)errorBlock;
+
+//上传头像
+- (MKNetworkOperation*)uploadAvatarByPath:(NSString*)path
+                         CompletionHandler:(uploadAvatarResponseBlock)completionBlock
+                              errorHandler:(MKNKErrorBlock) errorBlock;
 @end
