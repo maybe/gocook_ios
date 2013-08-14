@@ -356,9 +356,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     user.account.username = resultDic[@"username"];
     user.account.isLogin = YES;
     user.account.avatar = resultDic[@"icon"];
+    user.account.user_id = [resultDic[@"user_id"] intValue];
     
     NSMutableDictionary* dic = nil;
     dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
+           resultDic[@"user_id"] , @"user_id",
            resultDic[@"username"], @"username",
            emailField.text, @"email",
            passwordField.text, @"password",

@@ -39,6 +39,7 @@
         
         NSMutableDictionary* dic = nil;
         dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
+               jsonObject[@"user_id"], @"user_id",
                jsonObject[@"username"], @"username",
                username, @"email",
                pass, @"password",

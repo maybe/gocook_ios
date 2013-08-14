@@ -10,6 +10,7 @@
 
 @interface UserAccount : NSObject
 {
+  NSInteger user_id;
   NSString* username;
   NSString* password;
   NSString* email;
@@ -23,6 +24,7 @@
 @property (nonatomic, retain) NSString* password;
 @property (nonatomic, retain) NSString* signature;
 @property (nonatomic, retain) NSString* email;
+@property NSInteger user_id;
 @property BOOL isLogin;
 @property BOOL shouldResetLogin;
 @property (nonatomic, retain) NSString* avatar;

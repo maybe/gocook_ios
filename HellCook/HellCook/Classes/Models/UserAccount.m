@@ -10,7 +10,7 @@
 #import "DBHandler.h"
 
 @implementation UserAccount
-@synthesize username,signature,password,isLogin,avatar,shouldResetLogin,email;
+@synthesize username,signature,password,isLogin,avatar,shouldResetLogin,email,user_id;
 
 -(id)init{
   if(self=[super init]){
@@ -21,6 +21,7 @@
       email = [dic valueForKey:@"email"];
       password = [dic valueForKey:@"password"];
       avatar = [dic valueForKey:@"avatar"];
+      user_id = [[dic valueForKey:@"user_id"] intValue];
       isLogin = YES;
       shouldResetLogin = YES;
     }
@@ -41,6 +42,7 @@
   email = [dic valueForKey:@"email"];
   password = [dic valueForKey:@"password"];
   avatar = [dic valueForKey:@"avatar"];
+  user_id = [[dic valueForKey:@"user_id"] intValue];
   
   DBHandler* dbHandler = [DBHandler sharedInstance];
   [dbHandler setAccount:dic];

@@ -34,6 +34,7 @@
     FMResultSet *rs = [db executeQuery:@"SELECT * FROM account;"];
     if ([rs next]) {
       dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
+            [rs stringForColumn:@"userid"], @"user_id",
             [rs stringForColumn:@"username"], @"username",
             [rs stringForColumn:@"email"], @"email",
             [rs stringForColumn:@"password"], @"password",
@@ -53,7 +54,7 @@
     //NSLog(@"%@", accountDic[@"session"]);
     NSString* session_str = [[accountDic[@"session"] componentsSeparatedByString:@";"] objectAtIndex:0];
     
-    [db executeUpdate:@"INSERT INTO account (username, email,password, avatar, session) VALUES (?,?,?,?,?);", accountDic[@"username"], accountDic[@"email"], accountDic[@"password"], accountDic[@"avatar"], session_str];
+    [db executeUpdate:@"INSERT INTO account (userid, username, email,password, avatar, session) VALUES (?,?,?,?,?,?);", accountDic[@"user_id"], accountDic[@"username"], accountDic[@"email"], accountDic[@"password"], accountDic[@"avatar"], session_str];
     [db close];
     return YES;
   }
@@ -78,12 +79,22 @@
 {
   [self openDB];
   
+  // create account table
   NSString *accountTableName = [db stringForQuery:@"SELECT name FROM sqlite_master WHERE type='table' AND name='account';"];
   
   if (!accountTableName)
   {
-    [db executeUpdate:@"CREATE TABLE account(username text, email text, password text, avatar text, session text)"];
+    [db executeUpdate:@"CREATE TABLE account(userid text, username text, email text, password text, avatar text, session text)"];
   }
+  
+  // create shoppinglist table
+  NSString *shoppingTableName = [db stringForQuery:@"SELECT name FROM sqlite_master WHERE type='table' AND name='shopping';"];
+  
+  if (!shoppingTableName)
+  {
+    [db executeUpdate:@"CREATE TABLE shopping(recipeid integer, name text, materials text)"];
+  }
+  
   
   [self closeDB];
 }
