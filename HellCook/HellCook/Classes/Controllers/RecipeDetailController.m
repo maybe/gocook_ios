@@ -11,6 +11,7 @@
 #import "RecipeDetailMaterialTableViewCell.h"
 #import "RecipeDetailStepsTableViewCell.h"
 #import "NetManager.h"
+#import "DBHandler.h"
 
 @interface RecipeDetailController ()
 
@@ -120,6 +121,11 @@
   RecipeDetailBaseTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (!cell && [CellIdentifier isEqualToString:@"HeaderCell"]) {
     cell = [[RecipeDetailHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if ([[DBHandler sharedInstance] isInShoppingList:mRecipeId] ) {
+      ((RecipeDetailHeaderTableViewCell*)cell).buyButton.enabled = false;
+      [((RecipeDetailHeaderTableViewCell*)cell).buyButton setTitle:@"已加入清单" forState:UIControlStateNormal];
+;
+    }
   }
   else if (!cell && [CellIdentifier isEqualToString:@"MaterialCell"]) {
     cell = [[RecipeDetailMaterialTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -138,6 +144,21 @@
   //[self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil] animated:YES];
 }
 
+
+- (void)addToShoppingList
+{
+  if (![[DBHandler sharedInstance] isInShoppingList: mRecipeId]) {
+    NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:[NSNumber numberWithInt:mRecipeId] forKey:@"recipeid"];
+    [dic setObject:recipeDataDic[@"materials"] forKey:@"materials"];
+    [dic setObject:recipeDataDic[@"recipe_name"] forKey:@"name"];
+    [[DBHandler sharedInstance] addToShoppingList:dic];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kDetailHeaderCell inSection:0];
+    RecipeDetailHeaderTableViewCell* cell = (RecipeDetailHeaderTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    cell.buyButton.enabled = false;
+    [cell.buyButton setTitle:@"已加入清单" forState:UIControlStateNormal];
+  }
+}
 
 - (void)setLeftButton
 {

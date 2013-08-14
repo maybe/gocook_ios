@@ -235,7 +235,7 @@
       NetManager* netManager = [NetManager sharedInstance];
       
       NSString* imageurl = @"";
-      if ([[pDic[@"img"] substringToIndex:5] isEqual:@"http"]) {
+      if ([[pDic[@"img"] substringToIndex:4] isEqual:@"http"]) {
         imageurl = pDic[@"img"];
       } else {
         imageurl = [NSString stringWithFormat: @"http://%@/images/recipe/step/%@", netManager.host, pDic[@"img"]];

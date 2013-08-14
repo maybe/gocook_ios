@@ -31,4 +31,10 @@
 - (BOOL)setAccount:(NSMutableDictionary*)accountDic;
 - (BOOL)delAccount;
 
+- (BOOL)emptyShoppingList;
+- (void)addToShoppingList:(NSMutableDictionary*)shoppingDic;
+- (void)removeFromShoppingList:(NSInteger)recipeId;
+- (BOOL)isInShoppingList:(NSInteger)recipeId;
+- (NSMutableArray*)getShoppingList;
+
 @end

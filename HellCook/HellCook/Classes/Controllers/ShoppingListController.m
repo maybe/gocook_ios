@@ -8,13 +8,14 @@
 
 #import "ShoppingListController.h"
 #import "ShoppingListRecipeTableViewCell.h"
+#import "DBHandler.h"
 
 @interface ShoppingListController ()
 
 @end
 
 @implementation ShoppingListController
-@synthesize tableView, leftListButton, rightListButton, listCountLabel;
+@synthesize tableView, leftListButton, rightListButton, listCountLabel, cellContentArray;
 
 - (void)viewDidLoad
 {
@@ -27,6 +28,9 @@
     
   self.navigationItem.title = @"购买清单";
   
+  dataListArray = [[NSMutableArray alloc]init];
+  cellContentArray = [[NSMutableArray alloc]init];
+  
   [self resetTableHeader];
   
   CGRect viewframe = self.view.frame;
@@ -34,8 +38,42 @@
   //viewframe.size.width = _sideWindowWidth;
   [self.view setFrame:viewframe];
   [self.tableView setFrame:viewframe];
+  
+  [self setDataList];
     
   [super viewDidLoad];
+}
+
+- (void)setDataList
+{
+  [dataListArray removeAllObjects];
+  [cellContentArray removeAllObjects];
+  
+  NSMutableArray* array = [[DBHandler sharedInstance] getShoppingList];
+  for (int i = 0; i < array.count; i++) {
+    
+    NSMutableDictionary* contentDic = [[NSMutableDictionary alloc]init];//
+    [contentDic setObject:array[i][@"name"] forKey:@"name"];
+    [contentDic setObject:array[i][@"recipeid"] forKey:@"recipeid"];
+    
+    [cellContentArray addObject:[[NSMutableDictionary alloc] initWithDictionary:contentDic]];
+    
+    NSMutableArray* maArray = [[NSMutableArray alloc]init];//
+    NSArray* totalmaterialArray = [array[i][@"materials"] componentsSeparatedByString:@"|"];
+    for (int j = 0; j < totalmaterialArray.count/2; j++) {
+      NSMutableDictionary* subMaterialDic = [[NSMutableDictionary alloc]init];
+      [subMaterialDic setObject:totalmaterialArray[j*2] forKey:@"material"];
+      [subMaterialDic setObject:totalmaterialArray[j*2+1] forKey:@"weight"];
+      
+      [maArray addObject:subMaterialDic];
+      
+      [cellContentArray addObject:[[NSMutableDictionary alloc] initWithDictionary:subMaterialDic]];
+
+    }
+    [contentDic setObject:maArray forKey:@"materials"];
+    
+    [dataListArray addObject:contentDic];
+  }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -138,25 +176,42 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  if (cellContentArray[indexPath.row][@"name"]) {
+    return 60;
+  }
   return 44;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return 10;
+  return cellContentArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *CellIdentifier = @"Cell";
-  ShoppingListMaterialTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  
-  if (!cell) {
-      cell = [[ShoppingListMaterialTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+  NSString *CellIdentifier = NULL;
+  if (cellContentArray[indexPath.row][@"name"]) {
+    CellIdentifier = @"NameCell";
+  } else {
+    CellIdentifier = @"MaterialCell";
   }
-
   
+  UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (!cell) {
+    if ([CellIdentifier isEqualToString: @"NameCell"]) {
+      cell = [[ShoppingListRecipeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 
+    } else {
+      cell = [[ShoppingListMaterialTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+  }
+  
+  if ([CellIdentifier isEqualToString: @"NameCell"]) {
+    [((ShoppingListRecipeTableViewCell*)cell) setData:cellContentArray[indexPath.row]];
+  } else {
+    [((ShoppingListMaterialTableViewCell*)cell) setData:cellContentArray[indexPath.row]];
+  }
+  
   return cell;
 }
 
