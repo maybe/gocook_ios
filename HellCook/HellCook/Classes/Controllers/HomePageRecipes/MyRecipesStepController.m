@@ -10,13 +10,17 @@
 #import "KeyboardHandler.h"
 #import "UIView+FindFirstResponder.h"
 #import "User.h"
+#import "UIImage+Resize.h"
+#import "UIImage+Resizing.h"
+#import "NetManager.h"
+#import "MyRecipesTipsController.h"
 
 @interface MyRecipesStepController ()
 
 @end
 
 @implementation MyRecipesStepController
-@synthesize tableView;
+@synthesize tableView, uploadOperation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,7 +53,7 @@
   
   cellContentList = [[NSMutableArray alloc]init];
   RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
-  [cellContentList addObjectsFromArray: pRecipeData.materials];
+  [cellContentList addObjectsFromArray: pRecipeData.recipe_steps];
   
   [super viewDidLoad];
 }
@@ -128,6 +132,7 @@
 #pragma mark - Add line
 - (void)addStepLine
 {
+
   [[NSNotificationCenter defaultCenter] postNotificationName:@"ResignMyRecipeStepTextView" object:nil];
 
   NSMutableDictionary* pStepLineDic = [[NSMutableDictionary alloc]init];
@@ -141,6 +146,96 @@
   [self.tableView beginUpdates];
   [self.tableView insertRowsAtIndexPaths:indexpathArray withRowAnimation:UITableViewRowAnimationNone];
   [self.tableView endUpdates];
+}
+
+#pragma mark - Image Picker + select button
+
+-(void) onSelectButtonClick:(id)sender
+{
+  imagePickerButton = sender;
+  if ([[imagePickerButton titleForState:UIControlStateNormal] isEqualToString:@"+图片"]) {
+    [self loadImagePicker];
+  } else if([[imagePickerButton titleForState:UIControlStateNormal] isEqualToString:@"上传"]) {
+    [self uploadStepTmpFile];
+  }
+}
+
+-(void) loadImagePicker
+{
+  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+  picker.delegate = self;
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]==YES) {
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+  }
+  picker.allowsEditing = NO;
+  [self presentViewController:picker animated:YES completion:nil];
+  
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+  // Access the uncropped image from info dictionary
+  UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+  
+  //Find the image url.
+  //self.pickedImagePath = [(NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL] absoluteString];
+  
+  // Dismiss the camera
+  [self dismissViewControllerAnimated:YES completion:nil];
+  
+  MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)imagePickerButton.superview;
+  //[cell.upImageView setImage:image];
+  
+  NSIndexPath *indexPath = [tableView indexPathForCell: cell];
+  cellContentList[indexPath.row][@"pickRealImage"] = image;
+  cellContentList[indexPath.row][@"pickImage"] = (NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL];
+  
+  [cell setData:cellContentList[indexPath.row]];
+}
+
+-(void)uploadStepTmpFile
+{
+  NSString  *pngPath = @"";
+  
+  MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)imagePickerButton.superview;
+  NSIndexPath *indexPath = [tableView indexPathForCell: cell];
+  
+  UIImage* uploadImage = cell.upImageView.image;
+  
+  if (uploadImage!=cell.defaultImage) {
+    pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploaStepTmp.png"];
+    uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(600, 600) interpolationQuality:kCGInterpolationHigh];
+    uploadImage = [uploadImage cropToSize:CGSizeMake(600, 600) usingMode:NYXCropModeTopCenter];
+    // Write image to PNG
+    [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
+  }
+  
+  
+  self.uploadOperation = [[[NetManager sharedInstance] hellEngine]
+                            uploadStepTmpImage:pngPath
+                            withIndex: indexPath.row
+                            completionHandler:^(NSMutableDictionary *resultDic, NSInteger index) {
+                              [self UploadCallBack:resultDic withIndex:index];}
+                            errorHandler:^(NSError *error) {}
+                            ];
+
+}
+
+-(void)UploadCallBack:(NSMutableDictionary*)resultDic withIndex:(NSInteger)index
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0)
+  {
+    cellContentList[index][@"imageUrl"] = resultDic[@"avatar"];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)[tableView cellForRowAtIndexPath: indexPath];
+    [cell setData:cellContentList[indexPath.row]];
+  }
+  else if (result == 1){
+    //TODO:
+  }
+  
 }
 
 #pragma mark - Keyboard
@@ -194,7 +289,7 @@
 - (void)setRightButton
 {
   UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
-  [rightBarButtonView addTarget:self action:@selector(onRegister) forControlEvents:UIControlEventTouchUpInside];
+  [rightBarButtonView addTarget:self action:@selector(onNext) forControlEvents:UIControlEventTouchUpInside];
   [rightBarButtonView setBackgroundImage:
    [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
                                 forState:UIControlStateNormal];
@@ -217,6 +312,15 @@
   [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)onNext
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"ResignMyRecipeStepTextView" object:nil];
+  
+  [self setDataToRecipe];
+  
+  MyRecipesTipsController* pController = [[MyRecipesTipsController alloc]initWithNibName:@"MyRecipesTipsView" bundle:nil];
+  [self.navigationController pushViewController:pController animated:YES];
+}
 
 #pragma mark - Set Data to Recipe
 -(void)setDataToRecipe
@@ -228,11 +332,23 @@
   for (int i = 0; i < cellContentList.count; i++) {
     NSString* stepStr = [cellContentList[i][@"step"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
+    NSURL* pickImageUrl = cellContentList[i][@"pickImage"];
+    UIImage* pImage = cellContentList[i][@"pickRealImage"];
+    NSString* imageUrl = cellContentList[i][@"imageUrl"];
+    
     if (![stepStr isEqualToString:@""]) {
       
       NSMutableDictionary* pDic = [[NSMutableDictionary alloc]init];
       
       pDic[@"step"] = [[NSString alloc]initWithString:stepStr];
+      if (pickImageUrl) {
+        pDic[@"pickImage"] = [[NSURL alloc]initWithString:pickImageUrl.absoluteString];
+        pDic[@"pickRealImage"] = pImage;
+      }
+      
+      if (imageUrl) {
+        pDic[@"imageUrl"] = [[NSString alloc]initWithString:imageUrl];;
+      }
       
       [pRecipeData.recipe_steps addObject:pDic];
     }
@@ -243,5 +359,6 @@
 {
   cellContentList[index][@"step"] = [[NSString alloc]initWithString:data];
 }
+
 
 @end

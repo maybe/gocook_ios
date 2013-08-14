@@ -28,7 +28,7 @@
 @end
 
 @implementation MyRecipesEditController
-@synthesize tableView, nameField, introTextView;
+@synthesize tableView, nameField, introTextView, uploadOperation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -159,7 +159,7 @@
     textView.delegate = self;
     [textView setFrame:CGRectMake(20, 5, 300, 120)];
     [textView setBackgroundColor: [UIColor clearColor]];
-    textView.placeholder = [dic objectForKey:@"placeHolder"];
+    [textView setPlaceholder: [dic objectForKey:@"placeHolder"]];
     textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
     textView.keyboardType = UIKeyboardTypeDefault;
     textView.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -224,6 +224,16 @@
 }
 
 
+-(void) onSelectButton:(id)sender
+{
+    [self uploadCoverTmpFile];
+}
+
+- (void) onSelectImageButton
+{
+  [self loadImagePicker];
+}
+
 -(void) loadImagePicker
 {
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -233,9 +243,6 @@
   }
   picker.allowsEditing = NO;
   [self presentViewController:picker animated:YES completion:nil];
-  
-  
-  
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker
@@ -244,6 +251,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   // Access the uncropped image from info dictionary
   UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
   
+  [headImageView setAssociativeObject:image forKey:@"cover_image_obj"];
+  
   //Find the image url.
   //self.pickedImagePath = [(NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL] absoluteString];
   
@@ -251,7 +260,49 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   [self dismissViewControllerAnimated:YES completion:nil];
   
   [headImageView.upImageView setImage:image];
+  [headImageView.selectButton setTitle:@"上传" forState:UIControlStateNormal];
 }
+
+
+-(void)uploadCoverTmpFile
+{
+  if (![[headImageView.selectButton titleForState:UIControlStateNormal] isEqual: @"上传"]) {
+    return;
+  }
+  
+  NSString  *pngPath = @"";
+  UIImage* uploadImage = headImageView.upImageView.image;
+  
+  if (uploadImage != headImageView.defaultImage) {
+    pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploaCoverTmp.png"];
+    uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(600, 600) interpolationQuality:kCGInterpolationHigh];
+    uploadImage = [uploadImage cropToSize:CGSizeMake(600, 600) usingMode:NYXCropModeTopCenter];
+    // Write image to PNG
+    [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
+    
+    self.uploadOperation = [[[NetManager sharedInstance] hellEngine]
+                            uploadCoverTmpImage:pngPath
+                            completionHandler:^(NSMutableDictionary *resultDic) {
+                              [self UploadCallBack:resultDic];}
+                            errorHandler:^(NSError *error) {}
+                            ];
+  }
+}
+
+-(void)UploadCallBack:(NSMutableDictionary*)resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0)
+  {
+    [headImageView setAssociativeObject:resultDic[@"avatar"] forKey:@"cover_img"];
+    [headImageView.selectButton setTitle:@"已上传" forState:UIControlStateNormal];
+  }
+  else if (result == 1){
+    //TODO:
+  }
+  
+}
+
 
 #pragma mark - Keyboard
 
@@ -342,6 +393,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   
   if (![trimedDesc isEqualToString:@""]) {
     pRecipeData.description = [[NSString alloc]initWithString: trimedDesc];
+  }
+  
+  if ([headImageView associativeObjectForKey:@"cover_img"]
+      && ![[headImageView associativeObjectForKey:@"cover_img"] isEqual:@""]) {
+    pRecipeData.cover_img = [headImageView associativeObjectForKey:@"cover_img"];
   }
   
   MyRecipesMaterialController* pController = [[MyRecipesMaterialController alloc] initWithNibName:@"MyRecipesMatieralView" bundle:nil];

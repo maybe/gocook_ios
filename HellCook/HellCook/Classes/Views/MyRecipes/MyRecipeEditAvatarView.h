@@ -11,12 +11,14 @@
 @interface MyRecipeEditAvatarView : UIView
 {
   //UISegmentedControl *permControl;
+  UIButton* selectImageButton;
   UIButton* selectButton;
   UIImageView* upImageView;
   UIImage* defaultImage;
 }
 
 @property (nonatomic,retain) UIButton* selectButton;
+@property (nonatomic,retain) UIButton* selectImageButton;
 @property (nonatomic,retain) UIImageView* upImageView;
 @property (nonatomic,retain) UIImage* defaultImage;
 

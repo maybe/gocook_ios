@@ -81,6 +81,11 @@
   [self.tabBar setFrame:CGRectMake(0, _screenHeight_NoStBar_NoNavBar_NoTabBar - _stateBarHeight, _screenWidth, _tabBarHeight)]; // don't know why must minus 20px...
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  //[self.revealSideViewController setIsSwipeEnabled:NO];
+}
 
 #pragma mark - Navi Button
 

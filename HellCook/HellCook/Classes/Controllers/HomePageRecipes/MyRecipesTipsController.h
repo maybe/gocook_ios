@@ -8,23 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "KeyboardHandlerDelegate.h"
-#import "MyRecipeStepTableViewCell.h"
+#import "MBProgressHUD.h"
+#import "SSTextView.h"
 
 @class KeyboardHandler;
-@interface MyRecipesStepController : UIViewController<KeyboardHandlerDelegate,
-                                                      RecipeStepCellInputDelegate,
+@interface MyRecipesTipsController : UIViewController<UITextViewDelegate,
                                                       UITableViewDataSource,
                                                       UITableViewDelegate,
-                                                      UINavigationControllerDelegate,
-                                                      UIImagePickerControllerDelegate>
+                                                      KeyboardHandlerDelegate,
+                                                      MBProgressHUDDelegate>
 {
   UITableView* tableView;
-  NSMutableArray* cellContentList;
+  SSTextView* tipsTextView;
   KeyboardHandler *keyboard;
-  UIButton* imagePickerButton;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
+@property (nonatomic, retain) SSTextView* tipsTextView;
 @property (strong, nonatomic) MKNetworkOperation *uploadOperation;
 
 @end

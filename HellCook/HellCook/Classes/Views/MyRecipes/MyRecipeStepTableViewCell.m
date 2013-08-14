@@ -107,10 +107,10 @@
       UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
       [selectButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
       
-      [selectButton setTitle:@"选择" forState:UIControlStateNormal];
+      [selectButton setTitle:@"+图片" forState:UIControlStateNormal];
       [selectButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
       
-      [selectButton addTarget:[self viewController] action:@selector(loadImagePicker) forControlEvents:UIControlEventTouchUpInside];
+      [selectButton addTarget:[self viewController] action:@selector(onSelectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
       
       [self addSubview:selectButton];
       
@@ -132,7 +132,6 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-  NSLog(@"111111");
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -152,7 +151,24 @@
 - (void)setData:(NSMutableDictionary*) dictionary
 {
   [stepTextView setText:dictionary[@"step"]];
-  stepTextView.placeholder = [NSString stringWithFormat:@"步骤:%d", indexInTable+1];
+  [stepTextView setPlaceholder: [NSString stringWithFormat:@"步骤:%d", self.indexInTable+1]];
+  if ([[dictionary allKeys] containsObject: @"pickRealImage"]) {
+    [upImageView setImage:dictionary[@"pickRealImage"]];
+    [selectButton setTitle:@"上传" forState:UIControlStateNormal];
+  } else if ([[dictionary allKeys] containsObject: @"pickImage"]
+      && ![dictionary[@"pickImage"] isEqualToString:@""]) {
+    [Common loadPhotoFromURL:dictionary[@"pickImage"] thumbnail:NO showIn:upImageView];
+    // 保存起来
+    //dictionary[@"pickRealImage"] = upImageView.image;
+    [selectButton setTitle:@"上传" forState:UIControlStateNormal];
+  } else {
+    [upImageView setImage:defaultImage];
+    [selectButton setTitle:@"+图片" forState:UIControlStateNormal];
+  }
+  
+  if ([[dictionary allKeys] containsObject:@"imageUrl"]) {
+    [selectButton setTitle:@"已上传" forState:UIControlStateNormal];
+  }
 }
 
 //to get the next responder controller

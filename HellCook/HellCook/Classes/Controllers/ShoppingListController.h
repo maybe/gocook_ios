@@ -11,10 +11,17 @@
 
 @interface ShoppingListController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 {
-    UITableView* tableView;
-    UIImageView* fakeNavBarView;
+  UITableView* tableView;
+  UIImageView* fakeNavBarView;
+  
+  UIButton* leftListButton;
+  UIButton* rightListButton;
+  UILabel* listCountLabel;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
+@property (nonatomic, retain) UIButton* leftListButton;
+@property (nonatomic, retain) UIButton* rightListButton;
+@property (nonatomic, retain) UILabel* listCountLabel;
 
 @end

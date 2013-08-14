@@ -12,6 +12,7 @@
 #import "LoginController.h"
 #import "MyRecipesEditController.h"
 #import "User.h"
+#import <ODRefreshControl.h>
 
 @interface MyRecipesController ()
 
@@ -43,7 +44,20 @@
   [self.view setFrame:viewframe];
   [self.tableView setFrame:viewframe];
   
+  ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+  [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+  refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
+  
   mMyRecipeArray = [[NSMutableArray alloc] init];
+}
+
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
+{
+  double delayInSeconds = 3.0;
+  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    [refreshControl endRefreshing];
+  });
 }
 
 - (void)viewWillAppear:(BOOL)animated

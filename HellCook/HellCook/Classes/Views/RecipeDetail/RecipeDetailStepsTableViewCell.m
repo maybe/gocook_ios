@@ -231,7 +231,17 @@
       [image setHidden:YES];
     }
     else {
-      [image setImageWithURL:[NSURL URLWithString: pDic[@"img"]] placeholderImage:nil];
+      
+      NetManager* netManager = [NetManager sharedInstance];
+      
+      NSString* imageurl = @"";
+      if ([[pDic[@"img"] substringToIndex:5] isEqual:@"http"]) {
+        imageurl = pDic[@"img"];
+      } else {
+        imageurl = [NSString stringWithFormat: @"http://%@/images/recipe/step/%@", netManager.host, pDic[@"img"]];
+      }
+      
+      [image setImageWithURL:[NSURL URLWithString: imageurl] placeholderImage:nil];
       [image setHidden:NO];
     }
   }

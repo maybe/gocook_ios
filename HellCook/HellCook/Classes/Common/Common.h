@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 // define some macros
 #ifndef __has_feature
@@ -58,8 +59,12 @@
 
 #define _defaultHostName @"localhost"
 
+typedef void (^ALAssetsLibraryAssetForURLResultBlock)(ALAsset *myasset);
+typedef void (^ALAssetsLibraryAccessFailureBlock)(NSError *error);
+
 @interface Common : NSObject
 
 + (NSString *)dataFilePath:(NSString*)filePath;
++(void)loadPhotoFromURL:(NSURL*)imgURL thumbnail:(BOOL)useThumbnail showIn:(UIImageView*)imView;
 
 @end

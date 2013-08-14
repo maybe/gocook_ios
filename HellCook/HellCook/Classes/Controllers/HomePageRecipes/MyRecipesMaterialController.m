@@ -217,6 +217,10 @@
 
 -(void)onNext
 {
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"ResignMyRecipeMaterialTextField" object:nil];
+  
+  [self setDataToRecipe];
+  
   MyRecipesStepController* stepController = [[MyRecipesStepController alloc] initWithNibName:@"MyRecipesStepView" bundle:nil];
   [self.navigationController pushViewController:stepController animated:YES];
 }
