@@ -38,7 +38,6 @@
 {
   if (!mTitleLabel) {
     mTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 150, 256, 10)];
-    [mTitleLabel setTextColor:[UIColor blackColor]];
     [mTitleLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
     [mTitleLabel setFont: [UIFont boldSystemFontOfSize:18]];
     mTitleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -52,7 +51,6 @@
 - (UILabel*)createMaterialLabel
 {
   UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(32, 150, 256, 10)];
-  [label setTextColor:[UIColor blackColor]];
   [label setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
   [label setFont: [UIFont systemFontOfSize:15]];
   label.lineBreakMode = NSLineBreakByWordWrapping;

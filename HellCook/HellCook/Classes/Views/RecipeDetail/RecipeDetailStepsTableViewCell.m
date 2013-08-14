@@ -238,7 +238,7 @@
       if ([[pDic[@"img"] substringToIndex:5] isEqual:@"http"]) {
         imageurl = pDic[@"img"];
       } else {
-        imageurl = [NSString stringWithFormat: @"http://%@/images/recipe/526/%@", netManager.host, pDic[@"img"]];
+        imageurl = [NSString stringWithFormat: @"http://%@/images/recipe/step/%@", netManager.host, pDic[@"img"]];
       }
       
       [image setImageWithURL:[NSURL URLWithString: imageurl] placeholderImage:nil];

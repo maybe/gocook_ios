@@ -7,33 +7,42 @@
 //
 
 #import "ShoppingListController.h"
+#import "ShoppingListRecipeTableViewCell.h"
 
 @interface ShoppingListController ()
 
 @end
 
 @implementation ShoppingListController
-@synthesize tableView;
+@synthesize tableView, leftListButton, rightListButton, listCountLabel;
 
 - (void)viewDidLoad
 {
-    [self setRightButton];
+  [self setRightButton];
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
+  [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
     
-    self.navigationController.navigationBar.clipsToBounds = NO;
-    self.view.clipsToBounds = YES;
+  self.navigationController.navigationBar.clipsToBounds = NO;
+  self.view.clipsToBounds = YES;
     
-    self.navigationItem.title = @"购买清单";
+  self.navigationItem.title = @"购买清单";
+  
+  [self resetTableHeader];
+  
+  CGRect viewframe = self.view.frame;
+  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
+  //viewframe.size.width = _sideWindowWidth;
+  [self.view setFrame:viewframe];
+  [self.tableView setFrame:viewframe];
     
-    [super viewDidLoad];
+  [super viewDidLoad];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    [self.navigationController.view setFrame:CGRectMake(40, 0, _sideWindowWidth, 480)];
-
-    [super viewWillAppear:animated];
+  [self.navigationController.view setFrame:CGRectMake(40, 0, _sideWindowWidth, _screenHeight_NoStBar)];
+  
+  [super viewWillAppear:animated];
 }
 
 
@@ -53,29 +62,102 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+
+#pragma mark - Table Header
+- (void)resetTableHeader
+{
+  CGRect frame = self.tableView.tableHeaderView.frame;
+  frame.size.height = 50;
+  self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
+  
+  leftListButton = [[UIButton alloc]initWithFrame:CGRectMake(280 - 74 - 5, 12, 37, 29)];
+  [leftListButton addTarget:self action:@selector(onLeftListButton) forControlEvents:UIControlEventTouchDown];
+
+  rightListButton = [[UIButton alloc]initWithFrame:CGRectMake(280 - 37 - 5, 12, 37, 29)];
+  [rightListButton addTarget:self action:@selector(onRightListButton) forControlEvents:UIControlEventTouchDown];
+  
+  [self selectLeftListButton];
+  
+  [self.tableView.tableHeaderView addSubview:leftListButton];
+  [self.tableView.tableHeaderView addSubview:rightListButton];
+  
+  listCountLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 15, 150, 20)];
+  listCountLabel.text = @"";
+  [listCountLabel setBackgroundColor: [UIColor clearColor]];
+  [listCountLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
+  
+  [self.tableView.tableHeaderView addSubview:listCountLabel];
+  
+  UIImage* dotImage = [UIImage imageNamed:@"Images/homeHeaderSeperator.png"];
+  UIImageView* dotImageView = [[UIImageView alloc]initWithImage:dotImage];
+  [dotImageView setFrame:CGRectMake(0, 49, 280, 1)];
+  
+  [self.tableView.tableHeaderView addSubview:dotImageView];
+}
+
+-(void)onLeftListButton
+{
+  [self selectLeftListButton];
+}
+
+-(void)onRightListButton
+{
+  [self selectRightListButton];
+}
+
+-(void)selectLeftListButton
+{
+  UIImage *buttonBackgroundImageleft = [UIImage imageNamed:@"Images/buyListRecipeButtonSelected.png"];
+  [leftListButton setBackgroundImage:buttonBackgroundImageleft forState:UIControlStateNormal];
+  
+  UIImage *buttonBackgroundImageright = [UIImage imageNamed:@"Images/buyListStatButtonNormal.png"];
+  [rightListButton setBackgroundImage:buttonBackgroundImageright forState:UIControlStateNormal];
+
+}
+
+-(void)selectRightListButton
+{
+  UIImage *buttonBackgroundImageleft = [UIImage imageNamed:@"Images/buyListRecipeButtonNormal.png"];
+  [leftListButton setBackgroundImage:buttonBackgroundImageleft forState:UIControlStateNormal];
+  
+  UIImage *buttonBackgroundImageright = [UIImage imageNamed:@"Images/buyListStatButtonSelected.png"];
+  [rightListButton setBackgroundImage:buttonBackgroundImageright forState:UIControlStateNormal];
+
+}
+
 #pragma mark - Table view data source
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"ShoppingListHideOptionButton" object:nil];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+  return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return 44;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 30;
+  return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    cell.textLabel.text = [NSString stringWithFormat:@"Main %d", indexPath.row];
-    
-    return cell;
+  static NSString *CellIdentifier = @"Cell";
+  ShoppingListMaterialTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  
+  if (!cell) {
+      cell = [[ShoppingListMaterialTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+  }
+
+  
+
+  return cell;
 }
 
 

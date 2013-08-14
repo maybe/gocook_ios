@@ -424,7 +424,7 @@
 
 - (void)onClickCountGrid:(UIButton*)sender
 {
-  NSLog(@"%d",sender.tag);
+  //NSLog(@"%d",sender.tag);
   if (sender.tag == 10003)//我的收藏
   {
     if (self.navigationController)

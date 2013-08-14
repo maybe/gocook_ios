@@ -48,6 +48,7 @@
 		BA3F5E6416FA295B00493260 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5916FA28DA00493260 /* AssetsLibrary.framework */; };
 		BA3F5E6516FA295B00493260 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5716FA28D000493260 /* Accelerate.framework */; };
 		BA3F5E6716FA297800493260 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = BA3F5E6616FA297800493260 /* Images */; };
+		BA4550F217BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4550F117BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.m */; };
 		BA50F3541710413D00E3B6CE /* SearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA50F3531710413D00E3B6CE /* SearchBarView.m */; };
 		BA56F2AE179547AF001E8909 /* RecipeDetailHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56F2A6179547AF001E8909 /* RecipeDetailHeaderTableViewCell.m */; };
 		BA56F2B41795AAD2001E8909 /* RecipeDetailBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56F2B31795AAD1001E8909 /* RecipeDetailBaseTableViewCell.m */; };
@@ -218,6 +219,8 @@
 		BA3F5E5D16FA28F800493260 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BA3F5E5F16FA290200493260 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		BA3F5E6616FA297800493260 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = Resources/Images; sourceTree = "<group>"; };
+		BA4550F017BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListRecipeTableViewCell.h; sourceTree = "<group>"; };
+		BA4550F117BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListRecipeTableViewCell.m; sourceTree = "<group>"; };
 		BA50F3531710413D00E3B6CE /* SearchBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchBarView.m; path = Classes/Views/SearchBarView.m; sourceTree = "<group>"; };
 		BA50F3551710418600E3B6CE /* SearchBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchBarView.h; path = Classes/Views/SearchBarView.h; sourceTree = "<group>"; };
 		BA56F2A5179547AF001E8909 /* RecipeDetailHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailHeaderTableViewCell.h; sourceTree = "<group>"; };
@@ -610,6 +613,16 @@
 			path = Libs/ODRefreshControl;
 			sourceTree = "<group>";
 		};
+		BA4550EF17BA80AA008CBD00 /* ShoppingList */ = {
+			isa = PBXGroup;
+			children = (
+				BA4550F017BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.h */,
+				BA4550F117BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.m */,
+			);
+			name = ShoppingList;
+			path = Classes/Views/ShoppingList;
+			sourceTree = "<group>";
+		};
 		BA6069B11709EE8C0060C251 /* File */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,6 +677,7 @@
 				5EAFA04517B26A0C008B6C64 /* MyFollowTableViewCell.m */,
 				5EEB7E0C17B4C55600BCB1CB /* MyFansTableViewCell.h */,
 				5EEB7E0D17B4C55600BCB1CB /* MyFansTableViewCell.m */,
+				BA4550EF17BA80AA008CBD00 /* ShoppingList */,
 				BABAE9DE17B008BD0099BE45 /* MyRecipes */,
 				BAE38C9F1739577A00936382 /* RecipeDetail */,
 			);
@@ -1162,6 +1176,7 @@
 				BA3E045517B760CE007F1E86 /* SSTextView.m in Sources */,
 				BA3E045817B7E962007F1E86 /* MyRecipesTipsController.m in Sources */,
 				BA3E046917B8CC41007F1E86 /* ODRefreshControl.m in Sources */,
+				BA4550F217BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
