@@ -27,10 +27,12 @@
 @interface ShoppingListMaterialTableViewCell : UITableViewCell{
   UILabel* titleLabel;
   UIImageView* middleLine;
+  UILabel* weightLabel;
 }
 
 @property (nonatomic, retain) UIImageView* middleLine;
 @property (nonatomic, retain) UILabel* titleLabel;
+@property (nonatomic, retain) UILabel* weightLabel;
 
 - (void)setData:(NSMutableDictionary*) dictionary;
 

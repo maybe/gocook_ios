@@ -10,7 +10,7 @@
 #import "QuartzCore/QuartzCore.h"
 #import "UIImageView+WebCache.h"
 #import "NetManager.h"
-
+#import "DBHandler.h"
 
 @implementation RecipeDetailHeaderTableViewCell
 @synthesize titleLabel,imageView,buyButton,collectButton,introLabel;
@@ -79,7 +79,7 @@
     UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [buyButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
     
-    //[collectButton addTarget:self action:@selector(openLoginWindow) forControlEvents:UIControlEventTouchUpInside];
+    [buyButton addTarget:nil action:@selector(addToShoppingList) forControlEvents:UIControlEventTouchUpInside];
   }
   
   return buyButton;

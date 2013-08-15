@@ -23,6 +23,8 @@
     [self setFrame:CGRectMake(0, 0, 320, 60)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
+    [self addSubview: [self titleLabel]];
+        
     [self addSubview: [self delButton]];
     [self addSubview: [self buyButton]];
     
@@ -119,10 +121,22 @@
   //NSLog(@"Swipe up - start location: %f,%f", point.x, point.y);
 }
 
+- (UILabel*)titleLabel
+{
+  if (!titleLabel) {
+    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 14, 168, 30)];
+    [titleLabel setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
+    [titleLabel setFont: [UIFont boldSystemFontOfSize:22]];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    [titleLabel setText:@""];
+  }
+  return titleLabel;
+}
 
 - (void)setData:(NSMutableDictionary*) dictionary
 {
-
+  [titleLabel setText: dictionary[@"name"]];
+  [self setAssociativeObject:dictionary[@"recipeid"] forKey:@"recipeid"];
 }
 
 -(void)dealloc {
@@ -133,7 +147,7 @@
 
 
 @implementation ShoppingListMaterialTableViewCell
-@synthesize middleLine, titleLabel;
+@synthesize middleLine, titleLabel, weightLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -142,6 +156,9 @@
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320, 44)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+    [self addSubview: [self titleLabel]];
+    [self addSubview: [self weightLabel]];
     
     middleLine = [[UIImageView alloc]initWithFrame:CGRectMake(24, 21, 232, 3)];
     [middleLine setImage: [UIImage imageNamed:@"Images/line.png"]];
@@ -205,9 +222,34 @@
   }
 }
 
+- (UILabel*)titleLabel
+{
+  if (!titleLabel) {
+    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(36, 8, 140, 30)];
+    [titleLabel setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
+    [titleLabel setFont: [UIFont systemFontOfSize:16]];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    [titleLabel setText:@""];
+  }
+  return titleLabel;
+}
+
+- (UILabel*)weightLabel
+{
+  if (!weightLabel) {
+    weightLabel = [[UILabel alloc]initWithFrame:CGRectMake(180, 8, 90, 30)];
+    [weightLabel setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
+    [weightLabel setFont: [UIFont systemFontOfSize:16]];
+    [weightLabel setBackgroundColor:[UIColor clearColor]];
+    [weightLabel setText:@""];
+  }
+  return weightLabel;
+}
+
 - (void)setData:(NSMutableDictionary*) dictionary
 {
-  
+  [titleLabel setText: dictionary[@"material"]];
+  [weightLabel setText:dictionary[@"weight"]];
 }
 
 @end
