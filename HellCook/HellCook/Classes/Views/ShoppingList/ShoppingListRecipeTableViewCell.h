@@ -13,12 +13,14 @@
   UIButton* delButton;
   UIButton* buyButton;
   UILabel* titleLabel;
+  NSMutableDictionary* cellDictionary;
 }
 
 @property (nonatomic, retain) UIImageView* rightArrow;
 @property (nonatomic, retain) UIButton* delButton;
 @property (nonatomic, retain) UIButton* buyButton;
 @property (nonatomic, retain) UILabel* titleLabel;
+@property (nonatomic, retain) NSMutableDictionary* cellDictionary;
 
 - (void)setData:(NSMutableDictionary*) dictionary;
 
@@ -28,11 +30,13 @@
   UILabel* titleLabel;
   UIImageView* middleLine;
   UILabel* weightLabel;
+  NSMutableDictionary* cellDictionary;
 }
 
 @property (nonatomic, retain) UIImageView* middleLine;
 @property (nonatomic, retain) UILabel* titleLabel;
 @property (nonatomic, retain) UILabel* weightLabel;
+@property (nonatomic, retain) NSMutableDictionary* cellDictionary;
 
 - (void)setData:(NSMutableDictionary*) dictionary;
 

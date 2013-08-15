@@ -86,9 +86,9 @@
   if ([self openDB]){
     FMResultSet *rs = [db executeQuery:@"SELECT * FROM shopping WHERE recipeid=?;", shoppingDic[@"recipeid"]];
     if ([rs next]) {
-      [db executeUpdate:@"UPDATE shopping SET name=?,materials=? WHERE recipeid=?;", shoppingDic[@"name"], shoppingDic[@"materials"], shoppingDic[@"recipeid"]];
+      [db executeUpdate:@"UPDATE shopping SET name=?,materials=?,slashitems=? WHERE recipeid=?;", shoppingDic[@"name"], shoppingDic[@"materials"], shoppingDic[@"slashitems"], shoppingDic[@"recipeid"]];
     } else {
-      [db executeUpdate:@"INSERT INTO shopping (recipeid, name, materials) VALUES (?,?,?);", shoppingDic[@"recipeid"], shoppingDic[@"name"], shoppingDic[@"materials"]];
+      [db executeUpdate:@"INSERT INTO shopping (recipeid, name, materials, slashitems) VALUES (?,?,?,?);", shoppingDic[@"recipeid"], shoppingDic[@"name"], shoppingDic[@"materials"], shoppingDic[@"slashitems"]];
     }
     [db close];
   }
@@ -99,7 +99,7 @@
   if ([self openDB]){
     FMResultSet *rs = [db executeQuery:@"SELECT * FROM shopping WHERE recipeid=?;", [NSNumber numberWithInt:recipeId]];
     if ([rs next]) {
-      [db executeUpdate:@"DELETE FROM shopping WHERE recipeid=?;", recipeId];
+      [db executeUpdate:@"DELETE FROM shopping WHERE recipeid=?;", [NSNumber numberWithInt:recipeId]];
     }
     [db close];
   }
@@ -128,7 +128,8 @@
       pDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
              [rs stringForColumn:@"recipeid"], @"recipeid",
              [rs stringForColumn:@"name"], @"name",
-             [rs stringForColumn:@"materials"], @"materials",nil];
+             [rs stringForColumn:@"materials"], @"materials",
+             [rs stringForColumn:@"slashitems"], @"slashitems",nil];
       
       [retArray addObject:pDic];
     }
@@ -156,7 +157,7 @@
   
   if (!shoppingTableName)
   {
-    [db executeUpdate:@"CREATE TABLE shopping(recipeid integer, name text, materials text);"];
+    [db executeUpdate:@"CREATE TABLE shopping(recipeid integer, name text, materials text, slashitems text);"];
   }
   
   

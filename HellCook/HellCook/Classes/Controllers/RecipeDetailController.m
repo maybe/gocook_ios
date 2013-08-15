@@ -122,7 +122,6 @@
   if (!cell && [CellIdentifier isEqualToString:@"HeaderCell"]) {
     cell = [[RecipeDetailHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     if ([[DBHandler sharedInstance] isInShoppingList:mRecipeId] ) {
-      ((RecipeDetailHeaderTableViewCell*)cell).buyButton.enabled = false;
       [((RecipeDetailHeaderTableViewCell*)cell).buyButton setTitle:@"已加入清单" forState:UIControlStateNormal];
 ;
     }
@@ -147,16 +146,24 @@
 
 - (void)addToShoppingList
 {
-  if (![[DBHandler sharedInstance] isInShoppingList: mRecipeId]) {
-    NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
-    [dic setObject:[NSNumber numberWithInt:mRecipeId] forKey:@"recipeid"];
-    [dic setObject:recipeDataDic[@"materials"] forKey:@"materials"];
-    [dic setObject:recipeDataDic[@"recipe_name"] forKey:@"name"];
-    [[DBHandler sharedInstance] addToShoppingList:dic];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kDetailHeaderCell inSection:0];
-    RecipeDetailHeaderTableViewCell* cell = (RecipeDetailHeaderTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-    cell.buyButton.enabled = false;
-    [cell.buyButton setTitle:@"已加入清单" forState:UIControlStateNormal];
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kDetailHeaderCell inSection:0];
+  RecipeDetailHeaderTableViewCell* cell = (RecipeDetailHeaderTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+  if ([[cell.buyButton titleForState:UIControlStateNormal] isEqualToString:@"已加入清单"]) {
+    if ([[DBHandler sharedInstance] isInShoppingList: mRecipeId]) {
+      [[DBHandler sharedInstance] removeFromShoppingList:mRecipeId];
+    }
+    [cell.buyButton setTitle:@"+ 购买清单" forState:UIControlStateNormal];
+    
+  } else {
+    if (![[DBHandler sharedInstance] isInShoppingList: mRecipeId]) {
+      NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
+      [dic setObject:[NSNumber numberWithInt:mRecipeId] forKey:@"recipeid"];
+      [dic setObject:recipeDataDic[@"materials"] forKey:@"materials"];
+      [dic setObject:recipeDataDic[@"recipe_name"] forKey:@"name"];
+      [[DBHandler sharedInstance] addToShoppingList:dic];
+      
+      [cell.buyButton setTitle:@"已加入清单" forState:UIControlStateNormal];
+    }
   }
 }
 
@@ -189,7 +196,7 @@
     [netOperation cancel];
   }
   
-  if ([mPrevTitle isEqualToString:@"我的收藏"]) {
+  if ([mPrevTitle isEqualToString:@"我的收藏"] || [mPrevTitle isEqualToString:@"购买清单"]) {
     [self dismissViewControllerAnimated:YES completion:nil];
   }
   else

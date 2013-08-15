@@ -10,10 +10,11 @@
 #import "QuartzCore/QuartzCore.h"
 #import "UIImageView+WebCache.h"
 #import "NetManager.h"
+#import "ShoppingListController.h"
 
 
 @implementation ShoppingListRecipeTableViewCell
-@synthesize titleLabel, delButton, buyButton, rightArrow;
+@synthesize titleLabel, delButton, buyButton, rightArrow, cellDictionary;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -71,7 +72,7 @@
     UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [delButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
     
-   // [delButton addTarget:self action:@selector(openLoginWindow) forControlEvents:UIControlEventTouchUpInside];
+    [delButton addTarget:self action:@selector(delOneRecipe:) forControlEvents:UIControlEventTouchUpInside];
   }
   
   return delButton;
@@ -94,6 +95,14 @@
    // [buyButton addTarget:self action:@selector(openRegisterWindow) forControlEvents:UIControlEventTouchUpInside];
   }
   return buyButton;
+}
+
+
+- (void)delOneRecipe:(id)sender
+{
+  [self hideOptionButton];
+  
+  [((ShoppingListController*)[self viewController]) delOneRecipeFromShoppingList:sender];
 }
 
 - (void)oneFingerSwipeRight:(UISwipeGestureRecognizer *)recognizer
@@ -139,6 +148,17 @@
   [self setAssociativeObject:dictionary[@"recipeid"] forKey:@"recipeid"];
 }
 
+//to get the next responder controller
+- (UIViewController*)viewController {
+  for (UIView* next = [self superview]; next; next = next.superview) {
+    UIResponder* nextResponder = [next nextResponder];
+    if ([nextResponder isKindOfClass:[UIViewController class]]) {
+      return (UIViewController*)nextResponder;
+    }
+  }
+  return nil;
+}
+
 -(void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -147,7 +167,7 @@
 
 
 @implementation ShoppingListMaterialTableViewCell
-@synthesize middleLine, titleLabel, weightLabel;
+@synthesize middleLine, titleLabel, weightLabel, cellDictionary;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -191,6 +211,11 @@
     beginFrame.size.width = 0;
     middleLine.frame = beginFrame;
     
+    cellDictionary[@"select"] = @"slash";
+
+    NSIndexPath *indexPath = [(UITableView *)self.superview indexPathForCell: self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShoppingListSlashMaterialItem" object:[NSNumber numberWithInt:indexPath.row]];
+        
     [UIView animateWithDuration:0.3 animations:^{
       CGRect endFrame = rect;
       endFrame.size.width = 232;
@@ -211,6 +236,11 @@
     CGRect beginFrame = rect;
     beginFrame.size.width = 232;
     middleLine.frame = beginFrame;
+    
+    cellDictionary[@"select"] = @"unslash";
+
+    NSIndexPath *indexPath = [(UITableView *)self.superview indexPathForCell: self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShoppingListUnSlashMaterialItem" object:[NSNumber numberWithInt:indexPath.row]];
     
     [UIView animateWithDuration:0.2 animations:^{
       CGRect endFrame = rect;
@@ -248,8 +278,19 @@
 
 - (void)setData:(NSMutableDictionary*) dictionary
 {
+  cellDictionary = dictionary;
   [titleLabel setText: dictionary[@"material"]];
   [weightLabel setText:dictionary[@"weight"]];
+  
+  if (dictionary[@"select"] && [dictionary[@"select"] isEqualToString:@"slash"]) {
+    CGRect rect = middleLine.frame;
+    rect.size.width = 232;
+    [middleLine setFrame:rect];
+    middleLine.alpha = 1;
+    middleLine.hidden = false;
+  } else {
+    middleLine.hidden = true;
+  }
 }
 
 @end

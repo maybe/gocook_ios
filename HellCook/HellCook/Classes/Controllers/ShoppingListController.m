@@ -9,6 +9,7 @@
 #import "ShoppingListController.h"
 #import "ShoppingListRecipeTableViewCell.h"
 #import "DBHandler.h"
+#import "RecipeDetailController.h"
 
 @interface ShoppingListController ()
 
@@ -38,10 +39,73 @@
   //viewframe.size.width = _sideWindowWidth;
   [self.view setFrame:viewframe];
   [self.tableView setFrame:viewframe];
-  
-  [self setDataList];
     
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnSlashMaterialItem:) name:@"ShoppingListSlashMaterialItem" object:nil];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnUnSlashMaterialItem:) name:@"ShoppingListUnSlashMaterialItem" object:nil];
+
+  [self.navigationController.view setFrame:CGRectMake(40, 0, _sideWindowWidth, _screenHeight_NoStBar)];
+
   [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [self setDataList];
+  [self.tableView reloadData];
+  
+  [self.navigationController.view setFrame:CGRectMake(40, 0, _sideWindowWidth, _screenHeight_NoStBar)];
+
+  [super viewWillAppear:animated];  
+}
+
+- (void)OnSlashMaterialItem:(NSNotification*)notification
+{
+  int contentIndex = [notification.object intValue];
+  int dataIndex = [self getDataIndexByContentIndex:contentIndex];
+  
+  NSMutableArray* dbShoppingListArray = [[DBHandler sharedInstance] getShoppingList];
+  NSString* slashString = [[NSString alloc]init];
+  NSArray* materialsArray = dataListArray[dataIndex][@"materials"];
+  int mindex = 0;
+  for (int i = 0; i < materialsArray.count; i++) {
+    if ([materialsArray[i][@"select"] isEqualToString:@"slash"]) {
+      if (mindex == 0) {
+        slashString = [slashString stringByAppendingFormat:@"%@", materialsArray[i][@"material"]];
+      } else {
+        slashString = [slashString stringByAppendingFormat:@"|%@", materialsArray[i][@"material"]];
+      }
+      mindex ++;
+    }
+  }
+
+  dbShoppingListArray[dataIndex][@"slashitems"] = slashString;
+  [[DBHandler sharedInstance] addToShoppingList:dbShoppingListArray[dataIndex]];
+}
+
+-(void)OnUnSlashMaterialItem:(NSNotification*)notification
+{
+  int contentIndex = [notification.object intValue];
+
+  int dataIndex = [self getDataIndexByContentIndex:contentIndex];
+  
+  NSMutableArray* dbShoppingListArray = [[DBHandler sharedInstance] getShoppingList];
+  NSString* slashString = [[NSString alloc]init];
+  NSArray* materialsArray = dataListArray[dataIndex][@"materials"];
+  int mindex = 0;
+  for (int i = 0; i < materialsArray.count; i++) {
+    if ([materialsArray[i][@"select"] isEqualToString:@"slash"]) {
+      if (mindex == 0) {
+        slashString = [slashString stringByAppendingFormat:@"%@", materialsArray[i][@"material"]];
+      } else {
+        slashString = [slashString stringByAppendingFormat:@"|%@", materialsArray[i][@"material"]];
+      }
+      mindex ++;
+    }
+  }
+  
+  dbShoppingListArray[dataIndex][@"slashitems"] = slashString;
+  [[DBHandler sharedInstance] addToShoppingList:dbShoppingListArray[dataIndex]];
 }
 
 - (void)setDataList
@@ -49,25 +113,34 @@
   [dataListArray removeAllObjects];
   [cellContentArray removeAllObjects];
   
-  NSMutableArray* array = [[DBHandler sharedInstance] getShoppingList];
-  for (int i = 0; i < array.count; i++) {
+  NSMutableArray* dbShoppingListArray = [[DBHandler sharedInstance] getShoppingList];
+  for (int i = 0; i < dbShoppingListArray.count; i++) {
     
     NSMutableDictionary* contentDic = [[NSMutableDictionary alloc]init];//
-    [contentDic setObject:array[i][@"name"] forKey:@"name"];
-    [contentDic setObject:array[i][@"recipeid"] forKey:@"recipeid"];
+    [contentDic setObject:dbShoppingListArray[i][@"name"] forKey:@"name"];
+    [contentDic setObject:dbShoppingListArray[i][@"recipeid"] forKey:@"recipeid"];
     
-    [cellContentArray addObject:[[NSMutableDictionary alloc] initWithDictionary:contentDic]];
+    [cellContentArray addObject:contentDic];
     
     NSMutableArray* maArray = [[NSMutableArray alloc]init];//
-    NSArray* totalmaterialArray = [array[i][@"materials"] componentsSeparatedByString:@"|"];
+    NSArray* totalmaterialArray = [dbShoppingListArray[i][@"materials"] componentsSeparatedByString:@"|"];
     for (int j = 0; j < totalmaterialArray.count/2; j++) {
       NSMutableDictionary* subMaterialDic = [[NSMutableDictionary alloc]init];
       [subMaterialDic setObject:totalmaterialArray[j*2] forKey:@"material"];
       [subMaterialDic setObject:totalmaterialArray[j*2+1] forKey:@"weight"];
       
+      subMaterialDic[@"select"] = @"unslash";
+      NSArray* slashArray = [dbShoppingListArray[i][@"slashitems"] componentsSeparatedByString:@"|"];
+      for (int k = 0; k < slashArray.count; k++) {
+        if ([subMaterialDic[@"material"] isEqualToString:slashArray[k]]) {
+          subMaterialDic[@"select"] = @"slash";
+          break;
+        }
+      }
+      
       [maArray addObject:subMaterialDic];
       
-      [cellContentArray addObject:[[NSMutableDictionary alloc] initWithDictionary:subMaterialDic]];
+      [cellContentArray addObject:subMaterialDic];
 
     }
     [contentDic setObject:maArray forKey:@"materials"];
@@ -76,13 +149,19 @@
   }
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (NSInteger)getDataIndexByContentIndex:(NSInteger)contentIndex
 {
-  [self.navigationController.view setFrame:CGRectMake(40, 0, _sideWindowWidth, _screenHeight_NoStBar)];
-  
-  [super viewWillAppear:animated];
+  int cur_count = 0;
+  for (int i = 0; i < dataListArray.count; i++) {
+    cur_count += ((NSMutableArray*)dataListArray[i][@"materials"]).count;
+    cur_count++;
+    
+    if (contentIndex < cur_count) {
+      return i;
+    }
+  }
+  return 0;
 }
-
 
 - (void) viewDidAppear:(BOOL)animated
 {
@@ -220,11 +299,31 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  if (cellContentArray[indexPath.row][@"recipeid"]) {
+    
+    int recipeid = [cellContentArray[indexPath.row][@"recipeid"] intValue];
+    if (recipeid != 0) {
+      [self.navigationController presentViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeid withPrevTitle:@"购买清单"] animated:YES completion:nil];
+    }
+  }
 }
 
 
-- (void) emptyShoppingList:(id)sender
+- (void)emptyShoppingList:(id)sender
 {
+}
+
+- (void)delOneRecipeFromShoppingList:(id)sender
+{
+  UIView* button = sender;
+  
+  NSIndexPath *indexPath = [(UITableView *)button.superview.superview indexPathForCell: (UITableViewCell*)button.superview];
+  
+  [[DBHandler sharedInstance] removeFromShoppingList: [cellContentArray[indexPath.row][@"recipeid"] intValue]];
+  
+  [self setDataList];
+  
+  [self.tableView reloadData];
 }
 
 - (void)setRightButton

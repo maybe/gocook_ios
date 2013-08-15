@@ -28,4 +28,6 @@
 @property (nonatomic, retain) UILabel* listCountLabel;
 @property (nonatomic, retain) NSMutableArray* cellContentArray;
 
+- (void)delOneRecipeFromShoppingList:(id)sender;
+
 @end
