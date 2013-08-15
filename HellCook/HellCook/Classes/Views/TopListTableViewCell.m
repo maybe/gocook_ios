@@ -24,6 +24,8 @@
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
       
       imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 200)];
+      [imageView setContentMode:UIViewContentModeScaleAspectFill];
+      [imageView setClipsToBounds:YES];
       [self addSubview:imageView];
       
       [self addSubview: [self titleLabel]];

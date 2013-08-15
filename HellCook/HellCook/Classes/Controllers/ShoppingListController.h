@@ -9,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShoppingListController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface ShoppingListController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
   UITableView* tableView;
   UIImageView* fakeNavBarView;
@@ -20,6 +20,10 @@
 
   NSMutableArray* dataListArray;
   NSMutableArray* cellContentArray;
+  
+  NSMutableArray* cellAllMaterialArray;
+  
+  BOOL isRecipeView;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
@@ -27,6 +31,7 @@
 @property (nonatomic, retain) UIButton* rightListButton;
 @property (nonatomic, retain) UILabel* listCountLabel;
 @property (nonatomic, retain) NSMutableArray* cellContentArray;
+@property (nonatomic, retain) NSMutableArray* cellAllMaterialArray;
 
 - (void)delOneRecipeFromShoppingList:(id)sender;
 

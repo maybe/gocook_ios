@@ -146,6 +146,10 @@
 
 - (void)addToShoppingList
 {
+  if (!recipeDataDic[@"recipe_name"]) {
+    return;
+  }
+  
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kDetailHeaderCell inSection:0];
   RecipeDetailHeaderTableViewCell* cell = (RecipeDetailHeaderTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
   if ([[cell.buyButton titleForState:UIControlStateNormal] isEqualToString:@"已加入清单"]) {
