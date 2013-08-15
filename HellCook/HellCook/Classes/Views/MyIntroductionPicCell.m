@@ -17,6 +17,7 @@
 @synthesize bannerImageView;
 @synthesize avataImageView;
 @synthesize nameLabel;
+@synthesize followBtn;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -29,7 +30,7 @@
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
  
       //namelabel
-      nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(70, 60, 180, 30)];
+      nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(70, 60, 160, 30)];
       nameLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
       nameLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
       nameLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
@@ -47,12 +48,35 @@
       avataImageView.layer.masksToBounds = YES;
       avataImageView.layer.borderColor = [UIColor clearColor].CGColor;
       avataImageView.layer.borderWidth = 1.0;
+      //follow button
+      followBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+      [followBtn setFrame:CGRectMake(230,60,90,30)];
+      [followBtn setBackgroundColor:[UIColor clearColor]];
+      [followBtn setTitle:@"已关注" forState:UIControlStateNormal];
+      [followBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+      [followBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
+      [followBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"] forState:UIControlStateHighlighted];
+      [followBtn addTarget:[self viewController] action:@selector(followBtnTapped) forControlEvents:UIControlEventTouchUpInside];
       
       [self addSubview:bannerImageView];
       [self addSubview:avataImageView];
       [self addSubview:nameLabel];
+      [self addSubview:followBtn];
+      [followBtn setHidden:YES];
     }
     return self;
+}
+
+- (UIViewController*)viewController {
+  for (UIView* next = [self superview]; next; next = next.superview)
+  {
+    UIResponder* nextResponder = [next nextResponder];
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+    {
+      return (UIViewController*)nextResponder;
+    }
+  }
+  return nil;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

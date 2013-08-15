@@ -464,4 +464,71 @@
   return op;
 }
 
+
+- (MKNetworkOperation*)getOtherIntroWithUserID:(NSInteger)userid
+                             CompletionHandler:(getOtherIntroResponseBlock) completionBlock
+                                  errorHandler:(MKNKErrorBlock) errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/kitchen?userid=%d",userid]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    //    NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+- (MKNetworkOperation*)watchWithUserID:(NSInteger)userid
+                     CompletionHandler:(watchResponseBlock) completionBlock
+                          errorHandler:(MKNKErrorBlock) errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/watch?watchid=%d",userid]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    //    NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+- (MKNetworkOperation*)unwatchWithUserID:(NSInteger)userid
+                       CompletionHandler:(unwatchResponseBlock) completionBlock
+                            errorHandler:(MKNKErrorBlock) errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/unwatch?watchid=%d",userid]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
 @end

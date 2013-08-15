@@ -10,6 +10,7 @@
 #import "NetManager.h"
 #import "LoginController.h"
 #import "MyFollowTableViewCell.h"
+#import "HomePageController.h"
 
 @interface MyFollowViewController ()
 
@@ -133,7 +134,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+  NSMutableDictionary *pFollowDict = [myFollowsArray objectAtIndex:indexPath.row];
+  NSInteger userid = [pFollowDict[@"user_id"] intValue];
+  
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil isMyself:NO withUserID:userid fromMyFollow:YES];
+  [self.tabBarController.navigationController pushViewController:pHomePageController animated:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

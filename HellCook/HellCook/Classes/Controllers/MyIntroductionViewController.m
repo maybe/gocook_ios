@@ -19,16 +19,28 @@
 @synthesize netOperation;
 @synthesize pPicCell,pIntroCell;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isMyself:(BOOL)isMyself withUserID:(NSInteger)userid fromMyFollow:(BOOL)fromFollow
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+      mUserID = userid;
+      bMyself = isMyself;
+      bFromFollow = fromFollow;
       bSessionInvalid = FALSE;
       
       pMyInfo = [[NSMutableDictionary alloc] init];
       pPicCell = [[MyIntroductionPicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionPicCell"];
       pIntroCell = [[MyIntroductionIntroCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionIntroCell"];
+      
+      if (bMyself)
+      {
+        [self getMyIntroductionData];
+      }
+      else
+      {
+        [self getOtherIntroData];
+      }
     }
     return self;
 }
@@ -41,8 +53,6 @@
   CGRect tableframe = self.myTableView.frame;
   tableframe.size.height = _screenHeight_NoStBar - _navigationBarHeight;
   [self.myTableView setFrame:tableframe];
-
-  [self getMyIntroductionData];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -91,6 +101,30 @@
   [self.tabBarController.navigationController pushViewController:pController animated:YES];
 }
 
+- (void)followBtnTapped
+{
+  if ([pPicCell.followBtn.titleLabel.text isEqual:@"已关注"])
+  {
+    self.netOperation = [[[NetManager sharedInstance] hellEngine]
+                         unwatchWithUserID:mUserID
+                         CompletionHandler:^(NSMutableDictionary *resultDic) {
+                           [self unwatchDataCallBack:resultDic];
+                         }
+                         errorHandler:^(NSError *error) {}
+                         ];
+  }
+  else
+  {
+    self.netOperation = [[[NetManager sharedInstance] hellEngine]
+                         watchWithUserID:mUserID
+                         CompletionHandler:^(NSMutableDictionary *resultDic) {
+                           [self watchDataCallBack:resultDic];
+                         }
+                         errorHandler:^(NSError *error) {}
+                         ];
+  }
+}
+
 
 #pragma mark - Table view data source
 
@@ -131,6 +165,10 @@
     if ([pMyInfo count] > 0)
     {
       [pPicCell setData:pMyInfo];
+      if (!bMyself && bFromFollow)
+      {
+        [pPicCell.followBtn setHidden:NO];
+      }
     }
         
     return pPicCell;
@@ -173,6 +211,73 @@
     [pMyInfo addEntriesFromDictionary:[resultDic valueForKey:@"result_user_info"]];
     
     [self.myTableView reloadData];
+  }
+  else if (result == 1)
+  {
+    bSessionInvalid = TRUE;
+    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+    if (self.navigationController)
+    {
+      [self.navigationController presentViewController:m animated:YES completion:nil];
+    }
+  }
+}
+
+-(void)getOtherIntroData
+{
+  self.netOperation = [[[NetManager sharedInstance] hellEngine]
+                       getOtherIntroWithUserID:mUserID
+                             CompletionHandler:^(NSMutableDictionary *resultDic) {
+                                         [self getOtherIntroDataCallBack:resultDic];
+                                         }
+                                  errorHandler:^(NSError *error) {}
+                       ];
+}
+
+- (void)getOtherIntroDataCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0)
+  {
+    [pMyInfo addEntriesFromDictionary:[resultDic valueForKey:@"result_kitchen_info"]];
+    
+    [self.myTableView reloadData];
+  }
+  else if (result == 1)
+  {
+    bSessionInvalid = TRUE;
+    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+    if (self.navigationController)
+    {
+      [self.navigationController presentViewController:m animated:YES completion:nil];
+    }
+  }
+}
+
+- (void)watchDataCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0)
+  {
+    [pPicCell.followBtn setTitle:@"已关注" forState:UIControlStateNormal];
+  }
+  else if (result == 1)
+  {
+    bSessionInvalid = TRUE;
+    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+    if (self.navigationController)
+    {
+      [self.navigationController presentViewController:m animated:YES completion:nil];
+    }
+  }
+}
+
+- (void)unwatchDataCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0)
+  {
+    [pPicCell.followBtn setTitle:@"已取消关注" forState:UIControlStateNormal];
   }
   else if (result == 1)
   {

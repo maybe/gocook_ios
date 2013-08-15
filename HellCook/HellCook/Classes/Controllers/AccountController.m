@@ -233,7 +233,7 @@
   nameLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
   nameLabel.backgroundColor = [UIColor clearColor];
   nameLabel.font = [UIFont boldSystemFontOfSize:20];
-  
+ 
   [nameLabel setText: [[[User sharedInstance] account] username]];
   
   [self setAccountAvatar];
@@ -247,7 +247,7 @@
 
 - (IBAction)tapNameLabel:(id)sender
 {
-  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil isMyself:YES withUserID:-1 fromMyFollow:NO];
   
   // MyselfRootViewController *pViewController = [[MyselfRootViewController alloc] initWithNibName:@"MyselfRootView" bundle:nil];
   

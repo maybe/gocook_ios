@@ -24,6 +24,9 @@ typedef void (^myFollowResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^myFansResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^uploadBasicInfoResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^uploadAvatarResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^getOtherIntroResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^watchResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^unwatchResponseBlock)(NSMutableDictionary* resultDic);
 
 typedef void (^uploadCoverTmpImageResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^uploadStepTmpImageResponseBlock)(NSMutableDictionary* resultDic, NSInteger index);
@@ -113,5 +116,20 @@ typedef void (^createRecipeResponseBlock)(NSMutableDictionary* resultDic);
 - (MKNetworkOperation*)createRecipe:(NSDictionary*)uploadDic
                   completionHandler:(createRecipeResponseBlock)completionBlock
                        errorHandler:(MKNKErrorBlock) errorBlock;
+
+//获取其他人的个人信息
+- (MKNetworkOperation*)getOtherIntroWithUserID:(NSInteger)userid
+                           CompletionHandler:(getOtherIntroResponseBlock) completionBlock
+                                errorHandler:(MKNKErrorBlock) errorBlock;
+
+//关注
+- (MKNetworkOperation*)watchWithUserID:(NSInteger)userid
+                             CompletionHandler:(watchResponseBlock) completionBlock
+                                  errorHandler:(MKNKErrorBlock) errorBlock;
+
+//取消关注
+- (MKNetworkOperation*)unwatchWithUserID:(NSInteger)userid
+                             CompletionHandler:(unwatchResponseBlock) completionBlock
+                                  errorHandler:(MKNKErrorBlock) errorBlock;
 
 @end

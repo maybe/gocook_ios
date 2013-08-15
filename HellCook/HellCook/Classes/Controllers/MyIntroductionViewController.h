@@ -16,11 +16,16 @@
   MyIntroductionPicCell *pPicCell;
   MyIntroductionIntroCell *pIntroCell;
   BOOL bSessionInvalid;
+  NSInteger mUserID;
+  BOOL bMyself;
+  BOOL bFromFollow;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
 @property (nonatomic, retain) MyIntroductionIntroCell *pIntroCell;
 @property (nonatomic, retain) MyIntroductionPicCell *pPicCell;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isMyself:(BOOL)isMyself withUserID:(NSInteger)userid fromMyFollow:(BOOL)fromFollow;
 
 @end

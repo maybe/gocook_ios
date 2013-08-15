@@ -11,8 +11,11 @@
 @interface HomePageController : UITabBarController
 {
   UITabBar* mTabBar;
+  BOOL bMyself;
 }
 
 @property (retain, nonatomic) UITabBar* mTabBar;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isMyself:(BOOL)isMyself withUserID:(NSInteger)userID fromMyFollow:(BOOL)fromFollow;
 
 @end

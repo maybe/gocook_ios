@@ -10,6 +10,7 @@
 #import "NetManager.h"
 #import "LoginController.h"
 #import "MyFansTableViewCell.h"
+#import "HomePageController.h"
 
 @interface MyFansViewController ()
 
@@ -127,7 +128,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  NSMutableDictionary *pFanDict = [myFansArray objectAtIndex:indexPath.row];
+  NSInteger userid = [pFanDict[@"user_id"] intValue];
   
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil isMyself:NO withUserID:userid fromMyFollow:NO];
+  [self.tabBarController.navigationController pushViewController:pHomePageController animated:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
