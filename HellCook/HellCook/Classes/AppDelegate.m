@@ -16,6 +16,7 @@
 #import "ConfigHandler.h"
 #import "DBHandler.h"
 #import "UIZoomNavigationController.h"
+#import "Encrypt.h"
 
 @implementation AppDelegate
 
@@ -57,6 +58,9 @@
   [DBHandler sharedInstance];
   [NetManager sharedInstance];// net manager reads host from config
   [User sharedInstance];
+  
+  NSString* decrypt = [Encrypt tripleDES:@"PTqDjGdFytE=" encryptOrDecrypt:kCCDecrypt key:@"DAB578EC-6C01-4180-939A-37E6BE8A81AF" initVec:@"117A5C0F"];
+  NSLog(@"%@", decrypt);
   
   return YES;
 }

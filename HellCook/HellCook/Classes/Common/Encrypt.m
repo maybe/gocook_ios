@@ -12,11 +12,16 @@
 
 @implementation Encrypt
 
-+(NSString*)new3DESwithoperand:(NSString*)plaintext encryptOrDecrypt:(CCOperation)encryptorDecrypt key:(NSString*)key initVec:(NSString*)initVec
++(NSString*)tripleDES:(NSString*)plaintext encryptOrDecrypt:(CCOperation)encryptorDecrypt key:(NSString*)key initVec:(NSString*)initVec
 {
+  NSData* data = NULL;
+  if (encryptorDecrypt == kCCEncrypt) {
+    data = [plaintext dataUsingEncoding:NSUTF8StringEncoding];
+  } else {
+    data = [plaintext base64DecodedData];
+  }
   
-  NSData* data = [plaintext dataUsingEncoding:NSUTF8StringEncoding];
-  const void *vplainText = [data bytes];;
+  const void *vplainText = [data bytes];
   size_t plainTextBufferSize = [data length];
   
   size_t bufferPtrSize = (plainTextBufferSize + kCCBlockSize3DES) & ~(kCCBlockSize3DES - 1);
@@ -24,8 +29,8 @@
   size_t movedBytes = 0;
   uint8_t *bufferPtr = malloc( bufferPtrSize * sizeof(uint8_t));
   memset((void*)bufferPtr, 0x0, bufferPtrSize);
-  const void * vkey = [[key dataUsingEncoding: NSUTF8StringEncoding] bytes];
-  const void *vinitVec = [[initVec dataUsingEncoding: NSUTF8StringEncoding] bytes];
+  const void * vkey = NULL;
+  const void *vinitVec = NULL;
   
   //
   const char *keyStr = [key UTF8String];
@@ -66,8 +71,13 @@
                      &movedBytes);
   
   NSData* result = [NSData dataWithBytes:(const void*)bufferPtr length:(NSUInteger)movedBytes];
-  NSString* str = [result base64EncodedString];
+  NSString* str = NULL;
   
+  if (encryptorDecrypt == kCCEncrypt) {
+    str = [result base64EncodedString];
+  } else {
+    str = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+  }
   return str;
 }
 

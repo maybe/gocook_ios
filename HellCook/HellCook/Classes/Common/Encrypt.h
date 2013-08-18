@@ -12,6 +12,6 @@
 
 @interface Encrypt : NSObject
 
-+(NSString*)new3DESwithoperand:(NSString*)plaintext encryptOrDecrypt:(CCOperation)encryptorDecrypt key:(NSString*)key initVec:(NSString*)initVec;
++(NSString*)tripleDES:(NSString*)plaintext encryptOrDecrypt:(CCOperation)encryptorDecrypt key:(NSString*)key initVec:(NSString*)initVec;
 
 @end
