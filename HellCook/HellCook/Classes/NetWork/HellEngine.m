@@ -518,6 +518,26 @@
                                         httpMethod:@"GET"];
   
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+//    NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+- (MKNetworkOperation*)getCommentsWithRecipeID:(NSInteger)recipeid
+                             CompletionHandler:(getCommentsResponseBlock) completionBlock
+                                  errorHandler:(MKNKErrorBlock) errorBlock;
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"recipe/comments?recipe_id=%d",recipeid] params:nil httpMethod:@"GET"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
@@ -530,5 +550,6 @@
   
   return op;
 }
+
 
 @end

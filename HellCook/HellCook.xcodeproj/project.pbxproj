@@ -14,9 +14,10 @@
 		5EAFA04017AFE20A008B6C64 /* MyIntroductionPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFA03F17AFE209008B6C64 /* MyIntroductionPicCell.m */; };
 		5EAFA04317B102C1008B6C64 /* MyIntroductionIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFA04217B102BF008B6C64 /* MyIntroductionIntroCell.m */; };
 		5EAFA04617B26A0E008B6C64 /* MyFollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFA04517B26A0C008B6C64 /* MyFollowTableViewCell.m */; };
+		5ED7F11B17BDC86400223884 /* RecipeDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */; };
+		5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */; };
 		5EEB7E0817B3EFAB00BCB1CB /* MyFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E0617B3EFAB00BCB1CB /* MyFansViewController.m */; };
 		5EEB7E0B17B3F01C00BCB1CB /* MyFansView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EEB7E0A17B3F01C00BCB1CB /* MyFansView.xib */; };
-		5EEB7E0E17B4C55600BCB1CB /* MyFansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E0D17B4C55600BCB1CB /* MyFansTableViewCell.m */; };
 		5EEB7E1617B7AE5700BCB1CB /* MyIntroEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1517B7AE5700BCB1CB /* MyIntroEditViewController.m */; };
 		5EEB7E1817B7AE7100BCB1CB /* MyIntroEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1717B7AE7100BCB1CB /* MyIntroEditView.xib */; };
 		5EEB7E1B17B7B47200BCB1CB /* MyIntroAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1A17B7B47200BCB1CB /* MyIntroAvatarView.m */; };
@@ -171,11 +172,13 @@
 		5EAFA04217B102BF008B6C64 /* MyIntroductionIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroductionIntroCell.m; path = Classes/Views/MyIntroductionIntroCell.m; sourceTree = "<group>"; };
 		5EAFA04417B26A09008B6C64 /* MyFollowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFollowTableViewCell.h; path = Classes/Views/MyFollowTableViewCell.h; sourceTree = "<group>"; };
 		5EAFA04517B26A0C008B6C64 /* MyFollowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFollowTableViewCell.m; path = Classes/Views/MyFollowTableViewCell.m; sourceTree = "<group>"; };
+		5ED7F11917BDC86400223884 /* RecipeDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailFooterView.h; sourceTree = "<group>"; };
+		5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailFooterView.m; sourceTree = "<group>"; };
+		5ED7F11C17BF301800223884 /* RecipeCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCommentsTableViewCell.h; sourceTree = "<group>"; };
+		5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeCommentsTableViewCell.m; sourceTree = "<group>"; };
 		5EEB7E0517B3EFAB00BCB1CB /* MyFansViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFansViewController.h; path = Classes/Controllers/MyFansViewController.h; sourceTree = "<group>"; };
 		5EEB7E0617B3EFAB00BCB1CB /* MyFansViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFansViewController.m; path = Classes/Controllers/MyFansViewController.m; sourceTree = "<group>"; };
 		5EEB7E0A17B3F01C00BCB1CB /* MyFansView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFansView.xib; sourceTree = "<group>"; };
-		5EEB7E0C17B4C55600BCB1CB /* MyFansTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFansTableViewCell.h; sourceTree = "<group>"; };
-		5EEB7E0D17B4C55600BCB1CB /* MyFansTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFansTableViewCell.m; sourceTree = "<group>"; };
 		5EEB7E1417B7AE5700BCB1CB /* MyIntroEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroEditViewController.h; path = Classes/Controllers/MyIntroEditViewController.h; sourceTree = "<group>"; };
 		5EEB7E1517B7AE5700BCB1CB /* MyIntroEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroEditViewController.m; path = Classes/Controllers/MyIntroEditViewController.m; sourceTree = "<group>"; };
 		5EEB7E1717B7AE7100BCB1CB /* MyIntroEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyIntroEditView.xib; sourceTree = "<group>"; };
@@ -703,8 +706,6 @@
 				5EEB7E1A17B7B47200BCB1CB /* MyIntroAvatarView.m */,
 				5EAFA04417B26A09008B6C64 /* MyFollowTableViewCell.h */,
 				5EAFA04517B26A0C008B6C64 /* MyFollowTableViewCell.m */,
-				5EEB7E0C17B4C55600BCB1CB /* MyFansTableViewCell.h */,
-				5EEB7E0D17B4C55600BCB1CB /* MyFansTableViewCell.m */,
 				BA4550EF17BA80AA008CBD00 /* ShoppingList */,
 				BABAE9DE17B008BD0099BE45 /* MyRecipes */,
 				BAE38C9F1739577A00936382 /* RecipeDetail */,
@@ -876,6 +877,10 @@
 				BA56F2B6179665A4001E8909 /* RecipeDetailMaterialTableViewCell.m */,
 				BA56F2B817971B35001E8909 /* RecipeDetailStepsTableViewCell.h */,
 				BA56F2B917971B36001E8909 /* RecipeDetailStepsTableViewCell.m */,
+				5ED7F11917BDC86400223884 /* RecipeDetailFooterView.h */,
+				5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */,
+				5ED7F11C17BF301800223884 /* RecipeCommentsTableViewCell.h */,
+				5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */,
 			);
 			name = RecipeDetail;
 			path = Classes/Views/RecipeDetail;
@@ -1190,7 +1195,6 @@
 				BABAE9D917AFFBE50099BE45 /* MyRecipesEditController.m in Sources */,
 				BABAE9E117B14D890099BE45 /* MyRecipeEditAvatarView.m in Sources */,
 				5EEB7E0817B3EFAB00BCB1CB /* MyFansViewController.m in Sources */,
-				5EEB7E0E17B4C55600BCB1CB /* MyFansTableViewCell.m in Sources */,
 				BA3E043B17B35F4A007F1E86 /* MyRecipeMaterialTableViewCell.m in Sources */,
 				BA3E043E17B3ECCB007F1E86 /* MyRecipesMaterialController.m in Sources */,
 				BA3E044617B68B65007F1E86 /* MyRecipesStepController.m in Sources */,
@@ -1201,6 +1205,8 @@
 				BA3E045817B7E962007F1E86 /* MyRecipesTipsController.m in Sources */,
 				BA3E046917B8CC41007F1E86 /* ODRefreshControl.m in Sources */,
 				BA4550F217BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.m in Sources */,
+				5ED7F11B17BDC86400223884 /* RecipeDetailFooterView.m in Sources */,
+				5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

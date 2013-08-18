@@ -1,0 +1,62 @@
+//
+//  RecipeDetailFooterView.m
+//  HellCook
+//
+//  Created by lxw on 13-8-16.
+//  Copyright (c) 2013年 panda. All rights reserved.
+//
+
+#import "RecipeDetailFooterView.h"
+
+@implementation RecipeDetailFooterView
+@synthesize commentLabel;
+
+- (id)initWithFrame:(CGRect)frame withCommentNum:(NSInteger)commentNum
+{
+  self = [super initWithFrame:frame];
+  if (self) {
+    // Initialization code
+    [self setBackgroundColor: [UIColor clearColor]];
+    [self setFrame:frame];
+   
+    commentLabel = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 180, 30)];
+    commentLabel.textColor = [UIColor blackColor];
+    commentLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
+    commentLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+    commentLabel.backgroundColor = [UIColor clearColor];
+    commentLabel.font = [UIFont systemFontOfSize:18];
+    
+    NSString *str = [NSString stringWithFormat:@"%d条评论",commentNum];
+    [commentLabel setText:str];
+    
+    commentLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:[self viewController] action:@selector(tapCommentLabel:)];
+    [commentLabel addGestureRecognizer:tapGestureTel];
+    
+    [self addSubview:commentLabel];
+  }
+  return self;
+}
+
+- (UIViewController*)viewController {
+  for (UIView* next = [self superview]; next; next = next.superview)
+  {
+    UIResponder* nextResponder = [next nextResponder];
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+    {
+      return (UIViewController*)nextResponder;
+    }
+  }
+  return nil;
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+@end

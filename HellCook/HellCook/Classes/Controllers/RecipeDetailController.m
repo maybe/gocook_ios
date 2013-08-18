@@ -12,6 +12,7 @@
 #import "RecipeDetailStepsTableViewCell.h"
 #import "NetManager.h"
 #import "DBHandler.h"
+#import "RecipeDetailFooterView.h"
 
 @interface RecipeDetailController ()
 
@@ -19,6 +20,7 @@
 
 @implementation RecipeDetailController
 @synthesize tableView,netOperation,recipeDataDic,cellContentArray,mPrevTitle;
+@synthesize recipeCommentsArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId withPrevTitle:(NSString*) prevName
 {
@@ -28,6 +30,7 @@
   
   mRecipeId = recipeId;
   mPrevTitle = [[NSString alloc]initWithString:prevName];
+  recipeCommentsArray = [[NSMutableArray alloc] init];
   
   return self;
 }
@@ -49,7 +52,7 @@
   [self.navigationController.navigationBar setHidden:YES];
   
   [self getRecipeDetailData:mRecipeId];
-
+  [self getCommentsData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -232,6 +235,41 @@
   }
   
   [self.tableView reloadData];
+}
+
+- (void)getCommentsData
+{
+  self.netOperation = [[[NetManager sharedInstance] hellEngine]
+                       getCommentsWithRecipeID:mRecipeId
+                       CompletionHandler:^(NSMutableDictionary *resultDic){
+                         [self getCommentsDataCallBack:resultDic];
+                       }
+                       errorHandler:^(NSError *error){}];
+}
+
+- (void)getCommentsDataCallBack:(NSMutableDictionary*)resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0)
+  {
+    recipeCommentsArray = [NSMutableArray arrayWithArray:resultDic[@"result_recipe_comments"]];
+    
+    CGRect frame = self.tableView.tableFooterView.frame;
+    frame.size.height = 50;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
+    RecipeDetailFooterView *footerView = [[RecipeDetailFooterView alloc] initWithFrame:frame withCommentNum:[recipeCommentsArray count]];
+    
+    [self.tableView.tableFooterView addSubview:footerView];
+  }
+  else
+  {
+    CGRect frame = self.tableView.tableFooterView.frame;
+    frame.size.height = 50;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
+    RecipeDetailFooterView *footerView = [[RecipeDetailFooterView alloc] initWithFrame:frame withCommentNum:0];
+    
+    [self.tableView.tableFooterView addSubview:footerView];
+  }
 }
 
 @end

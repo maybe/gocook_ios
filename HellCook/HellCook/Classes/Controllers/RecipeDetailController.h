@@ -26,6 +26,8 @@ typedef enum{
   NSInteger mRecipeId;
   
   NSString* mPrevTitle;
+  
+  NSMutableArray *recipeCommentsArray;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
@@ -33,6 +35,7 @@ typedef enum{
 @property (nonatomic, retain) NSDictionary* recipeDataDic;
 @property (nonatomic, retain) NSMutableArray* cellContentArray;
 @property (nonatomic, retain) NSString* mPrevTitle;
+@property (nonatomic, retain) NSMutableArray *recipeCommentsArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId withPrevTitle:(NSString*) prevName;
 
