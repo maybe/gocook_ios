@@ -146,17 +146,22 @@
 - (void)caculateCellHeight:(NSString*)strComment
 {
 //  commentLabel.text = strComment;
-  CGSize contentSize = [commentLabel.text sizeWithFont:commentLabel.font constrainedToSize:CGSizeMake(_commentLabelWidth, 1000) lineBreakMode:NSLineBreakByWordWrapping];
-  if ((contentSize.height+50) > mCellHeight)
+  CGSize contentSize = [strComment sizeWithFont:commentLabel.font constrainedToSize:CGSizeMake(_commentLabelWidth, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+  if ((contentSize.height+50) > 90)
   {
     mCellHeight = contentSize.height+50;
-    CGRect cellRect = self.frame;
-    cellRect.size.height = mCellHeight;
-    [self setFrame:cellRect];
-    
-    [dateLabel setFrame:CGRectMake(90, mCellHeight-30, 200, 20)];
-    [sepImageView setFrame:CGRectMake(0, mCellHeight-2, 320, 1)];
   }
+  else
+  {
+    mCellHeight = 90;
+  }
+  
+  CGRect cellRect = self.frame;
+  cellRect.size.height = mCellHeight;
+  [self setFrame:cellRect];
+  
+  [dateLabel setFrame:CGRectMake(90, mCellHeight-30, 200, 20)];
+  [sepImageView setFrame:CGRectMake(0, mCellHeight-2, 320, 1)];
   
   CGRect labelRect = commentLabel.frame;
   labelRect.size.height = contentSize.height;
