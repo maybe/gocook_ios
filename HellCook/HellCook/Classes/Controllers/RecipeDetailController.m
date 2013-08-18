@@ -13,6 +13,7 @@
 #import "NetManager.h"
 #import "DBHandler.h"
 #import "RecipeDetailFooterView.h"
+#import "RecipeCommentViewController.h"
 
 @interface RecipeDetailController ()
 
@@ -216,6 +217,12 @@
   return YES;
 }
 
+- (void)tapComment
+{
+  RecipeCommentViewController *pController = [[RecipeCommentViewController alloc] initWithNibName:@"RecipeCommentView" bundle:nil withData:recipeCommentsArray];
+  [self.navigationController pushViewController:pController animated:YES];
+}
+
 #pragma mark - Net
 
 -(void)getRecipeDetailData:(NSInteger)recipeId
@@ -256,6 +263,7 @@
     
     CGRect frame = self.tableView.tableFooterView.frame;
     frame.size.height = 50;
+    frame.size.width = _screenWidth;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
     RecipeDetailFooterView *footerView = [[RecipeDetailFooterView alloc] initWithFrame:frame withCommentNum:[recipeCommentsArray count]];
     
@@ -265,6 +273,7 @@
   {
     CGRect frame = self.tableView.tableFooterView.frame;
     frame.size.height = 50;
+    frame.size.width = _screenWidth;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
     RecipeDetailFooterView *footerView = [[RecipeDetailFooterView alloc] initWithFrame:frame withCommentNum:0];
     

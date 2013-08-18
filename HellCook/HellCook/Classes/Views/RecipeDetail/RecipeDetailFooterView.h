@@ -11,9 +11,13 @@
 @interface RecipeDetailFooterView : UIView
 {
   UILabel *commentLabel;
+  UIViewController *parentController;
+  
+  UIButton *commentBtn;
 }
 
 @property (retain, nonatomic) UILabel *commentLabel;
+@property (retain, nonatomic) UIButton *commentBtn;
 
 - (id)initWithFrame:(CGRect)frame withCommentNum:(NSInteger)commentNum;
 
