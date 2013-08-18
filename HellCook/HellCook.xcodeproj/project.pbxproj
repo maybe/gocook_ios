@@ -25,6 +25,7 @@
 		5EEB7E1617B7AE5700BCB1CB /* MyIntroEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1517B7AE5700BCB1CB /* MyIntroEditViewController.m */; };
 		5EEB7E1817B7AE7100BCB1CB /* MyIntroEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1717B7AE7100BCB1CB /* MyIntroEditView.xib */; };
 		5EEB7E1B17B7B47200BCB1CB /* MyIntroAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1A17B7B47200BCB1CB /* MyIntroAvatarView.m */; };
+		65809A0AA33D3331D334BF58 /* SSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658098098A86A0456C03D5F4 /* SSTextView.m */; };
 		BA02634516D7579700298803 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634416D7579700298803 /* AppDelegate.m */; };
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
 		BA02635216D75E4F00298803 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02635116D75E4F00298803 /* Common.m */; };
@@ -46,7 +47,6 @@
 		BA3E044617B68B65007F1E86 /* MyRecipesStepController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E044517B68B63007F1E86 /* MyRecipesStepController.m */; };
 		BA3E044917B68B8C007F1E86 /* MyRecipeStepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E044817B68B8C007F1E86 /* MyRecipeStepTableViewCell.m */; };
 		BA3E044B17B6B257007F1E86 /* MyRecipesStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA3E044A17B6B257007F1E86 /* MyRecipesStepView.xib */; };
-		BA3E045517B760CE007F1E86 /* SSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E045417B760CE007F1E86 /* SSTextView.m */; };
 		BA3E045817B7E962007F1E86 /* MyRecipesTipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E045717B7E961007F1E86 /* MyRecipesTipsController.m */; };
 		BA3E045A17B7E9DF007F1E86 /* MyRecipesTipsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA3E045917B7E9DF007F1E86 /* MyRecipesTipsView.xib */; };
 		BA3E046917B8CC41007F1E86 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E046817B8CC41007F1E86 /* ODRefreshControl.m */; };
@@ -197,6 +197,8 @@
 		5EEB7E1717B7AE7100BCB1CB /* MyIntroEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyIntroEditView.xib; sourceTree = "<group>"; };
 		5EEB7E1917B7B47200BCB1CB /* MyIntroAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroAvatarView.h; path = Classes/Views/MyIntroAvatarView.h; sourceTree = "<group>"; };
 		5EEB7E1A17B7B47200BCB1CB /* MyIntroAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroAvatarView.m; path = Classes/Views/MyIntroAvatarView.m; sourceTree = "<group>"; };
+		6580938282D18BE4B8A35D45 /* SSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTextView.h; sourceTree = "<group>"; };
+		658098098A86A0456C03D5F4 /* SSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTextView.m; sourceTree = "<group>"; };
 		BA02634316D7579700298803 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		BA02634416D7579700298803 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		BA02634716D759CB00298803 /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
@@ -230,8 +232,6 @@
 		BA3E044717B68B8B007F1E86 /* MyRecipeStepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipeStepTableViewCell.h; path = Classes/Views/MyRecipes/MyRecipeStepTableViewCell.h; sourceTree = "<group>"; };
 		BA3E044817B68B8C007F1E86 /* MyRecipeStepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipeStepTableViewCell.m; path = Classes/Views/MyRecipes/MyRecipeStepTableViewCell.m; sourceTree = "<group>"; };
 		BA3E044A17B6B257007F1E86 /* MyRecipesStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRecipesStepView.xib; sourceTree = "<group>"; };
-		BA3E045317B760CE007F1E86 /* SSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSTextView.h; path = HellCook/Libs/SSTextView/SSTextView.h; sourceTree = SOURCE_ROOT; };
-		BA3E045417B760CE007F1E86 /* SSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSTextView.m; path = HellCook/Libs/SSTextView/SSTextView.m; sourceTree = SOURCE_ROOT; };
 		BA3E045617B7E960007F1E86 /* MyRecipesTipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesTipsController.h; path = Classes/Controllers/HomePageRecipes/MyRecipesTipsController.h; sourceTree = "<group>"; };
 		BA3E045717B7E961007F1E86 /* MyRecipesTipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesTipsController.m; path = Classes/Controllers/HomePageRecipes/MyRecipesTipsController.m; sourceTree = "<group>"; };
 		BA3E045917B7E9DF007F1E86 /* MyRecipesTipsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRecipesTipsView.xib; sourceTree = "<group>"; };
@@ -476,6 +476,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6580992E6910AEBD0AFDD975 /* SSTextView */ = {
+			isa = PBXGroup;
+			children = (
+				6580938282D18BE4B8A35D45 /* SSTextView.h */,
+				658098098A86A0456C03D5F4 /* SSTextView.m */,
+			);
+			name = SSTextView;
+			path = Libs/SSTextView;
+			sourceTree = "<group>";
+		};
 		BA02634016D756D500298803 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,7 +515,6 @@
 			children = (
 				BAB32B9E17BFFCCF00B0C150 /* Base64 */,
 				BA3E046617B8CC41007F1E86 /* ODRefreshControl */,
-				BA3E044F17B75E0C007F1E86 /* SSTextView */,
 				BAE67BD3170B70C200414AD5 /* NYXImagesKit */,
 				BAE67BB5170B45AD00414AD5 /* SDWebImage */,
 				BAE67BA8170B439E00414AD5 /* UIImage+Categories */,
@@ -513,6 +522,7 @@
 				BACCF86916ED0BD60094F1E5 /* MKNetworkKit */,
 				BACCF82A16ECFC420094F1E5 /* fmdb */,
 				BA02634616D759CB00298803 /* PPRevealSideviewController */,
+				6580992E6910AEBD0AFDD975 /* SSTextView */,
 			);
 			name = Libs;
 			sourceTree = "<group>";
@@ -640,16 +650,6 @@
 				BABAE9DB17AFFBF50099BE45 /* MyRecipes */,
 			);
 			name = HomePage;
-			sourceTree = "<group>";
-		};
-		BA3E044F17B75E0C007F1E86 /* SSTextView */ = {
-			isa = PBXGroup;
-			children = (
-				BA3E045317B760CE007F1E86 /* SSTextView.h */,
-				BA3E045417B760CE007F1E86 /* SSTextView.m */,
-			);
-			name = SSTextView;
-			path = Libs/PlaceholderTextView;
 			sourceTree = "<group>";
 		};
 		BA3E046617B8CC41007F1E86 /* ODRefreshControl */ = {
@@ -1237,7 +1237,6 @@
 				BA3E043E17B3ECCB007F1E86 /* MyRecipesMaterialController.m in Sources */,
 				BA3E044617B68B65007F1E86 /* MyRecipesStepController.m in Sources */,
 				BA3E044917B68B8C007F1E86 /* MyRecipeStepTableViewCell.m in Sources */,
-				BA3E045517B760CE007F1E86 /* SSTextView.m in Sources */,
 				5EEB7E1617B7AE5700BCB1CB /* MyIntroEditViewController.m in Sources */,
 				5EEB7E1B17B7B47200BCB1CB /* MyIntroAvatarView.m in Sources */,
 				BA3E045817B7E962007F1E86 /* MyRecipesTipsController.m in Sources */,
@@ -1250,6 +1249,7 @@
 				BAB32B9217BFEC7C00B0C150 /* Encrypt.m in Sources */,
 				BAB32BA117BFFCCF00B0C150 /* Base64.m in Sources */,
 				5ED7F13817C0EF8300223884 /* RecipeSendCommentView.m in Sources */,
+				65809A0AA33D3331D334BF58 /* SSTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
