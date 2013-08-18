@@ -181,7 +181,13 @@
     [self openDebugOption];
   }
   else if (indexPath.row == 2){
-    [self logout];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:@"确定要退出吗?"
+                                  delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:@"确定"
+                                  otherButtonTitles:nil];
+    [actionSheet showInView:self.revealSideViewController.view];
   }
   else if (indexPath.row == 0){
     MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];    
@@ -193,6 +199,13 @@
   }
 }
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  if (buttonIndex == 0) {
+    [self logout];
+  } else if (buttonIndex == 1) {
+  }
+}
 
 #pragma mark - Login view
 - (void)showLoginView

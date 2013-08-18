@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface AccountController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface AccountController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 {
   UITableView* tableView;
   UIImageView* bannerImageView;
