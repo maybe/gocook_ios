@@ -138,6 +138,24 @@
   return retArray;
 }
 
+
+- (void)addDataCache:(NSString*)data For:(NSInteger)datatype
+{
+
+}
+
+
+- (void)removeDataCache:(NSInteger)datatype
+{
+  
+}
+
+- (void)emptyDataCache
+{
+
+}
+
+
 #pragma mark  db operation
 
 - (void) initDB
@@ -160,12 +178,12 @@
     [db executeUpdate:@"CREATE TABLE shopping(recipeid integer, name text, materials text, slashitems text);"];
   }
   
-  // create ios_main table
-  NSString *iosMainTableName = [db stringForQuery:@"SELECT name FROM sqlite_master WHERE type='table' AND name='data_cache';"];
+  // create data_cache table
+  NSString *dataCahceTableName = [db stringForQuery:@"SELECT name FROM sqlite_master WHERE type='table' AND name='data_cache';"];
   
-  if (!iosMainTableName)
+  if (!dataCahceTableName)
   {
-    [db executeUpdate:@"CREATE TABLE data_cache(type integer, cache text);"];
+    [db executeUpdate:@"CREATE TABLE data_cache(datatype integer, datacache text);"];
   }
   
   [self closeDB];
