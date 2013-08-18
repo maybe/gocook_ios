@@ -25,6 +25,9 @@
   return self;
 }
 
+
+#pragma mark  account
+
 - (NSMutableDictionary*)getAccount
 {
   NSMutableDictionary* dic = nil;
@@ -70,6 +73,8 @@
   }
   return NO;
 }
+
+#pragma mark  shopping list
 
 - (BOOL)emptyShoppingList
 {
@@ -138,21 +143,39 @@
   return retArray;
 }
 
+#pragma mark  data cache
 
-- (void)addDataCache:(NSString*)data For:(NSInteger)datatype
+- (void)addDataCache:(NSString*)data For:(NSInteger)dataType
 {
-
+  if ([self openDB]){
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM data_cache WHERE datatype=?;", [NSNumber numberWithInt:dataType]];
+    if ([rs next]) {
+      [db executeUpdate:@"UPDATE data_cache SET datacache=? WHERE datatype=?;", [NSNumber numberWithInt:dataType]];
+    } else {
+      [db executeUpdate:@"INSERT INTO data_cache (datatype, datacache) VALUES (?,?);", [NSNumber numberWithInt:dataType], data];
+    }
+    [db close];
+  }
 }
 
 
-- (void)removeDataCache:(NSInteger)datatype
+- (void)removeDataCache:(NSInteger)dataType
 {
-  
+  if ([self openDB]){
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM data_cache WHERE datatype=?;", [NSNumber numberWithInt:dataType]];
+    if ([rs next]) {
+      [db executeUpdate:@"DELETE FROM data_cache WHERE datatype=?;", [NSNumber numberWithInt:dataType]];
+    }
+    [db close];
+  }
 }
 
 - (void)emptyDataCache
 {
-
+  if ([self openDB]){
+    [db executeUpdate:@"DELETE FROM data_cache;"];
+    [db close];
+  }
 }
 
 
@@ -179,9 +202,9 @@
   }
   
   // create data_cache table
-  NSString *dataCahceTableName = [db stringForQuery:@"SELECT name FROM sqlite_master WHERE type='table' AND name='data_cache';"];
+  NSString *dataCacheTableName = [db stringForQuery:@"SELECT name FROM sqlite_master WHERE type='table' AND name='data_cache';"];
   
-  if (!dataCahceTableName)
+  if (!dataCacheTableName)
   {
     [db executeUpdate:@"CREATE TABLE data_cache(datatype integer, datacache text);"];
   }

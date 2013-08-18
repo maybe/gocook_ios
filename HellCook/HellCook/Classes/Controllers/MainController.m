@@ -1,9 +1,4 @@
 #import "MainController.h"
-#import "AccountController.h"
-#import "ShoppingListController.h"
-#import "AppDelegate.h"
-#import "UINavigationController+Autorotate.h"
-#import "RegisterController.h"
 #import "MainTopTableViewCell.h"
 #import "MainCatTableViewCell.h"
 #import "NetManager.h"
@@ -74,17 +69,17 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     return catArray.count+1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (indexPath.row == 0) {
     return 121;
@@ -92,7 +87,7 @@
   return 64;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   static NSString *CellIdentifier = @"CatCell";
   BOOL isTopCell = NO;
@@ -121,7 +116,7 @@
   }
   else{
     MainCatTableViewCell* aCell = (MainCatTableViewCell*)cell;
-    [aCell setData:[catArray objectAtIndex:(indexPath.row-1)]];
+    [aCell setData:[catArray objectAtIndex:(NSUInteger)(indexPath.row-1)]];
   }
 
   return cell;
@@ -130,10 +125,10 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (indexPath.row != 0) {
-    [self.navigationController pushViewController:[[SearchController alloc]initWithNibName:@"SearchView" bundle:nil keyword:catArray[indexPath.row-1][@"name"]] animated:YES];
+    [self.navigationController pushViewController:[[SearchController alloc]initWithNibName:@"SearchView" bundle:nil keyword:catArray[(NSUInteger)(indexPath.row-1)][@"name"]] animated:YES];
   }
 }
 
