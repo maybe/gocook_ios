@@ -160,6 +160,13 @@
     [db executeUpdate:@"CREATE TABLE shopping(recipeid integer, name text, materials text, slashitems text);"];
   }
   
+  // create ios_main table
+  NSString *iosMainTableName = [db stringForQuery:@"SELECT name FROM sqlite_master WHERE type='table' AND name='data_cache';"];
+  
+  if (!iosMainTableName)
+  {
+    [db executeUpdate:@"CREATE TABLE data_cache(type integer, cache text);"];
+  }
   
   [self closeDB];
 }
