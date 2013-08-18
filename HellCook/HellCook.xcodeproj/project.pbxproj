@@ -94,6 +94,8 @@
 		BA829BF317055CD400B0341A /* RegisterAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF217055CD400B0341A /* RegisterAvatarView.m */; };
 		BA829BF717057FCB00B0341A /* KeyboardHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF617057FCA00B0341A /* KeyboardHandler.m */; };
 		BA829BFA1705877800B0341A /* UIView+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */; };
+		BAB32B9217BFEC7C00B0C150 /* Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB32B9117BFEC7C00B0C150 /* Encrypt.m */; };
+		BAB32BA117BFFCCF00B0C150 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB32BA017BFFCCF00B0C150 /* Base64.m */; };
 		BABAE9CE17AE46A90099BE45 /* MyRecipesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9CD17AE46A90099BE45 /* MyRecipesTableViewCell.m */; };
 		BABAE9D217AE779F0099BE45 /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9D017AE779F0099BE45 /* HomePageController.m */; };
 		BABAE9D517AE7D0F0099BE45 /* HomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABAE9D417AE7D0F0099BE45 /* HomePageView.xib */; };
@@ -312,6 +314,10 @@
 		BA829BF617057FCA00B0341A /* KeyboardHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardHandler.m; path = Classes/Common/KeyboardHandler.m; sourceTree = "<group>"; };
 		BA829BF81705877600B0341A /* UIView+FindFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FindFirstResponder.h"; path = "Classes/Common/UIView+FindFirstResponder.h"; sourceTree = "<group>"; };
 		BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FindFirstResponder.m"; path = "Classes/Common/UIView+FindFirstResponder.m"; sourceTree = "<group>"; };
+		BAB32B9017BFEC7C00B0C150 /* Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Encrypt.h; path = Classes/Common/Encrypt.h; sourceTree = "<group>"; };
+		BAB32B9117BFEC7C00B0C150 /* Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Encrypt.m; path = Classes/Common/Encrypt.m; sourceTree = "<group>"; };
+		BAB32B9F17BFFCCF00B0C150 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		BAB32BA017BFFCCF00B0C150 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		BABAE9CC17AE46A90099BE45 /* MyRecipesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesTableViewCell.h; path = Classes/Views/MyRecipesTableViewCell.h; sourceTree = "<group>"; };
 		BABAE9CD17AE46A90099BE45 /* MyRecipesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesTableViewCell.m; path = Classes/Views/MyRecipesTableViewCell.m; sourceTree = "<group>"; };
 		BABAE9CF17AE779E0099BE45 /* HomePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageController.h; path = Classes/Controllers/HomePageController.h; sourceTree = "<group>"; };
@@ -494,6 +500,7 @@
 		BA02634216D7570400298803 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				BAB32B9E17BFFCCF00B0C150 /* Base64 */,
 				BA3E046617B8CC41007F1E86 /* ODRefreshControl */,
 				BA3E044F17B75E0C007F1E86 /* SSTextView */,
 				BAE67BD3170B70C200414AD5 /* NYXImagesKit */,
@@ -540,6 +547,8 @@
 				BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */,
 				BA0873E0179AFC1F00A270D5 /* LineSpaceLabel.h */,
 				BA0873E1179AFC1F00A270D5 /* LineSpaceLabel.m */,
+				BAB32B9017BFEC7C00B0C150 /* Encrypt.h */,
+				BAB32B9117BFEC7C00B0C150 /* Encrypt.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -774,6 +783,16 @@
 				BA829BEF17049DE400B0341A /* DefaultGroupedTableCell.m */,
 			);
 			name = Custom;
+			sourceTree = "<group>";
+		};
+		BAB32B9E17BFFCCF00B0C150 /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				BAB32B9F17BFFCCF00B0C150 /* Base64.h */,
+				BAB32BA017BFFCCF00B0C150 /* Base64.m */,
+			);
+			name = Base64;
+			path = Libs/Base64;
 			sourceTree = "<group>";
 		};
 		BABAE9DB17AFFBF50099BE45 /* MyRecipes */ = {
@@ -1223,6 +1242,8 @@
 				5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */,
 				5ED7F13017BF831500223884 /* MyFansTableViewCell.m in Sources */,
 				5ED7F13317BF836300223884 /* RecipeCommentViewController.m in Sources */,
+				BAB32B9217BFEC7C00B0C150 /* Encrypt.m in Sources */,
+				BAB32BA117BFFCCF00B0C150 /* Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
