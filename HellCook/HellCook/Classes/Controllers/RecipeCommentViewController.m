@@ -111,11 +111,11 @@
     NSString *strComment;
     if ([dataDict[@"name"] isEqual:@""] || dataDict[@"name"]==[NSNull null])
     {
-      strComment = [NSString stringWithFormat:@"%@: %@",dataDict[@"name"],dataDict[@"content"]];
+      strComment = [NSString stringWithFormat:@"%@",dataDict[@"content"]];
     }
     else
     {
-      strComment = [NSString stringWithFormat:@"%@",dataDict[@"content"]];
+      strComment = [NSString stringWithFormat:@"%@: %@",dataDict[@"name"],dataDict[@"content"]];
     }
     
     [cellForHeight caculateCellHeight:strComment];
