@@ -551,5 +551,29 @@
   return op;
 }
 
+- (MKNetworkOperation*)commentWithDict:(NSMutableDictionary*)dict
+                     completionHandler:(commentResponseBlock)completionBlock
+                          errorHandler:(MKNKErrorBlock)errorBlock
+{
+  NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dict];
+  
+  MKNetworkOperation *op = [self operationWithPath:@"recipe/comment"
+                                            params:dic
+                                        httpMethod:@"POST"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    NSLog(@"%@",completedOperation.responseString);
+    
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
 
 @end

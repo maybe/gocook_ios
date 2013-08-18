@@ -38,7 +38,8 @@
 {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
-//  self.tabBarController.navigationItem.title = @"nvldjfkljkfdlkj";
+  self.tabBarController.navigationItem.title = @"我的粉丝";
+  
   [self getMyFansData];
 }
 

@@ -50,7 +50,7 @@
     commentLabel.numberOfLines = 0;
     //nameBtn
     nameBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [nameBtn setFrame:CGRectMake(90, 10, 0, 25)];
+    [nameBtn setFrame:CGRectMake(75, 10, 0, 25)];
     [nameBtn setBackgroundColor:[UIColor clearColor]];
     [nameBtn addTarget:nil action:@selector(gotoOtherIntro:) forControlEvents:UIControlEventTouchUpInside];
     //dateLabel

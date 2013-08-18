@@ -49,6 +49,7 @@
 {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
+//  self.tabBarController.navigationItem.title = @"个人简介";
   [self setRightButton];
   CGRect tableframe = self.myTableView.frame;
   tableframe.size.height = _screenHeight_NoStBar - _navigationBarHeight;

@@ -28,6 +28,7 @@ typedef void (^getOtherIntroResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^watchResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^unwatchResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^getCommentsResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^commentResponseBlock)(NSMutableDictionary* resultDic);
 
 typedef void (^uploadCoverTmpImageResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^uploadStepTmpImageResponseBlock)(NSMutableDictionary* resultDic, NSInteger index);
@@ -137,5 +138,10 @@ typedef void (^createRecipeResponseBlock)(NSMutableDictionary* resultDic);
 - (MKNetworkOperation*)getCommentsWithRecipeID:(NSInteger)recipeid
                        CompletionHandler:(getCommentsResponseBlock) completionBlock
                             errorHandler:(MKNKErrorBlock) errorBlock;
+
+//评论菜谱
+- (MKNetworkOperation*)commentWithDict:(NSMutableDictionary*)dict
+                             completionHandler:(commentResponseBlock)completionBlock
+                                  errorHandler:(MKNKErrorBlock)errorBlock;
 
 @end

@@ -19,6 +19,7 @@
 		5ED7F13017BF831500223884 /* MyFansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F12E17BF831500223884 /* MyFansTableViewCell.m */; };
 		5ED7F13317BF836300223884 /* RecipeCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F13217BF836200223884 /* RecipeCommentViewController.m */; };
 		5ED7F13517BF837E00223884 /* RecipeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED7F13417BF837E00223884 /* RecipeCommentView.xib */; };
+		5ED7F13817C0EF8300223884 /* RecipeSendCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F13717C0EF8200223884 /* RecipeSendCommentView.m */; };
 		5EEB7E0817B3EFAB00BCB1CB /* MyFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E0617B3EFAB00BCB1CB /* MyFansViewController.m */; };
 		5EEB7E0B17B3F01C00BCB1CB /* MyFansView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EEB7E0A17B3F01C00BCB1CB /* MyFansView.xib */; };
 		5EEB7E1617B7AE5700BCB1CB /* MyIntroEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1517B7AE5700BCB1CB /* MyIntroEditViewController.m */; };
@@ -186,6 +187,8 @@
 		5ED7F13117BF836200223884 /* RecipeCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeCommentViewController.h; path = Classes/Controllers/RecipeCommentViewController.h; sourceTree = "<group>"; };
 		5ED7F13217BF836200223884 /* RecipeCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeCommentViewController.m; path = Classes/Controllers/RecipeCommentViewController.m; sourceTree = "<group>"; };
 		5ED7F13417BF837E00223884 /* RecipeCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeCommentView.xib; sourceTree = "<group>"; };
+		5ED7F13617C0EF8200223884 /* RecipeSendCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeSendCommentView.h; sourceTree = "<group>"; };
+		5ED7F13717C0EF8200223884 /* RecipeSendCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeSendCommentView.m; sourceTree = "<group>"; };
 		5EEB7E0517B3EFAB00BCB1CB /* MyFansViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFansViewController.h; path = Classes/Controllers/MyFansViewController.h; sourceTree = "<group>"; };
 		5EEB7E0617B3EFAB00BCB1CB /* MyFansViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFansViewController.m; path = Classes/Controllers/MyFansViewController.m; sourceTree = "<group>"; };
 		5EEB7E0A17B3F01C00BCB1CB /* MyFansView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFansView.xib; sourceTree = "<group>"; };
@@ -911,6 +914,8 @@
 				5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */,
 				5ED7F11C17BF301800223884 /* RecipeCommentsTableViewCell.h */,
 				5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */,
+				5ED7F13617C0EF8200223884 /* RecipeSendCommentView.h */,
+				5ED7F13717C0EF8200223884 /* RecipeSendCommentView.m */,
 			);
 			name = RecipeDetail;
 			path = Classes/Views/RecipeDetail;
@@ -1244,6 +1249,7 @@
 				5ED7F13317BF836300223884 /* RecipeCommentViewController.m in Sources */,
 				BAB32B9217BFEC7C00B0C150 /* Encrypt.m in Sources */,
 				BAB32BA117BFFCCF00B0C150 /* Base64.m in Sources */,
+				5ED7F13817C0EF8300223884 /* RecipeSendCommentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SSTextView.h"
 
 @interface RecipeSendCommentView : UIView
+{
+  SSTextView* contentTextView;
+  UIButton *sendBtn;
+}
+
+@property (nonatomic, retain) SSTextView* contentTextView;
+@property (nonatomic, retain) UIButton *sendBtn;
 
 @end

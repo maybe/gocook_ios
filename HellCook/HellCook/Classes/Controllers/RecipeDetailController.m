@@ -219,7 +219,7 @@
 
 - (void)tapComment
 {
-  RecipeCommentViewController *pController = [[RecipeCommentViewController alloc] initWithNibName:@"RecipeCommentView" bundle:nil withData:recipeCommentsArray];
+  RecipeCommentViewController *pController = [[RecipeCommentViewController alloc] initWithNibName:@"RecipeCommentView" bundle:nil withRecipeID:mRecipeId withData:recipeCommentsArray];
   [self.navigationController pushViewController:pController animated:YES];
 }
 
