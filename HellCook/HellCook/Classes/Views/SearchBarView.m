@@ -36,14 +36,16 @@
   UIImageView* searchIconView = [[UIImageView alloc]initWithImage:searchIcon];
   [searchIconView setFrame:CGRectMake(20, 14, 16, 16)];
   
-  searchField = [[UITextField alloc]initWithFrame:CGRectMake(40, 13, 260, 22)];
+  searchField = [[UITextField alloc]initWithFrame:CGRectMake(40, 8, 260, 28)];
+  [searchField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
   [searchField setPlaceholder:@"搜索菜谱"];
+  [searchField setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
   [searchField setBackgroundColor: [UIColor clearColor]];
   [searchField setDelegate:self];
   searchField.autocapitalizationType = UITextAutocapitalizationTypeNone;
   searchField.keyboardType = UIKeyboardTypeDefault;
   searchField.autocorrectionType = UITextAutocorrectionTypeNo;
-  [searchField setFont:[UIFont systemFontOfSize:14]];
+  [searchField setFont:[UIFont systemFontOfSize:15]];
   searchField.returnKeyType = UIReturnKeySearch;
   
   [self addSubview:backImageView];
