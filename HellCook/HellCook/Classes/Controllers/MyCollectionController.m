@@ -12,6 +12,7 @@
 #import "MyCollectionTableViewCell.h"
 #import "User.h"
 #import "LoginController.h"
+#import "ODRefreshControl.h"
 
 @interface MyCollectionController ()
 
@@ -29,7 +30,6 @@
         // Custom initialization
       curPage = 0;
       bShouldRefresh = TRUE;
-      bSessionInvalid = FALSE;
       myCollectionArray = [[NSMutableArray alloc] init];
       [self initLoadingView];
     }
@@ -42,23 +42,32 @@
   // Do any additional setup after loading the view from its nib
   self.navigationItem.title = @"我的收藏";
   
-  CGRect viewframe = self.view.frame;
-  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
-  [self.view setFrame:viewframe];
-  [self.tableView setFrame:viewframe];
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
+  [self.tableView setFrame:viewFrame];
   
   [self setLeftButton];
+
+  refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+  [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+  refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
+
+  [self getMyCollectionData];
+}
+
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
+{
+  [myCollectionArray removeAllObjects];
+  curPage = 0;
+  bShouldRefresh = YES;
+  [self.tableView reloadData];
+  [self getMyCollectionData];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
-  [self getMyCollectionData];
-  
-  if (bSessionInvalid)
-  {
-    bSessionInvalid = FALSE;
-    [self getMyCollectionData];
-  }
+  [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -214,6 +223,9 @@
       if (originsize == 0)
       {
         [self.tableView reloadData];
+        if ([refreshControl isRefreshing]){
+          [refreshControl endRefreshing];
+        }
       }
       else
       {
@@ -239,6 +251,12 @@
   }
   else if (result == 1)
   {
+    if ([refreshControl isRefreshing]){
+      [refreshControl endRefreshing];
+    }
+
+    [self deleteLoadingView];
+
     LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
     if (self.navigationController)
     {

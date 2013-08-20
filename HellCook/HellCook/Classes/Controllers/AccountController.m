@@ -10,7 +10,6 @@
 #import "QuartzCore/QuartzCore.h"
 #import "RegisterController.h"
 #import "LoginController.h"
-#import "UINavigationController+Autorotate.h"
 #import "UserAccount.h"
 #import "AccountTableViewCell.h"
 #import "AccountTableViewGridCell.h"
@@ -20,7 +19,6 @@
 #import "UIImage+Blurring.h"
 #import "NetManager.h"
 #import "MyCollectionController.h"
-#import "UIImage+Blurring.h"
 #import "AppDelegate.h"
 #import "UIZoomNavigationController.h"
 #import "MainController.h"
@@ -33,7 +31,7 @@
 @implementation AccountController
 @synthesize tableView;
 @synthesize bannerImageView;
-@synthesize avataImageVIew;
+@synthesize avataImageView;
 @synthesize loginButton;
 @synthesize registerButton;
 @synthesize cellContentArray;
@@ -53,23 +51,23 @@
   
   nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(70, 70, 180, 30)];
   bannerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 280, 120)];
-  avataImageVIew = [[UIImageView alloc]initWithFrame:CGRectMake(15, 65, 40, 40)];
+  avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 65, 40, 40)];
   
   [self.view addSubview:bannerImageView];
-  [self.view addSubview:avataImageVIew];
+  [self.view addSubview:avataImageView];
   [self.view addSubview:nameLabel];
   
   [self hideLoginView];
   
   [self initCellContentArray];
   
-  CGRect viewframe = self.view.frame;
-  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
-  [self.view setFrame:viewframe];
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
   
-  CGRect tableframe = self.tableView.frame;
-  tableframe.size.height = _screenHeight_NoStBar_NoNavBar-120;
-  [self.tableView setFrame:tableframe];
+  CGRect tableFrame = self.tableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar-120;
+  [self.tableView setFrame:tableFrame];
   
   [super viewDidLoad];
 }
@@ -97,12 +95,12 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     return cellContentArray.count;
   
@@ -111,14 +109,11 @@
 
 - (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-  NSMutableDictionary* dic = [cellContentArray objectAtIndex:indexPath.row];
+  NSMutableDictionary* dic = [cellContentArray objectAtIndex:(NSUInteger)indexPath.row];
   if ([[dic allKeys]containsObject:@"image"]) {
-    if (indexPath.row == cellContentArray.count-1) {
-      return 83;
-    }
-    return 63;
+    return 64;
   }
-  return 100;
+  return 64*3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -126,7 +121,7 @@
   static NSString *CellIdentifier = @"Cell";
   BOOL isGridCell = NO;
   
-  NSMutableDictionary* dic = [cellContentArray objectAtIndex:indexPath.row];
+  NSMutableDictionary* dic = [cellContentArray objectAtIndex:(NSUInteger)indexPath.row];
   if (![[dic allKeys]containsObject:@"image"]) {
     CellIdentifier = @"GridCell";
     isGridCell = YES;
@@ -157,6 +152,8 @@
     aCell.nameLabel4.text = [dic valueForKey:@"title4"];
     aCell.countLabel5.text = @"0";
     aCell.nameLabel5.text = [dic valueForKey:@"title5"];
+    aCell.countLabel6.text = @"0";
+    aCell.nameLabel6.text = [dic valueForKey:@"title6"];
   }
   else
   {
@@ -175,7 +172,7 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (indexPath.row == cellContentArray.count-1) {
     [self openDebugOption];
@@ -212,14 +209,14 @@
 {
   [[self loginButton] setHidden:NO];
   [[self registerButton] setHidden:NO];
-  [[self debugOptonButton] setHidden:NO];
+  [[self debugOptionButton] setHidden:NO];
 }
 
 - (void)hideLoginView
 {
   [[self loginButton] setHidden:YES];
   [[self registerButton] setHidden:YES];
-  [[self debugOptonButton] setHidden:YES];
+  [[self debugOptionButton] setHidden:YES];
 
 }
 
@@ -227,7 +224,7 @@
 {
   [tableView setHidden:NO];
   [bannerImageView setHidden:NO];
-  [avataImageVIew setHidden:NO];
+  [avataImageView setHidden:NO];
   [nameLabel setHidden:NO];
 }
 
@@ -235,7 +232,7 @@
 {
   [tableView setHidden:YES];
   [bannerImageView setHidden:YES];
-  [avataImageVIew setHidden:YES];
+  [avataImageView setHidden:YES];
   [nameLabel setHidden:YES];
 }
 
@@ -316,25 +313,25 @@
     return registerButton;
 }
 
-- (id)debugOptonButton
+- (id)debugOptionButton
 {
-  if (!debugOptonButton) {
-    debugOptonButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 200, 120, 30)];
-    [debugOptonButton setTitle:@"Debug Option" forState:UIControlStateNormal];
+  if (!debugOptionButton) {
+    debugOptionButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 200, 120, 30)];
+    [debugOptionButton setTitle:@"Debug Option" forState:UIControlStateNormal];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    [debugOptonButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
+    [debugOptionButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
     
     UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
     UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    [debugOptonButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
+    [debugOptionButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
     
-    [debugOptonButton addTarget:self action:@selector(openDebugOption) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:debugOptonButton];
-    [self.view bringSubviewToFront:debugOptonButton];
+    [debugOptionButton addTarget:self action:@selector(openDebugOption) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.view addSubview:debugOptionButton];
+    [self.view bringSubviewToFront:debugOptionButton];
   }
-  return debugOptonButton;
+  return debugOptionButton;
 }
 
 
@@ -351,8 +348,9 @@
              @"0",@"count1", @"关注",@"title1",
              @"0",@"count2", @"粉丝",@"title2",
              @"0",@"count3", @"收藏",@"title3",
-             @"0",@"count4", @"作品",@"title4",
-             @"0",@"count5", @"菜谱",@"title5",nil];
+             @"0",@"count4", @"菜谱",@"title4",
+             @"0",@"count5", @"购买",@"title5",
+             @"0",@"count6", @"作品",@"title6",nil];
   [cellContentArray addObject:cellDic];
   
   cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
@@ -412,18 +410,18 @@
     avatarUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, account.avatar];
   }
   
-  [avataImageVIew setContentMode:UIViewContentModeScaleAspectFill];
-  [avataImageVIew setClipsToBounds:YES];
+  [avataImageView setContentMode:UIViewContentModeScaleAspectFill];
+  [avataImageView setClipsToBounds:YES];
   
   if (avatarUrl) {
-    [avataImageVIew setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+    [avataImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
   }else {
-    [avataImageVIew setImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+    [avataImageView setImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
   }
-  avataImageVIew.layer.cornerRadius = 4.0;
-  avataImageVIew.layer.masksToBounds = YES;
-  avataImageVIew.layer.borderColor = [UIColor clearColor].CGColor;
-  avataImageVIew.layer.borderWidth = 1.0;
+  avataImageView.layer.cornerRadius = 4.0;
+  avataImageView.layer.masksToBounds = YES;
+  avataImageView.layer.borderColor = [UIColor clearColor].CGColor;
+  avataImageView.layer.borderWidth = 1.0;
   
   [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
   [bannerImageView setClipsToBounds:YES];
@@ -437,7 +435,7 @@
 
 - (void)onClickCountGrid:(UIButton*)sender
 {
-  //NSLog(@"%d",sender.tag);
+  NSLog(@"%d",sender.tag);
   if (sender.tag == 10003)//我的收藏
   {
     if (self.navigationController)

@@ -12,7 +12,7 @@
 #import "LoginController.h"
 #import "MyRecipesEditController.h"
 #import "User.h"
-#import <ODRefreshControl.h>
+#import "ODRefreshControl.h"
 
 @interface MyRecipesController ()
 
@@ -39,10 +39,10 @@
   [super viewDidLoad];
   [self resetTableHeader];
   
-  CGRect viewframe = self.view.frame;
-  viewframe.size.height = _screenHeight_NoStBar_NoNavBar_NoTabBar;
-  [self.view setFrame:viewframe];
-  [self.tableView setFrame:viewframe];
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar_NoTabBar;
+  [self.view setFrame:viewFrame];
+  [self.tableView setFrame:viewFrame];
   
   ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];

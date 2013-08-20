@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class ODRefreshControl;
 @interface MyCollectionController : UIViewController
 {
   UITableView *tableView;
   NSInteger curPage;
   NSMutableArray *myCollectionArray;
-  
+
+  ODRefreshControl *refreshControl;
+
   BOOL bShouldRefresh;
   NSInteger totalPage;
   UIActivityIndicatorView* mLoadingActivity;
-  BOOL bSessionInvalid;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

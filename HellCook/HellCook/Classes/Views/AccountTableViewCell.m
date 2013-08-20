@@ -20,7 +20,7 @@
       
       titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(46, 20, 150, 23)];
       [self.titleLabel setTextColor:[UIColor colorWithRed:82.0f/255.0f green:82.0f/255.0f blue:82.0f/255.0f alpha:1.0f]];
-      [self.titleLabel setFont: [UIFont systemFontOfSize:16]];
+      [self.titleLabel setFont: [UIFont systemFontOfSize:17]];
       [titleLabel setBackgroundColor: [UIColor clearColor]];
 
       bottomlineView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 62, 280, 1.2)];
@@ -29,7 +29,6 @@
       [imageView setBackgroundColor: [UIColor clearColor]];
 
       [self.bottomlineView setImage: [UIImage imageNamed:@"Images/line.png"]];
-     // [bottomlineView setBackgroundColor:[UIColor colorWithRed:216.0f/255.0f green:216.0f/255.0f blue:216.0f/255.0f alpha:1.0f]];
 
       [self addSubview:titleLabel];
       [self addSubview:bottomlineView];

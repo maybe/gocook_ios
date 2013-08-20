@@ -15,6 +15,7 @@
   UILabel* countLabel3;
   UILabel* countLabel4;
   UILabel* countLabel5;
+  UILabel* countLabel6;
   
 }
 
@@ -23,15 +24,18 @@
 @property (nonatomic, retain) UILabel* countLabel3;
 @property (nonatomic, retain) UILabel* countLabel4;
 @property (nonatomic, retain) UILabel* countLabel5;
+@property (nonatomic, retain) UILabel* countLabel6;
 
 @property (nonatomic, retain) UILabel* nameLabel1;
 @property (nonatomic, retain) UILabel* nameLabel2;
 @property (nonatomic, retain) UILabel* nameLabel3;
 @property (nonatomic, retain) UILabel* nameLabel4;
 @property (nonatomic, retain) UILabel* nameLabel5;
+@property (nonatomic, retain) UILabel* nameLabel6;
 
 @property (nonatomic, retain) UIImageView* bottomLine1;
 @property (nonatomic, retain) UIImageView* bottomLine2;
+@property (nonatomic, retain) UIImageView* bottomLine3;
 @property (nonatomic, retain) UIImageView* sepLine1;
 @property (nonatomic, retain) UIImageView* sepLine2;
 @property (nonatomic, retain) UIImageView* sepLine3;
