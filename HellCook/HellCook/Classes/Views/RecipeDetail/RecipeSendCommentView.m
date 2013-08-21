@@ -7,6 +7,7 @@
 //
 
 #import "RecipeSendCommentView.h"
+#import "QuartzCore/QuartzCore.h"
 
 @implementation RecipeSendCommentView
 @synthesize contentTextView, sendBtn;
@@ -17,10 +18,13 @@
   if (self) {
     // Initialization code
     [self setBackgroundColor: [UIColor whiteColor]];
-    [self setFrame:CGRectMake(0, 0, 320, 60)];
+    [self setFrame:CGRectMake(0, 0, 320, 40)];
+    self.layer.shadowOffset = CGSizeMake(0, 1);
+    self.layer.shadowOpacity = 0.1;
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
     
     //contentTextView
-    contentTextView = [[SSTextView alloc] initWithFrame:CGRectMake(5, 5, 255, 55)];
+    contentTextView = [[SSTextView alloc] initWithFrame:CGRectMake(5, 5, 255, 30)];
     [contentTextView setBackgroundColor: [UIColor clearColor]];
     contentTextView.placeholder = @"评论";
     contentTextView.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -31,11 +35,12 @@
     [contentTextView setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
     //sendBtn
     sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [sendBtn setFrame:CGRectMake(270, 5, 45, 45)];
+    [sendBtn setFrame:CGRectMake(270, 8, 45, 24)];
     [sendBtn setBackgroundColor:[UIColor clearColor]];
     [sendBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
     [sendBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"] forState:UIControlStateHighlighted];
     [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    sendBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
     [sendBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [sendBtn addTarget:nil action:@selector(tapSend) forControlEvents:UIControlEventTouchUpInside];
     

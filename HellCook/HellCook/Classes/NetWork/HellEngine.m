@@ -563,7 +563,6 @@
   
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     NSLog(@"%@",completedOperation.responseString);
-    
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];

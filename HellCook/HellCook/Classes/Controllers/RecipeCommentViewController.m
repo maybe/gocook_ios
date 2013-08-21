@@ -28,7 +28,7 @@
     mRecipeID = recipeID;
     dataArray = [NSMutableArray arrayWithArray:data];
     cellForHeight = [[RecipeCommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NoUseJustForCaculateHeight"];
-    sendView = [[RecipeSendCommentView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+    sendView = [[RecipeSendCommentView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
   }
   return self;
 }
@@ -46,13 +46,13 @@
   [self.view setFrame:viewframe];
   
   CGRect tableframe = self.myTableView.frame;
-  tableframe.size.height = _screenHeight_NoStBar_NoNavBar + _stateBarHeight +4 -60;
+  tableframe.size.height = _screenHeight_NoStBar_NoNavBar + _stateBarHeight +4 -40;
   [self.myTableView setFrame:tableframe];
   
   [self.view addSubview:sendView];
   sendView.contentTextView.delegate = self;
   CGRect sendViewFrame = sendView.frame;
-  sendViewFrame.origin.y = _screenHeight_NoStBar_NoNavBar - 60;
+  sendViewFrame.origin.y = _screenHeight_NoStBar_NoNavBar - 40;
   [sendView setFrame:sendViewFrame];
 }
 

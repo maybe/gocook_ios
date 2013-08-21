@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "QuartzCore/QuartzCore.h"
 #import "NetManager.h"
+#import <CoreText/CoreText.h>
 
 #define _commentLabelWidth 235
 
@@ -28,7 +29,7 @@
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     //avatarImageView
-    avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 50, 60)];
+    avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 55, 60)];
     [avataImageView setContentMode:UIViewContentModeScaleAspectFill];
     [avataImageView setClipsToBounds:YES];
     avataImageView.layer.cornerRadius = 4.0;
@@ -54,10 +55,11 @@
     [nameBtn setBackgroundColor:[UIColor clearColor]];
     [nameBtn addTarget:nil action:@selector(gotoOtherIntro:) forControlEvents:UIControlEventTouchUpInside];
     //dateLabel
-    dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, mCellHeight-30, 200, 20)];
+    dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(55, mCellHeight-30, 100, 20)];
     dateLabel.shadowOffset = CGSizeMake(0.0f, 0.5f);
-    dateLabel.shadowColor = [UIColor colorWithRed:180.0/255.0 green:180.0/255.0 blue:180.0/255.0 alpha:0.8];
+    dateLabel.shadowColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.8];
     dateLabel.backgroundColor = [UIColor clearColor];
+    [dateLabel setTextColor:[UIColor colorWithRed:160.0/255.0 green:160.0/255.0 blue:160.0/255.0 alpha:1.0]];
     dateLabel.font = [UIFont systemFontOfSize:14];
     //seperator image
     sepImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, mCellHeight-2, 320, 1)];
@@ -120,13 +122,35 @@
   strComment = [NSString stringWithFormat:@"%@: %@",name,content];
   NSMutableAttributedString *attributedStrComment = [[NSMutableAttributedString alloc] initWithString:strComment];
   [attributedStrComment setAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} range:NSMakeRange(0, [name length])];
+  [attributedStrComment setAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:42/255.0 green:42/255.0 blue:42/255.0 alpha:1.0]} range:NSMakeRange([name length],[content length]+2)];
+  [attributedStrComment addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue" size:15.0] range:NSMakeRange([name length], [content length]+2)];
   commentLabel.attributedText = attributedStrComment;
   [self caculateCellHeight:strComment];
   
   
   NSMutableDictionary *createTimeDict = dict[@"create_time"];
-  if (createTimeDict[@"date"]!=[NSNull null] && ![createTimeDict[@"date"] isEqual:@""]) {
-    dateLabel.text = createTimeDict[@"date"];
+  if (createTimeDict[@"date"]!=[NSNull null] && ![createTimeDict[@"date"] isEqual:@""])
+  {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *otherDate =  [dateFormat dateFromString:createTimeDict[@"date"]];
+    NSDate *nowDate = [NSDate date];
+    
+    NSUInteger componentFlags = NSYearCalendarUnit|NSMonthCalendarUnit |NSDayCalendarUnit;    
+    NSDateComponents *todayComponents = [[NSCalendar currentCalendar] components:componentFlags fromDate:nowDate];
+    NSDateComponents *otherComponents = [[NSCalendar currentCalendar] components:componentFlags fromDate:otherDate];
+    if ([todayComponents year]==[otherComponents year] && [todayComponents month]==[otherComponents month] && [todayComponents day]==[otherComponents day])
+    {
+      dateLabel.text = @"今天";
+    }
+    else if ([todayComponents year]==[otherComponents year] && [todayComponents month]==[otherComponents month] && [todayComponents day]==([otherComponents day]+1))
+    {
+      dateLabel.text = @"昨天";
+    }
+    else
+    {
+      dateLabel.text = [NSString stringWithFormat:@"%d年%d月%d日",[otherComponents year],[otherComponents month],[otherComponents day]];
+    }
   }
   else{
     dateLabel.text = @"";
@@ -160,7 +184,7 @@
   cellRect.size.height = mCellHeight;
   [self setFrame:cellRect];
   
-  [dateLabel setFrame:CGRectMake(90, mCellHeight-30, 200, 20)];
+  [dateLabel setFrame:CGRectMake(75, mCellHeight-30, 200, 20)];
   [sepImageView setFrame:CGRectMake(0, mCellHeight-2, 320, 1)];
   
   CGRect labelRect = commentLabel.frame;
