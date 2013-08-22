@@ -67,14 +67,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-- (void)viewWillAppear:(BOOL)animated
-{
-  keyboard.delegate = self;
   
-  [super viewWillAppear:animated];
+  keyboard.delegate = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
