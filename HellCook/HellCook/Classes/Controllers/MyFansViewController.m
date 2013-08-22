@@ -39,6 +39,7 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
   self.tabBarController.navigationItem.title = @"我的粉丝";
+  [self setLeftButton];
   
   [self getMyFansData];
 }
@@ -46,6 +47,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  
+  [self.tabBarController.navigationItem setRightBarButtonItem:nil];
   
   if (bSessionInvalid)
   {
@@ -58,6 +61,29 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setLeftButton
+{
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+  [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
+  [leftBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/commonBackBackgroundNormal.png"]
+                               forState:UIControlStateNormal];
+  [leftBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/commonBackBackgroundHighlighted.png"]
+                               forState:UIControlStateHighlighted];
+  [leftBarButtonView setTitle:@"  返回 " forState:UIControlStateNormal];
+  [leftBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+  
+  UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
+  
+  [self.tabBarController.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+}
+
+-(void)returnToPrev
+{
+    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
 }
 
 
@@ -132,7 +158,7 @@
   NSMutableDictionary *pFanDict = [myFansArray objectAtIndex:indexPath.row];
   NSInteger userid = [pFanDict[@"user_id"] intValue];
   
-  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil isMyself:NO withUserID:userid fromMyFollow:NO];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:userid from:ViewControllerCalledFromMyFan];
   [self.tabBarController.navigationController pushViewController:pHomePageController animated:YES];
 }
 

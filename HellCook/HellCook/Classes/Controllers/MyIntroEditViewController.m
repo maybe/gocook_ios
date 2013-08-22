@@ -64,9 +64,13 @@
   self.myTableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
   headImageView = [[MyIntroAvatarView alloc]initWithFrame:CGRectMake(0, 0, 320, 150) withData:data];
   [self.myTableView.tableHeaderView addSubview:headImageView];
-  
   //keyboard
   keyboard = [[KeyboardHandler alloc] init];
+  
+  HUD = [[MBProgressHUD alloc] initWithView:self.view];
+  [self.view addSubview:HUD];  
+  HUD.mode = MBProgressHUDModeText;
+  HUD.delegate = self;
   
   CGRect viewframe = self.view.frame;
   viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
@@ -523,6 +527,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   [headImageView setNewImage:image];
 }
 
+#pragma mark - MBProgressHUD delegate
+
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+  [self returnToPrev];
+}
+
 #pragma mark - Keyboard
 
 - (void)keyboardSizeChanged:(CGSize)delta
@@ -611,9 +622,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
                          errorHandler:^(NSError *error){}];
   }
   else
-  {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"个人信息无改变，不需保存" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+  {    
+    HUD.labelText = @"个人信息无改变，不需保存";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
   }
 }
 
@@ -622,21 +634,24 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"个人基本信息上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+    HUD.labelText = @"个人基本信息上传成功";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
   }
   else
   {
     if ([[resultDic valueForKey:@"errorcode"] intValue] == 2)
     {
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"用户名已存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-      [alert show];
+      HUD.labelText = @"用户名已存在";
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:2];
     }
     else
     {
       NSString *msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-      [alert show];
+      HUD.labelText = msg;
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:2];
     }
   }
 }

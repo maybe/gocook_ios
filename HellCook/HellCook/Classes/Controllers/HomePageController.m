@@ -21,14 +21,14 @@
 @synthesize mTabBar;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isMyself:(BOOL)isMyself withUserID:(NSInteger)userID fromMyFollow:(BOOL)fromFollow
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID from:(ViewControllerCalledFrom)calledFrom
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self)
   {
-    bMyself = isMyself;
+    eCalledFrom = calledFrom;
     //个人简介
-    MyIntroductionViewController* pIntroController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil isMyself:isMyself withUserID:userID fromMyFollow:fromFollow];
+    MyIntroductionViewController* pIntroController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:userID from:calledFrom];
     [pIntroController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor redColor] } forState:UIControlStateNormal];
     [pIntroController.tabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor blackColor] } forState:UIControlStateNormal];
     [pIntroController.tabBarItem  setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
@@ -41,7 +41,7 @@
     pMyRecipesController.tabBarItem.title = @"我的菜谱";
   
     NSArray *viewControllerArray;
-    if (bMyself)
+    if (eCalledFrom == ViewControllerCalledFromMyIndividual)
     {
       //我的关注
       MyFollowViewController* pFollowController = [[MyFollowViewController alloc] initWithNibName:@"MyFollowView" bundle:nil];
@@ -78,12 +78,9 @@
   [tabBarBgView setContentMode:UIViewContentModeScaleToFill];
   [self.tabBar insertSubview:tabBarBgView atIndex:1];
   
-  
-    
   self.navigationItem.title = [[[User sharedInstance] account] username];
   
   [self setLeftButton];
-  //[self setRightButton];
   
   CGRect viewframe = self.view.frame;
   [self.view setBackgroundColor:[UIColor redColor]];
@@ -119,32 +116,10 @@
   [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
 }
 
-- (void)setRightButton
-{
-  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
-  [rightBarButtonView addTarget:self action:@selector(onEdit) forControlEvents:UIControlEventTouchUpInside];
-  [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
-                                forState:UIControlStateNormal];
-  [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"]
-                                forState:UIControlStateHighlighted];
-  [rightBarButtonView setTitle:@"编辑" forState:UIControlStateNormal];
-  [rightBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-  
-  UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
-  
-  [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
-}
 
 -(void)returnToPrev
 {
   [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
-}
-
--(void)onEdit
-{
-
 }
 
 

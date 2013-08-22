@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface HomePageController : UITabBarController
 {
   UITabBar* mTabBar;
-  BOOL bMyself;
+  ViewControllerCalledFrom eCalledFrom;
 }
 
 @property (retain, nonatomic) UITabBar* mTabBar;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isMyself:(BOOL)isMyself withUserID:(NSInteger)userID fromMyFollow:(BOOL)fromFollow;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID from:(ViewControllerCalledFrom)calledFrom;
 
 @end

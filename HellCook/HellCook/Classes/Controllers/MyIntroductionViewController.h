@@ -17,15 +17,17 @@
   MyIntroductionIntroCell *pIntroCell;
   BOOL bSessionInvalid;
   NSInteger mUserID;
-  BOOL bMyself;
-  BOOL bFromFollow;
+  ViewControllerCalledFrom eCalledFrom;
+  
+  UIBarButtonItem *rightBarButtonItem;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
 @property (nonatomic, retain) MyIntroductionIntroCell *pIntroCell;
 @property (nonatomic, retain) MyIntroductionPicCell *pPicCell;
+@property (nonatomic, retain) UIBarButtonItem *rightBarButtonItem;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isMyself:(BOOL)isMyself withUserID:(NSInteger)userid fromMyFollow:(BOOL)fromFollow;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userid from:(ViewControllerCalledFrom)calledFrom;
 
 @end

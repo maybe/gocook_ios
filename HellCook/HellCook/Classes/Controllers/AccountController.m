@@ -257,7 +257,7 @@
 
 - (IBAction)tapNameLabel:(id)sender
 {
-  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil isMyself:YES withUserID:-1 fromMyFollow:NO];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:-1 from:ViewControllerCalledFromMyIndividual];
   
   // MyselfRootViewController *pViewController = [[MyselfRootViewController alloc] initWithNibName:@"MyselfRootView" bundle:nil];
   

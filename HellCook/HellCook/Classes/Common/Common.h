@@ -59,6 +59,13 @@
 
 #define _defaultHostName @"localhost"
 
+typedef enum {
+  ViewControllerCalledFromMyIndividual = 1,//个人登录成功后的功能首页
+  ViewControllerCalledFromMyFollow = 2,
+  ViewControllerCalledFromMyFan = 3,
+  ViewControllerCalledFromRecipeComment
+} ViewControllerCalledFrom;
+
 typedef void (^ALAssetsLibraryAssetForURLResultBlock)(ALAsset *myasset);
 typedef void (^ALAssetsLibraryAccessFailureBlock)(NSError *error);
 

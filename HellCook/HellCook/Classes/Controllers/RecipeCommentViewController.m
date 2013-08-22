@@ -11,6 +11,9 @@
 #import "MyIntroductionViewController.h"
 #import "RecipeSendCommentView.h"
 #import "NetManager.h"
+#import "KeyboardHandler.h"
+#import "UIView+FindFirstResponder.h"
+#import "MBProgressHUD.h"
 
 @interface RecipeCommentViewController ()
 
@@ -29,6 +32,8 @@
     dataArray = [NSMutableArray arrayWithArray:data];
     cellForHeight = [[RecipeCommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NoUseJustForCaculateHeight"];
     sendView = [[RecipeSendCommentView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    
+    keyboard = [[KeyboardHandler alloc] init];
   }
   return self;
 }
@@ -39,6 +44,11 @@
     // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = @"留言";
   [self setLeftButton];
+  
+  HUD = [[MBProgressHUD alloc] initWithView:self.view];
+  [self.view addSubview:HUD];
+  HUD.mode = MBProgressHUDModeText;
+  HUD.delegate = self;
   
   CGRect viewframe = self.view.frame;
   viewframe.size.height = _screenHeight_NoStBar;
@@ -60,11 +70,34 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
+  keyboard.delegate = self;
+  
+  [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  keyboard.delegate = nil;
+  
+  [super viewWillDisappear:animated];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidUnload {
     [self setMyTableView:nil];
     [super viewDidUnload];
+}
+
+- (BOOL)shouldAutorotate {
+  
+  return NO;
 }
 
 - (void)setLeftButton
@@ -94,7 +127,7 @@
 {
   NSInteger userid = [[btn associativeObjectForKey:@"userid"] integerValue];
   
-  MyIntroductionViewController *pController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil isMyself:NO withUserID:userid fromMyFollow:NO];
+  MyIntroductionViewController *pController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:userid from:ViewControllerCalledFromRecipeComment];
   [self.navigationController pushViewController:pController animated:YES];
 }
 
@@ -114,8 +147,9 @@
   }
   else
   {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"评论内容不能为空！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+    HUD.labelText = @"评论内容不能为空！";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
   }
 }
 
@@ -124,14 +158,16 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"评论成功！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+    HUD.labelText = @"评论成功";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
   }
   else
   {
     NSString *msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+    HUD.labelText = msg;
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
   }
 }
 
@@ -195,19 +231,6 @@
 }
 
 #pragma mark - TextView delegate
--(void)textViewDidBeginEditing:(UITextView *)textView
-{
-  CGRect sendViewFrame = sendView.frame;
-  sendViewFrame.origin.y = _screenHeight_NoStBar_NoNavBar - 60 - 216;
-  [sendView setFrame:sendViewFrame];
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-  CGRect sendViewFrame = sendView.frame;
-  sendViewFrame.origin.y = _screenHeight_NoStBar_NoNavBar - 60;
-  [sendView setFrame:sendViewFrame];
-}
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
@@ -218,5 +241,25 @@
   return YES;
 }
 
+
+
+#pragma mark - Keyboard
+
+- (void)keyboardSizeChanged:(CGSize)delta
+{
+    if (delta.height > 0)
+    {
+      CGRect sendViewFrame = sendView.frame;
+      sendViewFrame.origin.y = _screenHeight_NoStBar_NoNavBar - delta.height - 40;
+      [sendView setFrame:sendViewFrame];
+      
+    }
+    else
+    {
+      CGRect sendViewFrame = sendView.frame;
+      sendViewFrame.origin.y = _screenHeight_NoStBar_NoNavBar - sendViewFrame.size.height;
+      [sendView setFrame:sendViewFrame];
+    }
+}
 
 @end

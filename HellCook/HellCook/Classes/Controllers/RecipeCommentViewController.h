@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KeyboardHandlerDelegate.h"
+#import "MBProgressHUD.h"
 
 @class RecipeCommentsTableViewCell;
 @class RecipeSendCommentView;
-@interface RecipeCommentViewController : UIViewController<UITextViewDelegate>
+@class KeyboardHandler;
+@interface RecipeCommentViewController : UIViewController<UITextViewDelegate,KeyboardHandlerDelegate,MBProgressHUDDelegate>
 {
   UITableView *myTableView;
 
@@ -19,6 +22,9 @@
   
   NSMutableArray *dataArray;
   NSInteger mRecipeID;
+  
+  KeyboardHandler *keyboard;
+  MBProgressHUD *HUD;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;

@@ -10,6 +10,7 @@
 #import "NetManager.h"
 #import "LoginController.h"
 #import "MyIntroEditViewController.h"
+#import "HomePageController.h"
 
 @interface MyIntroductionViewController ()
 
@@ -18,22 +19,22 @@
 @implementation MyIntroductionViewController
 @synthesize netOperation;
 @synthesize pPicCell,pIntroCell;
+@synthesize rightBarButtonItem;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isMyself:(BOOL)isMyself withUserID:(NSInteger)userid fromMyFollow:(BOOL)fromFollow
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userid from:(ViewControllerCalledFrom)calledFrom
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
       mUserID = userid;
-      bMyself = isMyself;
-      bFromFollow = fromFollow;
       bSessionInvalid = FALSE;
+      eCalledFrom = calledFrom;
       
       pMyInfo = [[NSMutableDictionary alloc] init];
       pPicCell = [[MyIntroductionPicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionPicCell"];
       pIntroCell = [[MyIntroductionIntroCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionIntroCell"];
       
-      if (bMyself)
+      if (eCalledFrom == ViewControllerCalledFromMyIndividual)
       {
         [self getMyIntroductionData];
       }
@@ -50,7 +51,10 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
 //  self.tabBarController.navigationItem.title = @"个人简介";
-  [self setRightButton];
+//  [self setRightButton];
+  
+  [self setLeftButton];
+  
   CGRect tableframe = self.myTableView.frame;
   tableframe.size.height = _screenHeight_NoStBar - _navigationBarHeight;
   [self.myTableView setFrame:tableframe];
@@ -59,6 +63,16 @@
 - (void) viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  
+  if (eCalledFrom == ViewControllerCalledFromMyIndividual)
+  {
+    [self setRightButton];
+  }
+  else
+  {
+    [self.tabBarController.navigationItem setRightBarButtonItem:nil];
+  }
+  
   
   if (bSessionInvalid)
   {
@@ -80,18 +94,21 @@
 
 - (void)setRightButton
 {
-  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
-  [rightBarButtonView addTarget:self action:@selector(edit) forControlEvents:UIControlEventTouchUpInside];
-  [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
-                                forState:UIControlStateNormal];
-  [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"]
-                                forState:UIControlStateHighlighted];
-  [rightBarButtonView setTitle:@"编辑" forState:UIControlStateNormal];
-  [rightBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-  
-  UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
+  if (!rightBarButtonItem)
+  {
+    UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
+    [rightBarButtonView addTarget:self action:@selector(edit) forControlEvents:UIControlEventTouchUpInside];
+    [rightBarButtonView setBackgroundImage:
+     [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
+                                  forState:UIControlStateNormal];
+    [rightBarButtonView setBackgroundImage:
+     [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"]
+                                  forState:UIControlStateHighlighted];
+    [rightBarButtonView setTitle:@"编辑" forState:UIControlStateNormal];
+    [rightBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+    
+    rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
+  }
   
   [self.tabBarController.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
@@ -100,6 +117,36 @@
 {
   MyIntroEditViewController *pController = [[MyIntroEditViewController alloc] initWithNibName:@"MyIntroEditView" bundle:nil data:pMyInfo];
   [self.tabBarController.navigationController pushViewController:pController animated:YES];
+}
+
+- (void)setLeftButton
+{
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+  [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
+  [leftBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/commonBackBackgroundNormal.png"]
+                               forState:UIControlStateNormal];
+  [leftBarButtonView setBackgroundImage:
+   [UIImage imageNamed:@"Images/commonBackBackgroundHighlighted.png"]
+                               forState:UIControlStateHighlighted];
+  [leftBarButtonView setTitle:@"  返回 " forState:UIControlStateNormal];
+  [leftBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+  
+  UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
+  
+  [self.tabBarController.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+}
+
+-(void)returnToPrev
+{
+  if (eCalledFrom == ViewControllerCalledFromMyIndividual)
+  {
+    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
+  }
+  else
+  {
+    [self.navigationController popViewControllerAnimated:YES];
+  }
 }
 
 - (void)followBtnTapped
@@ -166,7 +213,7 @@
     if ([pMyInfo count] > 0)
     {
       [pPicCell setData:pMyInfo];
-      if (!bMyself && bFromFollow)
+      if (eCalledFrom == ViewControllerCalledFromMyFollow)
       {
         [pPicCell.followBtn setHidden:NO];
       }

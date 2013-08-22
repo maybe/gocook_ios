@@ -14,7 +14,8 @@
 #import "MyIntroAvatarView.h"
 
 @class KeyboardHandler;
-@interface MyIntroEditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,KeyboardHandlerDelegate>
+@class MBProgressHUD;
+@interface MyIntroEditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,KeyboardHandlerDelegate,MBProgressHUDDelegate>
 {
   UITableView* myTableView;
   NSMutableArray* cellContentList;
@@ -33,6 +34,7 @@
   MyIntroAvatarView* headImageView;
   
   KeyboardHandler *keyboard;
+  MBProgressHUD *HUD;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* myTableView;

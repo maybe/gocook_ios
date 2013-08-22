@@ -39,6 +39,7 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
   self.tabBarController.navigationItem.title = @"我的关注";
+  [self.tabBarController.navigationItem setRightBarButtonItem:nil];
   
   [self getMyFollowData];
 }
@@ -137,7 +138,7 @@
   NSMutableDictionary *pFollowDict = [myFollowsArray objectAtIndex:indexPath.row];
   NSInteger userid = [pFollowDict[@"user_id"] intValue];
   
-  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil isMyself:NO withUserID:userid fromMyFollow:YES];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:userid from:ViewControllerCalledFromMyFollow];
   [self.tabBarController.navigationController pushViewController:pHomePageController animated:YES];
 }
 
