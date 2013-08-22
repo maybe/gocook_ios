@@ -66,5 +66,6 @@ typedef void (^ALAssetsLibraryAccessFailureBlock)(NSError *error);
 
 + (NSString *)dataFilePath:(NSString*)filePath;
 +(void)loadPhotoFromURL:(NSURL*)imgURL thumbnail:(BOOL)useThumbnail showIn:(UIImageView*)imView;
-
++ (NSString *) displayViews: (UIView *) aView;
++ (void)dumpView:(UIView *)aView atIndent:(int)indent into:(NSMutableString *)outString;
 @end

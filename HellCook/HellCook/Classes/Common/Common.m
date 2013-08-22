@@ -51,4 +51,20 @@
   
 }//end function
 
+
++ (void)dumpView:(UIView *)aView atIndent:(int)indent into:(NSMutableString *)outString
+{
+  for (int i = 0; i < indent; i++) [outString appendString:@"--"];
+  [outString appendFormat:@"[%2d] %@\n", indent, [[aView class] description]];
+  for (UIView *view in [aView subviews])
+    [self dumpView:view atIndent:indent + 1 into:outString];
+}
+
+// Start the tree recursion at level 0 with the root view
++ (NSString *) displayViews: (UIView *) aView
+{
+  NSMutableString *outString = [[NSMutableString alloc] init];
+  [self dumpView: aView atIndent:0 into:outString];
+  return outString;
+}
 @end
