@@ -43,10 +43,10 @@
     [avatarBtn addTarget:nil action:@selector(gotoOtherIntro:) forControlEvents:UIControlEventTouchUpInside];
     //commentLabel
     commentLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 10, _commentLabelWidth, 25)];
-    commentLabel.shadowOffset = CGSizeMake(0.0f, 0.5f);
-    commentLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+    //commentLabel.shadowOffset = CGSizeMake(0.0f, 0.5f);
+    //commentLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     commentLabel.backgroundColor = [UIColor clearColor];
-    commentLabel.font = [UIFont boldSystemFontOfSize:16];
+    commentLabel.font = [UIFont boldSystemFontOfSize:14];
     commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     commentLabel.numberOfLines = 0;
     //nameBtn
@@ -56,8 +56,8 @@
     [nameBtn addTarget:nil action:@selector(gotoOtherIntro:) forControlEvents:UIControlEventTouchUpInside];
     //dateLabel
     dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(55, mCellHeight-30, 100, 20)];
-    dateLabel.shadowOffset = CGSizeMake(0.0f, 0.5f);
-    dateLabel.shadowColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.8];
+    //dateLabel.shadowOffset = CGSizeMake(0.0f, 0.5f);
+    //dateLabel.shadowColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.8];
     dateLabel.backgroundColor = [UIColor clearColor];
     [dateLabel setTextColor:[UIColor colorWithRed:160.0/255.0 green:160.0/255.0 blue:160.0/255.0 alpha:1.0]];
     dateLabel.font = [UIFont systemFontOfSize:14];

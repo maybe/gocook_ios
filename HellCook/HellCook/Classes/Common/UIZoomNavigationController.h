@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIZoomNavigationController : UINavigationController
+@interface UIZoomNavigationController : UINavigationController<UINavigationControllerDelegate>
 
 + (NSString *)snapshotCachePath;
 

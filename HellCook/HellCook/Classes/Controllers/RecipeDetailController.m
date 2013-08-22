@@ -45,13 +45,12 @@
   CGRect tableframe = self.tableView.frame;
   tableframe.size.height = _screenHeight_NoStBar;
   [self.tableView setFrame:tableframe];
-    
+
   [super viewDidLoad];
   
   [self setLeftButton];
   
-  [self.navigationController.navigationBar setHidden:YES];
-  
+
   [self getRecipeDetailData:mRecipeId];
   [self getCommentsData];
 }
@@ -63,7 +62,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  [self.navigationController.navigationBar setHidden:YES];
   [super viewWillAppear:animated];
   self.title = @"最热菜谱";
   
