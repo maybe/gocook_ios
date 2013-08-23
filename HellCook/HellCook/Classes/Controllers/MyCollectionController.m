@@ -156,7 +156,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
   // 下拉到最底部时显示更多数据
-  if(scrollView.contentOffset.y + 20 >= ((scrollView.contentSize.height - scrollView.frame.size.height)))
+  if(scrollView.contentSize.height >= scrollView.frame.size.height && scrollView.contentOffset.y + 20 >= ((scrollView.contentSize.height - scrollView.frame.size.height)))
   {
     if (![self.netOperation isExecuting] && bShouldRefresh) {
       [self showLoadingView];
