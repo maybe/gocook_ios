@@ -46,7 +46,8 @@
   nickField = [[UITextField alloc]init];
   emailField = [[UITextField alloc]init];
   passwordField = [[UITextField alloc]init];
-  repasswordField = [[UITextField alloc]init];
+  rePasswordField = [[UITextField alloc]init];
+  telField = [[UITextField alloc] init];
 
   cellContentList = [[NSMutableArray alloc]init];
   NSMutableDictionary *cellDic;
@@ -54,7 +55,12 @@
              @"cellNick",@"Identifier", @"昵称",@"placeHolder",
              nickField, @"textfield",@"text",@"type",nil];
   [cellContentList addObject:cellDic];
-  
+
+  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
+             @"cellTel",@"Identifier", @"Tel",@"placeHolder",
+             telField, @"textfield",@"text",@"type",nil];
+  [cellContentList addObject:cellDic];
+
   cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
              @"cellEmail",@"Identifier", @"email",@"placeHolder",
              emailField, @"textfield",@"text",@"type",nil];
@@ -65,21 +71,31 @@
              passwordField, @"textfield",@"pass",@"type",nil];
   [cellContentList addObject:cellDic];
   
-  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
-             @"cellRePass",@"Identifier", @"重复密码",@"placeHolder",
-             repasswordField, @"textfield",@"pass",@"type",nil];
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+      @"cellRePass", @"Identifier", @"重复密码", @"placeHolder",
+      rePasswordField, @"textfield", @"pass", @"type", nil];
   [cellContentList addObject:cellDic];
   
   CGRect frame = self.tableView.tableHeaderView.frame;
   frame.size.height = 184;
   self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
-  CGFloat tablewidth = self.tableView.frame.size.width;
-  headImageView = [[RegisterAvatarView alloc]initWithFrame:CGRectMake(tablewidth/2-75, 30, 150, 150)];
+  CGFloat tableWidth = self.tableView.frame.size.width;
+  headImageView = [[RegisterAvatarView alloc]initWithFrame:CGRectMake(tableWidth /2-75, 30, 150, 150)];
   [self.tableView.tableHeaderView addSubview:headImageView];
-  
+
+  self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+
   //keyboard
   keyboard = [[KeyboardHandler alloc] init];
-  
+
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar;
+  [self.view setFrame:viewFrame];
+
+  CGRect tableFrame = self.tableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.tableView setFrame:tableFrame];
+
   [super viewDidLoad];
 }
 
@@ -110,17 +126,17 @@
 #pragma mark - Table view data source
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
   return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
   return cellContentList.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (cellContentList.count==1)
     return kTableCellSingle;
@@ -136,7 +152,7 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   
-  NSMutableDictionary* dic = [cellContentList objectAtIndex:indexPath.row];
+  NSMutableDictionary* dic = [cellContentList objectAtIndex:(NSUInteger)indexPath.row];
   UITextField* textField = [dic objectForKey:@"textfield"];
   
   DefaultGroupedTableCell *cell = [aTableView dequeueReusableCellWithIdentifier:[dic objectForKey:@"Identifier"]];
@@ -170,12 +186,12 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 }
 
 
-#pragma mark - Textreturn
+#pragma mark - Text Return
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -243,6 +259,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         CGFloat deltaHeight = realOrigin.y + frView.frame.size.height - ( _screenHeight - delta.height) + 10;
         CGRect frame = self.tableView.frame;
         frame.origin.y -= deltaHeight;
+        if (-frame.origin.y > delta.height) {
+          frame.origin.y = - delta.height;
+        }
         self.tableView.frame = frame;
       }
     }
@@ -255,7 +274,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 }
 
 
-#pragma mark - Navi Butons
+#pragma mark - Nav Buttons
 
 - (void)setLeftButton
 {
@@ -307,7 +326,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   NSString* email = emailField.text;
   NSString* nickname = nickField.text;
   NSString* password = passwordField.text;
-  NSString* repassword = repasswordField.text;
+  NSString* rePassword = rePasswordField.text;
+  NSString* tel = telField.text;
   
   NSString  *pngPath = @"";
 
@@ -321,12 +341,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   }
   
   self.registerOperation = [[[NetManager sharedInstance] hellEngine]
-                            registerWithEmail:email AndNick:nickname
-                            AndPass:password AndRePass:repassword AndAvatarPath:pngPath
-                            completionHandler:^(NSMutableDictionary *resultDic) {
-                              [self RegisterCallBack:resultDic];}
-                            errorHandler:^(NSError *error) {}
-                            ];
+      registerWithEmail:email AndNick:nickname AndTel:tel
+                AndPass:password AndRePass:rePassword AndAvatarPath:pngPath
+      completionHandler:^(NSMutableDictionary *resultDic) {
+        [self RegisterCallBack:resultDic];
+      }
+           errorHandler:^(NSError *error) {
+           }
+  ];
   
 }
 
@@ -338,7 +360,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [emailField resignFirstResponder];
     [nickField resignFirstResponder];
     [passwordField resignFirstResponder];
-    [repasswordField resignFirstResponder];
+    [rePasswordField resignFirstResponder];
     
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];

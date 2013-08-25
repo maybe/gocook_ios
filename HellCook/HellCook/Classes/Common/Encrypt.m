@@ -8,7 +8,6 @@
 
 #import "Encrypt.h"
 #import "Base64.h"
-#import "Math.h"
 
 @implementation Encrypt
 
@@ -21,7 +20,7 @@
     data = [plaintext base64DecodedData];
   }
   
-  const void *vplainText = [data bytes];
+  const void *vPlainText = [data bytes];
   size_t plainTextBufferSize = [data length];
   
   size_t bufferPtrSize = (plainTextBufferSize + kCCBlockSize3DES) & ~(kCCBlockSize3DES - 1);
@@ -29,8 +28,8 @@
   size_t movedBytes = 0;
   uint8_t *bufferPtr = malloc( bufferPtrSize * sizeof(uint8_t));
   memset((void*)bufferPtr, 0x0, bufferPtrSize);
-  const void * vkey = NULL;
-  const void *vinitVec = NULL;
+  const void *vKey = NULL;
+  const void *vInitVec = NULL;
   
   //
   const char *keyStr = [key UTF8String];
@@ -41,7 +40,7 @@
   for (int i = 0; i < sizeof(realKeys); i++) realKeys[i] = 0;
   memcpy(realKeys, keyDigest, sizeof(keyDigest));
   
-  vkey = realKeys;
+  vKey = realKeys;
   
   //
   const char *ivStr = [initVec UTF8String];
@@ -51,34 +50,92 @@
   unsigned char bIVs[8];
   for (int i = 0; i < 8; i++)
   {
-    bIVs[i] = (char)(ABS(ivDigest[i] - ivDigest[i + 1]));
+    bIVs[i] = (unsigned char)(ABS(ivDigest[i] - ivDigest[i + 1]));
   }
   
-  vinitVec = bIVs;
+  vInitVec = bIVs;
   
   //
   CCCryptorStatus ccStatus;
   ccStatus = CCCrypt(encryptorDecrypt,
                      kCCAlgorithm3DES,
                      kCCOptionPKCS7Padding,
-                     vkey,
+                     vKey,
                      kCCKeySize3DES,
-                     vinitVec,
-                     vplainText,
+                     vInitVec,
+                     vPlainText,
                      plainTextBufferSize,
                      (void*)bufferPtr,
                      bufferPtrSize,
                      &movedBytes);
-  
-  NSData* result = [NSData dataWithBytes:(const void*)bufferPtr length:(NSUInteger)movedBytes];
-  NSString* str = NULL;
-  
-  if (encryptorDecrypt == kCCEncrypt) {
-    str = [result base64EncodedString];
+
+  if (kCCSuccess == ccStatus)
+  {
+    NSData* result = [NSData dataWithBytes:(const void*)bufferPtr length:(NSUInteger)movedBytes];
+    NSString* str = NULL;
+
+    if (encryptorDecrypt == kCCEncrypt) {
+      str = [result base64EncodedString];
+    } else {
+      str = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+    }
+    return str;
   } else {
-    str = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+    return @"";
   }
-  return str;
 }
+
++(NSString*)EncryptAppReqCMD:(NSInteger)cmd WithData:(NSString*)data
+{
+  NSString* raw_data = [NSString stringWithFormat:@"%@%d%d%@%@", APP_KEY, cmd, APP_ID, data, APP_IV];
+  NSString* md5_data = [self md5:raw_data];
+  NSString * base64_data = [md5_data base64EncodedString];
+  return base64_data;
+}
+
++(NSString*) md5:(NSString*) str
+{
+  const char *cStr = [str UTF8String];
+  unsigned char result[CC_MD5_DIGEST_LENGTH];
+  CC_MD5( cStr, strlen(cStr), result );
+
+  NSMutableString *hash = [NSMutableString string];
+  for(int i=0;i<CC_MD5_DIGEST_LENGTH;i++)
+  {
+    [hash appendFormat:@"%02X",result[i]];
+  }
+  return [hash lowercaseString];
+}
+
+
++(NSString *)file_md5:(NSString*) path
+{
+  NSFileHandle* handle = [NSFileHandle fileHandleForReadingAtPath:path];
+  if(handle == nil)
+    return nil;
+
+  CC_MD5_CTX md5_ctx;
+  CC_MD5_Init(&md5_ctx);
+
+  NSData*fileData;
+  do {
+    fileData = [handle readDataOfLength:CHUNK_SIZE];
+    CC_MD5_Update(&md5_ctx, [fileData bytes], [fileData length]);
+  }
+  while([fileData length]);
+
+  unsigned char result[CC_MD5_DIGEST_LENGTH];
+  CC_MD5_Final(result, &md5_ctx);
+
+  [handle closeFile];
+
+  NSMutableString *hash = [NSMutableString string];
+  for(int i=0;i<CC_MD5_DIGEST_LENGTH;i++)
+  {
+    [hash appendFormat:@"%02x",result[i]];
+  }
+  return [hash lowercaseString];
+}
+
 
 @end

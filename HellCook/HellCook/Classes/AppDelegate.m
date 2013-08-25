@@ -59,9 +59,12 @@
   [NetManager sharedInstance];// net manager reads host from config
   [User sharedInstance];
   
-  NSString* decrypt = [Encrypt tripleDES:@"PTqDjGdFytE=" encryptOrDecrypt:kCCDecrypt key:@"DAB578EC-6C01-4180-939A-37E6BE8A81AF" initVec:@"117A5C0F"];
-  NSLog(@"%@", decrypt);
-  
+//  NSString* decrypt = [Encrypt tripleDES:@"PTqDjGdFytE=" encryptOrDecrypt:kCCDecrypt key:@"DAB578EC-6C01-4180-939A-37E6BE8A81AF" initVec:@"117A5C0F"];
+//  NSLog(@"%@", decrypt);
+//
+//  NSString* encr = [Encrypt EncryptAppReqCMD:1 WithData:@"ABCDEFG"];
+//  NSLog(@"%@", encr);
+
   return YES;
 }
 

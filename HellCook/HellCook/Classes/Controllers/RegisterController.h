@@ -25,9 +25,10 @@
   NSMutableArray* cellContentList;
     
   UITextField* nickField;
+  UITextField* telField;
   UITextField* emailField;
   UITextField* passwordField;
-  UITextField* repasswordField;
+  UITextField*rePasswordField;
   
   RegisterAvatarView* headImageView;
   

@@ -63,7 +63,7 @@
 }
 
 
-- (MKNetworkOperation*)registerWithEmail:(NSString*)email AndNick:(NSString*)nick
+- (MKNetworkOperation*)registerWithEmail:(NSString*)email AndNick:(NSString*)nick AndTel:(NSString*)tel
                                 AndPass:(NSString*)pass AndRePass:(NSString*)repass
                           AndAvatarPath:(NSString*)avatar
                       completionHandler:(RegResponseBlock) completionBlock
@@ -73,8 +73,9 @@
   [dic setValue:email forKey:@"email"];
   [dic setValue:nick forKey:@"nickname"];
   [dic setValue:pass forKey:@"password"];
+  [dic setValue:tel forKey:@"tel"];
   [dic setValue:repass forKey:@"repassword"];
-  
+
   MKNetworkOperation *op = [self operationWithPath:@"user/register"
                                             params:dic
                                         httpMethod:@"POST"];
@@ -82,15 +83,9 @@
   if (avatar&&![avatar isEqualToString:@""]) {
     [op addFile:avatar forKey:@"avatar"];
   }
-  
-  NSString* aStr;
-  
-  aStr = [[NSString alloc] initWithData:[[op readonlyRequest] HTTPBody] encoding:NSASCIIStringEncoding];
 
-   //NSLog(@"%@",  aStr);
-    
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    //NSLog(@"%@",completedOperation.responseString);
+    NSLog(@"%@",completedOperation.responseString);
     
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);

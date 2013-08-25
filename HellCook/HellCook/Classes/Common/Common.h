@@ -59,6 +59,10 @@
 
 #define _defaultHostName @"localhost"
 
+#define APP_ID 1
+#define APP_KEY @"DAB578EC-6C01-4180-939A-37E6BE8A81AF"
+#define APP_IV @"117A5C0F"
+
 typedef enum {
   ViewControllerCalledFromMyIndividual = 1,//个人登录成功后的功能首页
   ViewControllerCalledFromMyFollow = 2,
@@ -75,4 +79,5 @@ typedef void (^ALAssetsLibraryAccessFailureBlock)(NSError *error);
 +(void)loadPhotoFromURL:(NSURL*)imgURL thumbnail:(BOOL)useThumbnail showIn:(UIImageView*)imView;
 + (NSString *) displayViews: (UIView *) aView;
 + (void)dumpView:(UIView *)aView atIndent:(int)indent into:(NSMutableString *)outString;
+
 @end

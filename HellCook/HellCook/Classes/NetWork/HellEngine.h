@@ -40,7 +40,7 @@ typedef void (^createRecipeResponseBlock)(NSMutableDictionary* resultDic);
                         errorHandler:(MKNKErrorBlock) errorBlock;
 
 // 注册
-- (MKNetworkOperation*)registerWithEmail:(NSString*)username AndNick:(NSString*)nick
+- (MKNetworkOperation*)registerWithEmail:(NSString*)username AndNick:(NSString*)nick  AndTel:(NSString*)tel
                                  AndPass:(NSString*)pass AndRePass:(NSString*)repass
                            AndAvatarPath:(NSString*)avatar
                        completionHandler:(RegResponseBlock) completionBlock
