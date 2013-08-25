@@ -257,7 +257,7 @@
 
 - (IBAction)tapNameLabel:(id)sender
 {
-  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:-1 from:ViewControllerCalledFromMyIndividual];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:-1 from:ViewControllerCalledFromMyIndividual showIndex:0];
   
   // MyselfRootViewController *pViewController = [[MyselfRootViewController alloc] initWithNibName:@"MyselfRootView" bundle:nil];
   
@@ -435,18 +435,36 @@
 
 - (void)onClickCountGrid:(UIButton*)sender
 {
-  NSLog(@"%d",sender.tag);
-  if (sender.tag == 10003)//我的收藏
+//  NSLog(@"%d",sender.tag);
+  if ( sender.tag==10001 || sender.tag==10002 || sender.tag==10004 )
+  {
+    NSInteger index;
+    switch (sender.tag)
+    {
+      case 10001://我的关注
+        index = 1;
+        break;
+      case 10002://我的粉丝
+        index = 2;
+        break;
+      case 10004://我的菜谱
+        index = 3;
+        break;
+    }
+    
+    HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:-1 from:ViewControllerCalledFromMyIndividual showIndex:index];
+    
+    [ApplicationDelegate.centerNavController setViewControllers:@[pHomePageController] animated:NO];
+    
+    [self.revealSideViewController popViewControllerAnimated:YES];
+  } 
+  else if (sender.tag == 10003)//我的收藏
   {
     if (self.navigationController)
     {
       [self.navigationController pushViewController:[[MyCollectionController alloc] initWithNibName:@"MyRecipesView" bundle:nil] animated:YES];
     }
   }
-}
-
-- (void)viewDidUnload {
-  [super viewDidUnload];
 }
 
 @end

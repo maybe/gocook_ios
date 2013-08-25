@@ -38,7 +38,7 @@
     avataImageView.layer.borderWidth = 1.0;
     //uploadButton
     uploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [uploadBtn setFrame:CGRectMake(100,110,120,20)];
+    [uploadBtn setFrame:CGRectMake(110,110,110,20)];
     [uploadBtn setBackgroundColor:[UIColor clearColor]];
     [uploadBtn setTitle:@"上传头像" forState:UIControlStateNormal];
     [uploadBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

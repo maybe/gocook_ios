@@ -13,6 +13,7 @@
 #import "NetManager.h"
 #import "UIImage+Resize.h"
 #import "UIImage+Resizing.h"
+#import "HomePageController.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
@@ -24,12 +25,15 @@
 
 @implementation MyIntroEditViewController
 @synthesize myTableView,nameField,careerField,ageField,maleBtn,femaleBtn,otherBtn,provinceField,cityField,introTextView;
+@synthesize mLoadingActivity;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil data:(NSMutableDictionary*)dict
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     // Custom initialization
+    isChanged = FALSE;
+    waitCallBack = 0;
     data = [NSMutableDictionary dictionaryWithDictionary:dict];
     
     nameField = [[UITextField alloc]init];
@@ -77,11 +81,13 @@
   [self.view setFrame:viewframe];
   [self.myTableView setFrame:viewframe];
   
+  [self initLoadingView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  self.title = @"编辑个人资料";
   
   keyboard.delegate = self;
 }
@@ -113,7 +119,7 @@
 {
   NSMutableDictionary *cellDic;
   NSString *content;
-  //姓名
+  ///////////////姓名//////////////
   if (data[@"nickname"]!=[NSNull null] && ![data[@"nickname"] isEqual:@""])
   {
     content = [NSString stringWithString:data[@"nickname"]];
@@ -124,11 +130,10 @@
   }
   cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys:@"cellName",@"Identifier", @"姓名",@"placeHolder", nameField,@"textfield", @"text",@"type", content,@"content",nil];
   [cellContentList addObject:cellDic];
-  //生日性别
+  ////////////////生日性别////////////
   NSString *gender;
   if (data[@"gender"]!=[NSNull null] && ![data[@"gender"] isEqual:@""])
   {
-//    gender = [NSString stringWithString:data[@"gender"]];
     gender = [NSString stringWithFormat:@"%d",[data[@"gender"] intValue]];
   }
   else
@@ -137,7 +142,6 @@
   }
   if (data[@"age"]!=[NSNull null] && ![data[@"age"] isEqual:@""])
   {
-//    content = [NSString stringWithString:data[@"age"]];
     content = [NSString stringWithFormat:@"%d",[data[@"age"] intValue]];
   }
   else
@@ -146,7 +150,7 @@
   }
   cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys:@"cellBG",@"Identifier", @"",@"placeHolder", gender,@"gender", content,@"age",nil];
   [cellContentList addObject:cellDic];
-  //职业
+  //////////////职业/////////////////
   if (data[@"career"]!=[NSNull null] && ![data[@"career"] isEqual:@""])
   {
     content = [NSString stringWithString:data[@"career"]];
@@ -157,7 +161,7 @@
   }
   cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys:@"cellCareer",@"Identifier", @"职业",@"placeHolder", careerField,@"textfield", @"text",@"type", content,@"content",nil];
   [cellContentList addObject:cellDic];
-  //地点
+  //////////地点///////////////
   NSString *province;
   if (data[@"province"]!=[NSNull null] && ![data[@"province"] isEqual:@""])
   {
@@ -177,7 +181,7 @@
   }
   cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys:@"cellLocation",@"Identifier", @"地点",@"placeHolder", province,@"province", @"text",@"type", content,@"city",nil];
   [cellContentList addObject:cellDic];
-  //个人简介
+  //////////////个人简介////////////////////
   if (data[@"intro"]!=[NSNull null] && ![data[@"intro"] isEqual:@""])
   {
     content = [NSString stringWithString:data[@"intro"]];
@@ -228,57 +232,64 @@
 
 -(void)returnToPrev
 {
+  NSArray *viewControllers = [NSArray arrayWithArray:self.navigationController.viewControllers];
+  HomePageController *prevController = [viewControllers objectAtIndex:[viewControllers count]-2];
+  prevController.isMyInfoChanged = isChanged;
   [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)Save
 {
+  [mLoadingActivity startAnimating];
+  
   [self uploadBasicInfo];
   [self uploadAvatar];
+  
+  if (waitCallBack<=0)
+    [mLoadingActivity stopAnimating];
 }
 
 
 
 - (IBAction) maleBtnPressed
 {
-  if (maleBtn.selected)
-  {
-    [maleBtn setSelected:NO];
-  }
-  else
-  {
-    [maleBtn setSelected:YES];
-    [femaleBtn setSelected:NO];
-    [otherBtn setSelected:NO];
-  }
+  [maleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
+  [femaleBtn setBackgroundImage:nil forState:UIControlStateNormal];
+  [otherBtn setBackgroundImage:nil forState:UIControlStateNormal];
+  [maleBtn setSelected:YES];
+  [femaleBtn setSelected:NO];
+  [otherBtn setSelected:NO];
 }
 
 - (IBAction) femaleBtnPressed
 {
-  if (femaleBtn.selected)
-  {
-    [femaleBtn setSelected:NO];
-  }
-  else
-  {
-    [maleBtn setSelected:NO];
-    [femaleBtn setSelected:YES];
-    [otherBtn setSelected:NO];
-  }
+  [femaleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
+  [maleBtn setBackgroundImage:nil forState:UIControlStateNormal];
+  [otherBtn setBackgroundImage:nil forState:UIControlStateNormal];
+  [maleBtn setSelected:NO];
+  [femaleBtn setSelected:YES];
+  [otherBtn setSelected:NO];
 }
 
 - (IBAction) otherBtnPressed
 {
-  if (otherBtn.selected)
-  {
-    [otherBtn setSelected:NO];
-  }
-  else
-  {
-    [maleBtn setSelected:NO];
-    [femaleBtn setSelected:NO];
-    [otherBtn setSelected:YES];
-  }
+  [otherBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
+  [femaleBtn setBackgroundImage:nil forState:UIControlStateNormal];
+  [maleBtn setBackgroundImage:nil forState:UIControlStateNormal];
+  [maleBtn setSelected:NO];
+  [femaleBtn setSelected:NO];
+  [otherBtn setSelected:YES];
+}
+
+
+- (void)initLoadingView
+{
+  mLoadingActivity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+  [mLoadingActivity setCenter:CGPointMake(_screenWidth/2, _screenHeight/2-50)];
+  [mLoadingActivity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+  [self.myTableView addSubview:mLoadingActivity];
+  mLoadingActivity.hidesWhenStopped = YES;
+  [mLoadingActivity stopAnimating];
 }
 
 #pragma mark - Table view data source
@@ -363,7 +374,7 @@
   else if (textView)
   {
     textView.delegate = self;
-    [textView setFrame:CGRectMake(20, 5, 290, 150)];
+    [textView setFrame:CGRectMake(15, 0, 290, 150)];
     [textView setBackgroundColor: [UIColor clearColor]];
     textView.placeholder = [dic objectForKey:@"placeHolder"];
     if (![dic[@"content"] isEqual:@""])
@@ -373,7 +384,7 @@
     textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
     textView.keyboardType = UIKeyboardTypeDefault;
     textView.autocorrectionType = UITextAutocorrectionTypeNo;
-    [textView setFont:[UIFont systemFontOfSize:14]];
+    [textView setFont:[UIFont systemFontOfSize:18]];
     textView.returnKeyType = UIReturnKeyDone;
     [textView setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
   }
@@ -382,7 +393,7 @@
     if (dic[@"city"])
     {
       [provinceField setDelegate:self];
-      [provinceField setFrame:CGRectMake(30, 15, 60, 34)];
+      [provinceField setFrame:CGRectMake(30, 15, 100, 34)];
       [provinceField setPlaceholder:@"省份"];
       if (![dic[@"province"] isEqual:@""])
       {
@@ -397,7 +408,7 @@
       [provinceField setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
       
       [cityField setDelegate:self];
-      [cityField setFrame:CGRectMake(120, 15, 100, 34)];
+      [cityField setFrame:CGRectMake(140, 15, 100, 34)];
       [cityField setPlaceholder:@"城市"];
       if (![dic[@"city"] isEqual:@""])
       {
@@ -413,12 +424,13 @@
     }
     else//年龄性别
     {
-      [ageField setFrame:CGRectMake(30, 10, 80, 30)];
+      [ageField setFrame:CGRectMake(30, 13, 80, 30)];
       [ageField setPlaceholder:@"年龄"];
       if (![dic[@"age"] isEqual:@""])
       {
         [ageField setText:[dic objectForKey:@"age"]];
       }
+      [ageField setDelegate:self];
       ageField.autocapitalizationType = UITextAutocapitalizationTypeNone;
       ageField.keyboardType = UIKeyboardTypeDefault;
       ageField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -430,32 +442,37 @@
       [maleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateSelected];
       [maleBtn setTitleColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
       [maleBtn setTitle:@"男" forState:UIControlStateNormal];
-      maleBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+      maleBtn.titleLabel.font = [UIFont systemFontOfSize:18];
       
       [femaleBtn setFrame:CGRectMake(200, 10, 50, 30)];
       [femaleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateSelected];
       [femaleBtn setTitleColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
       [femaleBtn setTitle:@"女" forState:UIControlStateNormal];
-      femaleBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+      femaleBtn.titleLabel.font = [UIFont systemFontOfSize:18];
       
       [otherBtn setFrame:CGRectMake(250, 10, 50, 30)];
       [otherBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateSelected];
       [otherBtn setTitleColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
       [otherBtn setTitle:@"其他" forState:UIControlStateNormal];
-      otherBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+      otherBtn.titleLabel.font = [UIFont systemFontOfSize:18];
       
       if (![dic[@"gender"] isEqual:@""])
       {
         if ([dic[@"gender"] isEqual:@"0"])
         {
+          [maleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
           [maleBtn setSelected:YES];
         }
         else if ([dic[@"gender"] isEqual:@"1"])
         {
+          [femaleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
           [femaleBtn setSelected:YES];
         }
         else
+        {
+          [otherBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
           [otherBtn setSelected:YES];
+        }
       }
     }    
   }
@@ -531,7 +548,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)hudWasHidden:(MBProgressHUD *)hud
 {
-  [self returnToPrev];
+  if (isChanged)
+  {
+    [self returnToPrev];
+  }
 }
 
 #pragma mark - Keyboard
@@ -546,6 +566,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         CGFloat deltaHeight = realOrigin.y + frView.frame.size.height - ( _screenHeight - delta.height) + 10;
         CGRect frame = self.myTableView.frame;
         frame.origin.y -= deltaHeight;
+        if (-frame.origin.y > delta.height) {
+          frame.origin.y = - delta.height;
+        }
         self.myTableView.frame = frame;
       }
     }
@@ -559,6 +582,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)uploadBasicInfo
 {
+  waitCallBack++;
+  
   NSMutableDictionary *pBasicInfoDict = [[NSMutableDictionary alloc] init];
   //用户名
   if (nameField.text.length!=0 && ![data[@"nickname"] isEqual:nameField.text])
@@ -566,7 +591,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [pBasicInfoDict setObject:nameField.text forKey:@"nickname"];
   }
   //年龄
-  if (ageField.text.length!=0 && ![data[@"age"] isEqual:ageField.text])
+  if (ageField.text.length!=0 && [data[@"age"] intValue]!=[ageField.text intValue])
   {
     [pBasicInfoDict setObject:ageField.text forKey:@"age"];
   }
@@ -622,7 +647,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
                          errorHandler:^(NSError *error){}];
   }
   else
-  {    
+  {
+    waitCallBack--;
     HUD.labelText = @"个人信息无改变，不需保存";
     [HUD show:YES];
     [HUD hide:YES afterDelay:2];
@@ -631,9 +657,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)changeBasicInfoCallBack:(NSMutableDictionary*) resultDic
 {
+  waitCallBack--;
+  if (waitCallBack <= 0)
+    [mLoadingActivity stopAnimating];
+  
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
+    isChanged = TRUE;
     HUD.labelText = @"个人基本信息上传成功";
     [HUD show:YES];
     [HUD hide:YES afterDelay:2];
@@ -658,6 +689,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)uploadAvatar
 {
+  waitCallBack++;
   NSString  *pngPath = @"";
   
   UIImage* uploadImage = headImageView.avataImageView.image;
@@ -675,14 +707,21 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
                            [self uploadAvatarCallBack:resultDic];}
                          errorHandler:^(NSError *error){}];
   }
+  else
+    waitCallBack--;
   
 }
 
 - (void)uploadAvatarCallBack:(NSMutableDictionary*) resultDic
 {
+  waitCallBack--;
+  if (waitCallBack <= 0)
+    [mLoadingActivity stopAnimating];
+  
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
+    isChanged = TRUE;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"头像上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alert show];
   }

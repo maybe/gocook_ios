@@ -11,6 +11,7 @@
 #import "LoginController.h"
 #import "MyIntroEditViewController.h"
 #import "HomePageController.h"
+#import "User.h"
 
 @interface MyIntroductionViewController ()
 
@@ -20,6 +21,7 @@
 @synthesize netOperation;
 @synthesize pPicCell,pIntroCell;
 @synthesize rightBarButtonItem;
+@synthesize bSessionInvalid;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userid from:(ViewControllerCalledFrom)calledFrom
 {
@@ -63,6 +65,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  self.tabBarController.navigationItem.title = [[[User sharedInstance] account] username];
   
   if (eCalledFrom == ViewControllerCalledFromMyIndividual)
   {
@@ -72,7 +75,6 @@
   {
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
   }
-  
   
   if (bSessionInvalid)
   {
@@ -213,9 +215,24 @@
     if ([pMyInfo count] > 0)
     {
       [pPicCell setData:pMyInfo];
-      if (eCalledFrom == ViewControllerCalledFromMyFollow)
+      if (eCalledFrom==ViewControllerCalledFromMyFollow || eCalledFrom==ViewControllerCalledFromMyFan)
       {
         [pPicCell.followBtn setHidden:NO];
+        if (pMyInfo[@"watch"]!=[NSNull null])
+        {
+          if ([pMyInfo[@"watch"] intValue] == -1)
+          {
+            [pPicCell.followBtn setTitle:@"未关注" forState:UIControlStateNormal];
+          }
+          else
+          {
+            [pPicCell.followBtn setTitle:@"已关注" forState:UIControlStateNormal];
+          }
+        }
+        else
+        {
+          [pPicCell.followBtn setTitle:@"未关注" forState:UIControlStateNormal];
+        }
       }
     }
         
@@ -325,7 +342,7 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
-    [pPicCell.followBtn setTitle:@"已取消关注" forState:UIControlStateNormal];
+    [pPicCell.followBtn setTitle:@"未关注" forState:UIControlStateNormal];
   }
   else if (result == 1)
   {

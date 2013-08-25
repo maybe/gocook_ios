@@ -570,4 +570,53 @@
   return op;
 }
 
+- (MKNetworkOperation*)addCollectionWithCollID:(NSInteger)collID
+                             completionHandler:(addCollectionResponseBlock)completionBlock
+                                  errorHandler:(MKNKErrorBlock)errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:@"cook/addmycoll" params:nil httpMethod:@"POST"];
+  
+  NSString *strCollID = [NSString stringWithFormat:@"%d",collID];
+  if (strCollID && ![strCollID isEqualToString:@""])
+  {
+    [op addFile:strCollID forKey:@"collid"];
+  }
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    //NSLog(@"%@",completedOperation.responseString);
+    
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+- (MKNetworkOperation*)delCollectionWithCollID:(NSInteger)collID
+                             completionHandler:(delCollectionResponseBlock)completionBlock
+                                  errorHandler:(MKNKErrorBlock)errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/delmycoll?collid=%d",collID]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    //    NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
 @end

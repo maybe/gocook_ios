@@ -27,6 +27,7 @@
 @property (nonatomic, retain) MyIntroductionIntroCell *pIntroCell;
 @property (nonatomic, retain) MyIntroductionPicCell *pPicCell;
 @property (nonatomic, retain) UIBarButtonItem *rightBarButtonItem;
+@property BOOL bSessionInvalid;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userid from:(ViewControllerCalledFrom)calledFrom;
 

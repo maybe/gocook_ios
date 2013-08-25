@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class ODRefreshControl;
 @interface MyFollowViewController : UIViewController
 {
   NSInteger curPage;
@@ -16,6 +17,8 @@
   NSInteger totalPage;
   UIActivityIndicatorView* mLoadingActivity;
   BOOL bSessionInvalid;
+  
+  ODRefreshControl *refreshControl;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;

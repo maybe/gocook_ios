@@ -29,6 +29,8 @@ typedef void (^watchResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^unwatchResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^getCommentsResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^commentResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^addCollectionResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^delCollectionResponseBlock)(NSMutableDictionary* resultDic);
 
 typedef void (^uploadCoverTmpImageResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^uploadStepTmpImageResponseBlock)(NSMutableDictionary* resultDic, NSInteger index);
@@ -142,6 +144,16 @@ typedef void (^createRecipeResponseBlock)(NSMutableDictionary* resultDic);
 //评论菜谱
 - (MKNetworkOperation*)commentWithDict:(NSMutableDictionary*)dict
                              completionHandler:(commentResponseBlock)completionBlock
+                                  errorHandler:(MKNKErrorBlock)errorBlock;
+
+//添加收藏
+- (MKNetworkOperation*)addCollectionWithCollID:(NSInteger)collID
+                     completionHandler:(addCollectionResponseBlock)completionBlock
+                          errorHandler:(MKNKErrorBlock)errorBlock;
+
+//删除收藏
+- (MKNetworkOperation*)delCollectionWithCollID:(NSInteger)collID
+                             completionHandler:(delCollectionResponseBlock)completionBlock
                                   errorHandler:(MKNKErrorBlock)errorBlock;
 
 @end

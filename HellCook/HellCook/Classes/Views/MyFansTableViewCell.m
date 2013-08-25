@@ -26,7 +26,7 @@
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     //avatarImageView
-    avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 50, 60)];
+    avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 60, 60)];
     [avataImageView setContentMode:UIViewContentModeScaleAspectFill];
     [avataImageView setClipsToBounds:YES];
     avataImageView.layer.cornerRadius = 4.0;
@@ -34,11 +34,11 @@
     avataImageView.layer.borderColor = [UIColor clearColor].CGColor;
     avataImageView.layer.borderWidth = 1.0;
     //nameLabel
-    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 17, 180, 25)];
+    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, 17, 180, 25)];
     nameLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
     nameLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     nameLabel.backgroundColor = [UIColor clearColor];
-    nameLabel.font = [UIFont boldSystemFontOfSize:25];
+    nameLabel.font = [UIFont boldSystemFontOfSize:20];
     //seperator image
     sepImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 89, 320, 1)];
     [sepImageView setImage:[UIImage imageNamed:@"Images/TableCellSeparater.png"]];

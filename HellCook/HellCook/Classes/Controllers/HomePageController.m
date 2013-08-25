@@ -19,13 +19,15 @@
 
 @implementation HomePageController
 @synthesize mTabBar;
+@synthesize isMyInfoChanged;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID from:(ViewControllerCalledFrom)calledFrom
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID from:(ViewControllerCalledFrom)calledFrom showIndex:(NSInteger)index
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self)
   {
+    isMyInfoChanged  = FALSE;
     eCalledFrom = calledFrom;
     //个人简介
     MyIntroductionViewController* pIntroController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:userID from:calledFrom];
@@ -64,6 +66,7 @@
     }
     
     self.viewControllers = viewControllerArray;
+    self.selectedIndex = index;
   }
   return self;
 }
@@ -78,8 +81,6 @@
   [tabBarBgView setContentMode:UIViewContentModeScaleToFill];
   [self.tabBar insertSubview:tabBarBgView atIndex:1];
   
-  self.navigationItem.title = [[[User sharedInstance] account] username];
-  
   [self setLeftButton];
   
   CGRect viewframe = self.view.frame;
@@ -92,8 +93,15 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+  if (isMyInfoChanged)
+  {
+    MyIntroductionViewController *pIntroController = [self.viewControllers objectAtIndex:0];
+    pIntroController.bSessionInvalid = YES;
+    
+    isMyInfoChanged = FALSE;
+  }
+  
   [super viewWillAppear:animated];
-  //[self.revealSideViewController setIsSwipeEnabled:NO];
 }
 
 #pragma mark - Navi Button

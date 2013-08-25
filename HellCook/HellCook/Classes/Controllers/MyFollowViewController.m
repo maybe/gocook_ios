@@ -11,6 +11,7 @@
 #import "LoginController.h"
 #import "MyFollowTableViewCell.h"
 #import "HomePageController.h"
+#import "ODRefreshControl.h"
 
 @interface MyFollowViewController ()
 
@@ -38,8 +39,11 @@
 {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
-  self.tabBarController.navigationItem.title = @"我的关注";
   [self.tabBarController.navigationItem setRightBarButtonItem:nil];
+  
+  refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
+  [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+  refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
   
   [self getMyFollowData];
 }
@@ -47,12 +51,22 @@
 - (void) viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  self.tabBarController.navigationItem.title = @"我的关注";
   
   if (bSessionInvalid)
   {
     bSessionInvalid = FALSE;
     [self getMyFollowData];
   }
+}
+
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
+{
+  [myFollowsArray removeAllObjects];
+  curPage = 0;
+  bShouldRefresh = YES;
+  [self.myTableView reloadData];
+  [self getMyFollowData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,14 +152,14 @@
   NSMutableDictionary *pFollowDict = [myFollowsArray objectAtIndex:indexPath.row];
   NSInteger userid = [pFollowDict[@"user_id"] intValue];
   
-  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:userid from:ViewControllerCalledFromMyFollow];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:userid from:ViewControllerCalledFromMyFollow showIndex:0];
   [self.tabBarController.navigationController pushViewController:pHomePageController animated:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
   // 下拉到最底部时显示更多数据
-  if(scrollView.contentOffset.y + 20 >= ((scrollView.contentSize.height - scrollView.frame.size.height)))
+  if(scrollView.contentOffset.y + 40 >= ((scrollView.contentSize.height - scrollView.frame.size.height)))
   {
     if (![self.netOperation isExecuting] && bShouldRefresh) {
       [self showLoadingView];
@@ -185,6 +199,9 @@
       if (originsize == 0)
       {
         [self.myTableView reloadData];
+        if ([refreshControl isRefreshing]){
+          [refreshControl endRefreshing];
+        }
       }
       else
       {
@@ -208,6 +225,10 @@
   }
   else if (result == 1)
   {
+    if ([refreshControl isRefreshing]){
+      [refreshControl endRefreshing];
+    }
+    
     bSessionInvalid = TRUE;
     LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
     if (self.navigationController)

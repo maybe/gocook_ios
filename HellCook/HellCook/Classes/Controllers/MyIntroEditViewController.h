@@ -35,6 +35,9 @@
   
   KeyboardHandler *keyboard;
   MBProgressHUD *HUD;
+  BOOL isChanged;
+  UIActivityIndicatorView* mLoadingActivity;
+  int waitCallBack;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* myTableView;
@@ -48,6 +51,7 @@
 @property (nonatomic, retain) UIButton *femaleBtn;
 @property (nonatomic, retain) UIButton *otherBtn;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
+@property (nonatomic, retain) UIActivityIndicatorView* mLoadingActivity;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil data:(NSMutableDictionary*)dict;
 - (IBAction) maleBtnPressed;

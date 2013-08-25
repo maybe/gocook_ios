@@ -50,7 +50,7 @@
       avataImageView.layer.borderWidth = 1.0;
       //follow button
       followBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-      [followBtn setFrame:CGRectMake(230,60,90,30)];
+      [followBtn setFrame:CGRectMake(240,60,70,30)];
       [followBtn setBackgroundColor:[UIColor clearColor]];
       [followBtn setTitle:@"已关注" forState:UIControlStateNormal];
       [followBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
