@@ -221,6 +221,20 @@
   [self.navigationController pushViewController:pController animated:YES];
 }
 
+- (void)collectRecipe:(UIButton*)btn
+{
+  NSString *title = [btn associativeObjectForKey:@"title"];
+  if ([title isEqualToString:@"已收藏"])
+  {
+    [self delCollection];
+  }
+  else
+  {
+    [self addCollection];
+  }
+  
+}
+
 #pragma mark - Net
 
 -(void)getRecipeDetailData:(NSInteger)recipeId
@@ -276,6 +290,50 @@
     RecipeDetailFooterView *footerView = [[RecipeDetailFooterView alloc] initWithFrame:frame withCommentNum:0];
     
     [self.tableView.tableFooterView addSubview:footerView];
+  }
+}
+
+- (void)addCollection
+{
+  self.netOperation = [[[NetManager sharedInstance] hellEngine]
+                       addCollectionWithCollID:[recipeDataDic[@"recipe_id"] intValue]
+                       completionHandler:^(NSMutableDictionary *resultDic){
+                         [self addCollectionCallBack:resultDic];
+                       }
+                       errorHandler:^(NSError *error){}];
+}
+
+- (void)addCollectionCallBack:(NSMutableDictionary*)resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0)
+  {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kDetailHeaderCell inSection:0];
+    RecipeDetailHeaderTableViewCell* cell = (RecipeDetailHeaderTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
+    [cell.collectButton setAssociativeObject:@"已收藏" forKey:@"title"];
+  }
+}
+
+- (void)delCollection
+{
+  self.netOperation = [[[NetManager sharedInstance] hellEngine]
+                       delCollectionWithCollID:[recipeDataDic[@"recipe_id"] intValue]
+                       completionHandler:^(NSMutableDictionary *resultDic){
+                         [self delCollectionCallBack:resultDic];
+                       }
+                       errorHandler:^(NSError *error){}];
+}
+
+- (void)delCollectionCallBack:(NSMutableDictionary*)resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0)
+  {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kDetailHeaderCell inSection:0];
+    RecipeDetailHeaderTableViewCell* cell = (RecipeDetailHeaderTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    [cell.collectButton setTitle:@"未收藏" forState:UIControlStateNormal];
+    [cell.collectButton setAssociativeObject:@"未收藏" forKey:@"title"];
   }
 }
 

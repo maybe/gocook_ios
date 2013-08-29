@@ -91,7 +91,7 @@
 {
   if (!collectButton) {
     collectButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 100, 120, 34)];
-    [collectButton setTitle:@"收藏" forState:UIControlStateNormal];
+    [collectButton setTitle:@"未收藏" forState:UIControlStateNormal];
     [collectButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
@@ -101,7 +101,7 @@
     UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [collectButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
     
-    //[collectButton addTarget:self action:@selector(openLoginWindow) forControlEvents:UIControlEventTouchUpInside];
+    [collectButton addTarget:nil action:@selector(collectRecipe:) forControlEvents:UIControlEventTouchUpInside];
   }
   
   return collectButton;
@@ -155,6 +155,18 @@
 {
   [titleLabel setText:dictionary[@"recipe_name"]];
   [introLabel setText:dictionary[@"intro"]];
+  if (dictionary)
+  {
+    if ([dictionary[@"collect"] intValue] == 0)
+    {
+      [collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
+      [collectButton setAssociativeObject:@"已收藏" forKey:@"title"];
+    }
+    else{
+      [collectButton setTitle:@"未收藏" forState:UIControlStateNormal];
+      [collectButton setAssociativeObject:@"未收藏" forKey:@"title"];
+    }
+  }
   
   NetManager* netManager = [NetManager sharedInstance];
       

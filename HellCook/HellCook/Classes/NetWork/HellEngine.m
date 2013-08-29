@@ -574,17 +574,12 @@
                              completionHandler:(addCollectionResponseBlock)completionBlock
                                   errorHandler:(MKNKErrorBlock)errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:@"cook/addmycoll" params:nil httpMethod:@"POST"];
-  
-  NSString *strCollID = [NSString stringWithFormat:@"%d",collID];
-  if (strCollID && ![strCollID isEqualToString:@""])
-  {
-    [op addFile:strCollID forKey:@"collid"];
-  }
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/addmycoll?collid=%d",collID]
+                                            params:nil
+                                        httpMethod:@"GET"];
   
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    //NSLog(@"%@",completedOperation.responseString);
-    
+    //    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];

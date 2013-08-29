@@ -57,7 +57,7 @@
 
 #define ApplicationDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
-#define _defaultHostName @"localhost"
+#define _defaultHostName @"verypanda.com"//@"localhost"
 
 #define APP_ID 1
 #define APP_KEY @"DAB578EC-6C01-4180-939A-37E6BE8A81AF"

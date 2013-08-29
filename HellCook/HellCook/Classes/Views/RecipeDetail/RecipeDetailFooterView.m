@@ -48,17 +48,6 @@
   return self;
 }
 
-- (UIViewController*)viewController {
-  for (UIView* next = [self superview]; next; next = next.superview)
-  {
-    UIResponder* nextResponder = [next nextResponder];
-    if ([nextResponder isKindOfClass:[UIViewController class]])
-    {
-      return (UIViewController*)nextResponder;
-    }
-  }
-  return nil;
-}
 
 /*
 // Only override drawRect: if you perform custom drawing.

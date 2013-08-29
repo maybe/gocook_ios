@@ -14,6 +14,7 @@
 #import "UIImage+Resize.h"
 #import "UIImage+Resizing.h"
 #import "HomePageController.h"
+#import "User.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
@@ -665,6 +666,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   if (result == 0)
   {
     isChanged = TRUE;
+    User* user = [User sharedInstance];
+    user.account.username = nameField.text;
+    
     HUD.labelText = @"个人基本信息上传成功";
     [HUD show:YES];
     [HUD hide:YES afterDelay:2];
@@ -696,6 +700,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   if (uploadImage != headImageView.defaultImage)
   {
     pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploadtmp.png"];
+    newHeadImagePath = [NSString stringWithString:pngPath];
     uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(100, 100) interpolationQuality:kCGInterpolationHigh];
     uploadImage = [uploadImage cropToSize:CGSizeMake(100, 100) usingMode:NYXCropModeTopCenter];
     // Write image to PNG
@@ -722,6 +727,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   if (result == 0)
   {
     isChanged = TRUE;
+    User* user = [User sharedInstance];
+    user.account.avatar = newHeadImagePath;
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"头像上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alert show];
   }
