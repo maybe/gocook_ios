@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad
 {
-  cellList = [[NSMutableArray alloc]initWithObjects:@"用户名",@"密码",nil];
+  cellList = [[NSMutableArray alloc]initWithObjects:@"手机号",@"密码",nil];
   [usernameField setDelegate:self];
   [passwordField setDelegate:self];
   
@@ -121,11 +121,11 @@
   
   if (indexPath.row == 0) {
     [usernameField setFrame:CGRectMake(30, 15, 200, 34)];
-    [usernameField setPlaceholder:@"邮箱"];
+    [usernameField setPlaceholder:@"手机号"];
     [usernameField setBackgroundColor: [UIColor clearColor]];
     [usernameField setDelegate:self];
     usernameField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    usernameField.keyboardType = UIKeyboardTypeDefault;
+    usernameField.keyboardType = UIKeyboardTypeNumberPad;
     usernameField.autocorrectionType = UITextAutocorrectionTypeNo;
     [usernameField setFont:[UIFont systemFontOfSize:14]];
     usernameField.returnKeyType = UIReturnKeyDone;

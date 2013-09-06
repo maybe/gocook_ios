@@ -44,7 +44,7 @@
   [self setRightButton];
   
   nickField = [[UITextField alloc]init];
-  emailField = [[UITextField alloc]init];
+  //emailField = [[UITextField alloc]init];
   passwordField = [[UITextField alloc]init];
   rePasswordField = [[UITextField alloc]init];
   telField = [[UITextField alloc] init];
@@ -58,13 +58,13 @@
 
   cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
              @"cellTel",@"Identifier", @"Tel",@"placeHolder",
-             telField, @"textfield",@"text",@"type",nil];
+             telField, @"textfield",@"tel",@"type",nil];
   [cellContentList addObject:cellDic];
 
-  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
-             @"cellEmail",@"Identifier", @"email",@"placeHolder",
-             emailField, @"textfield",@"text",@"type",nil];
-  [cellContentList addObject:cellDic];
+//  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
+//             @"cellEmail",@"Identifier", @"email",@"placeHolder",
+//             emailField, @"textfield",@"text",@"type",nil];
+//  [cellContentList addObject:cellDic];
   
   cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
              @"cellPass",@"Identifier", @"密码",@"placeHolder",
@@ -173,6 +173,8 @@
   textField.returnKeyType = UIReturnKeyDone;
   if ([[dic objectForKey:@"type"] isEqual: @"pass"]) {
     [textField setSecureTextEntry:YES];
+  } else if ([[dic objectForKey:@"type"] isEqual: @"tel"]) {
+    textField.keyboardType = UIKeyboardTypeNumberPad;
   }
 
   cell.tableCellBodyHeight = kTableCellBody;
@@ -256,11 +258,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     if (delta.height > 0) {
       CGPoint realOrigin = [frView convertPoint:frView.frame.origin toView:nil];
       if (realOrigin.y + frView.frame.size.height  > _screenHeight - delta.height) {
-        CGFloat deltaHeight = realOrigin.y + frView.frame.size.height - ( _screenHeight - delta.height) + 10;
         CGRect frame = self.tableView.frame;
-        frame.origin.y -= deltaHeight;
-        if (-frame.origin.y > delta.height) {
-          frame.origin.y = - delta.height;
+        if (realOrigin.y + frView.frame.size.height  >= _screenHeight)
+        {
+          frame.origin.y = frame.origin.y - delta.height;
+        } else {
+          CGFloat deltaHeight = realOrigin.y + frView.frame.size.height - ( _screenHeight - delta.height) + 10;
+          frame.origin.y -= deltaHeight;
         }
         self.tableView.frame = frame;
       }
@@ -323,7 +327,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 -(void)onRegister
 {
-  NSString* email = emailField.text;
+  //NSString* email = emailField.text;
   NSString* nickname = nickField.text;
   NSString* password = passwordField.text;
   NSString* rePassword = rePasswordField.text;
@@ -334,20 +338,20 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   UIImage* uploadImage = headImageView.upImageView.image;
   if (uploadImage!=headImageView.defaultImage) {
     pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploadtmp.png"];
-    uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(100, 100) interpolationQuality:kCGInterpolationHigh];
-    uploadImage = [uploadImage cropToSize:CGSizeMake(100, 100) usingMode:NYXCropModeTopCenter];
+    uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(150, 150) interpolationQuality:kCGInterpolationHigh];
+    uploadImage = [uploadImage cropToSize:CGSizeMake(150, 150) usingMode:NYXCropModeTopCenter];
     // Write image to PNG
     [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
   }
   
   self.registerOperation = [[[NetManager sharedInstance] hellEngine]
-      registerWithEmail:email AndNick:nickname AndTel:tel
-                AndPass:password AndRePass:rePassword AndAvatarPath:pngPath
-      completionHandler:^(NSMutableDictionary *resultDic) {
-        [self RegisterCallBack:resultDic];
-      }
-           errorHandler:^(NSError *error) {
-           }
+      registerWithTel:tel AndNick:nickname
+              AndPass:password AndRePass:rePassword AndAvatarPath:pngPath
+    completionHandler:^(NSMutableDictionary *resultDic) {
+      [self RegisterCallBack:resultDic];
+    }
+         errorHandler:^(NSError *error) {
+         }
   ];
   
 }
@@ -357,7 +361,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result != 0 || resultDic == nil)
   {
-    [emailField resignFirstResponder];
+    //[emailField resignFirstResponder];
     [nickField resignFirstResponder];
     [passwordField resignFirstResponder];
     [rePasswordField resignFirstResponder];
@@ -384,7 +388,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
            resultDic[@"user_id"] , @"user_id",
            resultDic[@"username"], @"username",
-           emailField.text, @"email",
+           telField.text, @"tel",
            passwordField.text, @"password",
            resultDic[@"icon"], @"avatar", nil];
     

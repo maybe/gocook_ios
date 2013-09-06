@@ -88,9 +88,15 @@
 +(NSString*)EncryptAppReqCMD:(NSInteger)cmd WithData:(NSString*)data
 {
   NSString* raw_data = [NSString stringWithFormat:@"%@%d%d%@%@", APP_KEY, cmd, APP_ID, data, APP_IV];
-  NSString* md5_data = [self md5:raw_data];
-  NSString * base64_data = [md5_data base64EncodedString];
-  return base64_data;
+
+  const char *keyStr = [raw_data UTF8String];
+  unsigned char keyDigest[16];
+  CC_MD5(keyStr, strlen(keyStr), keyDigest);
+
+  NSData* md5_data = [NSData dataWithBytes:(const void*)keyDigest length:16];
+
+  NSString * base64_data_str = [md5_data base64EncodedString];
+  return base64_data_str;
 }
 
 +(NSString*) md5:(NSString*) str

@@ -26,7 +26,7 @@
     
   UITextField* nickField;
   UITextField* telField;
-  UITextField* emailField;
+  //UITextField* emailField;
   UITextField* passwordField;
   UITextField*rePasswordField;
   

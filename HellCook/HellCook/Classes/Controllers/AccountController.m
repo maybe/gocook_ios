@@ -274,7 +274,7 @@
 {
     if (!loginButton) {
         loginButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 100, 120, 30)];
-        [loginButton setTitle:@"用邮箱登录" forState:UIControlStateNormal];
+        [loginButton setTitle:@"用手机号登录" forState:UIControlStateNormal];
         UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
         UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
         [loginButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];

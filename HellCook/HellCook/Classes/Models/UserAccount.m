@@ -10,7 +10,7 @@
 #import "DBHandler.h"
 
 @implementation UserAccount
-@synthesize username,signature,password,isLogin,avatar,shouldResetLogin,email,user_id;
+@synthesize username,signature,password,isLogin,avatar,shouldResetLogin,tel,user_id;
 
 -(id)init{
   if(self=[super init]){
@@ -18,7 +18,7 @@
     NSMutableDictionary* dic = [[DBHandler sharedInstance] getAccount];
     if (dic) {
       username = [dic valueForKey:@"username"];
-      email = [dic valueForKey:@"email"];
+      tel = [dic valueForKey:@"tel"];
       password = [dic valueForKey:@"password"];
       avatar = [dic valueForKey:@"avatar"];
       user_id = [[dic valueForKey:@"user_id"] intValue];
@@ -39,7 +39,7 @@
 - (void)login:(NSMutableDictionary*)dic
 {
   username = [dic valueForKey:@"username"];
-  email = [dic valueForKey:@"email"];
+  tel = [dic valueForKey:@"tel"];
   password = [dic valueForKey:@"password"];
   avatar = [dic valueForKey:@"avatar"];
   user_id = [[dic valueForKey:@"user_id"] intValue];
@@ -55,7 +55,7 @@
   username = @"";
   password = @"";
   avatar = @"";
-  email = @"";
+  tel = @"";
   isLogin = NO;
   
   DBHandler* dbHandler = [DBHandler sharedInstance];

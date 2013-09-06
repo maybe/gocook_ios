@@ -39,7 +39,7 @@
       dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
             [rs stringForColumn:@"userid"], @"user_id",
             [rs stringForColumn:@"username"], @"username",
-            [rs stringForColumn:@"email"], @"email",
+            [rs stringForColumn:@"tel"], @"tel",
             [rs stringForColumn:@"password"], @"password",
             [rs stringForColumn:@"avatar"], @"avatar",
             [rs stringForColumn:@"session"], @"session",nil];
@@ -57,7 +57,7 @@
     //NSLog(@"%@", accountDic[@"session"]);
     NSString* session_str = [[accountDic[@"session"] componentsSeparatedByString:@";"] objectAtIndex:0];
     
-    [db executeUpdate:@"INSERT INTO account (userid, username, email,password, avatar, session) VALUES (?,?,?,?,?,?);", accountDic[@"user_id"], accountDic[@"username"], accountDic[@"email"], accountDic[@"password"], accountDic[@"avatar"], session_str];
+    [db executeUpdate:@"INSERT INTO account (userid, username, tel, password, avatar, session) VALUES (?,?,?,?,?,?);", accountDic[@"user_id"], accountDic[@"username"], accountDic[@"tel"], accountDic[@"password"], accountDic[@"avatar"], session_str];
     [db close];
     return YES;
   }
@@ -190,7 +190,7 @@
   
   if (!accountTableName)
   {
-    [db executeUpdate:@"CREATE TABLE account(userid text, username text, email text, password text, avatar text, session text);"];
+    [db executeUpdate:@"CREATE TABLE account(userid text, username text, tel text, password text, avatar text, session text);"];
   }
   
   // create shoppinglist table

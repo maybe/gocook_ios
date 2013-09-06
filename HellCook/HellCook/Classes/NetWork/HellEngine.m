@@ -9,21 +9,23 @@
 #import "HellEngine.h"
 #import "UserAccount.h"
 #import "User.h"
+#import "Encrypt.h"
 
 @implementation HellEngine
 
-- (MKNetworkOperation*)loginWithUser:(NSString*)username AndPass:(NSString*)pass
+- (MKNetworkOperation*)loginWithUser:(NSString*)tel AndPass:(NSString*)pass
                    completionHandler:(LoginResponseBlock) completionBlock
                         errorHandler:(MKNKErrorBlock) errorBlock
 {
   NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-  [dic setValue:username forKey:@"login"];
-  [dic setValue:pass forKey:@"password"];
+  [dic setValue:tel forKey:@"login"];
+  NSString* password = [Encrypt tripleDES:pass encryptOrDecrypt:kCCEncrypt key:APP_KEY  initVec:APP_IV];
+  [dic setValue:password forKey:@"password"];
   
   MKNetworkOperation *op = [self operationWithPath:@"user/login"
                                             params:dic
                                         httpMethod:@"POST"];
-  
+
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
 
@@ -41,7 +43,7 @@
         dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
                jsonObject[@"user_id"], @"user_id",
                jsonObject[@"username"], @"username",
-               username, @"email",
+               tel, @"tel",
                pass, @"password",
                session, @"session",
                jsonObject[@"icon"], @"avatar", nil];
@@ -63,18 +65,19 @@
 }
 
 
-- (MKNetworkOperation*)registerWithEmail:(NSString*)email AndNick:(NSString*)nick AndTel:(NSString*)tel
-                                AndPass:(NSString*)pass AndRePass:(NSString*)repass
-                          AndAvatarPath:(NSString*)avatar
-                      completionHandler:(RegResponseBlock) completionBlock
-                           errorHandler:(MKNKErrorBlock) errorBlock
+- (MKNetworkOperation*)registerWithTel:(NSString *)tel AndNick:(NSString *)nick
+                               AndPass:(NSString *)pass AndRePass:(NSString *)repass
+                         AndAvatarPath:(NSString *)avatar
+                     completionHandler:(RegResponseBlock)completionBlock
+                          errorHandler:(MKNKErrorBlock) errorBlock
 {
   NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-  [dic setValue:email forKey:@"email"];
   [dic setValue:nick forKey:@"nickname"];
-  [dic setValue:pass forKey:@"password"];
+  NSString* password = [Encrypt tripleDES:pass encryptOrDecrypt:kCCEncrypt key:APP_KEY  initVec:APP_IV];
+  NSString* rePassword = [Encrypt tripleDES:pass encryptOrDecrypt:kCCEncrypt key:APP_KEY  initVec:APP_IV];
+  [dic setValue:password forKey:@"password"];
   [dic setValue:tel forKey:@"tel"];
-  [dic setValue:repass forKey:@"repassword"];
+  [dic setValue:rePassword forKey:@"repassword"];
 
   MKNetworkOperation *op = [self operationWithPath:@"user/register"
                                             params:dic

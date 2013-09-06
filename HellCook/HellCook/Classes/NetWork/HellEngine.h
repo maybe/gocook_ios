@@ -42,11 +42,11 @@ typedef void (^createRecipeResponseBlock)(NSMutableDictionary* resultDic);
                         errorHandler:(MKNKErrorBlock) errorBlock;
 
 // 注册
-- (MKNetworkOperation*)registerWithEmail:(NSString*)username AndNick:(NSString*)nick  AndTel:(NSString*)tel
-                                 AndPass:(NSString*)pass AndRePass:(NSString*)repass
-                           AndAvatarPath:(NSString*)avatar
-                       completionHandler:(RegResponseBlock) completionBlock
-                            errorHandler:(MKNKErrorBlock) errorBlock;
+- (MKNetworkOperation*)registerWithTel:(NSString *)username AndNick:(NSString *)nick
+                               AndPass:(NSString *)pass AndRePass:(NSString *)repass
+                         AndAvatarPath:(NSString *)avatar
+                     completionHandler:(RegResponseBlock)completionBlock
+                          errorHandler:(MKNKErrorBlock) errorBlock;
 
 // 获取主界面
 - (MKNetworkOperation*)getIOSMainDataWithCompletionHandler:(iosMainResponseBlock) completionBlock
