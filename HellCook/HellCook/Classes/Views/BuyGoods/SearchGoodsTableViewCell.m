@@ -19,7 +19,7 @@
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320-_offset, 97)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
+
     //nameLabel
     nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 80, 14)];
     nameLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
@@ -32,10 +32,10 @@
     [self initLabel:unitLabel withFrame:CGRectMake(10, 50, 180, 16)];
     //priceLabel
     [self initLabel:priceLabel withFrame:CGRectMake(10, 71, 180, 16)];
-    
+
     sepImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 85, 320-_offset, 1)];
     [sepImageView setImage:[UIImage imageNamed:@"Images/homeHeaderSeperator.png"]];
-    
+
     [self addSubview:nameLabel];
     [self addSubview:sepImageView];
   }

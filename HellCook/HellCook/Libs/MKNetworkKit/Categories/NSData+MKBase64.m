@@ -262,6 +262,19 @@ char *mk_NewBase64Encode(
 	return outputBuffer;
 }
 
+//
+// Added for compatibility with older MKNetworkKit
+//
+char *NewBase64Encode(
+	const void *buffer,
+	size_t length,
+	bool separateLines,
+	size_t *outputLength)
+{
+    return mk_NewBase64Encode(buffer, length, separateLines, outputLength);
+}
+
+
 @implementation NSData (MKNKBase64)
 
 //

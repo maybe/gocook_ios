@@ -40,6 +40,9 @@
  *  MKNetworkEngine also allows you to provide custom header fields that gets appended automatically to every request
  */
 @interface MKNetworkEngine : NSObject
+
+@property (copy, nonatomic) NSDictionary *customHeaders;
+
 /*!
  *  @abstract Initializes your network engine with a hostname
  *  
@@ -78,6 +81,21 @@
  *  
  */
 - (id) initWithHostName:(NSString*) hostName apiPath:(NSString*) apiPath customHeaderFields:(NSDictionary*) headers;
+
+/*!
+ *  @abstract Initializes your network engine with a hostname, port, path, and headers.
+ *
+ *  @discussion
+ *	Creates an engine for a given host name
+ *  The hostname parameter is optional
+ *  The port parameter can be 0, which means to use the appropriate default port (80 or 443 for HTTP or HTTPS respectively).
+ *  The apiPath paramter is optional
+ *  The apiPath is prefixed to every call to operationWithPath: You can use this method if your server's API location is not at the root (/)
+ *  The hostname, if not null, initializes a Reachability notifier.
+ *  Network reachability notifications are automatically taken care of by MKNetworkEngine
+ *
+ */
+- (id) initWithHostName:(NSString*) hostName portNumber:(int)portNumber apiPath:(NSString*) apiPath customHeaderFields:(NSDictionary*) headers;
 
 /*!
  *  @abstract Creates a simple GET Operation with a request URL
@@ -269,6 +287,15 @@
 +(void) cancelOperationsContainingURLString:(NSString*) string;
 
 /*!
+ *  @abstract Cancels operations matching the given block.
+ *
+ *  @discussion
+ *	Cancels all operations in the shared queue for which the given block returns YES.
+ *
+ */
++(void) cancelOperationsMatchingBlock:(BOOL (^)(MKNetworkOperation*))block;
+
+/*!
  *  @abstract Cancels all operations created by this engine
  *
  *  @discussion
@@ -361,6 +388,17 @@
 -(int) cacheMemoryCost;
 
 /*!
+ *  @abstract Cache Directory In Storage Cost
+ *
+ *  @discussion
+ *	This method can be over-ridden by subclasses to provide an alternative in storage cache size.
+ *  By default, MKNetworkKit caches 1000 recent requests in storage
+ *  The default size is 1000
+ *  Overriding this method is optional
+ */
+-(int) cacheStorageCost;
+
+/*!
  *  @abstract Enable Caching
  *  
  *  @discussion
@@ -388,5 +426,14 @@
  *	This method is a handy helper that you can use to check for network reachability.
  */
 -(BOOL) isReachable;
+
+/*!
+ *  @abstract Boolean variable that states whether the request should automatically include an Accept-Language header.
+ *  @property shouldSendAcceptLanguageHeader
+ *
+ *  @discussion
+ *	The default value is YES. MKNetworkKit will generate an Accept-Language header using [NSLocale preferredLanguages] + "en-US".
+ */
+@property (nonatomic, assign) BOOL shouldSendAcceptLanguageHeader;
 
 @end

@@ -23,6 +23,7 @@
 #import "UIZoomNavigationController.h"
 #import "MainController.h"
 #import "HomePageController.h"
+#import "SearchGoodsTableViewCell.h"
 
 @interface AccountController ()
 
@@ -391,11 +392,10 @@
 
 - (void)logout
 {
-  [[NetManager sharedInstance] ResetHellEngine];
+  [[[NetManager sharedInstance] hellEngine] removeCookie];
   [[[User sharedInstance] account] logout];
   [self showLoginView];
   [self hideAccountView];
-  
 }
 
 

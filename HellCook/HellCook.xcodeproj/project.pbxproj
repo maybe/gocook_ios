@@ -37,6 +37,7 @@
 		5EF9F45517D855E1005ABA82 /* GoodsDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F45417D855E0005ABA82 /* GoodsDetailView.xib */; };
 		5EF9F45917D8A714005ABA82 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F45717D8A70B005ABA82 /* BuyViewController.m */; };
 		5EF9F45C17D8A82C005ABA82 /* BuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F45B17D8A82B005ABA82 /* BuyView.xib */; };
+		6580959500C5872FF90F20D7 /* NSAlert+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 658094916F917A57632BDC85 /* NSAlert+MKNetworkKitAdditions.m */; };
 		65809A0AA33D3331D334BF58 /* SSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658098098A86A0456C03D5F4 /* SSTextView.m */; };
 		BA02634516D7579700298803 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634416D7579700298803 /* AppDelegate.m */; };
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
@@ -230,7 +231,9 @@
 		5EF9F45717D8A70B005ABA82 /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyViewController.m; path = Classes/Controllers/BuyGoods/BuyViewController.m; sourceTree = "<group>"; };
 		5EF9F45B17D8A82B005ABA82 /* BuyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyView.xib; sourceTree = "<group>"; };
 		6580938282D18BE4B8A35D45 /* SSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTextView.h; sourceTree = "<group>"; };
+		658094916F917A57632BDC85 /* NSAlert+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
 		658098098A86A0456C03D5F4 /* SSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTextView.m; sourceTree = "<group>"; };
+		65809E8E3BE0ED477C92E98C /* NSAlert+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
 		BA02634316D7579700298803 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		BA02634416D7579700298803 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		BA02634716D759CB00298803 /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
@@ -953,6 +956,8 @@
 				BACCF87616ED0BD60094F1E5 /* UIAlertView+MKNetworkKitAdditions.m */,
 				BACCF87716ED0BD60094F1E5 /* UIImageView+MKNetworkKitAdditions.h */,
 				BACCF87816ED0BD60094F1E5 /* UIImageView+MKNetworkKitAdditions.m */,
+				658094916F917A57632BDC85 /* NSAlert+MKNetworkKitAdditions.m */,
+				65809E8E3BE0ED477C92E98C /* NSAlert+MKNetworkKitAdditions.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1330,6 +1335,7 @@
 				5EF9F45017D85594005ABA82 /* BuyGoodsTopCell.m in Sources */,
 				5EF9F45317D855B4005ABA82 /* BuyGoodsBelowCell.m in Sources */,
 				5EF9F45917D8A714005ABA82 /* BuyViewController.m in Sources */,
+				6580959500C5872FF90F20D7 /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

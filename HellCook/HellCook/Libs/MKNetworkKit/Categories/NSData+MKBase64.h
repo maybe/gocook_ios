@@ -34,6 +34,15 @@ char *mk_NewBase64Encode(
 	bool separateLines,
 	size_t *outputLength);
 
+//
+// Added for compatibility with older MKNetworkKit
+//
+char *NewBase64Encode(
+	const void *inputBuffer,
+	size_t length,
+	bool separateLines,
+	size_t *outputLength);
+
 @interface NSData (MKNKBase64)
 
 + (NSData *)dataFromBase64String:(NSString *)aString;

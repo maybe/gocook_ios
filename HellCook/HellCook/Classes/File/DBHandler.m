@@ -55,9 +55,9 @@
   if ([self openDB])
   {
     //NSLog(@"%@", accountDic[@"session"]);
-    NSString* session_str = [[accountDic[@"session"] componentsSeparatedByString:@";"] objectAtIndex:0];
+    //NSString* session_str = [[accountDic[@"session"] componentsSeparatedByString:@";"] objectAtIndex:0];
     
-    [db executeUpdate:@"INSERT INTO account (userid, username, tel, password, avatar, session) VALUES (?,?,?,?,?,?);", accountDic[@"user_id"], accountDic[@"username"], accountDic[@"tel"], accountDic[@"password"], accountDic[@"avatar"], session_str];
+    [db executeUpdate:@"INSERT INTO account (userid, username, tel, password, avatar, session) VALUES (?,?,?,?,?,?);", accountDic[@"user_id"], accountDic[@"username"], accountDic[@"tel"], accountDic[@"password"], accountDic[@"avatar"], accountDic[@"session"]];
     [db close];
     return YES;
   }

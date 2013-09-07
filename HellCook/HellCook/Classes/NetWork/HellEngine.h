@@ -37,6 +37,10 @@ typedef void (^uploadCoverTmpImageResponseBlock)(NSMutableDictionary* resultDic)
 typedef void (^uploadStepTmpImageResponseBlock)(NSMutableDictionary* resultDic, NSInteger index);
 typedef void (^createRecipeResponseBlock)(NSMutableDictionary* resultDic);
 
+// 设置cookie
+- (void) setCookie:(NSString*)cookie;
+- (void) removeCookie;
+
 // 登录
 - (MKNetworkOperation*)loginWithUser:(NSString*)username AndPass:(NSString*)pass
                    completionHandler:(LoginResponseBlock) completionBlock

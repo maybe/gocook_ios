@@ -44,12 +44,12 @@
 
 @property (copy, nonatomic) NSString *hostName;
 @property (strong, nonatomic) Reachability *reachability;
-@property (copy, nonatomic) NSDictionary *customHeaders;
 @property (assign, nonatomic) Class customOperationSubclass;
 
 @property (nonatomic, strong) NSMutableDictionary *memoryCache;
 @property (nonatomic, strong) NSMutableArray *memoryCacheKeys;
 @property (nonatomic, strong) NSMutableDictionary *cacheInvalidationParams;
+@property (strong, nonatomic) NSMutableOrderedSet *cacheOrderedUniqueIds;
 
 #if OS_OBJECT_USE_OBJC
 @property (strong, nonatomic) dispatch_queue_t backgroundCacheQueue;
@@ -97,8 +97,13 @@ static NSOperationQueue *_sharedNetworkQueue;
 
 - (id) initWithHostName:(NSString*) hostName apiPath:(NSString*) apiPath customHeaderFields:(NSDictionary*) headers {
   
+  return [self initWithHostName:hostName portNumber:0 apiPath:apiPath customHeaderFields:headers];
+}
+
+- (id) initWithHostName:(NSString*) hostName portNumber:(int)portNumber apiPath:(NSString*) apiPath customHeaderFields:(NSDictionary*) headers {
   if((self = [super init])) {
     
+    self.portNumber = portNumber;
     self.apiPath = apiPath;
     self.backgroundCacheQueue = dispatch_queue_create("com.mknetworkkit.cachequeue", DISPATCH_QUEUE_SERIAL);
     self.operationQueue = dispatch_queue_create("com.mknetworkkit.operationqueue", DISPATCH_QUEUE_SERIAL);
@@ -131,6 +136,7 @@ static NSOperationQueue *_sharedNetworkQueue;
     }
     
     self.customOperationSubclass = [MKNetworkOperation class];
+    self.shouldSendAcceptLanguageHeader = YES;
   }
   
   return self;
@@ -145,6 +151,20 @@ static NSOperationQueue *_sharedNetworkQueue;
 #pragma mark Memory Mangement
 
 -(void) dealloc {
+  
+#if TARGET_OS_IPHONE
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
+  dispatch_release(_backgroundCacheQueue);
+  dispatch_release(_operationQueue);
+#endif
+  
+#else
+  
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 1080
+  dispatch_release(_backgroundCacheQueue);
+  dispatch_release(_operationQueue);
+#endif
+#endif
   
   [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 #if TARGET_OS_IPHONE
@@ -239,15 +259,20 @@ static NSOperationQueue *_sharedNetworkQueue;
 
 +(void) cancelOperationsContainingURLString:(NSString*) string {
   
-  NSArray *runningOperations = _sharedNetworkQueue.operations;
-  [runningOperations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    
-    MKNetworkOperation *thisOperation = obj;
-    if([[thisOperation.readonlyRequest.URL absoluteString] rangeOfString:string].location != NSNotFound) {
-    
-      [thisOperation cancel];
-    }
+  [self cancelOperationsMatchingBlock:^BOOL (MKNetworkOperation* op) {
+    return [[op.readonlyRequest.URL absoluteString] rangeOfString:string].location != NSNotFound;
   }];
+}
+
++(void) cancelOperationsMatchingBlock:(BOOL (^)(MKNetworkOperation* op))block {
+    
+    NSArray *runningOperations = _sharedNetworkQueue.operations;
+    [runningOperations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        MKNetworkOperation *thisOperation = obj;
+        if (block(thisOperation))
+            [thisOperation cancel];
+    }];
 }
 
 -(void) cancelAllOperations {
@@ -372,6 +397,7 @@ static NSOperationQueue *_sharedNetworkQueue;
                                    httpMethod:(NSString*)method {
   
   MKNetworkOperation *operation = [[self.customOperationSubclass alloc] initWithURLString:urlString params:body httpMethod:method];
+  operation.shouldSendAcceptLanguageHeader = self.shouldSendAcceptLanguageHeader;
   
   [self prepareHeaders:operation];
   return operation;
@@ -410,15 +436,32 @@ static NSOperationQueue *_sharedNetworkQueue;
   if(operation == nil) return;
   
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
+    
+     __weak id weakSelf = self;
+    
+    
     [operation setCacheHandler:^(MKNetworkOperation* completedCacheableOperation) {
       
       // if this is not called, the request would have been a non cacheable request
       //completedCacheableOperation.cacheHeaders;
       NSString *uniqueId = [completedCacheableOperation uniqueIdentifier];
-      [self saveCacheData:[completedCacheableOperation responseData]
+      [weakSelf saveCacheData:[completedCacheableOperation responseData]
                    forKey:uniqueId];
       
-      (self.cacheInvalidationParams)[uniqueId] = completedCacheableOperation.cacheHeaders;
+      ([weakSelf cacheInvalidationParams])[uniqueId] = completedCacheableOperation.cacheHeaders;
+      [self.cacheOrderedUniqueIds insertObject:uniqueId atIndex:0]; // remove it and insert it at start
+        if([self.cacheOrderedUniqueIds count] > [self cacheStorageCost]) {
+          NSString *lastKey = [self.cacheOrderedUniqueIds lastObject];
+          NSString *filePath = [[weakSelf cacheDirectoryName] stringByAppendingPathComponent:lastKey];
+          if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+            NSError *error = nil;
+            [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+            ELog(error);
+          }
+          [self.cacheInvalidationParams removeObjectForKey:lastKey];
+          [self.cacheOrderedUniqueIds removeObject:lastKey];
+        }
     }];
     
     __block double expiryTimeInSeconds = 0.0f;
@@ -587,6 +630,11 @@ static NSOperationQueue *_sharedNetworkQueue;
   return MKNETWORKCACHE_DEFAULT_COST;
 }
 
+-(int) cacheStorageCost {
+    
+    return MKNETWORKCACHE_DEFAULT_STORAGE_COST;
+}
+
 -(void) saveCache {
   
   for(NSString *cacheKey in [self.memoryCache allKeys])
@@ -607,6 +655,9 @@ static NSOperationQueue *_sharedNetworkQueue;
   
   NSString *cacheInvalidationPlistFilePath = [[self cacheDirectoryName] stringByAppendingPathExtension:@"plist"];
   [self.cacheInvalidationParams writeToFile:cacheInvalidationPlistFilePath atomically:YES];
+    
+  NSString *cacheOrderedPlistFilePath = [[self cacheDirectoryName] stringByAppendingString:@"Ordered.plist"];
+  [[self.cacheOrderedUniqueIds array] writeToFile:cacheOrderedPlistFilePath atomically:YES];
 }
 
 -(void) saveCacheData:(NSData*) data forKey:(NSString*) cacheDataKey
@@ -662,6 +713,7 @@ static NSOperationQueue *_sharedNetworkQueue;
   self.memoryCache = [NSMutableDictionary dictionaryWithCapacity:[self cacheMemoryCost]];
   self.memoryCacheKeys = [NSMutableArray arrayWithCapacity:[self cacheMemoryCost]];
   self.cacheInvalidationParams = [NSMutableDictionary dictionary];
+  self.cacheOrderedUniqueIds = [NSMutableOrderedSet orderedSet];
   
   NSString *cacheDirectory = [self cacheDirectoryName];
   BOOL isDirectory = YES;
@@ -681,7 +733,16 @@ static NSOperationQueue *_sharedNetworkQueue;
   {
     self.cacheInvalidationParams = [NSMutableDictionary dictionaryWithContentsOfFile:cacheInvalidationPlistFilePath];
   }
-  
+
+  NSString *cacheOrderedPlistFilePath = [cacheDirectory stringByAppendingString:@"Ordered.plist"];
+
+  BOOL orderdFileExists = [[NSFileManager defaultManager] fileExistsAtPath:cacheOrderedPlistFilePath];
+
+  if (orderdFileExists)
+  {
+    self.cacheOrderedUniqueIds = [NSMutableOrderedSet orderedSetWithArray:[NSArray arrayWithContentsOfFile:cacheOrderedPlistFilePath]];
+  }
+
 #if TARGET_OS_IPHONE
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveCache)
                                                name:UIApplicationDidReceiveMemoryWarningNotification
@@ -729,6 +790,11 @@ static NSOperationQueue *_sharedNetworkQueue;
   error = nil;
   NSString *cacheInvalidationPlistFilePath = [[self cacheDirectoryName] stringByAppendingPathExtension:@"plist"];
   [[NSFileManager defaultManager] removeItemAtPath:cacheInvalidationPlistFilePath error:&error];
+  if(error) DLog(@"%@", error);
+
+  error = nil;
+  NSString *cacheOrderedPlistFilePath = [[self cacheDirectoryName] stringByAppendingString:@"Ordered.plist"];
+  [[NSFileManager defaultManager] removeItemAtPath:cacheOrderedPlistFilePath error:&error];
   if(error) DLog(@"%@", error);
 }
 

@@ -358,6 +358,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)RegisterCallBack:(NSMutableDictionary*) resultDic
 {
+  if (resultDic == nil)
+  {
+    return;
+  }
+
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result != 0 || resultDic == nil)
   {

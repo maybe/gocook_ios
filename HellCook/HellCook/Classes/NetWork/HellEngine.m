@@ -13,6 +13,18 @@
 
 @implementation HellEngine
 
+- (void)setCookie:(NSString *)cookie {
+  NSMutableDictionary *newHeadersDict = [self.customHeaders mutableCopy];
+  newHeadersDict[@"Cookie"] = [NSString stringWithString:cookie];
+  self.customHeaders = newHeadersDict;
+}
+
+- (void)removeCookie {
+  NSMutableDictionary *newHeadersDict = [self.customHeaders mutableCopy];
+  newHeadersDict[@"Cookie"] = @"";
+  self.customHeaders = newHeadersDict;
+}
+
 - (MKNetworkOperation*)loginWithUser:(NSString*)tel AndPass:(NSString*)pass
                    completionHandler:(LoginResponseBlock) completionBlock
                         errorHandler:(MKNKErrorBlock) errorBlock
@@ -25,22 +37,28 @@
   MKNetworkOperation *op = [self operationWithPath:@"user/login"
                                             params:dic
                                         httpMethod:@"POST"];
-
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
 
       // save login info
       if (jsonObject!=nil && [[jsonObject objectForKey:@"result"] intValue] == 0) {
-        
+
+        NSString* session = completedOperation.readonlyResponse.allHeaderFields[@"Set-Cookie"];
+        NSArray* session_array = [session componentsSeparatedByString:@"path=/, "];
+        NSString* real_session = @"";
+        NSUInteger session_array_count = [session_array count];
+        if (session_array_count > 0) {
+          real_session = session_array[session_array_count - 1];
+        }
+        [self setCookie:real_session];
+
         UserAccount* userAccount = [[User sharedInstance] account];
-        
         userAccount.username = jsonObject[@"username"];
         userAccount.avatar = jsonObject[@"icon"];
-        
-        NSString* session = completedOperation.readonlyResponse.allHeaderFields[@"Set-Cookie"];
-        
-        NSMutableDictionary* dic = nil;
-        dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
+
+        NSMutableDictionary* login_dic = nil;
+        login_dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
                jsonObject[@"user_id"], @"user_id",
                jsonObject[@"username"], @"username",
                tel, @"tel",
@@ -48,7 +66,7 @@
                session, @"session",
                jsonObject[@"icon"], @"avatar", nil];
         
-        [userAccount login:dic];
+        [userAccount login:login_dic];
         
         [[[User sharedInstance] account] setShouldResetLogin:YES];
       }
@@ -82,7 +100,7 @@
   MKNetworkOperation *op = [self operationWithPath:@"user/register"
                                             params:dic
                                         httpMethod:@"POST"];
-  
+  [op useCookie:NO];
   if (avatar&&![avatar isEqualToString:@""]) {
     [op addFile:avatar forKey:@"avatar"];
   }
@@ -91,6 +109,16 @@
     NSLog(@"%@",completedOperation.responseString);
     
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      if (jsonObject!=nil && [[jsonObject objectForKey:@"result"] intValue] == 0) {
+        NSString* session = completedOperation.readonlyResponse.allHeaderFields[@"Set-Cookie"];
+        NSArray* session_array = [session componentsSeparatedByString:@"path=/, "];
+        NSString* real_session = @"";
+        NSUInteger session_array_count = [session_array count];
+        if (session_array_count > 0) {
+          real_session = session_array[session_array_count - 1];
+        }
+        [self setCookie:real_session];
+      }
       completionBlock(jsonObject);
     }];
   }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
@@ -109,7 +137,7 @@
   MKNetworkOperation *op = [self operationWithPath:@"index/ios_main"
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
 //    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -131,7 +159,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"recipe/topnew?page=%d",page]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     //NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -153,7 +181,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"recipe/tophot?page=%d",page]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     //NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -178,7 +206,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"index/search?keyword=%@&page=%d",encodingKey,page]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     //NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -203,7 +231,7 @@
                                                     @"recipe/index?id=%d",recipeId]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     //NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -226,7 +254,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/mycoll?page=%d",page]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
 //    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -249,7 +277,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/myrecipes?page=%d",page]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
@@ -263,13 +291,13 @@
   return op;
 }
 
-- (MKNetworkOperation*)getMyIntroductionDataWithCompletionHandler:(myRecipesResponseBlock)completionBlock
+- (MKNetworkOperation*)getMyIntroductionDataWithCompletionHandler:(myIntroductionResponseBlock)completionBlock
                                                      errorHandler:(MKNKErrorBlock) errorBlock
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"user/basicinfo"]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
 //    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -292,7 +320,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/mywatch?page=%d",page]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
 //    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -315,7 +343,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/myfans?page=%d",page]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
 //    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -340,7 +368,7 @@
   MKNetworkOperation *op = [self operationWithPath:@"user/changebasicinfo"
                                             params:dic
                                         httpMethod:@"POST"];
-  
+  [op useCookie:NO];
 //  NSString* aStr;
 //  aStr = [[NSString alloc] initWithData:[[op readonlyRequest] HTTPBody] encoding:NSASCIIStringEncoding];
 //  NSLog(@"%@",  aStr);
@@ -367,7 +395,7 @@
   MKNetworkOperation *op = [self operationWithPath:@"recipe/upload_cover_photo"
                                             params:nil
                                         httpMethod:@"POST"];
-  
+  [op useCookie:NO];
   if (imagePath&&![imagePath isEqualToString:@""]) {
     [op addFile:imagePath forKey:@"cover"];
   }
@@ -392,6 +420,7 @@
   MKNetworkOperation *op = [self operationWithPath:@"user/changeavatar"
                                             params:nil
                                         httpMethod:@"POST"];
+  [op useCookie:NO];
   if (path && ![path isEqualToString:@""]) {
     [op addFile:path forKey:@"avatar"];
   }
@@ -420,7 +449,7 @@
   MKNetworkOperation *op = [self operationWithPath:@"recipe/upload_step_photo"
                                             params:nil
                                         httpMethod:@"POST"];
-  
+  [op useCookie:NO];
   if (imagePath&&![imagePath isEqualToString:@""]) {
     [op addFile:imagePath forKey:@"step"];
   }
@@ -447,7 +476,7 @@
   MKNetworkOperation *op = [self operationWithPath:@"recipe/create"
                                             params:uploadDic
                                         httpMethod:@"POST"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
         //NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -470,7 +499,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/kitchen?userid=%d",userid]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     //    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -492,7 +521,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/watch?watchid=%d",userid]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     //    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -514,7 +543,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/unwatch?watchid=%d",userid]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
 //    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -534,7 +563,7 @@
                                   errorHandler:(MKNKErrorBlock) errorBlock;
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"recipe/comments?recipe_id=%d",recipeid] params:nil httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -558,7 +587,7 @@
   MKNetworkOperation *op = [self operationWithPath:@"recipe/comment"
                                             params:dic
                                         httpMethod:@"POST"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -580,7 +609,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/addmycoll?collid=%d",collID]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     //    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
@@ -602,7 +631,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/delmycoll?collid=%d",collID]
                                             params:nil
                                         httpMethod:@"GET"];
-  
+  [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     //    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
