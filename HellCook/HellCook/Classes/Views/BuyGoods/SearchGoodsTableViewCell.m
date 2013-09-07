@@ -21,7 +21,7 @@
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     //nameLabel
-    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 180, 14)];
+    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 80, 14)];
     nameLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
     nameLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     nameLabel.backgroundColor = [UIColor clearColor];
@@ -54,11 +54,22 @@
   [self addSubview:pLabel];
 }
 
+- (void)setData:(NSMutableDictionary *)dict
+{
+  [nameLabel setText:dict[@"name"]];
+  [specLabel setText:[NSString stringWithFormat:@"规格：%@",dict[@"norm"]]];
+  [unitLabel setText:[NSString stringWithFormat:@"单位：%@",dict[@"unit"]]];
+  [priceLabel setText:[NSString stringWithFormat:@"价格：¥%f",[dict[@"price"] floatValue]]];
+}
+
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
+
 
 @end

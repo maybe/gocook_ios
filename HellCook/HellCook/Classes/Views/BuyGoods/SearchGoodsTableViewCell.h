@@ -22,7 +22,9 @@
 @property (nonatomic,retain) UILabel *specLabel;
 @property (nonatomic,retain) UILabel *unitLabel;
 @property (nonatomic,retain) UILabel *priceLabel;
-@property (nonatomic, retain)UIImageView* sepImageView;
-@property (nonatomic, retain)UIImageView* rightImageView;
+@property (nonatomic, retain) UIImageView* sepImageView;
+@property (nonatomic, retain) UIImageView* rightImageView;
+
+- (void)setData:(NSMutableDictionary*)dict;
 
 @end
