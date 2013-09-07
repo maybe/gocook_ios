@@ -16,7 +16,7 @@
 @end
 
 @implementation SearchGoodsViewController
-@synthesize myTableView,mLoadingActivity,netOperation;
+@synthesize myTableView,mLoadingActivity,netOperation,mWaitingActivity;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withKeyword:(NSString*)keyword
 {
@@ -145,9 +145,9 @@
   {
     cell = [[SearchGoodsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
+  [cell setData:goodsListArray[indexPath.row]];
   
-  [cell setData:(NSMutableDictionary*)goodsListArray[indexPath.row]];
-  
+    
   return cell;
 }
 
@@ -182,6 +182,7 @@
 
 -(void)getGoodsInfo
 {
+  [mWaitingActivity startAnimating];
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
                        getGoodsWithKeyword:myKeywords
                        withPage:curPage
@@ -192,6 +193,7 @@
 
 -(void)getGoodsInfoCallBack:(NSMutableDictionary*) resultDic
 {
+  [mWaitingActivity stopAnimating];
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {

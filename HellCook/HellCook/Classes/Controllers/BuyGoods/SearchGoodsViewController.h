@@ -19,12 +19,14 @@
   BOOL bShouldRefresh;
   NSInteger totalPage;
   UIActivityIndicatorView* mLoadingActivity;
+  UIActivityIndicatorView* mWaitingActivity;
   ODRefreshControl *refreshControl; 
 }
 
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
 @property (nonatomic, retain) UIActivityIndicatorView* mLoadingActivity;
+@property (nonatomic, retain)IBOutlet UIActivityIndicatorView* mWaitingActivity;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withKeyword:(NSString*)keyword;
 
