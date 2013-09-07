@@ -617,4 +617,25 @@
   return op;
 }
 
+- (MKNetworkOperation*)getGoodsWithKeyword:(NSString*)keyword
+                                  withPage:(NSInteger)page
+                         completionHandler:(getGoodsResponseBlock)completionBlock
+                              errorHandler:(MKNKErrorBlock)errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/search_wares?keyword=%@&page=%d",keyword,page] params:nil httpMethod:@"GET"];
+  
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
 @end

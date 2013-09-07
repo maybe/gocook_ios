@@ -10,6 +10,7 @@
 #import "ShoppingListRecipeTableViewCell.h"
 #import "DBHandler.h"
 #import "RecipeDetailController.h"
+#import "MaterialSearchBuyViewController.h"
 
 @interface ShoppingListController ()
 
@@ -487,6 +488,17 @@
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
     
+}
+
+-(void)gotoMaterialSearchBuy
+{
+  if ([cellAllMaterialArray count] <= 0)
+  {
+    [self setAllMaterialDataList];
+  }
+  
+  MaterialSearchBuyViewController *pController = [[MaterialSearchBuyViewController alloc] initWithNibName:@"MaterialSearchBuyView" bundle:nil withData:cellAllMaterialArray];
+  [self.navigationController pushViewController:pController animated:YES];
 }
 
 @end

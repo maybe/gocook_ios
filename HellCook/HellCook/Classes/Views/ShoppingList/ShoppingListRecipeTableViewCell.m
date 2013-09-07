@@ -92,7 +92,7 @@
     UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [buyButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
     
-   // [buyButton addTarget:self action:@selector(openRegisterWindow) forControlEvents:UIControlEventTouchUpInside];
+    [buyButton addTarget:nil action:@selector(gotoMaterialSearchBuy) forControlEvents:UIControlEventTouchUpInside];
   }
   return buyButton;
 }
