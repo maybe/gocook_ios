@@ -209,7 +209,7 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">navgationItem</string>
+						<string key="label">navigationItem</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="1062146399"/>
 					</object>
@@ -314,7 +314,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="ipButton">UIButton</string>
 						<string key="ipField">UITextField</string>
-						<string key="navgationItem">UINavigationItem</string>
+						<string key="navigationItem">UINavigationItem</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="ipButton">
@@ -325,8 +325,8 @@
 							<string key="name">ipField</string>
 							<string key="candidateClassName">UITextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="navgationItem">
-							<string key="name">navgationItem</string>
+						<object class="IBToOneOutletInfo" key="navigationItem">
+							<string key="name">navigationItem</string>
 							<string key="candidateClassName">UINavigationItem</string>
 						</object>
 					</dictionary>

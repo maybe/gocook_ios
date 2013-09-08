@@ -21,7 +21,7 @@
   MBProgressHUD *HUD;
   
   UITableView* tableView;
-  UINavigationItem* navgationItem;
+  UINavigationItem* navigationItem;
   NSMutableArray* cellContentList;
     
   UITextField* nickField;
@@ -35,7 +35,7 @@
   KeyboardHandler *keyboard;
 }
 
-@property (nonatomic, retain) IBOutlet UINavigationItem* navgationItem;
+@property (nonatomic, retain) IBOutlet UINavigationItem* navigationItem;
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (strong, nonatomic) MKNetworkOperation *registerOperation;
 @property (nonatomic, retain) NSString* pickedImagePath;

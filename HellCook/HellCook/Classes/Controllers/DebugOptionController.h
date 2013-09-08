@@ -12,12 +12,12 @@
 {
   UITextField* ipField;
   UIButton* ipButton;
-  UINavigationItem* navgationItem;
+  UINavigationItem* navigationItem;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField* ipField;
 @property (nonatomic, retain) IBOutlet UIButton* ipButton;
-@property (nonatomic, retain) IBOutlet UINavigationItem* navgationItem;
+@property (nonatomic, retain) IBOutlet UINavigationItem* navigationItem;
 
 
 @end

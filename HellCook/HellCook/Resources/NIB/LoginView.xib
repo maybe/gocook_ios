@@ -131,11 +131,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">navgationItem</string>
+						<string key="label">navigationItem</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="3535370"/>
 					</object>
-					<int key="connectionID">28</int>
+					<int key="connectionID">37</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -217,7 +217,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">36</int>
+			<int key="maxID">37</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -225,12 +225,12 @@
 					<string key="className">LoginController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="navgationItem">UINavigationItem</string>
+						<string key="navigationItem">UINavigationItem</string>
 						<string key="tableView">UITableView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="navgationItem">
-							<string key="name">navgationItem</string>
+						<object class="IBToOneOutletInfo" key="navigationItem">
+							<string key="name">navigationItem</string>
 							<string key="candidateClassName">UINavigationItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tableView">

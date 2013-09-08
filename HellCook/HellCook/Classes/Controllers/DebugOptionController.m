@@ -15,7 +15,7 @@
 @end
 
 @implementation DebugOptionController
-@synthesize ipButton,ipField,navgationItem;
+@synthesize ipButton,ipField,navigationItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,7 +62,7 @@
   
   UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
   
-  [self.navgationItem setLeftBarButtonItem:leftBarButtonItem];
+  [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
 }
 
 -(void)returnToPrev

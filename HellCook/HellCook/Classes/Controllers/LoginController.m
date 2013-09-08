@@ -21,7 +21,7 @@
 
 @implementation LoginController
 @synthesize tableView;
-@synthesize navgationItem;
+@synthesize navigationItem;
 @synthesize callerClassName;
 
 
@@ -36,7 +36,7 @@
   frame.size.height = 24;
   self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
   
-  self.navgationItem.title = @"登录";
+  self.navigationItem.title = @"登录";
   
   [self setLeftButton];
   [self setRightButton];
@@ -190,7 +190,7 @@
     
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
     
-    [self.navgationItem setLeftBarButtonItem:leftBarButtonItem];
+    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
 }
 
 - (void)setRightButton
@@ -208,7 +208,7 @@
   
   UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
   
-  [self.navgationItem setRightBarButtonItem:rightBarButtonItem];
+  [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
 
 -(void)returnToPrev

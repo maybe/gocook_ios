@@ -27,7 +27,7 @@
 @end
 
 @implementation RegisterController
-@synthesize navgationItem;
+@synthesize navigationItem;
 @synthesize tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -295,7 +295,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   
   UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
   
-  [self.navgationItem setLeftBarButtonItem:leftBarButtonItem];
+  [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
   
 }
 
@@ -314,7 +314,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   
   UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
   
-  [self.navgationItem setRightBarButtonItem:rightBarButtonItem];
+  [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
 
 -(void)returnToPrev
