@@ -9,15 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
-@interface HomePageController : UITabBarController
-{
-  UITabBar* mTabBar;
+@interface HomePageController : UITabBarController {
+  UITabBar *mTabBar;
   ViewControllerCalledFrom eCalledFrom;
-  
+
   BOOL isMyInfoChanged;
 }
 
-@property (retain, nonatomic) UITabBar* mTabBar;
+@property(retain, nonatomic) UITabBar *mTabBar;
 @property BOOL isMyInfoChanged;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID from:(ViewControllerCalledFrom)calledFrom showIndex:(NSInteger)index;

@@ -38,53 +38,51 @@
 @synthesize nameLabel;
 
 
-- (void)viewDidLoad
-{
-  UIImageView* titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 59, 27)];
+- (void)viewDidLoad {
+  UIImageView *titleImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 59, 27)];
   [titleImageView setImage:[UIImage imageNamed:@"Images/leftPageTitle.png"]];
   self.navigationItem.titleView = titleImageView;
-    
+
   [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
   self.navigationController.navigationBar.clipsToBounds = NO;
 
   self.view.clipsToBounds = YES;
-  
-  nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(70, 70, 180, 30)];
-  bannerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 280, 120)];
-  avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 65, 40, 40)];
-  
+
+  nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 70, 180, 30)];
+  bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 120)];
+  avataImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 65, 40, 40)];
+
   [self.view addSubview:bannerImageView];
   [self.view addSubview:avataImageView];
   [self.view addSubview:nameLabel];
-  
+
   [self hideLoginView];
-  
+
   [self initCellContentArray];
-  
+
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.view setFrame:viewFrame];
-  
+
   CGRect tableFrame = self.tableView.frame;
-  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar-120;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar - 120;
   [self.tableView setFrame:tableFrame];
-  
+
   [super viewDidLoad];
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
   [self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight_NoStBar)];
-  
+
   if ([[[User sharedInstance] account] isLogin] && [[[User sharedInstance] account] shouldResetLogin]) {
     [self resetAccountView];
   }
-  
+
   if ([[[User sharedInstance] account] isLogin]) {
     [self hideLoginView];
     [self showAccountView];
   }
-  else{
+  else {
     [self hideAccountView];
     [self showLoginView];
   }
@@ -95,53 +93,49 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
-{
-    return 1;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
+  return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
-{
-    return cellContentArray.count;
-  
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
+  return cellContentArray.count;
+
 }
 
 
-- (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-  NSMutableDictionary* dic = [cellContentArray objectAtIndex:(NSUInteger)indexPath.row];
-  if ([[dic allKeys]containsObject:@"image"]) {
+- (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath; {
+  NSMutableDictionary *dic = [cellContentArray objectAtIndex:(NSUInteger) indexPath.row];
+  if ([[dic allKeys] containsObject:@"image"]) {
     return 64;
   }
-  return 64*3;
+  return 64 * 3;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"Cell";
   BOOL isGridCell = NO;
-  
-  NSMutableDictionary* dic = [cellContentArray objectAtIndex:(NSUInteger)indexPath.row];
-  if (![[dic allKeys]containsObject:@"image"]) {
+
+  NSMutableDictionary *dic = [cellContentArray objectAtIndex:(NSUInteger) indexPath.row];
+  if (![[dic allKeys] containsObject:@"image"]) {
     CellIdentifier = @"GridCell";
     isGridCell = YES;
   }
-  else{
+  else {
     CellIdentifier = @"Cell";
   }
-  
+
   UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (!cell) {
     if (isGridCell) {
-      cell = [[AccountTableViewGridCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GridCell"];
+      cell = [[AccountTableViewGridCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GridCell"];
     }
-    else{
-      cell = [[AccountTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    else {
+      cell = [[AccountTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
   }
-  
+
   if (isGridCell) {
-    AccountTableViewGridCell* aCell = (AccountTableViewGridCell*)cell;
+    AccountTableViewGridCell *aCell = (AccountTableViewGridCell *) cell;
     aCell.countLabel1.text = @"1";
     aCell.nameLabel1.text = [dic valueForKey:@"title1"];
     aCell.countLabel2.text = @"0";
@@ -155,9 +149,8 @@
     aCell.countLabel6.text = @"0";
     aCell.nameLabel6.text = [dic valueForKey:@"title6"];
   }
-  else
-  {
-    AccountTableViewCell* aCell = (AccountTableViewCell*)cell;
+  else {
+    AccountTableViewCell *aCell = (AccountTableViewCell *) cell;
     [aCell.imageView setImage:[UIImage imageNamed:[dic valueForKey:@"image"]]];
     [aCell.titleLabel setText:[dic valueForKey:@"title"]];
     if (indexPath.row == cellContentArray.count - 1) {
@@ -172,32 +165,29 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  if (indexPath.row == cellContentArray.count-1) {
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (indexPath.row == cellContentArray.count - 1) {
     [self openDebugOption];
   }
-  else if (indexPath.row == 2){
+  else if (indexPath.row == 2) {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:@"确定要退出吗?"
-                                  delegate:self
-                                  cancelButtonTitle:@"取消"
-                                  destructiveButtonTitle:@"确定"
-                                  otherButtonTitles:nil];
+        initWithTitle:@"确定要退出吗?"
+             delegate:self
+     cancelButtonTitle:@"取消"
+destructiveButtonTitle:@"确定"
+     otherButtonTitles:nil];
     [actionSheet showInView:self.revealSideViewController.view];
   }
-  else if (indexPath.row == 0){
-    MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];    
+  else if (indexPath.row == 0) {
+    MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];
     [ApplicationDelegate.centerNavController setViewControllers:@[mainController] animated:NO];
     [self.revealSideViewController popViewControllerAnimated:YES];
   }
-  else
-  {
+  else {
   }
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex == 0) {
     [self logout];
   } else if (buttonIndex == 1) {
@@ -205,127 +195,117 @@
 }
 
 #pragma mark - Login view
-- (void)showLoginView
-{
+- (void)showLoginView {
   [[self loginButton] setHidden:NO];
   [[self registerButton] setHidden:NO];
   [[self debugOptionButton] setHidden:NO];
 }
 
-- (void)hideLoginView
-{
+- (void)hideLoginView {
   [[self loginButton] setHidden:YES];
   [[self registerButton] setHidden:YES];
   [[self debugOptionButton] setHidden:YES];
 
 }
 
-- (void)showAccountView
-{
+- (void)showAccountView {
   [tableView setHidden:NO];
   [bannerImageView setHidden:NO];
   [avataImageView setHidden:NO];
   [nameLabel setHidden:NO];
 }
 
-- (void)hideAccountView
-{
+- (void)hideAccountView {
   [tableView setHidden:YES];
   [bannerImageView setHidden:YES];
   [avataImageView setHidden:YES];
   [nameLabel setHidden:YES];
 }
 
-- (void)resetAccountView
-{
+- (void)resetAccountView {
   nameLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-  nameLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-  nameLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+  nameLabel.shadowOffset = CGSizeMake(0.0f, 0.5f);
+  nameLabel.shadowColor = [UIColor colorWithRed:120.0 / 255.0 green:120.0 / 255.0 blue:120.0 / 255.0 alpha:0.8];
   nameLabel.backgroundColor = [UIColor clearColor];
   nameLabel.font = [UIFont boldSystemFontOfSize:20];
- 
-  [nameLabel setText: [[[User sharedInstance] account] username]];
-  
+
+  [nameLabel setText:[[[User sharedInstance] account] username]];
+
   [self setAccountAvatar];
   [[[User sharedInstance] account] setShouldResetLogin:NO];
-  
+
   nameLabel.userInteractionEnabled = YES;
-  UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapNameLabel:)];  
+  UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapNameLabel:)];
   [nameLabel addGestureRecognizer:tapGestureTel];
 
 }
 
-- (IBAction)tapNameLabel:(id)sender
-{
-  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:-1 from:ViewControllerCalledFromMyIndividual showIndex:0];
-  
+- (IBAction)tapNameLabel:(id)sender {
+  HomePageController *pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:-1 from:ViewControllerCalledFromMyIndividual showIndex:0];
+
   // MyselfRootViewController *pViewController = [[MyselfRootViewController alloc] initWithNibName:@"MyselfRootView" bundle:nil];
-  
+
   [ApplicationDelegate.centerNavController setViewControllers:@[pHomePageController] animated:NO];
-  
+
   //[self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:_offset animated:YES];
 
   [self.revealSideViewController popViewControllerAnimated:YES];
 }
 
 
+- (id)loginButton {
+  if (!loginButton) {
+    loginButton = [[UIButton alloc] initWithFrame:CGRectMake(90, 100, 120, 30)];
+    [loginButton setTitle:@"用手机号登录" forState:UIControlStateNormal];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
+    UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+    [loginButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
 
-- (id)loginButton
-{
-    if (!loginButton) {
-        loginButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 100, 120, 30)];
-        [loginButton setTitle:@"用手机号登录" forState:UIControlStateNormal];
-        UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
-        UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-        [loginButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
+    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
+    UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+    [loginButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
 
-        UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
-        UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-        [loginButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
+    [loginButton addTarget:self action:@selector(openLoginWindow) forControlEvents:UIControlEventTouchUpInside];
 
-        [loginButton addTarget:self action:@selector(openLoginWindow) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.view addSubview:loginButton];
-        [self.view bringSubviewToFront:loginButton];
-    }
-    
-    return loginButton;
+    [self.view addSubview:loginButton];
+    [self.view bringSubviewToFront:loginButton];
+  }
+
+  return loginButton;
 }
 
-- (id)registerButton
-{
-    if (!registerButton) {
-        registerButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 150, 120, 30)];
-        [registerButton setTitle:@"注册新帐号" forState:UIControlStateNormal];
-        UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
-        UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-        [registerButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-        
-        UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
-        UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-        [registerButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
-        
-        [registerButton addTarget:self action:@selector(openRegisterWindow) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.view addSubview:registerButton];
-        [self.view bringSubviewToFront:registerButton];
-    }
-    return registerButton;
+- (id)registerButton {
+  if (!registerButton) {
+    registerButton = [[UIButton alloc] initWithFrame:CGRectMake(90, 150, 120, 30)];
+    [registerButton setTitle:@"注册新帐号" forState:UIControlStateNormal];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
+    UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+    [registerButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
+
+    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
+    UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+    [registerButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
+
+    [registerButton addTarget:self action:@selector(openRegisterWindow) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.view addSubview:registerButton];
+    [self.view bringSubviewToFront:registerButton];
+  }
+  return registerButton;
 }
 
-- (id)debugOptionButton
-{
+- (id)debugOptionButton {
   if (!debugOptionButton) {
-    debugOptionButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 200, 120, 30)];
+    debugOptionButton = [[UIButton alloc] initWithFrame:CGRectMake(90, 200, 120, 30)];
     [debugOptionButton setTitle:@"Debug Option" forState:UIControlStateNormal];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [debugOptionButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-    
+
     UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
     UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [debugOptionButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
-    
+
     [debugOptionButton addTarget:self action:@selector(openDebugOption) forControlEvents:UIControlEventTouchUpInside];
 
     [self.view addSubview:debugOptionButton];
@@ -335,62 +315,58 @@
 }
 
 
-
-- (void)initCellContentArray
-{
-  cellContentArray = [[NSMutableArray alloc]init];
+- (void)initCellContentArray {
+  cellContentArray = [[NSMutableArray alloc] init];
   NSMutableDictionary *cellDic;
-  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
-             @"Images/leftPageHot.png",@"image", @"今日热门",@"title",nil];
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+      @"Images/leftPageHot.png", @"image", @"今日热门", @"title", nil];
   [cellContentArray addObject:cellDic];
-  
-  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
-             @"0",@"count1", @"关注",@"title1",
-             @"0",@"count2", @"粉丝",@"title2",
-             @"0",@"count3", @"收藏",@"title3",
-             @"0",@"count4", @"菜谱",@"title4",
-             @"0",@"count5", @"购买",@"title5",
-             @"0",@"count6", @"作品",@"title6",nil];
+
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+      @"0", @"count1", @"关注", @"title1",
+      @"0", @"count2", @"粉丝", @"title2",
+      @"0", @"count3", @"收藏", @"title3",
+      @"0", @"count4", @"菜谱", @"title4",
+      @"0", @"count5", @"购买", @"title5",
+      @"0", @"count6", @"作品", @"title6", nil];
   [cellContentArray addObject:cellDic];
-  
-  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
-             @"Images/leftPageLogout.png",@"image", @"退出",@"title",nil];
+
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+      @"Images/leftPageLogout.png", @"image", @"退出", @"title", nil];
   [cellContentArray addObject:cellDic];
-  
-  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
-             @"Images/leftPageScore.png",@"image", @"帮助我们评分",@"title",nil];
+
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+      @"Images/leftPageScore.png", @"image", @"帮助我们评分", @"title", nil];
   [cellContentArray addObject:cellDic];
-  
-  cellDic = [NSMutableDictionary  dictionaryWithObjectsAndKeys :
-             @"Images/leftPageScore.png",@"image", @"Debug Options",@"title",nil];
+
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+      @"Images/leftPageScore.png", @"image", @"Debug Options", @"title", nil];
   [cellContentArray addObject:cellDic];
 }
 
 
-- (void)openLoginWindow
-{
-    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
-    if (self.navigationController) {
-        [self.navigationController presentViewController:m animated:YES completion:nil];
-    }
+- (void)openLoginWindow {
+  LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+  m.callerClassName = NSStringFromClass([self class]);
+
+  if (self.navigationController) {
+    [self.navigationController presentViewController:m animated:YES completion:nil];
+  }
 }
 
-- (void)openRegisterWindow
-{
-    RegisterController* m = [[RegisterController alloc]initWithNibName:@"RegisterView" bundle:nil];
-    if (self.navigationController) {
-        [self.navigationController presentViewController:m animated:YES completion:nil];
-    }
+- (void)openRegisterWindow {
+  RegisterController *m = [[RegisterController alloc] initWithNibName:@"RegisterView" bundle:nil];
+  if (self.navigationController) {
+    [self.navigationController presentViewController:m animated:YES completion:nil];
+  }
 }
 
-- (void)openDebugOption
-{
-  DebugOptionController* doController = [[DebugOptionController alloc]initWithNibName:@"DebugOption" bundle:nil];
+- (void)openDebugOption {
+  DebugOptionController *doController = [[DebugOptionController alloc] initWithNibName:@"DebugOption" bundle:nil];
   [self.navigationController presentViewController:doController animated:YES completion:nil];
 }
 
-- (void)logout
-{
+- (void)logout {
   [[[NetManager sharedInstance] hellEngine] removeCookie];
   [[[User sharedInstance] account] logout];
   [self showLoginView];
@@ -398,48 +374,44 @@
 }
 
 
-- (void)setAccountAvatar
-{
-  UserAccount* account = [[User sharedInstance] account];
-  NetManager* netManager = [NetManager sharedInstance];
-  
-  NSString* avatarUrl = nil;
-  
+- (void)setAccountAvatar {
+  UserAccount *account = [[User sharedInstance] account];
+  NetManager *netManager = [NetManager sharedInstance];
+
+  NSString *avatarUrl = nil;
+
   if (account.avatar && ![account.avatar isEqual:@""]) {
-    avatarUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, account.avatar];
+    avatarUrl = [NSString stringWithFormat:@"http://%@/%@", netManager.host, account.avatar];
   }
-  
+
   [avataImageView setContentMode:UIViewContentModeScaleAspectFill];
   [avataImageView setClipsToBounds:YES];
-  
+
   if (avatarUrl) {
     [avataImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
-  }else {
+  } else {
     [avataImageView setImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
   }
   avataImageView.layer.cornerRadius = 4.0;
   avataImageView.layer.masksToBounds = YES;
   avataImageView.layer.borderColor = [UIColor clearColor].CGColor;
   avataImageView.layer.borderWidth = 1.0;
-  
+
   [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
   [bannerImageView setClipsToBounds:YES];
   if (avatarUrl) {
-    [bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"] options:0  andGaussianBlurWithBias:20];
+    [bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"] options:0 andGaussianBlurWithBias:20];
   } else {
-    [bannerImageView setImage: [[UIImage imageNamed:@"Images/avatar.jpg"] gaussianBlurWithBias:20]];
+    [bannerImageView setImage:[[UIImage imageNamed:@"Images/avatar.jpg"] gaussianBlurWithBias:20]];
   }
-  
+
 }
 
-- (void)onClickCountGrid:(UIButton*)sender
-{
+- (void)onClickCountGrid:(UIButton *)sender {
 //  NSLog(@"%d",sender.tag);
-  if ( sender.tag==10001 || sender.tag==10002 || sender.tag==10004 )
-  {
+  if (sender.tag == 10001 || sender.tag == 10002 || sender.tag == 10004) {
     NSInteger index = 0;
-    switch (sender.tag)
-    {
+    switch (sender.tag) {
       case 10001://我的关注
         index = 1;
         break;
@@ -452,17 +424,16 @@
       default:
         break;
     }
-    
-    HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:-1 from:ViewControllerCalledFromMyIndividual showIndex:index];
-    
+
+    HomePageController *pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:-1 from:ViewControllerCalledFromMyIndividual showIndex:index];
+
     [ApplicationDelegate.centerNavController setViewControllers:@[pHomePageController] animated:NO];
-    
+
     [self.revealSideViewController popViewControllerAnimated:YES];
-  } 
+  }
   else if (sender.tag == 10003)//我的收藏
   {
-    if (self.navigationController)
-    {
+    if (self.navigationController) {
       [self.navigationController pushViewController:[[MyCollectionController alloc] initWithNibName:@"MyRecipesView" bundle:nil] animated:YES];
     }
   }

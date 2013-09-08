@@ -9,8 +9,6 @@
 #import "LoginController.h"
 #import "DefaultGroupedTableCell.h"
 #import "NetManager.h"
-#import "User.h"
-#import "DBHandler.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
@@ -24,6 +22,7 @@
 @implementation LoginController
 @synthesize tableView;
 @synthesize navgationItem;
+@synthesize callerClassName;
 
 
 - (void)viewDidLoad
@@ -37,10 +36,12 @@
   frame.size.height = 24;
   self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
   
-  self.navgationItem.title = @"登录";  
+  self.navgationItem.title = @"登录";
   
   [self setLeftButton];
   [self setRightButton];
+
+  // callerClassName = @"";
   
   [super viewDidLoad];
 
@@ -72,17 +73,17 @@
 #pragma mark - Table view data source
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
   return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
   return cellList.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (cellList.count==1)
         return kTableCellSingle;
@@ -152,12 +153,12 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 }
 
 
-#pragma mark - Textreturn
+#pragma mark - Text Return
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -171,11 +172,6 @@
 {
   
 }
-
--(BOOL)CanbecomeFirstResponder {
-  return YES;
-}
-
 
 #pragma mark - Navi Button
 
@@ -256,7 +252,9 @@
   
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0) {
-    [self dismissViewControllerAnimated:YES completion:nil];    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // 广播登陆成功的消息
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnLoginSuccess" object:callerClassName];
   }
   else
   {

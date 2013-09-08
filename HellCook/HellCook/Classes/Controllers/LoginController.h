@@ -9,20 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
-@interface LoginController : UIViewController<UITextFieldDelegate, MBProgressHUDDelegate>
-{
+@interface LoginController : UIViewController <UITextFieldDelegate, MBProgressHUDDelegate> {
   MBProgressHUD *HUD;
-  
-  UINavigationItem* navgationItem;
-  UITableView* tableView;
-  NSMutableArray* cellList;
-  UITextField* usernameField;
-  UITextField* passwordField;
+
+  UINavigationItem *navgationItem;
+  UITableView *tableView;
+  NSMutableArray *cellList;
+  UITextField *usernameField;
+  UITextField *passwordField;
+  NSString *callerClassName;
 }
 
-@property (nonatomic, retain) IBOutlet UINavigationItem* navgationItem;
-@property (nonatomic, retain) IBOutlet UITableView* tableView;
-@property (strong, nonatomic) MKNetworkOperation *loginOperation;
+@property(nonatomic, retain) IBOutlet UINavigationItem *navgationItem;
+@property(nonatomic, retain) IBOutlet UITableView *tableView;
+@property(strong, nonatomic) MKNetworkOperation *loginOperation;
 
+@property(nonatomic, retain) NSString *callerClassName;
 
 @end
