@@ -240,10 +240,12 @@
 -(void)getRecipeDetailData:(NSInteger)recipeId
 {
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                       getRecipeDetailData:recipeId
-                       CompletionHandler:^(NSMutableDictionary *resultDic) {
-                         [self getRecipeDetailCallBack:resultDic];}
-                       errorHandler:^(NSError *error) {}];
+      getRecipeDetailData:recipeId
+        completionHandler:^(NSMutableDictionary *resultDic) {
+          [self getRecipeDetailCallBack:resultDic];
+        }
+             errorHandler:^(NSError *error) {
+             }];
 }
 
 - (void)getRecipeDetailCallBack:(NSMutableDictionary*) resultDic
@@ -259,11 +261,12 @@
 - (void)getCommentsData
 {
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                       getCommentsWithRecipeID:mRecipeId
-                       CompletionHandler:^(NSMutableDictionary *resultDic){
-                         [self getCommentsDataCallBack:resultDic];
-                       }
-                       errorHandler:^(NSError *error){}];
+      getCommentsWithRecipeID:mRecipeId
+            completionHandler:^(NSMutableDictionary *resultDic) {
+              [self getCommentsDataCallBack:resultDic];
+            }
+                 errorHandler:^(NSError *error) {
+                 }];
 }
 
 - (void)getCommentsDataCallBack:(NSMutableDictionary*)resultDic

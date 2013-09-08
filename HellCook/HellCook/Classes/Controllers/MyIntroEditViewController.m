@@ -707,10 +707,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
   
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                                                      uploadAvatarByPath:pngPath
-                         CompletionHandler:^(NSMutableDictionary *resultDic) {
-                           [self uploadAvatarCallBack:resultDic];}
-                         errorHandler:^(NSError *error){}];
+        uploadAvatarByPath:pngPath
+         completionHandler:^(NSMutableDictionary *resultDic) {
+           [self uploadAvatarCallBack:resultDic];
+         }
+              errorHandler:^(NSError *error) {
+              }];
   }
   else
     waitCallBack--;

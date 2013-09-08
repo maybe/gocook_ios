@@ -14,17 +14,17 @@
 {
   UITableView* tableView;
   UIImageView* bannerImageView;
-  UIImageView* avataImageView;
+  UIImageView* avatarImageView;
   UILabel* nameLabel;
   UIButton* loginButton;
   UIButton* registerButton;
-  UIButton*debugOptionButton;
+  UIButton* debugOptionButton;
   NSMutableArray* cellContentArray;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) UIImageView* bannerImageView;
-@property (nonatomic, retain) UIImageView* avataImageView;
+@property (nonatomic, retain) UIImageView*avatarImageView;
 @property (nonatomic, retain) UILabel* nameLabel;
 @property (nonatomic, retain) UIButton* loginButton;
 @property (nonatomic, retain) UIButton* registerButton;

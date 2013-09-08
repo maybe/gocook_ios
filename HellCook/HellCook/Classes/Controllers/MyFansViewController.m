@@ -194,11 +194,13 @@
 -(void)getMyFansData
 {
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                       getMyFansDataByPage:(curPage+1)
-                       CompletionHandler:^(NSMutableDictionary *resultDic) {
-                         [self getMyFansDataCallBack:resultDic];}
-                       errorHandler:^(NSError *error) {}
-                       ];
+      getMyFansDataByPage:(curPage + 1)
+        completionHandler:^(NSMutableDictionary *resultDic) {
+          [self getMyFansDataCallBack:resultDic];
+        }
+             errorHandler:^(NSError *error) {
+             }
+  ];
 }
 
 - (void)getMyFansDataCallBack:(NSMutableDictionary*) resultDic

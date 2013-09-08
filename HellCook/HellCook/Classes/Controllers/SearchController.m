@@ -140,12 +140,13 @@
 -(void)getSearchData
 {
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                         searchWithKey:searchKey AndPage:(curPage+1)
-                         CompletionHandler:^(NSMutableDictionary *resultDic) {
-                           [self getSearchResultCallBack:resultDic];}
-                         errorHandler:^(NSError *error) {
-                         }
-                         ];
+        searchWithKey:searchKey AndPage:(curPage + 1)
+    completionHandler:^(NSMutableDictionary *resultDic) {
+      [self getSearchResultCallBack:resultDic];
+    }
+         errorHandler:^(NSError *error) {
+         }
+    ];
 }
 
 - (void)getSearchResultCallBack:(NSMutableDictionary*) resultDic

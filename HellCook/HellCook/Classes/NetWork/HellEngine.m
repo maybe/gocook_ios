@@ -153,7 +153,7 @@
 }
 
 - (MKNetworkOperation*)getTopNewDataWithPage:(NSInteger)page
-                           CompletionHandler:(topNewResponseBlock) completionBlock
+                           completionHandler:(topNewResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"recipe/topnew?page=%d",page]
@@ -175,7 +175,7 @@
 }
 
 - (MKNetworkOperation*)getTopHotDataWithPage:(NSInteger)page
-                           CompletionHandler:(topHotResponseBlock) completionBlock
+                           completionHandler:(topHotResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"recipe/tophot?page=%d",page]
@@ -196,8 +196,8 @@
   return op;
 }
 
-- (MKNetworkOperation*)searchWithKey:(NSString*)key AndPage:(NSInteger)page
-                   CompletionHandler:(searchResponseBlock) completionBlock
+- (MKNetworkOperation*)searchWithKey:(NSString *)key AndPage:(NSInteger)page
+                   completionHandler:(searchResponseBlock)completionBlock
                         errorHandler:(MKNKErrorBlock) errorBlock
 {
   
@@ -223,7 +223,7 @@
 
 
 - (MKNetworkOperation*)getRecipeDetailData:(NSInteger)recipeId
-                         CompletionHandler:(recipeDetailDataResponseBlock) completionBlock
+                         completionHandler:(recipeDetailDataResponseBlock)completionBlock
                               errorHandler:(MKNKErrorBlock) errorBlock
 {
   
@@ -248,8 +248,8 @@
 
 
 - (MKNetworkOperation*)getMyCollectionDataByPage:(NSInteger)page
-                         CompletionHandler:(myCollectionResponseBlock)completionBlock
-                              errorHandler:(MKNKErrorBlock) errorBlock
+                               completionHandler:(myCollectionResponseBlock)completionBlock
+                                    errorHandler:(MKNKErrorBlock) errorBlock
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/mycoll?page=%d",page]
                                             params:nil
@@ -271,7 +271,7 @@
 
 
 - (MKNetworkOperation*)getMyRecipesDataByPage:(NSInteger)page
-                            CompletionHandler:(myRecipesResponseBlock)completionBlock
+                            completionHandler:(myRecipesResponseBlock)completionBlock
                                  errorHandler:(MKNKErrorBlock) errorBlock
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/myrecipes?page=%d",page]
@@ -314,7 +314,7 @@
 
 
 - (MKNetworkOperation*)getMyFollowDataByPage:(NSInteger)page
-                           CompletionHandler:(myFollowResponseBlock)completionBlock
+                           completionHandler:(myFollowResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/mywatch?page=%d",page]
@@ -337,7 +337,7 @@
 
 
 - (MKNetworkOperation*)getMyFansDataByPage:(NSInteger)page
-                         CompletionHandler:(myFansResponseBlock)completionBlock
+                         completionHandler:(myFansResponseBlock)completionBlock
                               errorHandler:(MKNKErrorBlock) errorBlock
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/myfans?page=%d",page]
@@ -413,8 +413,8 @@
   return op;
 }
 
-- (MKNetworkOperation*)uploadAvatarByPath:(NSString*)path
-                        CompletionHandler:(uploadAvatarResponseBlock)completionBlock
+- (MKNetworkOperation*)uploadAvatarByPath:(NSString *)path
+                        completionHandler:(uploadAvatarResponseBlock)completionBlock
                              errorHandler:(MKNKErrorBlock) errorBlock
 {
   MKNetworkOperation *op = [self operationWithPath:@"user/changeavatar"
@@ -491,9 +491,47 @@
   return op;
 }
 
+- (MKNetworkOperation *)modifyRecipe:(NSDictionary *)uploadDic completionHandler:(modifyRecipeRespondBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock {
+  MKNetworkOperation *op = [self operationWithPath:@"recipe/modify"
+                                            params:uploadDic
+                                        httpMethod:@"POST"];
+  [op useCookie:NO];
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    //NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+
+  [self enqueueOperation:op];
+
+  return op;
+}
+
+- (MKNetworkOperation *)deleteRecipe:(NSInteger)recipeId completionHandler:(deleteRecipeRespondBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock {
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"recipe/delete?recipe_id=%d",recipeId]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  [op useCookie:NO];
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    //NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+
+  [self enqueueOperation:op];
+
+  return op;
+}
+
 
 - (MKNetworkOperation*)getOtherIntroWithUserID:(NSInteger)userid
-                             CompletionHandler:(getOtherIntroResponseBlock) completionBlock
+                             completionHandler:(getOtherIntroResponseBlock)completionBlock
                                   errorHandler:(MKNKErrorBlock) errorBlock
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/kitchen?userid=%d",userid]
@@ -515,7 +553,7 @@
 }
 
 - (MKNetworkOperation*)watchWithUserID:(NSInteger)userid
-                     CompletionHandler:(watchResponseBlock) completionBlock
+                     completionHandler:(watchResponseBlock)completionBlock
                           errorHandler:(MKNKErrorBlock) errorBlock
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/watch?watchid=%d",userid]
@@ -537,7 +575,7 @@
 }
 
 - (MKNetworkOperation*)unwatchWithUserID:(NSInteger)userid
-                       CompletionHandler:(unwatchResponseBlock) completionBlock
+                       completionHandler:(unwatchResponseBlock)completionBlock
                             errorHandler:(MKNKErrorBlock) errorBlock
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/unwatch?watchid=%d",userid]
@@ -559,7 +597,7 @@
 }
 
 - (MKNetworkOperation*)getCommentsWithRecipeID:(NSInteger)recipeid
-                             CompletionHandler:(getCommentsResponseBlock) completionBlock
+                             completionHandler:(getCommentsResponseBlock)completionBlock
                                   errorHandler:(MKNKErrorBlock) errorBlock;
 {
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"recipe/comments?recipe_id=%d",recipeid] params:nil httpMethod:@"GET"];

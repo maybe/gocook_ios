@@ -175,11 +175,13 @@
 -(void)getMyFollowData
 {
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                       getMyFollowDataByPage:(curPage+1)
-                       CompletionHandler:^(NSMutableDictionary *resultDic) {
-                         [self getMyFollowDataCallBack:resultDic];}
-                       errorHandler:^(NSError *error) {}
-                       ];
+      getMyFollowDataByPage:(curPage + 1)
+          completionHandler:^(NSMutableDictionary *resultDic) {
+            [self getMyFollowDataCallBack:resultDic];
+          }
+               errorHandler:^(NSError *error) {
+               }
+  ];
 }
 
 - (void)getMyFollowDataCallBack:(NSMutableDictionary*) resultDic

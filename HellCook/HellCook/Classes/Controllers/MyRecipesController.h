@@ -7,18 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface MyRecipesController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@class ODRefreshControl;
+@interface MyRecipesController : UIViewController<UITableViewDelegate,UITableViewDataSource, MBProgressHUDDelegate, UIAlertViewDelegate>
 {
+  MBProgressHUD *HUD;
   UITableView* tableView;
   NSMutableArray* mMyRecipeArray;
   
+  bool firstLoad; //第一次显示需要刷新
   bool isPageEnd;//是否全部加载完毕
   NSInteger curPage;
   NSInteger totalPage;
   UIActivityIndicatorView* mLoadingActivity;
   
   MKNetworkOperation *mNetOperation;
+
+  ODRefreshControl *refreshControl;
+
+  NSInteger deleteRecipeId;
+  NSInteger modifyRecipeId;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

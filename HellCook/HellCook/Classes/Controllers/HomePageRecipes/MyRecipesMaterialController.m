@@ -51,7 +51,13 @@
   [self.tableView setFrame:viewframe];
   
   cellContentList = [[NSMutableArray alloc]init];
-  RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  RecipeData* pRecipeData = nil;
+  if ([[[User sharedInstance] recipe] getIsCreate]) {
+    pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  } else {
+    pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
+  }
+
   [cellContentList addObjectsFromArray: pRecipeData.materials];
   
   [super viewDidLoad];
@@ -227,9 +233,14 @@
 
 #pragma mark - Set Data to Recipe
 -(void)setDataToRecipe
-{  
-  RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
-  
+{
+  RecipeData* pRecipeData = nil;
+  if ([[[User sharedInstance] recipe] getIsCreate]) {
+    pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  } else {
+    pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
+  }
+
   [pRecipeData.materials removeAllObjects];
   
   for (int i = 0; i < cellContentList.count; i++) {

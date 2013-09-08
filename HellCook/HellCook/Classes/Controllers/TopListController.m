@@ -145,22 +145,24 @@
 {
   if (topListType == TLT_TopHot) {
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                         getTopHotDataWithPage:(curPage+1)
-                         CompletionHandler:^(NSMutableDictionary *resultDic) {
-                           [self getTopCallBack:resultDic];}
-                         errorHandler:^(NSError *error) {
-                         }
-                         ];
+        getTopHotDataWithPage:(curPage + 1)
+            completionHandler:^(NSMutableDictionary *resultDic) {
+              [self getTopCallBack:resultDic];
+            }
+                 errorHandler:^(NSError *error) {
+                 }
+    ];
   }
   else
   {
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                         getTopNewDataWithPage:(curPage+1)
-                         CompletionHandler:^(NSMutableDictionary *resultDic) {
-                           [self getTopCallBack:resultDic];}
-                         errorHandler:^(NSError *error) {
-                         }
-                         ];
+        getTopNewDataWithPage:(curPage + 1)
+            completionHandler:^(NSMutableDictionary *resultDic) {
+              [self getTopCallBack:resultDic];
+            }
+                 errorHandler:^(NSError *error) {
+                 }
+    ];
   }
 }
 

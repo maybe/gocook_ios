@@ -14,7 +14,7 @@
 #import "User.h"
 #import "UIImage+Resize.h"
 #import "UIImage+Resizing.h"
-#import "DBHandler.h"
+#import "UIImageView+WebCache.h"
 #import "DefaultGroupedTableCell.h"
 #import "MyRecipesMaterialController.h"
 
@@ -68,10 +68,18 @@
   //keyboard
   keyboard = [[KeyboardHandler alloc] init];
   
-  CGRect viewframe = self.view.frame;
-  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
-  [self.view setFrame:viewframe];
-  [self.tableView setFrame:viewframe];
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
+  [self.tableView setFrame:viewFrame];
+
+  if (![[[User sharedInstance] recipe] getIsCreate]) {
+    RecipeData* pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
+    [self.nameField setText: pRecipeData.name];
+    [self.introTextView setText:pRecipeData.description];
+
+    [headImageView.upImageView setImageWithURL:[NSURL URLWithString:pRecipeData.cover_img] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+  }
   
   [super viewDidLoad];
 }
@@ -388,7 +396,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     return;
   }
   
-  RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  RecipeData* pRecipeData = nil;
+  if ([[[User sharedInstance] recipe] getIsCreate]) {
+    pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  } else {
+    pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
+  }
+
+
   pRecipeData.name = [[NSString alloc]initWithString: trimedName];
   
   if (![trimedDesc isEqualToString:@""]) {

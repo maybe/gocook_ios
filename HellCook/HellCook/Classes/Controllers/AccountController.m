@@ -31,7 +31,7 @@
 @implementation AccountController
 @synthesize tableView;
 @synthesize bannerImageView;
-@synthesize avataImageView;
+@synthesize avatarImageView;
 @synthesize loginButton;
 @synthesize registerButton;
 @synthesize cellContentArray;
@@ -50,10 +50,10 @@
 
   nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 70, 180, 30)];
   bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 120)];
-  avataImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 65, 40, 40)];
+  avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 65, 40, 40)];
 
   [self.view addSubview:bannerImageView];
-  [self.view addSubview:avataImageView];
+  [self.view addSubview:avatarImageView];
   [self.view addSubview:nameLabel];
 
   [self hideLoginView];
@@ -211,14 +211,14 @@ destructiveButtonTitle:@"确定"
 - (void)showAccountView {
   [tableView setHidden:NO];
   [bannerImageView setHidden:NO];
-  [avataImageView setHidden:NO];
+  [avatarImageView setHidden:NO];
   [nameLabel setHidden:NO];
 }
 
 - (void)hideAccountView {
   [tableView setHidden:YES];
   [bannerImageView setHidden:YES];
-  [avataImageView setHidden:YES];
+  [avatarImageView setHidden:YES];
   [nameLabel setHidden:YES];
 }
 
@@ -384,18 +384,18 @@ destructiveButtonTitle:@"确定"
     avatarUrl = [NSString stringWithFormat:@"http://%@/%@", netManager.host, account.avatar];
   }
 
-  [avataImageView setContentMode:UIViewContentModeScaleAspectFill];
-  [avataImageView setClipsToBounds:YES];
+  [avatarImageView setContentMode:UIViewContentModeScaleAspectFill];
+  [avatarImageView setClipsToBounds:YES];
 
   if (avatarUrl) {
-    [avataImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+    [avatarImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
   } else {
-    [avataImageView setImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+    [avatarImageView setImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
   }
-  avataImageView.layer.cornerRadius = 4.0;
-  avataImageView.layer.masksToBounds = YES;
-  avataImageView.layer.borderColor = [UIColor clearColor].CGColor;
-  avataImageView.layer.borderWidth = 1.0;
+  avatarImageView.layer.cornerRadius = 4.0;
+  avatarImageView.layer.masksToBounds = YES;
+  avatarImageView.layer.borderColor = [UIColor clearColor].CGColor;
+  avatarImageView.layer.borderWidth = 1.0;
 
   [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
   [bannerImageView setClipsToBounds:YES];

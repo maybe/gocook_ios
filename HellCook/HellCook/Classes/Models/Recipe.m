@@ -38,7 +38,7 @@
 
 -(id)init{
   if(self=[super init]){
-    
+    isCreate = YES;
   }
   return self;
 }
@@ -61,6 +61,14 @@
 -(void)resetModifyRecipeData
 {
   mModifyRecipeData = [[RecipeData alloc]init];
+}
+
+- (void)setIsCreate:(BOOL)bCreate {
+  isCreate = bCreate;
+}
+
+- (BOOL)getIsCreate {
+  return isCreate;
 }
 
 @end

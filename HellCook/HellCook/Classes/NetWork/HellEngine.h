@@ -36,6 +36,8 @@ typedef void (^getGoodsResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^uploadCoverTmpImageResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^uploadStepTmpImageResponseBlock)(NSMutableDictionary* resultDic, NSInteger index);
 typedef void (^createRecipeResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^modifyRecipeRespondBlock)(NSMutableDictionary* resultDic);
+typedef void (^deleteRecipeRespondBlock)(NSMutableDictionary* resultDic);
 
 // 设置cookie
 - (void) setCookie:(NSString*)cookie;
@@ -59,33 +61,33 @@ typedef void (^createRecipeResponseBlock)(NSMutableDictionary* resultDic);
 
 // 获取最新
 - (MKNetworkOperation*)getTopNewDataWithPage:(NSInteger)page
-                           CompletionHandler:(topNewResponseBlock) completionBlock
+                           completionHandler:(topNewResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock;
 
 // 获取最热
 - (MKNetworkOperation*)getTopHotDataWithPage:(NSInteger)page
-                           CompletionHandler:(topHotResponseBlock) completionBlock
+                           completionHandler:(topHotResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock;
 
 // 搜索
-- (MKNetworkOperation*)searchWithKey:(NSString*)key AndPage:(NSInteger)page
-                   CompletionHandler:(searchResponseBlock) completionBlock
+- (MKNetworkOperation*)searchWithKey:(NSString *)key AndPage:(NSInteger)page
+                   completionHandler:(searchResponseBlock)completionBlock
                         errorHandler:(MKNKErrorBlock) errorBlock;
 
 // 获取菜谱详细信息
 - (MKNetworkOperation*)getRecipeDetailData:(NSInteger)recipeId
-                   CompletionHandler:(recipeDetailDataResponseBlock) completionBlock
-                        errorHandler:(MKNKErrorBlock) errorBlock;
+                         completionHandler:(recipeDetailDataResponseBlock)completionBlock
+                              errorHandler:(MKNKErrorBlock) errorBlock;
 
 //获取我的收藏
 - (MKNetworkOperation*)getMyCollectionDataByPage:(NSInteger)page
-                   CompletionHandler:(myCollectionResponseBlock)completionBlock
-                        errorHandler:(MKNKErrorBlock) errorBlock;
+                               completionHandler:(myCollectionResponseBlock)completionBlock
+                                    errorHandler:(MKNKErrorBlock) errorBlock;
 
 //获取我的菜谱
 - (MKNetworkOperation*)getMyRecipesDataByPage:(NSInteger)page
-                               CompletionHandler:(myRecipesResponseBlock)completionBlock
-                                    errorHandler:(MKNKErrorBlock) errorBlock;
+                            completionHandler:(myRecipesResponseBlock)completionBlock
+                                 errorHandler:(MKNKErrorBlock) errorBlock;
 
 //获取个人信息
 - (MKNetworkOperation*)getMyIntroductionDataWithCompletionHandler:(myRecipesResponseBlock)completionBlock
@@ -93,13 +95,13 @@ typedef void (^createRecipeResponseBlock)(NSMutableDictionary* resultDic);
 
 //获取我的关注
 - (MKNetworkOperation*)getMyFollowDataByPage:(NSInteger)page
-                           CompletionHandler:(myFollowResponseBlock)completionBlock
+                           completionHandler:(myFollowResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock;
 
 //获取我的粉丝
 - (MKNetworkOperation*)getMyFansDataByPage:(NSInteger)page
-                           CompletionHandler:(myFansResponseBlock)completionBlock
-                                errorHandler:(MKNKErrorBlock) errorBlock;
+                         completionHandler:(myFansResponseBlock)completionBlock
+                              errorHandler:(MKNKErrorBlock) errorBlock;
 
 // 上传个人基本信息
 - (MKNetworkOperation*)uploadBasicInfoWithDict:(NSMutableDictionary*)dict
@@ -107,9 +109,9 @@ typedef void (^createRecipeResponseBlock)(NSMutableDictionary* resultDic);
                             errorHandler:(MKNKErrorBlock)errorBlock;
 
 //上传头像
-- (MKNetworkOperation*)uploadAvatarByPath:(NSString*)path
-                         CompletionHandler:(uploadAvatarResponseBlock)completionBlock
-                              errorHandler:(MKNKErrorBlock) errorBlock;
+- (MKNetworkOperation*)uploadAvatarByPath:(NSString *)path
+                        completionHandler:(uploadAvatarResponseBlock)completionBlock
+                             errorHandler:(MKNKErrorBlock) errorBlock;
 //上传临时封面
 - (MKNetworkOperation*)uploadCoverTmpImage:(NSString*)imagePath
                         completionHandler:(uploadCoverTmpImageResponseBlock)completionBlock
@@ -121,30 +123,40 @@ typedef void (^createRecipeResponseBlock)(NSMutableDictionary* resultDic);
                         completionHandler:(uploadStepTmpImageResponseBlock)completionBlock
                              errorHandler:(MKNKErrorBlock) errorBlock;
 
-//上传临时封面
+//新建菜谱
 - (MKNetworkOperation*)createRecipe:(NSDictionary*)uploadDic
                   completionHandler:(createRecipeResponseBlock)completionBlock
                        errorHandler:(MKNKErrorBlock) errorBlock;
 
+//修改菜谱
+- (MKNetworkOperation*)modifyRecipe:(NSDictionary*)uploadDic
+                  completionHandler:(modifyRecipeRespondBlock)completionBlock
+                       errorHandler:(MKNKErrorBlock) errorBlock;
+
+//删除菜谱
+- (MKNetworkOperation*)deleteRecipe:(NSInteger)recipeId
+                  completionHandler:(deleteRecipeRespondBlock)completionBlock
+                       errorHandler:(MKNKErrorBlock) errorBlock;
+
 //获取其他人的个人信息
 - (MKNetworkOperation*)getOtherIntroWithUserID:(NSInteger)userid
-                           CompletionHandler:(getOtherIntroResponseBlock) completionBlock
-                                errorHandler:(MKNKErrorBlock) errorBlock;
+                             completionHandler:(getOtherIntroResponseBlock)completionBlock
+                                  errorHandler:(MKNKErrorBlock) errorBlock;
 
 //关注
 - (MKNetworkOperation*)watchWithUserID:(NSInteger)userid
-                             CompletionHandler:(watchResponseBlock) completionBlock
-                                  errorHandler:(MKNKErrorBlock) errorBlock;
+                     completionHandler:(watchResponseBlock)completionBlock
+                          errorHandler:(MKNKErrorBlock) errorBlock;
 
 //取消关注
 - (MKNetworkOperation*)unwatchWithUserID:(NSInteger)userid
-                             CompletionHandler:(unwatchResponseBlock) completionBlock
-                                  errorHandler:(MKNKErrorBlock) errorBlock;
+                       completionHandler:(unwatchResponseBlock)completionBlock
+                            errorHandler:(MKNKErrorBlock) errorBlock;
 
 //获取菜谱评论
 - (MKNetworkOperation*)getCommentsWithRecipeID:(NSInteger)recipeid
-                       CompletionHandler:(getCommentsResponseBlock) completionBlock
-                            errorHandler:(MKNKErrorBlock) errorBlock;
+                             completionHandler:(getCommentsResponseBlock)completionBlock
+                                  errorHandler:(MKNKErrorBlock) errorBlock;
 
 //评论菜谱
 - (MKNetworkOperation*)commentWithDict:(NSMutableDictionary*)dict

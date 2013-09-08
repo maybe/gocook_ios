@@ -85,7 +85,7 @@
   UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:5 topCapHeight:5];
   [modifyButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
   
-  [modifyButton addTarget:self action:@selector(modifyMyRecipe) forControlEvents:UIControlEventTouchUpInside];
+  [modifyButton addTarget:nil action:@selector(modifyOneMyRecipe:) forControlEvents:UIControlEventTouchUpInside];
 
   
   delButton = [[UIButton alloc]initWithFrame:CGRectMake(250, 50, 60, 30)];
@@ -95,7 +95,7 @@
   
   [delButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
   
-  [delButton addTarget:self action:@selector(openLoginWindow) forControlEvents:UIControlEventTouchUpInside];
+  [delButton addTarget:nil action:@selector(deleteOneMyRecipe:) forControlEvents:UIControlEventTouchUpInside];
   
   [self addSubview:modifyButton];
   [self addSubview:delButton];

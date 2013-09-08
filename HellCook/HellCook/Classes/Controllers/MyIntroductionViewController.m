@@ -156,22 +156,24 @@
   if ([pPicCell.followBtn.titleLabel.text isEqual:@"已关注"])
   {
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                         unwatchWithUserID:mUserID
-                         CompletionHandler:^(NSMutableDictionary *resultDic) {
-                           [self unwatchDataCallBack:resultDic];
-                         }
-                         errorHandler:^(NSError *error) {}
-                         ];
+        unwatchWithUserID:mUserID
+        completionHandler:^(NSMutableDictionary *resultDic) {
+          [self unwatchDataCallBack:resultDic];
+        }
+             errorHandler:^(NSError *error) {
+             }
+    ];
   }
   else
   {
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                         watchWithUserID:mUserID
-                         CompletionHandler:^(NSMutableDictionary *resultDic) {
-                           [self watchDataCallBack:resultDic];
-                         }
-                         errorHandler:^(NSError *error) {}
-                         ];
+        watchWithUserID:mUserID
+      completionHandler:^(NSMutableDictionary *resultDic) {
+        [self watchDataCallBack:resultDic];
+      }
+           errorHandler:^(NSError *error) {
+           }
+    ];
   }
 }
 
@@ -291,12 +293,13 @@
 -(void)getOtherIntroData
 {
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                       getOtherIntroWithUserID:mUserID
-                             CompletionHandler:^(NSMutableDictionary *resultDic) {
-                                         [self getOtherIntroDataCallBack:resultDic];
-                                         }
-                                  errorHandler:^(NSError *error) {}
-                       ];
+      getOtherIntroWithUserID:mUserID
+            completionHandler:^(NSMutableDictionary *resultDic) {
+              [self getOtherIntroDataCallBack:resultDic];
+            }
+                 errorHandler:^(NSError *error) {
+                 }
+  ];
 }
 
 - (void)getOtherIntroDataCallBack:(NSMutableDictionary*) resultDic

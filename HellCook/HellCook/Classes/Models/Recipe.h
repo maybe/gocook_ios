@@ -48,11 +48,16 @@
 {
   RecipeData* mCreateRecipeData;
   RecipeData* mModifyRecipeData;
+
+  bool isCreate;
 }
 
--(RecipeData*)getCreateRecipeData;
--(void)resetCreateRecipeData;
--(RecipeData*)getModifyRecipeData;
--(void)resetModifyRecipeData;
+- (RecipeData*)getCreateRecipeData;
+- (void)resetCreateRecipeData;
+- (RecipeData*)getModifyRecipeData;
+- (void)resetModifyRecipeData;
+
+- (void)setIsCreate:(BOOL)bCreate;
+- (BOOL)getIsCreate;
 
 @end
