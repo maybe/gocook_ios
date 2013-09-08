@@ -11,34 +11,54 @@
 		5E13569217AD37AF009C623B /* MyIntroductionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E13569117AD37AF009C623B /* MyIntroductionView.xib */; };
 		5E13569617AD3AC5009C623B /* MyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E13569417AD3AC4009C623B /* MyFollowViewController.m */; };
 		5E13569917AD3AED009C623B /* MyFollowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E13569817AD3AED009C623B /* MyFollowView.xib */; };
-		5EAFA04017AFE20A008B6C64 /* MyIntroductionPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFA03F17AFE209008B6C64 /* MyIntroductionPicCell.m */; };
-		5EAFA04317B102C1008B6C64 /* MyIntroductionIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFA04217B102BF008B6C64 /* MyIntroductionIntroCell.m */; };
-		5EAFA04617B26A0E008B6C64 /* MyFollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAFA04517B26A0C008B6C64 /* MyFollowTableViewCell.m */; };
 		5ED7F11B17BDC86400223884 /* RecipeDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */; };
 		5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */; };
-		5ED7F13017BF831500223884 /* MyFansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F12E17BF831500223884 /* MyFansTableViewCell.m */; };
-		5ED7F13317BF836300223884 /* RecipeCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F13217BF836200223884 /* RecipeCommentViewController.m */; };
 		5ED7F13517BF837E00223884 /* RecipeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED7F13417BF837E00223884 /* RecipeCommentView.xib */; };
 		5ED7F13817C0EF8300223884 /* RecipeSendCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F13717C0EF8200223884 /* RecipeSendCommentView.m */; };
 		5EEB7E0817B3EFAB00BCB1CB /* MyFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E0617B3EFAB00BCB1CB /* MyFansViewController.m */; };
 		5EEB7E0B17B3F01C00BCB1CB /* MyFansView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EEB7E0A17B3F01C00BCB1CB /* MyFansView.xib */; };
 		5EEB7E1617B7AE5700BCB1CB /* MyIntroEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1517B7AE5700BCB1CB /* MyIntroEditViewController.m */; };
 		5EEB7E1817B7AE7100BCB1CB /* MyIntroEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1717B7AE7100BCB1CB /* MyIntroEditView.xib */; };
-		5EEB7E1B17B7B47200BCB1CB /* MyIntroAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB7E1A17B7B47200BCB1CB /* MyIntroAvatarView.m */; };
 		5EF9F41F17D47E6A005ABA82 /* MaterialSearchBuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F41E17D47E6A005ABA82 /* MaterialSearchBuyView.xib */; };
 		5EF9F42C17D6DABA005ABA82 /* SearchGoodsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F42B17D6DABA005ABA82 /* SearchGoodsView.xib */; };
-		5EF9F44417D85421005ABA82 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F43F17D85421005ABA82 /* GoodsDetailViewController.m */; };
-		5EF9F44517D85421005ABA82 /* MaterialSearchBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44017D85421005ABA82 /* MaterialSearchBuyViewController.m */; };
-		5EF9F44617D85421005ABA82 /* SearchGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44117D85421005ABA82 /* SearchGoodsViewController.m */; };
 		5EF9F44C17D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44817D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m */; };
 		5EF9F44D17D8550F005ABA82 /* SearchGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44917D8550F005ABA82 /* SearchGoodsTableViewCell.m */; };
 		5EF9F45017D85594005ABA82 /* BuyGoodsTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44F17D85594005ABA82 /* BuyGoodsTopCell.m */; };
 		5EF9F45317D855B4005ABA82 /* BuyGoodsBelowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F45217D855B4005ABA82 /* BuyGoodsBelowCell.m */; };
 		5EF9F45517D855E1005ABA82 /* GoodsDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F45417D855E0005ABA82 /* GoodsDetailView.xib */; };
-		5EF9F45917D8A714005ABA82 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F45717D8A70B005ABA82 /* BuyViewController.m */; };
 		5EF9F45C17D8A82C005ABA82 /* BuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F45B17D8A82B005ABA82 /* BuyView.xib */; };
+		658090A667414B0C7C0FC74C /* MyFansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580968DA2D5E059A32783EE /* MyFansTableViewCell.m */; };
+		6580911C6856794208CF4756 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809B0E00C8DBF54C173AA2 /* ShoppingListController.m */; };
+		65809156E7DABE799C2F7FA7 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809B02DB1E620DC0202A9C /* MainController.m */; };
+		658092ACE286F8686A7C1A5B /* MainCatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809357F1407AB6672716BE /* MainCatTableViewCell.m */; };
+		658092B26AE69E893FF41851 /* MyRecipesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580997EA45C08E0968BBEE6 /* MyRecipesTableViewCell.m */; };
+		658093335D0DAF06A1D43215 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658091650B219FCFA570043D /* LoginController.m */; };
+		65809348FFD20073E58F7C5C /* MyIntroductionIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809D03A4F8824C335CD5A6 /* MyIntroductionIntroCell.m */; };
+		658094DB5D7A7A8E7839B9ED /* AccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658095B3BD5741A74056E868 /* AccountController.m */; };
+		658095133790AD5CF781A644 /* TopListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658099782420598A1FDB08F0 /* TopListController.m */; };
+		658095153AFF18C8FF56E297 /* MainTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809D32FA3D234BCFBEDD79 /* MainTopTableViewCell.m */; };
 		6580959500C5872FF90F20D7 /* NSAlert+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 658094916F917A57632BDC85 /* NSAlert+MKNetworkKitAdditions.m */; };
+		658095F3299CFD3EA1F98A79 /* MyFollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 658099F1AB86A0AB12BCA2C0 /* MyFollowTableViewCell.m */; };
+		65809686A096A73162451BD9 /* MyCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 658091F4562FF6D4AF3E6388 /* MyCollectionTableViewCell.m */; };
+		65809852A1D94ED038EC5840 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809FE062C46199C71BFD2F /* GoodsDetailViewController.m */; };
+		65809892D26E9DBA8ADF83AB /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658096D0EE4B43A9EBDC64FD /* SearchController.m */; };
+		658098A29CBB41BD0CB20D1D /* DebugOptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580940B6BB08C5A944096C5 /* DebugOptionController.m */; };
+		658098B9F1C9AF6EB523AAC8 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658095FAD3831271D58D41C6 /* RegisterController.m */; };
+		658098EDE0EE4D3FF3A9B19D /* RegisterAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658091E7C6D98A99A9231C8B /* RegisterAvatarView.m */; };
+		65809994EA82965D50F427B6 /* RecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658096C143F4506BEAE868FD /* RecipeDetailController.m */; };
+		658099B6B3C81F5F2635F037 /* SearchGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809E9C9ACFA88204E3C309 /* SearchGoodsViewController.m */; };
 		65809A0AA33D3331D334BF58 /* SSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658098098A86A0456C03D5F4 /* SSTextView.m */; };
+		65809B0E98D0607A94434404 /* TopListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809AA205CF14C4BC733756 /* TopListTableViewCell.m */; };
+		65809B3BE9B1DFDB8CB0020C /* MaterialSearchBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658094010EC35D2374007CC9 /* MaterialSearchBuyViewController.m */; };
+		65809BF815EE9A15953B7960 /* AccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 658098D9C49D1D9C4C5720AE /* AccountTableViewCell.m */; };
+		65809C6D6905BE2BD5956A43 /* SearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809D47873547AB59E8DACE /* SearchBarView.m */; };
+		65809C9DCF46635E5885767D /* MyIntroductionPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809941411D3CAF25B0E87C /* MyIntroductionPicCell.m */; };
+		65809D23280ED76D833B1E43 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809F4F87DF7B86515B2F8B /* BuyViewController.m */; };
+		65809D44F9F94B87AEF62598 /* MyIntroAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580940F178C7D60BCB4D524 /* MyIntroAvatarView.m */; };
+		65809D7B64069D743BC707A3 /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 658094784DFB11C219085E23 /* SearchTableViewCell.m */; };
+		65809DADD93573AC8045A5A2 /* AccountTableViewGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580937C9842E4EDD0C59193 /* AccountTableViewGridCell.m */; };
+		65809DC42EED0DCF3B8B1CC8 /* MyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809B7471B9CD5BFADF5A98 /* MyCollectionController.m */; };
+		65809F128C431D188328697E /* RecipeCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809442FFE9EA1888FD4791 /* RecipeCommentViewController.m */; };
 		BA02634516D7579700298803 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634416D7579700298803 /* AppDelegate.m */; };
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
 		BA02635216D75E4F00298803 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02635116D75E4F00298803 /* Common.m */; };
@@ -70,54 +90,38 @@
 		BA3F5E6516FA295B00493260 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3F5E5716FA28D000493260 /* Accelerate.framework */; };
 		BA3F5E6716FA297800493260 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = BA3F5E6616FA297800493260 /* Images */; };
 		BA4550F217BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4550F117BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.m */; };
-		BA50F3541710413D00E3B6CE /* SearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA50F3531710413D00E3B6CE /* SearchBarView.m */; };
 		BA56F2AE179547AF001E8909 /* RecipeDetailHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56F2A6179547AF001E8909 /* RecipeDetailHeaderTableViewCell.m */; };
 		BA56F2B41795AAD2001E8909 /* RecipeDetailBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56F2B31795AAD1001E8909 /* RecipeDetailBaseTableViewCell.m */; };
 		BA56F2B7179665A5001E8909 /* RecipeDetailMaterialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56F2B6179665A4001E8909 /* RecipeDetailMaterialTableViewCell.m */; };
 		BA56F2BA17971B36001E8909 /* RecipeDetailStepsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56F2B917971B36001E8909 /* RecipeDetailStepsTableViewCell.m */; };
-		BA6069921707D0430060C251 /* AccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069911707D0430060C251 /* AccountTableViewCell.m */; };
-		BA6069951707D5ED0060C251 /* AccountTableViewGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069941707D5ED0060C251 /* AccountTableViewGridCell.m */; };
 		BA60699E17080F340060C251 /* UserCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA60699D17080F340060C251 /* UserCollection.m */; };
 		BA6069A1170810C80060C251 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069A0170810C80060C251 /* User.m */; };
 		BA6069AD1708E3DA0060C251 /* DebugOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6069AC1708E3DA0060C251 /* DebugOption.xib */; };
-		BA6069B01708E4C10060C251 /* DebugOptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069AF1708E4C00060C251 /* DebugOptionController.m */; };
 		BA6069B41709EEAF0060C251 /* DBHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069B31709EEAF0060C251 /* DBHandler.m */; };
 		BA6069D5170ADE680060C251 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6069D4170ADE670060C251 /* MapKit.framework */; };
 		BA6069D8170AF1BD0060C251 /* ConfigHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6069D7170AF1BD0060C251 /* ConfigHandler.m */; };
-		BA6CEC9C1702297D00EDFC24 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6CEC9A1702297D00EDFC24 /* RegisterController.m */; };
 		BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6CEC9E170229A100EDFC24 /* RegisterView.xib */; };
 		BA6F2C151705A52200B2C7C7 /* UserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C141705A52200B2C7C7 /* UserAccount.m */; };
 		BA6F2C1D1705DC9B00B2C7C7 /* HellEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C1C1705DC9B00B2C7C7 /* HellEngine.m */; };
 		BA6F2C201705DE9600B2C7C7 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C1F1705DE9600B2C7C7 /* NetManager.m */; };
-		BA73C94716FE1469008284D8 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94616FE1469008284D8 /* MainController.m */; };
-		BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94916FE1F23008284D8 /* ShoppingListController.m */; };
-		BA73C94D16FE3138008284D8 /* AccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA73C94C16FE3138008284D8 /* AccountController.m */; };
 		BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA73C95416FE37D9008284D8 /* AccountView.xib */; };
-		BA79118C1710706F00BC77C9 /* MainTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118B1710706F00BC77C9 /* MainTopTableViewCell.m */; };
 		BA79118F1710786500BC77C9 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118E1710786500BC77C9 /* Recipe.m */; };
-		BA7911921710896800BC77C9 /* MainCatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7911911710896800BC77C9 /* MainCatTableViewCell.m */; };
-		BA7CC60F17AD168000A6C8AE /* MyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC60C17AD168000A6C8AE /* MyCollectionController.m */; };
-		BA7CC61817AD17B100A6C8AE /* MyCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC61717AD17B100A6C8AE /* MyCollectionTableViewCell.m */; };
 		BA7CC61C17AD5BB900A6C8AE /* MyRecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */; };
 		BA7CC61F17AD5BE700A6C8AE /* MyRecipesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA7CC61E17AD5BE600A6C8AE /* MyRecipesView.xib */; };
 		BA829BE51704880100B0341A /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE41704880100B0341A /* MainView.xib */; };
 		BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */; };
 		BA829BEA1704995300B0341A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE91704995300B0341A /* LoginView.xib */; };
-		BA829BED17049B0700B0341A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BEC17049B0500B0341A /* LoginController.m */; };
 		BA829BF017049DE400B0341A /* DefaultGroupedTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BEF17049DE400B0341A /* DefaultGroupedTableCell.m */; };
-		BA829BF317055CD400B0341A /* RegisterAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF217055CD400B0341A /* RegisterAvatarView.m */; };
 		BA829BF717057FCB00B0341A /* KeyboardHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF617057FCA00B0341A /* KeyboardHandler.m */; };
 		BA829BFA1705877800B0341A /* UIView+FindFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */; };
 		BAB32B9217BFEC7C00B0C150 /* Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB32B9117BFEC7C00B0C150 /* Encrypt.m */; };
 		BAB32BA117BFFCCF00B0C150 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB32BA017BFFCCF00B0C150 /* Base64.m */; };
-		BABAE9CE17AE46A90099BE45 /* MyRecipesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9CD17AE46A90099BE45 /* MyRecipesTableViewCell.m */; };
 		BABAE9D217AE779F0099BE45 /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9D017AE779F0099BE45 /* HomePageController.m */; };
 		BABAE9D517AE7D0F0099BE45 /* HomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABAE9D417AE7D0F0099BE45 /* HomePageView.xib */; };
 		BABAE9D917AFFBE50099BE45 /* MyRecipesEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9D717AFFBE30099BE45 /* MyRecipesEditController.m */; };
 		BABAE9DD17AFFC4A0099BE45 /* MyRecipesEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABAE9DC17AFFC4A0099BE45 /* MyRecipesEditView.xib */; };
 		BABAE9E117B14D890099BE45 /* MyRecipeEditAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9E017B14D890099BE45 /* MyRecipeEditAvatarView.m */; };
 		BABE0A14170627560056BF9D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BABE0A13170627560056BF9D /* MBProgressHUD.m */; };
-		BAC44C5C173581BF004E95F0 /* TopListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC44C5A173581BF004E95F0 /* TopListController.m */; };
 		BACCF83616ECFC420094F1E5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BACCF82B16ECFC420094F1E5 /* .gitignore */; };
 		BACCF83716ECFC420094F1E5 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82D16ECFC420094F1E5 /* FMDatabase.m */; };
 		BACCF83816ECFC420094F1E5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCF82F16ECFC420094F1E5 /* FMDatabaseAdditions.m */; };
@@ -142,14 +146,10 @@
 		BACCF88E16ED0CFB0094F1E5 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF88D16ED0CFB0094F1E5 /* libiconv.dylib */; };
 		BACCF89016ED0D090094F1E5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF88F16ED0D090094F1E5 /* libsqlite3.0.dylib */; };
 		BACCF89616ED0D630094F1E5 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF89516ED0D630094F1E5 /* libicucore.dylib */; };
-		BAE38C801735899D00936382 /* TopListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C7F1735899D00936382 /* TopListTableViewCell.m */; };
 		BAE38C841736997500936382 /* TopListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE38C831736997500936382 /* TopListView.xib */; };
-		BAE38C881736C33300936382 /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C861736C33200936382 /* SearchController.m */; };
 		BAE38C8B1736C36000936382 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE38C8A1736C36000936382 /* SearchView.xib */; };
-		BAE38C8E1736D1E200936382 /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C8D1736D1E100936382 /* SearchTableViewCell.m */; };
 		BAE38C931737561500936382 /* NSObject+AssociativeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C901737561400936382 /* NSObject+AssociativeObject.m */; };
 		BAE38C941737561500936382 /* UIImage+GenerateFromView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C921737561400936382 /* UIImage+GenerateFromView.m */; };
-		BAE38C981737978600936382 /* RecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C961737978400936382 /* RecipeDetailController.m */; };
 		BAE38C9B1737984C00936382 /* RecipeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE38C9A1737984B00936382 /* RecipeDetailView.xib */; };
 		BAE38C9E1737D35300936382 /* UIZoomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C9D1737D35300936382 /* UIZoomNavigationController.m */; };
 		BAE67BB1170B439E00414AD5 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE67BAA170B439E00414AD5 /* UIImage+Alpha.m */; };
@@ -185,20 +185,10 @@
 		5E13569317AD3AC4009C623B /* MyFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFollowViewController.h; path = Classes/Controllers/MyFollowViewController.h; sourceTree = "<group>"; };
 		5E13569417AD3AC4009C623B /* MyFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFollowViewController.m; path = Classes/Controllers/MyFollowViewController.m; sourceTree = "<group>"; };
 		5E13569817AD3AED009C623B /* MyFollowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFollowView.xib; sourceTree = "<group>"; };
-		5EAFA03E17AFE208008B6C64 /* MyIntroductionPicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroductionPicCell.h; path = Classes/Views/MyIntroductionPicCell.h; sourceTree = "<group>"; };
-		5EAFA03F17AFE209008B6C64 /* MyIntroductionPicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroductionPicCell.m; path = Classes/Views/MyIntroductionPicCell.m; sourceTree = "<group>"; };
-		5EAFA04117B102BE008B6C64 /* MyIntroductionIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroductionIntroCell.h; path = Classes/Views/MyIntroductionIntroCell.h; sourceTree = "<group>"; };
-		5EAFA04217B102BF008B6C64 /* MyIntroductionIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroductionIntroCell.m; path = Classes/Views/MyIntroductionIntroCell.m; sourceTree = "<group>"; };
-		5EAFA04417B26A09008B6C64 /* MyFollowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFollowTableViewCell.h; path = Classes/Views/MyFollowTableViewCell.h; sourceTree = "<group>"; };
-		5EAFA04517B26A0C008B6C64 /* MyFollowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFollowTableViewCell.m; path = Classes/Views/MyFollowTableViewCell.m; sourceTree = "<group>"; };
 		5ED7F11917BDC86400223884 /* RecipeDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailFooterView.h; sourceTree = "<group>"; };
 		5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailFooterView.m; sourceTree = "<group>"; };
 		5ED7F11C17BF301800223884 /* RecipeCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCommentsTableViewCell.h; sourceTree = "<group>"; };
 		5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeCommentsTableViewCell.m; sourceTree = "<group>"; };
-		5ED7F12E17BF831500223884 /* MyFansTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFansTableViewCell.m; path = Classes/Views/MyFansTableViewCell.m; sourceTree = "<group>"; };
-		5ED7F12F17BF831500223884 /* MyFansTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFansTableViewCell.h; path = Classes/Views/MyFansTableViewCell.h; sourceTree = "<group>"; };
-		5ED7F13117BF836200223884 /* RecipeCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeCommentViewController.h; path = Classes/Controllers/RecipeCommentViewController.h; sourceTree = "<group>"; };
-		5ED7F13217BF836200223884 /* RecipeCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeCommentViewController.m; path = Classes/Controllers/RecipeCommentViewController.m; sourceTree = "<group>"; };
 		5ED7F13417BF837E00223884 /* RecipeCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeCommentView.xib; sourceTree = "<group>"; };
 		5ED7F13617C0EF8200223884 /* RecipeSendCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeSendCommentView.h; sourceTree = "<group>"; };
 		5ED7F13717C0EF8200223884 /* RecipeSendCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeSendCommentView.m; sourceTree = "<group>"; };
@@ -208,16 +198,8 @@
 		5EEB7E1417B7AE5700BCB1CB /* MyIntroEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroEditViewController.h; path = Classes/Controllers/MyIntroEditViewController.h; sourceTree = "<group>"; };
 		5EEB7E1517B7AE5700BCB1CB /* MyIntroEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroEditViewController.m; path = Classes/Controllers/MyIntroEditViewController.m; sourceTree = "<group>"; };
 		5EEB7E1717B7AE7100BCB1CB /* MyIntroEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyIntroEditView.xib; sourceTree = "<group>"; };
-		5EEB7E1917B7B47200BCB1CB /* MyIntroAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroAvatarView.h; path = Classes/Views/MyIntroAvatarView.h; sourceTree = "<group>"; };
-		5EEB7E1A17B7B47200BCB1CB /* MyIntroAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroAvatarView.m; path = Classes/Views/MyIntroAvatarView.m; sourceTree = "<group>"; };
 		5EF9F41E17D47E6A005ABA82 /* MaterialSearchBuyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaterialSearchBuyView.xib; sourceTree = "<group>"; };
 		5EF9F42B17D6DABA005ABA82 /* SearchGoodsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchGoodsView.xib; sourceTree = "<group>"; };
-		5EF9F43E17D85421005ABA82 /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodsDetailViewController.h; path = Classes/Controllers/BuyGoods/GoodsDetailViewController.h; sourceTree = "<group>"; };
-		5EF9F43F17D85421005ABA82 /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsDetailViewController.m; path = Classes/Controllers/BuyGoods/GoodsDetailViewController.m; sourceTree = "<group>"; };
-		5EF9F44017D85421005ABA82 /* MaterialSearchBuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaterialSearchBuyViewController.m; path = Classes/Controllers/BuyGoods/MaterialSearchBuyViewController.m; sourceTree = "<group>"; };
-		5EF9F44117D85421005ABA82 /* SearchGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchGoodsViewController.m; path = Classes/Controllers/BuyGoods/SearchGoodsViewController.m; sourceTree = "<group>"; };
-		5EF9F44217D85421005ABA82 /* SearchGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchGoodsViewController.h; path = Classes/Controllers/BuyGoods/SearchGoodsViewController.h; sourceTree = "<group>"; };
-		5EF9F44317D85421005ABA82 /* MaterialSearchBuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaterialSearchBuyViewController.h; path = Classes/Controllers/BuyGoods/MaterialSearchBuyViewController.h; sourceTree = "<group>"; };
 		5EF9F44817D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaterialSearchBuyTableViewCell.m; path = Classes/Views/BuyGoods/MaterialSearchBuyTableViewCell.m; sourceTree = "<group>"; };
 		5EF9F44917D8550F005ABA82 /* SearchGoodsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchGoodsTableViewCell.m; path = Classes/Views/BuyGoods/SearchGoodsTableViewCell.m; sourceTree = "<group>"; };
 		5EF9F44A17D8550F005ABA82 /* SearchGoodsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchGoodsTableViewCell.h; path = Classes/Views/BuyGoods/SearchGoodsTableViewCell.h; sourceTree = "<group>"; };
@@ -227,13 +209,71 @@
 		5EF9F45117D855B3005ABA82 /* BuyGoodsBelowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyGoodsBelowCell.h; path = Classes/Views/BuyGoods/BuyGoodsBelowCell.h; sourceTree = "<group>"; };
 		5EF9F45217D855B4005ABA82 /* BuyGoodsBelowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyGoodsBelowCell.m; path = Classes/Views/BuyGoods/BuyGoodsBelowCell.m; sourceTree = "<group>"; };
 		5EF9F45417D855E0005ABA82 /* GoodsDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailView.xib; sourceTree = "<group>"; };
-		5EF9F45617D8A707005ABA82 /* BuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyViewController.h; path = Classes/Controllers/BuyGoods/BuyViewController.h; sourceTree = "<group>"; };
-		5EF9F45717D8A70B005ABA82 /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyViewController.m; path = Classes/Controllers/BuyGoods/BuyViewController.m; sourceTree = "<group>"; };
 		5EF9F45B17D8A82B005ABA82 /* BuyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyView.xib; sourceTree = "<group>"; };
+		6580900978A163FF82F332A8 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginController.h; path = Classes/Controllers/LoginController.h; sourceTree = "<group>"; };
+		658090FDDBB189A22C25C714 /* MyIntroductionPicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroductionPicCell.h; path = Classes/Views/MyIntroductionPicCell.h; sourceTree = "<group>"; };
+		65809158A65AA7F54C19730E /* SearchBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchBarView.h; path = Classes/Views/SearchBarView.h; sourceTree = "<group>"; };
+		658091650B219FCFA570043D /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginController.m; path = Classes/Controllers/LoginController.m; sourceTree = "<group>"; };
+		658091AFFC698249215E82E8 /* MyFollowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFollowTableViewCell.h; path = Classes/Views/MyFollowTableViewCell.h; sourceTree = "<group>"; };
+		658091E7C6D98A99A9231C8B /* RegisterAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterAvatarView.m; path = Classes/Views/RegisterAvatarView.m; sourceTree = "<group>"; };
+		658091F4562FF6D4AF3E6388 /* MyCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionTableViewCell.m; path = Classes/Views/MyCollectionTableViewCell.m; sourceTree = "<group>"; };
+		6580926E300199B427BC37E6 /* MyCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollectionController.h; path = Classes/Controllers/MyCollectionController.h; sourceTree = "<group>"; };
+		65809357F1407AB6672716BE /* MainCatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatTableViewCell.m; path = Classes/Views/MainCatTableViewCell.m; sourceTree = "<group>"; };
+		6580937C9842E4EDD0C59193 /* AccountTableViewGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewGridCell.m; path = Classes/Views/AccountTableViewGridCell.m; sourceTree = "<group>"; };
 		6580938282D18BE4B8A35D45 /* SSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTextView.h; sourceTree = "<group>"; };
+		6580939B5A09BFE26AC75BCF /* RecipeCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeCommentViewController.h; path = Classes/Controllers/RecipeCommentViewController.h; sourceTree = "<group>"; };
+		658094010EC35D2374007CC9 /* MaterialSearchBuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaterialSearchBuyViewController.m; path = Classes/Controllers/BuyGoods/MaterialSearchBuyViewController.m; sourceTree = "<group>"; };
+		6580940B6BB08C5A944096C5 /* DebugOptionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DebugOptionController.m; path = Classes/Controllers/DebugOptionController.m; sourceTree = "<group>"; };
+		6580940F178C7D60BCB4D524 /* MyIntroAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroAvatarView.m; path = Classes/Views/MyIntroAvatarView.m; sourceTree = "<group>"; };
+		65809419E12E51A75B6EEEBB /* RegisterAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterAvatarView.h; path = Classes/Views/RegisterAvatarView.h; sourceTree = "<group>"; };
+		65809442FFE9EA1888FD4791 /* RecipeCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeCommentViewController.m; path = Classes/Controllers/RecipeCommentViewController.m; sourceTree = "<group>"; };
+		65809457A1A0A1FFC6B1E4B7 /* MyCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollectionTableViewCell.h; path = Classes/Views/MyCollectionTableViewCell.h; sourceTree = "<group>"; };
+		658094784DFB11C219085E23 /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewCell.m; path = Classes/Views/SearchTableViewCell.m; sourceTree = "<group>"; };
 		658094916F917A57632BDC85 /* NSAlert+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
+		6580952CA5143171B09D57C5 /* BuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyViewController.h; path = Classes/Controllers/BuyGoods/BuyViewController.h; sourceTree = "<group>"; };
+		658095B3BD5741A74056E868 /* AccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountController.m; path = Classes/Controllers/AccountController.m; sourceTree = "<group>"; };
+		658095FAD3831271D58D41C6 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterController.m; path = Classes/Controllers/RegisterController.m; sourceTree = "<group>"; };
+		6580968DA2D5E059A32783EE /* MyFansTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFansTableViewCell.m; path = Classes/Views/MyFansTableViewCell.m; sourceTree = "<group>"; };
+		658096C143F4506BEAE868FD /* RecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeDetailController.m; path = Classes/Controllers/RecipeDetailController.m; sourceTree = "<group>"; };
+		658096D0EE4B43A9EBDC64FD /* SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchController.m; path = Classes/Controllers/SearchController.m; sourceTree = "<group>"; };
+		6580978FC7902CC6E26AEF3D /* SearchGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchGoodsViewController.h; path = Classes/Controllers/BuyGoods/SearchGoodsViewController.h; sourceTree = "<group>"; };
 		658098098A86A0456C03D5F4 /* SSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTextView.m; sourceTree = "<group>"; };
+		658098D698C24138011800E3 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterController.h; path = Classes/Controllers/RegisterController.h; sourceTree = "<group>"; };
+		658098D9C49D1D9C4C5720AE /* AccountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewCell.m; path = Classes/Views/AccountTableViewCell.m; sourceTree = "<group>"; };
+		658098E9B48969597935FE03 /* MyFansTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFansTableViewCell.h; path = Classes/Views/MyFansTableViewCell.h; sourceTree = "<group>"; };
+		658099102A268E520B5654F2 /* MaterialSearchBuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaterialSearchBuyViewController.h; path = Classes/Controllers/BuyGoods/MaterialSearchBuyViewController.h; sourceTree = "<group>"; };
+		65809941411D3CAF25B0E87C /* MyIntroductionPicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroductionPicCell.m; path = Classes/Views/MyIntroductionPicCell.m; sourceTree = "<group>"; };
+		658099782420598A1FDB08F0 /* TopListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopListController.m; path = Classes/Controllers/TopListController.m; sourceTree = "<group>"; };
+		6580997EA45C08E0968BBEE6 /* MyRecipesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesTableViewCell.m; path = Classes/Views/MyRecipesTableViewCell.m; sourceTree = "<group>"; };
+		658099E450638994305DB057 /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewCell.h; path = Classes/Views/SearchTableViewCell.h; sourceTree = "<group>"; };
+		658099F060AD0006EAED912C /* MyIntroductionIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroductionIntroCell.h; path = Classes/Views/MyIntroductionIntroCell.h; sourceTree = "<group>"; };
+		658099F1AB86A0AB12BCA2C0 /* MyFollowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFollowTableViewCell.m; path = Classes/Views/MyFollowTableViewCell.m; sourceTree = "<group>"; };
+		658099F5B6B9255E88EA2B36 /* ShoppingListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListController.h; path = Classes/Controllers/ShoppingListController.h; sourceTree = "<group>"; };
+		65809A054C778E413EEE16D7 /* MyRecipesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesTableViewCell.h; path = Classes/Views/MyRecipesTableViewCell.h; sourceTree = "<group>"; };
+		65809A62A32CEBA106CB395A /* RecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeDetailController.h; path = Classes/Controllers/RecipeDetailController.h; sourceTree = "<group>"; };
+		65809AA205CF14C4BC733756 /* TopListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopListTableViewCell.m; path = Classes/Views/TopListTableViewCell.m; sourceTree = "<group>"; };
+		65809B02DB1E620DC0202A9C /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainController.m; path = Classes/Controllers/MainController.m; sourceTree = "<group>"; };
+		65809B0E00C8DBF54C173AA2 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingListController.m; path = Classes/Controllers/ShoppingListController.m; sourceTree = "<group>"; };
+		65809B7471B9CD5BFADF5A98 /* MyCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionController.m; path = Classes/Controllers/MyCollectionController.m; sourceTree = "<group>"; };
+		65809C4F113BFAFCB1551762 /* TopListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopListTableViewCell.h; path = Classes/Views/TopListTableViewCell.h; sourceTree = "<group>"; };
+		65809C4FEA50A58E368BE896 /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodsDetailViewController.h; path = Classes/Controllers/BuyGoods/GoodsDetailViewController.h; sourceTree = "<group>"; };
+		65809C6523D390F6B4CCF41B /* AccountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountController.h; path = Classes/Controllers/AccountController.h; sourceTree = "<group>"; };
+		65809C928F9F010FF3D8CFE3 /* AccountTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountTableViewCell.h; path = Classes/Views/AccountTableViewCell.h; sourceTree = "<group>"; };
+		65809CEF460675C782C3EDDE /* MainCatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatTableViewCell.h; path = Classes/Views/MainCatTableViewCell.h; sourceTree = "<group>"; };
+		65809CF72652FF628FBAEF15 /* TopListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopListController.h; path = Classes/Controllers/TopListController.h; sourceTree = "<group>"; };
+		65809CFBC6C03A555C46AFB8 /* MyIntroAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroAvatarView.h; path = Classes/Views/MyIntroAvatarView.h; sourceTree = "<group>"; };
+		65809D03A4F8824C335CD5A6 /* MyIntroductionIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroductionIntroCell.m; path = Classes/Views/MyIntroductionIntroCell.m; sourceTree = "<group>"; };
+		65809D0BC85C09A006F2682F /* AccountTableViewGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountTableViewGridCell.h; path = Classes/Views/AccountTableViewGridCell.h; sourceTree = "<group>"; };
+		65809D32FA3D234BCFBEDD79 /* MainTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTopTableViewCell.m; path = Classes/Views/MainTopTableViewCell.m; sourceTree = "<group>"; };
+		65809D47873547AB59E8DACE /* SearchBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchBarView.m; path = Classes/Views/SearchBarView.m; sourceTree = "<group>"; };
+		65809D4D0405FD740245FDE0 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainController.h; path = Classes/Controllers/MainController.h; sourceTree = "<group>"; };
+		65809DD0E5E5A5EA8826C091 /* DebugOptionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugOptionController.h; path = Classes/Controllers/DebugOptionController.h; sourceTree = "<group>"; };
+		65809E8CB060BBF11E38CA35 /* SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchController.h; path = Classes/Controllers/SearchController.h; sourceTree = "<group>"; };
 		65809E8E3BE0ED477C92E98C /* NSAlert+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
+		65809E9C9ACFA88204E3C309 /* SearchGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchGoodsViewController.m; path = Classes/Controllers/BuyGoods/SearchGoodsViewController.m; sourceTree = "<group>"; };
+		65809F4F87DF7B86515B2F8B /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyViewController.m; path = Classes/Controllers/BuyGoods/BuyViewController.m; sourceTree = "<group>"; };
+		65809FAF8932AFE7872BF760 /* MainTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTopTableViewCell.h; path = Classes/Views/MainTopTableViewCell.h; sourceTree = "<group>"; };
+		65809FE062C46199C71BFD2F /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsDetailViewController.m; path = Classes/Controllers/BuyGoods/GoodsDetailViewController.m; sourceTree = "<group>"; };
 		BA02634316D7579700298803 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		BA02634416D7579700298803 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		BA02634716D759CB00298803 /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
@@ -280,8 +320,6 @@
 		BA3F5E6616FA297800493260 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = Resources/Images; sourceTree = "<group>"; };
 		BA4550F017BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListRecipeTableViewCell.h; sourceTree = "<group>"; };
 		BA4550F117BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListRecipeTableViewCell.m; sourceTree = "<group>"; };
-		BA50F3531710413D00E3B6CE /* SearchBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchBarView.m; path = Classes/Views/SearchBarView.m; sourceTree = "<group>"; };
-		BA50F3551710418600E3B6CE /* SearchBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchBarView.h; path = Classes/Views/SearchBarView.h; sourceTree = "<group>"; };
 		BA56F2A5179547AF001E8909 /* RecipeDetailHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailHeaderTableViewCell.h; sourceTree = "<group>"; };
 		BA56F2A6179547AF001E8909 /* RecipeDetailHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailHeaderTableViewCell.m; sourceTree = "<group>"; };
 		BA56F2B21795AAD1001E8909 /* RecipeDetailBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailBaseTableViewCell.h; sourceTree = "<group>"; };
@@ -290,24 +328,16 @@
 		BA56F2B6179665A4001E8909 /* RecipeDetailMaterialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailMaterialTableViewCell.m; sourceTree = "<group>"; };
 		BA56F2B817971B35001E8909 /* RecipeDetailStepsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailStepsTableViewCell.h; sourceTree = "<group>"; };
 		BA56F2B917971B36001E8909 /* RecipeDetailStepsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailStepsTableViewCell.m; sourceTree = "<group>"; };
-		BA6069901707D0430060C251 /* AccountTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountTableViewCell.h; path = Classes/Views/AccountTableViewCell.h; sourceTree = "<group>"; };
-		BA6069911707D0430060C251 /* AccountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewCell.m; path = Classes/Views/AccountTableViewCell.m; sourceTree = "<group>"; };
-		BA6069931707D5EC0060C251 /* AccountTableViewGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountTableViewGridCell.h; path = Classes/Views/AccountTableViewGridCell.h; sourceTree = "<group>"; };
-		BA6069941707D5ED0060C251 /* AccountTableViewGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewGridCell.m; path = Classes/Views/AccountTableViewGridCell.m; sourceTree = "<group>"; };
 		BA60699C17080F340060C251 /* UserCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserCollection.h; path = Classes/Models/UserCollection.h; sourceTree = "<group>"; };
 		BA60699D17080F340060C251 /* UserCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserCollection.m; path = Classes/Models/UserCollection.m; sourceTree = "<group>"; };
 		BA60699F170810C80060C251 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Classes/Models/User.h; sourceTree = "<group>"; };
 		BA6069A0170810C80060C251 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Classes/Models/User.m; sourceTree = "<group>"; };
 		BA6069AC1708E3DA0060C251 /* DebugOption.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugOption.xib; sourceTree = "<group>"; };
-		BA6069AE1708E4BF0060C251 /* DebugOptionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugOptionController.h; path = Classes/Controllers/DebugOptionController.h; sourceTree = "<group>"; };
-		BA6069AF1708E4C00060C251 /* DebugOptionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DebugOptionController.m; path = Classes/Controllers/DebugOptionController.m; sourceTree = "<group>"; };
 		BA6069B21709EEAF0060C251 /* DBHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBHandler.h; path = Classes/File/DBHandler.h; sourceTree = "<group>"; };
 		BA6069B31709EEAF0060C251 /* DBHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBHandler.m; path = Classes/File/DBHandler.m; sourceTree = "<group>"; };
 		BA6069D4170ADE670060C251 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		BA6069D6170AF1BC0060C251 /* ConfigHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigHandler.h; path = Classes/File/ConfigHandler.h; sourceTree = "<group>"; };
 		BA6069D7170AF1BD0060C251 /* ConfigHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigHandler.m; path = Classes/File/ConfigHandler.m; sourceTree = "<group>"; };
-		BA6CEC991702297D00EDFC24 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterController.h; path = Classes/Controllers/RegisterController.h; sourceTree = "<group>"; };
-		BA6CEC9A1702297D00EDFC24 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterController.m; path = Classes/Controllers/RegisterController.m; sourceTree = "<group>"; };
 		BA6CEC9E170229A100EDFC24 /* RegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterView.xib; sourceTree = "<group>"; };
 		BA6F2C121705A41900B2C7C7 /* GCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDSingleton.h; path = Classes/Common/GCDSingleton.h; sourceTree = "<group>"; };
 		BA6F2C131705A52200B2C7C7 /* UserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserAccount.h; path = Classes/Models/UserAccount.h; sourceTree = "<group>"; };
@@ -316,24 +346,10 @@
 		BA6F2C1C1705DC9B00B2C7C7 /* HellEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HellEngine.m; path = Classes/NetWork/HellEngine.m; sourceTree = "<group>"; };
 		BA6F2C1E1705DE9600B2C7C7 /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetManager.h; path = Classes/NetWork/NetManager.h; sourceTree = "<group>"; };
 		BA6F2C1F1705DE9600B2C7C7 /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetManager.m; path = Classes/NetWork/NetManager.m; sourceTree = "<group>"; };
-		BA73C94516FE1469008284D8 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainController.h; path = Classes/Controllers/MainController.h; sourceTree = "<group>"; };
-		BA73C94616FE1469008284D8 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainController.m; path = Classes/Controllers/MainController.m; sourceTree = "<group>"; };
-		BA73C94816FE1F23008284D8 /* ShoppingListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListController.h; path = Classes/Controllers/ShoppingListController.h; sourceTree = "<group>"; };
-		BA73C94916FE1F23008284D8 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingListController.m; path = Classes/Controllers/ShoppingListController.m; sourceTree = "<group>"; };
-		BA73C94B16FE3138008284D8 /* AccountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountController.h; path = Classes/Controllers/AccountController.h; sourceTree = "<group>"; };
-		BA73C94C16FE3138008284D8 /* AccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountController.m; path = Classes/Controllers/AccountController.m; sourceTree = "<group>"; };
 		BA73C95416FE37D9008284D8 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
-		BA79118A1710706F00BC77C9 /* MainTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTopTableViewCell.h; path = Classes/Views/MainTopTableViewCell.h; sourceTree = "<group>"; };
-		BA79118B1710706F00BC77C9 /* MainTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTopTableViewCell.m; path = Classes/Views/MainTopTableViewCell.m; sourceTree = "<group>"; };
 		BA79118D1710786500BC77C9 /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recipe.h; path = Classes/Models/Recipe.h; sourceTree = "<group>"; };
 		BA79118E1710786500BC77C9 /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recipe.m; path = Classes/Models/Recipe.m; sourceTree = "<group>"; };
-		BA7911901710896700BC77C9 /* MainCatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatTableViewCell.h; path = Classes/Views/MainCatTableViewCell.h; sourceTree = "<group>"; };
-		BA7911911710896800BC77C9 /* MainCatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatTableViewCell.m; path = Classes/Views/MainCatTableViewCell.m; sourceTree = "<group>"; };
 		BA7CC60917AD03A300A6C8AE /* MyCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCollectionView.xib; sourceTree = "<group>"; };
-		BA7CC60B17AD168000A6C8AE /* MyCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollectionController.h; path = Classes/Controllers/MyCollectionController.h; sourceTree = "<group>"; };
-		BA7CC60C17AD168000A6C8AE /* MyCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionController.m; path = Classes/Controllers/MyCollectionController.m; sourceTree = "<group>"; };
-		BA7CC61617AD17B100A6C8AE /* MyCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollectionTableViewCell.h; path = Classes/Views/MyCollectionTableViewCell.h; sourceTree = "<group>"; };
-		BA7CC61717AD17B100A6C8AE /* MyCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionTableViewCell.m; path = Classes/Views/MyCollectionTableViewCell.m; sourceTree = "<group>"; };
 		BA7CC61917AD5BB600A6C8AE /* MyRecipesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesController.h; path = Classes/Controllers/MyRecipesController.h; sourceTree = "<group>"; };
 		BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesController.m; path = Classes/Controllers/MyRecipesController.m; sourceTree = "<group>"; };
 		BA7CC61E17AD5BE600A6C8AE /* MyRecipesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRecipesView.xib; sourceTree = "<group>"; };
@@ -341,12 +357,8 @@
 		BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Autorotate.h"; path = "Classes/Common/UINavigationController+Autorotate.h"; sourceTree = "<group>"; };
 		BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Autorotate.m"; path = "Classes/Common/UINavigationController+Autorotate.m"; sourceTree = "<group>"; };
 		BA829BE91704995300B0341A /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
-		BA829BEB17049B0400B0341A /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginController.h; path = Classes/Controllers/LoginController.h; sourceTree = "<group>"; };
-		BA829BEC17049B0500B0341A /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginController.m; path = Classes/Controllers/LoginController.m; sourceTree = "<group>"; };
 		BA829BEE17049DE400B0341A /* DefaultGroupedTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultGroupedTableCell.h; path = Classes/Views/Custom/DefaultGroupedTableCell.h; sourceTree = "<group>"; };
 		BA829BEF17049DE400B0341A /* DefaultGroupedTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultGroupedTableCell.m; path = Classes/Views/Custom/DefaultGroupedTableCell.m; sourceTree = "<group>"; };
-		BA829BF117055CD400B0341A /* RegisterAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterAvatarView.h; path = Classes/Views/RegisterAvatarView.h; sourceTree = "<group>"; };
-		BA829BF217055CD400B0341A /* RegisterAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterAvatarView.m; path = Classes/Views/RegisterAvatarView.m; sourceTree = "<group>"; };
 		BA829BF417057F6200B0341A /* KeyboardHandlerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardHandlerDelegate.h; path = Classes/Common/KeyboardHandlerDelegate.h; sourceTree = "<group>"; };
 		BA829BF517057FCA00B0341A /* KeyboardHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardHandler.h; path = Classes/Common/KeyboardHandler.h; sourceTree = "<group>"; };
 		BA829BF617057FCA00B0341A /* KeyboardHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardHandler.m; path = Classes/Common/KeyboardHandler.m; sourceTree = "<group>"; };
@@ -356,8 +368,6 @@
 		BAB32B9117BFEC7C00B0C150 /* Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Encrypt.m; path = Classes/Common/Encrypt.m; sourceTree = "<group>"; };
 		BAB32B9F17BFFCCF00B0C150 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		BAB32BA017BFFCCF00B0C150 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
-		BABAE9CC17AE46A90099BE45 /* MyRecipesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesTableViewCell.h; path = Classes/Views/MyRecipesTableViewCell.h; sourceTree = "<group>"; };
-		BABAE9CD17AE46A90099BE45 /* MyRecipesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesTableViewCell.m; path = Classes/Views/MyRecipesTableViewCell.m; sourceTree = "<group>"; };
 		BABAE9CF17AE779E0099BE45 /* HomePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageController.h; path = Classes/Controllers/HomePageController.h; sourceTree = "<group>"; };
 		BABAE9D017AE779F0099BE45 /* HomePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageController.m; path = Classes/Controllers/HomePageController.m; sourceTree = "<group>"; };
 		BABAE9D417AE7D0F0099BE45 /* HomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageView.xib; sourceTree = "<group>"; };
@@ -368,8 +378,6 @@
 		BABAE9E017B14D890099BE45 /* MyRecipeEditAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipeEditAvatarView.m; path = Classes/Views/MyRecipes/MyRecipeEditAvatarView.m; sourceTree = "<group>"; };
 		BABE0A12170627560056BF9D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		BABE0A13170627560056BF9D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
-		BAC44C59173581BF004E95F0 /* TopListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopListController.h; path = Classes/Controllers/TopListController.h; sourceTree = "<group>"; };
-		BAC44C5A173581BF004E95F0 /* TopListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopListController.m; path = Classes/Controllers/TopListController.m; sourceTree = "<group>"; };
 		BACCF82B16ECFC420094F1E5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BACCF82C16ECFC420094F1E5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		BACCF82D16ECFC420094F1E5 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -409,20 +417,12 @@
 		BACCF88D16ED0CFB0094F1E5 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		BACCF88F16ED0D090094F1E5 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		BACCF89516ED0D630094F1E5 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		BAE38C7E1735899C00936382 /* TopListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopListTableViewCell.h; path = Classes/Views/TopListTableViewCell.h; sourceTree = "<group>"; };
-		BAE38C7F1735899D00936382 /* TopListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopListTableViewCell.m; path = Classes/Views/TopListTableViewCell.m; sourceTree = "<group>"; };
 		BAE38C831736997500936382 /* TopListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopListView.xib; sourceTree = "<group>"; };
-		BAE38C851736C33100936382 /* SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchController.h; path = Classes/Controllers/SearchController.h; sourceTree = "<group>"; };
-		BAE38C861736C33200936382 /* SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchController.m; path = Classes/Controllers/SearchController.m; sourceTree = "<group>"; };
 		BAE38C8A1736C36000936382 /* SearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
-		BAE38C8C1736D1E100936382 /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewCell.h; path = Classes/Views/SearchTableViewCell.h; sourceTree = "<group>"; };
-		BAE38C8D1736D1E100936382 /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewCell.m; path = Classes/Views/SearchTableViewCell.m; sourceTree = "<group>"; };
 		BAE38C8F1737561400936382 /* NSObject+AssociativeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AssociativeObject.h"; path = "Classes/Common/NSObject+AssociativeObject.h"; sourceTree = "<group>"; };
 		BAE38C901737561400936382 /* NSObject+AssociativeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AssociativeObject.m"; path = "Classes/Common/NSObject+AssociativeObject.m"; sourceTree = "<group>"; };
 		BAE38C911737561400936382 /* UIImage+GenerateFromView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+GenerateFromView.h"; path = "Classes/Common/UIImage+GenerateFromView.h"; sourceTree = "<group>"; };
 		BAE38C921737561400936382 /* UIImage+GenerateFromView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+GenerateFromView.m"; path = "Classes/Common/UIImage+GenerateFromView.m"; sourceTree = "<group>"; };
-		BAE38C951737978300936382 /* RecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeDetailController.h; path = Classes/Controllers/RecipeDetailController.h; sourceTree = "<group>"; };
-		BAE38C961737978400936382 /* RecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeDetailController.m; path = Classes/Controllers/RecipeDetailController.m; sourceTree = "<group>"; };
 		BAE38C9A1737984B00936382 /* RecipeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeDetailView.xib; sourceTree = "<group>"; };
 		BAE38C9C1737D35300936382 /* UIZoomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIZoomNavigationController.h; path = Classes/Common/UIZoomNavigationController.h; sourceTree = "<group>"; };
 		BAE38C9D1737D35300936382 /* UIZoomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIZoomNavigationController.m; path = Classes/Common/UIZoomNavigationController.m; sourceTree = "<group>"; };
@@ -511,21 +511,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5EF9F43D17D85408005ABA82 /* BuyGoods */ = {
-			isa = PBXGroup;
-			children = (
-				5EF9F44317D85421005ABA82 /* MaterialSearchBuyViewController.h */,
-				5EF9F44017D85421005ABA82 /* MaterialSearchBuyViewController.m */,
-				5EF9F44217D85421005ABA82 /* SearchGoodsViewController.h */,
-				5EF9F44117D85421005ABA82 /* SearchGoodsViewController.m */,
-				5EF9F43E17D85421005ABA82 /* GoodsDetailViewController.h */,
-				5EF9F43F17D85421005ABA82 /* GoodsDetailViewController.m */,
-				5EF9F45617D8A707005ABA82 /* BuyViewController.h */,
-				5EF9F45717D8A70B005ABA82 /* BuyViewController.m */,
-			);
-			name = BuyGoods;
-			sourceTree = "<group>";
-		};
 		5EF9F44717D854DC005ABA82 /* BuyGoods */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,6 +526,49 @@
 			name = BuyGoods;
 			sourceTree = "<group>";
 		};
+		6580942BE43231AAB6CEC932 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				6580940B6BB08C5A944096C5 /* DebugOptionController.m */,
+				65809C6523D390F6B4CCF41B /* AccountController.h */,
+				658095B3BD5741A74056E868 /* AccountController.m */,
+				65809DD0E5E5A5EA8826C091 /* DebugOptionController.h */,
+				658095FAD3831271D58D41C6 /* RegisterController.m */,
+				658098D698C24138011800E3 /* RegisterController.h */,
+				6580926E300199B427BC37E6 /* MyCollectionController.h */,
+				65809B7471B9CD5BFADF5A98 /* MyCollectionController.m */,
+				658091650B219FCFA570043D /* LoginController.m */,
+				6580900978A163FF82F332A8 /* LoginController.h */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		658095E507BA7930F7D09B45 /* BuyGoods */ = {
+			isa = PBXGroup;
+			children = (
+				658099102A268E520B5654F2 /* MaterialSearchBuyViewController.h */,
+				658094010EC35D2374007CC9 /* MaterialSearchBuyViewController.m */,
+				6580978FC7902CC6E26AEF3D /* SearchGoodsViewController.h */,
+				65809E9C9ACFA88204E3C309 /* SearchGoodsViewController.m */,
+				65809C4FEA50A58E368BE896 /* GoodsDetailViewController.h */,
+				65809FE062C46199C71BFD2F /* GoodsDetailViewController.m */,
+				6580952CA5143171B09D57C5 /* BuyViewController.h */,
+				65809F4F87DF7B86515B2F8B /* BuyViewController.m */,
+			);
+			name = BuyGoods;
+			sourceTree = "<group>";
+		};
+		6580982F4060031EA55BF49D /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				6580939B5A09BFE26AC75BCF /* RecipeCommentViewController.h */,
+				65809442FFE9EA1888FD4791 /* RecipeCommentViewController.m */,
+				65809A62A32CEBA106CB395A /* RecipeDetailController.h */,
+				658096C143F4506BEAE868FD /* RecipeDetailController.m */,
+			);
+			name = Recipe;
+			sourceTree = "<group>";
+		};
 		6580992E6910AEBD0AFDD975 /* SSTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,6 +577,79 @@
 			);
 			name = SSTextView;
 			path = Libs/SSTextView;
+			sourceTree = "<group>";
+		};
+		65809A5065634B0F407F4343 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				65809CEF460675C782C3EDDE /* MainCatTableViewCell.h */,
+				65809357F1407AB6672716BE /* MainCatTableViewCell.m */,
+				65809D32FA3D234BCFBEDD79 /* MainTopTableViewCell.m */,
+				65809FAF8932AFE7872BF760 /* MainTopTableViewCell.h */,
+				658099E450638994305DB057 /* SearchTableViewCell.h */,
+				65809D47873547AB59E8DACE /* SearchBarView.m */,
+				65809158A65AA7F54C19730E /* SearchBarView.h */,
+				65809AA205CF14C4BC733756 /* TopListTableViewCell.m */,
+				658094784DFB11C219085E23 /* SearchTableViewCell.m */,
+				65809C4F113BFAFCB1551762 /* TopListTableViewCell.h */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		65809AB3094F0B3A9112920C /* Shopping */ = {
+			isa = PBXGroup;
+			children = (
+				658099F5B6B9255E88EA2B36 /* ShoppingListController.h */,
+				65809B0E00C8DBF54C173AA2 /* ShoppingListController.m */,
+			);
+			name = Shopping;
+			sourceTree = "<group>";
+		};
+		65809C8DA50D53028CA8E72F /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				6580968DA2D5E059A32783EE /* MyFansTableViewCell.m */,
+				65809941411D3CAF25B0E87C /* MyIntroductionPicCell.m */,
+				658098E9B48969597935FE03 /* MyFansTableViewCell.h */,
+				6580940F178C7D60BCB4D524 /* MyIntroAvatarView.m */,
+				65809CFBC6C03A555C46AFB8 /* MyIntroAvatarView.h */,
+				658091F4562FF6D4AF3E6388 /* MyCollectionTableViewCell.m */,
+				658091AFFC698249215E82E8 /* MyFollowTableViewCell.h */,
+				658090FDDBB189A22C25C714 /* MyIntroductionPicCell.h */,
+				658099F060AD0006EAED912C /* MyIntroductionIntroCell.h */,
+				65809457A1A0A1FFC6B1E4B7 /* MyCollectionTableViewCell.h */,
+				65809D03A4F8824C335CD5A6 /* MyIntroductionIntroCell.m */,
+				658099F1AB86A0AB12BCA2C0 /* MyFollowTableViewCell.m */,
+				6580997EA45C08E0968BBEE6 /* MyRecipesTableViewCell.m */,
+				65809A054C778E413EEE16D7 /* MyRecipesTableViewCell.h */,
+			);
+			name = HomePage;
+			sourceTree = "<group>";
+		};
+		65809D02C56D4DE002245273 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				6580937C9842E4EDD0C59193 /* AccountTableViewGridCell.m */,
+				65809C928F9F010FF3D8CFE3 /* AccountTableViewCell.h */,
+				65809D0BC85C09A006F2682F /* AccountTableViewGridCell.h */,
+				658098D9C49D1D9C4C5720AE /* AccountTableViewCell.m */,
+				658091E7C6D98A99A9231C8B /* RegisterAvatarView.m */,
+				65809419E12E51A75B6EEEBB /* RegisterAvatarView.h */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		65809FEA8045081ED0A85B4B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				65809D4D0405FD740245FDE0 /* MainController.h */,
+				65809B02DB1E620DC0202A9C /* MainController.m */,
+				65809E8CB060BBF11E38CA35 /* SearchController.h */,
+				658096D0EE4B43A9EBDC64FD /* SearchController.m */,
+				658099782420598A1FDB08F0 /* TopListController.m */,
+				65809CF72652FF628FBAEF15 /* TopListController.h */,
+			);
+			name = Main;
 			sourceTree = "<group>";
 		};
 		BA02634016D756D500298803 /* Classes */ = {
@@ -763,40 +864,13 @@
 			isa = PBXGroup;
 			children = (
 				BA8705C716FF5AF600BA7039 /* Custom */,
-				BA6069931707D5EC0060C251 /* AccountTableViewGridCell.h */,
-				BA6069941707D5ED0060C251 /* AccountTableViewGridCell.m */,
-				BAE38C7E1735899C00936382 /* TopListTableViewCell.h */,
-				BAE38C7F1735899D00936382 /* TopListTableViewCell.m */,
-				BAE38C8C1736D1E100936382 /* SearchTableViewCell.h */,
-				BAE38C8D1736D1E100936382 /* SearchTableViewCell.m */,
-				BA6069901707D0430060C251 /* AccountTableViewCell.h */,
-				BA6069911707D0430060C251 /* AccountTableViewCell.m */,
-				BA79118A1710706F00BC77C9 /* MainTopTableViewCell.h */,
-				BA79118B1710706F00BC77C9 /* MainTopTableViewCell.m */,
-				BA7911901710896700BC77C9 /* MainCatTableViewCell.h */,
-				BA7911911710896800BC77C9 /* MainCatTableViewCell.m */,
-				BA829BF117055CD400B0341A /* RegisterAvatarView.h */,
-				BA829BF217055CD400B0341A /* RegisterAvatarView.m */,
-				BA50F3551710418600E3B6CE /* SearchBarView.h */,
-				BA50F3531710413D00E3B6CE /* SearchBarView.m */,
-				BA7CC61617AD17B100A6C8AE /* MyCollectionTableViewCell.h */,
-				BA7CC61717AD17B100A6C8AE /* MyCollectionTableViewCell.m */,
-				BABAE9CC17AE46A90099BE45 /* MyRecipesTableViewCell.h */,
-				BABAE9CD17AE46A90099BE45 /* MyRecipesTableViewCell.m */,
-				5EAFA03E17AFE208008B6C64 /* MyIntroductionPicCell.h */,
-				5EAFA03F17AFE209008B6C64 /* MyIntroductionPicCell.m */,
-				5EAFA04117B102BE008B6C64 /* MyIntroductionIntroCell.h */,
-				5EAFA04217B102BF008B6C64 /* MyIntroductionIntroCell.m */,
-				5EEB7E1917B7B47200BCB1CB /* MyIntroAvatarView.h */,
-				5EEB7E1A17B7B47200BCB1CB /* MyIntroAvatarView.m */,
-				5EAFA04417B26A09008B6C64 /* MyFollowTableViewCell.h */,
-				5EAFA04517B26A0C008B6C64 /* MyFollowTableViewCell.m */,
-				5ED7F12F17BF831500223884 /* MyFansTableViewCell.h */,
-				5ED7F12E17BF831500223884 /* MyFansTableViewCell.m */,
 				5EF9F44717D854DC005ABA82 /* BuyGoods */,
 				BA4550EF17BA80AA008CBD00 /* ShoppingList */,
 				BABAE9DE17B008BD0099BE45 /* MyRecipes */,
 				BAE38C9F1739577A00936382 /* RecipeDetail */,
+				65809A5065634B0F407F4343 /* Main */,
+				65809D02C56D4DE002245273 /* Account */,
+				65809C8DA50D53028CA8E72F /* HomePage */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1097,30 +1171,12 @@
 		BAEFA66416E652C20044B36C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BA73C94B16FE3138008284D8 /* AccountController.h */,
-				BA73C94C16FE3138008284D8 /* AccountController.m */,
-				BA73C94816FE1F23008284D8 /* ShoppingListController.h */,
-				BA73C94916FE1F23008284D8 /* ShoppingListController.m */,
-				BA73C94516FE1469008284D8 /* MainController.h */,
-				BA73C94616FE1469008284D8 /* MainController.m */,
-				BAC44C59173581BF004E95F0 /* TopListController.h */,
-				BAC44C5A173581BF004E95F0 /* TopListController.m */,
-				BA6CEC991702297D00EDFC24 /* RegisterController.h */,
-				BA6CEC9A1702297D00EDFC24 /* RegisterController.m */,
-				BA829BEB17049B0400B0341A /* LoginController.h */,
-				BA829BEC17049B0500B0341A /* LoginController.m */,
-				BA6069AE1708E4BF0060C251 /* DebugOptionController.h */,
-				BA6069AF1708E4C00060C251 /* DebugOptionController.m */,
-				BAE38C851736C33100936382 /* SearchController.h */,
-				BAE38C861736C33200936382 /* SearchController.m */,
-				BAE38C951737978300936382 /* RecipeDetailController.h */,
-				BAE38C961737978400936382 /* RecipeDetailController.m */,
-				BA7CC60B17AD168000A6C8AE /* MyCollectionController.h */,
-				BA7CC60C17AD168000A6C8AE /* MyCollectionController.m */,
-				5ED7F13117BF836200223884 /* RecipeCommentViewController.h */,
-				5ED7F13217BF836200223884 /* RecipeCommentViewController.m */,
-				5EF9F43D17D85408005ABA82 /* BuyGoods */,
 				BA2BC2B217BBD9F5005A551C /* HomePage */,
+				6580942BE43231AAB6CEC932 /* Account */,
+				65809FEA8045081ED0A85B4B /* Main */,
+				6580982F4060031EA55BF49D /* Recipe */,
+				65809AB3094F0B3A9112920C /* Shopping */,
+				658095E507BA7930F7D09B45 /* BuyGoods */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1235,25 +1291,16 @@
 				BACCF88916ED0BD60094F1E5 /* MKNetworkOperation.m in Sources */,
 				BACCF88A16ED0BD60094F1E5 /* Reachability.m in Sources */,
 				BA05128616FA14C10091D3C6 /* UIImage+Retina4.m in Sources */,
-				BA73C94716FE1469008284D8 /* MainController.m in Sources */,
-				BA73C94A16FE1F23008284D8 /* ShoppingListController.m in Sources */,
-				BA73C94D16FE3138008284D8 /* AccountController.m in Sources */,
-				BA6CEC9C1702297D00EDFC24 /* RegisterController.m in Sources */,
 				BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */,
-				BA829BED17049B0700B0341A /* LoginController.m in Sources */,
 				BA829BF017049DE400B0341A /* DefaultGroupedTableCell.m in Sources */,
-				BA829BF317055CD400B0341A /* RegisterAvatarView.m in Sources */,
 				BA829BF717057FCB00B0341A /* KeyboardHandler.m in Sources */,
 				BA829BFA1705877800B0341A /* UIView+FindFirstResponder.m in Sources */,
 				BA6F2C151705A52200B2C7C7 /* UserAccount.m in Sources */,
 				BA6F2C1D1705DC9B00B2C7C7 /* HellEngine.m in Sources */,
 				BA6F2C201705DE9600B2C7C7 /* NetManager.m in Sources */,
 				BABE0A14170627560056BF9D /* MBProgressHUD.m in Sources */,
-				BA6069921707D0430060C251 /* AccountTableViewCell.m in Sources */,
-				BA6069951707D5ED0060C251 /* AccountTableViewGridCell.m in Sources */,
 				BA60699E17080F340060C251 /* UserCollection.m in Sources */,
 				BA6069A1170810C80060C251 /* User.m in Sources */,
-				BA6069B01708E4C10060C251 /* DebugOptionController.m in Sources */,
 				BA6069B41709EEAF0060C251 /* DBHandler.m in Sources */,
 				BA6069D8170AF1BD0060C251 /* ConfigHandler.m in Sources */,
 				BAE67BB1170B439E00414AD5 /* UIImage+Alpha.m in Sources */,
@@ -1280,33 +1327,19 @@
 				BAE67BF9170B70C300414AD5 /* UIView+Screenshot.m in Sources */,
 				BAE67BFA170B70C300414AD5 /* NYXProgressiveImageView.m in Sources */,
 				BAE67BFB170B70C300414AD5 /* NYXImagesHelper.m in Sources */,
-				BA50F3541710413D00E3B6CE /* SearchBarView.m in Sources */,
-				BA79118C1710706F00BC77C9 /* MainTopTableViewCell.m in Sources */,
 				BA79118F1710786500BC77C9 /* Recipe.m in Sources */,
-				BA7911921710896800BC77C9 /* MainCatTableViewCell.m in Sources */,
-				BAC44C5C173581BF004E95F0 /* TopListController.m in Sources */,
-				BAE38C801735899D00936382 /* TopListTableViewCell.m in Sources */,
-				BAE38C881736C33300936382 /* SearchController.m in Sources */,
-				BAE38C8E1736D1E200936382 /* SearchTableViewCell.m in Sources */,
 				BAE38C931737561500936382 /* NSObject+AssociativeObject.m in Sources */,
 				BAE38C941737561500936382 /* UIImage+GenerateFromView.m in Sources */,
-				BAE38C981737978600936382 /* RecipeDetailController.m in Sources */,
 				BAE38C9E1737D35300936382 /* UIZoomNavigationController.m in Sources */,
 				BA56F2AE179547AF001E8909 /* RecipeDetailHeaderTableViewCell.m in Sources */,
 				BA56F2B41795AAD2001E8909 /* RecipeDetailBaseTableViewCell.m in Sources */,
 				BA56F2B7179665A5001E8909 /* RecipeDetailMaterialTableViewCell.m in Sources */,
 				BA56F2BA17971B36001E8909 /* RecipeDetailStepsTableViewCell.m in Sources */,
 				BA0873E2179AFC1F00A270D5 /* LineSpaceLabel.m in Sources */,
-				BA7CC60F17AD168000A6C8AE /* MyCollectionController.m in Sources */,
-				BA7CC61817AD17B100A6C8AE /* MyCollectionTableViewCell.m in Sources */,
 				5E13568F17AD34D6009C623B /* MyIntroductionViewController.m in Sources */,
 				5E13569617AD3AC5009C623B /* MyFollowViewController.m in Sources */,
 				BA7CC61C17AD5BB900A6C8AE /* MyRecipesController.m in Sources */,
-				BABAE9CE17AE46A90099BE45 /* MyRecipesTableViewCell.m in Sources */,
 				BABAE9D217AE779F0099BE45 /* HomePageController.m in Sources */,
-				5EAFA04017AFE20A008B6C64 /* MyIntroductionPicCell.m in Sources */,
-				5EAFA04317B102C1008B6C64 /* MyIntroductionIntroCell.m in Sources */,
-				5EAFA04617B26A0E008B6C64 /* MyFollowTableViewCell.m in Sources */,
 				BABAE9D917AFFBE50099BE45 /* MyRecipesEditController.m in Sources */,
 				BABAE9E117B14D890099BE45 /* MyRecipeEditAvatarView.m in Sources */,
 				5EEB7E0817B3EFAB00BCB1CB /* MyFansViewController.m in Sources */,
@@ -1315,27 +1348,50 @@
 				BA3E044617B68B65007F1E86 /* MyRecipesStepController.m in Sources */,
 				BA3E044917B68B8C007F1E86 /* MyRecipeStepTableViewCell.m in Sources */,
 				5EEB7E1617B7AE5700BCB1CB /* MyIntroEditViewController.m in Sources */,
-				5EEB7E1B17B7B47200BCB1CB /* MyIntroAvatarView.m in Sources */,
 				BA3E045817B7E962007F1E86 /* MyRecipesTipsController.m in Sources */,
 				BA3E046917B8CC41007F1E86 /* ODRefreshControl.m in Sources */,
 				BA4550F217BA80AA008CBD00 /* ShoppingListRecipeTableViewCell.m in Sources */,
 				5ED7F11B17BDC86400223884 /* RecipeDetailFooterView.m in Sources */,
 				5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */,
-				5ED7F13017BF831500223884 /* MyFansTableViewCell.m in Sources */,
-				5ED7F13317BF836300223884 /* RecipeCommentViewController.m in Sources */,
 				BAB32B9217BFEC7C00B0C150 /* Encrypt.m in Sources */,
 				BAB32BA117BFFCCF00B0C150 /* Base64.m in Sources */,
 				5ED7F13817C0EF8300223884 /* RecipeSendCommentView.m in Sources */,
 				65809A0AA33D3331D334BF58 /* SSTextView.m in Sources */,
-				5EF9F44417D85421005ABA82 /* GoodsDetailViewController.m in Sources */,
-				5EF9F44517D85421005ABA82 /* MaterialSearchBuyViewController.m in Sources */,
-				5EF9F44617D85421005ABA82 /* SearchGoodsViewController.m in Sources */,
 				5EF9F44C17D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m in Sources */,
 				5EF9F44D17D8550F005ABA82 /* SearchGoodsTableViewCell.m in Sources */,
 				5EF9F45017D85594005ABA82 /* BuyGoodsTopCell.m in Sources */,
 				5EF9F45317D855B4005ABA82 /* BuyGoodsBelowCell.m in Sources */,
-				5EF9F45917D8A714005ABA82 /* BuyViewController.m in Sources */,
 				6580959500C5872FF90F20D7 /* NSAlert+MKNetworkKitAdditions.m in Sources */,
+				658098A29CBB41BD0CB20D1D /* DebugOptionController.m in Sources */,
+				658094DB5D7A7A8E7839B9ED /* AccountController.m in Sources */,
+				658098B9F1C9AF6EB523AAC8 /* RegisterController.m in Sources */,
+				65809DC42EED0DCF3B8B1CC8 /* MyCollectionController.m in Sources */,
+				65809156E7DABE799C2F7FA7 /* MainController.m in Sources */,
+				658093335D0DAF06A1D43215 /* LoginController.m in Sources */,
+				65809F128C431D188328697E /* RecipeCommentViewController.m in Sources */,
+				65809994EA82965D50F427B6 /* RecipeDetailController.m in Sources */,
+				65809892D26E9DBA8ADF83AB /* SearchController.m in Sources */,
+				658095133790AD5CF781A644 /* TopListController.m in Sources */,
+				6580911C6856794208CF4756 /* ShoppingListController.m in Sources */,
+				65809DADD93573AC8045A5A2 /* AccountTableViewGridCell.m in Sources */,
+				65809BF815EE9A15953B7960 /* AccountTableViewCell.m in Sources */,
+				658092ACE286F8686A7C1A5B /* MainCatTableViewCell.m in Sources */,
+				658095153AFF18C8FF56E297 /* MainTopTableViewCell.m in Sources */,
+				658090A667414B0C7C0FC74C /* MyFansTableViewCell.m in Sources */,
+				65809C9DCF46635E5885767D /* MyIntroductionPicCell.m in Sources */,
+				65809D44F9F94B87AEF62598 /* MyIntroAvatarView.m in Sources */,
+				65809686A096A73162451BD9 /* MyCollectionTableViewCell.m in Sources */,
+				65809348FFD20073E58F7C5C /* MyIntroductionIntroCell.m in Sources */,
+				658095F3299CFD3EA1F98A79 /* MyFollowTableViewCell.m in Sources */,
+				658092B26AE69E893FF41851 /* MyRecipesTableViewCell.m in Sources */,
+				658098EDE0EE4D3FF3A9B19D /* RegisterAvatarView.m in Sources */,
+				65809C6D6905BE2BD5956A43 /* SearchBarView.m in Sources */,
+				65809B0E98D0607A94434404 /* TopListTableViewCell.m in Sources */,
+				65809D7B64069D743BC707A3 /* SearchTableViewCell.m in Sources */,
+				65809B3BE9B1DFDB8CB0020C /* MaterialSearchBuyViewController.m in Sources */,
+				658099B6B3C81F5F2635F037 /* SearchGoodsViewController.m in Sources */,
+				65809852A1D94ED038EC5840 /* GoodsDetailViewController.m in Sources */,
+				65809D23280ED76D833B1E43 /* BuyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

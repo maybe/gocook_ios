@@ -1,5 +1,5 @@
 //
-//  TopHotController.h
+//  AccountController.cpp
 //  HellCook
 //
 //  Created by panda on 2/22/13.
@@ -23,7 +23,6 @@
 #import "UIZoomNavigationController.h"
 #import "MainController.h"
 #import "HomePageController.h"
-#import "SearchGoodsTableViewCell.h"
 
 @interface AccountController ()
 
@@ -438,7 +437,7 @@
 //  NSLog(@"%d",sender.tag);
   if ( sender.tag==10001 || sender.tag==10002 || sender.tag==10004 )
   {
-    NSInteger index;
+    NSInteger index = 0;
     switch (sender.tag)
     {
       case 10001://我的关注
@@ -449,6 +448,8 @@
         break;
       case 10004://我的菜谱
         index = 3;
+        break;
+      default:
         break;
     }
     
