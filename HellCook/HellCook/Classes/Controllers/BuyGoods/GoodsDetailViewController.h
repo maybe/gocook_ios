@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class GoodsDetailBelowCell;
 @interface GoodsDetailViewController : UIViewController
+{
+  UITableView *myTableView;
+  NSMutableDictionary *goodsDetailDict;
+  GoodsDetailBelowCell *cellForHeight;
+}
+
+@property (nonatomic,retain) IBOutlet UITableView *myTableView;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withData:(NSMutableDictionary*)data;
 
 @end

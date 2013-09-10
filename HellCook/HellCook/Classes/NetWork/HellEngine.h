@@ -32,6 +32,7 @@ typedef void (^commentResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^addCollectionResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^delCollectionResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^getGoodsResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^buyGoodsResponseBlock)(NSMutableDictionary* resultDic);
 
 typedef void (^uploadCoverTmpImageResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^uploadStepTmpImageResponseBlock)(NSMutableDictionary* resultDic, NSInteger index);
@@ -178,5 +179,10 @@ typedef void (^deleteRecipeRespondBlock)(NSMutableDictionary* resultDic);
                                   withPage:(NSInteger)page
                              completionHandler:(getGoodsResponseBlock)completionBlock
                                   errorHandler:(MKNKErrorBlock)errorBlock;
+
+//买商品
+- (MKNetworkOperation*)buyGoodsWithDict:(NSMutableDictionary*)dict
+                         completionHandler:(buyGoodsResponseBlock)completionBlock
+                              errorHandler:(MKNKErrorBlock)errorBlock;
 
 @end

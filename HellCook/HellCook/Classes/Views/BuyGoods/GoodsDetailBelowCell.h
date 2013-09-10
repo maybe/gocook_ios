@@ -1,5 +1,5 @@
 //
-//  BuyGoodsBelowCell.h
+//  GoodsDetailBelowCell.h
 //  HellCook
 //
 //  Created by lxw on 13-9-5.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BuyGoodsBelowCell : UITableViewCell
+@interface GoodsDetailBelowCell : UITableViewCell
 {
   UILabel *nameLabel;
   UILabel *priceTitleLabel;
@@ -21,6 +21,7 @@
   UIButton *buyBtn;
   
   NSInteger mCellHeight;
+  NSMutableArray *dealMethodLabelArray;
 }
 
 @property (nonatomic,retain) UILabel *nameLabel;
@@ -32,5 +33,9 @@
 @property (nonatomic,retain) UILabel *introTitleLabel;
 @property (nonatomic,retain) UILabel *introLabel;
 @property (nonatomic,retain) UIButton *buyBtn;
+
+-(void)setData:(NSMutableDictionary*)dict;
+-(void)caculateHeight:(NSMutableDictionary*)dict;
+-(NSInteger)getCellHeight;
 
 @end

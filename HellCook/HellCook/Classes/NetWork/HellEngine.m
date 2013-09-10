@@ -706,4 +706,28 @@
   return op;
 }
 
+- (MKNetworkOperation*)buyGoodsWithDict:(NSMutableDictionary*)dict
+                      completionHandler:(buyGoodsResponseBlock)completionBlock
+                           errorHandler:(MKNKErrorBlock)errorBlock
+{
+  NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dict];
+  
+  MKNetworkOperation *op = [self operationWithPath:@"cook/order"
+                                            params:dic
+                                        httpMethod:@"POST"];
+  [op useCookie:NO];
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
 @end

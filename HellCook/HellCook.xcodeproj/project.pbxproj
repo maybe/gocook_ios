@@ -23,8 +23,8 @@
 		5EF9F42C17D6DABA005ABA82 /* SearchGoodsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F42B17D6DABA005ABA82 /* SearchGoodsView.xib */; };
 		5EF9F44C17D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44817D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m */; };
 		5EF9F44D17D8550F005ABA82 /* SearchGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44917D8550F005ABA82 /* SearchGoodsTableViewCell.m */; };
-		5EF9F45017D85594005ABA82 /* BuyGoodsTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44F17D85594005ABA82 /* BuyGoodsTopCell.m */; };
-		5EF9F45317D855B4005ABA82 /* BuyGoodsBelowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F45217D855B4005ABA82 /* BuyGoodsBelowCell.m */; };
+		5EF9F45017D85594005ABA82 /* GoodsDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44F17D85594005ABA82 /* GoodsDetailTopCell.m */; };
+		5EF9F45317D855B4005ABA82 /* GoodsDetailBelowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F45217D855B4005ABA82 /* GoodsDetailBelowCell.m */; };
 		5EF9F45517D855E1005ABA82 /* GoodsDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F45417D855E0005ABA82 /* GoodsDetailView.xib */; };
 		5EF9F45C17D8A82C005ABA82 /* BuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F45B17D8A82B005ABA82 /* BuyView.xib */; };
 		658090A667414B0C7C0FC74C /* MyFansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580968DA2D5E059A32783EE /* MyFansTableViewCell.m */; };
@@ -1358,8 +1358,12 @@
 				65809A0AA33D3331D334BF58 /* SSTextView.m in Sources */,
 				5EF9F44C17D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m in Sources */,
 				5EF9F44D17D8550F005ABA82 /* SearchGoodsTableViewCell.m in Sources */,
+
 				5EF9F45017D85594005ABA82 /* BuyGoodsTopCell.m in Sources */,
 				5EF9F45317D855B4005ABA82 /* BuyGoodsBelowCell.m in Sources */,
+				5EF9F45017D85594005ABA82 /* GoodsDetailTopCell.m in Sources */,
+				5EF9F45317D855B4005ABA82 /* GoodsDetailBelowCell.m in Sources */,
+				5EF9F45917D8A714005ABA82 /* BuyViewController.m in Sources */,
 				6580959500C5872FF90F20D7 /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				658098A29CBB41BD0CB20D1D /* DebugOptionController.m in Sources */,
 				658094DB5D7A7A8E7839B9ED /* AccountController.m in Sources */,

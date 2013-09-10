@@ -10,6 +10,7 @@
 #import "NetManager.h"
 #import "ODRefreshControl.h"
 #import "SearchGoodsTableViewCell.h"
+#import "GoodsDetailViewController.h"
 
 @interface SearchGoodsViewController ()
 
@@ -156,7 +157,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  
+  GoodsDetailViewController *pController = [[GoodsDetailViewController alloc] initWithNibName:@"GoodsDetailView" bundle:nil withData:[goodsListArray objectAtIndex:indexPath.row]];
+  [self.navigationController pushViewController:pController animated:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -197,13 +199,6 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
-/*    goodsListArray = [NSMutableArray arrayWithArray:resultDic[@"wares"]];
-    for (int i=0; i<[goodsListArray count]; i++) {
-      NSMutableDictionary *tmpDict = [goodsListArray objectAtIndex:i];
-    }*/
-    
-    
-    
     int totalCount = [resultDic[@"total_count"] intValue];
     totalPage = totalCount/10 + (totalCount % 10 > 0 ? 1 : 0);
     int originsize = goodsListArray.count;

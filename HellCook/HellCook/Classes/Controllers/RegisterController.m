@@ -165,7 +165,6 @@
   [textField setFrame:CGRectMake(30, 15, 200, 34)];
   [textField setPlaceholder:[dic objectForKey:@"placeHolder"]];
   [textField setBackgroundColor: [UIColor clearColor]];
-  [textField setDelegate:self];
   textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
   textField.keyboardType = UIKeyboardTypeDefault;
   textField.autocorrectionType = UITextAutocorrectionTypeNo;
