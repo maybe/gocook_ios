@@ -62,8 +62,8 @@
                jsonObject[@"user_id"], @"user_id",
                jsonObject[@"username"], @"username",
                tel, @"tel",
-               pass, @"password",
-               session, @"session",
+               @"1", @"password",
+               real_session, @"session",
                jsonObject[@"icon"], @"avatar", nil];
         
         [userAccount login:login_dic];
@@ -118,6 +118,26 @@
           real_session = session_array[session_array_count - 1];
         }
         [self setCookie:real_session];
+
+        User* user = [User sharedInstance];
+        user.account.username = jsonObject[@"username"];
+        user.account.isLogin = YES;
+        user.account.avatar = jsonObject[@"icon"];
+        user.account.user_id = [jsonObject[@"user_id"] intValue];
+
+        UserAccount* userAccount = [[User sharedInstance] account];
+        NSMutableDictionary* dic = nil;
+        dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
+            jsonObject[@"user_id"] , @"user_id",
+            jsonObject[@"username"], @"username",
+            tel, @"tel",
+            @"1", @"password",
+            real_session, @"session",
+            jsonObject[@"icon"], @"avatar", nil];
+
+        [userAccount login:dic];
+
+        [[[User sharedInstance] account] setShouldResetLogin:YES];
       }
       completionBlock(jsonObject);
     }];

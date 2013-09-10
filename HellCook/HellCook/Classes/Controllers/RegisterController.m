@@ -382,25 +382,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [HUD hide:YES afterDelay:2];
   }
   else {
-    User* user = [User sharedInstance];
-    user.account.username = resultDic[@"username"];
-    user.account.isLogin = YES;
-    user.account.avatar = resultDic[@"icon"];
-    user.account.user_id = [resultDic[@"user_id"] intValue];
-    
-    NSMutableDictionary* dic = nil;
-    dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
-           resultDic[@"user_id"] , @"user_id",
-           resultDic[@"username"], @"username",
-           telField.text, @"tel",
-           passwordField.text, @"password",
-           resultDic[@"icon"], @"avatar", nil];
-    
-    DBHandler* dbHandler = [DBHandler sharedInstance];
-    [dbHandler setAccount:dic];
-    
-    [[[User sharedInstance] account] setShouldResetLogin:YES];
-
     [self dismissViewControllerAnimated:YES completion:nil];
   }
 }
