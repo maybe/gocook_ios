@@ -711,6 +711,7 @@
                            errorHandler:(MKNKErrorBlock)errorBlock
 {
   NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dict];
+  NSLog(@"%@",dic);
   
   MKNetworkOperation *op = [self operationWithPath:@"cook/order"
                                             params:dic

@@ -148,9 +148,10 @@
   //confirmBtn
   confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(90, 180, 60, 27)];
   UIImage *btnBakImage = [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"];
-  UIImage *strechBakImage = [btnBakImage stretchableImageWithLeftCapWidth:2 topCapHeight:0];
+  UIImage *strechBakImage = [btnBakImage stretchableImageWithLeftCapWidth:0 topCapHeight:0];
   [confirmBtn setBackgroundImage:strechBakImage forState:UIControlStateNormal];
   [confirmBtn setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
+  [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
   [confirmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
   
   [self.view addSubview:nameLabel];
@@ -210,7 +211,7 @@
 
 - (void)confirm
 {
-  NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
+/*  NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
   //用户名
   if (amountTextField.text.length!=0 && ![amountTextField.text isEqual:@"0"])
   {
@@ -242,6 +243,30 @@
 
   NSMutableDictionary *finalDataDict = [[NSMutableDictionary alloc] init];
   [finalDataDict setObject:dataDict forKey:@"Wares"];
+  [self buyGoods:finalDataDict];*/
+  
+  
+  
+  if (amountTextField.text.length==0 || [amountTextField.text isEqual:@"0"])
+  {
+    HUD.labelText = @"购买数量不能为空或者0";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
+    
+    return;
+  }
+  if (methodTextField.text.length == 0)
+  {
+    HUD.labelText = @"加工方式不能为空";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
+    
+    return;
+  }
+  
+  NSString *content = [NSString stringWithFormat:@"\"Wares\":[{\"WareId\":%d,\"Quantity\":%@,\"Remark\":\"%@\"}]",[goodsDataDict[@"id"] intValue], amountTextField.text, methodTextField.text];
+  NSMutableDictionary *finalDataDict = [[NSMutableDictionary alloc] init];
+  [finalDataDict setObject:content forKey:@"wares"];
   [self buyGoods:finalDataDict];
 }
 
@@ -330,9 +355,19 @@
 -(void)buyGoodsCallBack:(NSMutableDictionary*) resultDic
 {
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  NSString *content;
   if (result == 0)
   {
+    content = [NSString stringWithFormat:@"下单成功，订单号%@",resultDic[@"order_id"]];
   }
+  else
+  {
+    content = [NSString stringWithFormat:@"下单失败，错误代码%@",resultDic[@"errorcode"]];
+  }
+  
+  HUD.labelText = content;
+  [HUD show:YES];
+  [HUD hide:YES afterDelay:2];
 }
 
 @end

@@ -11,6 +11,8 @@
 		5E13569217AD37AF009C623B /* MyIntroductionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E13569117AD37AF009C623B /* MyIntroductionView.xib */; };
 		5E13569617AD3AC5009C623B /* MyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E13569417AD3AC4009C623B /* MyFollowViewController.m */; };
 		5E13569917AD3AED009C623B /* MyFollowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E13569817AD3AED009C623B /* MyFollowView.xib */; };
+		5E896BE117DEED86009E210D /* GoodsDetailBelowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E896BDE17DEED86009E210D /* GoodsDetailBelowCell.m */; };
+		5E896BE217DEED86009E210D /* GoodsDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E896BE017DEED86009E210D /* GoodsDetailTopCell.m */; };
 		5ED7F11B17BDC86400223884 /* RecipeDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */; };
 		5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */; };
 		5ED7F13517BF837E00223884 /* RecipeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED7F13417BF837E00223884 /* RecipeCommentView.xib */; };
@@ -23,8 +25,6 @@
 		5EF9F42C17D6DABA005ABA82 /* SearchGoodsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F42B17D6DABA005ABA82 /* SearchGoodsView.xib */; };
 		5EF9F44C17D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44817D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m */; };
 		5EF9F44D17D8550F005ABA82 /* SearchGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44917D8550F005ABA82 /* SearchGoodsTableViewCell.m */; };
-		5EF9F45017D85594005ABA82 /* GoodsDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44F17D85594005ABA82 /* GoodsDetailTopCell.m */; };
-		5EF9F45317D855B4005ABA82 /* GoodsDetailBelowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F45217D855B4005ABA82 /* GoodsDetailBelowCell.m */; };
 		5EF9F45517D855E1005ABA82 /* GoodsDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F45417D855E0005ABA82 /* GoodsDetailView.xib */; };
 		5EF9F45C17D8A82C005ABA82 /* BuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F45B17D8A82B005ABA82 /* BuyView.xib */; };
 		658090A667414B0C7C0FC74C /* MyFansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580968DA2D5E059A32783EE /* MyFansTableViewCell.m */; };
@@ -185,6 +185,10 @@
 		5E13569317AD3AC4009C623B /* MyFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFollowViewController.h; path = Classes/Controllers/MyFollowViewController.h; sourceTree = "<group>"; };
 		5E13569417AD3AC4009C623B /* MyFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFollowViewController.m; path = Classes/Controllers/MyFollowViewController.m; sourceTree = "<group>"; };
 		5E13569817AD3AED009C623B /* MyFollowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFollowView.xib; sourceTree = "<group>"; };
+		5E896BDD17DEED86009E210D /* GoodsDetailBelowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodsDetailBelowCell.h; path = Classes/Views/BuyGoods/GoodsDetailBelowCell.h; sourceTree = "<group>"; };
+		5E896BDE17DEED86009E210D /* GoodsDetailBelowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsDetailBelowCell.m; path = Classes/Views/BuyGoods/GoodsDetailBelowCell.m; sourceTree = "<group>"; };
+		5E896BDF17DEED86009E210D /* GoodsDetailTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodsDetailTopCell.h; path = Classes/Views/BuyGoods/GoodsDetailTopCell.h; sourceTree = "<group>"; };
+		5E896BE017DEED86009E210D /* GoodsDetailTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsDetailTopCell.m; path = Classes/Views/BuyGoods/GoodsDetailTopCell.m; sourceTree = "<group>"; };
 		5ED7F11917BDC86400223884 /* RecipeDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailFooterView.h; sourceTree = "<group>"; };
 		5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailFooterView.m; sourceTree = "<group>"; };
 		5ED7F11C17BF301800223884 /* RecipeCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCommentsTableViewCell.h; sourceTree = "<group>"; };
@@ -204,10 +208,6 @@
 		5EF9F44917D8550F005ABA82 /* SearchGoodsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchGoodsTableViewCell.m; path = Classes/Views/BuyGoods/SearchGoodsTableViewCell.m; sourceTree = "<group>"; };
 		5EF9F44A17D8550F005ABA82 /* SearchGoodsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchGoodsTableViewCell.h; path = Classes/Views/BuyGoods/SearchGoodsTableViewCell.h; sourceTree = "<group>"; };
 		5EF9F44B17D8550F005ABA82 /* MaterialSearchBuyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaterialSearchBuyTableViewCell.h; path = Classes/Views/BuyGoods/MaterialSearchBuyTableViewCell.h; sourceTree = "<group>"; };
-		5EF9F44E17D85594005ABA82 /* BuyGoodsTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyGoodsTopCell.h; path = Classes/Views/BuyGoods/BuyGoodsTopCell.h; sourceTree = "<group>"; };
-		5EF9F44F17D85594005ABA82 /* BuyGoodsTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyGoodsTopCell.m; path = Classes/Views/BuyGoods/BuyGoodsTopCell.m; sourceTree = "<group>"; };
-		5EF9F45117D855B3005ABA82 /* BuyGoodsBelowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyGoodsBelowCell.h; path = Classes/Views/BuyGoods/BuyGoodsBelowCell.h; sourceTree = "<group>"; };
-		5EF9F45217D855B4005ABA82 /* BuyGoodsBelowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyGoodsBelowCell.m; path = Classes/Views/BuyGoods/BuyGoodsBelowCell.m; sourceTree = "<group>"; };
 		5EF9F45417D855E0005ABA82 /* GoodsDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailView.xib; sourceTree = "<group>"; };
 		5EF9F45B17D8A82B005ABA82 /* BuyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyView.xib; sourceTree = "<group>"; };
 		6580900978A163FF82F332A8 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginController.h; path = Classes/Controllers/LoginController.h; sourceTree = "<group>"; };
@@ -519,10 +519,10 @@
 				5EF9F44817D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m */,
 				5EF9F44A17D8550F005ABA82 /* SearchGoodsTableViewCell.h */,
 				5EF9F44917D8550F005ABA82 /* SearchGoodsTableViewCell.m */,
-				5EF9F44E17D85594005ABA82 /* BuyGoodsTopCell.h */,
-				5EF9F44F17D85594005ABA82 /* BuyGoodsTopCell.m */,
-				5EF9F45117D855B3005ABA82 /* BuyGoodsBelowCell.h */,
-				5EF9F45217D855B4005ABA82 /* BuyGoodsBelowCell.m */,
+				5E896BDF17DEED86009E210D /* GoodsDetailTopCell.h */,
+				5E896BE017DEED86009E210D /* GoodsDetailTopCell.m */,
+				5E896BDD17DEED86009E210D /* GoodsDetailBelowCell.h */,
+				5E896BDE17DEED86009E210D /* GoodsDetailBelowCell.m */,
 			);
 			name = BuyGoods;
 			sourceTree = "<group>";
@@ -1358,12 +1358,6 @@
 				65809A0AA33D3331D334BF58 /* SSTextView.m in Sources */,
 				5EF9F44C17D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m in Sources */,
 				5EF9F44D17D8550F005ABA82 /* SearchGoodsTableViewCell.m in Sources */,
-
-				5EF9F45017D85594005ABA82 /* BuyGoodsTopCell.m in Sources */,
-				5EF9F45317D855B4005ABA82 /* BuyGoodsBelowCell.m in Sources */,
-				5EF9F45017D85594005ABA82 /* GoodsDetailTopCell.m in Sources */,
-				5EF9F45317D855B4005ABA82 /* GoodsDetailBelowCell.m in Sources */,
-				5EF9F45917D8A714005ABA82 /* BuyViewController.m in Sources */,
 				6580959500C5872FF90F20D7 /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				658098A29CBB41BD0CB20D1D /* DebugOptionController.m in Sources */,
 				658094DB5D7A7A8E7839B9ED /* AccountController.m in Sources */,
@@ -1398,6 +1392,8 @@
 				658091F6C60F8CF7C573F92D /* MyRecipeMaterialTableViewCell.m in Sources */,
 				658099C184DF3A7763CC88FB /* MyRecipeStepTableViewCell.m in Sources */,
 				658099880806B59B7812736B /* MyRecipesTableViewCell.m in Sources */,
+				5E896BE117DEED86009E210D /* GoodsDetailBelowCell.m in Sources */,
+				5E896BE217DEED86009E210D /* GoodsDetailTopCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
