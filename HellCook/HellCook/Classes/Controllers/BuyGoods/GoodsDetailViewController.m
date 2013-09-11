@@ -33,6 +33,7 @@
 {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
+  self.navigationItem.title = @"商品信息";
   [self setLeftButton];
 }
 

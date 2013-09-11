@@ -36,6 +36,7 @@
 {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
+  self.navigationItem.title = @"输入购买信息";
   [self setLeftButton];
   [self initControls];
   
@@ -211,42 +212,6 @@
 
 - (void)confirm
 {
-/*  NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
-  //用户名
-  if (amountTextField.text.length!=0 && ![amountTextField.text isEqual:@"0"])
-  {
-    [dataDict setObject:amountTextField.text forKey:@"Quantity"];
-  }
-  else
-  {
-    HUD.labelText = @"购买数量不能为空或者0";
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:2];
-    
-    return;
-  }
-  
-  if (methodTextField.text.length != 0)
-  {
-    [dataDict setObject:methodTextField.text forKey:@"Remark"];
-  }
-  else
-  {
-    HUD.labelText = @"加工方式不能为空";
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:2];
-    
-    return;
-  }
-  
-  [dataDict setObject:goodsDataDict[@"id"] forKey:@"WareId"];
-
-  NSMutableDictionary *finalDataDict = [[NSMutableDictionary alloc] init];
-  [finalDataDict setObject:dataDict forKey:@"Wares"];
-  [self buyGoods:finalDataDict];*/
-  
-  
-  
   if (amountTextField.text.length==0 || [amountTextField.text isEqual:@"0"])
   {
     HUD.labelText = @"购买数量不能为空或者0";

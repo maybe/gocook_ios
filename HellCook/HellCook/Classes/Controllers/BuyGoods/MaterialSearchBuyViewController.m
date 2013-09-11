@@ -42,6 +42,7 @@
 {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
+  self.navigationItem.title = @"选购商品";
   [self setLeftButton];
 //  [self setRightButton];
 
