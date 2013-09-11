@@ -48,6 +48,5 @@
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withData:(NSMutableDictionary*)data;
-- (void)setProcessLabel;
 
 @end
