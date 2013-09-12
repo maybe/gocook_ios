@@ -7,14 +7,14 @@
 //
 
 #import "BuyViewController.h"
-#import "NetManager.h"
+#import "MaterialSearchBuyViewController.h"
 
 @interface BuyViewController ()
 
 @end
 
 @implementation BuyViewController
-@synthesize nameLabel,priceTitleLabel,priceLabel,unitLabel,specLabel,processTitleLabel,buyTitleLabel,amountTextField,confirmBtn,dropBtn,methodTextField,picker,netOperation,unitLabel2;
+@synthesize nameLabel,priceTitleLabel,priceLabel,unitLabel,specLabel,processTitleLabel,buyTitleLabel,amountTextField,confirmBtn,dropBtn,methodTextField,picker,unitLabel2;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withData:(NSMutableDictionary*)data
 {
@@ -28,6 +28,8 @@
     [self.view addSubview:HUD];
     HUD.mode = MBProgressHUDModeText;
     HUD.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(afterConfirm:) name:@"AfterConfirmGoods" object:nil];
   }
   return self;
 }
@@ -229,10 +231,19 @@
     return;
   }
   
-  NSString *content = [NSString stringWithFormat:@"\"Wares\":[{\"WareId\":%d,\"Quantity\":%@,\"Remark\":\"%@\"}]",[goodsDataDict[@"id"] intValue], amountTextField.text, methodTextField.text];
+/*  NSString *content = [NSString stringWithFormat:@"\"Wares\":[{\"WareId\":%d,\"Quantity\":%@,\"Remark\":\"%@\"}]",[goodsDataDict[@"id"] intValue], amountTextField.text, methodTextField.text];
   NSMutableDictionary *finalDataDict = [[NSMutableDictionary alloc] init];
-  [finalDataDict setObject:content forKey:@"wares"];
-  [self buyGoods:finalDataDict];
+  [finalDataDict setObject:content forKey:@"wares"];*/
+//  [self buyGoods:finalDataDict];
+  
+  [goodsDataDict setObject:amountTextField.text forKey:@"Quantity"];
+  [goodsDataDict setObject:methodTextField.text forKey:@"Remark"];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmGoods" object:goodsDataDict];
+}
+
+-(void)afterConfirm:(NSNotification *)notification
+{
+  [self.navigationController popToViewController:(MaterialSearchBuyViewController*)notification.object animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -305,35 +316,7 @@
 }
 
 
-#pragma mark - network
--(void)buyGoods:(NSMutableDictionary*)data
-{
-  self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                       buyGoodsWithDict:data
-                       completionHandler:^(NSMutableDictionary *resultDic){
-                         [self buyGoodsCallBack:resultDic];
-                       }
-                       errorHandler:^(NSError *error){}];
-  
-}
 
--(void)buyGoodsCallBack:(NSMutableDictionary*) resultDic
-{
-  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  NSString *content;
-  if (result == 0)
-  {
-    content = [NSString stringWithFormat:@"下单成功，订单号%@",resultDic[@"order_id"]];
-  }
-  else
-  {
-    content = [NSString stringWithFormat:@"下单失败，错误代码%@",resultDic[@"errorcode"]];
-  }
-  
-  HUD.labelText = content;
-  [HUD show:YES];
-  [HUD hide:YES afterDelay:2];
-}
 
 
 

@@ -7,14 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
+@class MBProgressHUD;
 @interface MaterialSearchBuyViewController : UIViewController
 {
   UITableView *myTableView;
   NSMutableArray *unslashMaterialArray;
+  NSInteger selectedRowOfCell;
+  
+  MBProgressHUD *HUD;
 }
 
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;
+@property (strong, nonatomic) MKNetworkOperation *netOperation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withData:(NSMutableArray*)data;
 

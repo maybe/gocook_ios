@@ -35,6 +35,6 @@
 @property (nonatomic,retain) UILabel *priceLabel;
 @property (nonatomic,retain) UILabel *processLabel;
 
-- (void)setData:(NSMutableDictionary*)dict;
+- (void)setData:(NSMutableDictionary*)dict withRow:(NSInteger)row;
 
 @end

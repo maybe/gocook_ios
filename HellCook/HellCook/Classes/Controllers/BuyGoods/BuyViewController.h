@@ -45,7 +45,7 @@
 @property (nonatomic,retain) UIButton *dropBtn;
 @property (nonatomic,retain) UITextField *methodTextField;
 @property (nonatomic,retain) IBOutlet UIPickerView *picker;
-@property (strong, nonatomic) MKNetworkOperation *netOperation;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withData:(NSMutableDictionary*)data;
 

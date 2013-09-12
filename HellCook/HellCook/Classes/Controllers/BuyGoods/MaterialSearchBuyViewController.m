@@ -9,19 +9,21 @@
 #import "MaterialSearchBuyViewController.h"
 #import "MaterialSearchBuyTableViewCell.h"
 #import "SearchGoodsViewController.h"
+#import "NetManager.h"
 
 @interface MaterialSearchBuyViewController ()
 
 @end
 
 @implementation MaterialSearchBuyViewController
-@synthesize myTableView;
+@synthesize myTableView,netOperation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withData:(NSMutableArray*)data
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
   // Custom initialization
+    selectedRowOfCell = -1;
     unslashMaterialArray = [[NSMutableArray alloc] init];
     for (int i=0; i<[data count]; i++)
     {
@@ -31,9 +33,14 @@
         [materialDict setObject:@"NotBuy" forKey:@"state"];
         
         [unslashMaterialArray addObject:materialDict];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(confirm:) name:@"ConfirmGoods" object:nil];
       }
     }
     
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.mode = MBProgressHUDModeText;
   }
   return self;
 }
@@ -44,7 +51,7 @@
   // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = @"选购商品";
   [self setLeftButton];
-//  [self setRightButton];
+  [self setRightButton];
 
 }
 
@@ -94,13 +101,53 @@
   [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
 
+-(void)confirm:(NSNotification *)notification
+{
+  NSMutableDictionary *dict = (NSMutableDictionary*)notification.object;
+  [[unslashMaterialArray objectAtIndex:selectedRowOfCell] addEntriesFromDictionary:dict];
+  [[unslashMaterialArray objectAtIndex:selectedRowOfCell] setObject:@"Buy" forKey:@"state"];
+  
+  NSIndexPath *indexpath = [NSIndexPath indexPathForRow:selectedRowOfCell inSection:0];
+  [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
+  
+  
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"AfterConfirmGoods" object:self];
+}
+
 - (void)buy
 {
+  NSMutableString *content = [NSMutableString stringWithString:@"\"Wares\":["];
+  NSInteger buyNum = 0;
+  for (int i=0; i<[unslashMaterialArray count]; i++,buyNum++)
+  {
+    if (![unslashMaterialArray[i][@"state"] isEqual:@"NotBuy"])
+    {
+      NSMutableString *oneBill = [NSMutableString stringWithFormat:@"{\"WareId\":%d,\"Quantity\":%@,\"Remark\":\"%@\"},",[unslashMaterialArray[i][@"id"] intValue], unslashMaterialArray[i][@"Quantity"], unslashMaterialArray[i][@"Remark"]];
+      
+      [content appendString:oneBill];
+    }
+  }
   
+  if (buyNum == 0)
+  {
+    HUD.labelText = @"未选择买入物品！";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
+  }
+  else
+  {
+    content = [NSMutableString stringWithString:[content substringToIndex:([content length]-1)]];
+    [content appendString:@"]"];
+    NSMutableDictionary *finalDataDict = [[NSMutableDictionary alloc] init];
+    [finalDataDict setObject:content forKey:@"wares"];
+    [self buyGoods:finalDataDict];
+  }
 }
 
 -(void)GotoSearchGoods:(UIButton*)sender
 {
+  selectedRowOfCell = sender.tag;
   NSString *keyword = [sender associativeObjectForKey:@"keyword"];
   SearchGoodsViewController *pController = [[SearchGoodsViewController alloc] initWithNibName:@"SearchGoodsView" bundle:nil withKeyword:keyword];
   [self.navigationController pushViewController:pController animated:YES];
@@ -138,7 +185,7 @@
     cell = [[MaterialSearchBuyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
   
-  [cell setData:unslashMaterialArray[indexPath.row]];
+  [cell setData:unslashMaterialArray[indexPath.row] withRow:indexPath.row];
   
   return cell;
 }
@@ -148,7 +195,38 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  selectedRowOfCell = indexPath.row;
+}
 
+
+#pragma mark - network
+-(void)buyGoods:(NSMutableDictionary*)data
+{
+  self.netOperation = [[[NetManager sharedInstance] hellEngine]
+                       buyGoodsWithDict:data
+                       completionHandler:^(NSMutableDictionary *resultDic){
+                         [self buyGoodsCallBack:resultDic];
+                       }
+                       errorHandler:^(NSError *error){}];
+  
+}
+
+-(void)buyGoodsCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  NSString *content;
+  if (result == 0)
+  {
+    content = [NSString stringWithFormat:@"下单成功，订单号%@",resultDic[@"order_id"]];
+  }
+  else
+  {
+    content = [NSString stringWithFormat:@"下单失败，错误代码%@",resultDic[@"errorcode"]];
+  }
+  
+  HUD.labelText = content;
+  [HUD show:YES];
+  [HUD hide:YES afterDelay:2];
 }
 
 @end
