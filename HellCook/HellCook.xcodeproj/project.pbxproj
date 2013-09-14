@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E001D7717E2AC4200BDAC62 /* HistoryDealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E001D7517E2AC4100BDAC62 /* HistoryDealViewController.m */; };
+		5E001D7A17E2AD5C00BDAC62 /* HistoryDealView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E001D7917E2AD5C00BDAC62 /* HistoryDealView.xib */; };
+		5E001D7D17E2AF5400BDAC62 /* HistoryDealTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E001D7C17E2AF5400BDAC62 /* HistoryDealTableViewCell.m */; };
+		5E001D8117E307C900BDAC62 /* DealDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E001D7F17E307C800BDAC62 /* DealDetailViewController.m */; };
+		5E001D8417E3082700BDAC62 /* DealDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E001D8317E3082700BDAC62 /* DealDetailView.xib */; };
 		5E13568F17AD34D6009C623B /* MyIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E13568D17AD34D5009C623B /* MyIntroductionViewController.m */; };
 		5E13569217AD37AF009C623B /* MyIntroductionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E13569117AD37AF009C623B /* MyIntroductionView.xib */; };
 		5E13569617AD3AC5009C623B /* MyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E13569417AD3AC4009C623B /* MyFollowViewController.m */; };
@@ -179,6 +184,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E001D7417E2AC4100BDAC62 /* HistoryDealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryDealViewController.h; path = Classes/Controllers/HistoryDealViewController.h; sourceTree = "<group>"; };
+		5E001D7517E2AC4100BDAC62 /* HistoryDealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryDealViewController.m; path = Classes/Controllers/HistoryDealViewController.m; sourceTree = "<group>"; };
+		5E001D7917E2AD5C00BDAC62 /* HistoryDealView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryDealView.xib; sourceTree = "<group>"; };
+		5E001D7B17E2AF5400BDAC62 /* HistoryDealTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryDealTableViewCell.h; path = Classes/Views/HistoryDealTableViewCell.h; sourceTree = "<group>"; };
+		5E001D7C17E2AF5400BDAC62 /* HistoryDealTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryDealTableViewCell.m; path = Classes/Views/HistoryDealTableViewCell.m; sourceTree = "<group>"; };
+		5E001D7E17E307C800BDAC62 /* DealDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DealDetailViewController.h; path = Classes/Controllers/DealDetailViewController.h; sourceTree = "<group>"; };
+		5E001D7F17E307C800BDAC62 /* DealDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DealDetailViewController.m; path = Classes/Controllers/DealDetailViewController.m; sourceTree = "<group>"; };
+		5E001D8317E3082700BDAC62 /* DealDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetailView.xib; sourceTree = "<group>"; };
 		5E13568C17AD34D5009C623B /* MyIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroductionViewController.h; path = Classes/Controllers/MyIntroductionViewController.h; sourceTree = "<group>"; };
 		5E13568D17AD34D5009C623B /* MyIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroductionViewController.m; path = Classes/Controllers/MyIntroductionViewController.m; sourceTree = "<group>"; };
 		5E13569117AD37AF009C623B /* MyIntroductionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyIntroductionView.xib; sourceTree = "<group>"; };
@@ -530,16 +543,20 @@
 		6580942BE43231AAB6CEC932 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				65809DD0E5E5A5EA8826C091 /* DebugOptionController.h */,
 				6580940B6BB08C5A944096C5 /* DebugOptionController.m */,
 				65809C6523D390F6B4CCF41B /* AccountController.h */,
 				658095B3BD5741A74056E868 /* AccountController.m */,
-				65809DD0E5E5A5EA8826C091 /* DebugOptionController.h */,
-				658095FAD3831271D58D41C6 /* RegisterController.m */,
 				658098D698C24138011800E3 /* RegisterController.h */,
+				658095FAD3831271D58D41C6 /* RegisterController.m */,
 				6580926E300199B427BC37E6 /* MyCollectionController.h */,
 				65809B7471B9CD5BFADF5A98 /* MyCollectionController.m */,
-				658091650B219FCFA570043D /* LoginController.m */,
 				6580900978A163FF82F332A8 /* LoginController.h */,
+				658091650B219FCFA570043D /* LoginController.m */,
+				5E001D7417E2AC4100BDAC62 /* HistoryDealViewController.h */,
+				5E001D7517E2AC4100BDAC62 /* HistoryDealViewController.m */,
+				5E001D7E17E307C800BDAC62 /* DealDetailViewController.h */,
+				5E001D7F17E307C800BDAC62 /* DealDetailViewController.m */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -644,6 +661,8 @@
 		65809D02C56D4DE002245273 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				5E001D7B17E2AF5400BDAC62 /* HistoryDealTableViewCell.h */,
+				5E001D7C17E2AF5400BDAC62 /* HistoryDealTableViewCell.m */,
 				6580937C9842E4EDD0C59193 /* AccountTableViewGridCell.m */,
 				65809C928F9F010FF3D8CFE3 /* AccountTableViewCell.h */,
 				65809D0BC85C09A006F2682F /* AccountTableViewGridCell.h */,
@@ -908,6 +927,8 @@
 		BA73C95316FE37D9008284D8 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				5E001D8317E3082700BDAC62 /* DealDetailView.xib */,
+				5E001D7917E2AD5C00BDAC62 /* HistoryDealView.xib */,
 				5EF9F45B17D8A82B005ABA82 /* BuyView.xib */,
 				5EF9F45417D855E0005ABA82 /* GoodsDetailView.xib */,
 				5EF9F42B17D6DABA005ABA82 /* SearchGoodsView.xib */,
@@ -1264,6 +1285,8 @@
 				5EF9F42C17D6DABA005ABA82 /* SearchGoodsView.xib in Resources */,
 				5EF9F45517D855E1005ABA82 /* GoodsDetailView.xib in Resources */,
 				5EF9F45C17D8A82C005ABA82 /* BuyView.xib in Resources */,
+				5E001D7A17E2AD5C00BDAC62 /* HistoryDealView.xib in Resources */,
+				5E001D8417E3082700BDAC62 /* DealDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1394,6 +1417,9 @@
 				658099880806B59B7812736B /* MyRecipesTableViewCell.m in Sources */,
 				5E896BE117DEED86009E210D /* GoodsDetailBelowCell.m in Sources */,
 				5E896BE217DEED86009E210D /* GoodsDetailTopCell.m in Sources */,
+				5E001D7717E2AC4200BDAC62 /* HistoryDealViewController.m in Sources */,
+				5E001D7D17E2AF5400BDAC62 /* HistoryDealTableViewCell.m in Sources */,
+				5E001D8117E307C900BDAC62 /* DealDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

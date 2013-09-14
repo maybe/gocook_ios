@@ -738,7 +738,33 @@
                                         httpMethod:@"POST"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    NSLog(@"%@",completedOperation.responseString);
+//    NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+- (MKNetworkOperation*)getHistoryDealWithDict:(NSMutableDictionary*)dict
+                            completionHandler:(getHistoryDealResponseBlock)completionBlock
+                                 errorHandler:(MKNKErrorBlock)errorBlock
+{
+  NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dict];
+//  NSLog(@"%@",dic);
+  
+  MKNetworkOperation *op = [self operationWithPath:@"cook/his_orders"
+                                            params:dic
+                                        httpMethod:@"POST"];
+  
+  [op useCookie:NO];
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+//    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];

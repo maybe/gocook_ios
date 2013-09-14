@@ -23,6 +23,7 @@
 #import "UIZoomNavigationController.h"
 #import "MainController.h"
 #import "HomePageController.h"
+#import "HistoryDealViewController.h"
 
 @interface AccountController ()
 
@@ -409,7 +410,8 @@ destructiveButtonTitle:@"确定"
 
 - (void)onClickCountGrid:(UIButton *)sender {
 //  NSLog(@"%d",sender.tag);
-  if (sender.tag == 10001 || sender.tag == 10002 || sender.tag == 10004) {
+  if (sender.tag == 10001 || sender.tag == 10002 || sender.tag == 10004)
+  {
     NSInteger index = 0;
     switch (sender.tag) {
       case 10001://我的关注
@@ -435,6 +437,12 @@ destructiveButtonTitle:@"确定"
   {
     if (self.navigationController) {
       [self.navigationController pushViewController:[[MyCollectionController alloc] initWithNibName:@"MyRecipesView" bundle:nil] animated:YES];
+    }
+  }
+  else if (sender.tag == 10005)//我的购买
+  {
+    if (self.navigationController) {
+      [self.navigationController pushViewController:[[HistoryDealViewController alloc] initWithNibName:@"HistoryDealView" bundle:nil] animated:YES];
     }
   }
 }

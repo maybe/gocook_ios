@@ -33,6 +33,7 @@ typedef void (^addCollectionResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^delCollectionResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^getGoodsResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^buyGoodsResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^getHistoryDealResponseBlock)(NSMutableDictionary* resultDic);
 
 typedef void (^uploadCoverTmpImageResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^uploadStepTmpImageResponseBlock)(NSMutableDictionary* resultDic, NSInteger index);
@@ -184,5 +185,10 @@ typedef void (^deleteRecipeRespondBlock)(NSMutableDictionary* resultDic);
 - (MKNetworkOperation*)buyGoodsWithDict:(NSMutableDictionary*)dict
                          completionHandler:(buyGoodsResponseBlock)completionBlock
                               errorHandler:(MKNKErrorBlock)errorBlock;
+
+//获取历史订单
+- (MKNetworkOperation*)getHistoryDealWithDict:(NSMutableDictionary*)dict
+                      completionHandler:(getHistoryDealResponseBlock)completionBlock
+                           errorHandler:(MKNKErrorBlock)errorBlock;
 
 @end
