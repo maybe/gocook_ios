@@ -7,6 +7,7 @@
 //
 
 #import "Common.h"
+#import "NetManager.h"
 
 @implementation Common
 
@@ -58,6 +59,27 @@
   [outString appendFormat:@"[%2d] %@\n", indent, [[aView class] description]];
   for (UIView *view in [aView subviews])
     [self dumpView:view atIndent:indent + 1 into:outString];
+}
+
++ (NSString *)getUrl:(NSString *)url withType:(FullImageUrl)type {
+  if ([[url substringToIndex:4] isEqual:@"http"]) {
+    return url;
+  } else {
+    NetManager * netManager = [NetManager sharedInstance];
+    NSArray* tmp_array = [url componentsSeparatedByString:@"/"];
+    NSString* lastUrl = [tmp_array lastObject];
+    if (type == AvatarImageUrl) {
+      return [NSString stringWithFormat: @"http://%@/images/avatars/%@", netManager.host, lastUrl];
+    } else if (type == RecipeStepImageUrl) {
+      return [NSString stringWithFormat: @"http://%@/images/recipe/step/%@", netManager.host, lastUrl];
+    } else if (type == Recipe140ImageUrl) {
+      return [NSString stringWithFormat: @"http://%@/images/recipe/140/%@", netManager.host, lastUrl];
+    } else if (type == Recipe526ImageUrl) {
+      return [NSString stringWithFormat: @"http://%@/images/recipe/526/%@", netManager.host, lastUrl];
+    } else {
+      return [NSString stringWithFormat: @"http://%@/%@", netManager.host, url];
+    }
+  }
 }
 
 // Start the tree recursion at level 0 with the root view

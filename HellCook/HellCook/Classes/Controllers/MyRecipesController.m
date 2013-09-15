@@ -1,5 +1,5 @@
 //
-//  MyRecipesContorller.m
+//  MyRecipesController.m
 //  HellCook
 //
 //  Created by panda on 8/3/13.
@@ -69,7 +69,7 @@
 - (void)reloadRecipeData {
   [mMyRecipeArray removeAllObjects];
   curPage = 0;
-  [self.tableView reloadData];
+  //[self.tableView reloadData];
   [self getRecipesData];
 }
 
@@ -299,7 +299,8 @@
     recipeData.user_id = [recipeDic[@"author_id"] intValue];
     recipeData.name = recipeDic[@"recipe_name"];
     recipeData.description = recipeDic[@"intro"];
-    recipeData.cover_img = recipeDic[@"cover_img"];
+    recipeData.cover_img = recipeDic[@"cover_image"];
+    recipeData.cover_img_status = RecipeImage_UPLOADED;
     recipeData.tips = recipeDic[@"tips"];
 
     NSArray* materialArray = [recipeDic[@"materials"] componentsSeparatedByString:@"|"];
@@ -317,6 +318,12 @@
 
       pDic[@"step"] = [[NSString alloc]initWithString:stepArray[j][@"content"]];
       pDic[@"imageUrl"] = [[NSString alloc]initWithString:stepArray[j][@"img"]];
+      if ([pDic[@"imageUrl"] isEqual:@""]) {
+        pDic[@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_UNSELECTED];
+
+      } else {
+        pDic[@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_UPLOADED];
+      }
 
       [recipeData.recipe_steps addObject:pDic];
     }

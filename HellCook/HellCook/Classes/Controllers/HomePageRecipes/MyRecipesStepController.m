@@ -52,7 +52,14 @@
   [self.tableView setFrame:viewframe];
   
   cellContentList = [[NSMutableArray alloc]init];
-  RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+
+  RecipeData* pRecipeData = nil;
+  if ([[[User sharedInstance] recipe] getIsCreate]) {
+    pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  } else {
+    pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
+  }
+
   [cellContentList addObjectsFromArray: pRecipeData.recipe_steps];
   
   [super viewDidLoad];
@@ -85,17 +92,17 @@
 #pragma mark - Table view data source
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
   return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
   return cellContentList.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   return 126;
 }
@@ -113,7 +120,7 @@
   
   [cell setDelegate: self];
   cell.indexInTable = indexPath.row;
-  [cell setData: [cellContentList objectAtIndex: indexPath.row]];
+  [cell setData: [cellContentList objectAtIndex: (NSUInteger)indexPath.row]];
   
   return cell;
 }
@@ -125,7 +132,7 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 }
 
@@ -188,10 +195,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   //[cell.upImageView setImage:image];
   
   NSIndexPath *indexPath = [tableView indexPathForCell: cell];
-  cellContentList[indexPath.row][@"pickRealImage"] = image;
-  cellContentList[indexPath.row][@"pickImage"] = (NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL];
-  
-  [cell setData:cellContentList[indexPath.row]];
+  cellContentList[(NSUInteger)indexPath.row][@"pickRealImage"] = image;
+  cellContentList[(NSUInteger)indexPath.row][@"pickImage"] = (NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL];
+  cellContentList[(NSUInteger)indexPath.row][@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_SELECTED];
+
+  [cell setData:cellContentList[(NSUInteger)indexPath.row]];
 }
 
 -(void)uploadStepTmpFile
@@ -227,10 +235,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
-    cellContentList[index][@"imageUrl"] = resultDic[@"avatar"];
+    cellContentList[(NSUInteger)index][@"imageUrl"] = resultDic[@"avatar"];
+    cellContentList[(NSUInteger)index][@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_UPLOADED];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)[tableView cellForRowAtIndexPath: indexPath];
-    [cell setData:cellContentList[indexPath.row]];
+    [cell setData:cellContentList[(NSUInteger)indexPath.row]];
   }
   else if (result == 1){
     //TODO:
@@ -325,30 +334,33 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 #pragma mark - Set Data to Recipe
 -(void)setDataToRecipe
 {  
-  RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
-  
+  RecipeData* pRecipeData = nil;
+  if ([[[User sharedInstance] recipe] getIsCreate]) {
+    pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  } else {
+    pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
+  }
+
   [pRecipeData.recipe_steps removeAllObjects];
   
   for (int i = 0; i < cellContentList.count; i++) {
-    NSString* stepStr = [cellContentList[i][@"step"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* stepStr = [cellContentList[(NSUInteger)i][@"step"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    NSURL* pickImageUrl = cellContentList[i][@"pickImage"];
-    UIImage* pImage = cellContentList[i][@"pickRealImage"];
-    NSString* imageUrl = cellContentList[i][@"imageUrl"];
+    NSString* imageUrl = cellContentList[(NSUInteger)i][@"imageUrl"];
     
     if (![stepStr isEqualToString:@""]) {
       
       NSMutableDictionary* pDic = [[NSMutableDictionary alloc]init];
       
       pDic[@"step"] = [[NSString alloc]initWithString:stepStr];
-      if (pickImageUrl) {
-        pDic[@"pickImage"] = [[NSURL alloc]initWithString:pickImageUrl.absoluteString];
-        pDic[@"pickRealImage"] = pImage;
-      }
       
-      if (imageUrl) {
-        pDic[@"imageUrl"] = [[NSString alloc]initWithString:imageUrl];;
+      if (imageUrl && ![imageUrl isEqualToString:@""]) {
+        pDic[@"imageUrl"] = [[NSString alloc]initWithString:imageUrl];
+        pDic[@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_UPLOADED];
+      } else {
+        pDic[@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_UNSELECTED];
       }
+
       
       [pRecipeData.recipe_steps addObject:pDic];
     }
@@ -357,7 +369,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)changeInputData:(NSString *)data WithIndex:(NSInteger)index
 {
-  cellContentList[index][@"step"] = [[NSString alloc]initWithString:data];
+  cellContentList[(NSUInteger)index][@"step"] = [[NSString alloc]initWithString:data];
 }
 
 

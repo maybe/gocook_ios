@@ -9,7 +9,7 @@
 #import "Recipe.h"
 
 @implementation RecipeData
-@synthesize recipe_id, user_id, create_time, name, description, collected_count, dish_count, comment_count, browse_count, catgory, cover_img, materials, recipe_steps, tips;
+@synthesize recipe_id, user_id, create_time, cover_img_status, name, description, collected_count, dish_count, comment_count, browse_count, category, cover_img, materials, recipe_steps, tips;
 -(id)init{
   if(self=[super init]){
     recipe_id = 0;
@@ -21,9 +21,9 @@
     dish_count = 0;
     comment_count = 0;
     browse_count = 0;
-    catgory = @"";
+    category = @"";
     cover_img = @"";
-    cover_image_obj = nil;
+    cover_img_status = RecipeImage_UNSELECTED;
     materials = [[NSMutableArray alloc]init];
     recipe_steps = [[NSMutableArray alloc]init];
     tips = @"";

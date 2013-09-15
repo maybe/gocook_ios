@@ -7,10 +7,8 @@
 //
 
 #import "MyRecipeStepTableViewCell.h"
-#import "QuartzCore/QuartzCore.h"
 #import "UIImageView+WebCache.h"
-#import "NetManager.h"
-#import "KeyboardHandler.h"
+#import "Recipe.h"
 
 
 @implementation MyRecipeStepTableViewHeader
@@ -152,22 +150,20 @@
 {
   [stepTextView setText:dictionary[@"step"]];
   [stepTextView setPlaceholder: [NSString stringWithFormat:@"步骤:%d", self.indexInTable+1]];
-  if ([[dictionary allKeys] containsObject: @"pickRealImage"]) {
-    [upImageView setImage:dictionary[@"pickRealImage"]];
-    [selectButton setTitle:@"上传" forState:UIControlStateNormal];
-  } else if ([[dictionary allKeys] containsObject: @"pickImage"]
-      && ![dictionary[@"pickImage"] isEqualToString:@""]) {
-    [Common loadPhotoFromURL:dictionary[@"pickImage"] thumbnail:NO showIn:upImageView];
-    // 保存起来
-    //dictionary[@"pickRealImage"] = upImageView.image;
-    [selectButton setTitle:@"上传" forState:UIControlStateNormal];
+
+  if ([[dictionary allKeys] containsObject:@"imageState"] && [dictionary[@"imageState"] intValue] == RecipeImage_UPLOADED)
+  {
+    [selectButton setTitle:@"替换" forState:UIControlStateNormal];
+    [upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:dictionary[@"imageUrl"] withType:RecipeStepImageUrl]]
+                placeholderImage:defaultImage];
+  } else if ([[dictionary allKeys] containsObject:@"imageState"] && [dictionary[@"imageState"] intValue] == RecipeImage_SELECTED) {
+    if ([[dictionary allKeys] containsObject: @"pickRealImage"]) {
+      [upImageView setImage:dictionary[@"pickRealImage"]];
+      [selectButton setTitle:@"上传" forState:UIControlStateNormal];
+    }
   } else {
     [upImageView setImage:defaultImage];
     [selectButton setTitle:@"+图片" forState:UIControlStateNormal];
-  }
-  
-  if ([[dictionary allKeys] containsObject:@"imageUrl"]) {
-    [selectButton setTitle:@"已上传" forState:UIControlStateNormal];
   }
 }
 

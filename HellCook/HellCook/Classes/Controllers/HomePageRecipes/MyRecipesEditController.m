@@ -17,6 +17,7 @@
 #import "UIImageView+WebCache.h"
 #import "DefaultGroupedTableCell.h"
 #import "MyRecipesMaterialController.h"
+#import "CommonDef.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45
@@ -61,8 +62,8 @@
   CGRect frame = self.tableView.tableHeaderView.frame;
   frame.size.height = 184;
   self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
-  CGFloat tablewidth = self.tableView.frame.size.width;
-  headImageView = [[MyRecipeEditAvatarView alloc]initWithFrame:CGRectMake(tablewidth/2-75, 30, 150, 150)];
+  CGFloat tableWidth = self.tableView.frame.size.width;
+  headImageView = [[MyRecipeEditAvatarView alloc]initWithFrame:CGRectMake(tableWidth /2-75, 30, 150, 150)];
   [self.tableView.tableHeaderView addSubview:headImageView];
   
   //keyboard
@@ -78,7 +79,10 @@
     [self.nameField setText: pRecipeData.name];
     [self.introTextView setText:pRecipeData.description];
 
-    [headImageView.upImageView setImageWithURL:[NSURL URLWithString:pRecipeData.cover_img] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+    [headImageView.upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:pRecipeData.cover_img withType:Recipe526ImageUrl]]
+                              placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+
+    [headImageView.selectButton setTitle:@"替换" forState:UIControlStateNormal];
   }
   
   [super viewDidLoad];
@@ -111,17 +115,17 @@
 #pragma mark - Table view data source
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
   return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
   return cellContentList.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (cellContentList.count==1)
     return kTableCellSingle;
@@ -137,7 +141,7 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   
-  NSMutableDictionary* dic = [cellContentList objectAtIndex:indexPath.row];
+  NSMutableDictionary* dic = [cellContentList objectAtIndex:(NSUInteger)indexPath.row];
   UITextField* textField = [dic objectForKey:@"textfield"];
   SSTextView* textView = [dic objectForKey:@"textview"];
   
@@ -187,7 +191,7 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 }
 
@@ -300,12 +304,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 -(void)UploadCallBack:(NSMutableDictionary*)resultDic
 {
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result == 0)
+  if (result == GC_Success)
   {
     [headImageView setAssociativeObject:resultDic[@"avatar"] forKey:@"cover_img"];
-    [headImageView.selectButton setTitle:@"已上传" forState:UIControlStateNormal];
+    [headImageView.selectButton setTitle:@"替换" forState:UIControlStateNormal];
   }
-  else if (result == 1){
+  else if (result == GC_AuthAccountInvalid){
     //TODO:
   }
   
@@ -336,7 +340,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 }
 
 
-#pragma mark - Navi Butons
+#pragma mark - Navigation Buttons
 
 - (void)setLeftButton
 {

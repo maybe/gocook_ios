@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+  RecipeImage_UPLOADED = 0,                      // 已上传
+  RecipeImage_UNSELECTED = 1,                    // 未选择
+  RecipeImage_SELECTED = 2,                      // 已选择
+} RecipeImageStatus;
+
+
 @interface RecipeData : NSObject
 {
   NSInteger recipe_id;
@@ -19,9 +26,9 @@
   NSInteger dish_count;
   NSInteger comment_count;
   NSInteger browse_count;
-  NSString* catgory;
+  NSString* category;
   NSString* cover_img;
-  UIImage* cover_image_obj;
+  RecipeImageStatus cover_img_status;
   NSMutableArray* materials;
   NSMutableArray* recipe_steps;
   NSString* tips;
@@ -36,8 +43,9 @@
 @property NSInteger dish_count;
 @property NSInteger comment_count;
 @property NSInteger browse_count;
-@property (nonatomic, retain) NSString* catgory;
+@property (nonatomic, retain) NSString*category;
 @property (nonatomic, retain) NSString* cover_img;
+@property RecipeImageStatus cover_img_status;
 @property (nonatomic, retain) NSMutableArray* materials;
 @property (nonatomic, retain) NSMutableArray* recipe_steps;
 @property (nonatomic, retain) NSString* tips;

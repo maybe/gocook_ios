@@ -52,8 +52,14 @@
   viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.view setFrame:viewframe];
   [self.tableView setFrame:viewframe];
-  
-  RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+
+  RecipeData* pRecipeData = nil;
+  if ([[[User sharedInstance] recipe] getIsCreate]) {
+    pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  } else {
+    pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
+  }
+
   if (pRecipeData.tips) {
     [tipsTextView setText:pRecipeData.tips];
   }
@@ -234,8 +240,14 @@
   if (tipsTextView.text) {
     trimedDesc = [tipsTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
   }
-  
-  RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+
+  RecipeData* pRecipeData = nil;
+  if ([[[User sharedInstance] recipe] getIsCreate]) {
+    pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  } else {
+    pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
+  }
+
   pRecipeData.tips = [[NSString alloc]initWithString: trimedDesc];
   
   [self.navigationController popViewControllerAnimated:YES];
@@ -248,8 +260,14 @@
   if (tipsTextView.text) {
     trimedDesc = [tipsTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
   }
-  
-  RecipeData* pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+
+  RecipeData* pRecipeData = nil;
+  if ([[[User sharedInstance] recipe] getIsCreate]) {
+    pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+  } else {
+    pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
+  }
+
   pRecipeData.tips = [[NSString alloc]initWithString: trimedDesc];
   
   
@@ -296,6 +314,10 @@
   stepString = [stepString stringByAppendingString:@"]}"]; 
   
   pUploadRecipeDic[@"steps"] = stepString;
+
+  if ([[[User sharedInstance] recipe] getIsCreate]) {
+    pUploadRecipeDic[@"recipe_id"] = [NSString stringWithFormat:@"%d", pRecipeData.recipe_id];
+  }
   
   self.uploadOperation = [[[NetManager sharedInstance] hellEngine]
                           createRecipe: pUploadRecipeDic

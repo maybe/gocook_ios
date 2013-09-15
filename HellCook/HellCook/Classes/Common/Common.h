@@ -73,11 +73,21 @@ typedef enum {
 typedef void (^ALAssetsLibraryAssetForURLResultBlock)(ALAsset *myasset);
 typedef void (^ALAssetsLibraryAccessFailureBlock)(NSError *error);
 
+typedef enum {
+  Recipe140ImageUrl,
+  Recipe526ImageUrl,
+  RecipeStepImageUrl,
+  AvatarImageUrl,
+  ImageUrlNone,
+} FullImageUrl;
+
 @interface Common : NSObject
 
 + (NSString *)dataFilePath:(NSString*)filePath;
 +(void)loadPhotoFromURL:(NSURL*)imgURL thumbnail:(BOOL)useThumbnail showIn:(UIImageView*)imView;
 + (NSString *) displayViews: (UIView *) aView;
 + (void)dumpView:(UIView *)aView atIndent:(int)indent into:(NSMutableString *)outString;
+
++ (NSString *)getUrl:(NSString *)url withType:(FullImageUrl) type;
 
 @end
