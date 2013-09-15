@@ -81,6 +81,8 @@
 		BA0DC17D16D4C3A500E4CED9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC17C16D4C3A500E4CED9 /* Default.png */; };
 		BA0DC17F16D4C3A500E4CED9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC17E16D4C3A500E4CED9 /* Default@2x.png */; };
 		BA0DC18116D4C3A500E4CED9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC18016D4C3A500E4CED9 /* Default-568h@2x.png */; };
+		BA1CE94E17E60468007F42AA /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA1CE94D17E60468007F42AA /* Icon@2x.png */; };
+		BA1CE95017E60479007F42AA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA1CE94F17E60479007F42AA /* Icon.png */; };
 		BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */; };
 		BA3E043E17B3ECCB007F1E86 /* MyRecipesMaterialController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E043D17B3ECCB007F1E86 /* MyRecipesMaterialController.m */; };
 		BA3E044017B3F572007F1E86 /* MyRecipesMatieralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA3E043F17B3F572007F1E86 /* MyRecipesMatieralView.xib */; };
@@ -316,6 +318,8 @@
 		BA0DC17C16D4C3A500E4CED9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BA0DC17E16D4C3A500E4CED9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		BA0DC18016D4C3A500E4CED9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BA1CE94D17E60468007F42AA /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		BA1CE94F17E60479007F42AA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingListView.xib; sourceTree = "<group>"; };
 		BA3E043C17B3ECCB007F1E86 /* MyRecipesMaterialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesMaterialController.h; path = Classes/Controllers/HomePageRecipes/MyRecipesMaterialController.h; sourceTree = "<group>"; };
 		BA3E043D17B3ECCB007F1E86 /* MyRecipesMaterialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesMaterialController.m; path = Classes/Controllers/HomePageRecipes/MyRecipesMaterialController.m; sourceTree = "<group>"; };
@@ -828,6 +832,8 @@
 				BA0DC17316D4C3A500E4CED9 /* InfoPlist.strings */,
 				BA0DC17616D4C3A500E4CED9 /* main.m */,
 				BA0DC17816D4C3A500E4CED9 /* HellCook-Prefix.pch */,
+				BA1CE94F17E60479007F42AA /* Icon.png */,
+				BA1CE94D17E60468007F42AA /* Icon@2x.png */,
 				BA0DC17C16D4C3A500E4CED9 /* Default.png */,
 				BA0DC17E16D4C3A500E4CED9 /* Default@2x.png */,
 				BA0DC18016D4C3A500E4CED9 /* Default-568h@2x.png */,
@@ -1287,6 +1293,8 @@
 				5EF9F45C17D8A82C005ABA82 /* BuyView.xib in Resources */,
 				5E001D7A17E2AD5C00BDAC62 /* HistoryDealView.xib in Resources */,
 				5E001D8417E3082700BDAC62 /* DealDetailView.xib in Resources */,
+				BA1CE94E17E60468007F42AA /* Icon@2x.png in Resources */,
+				BA1CE95017E60479007F42AA /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1498,8 +1506,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Fan (3T4XTKEX83)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Fan (3T4XTKEX83)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: YiTian Wang (CL7569E4B6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YiTian Wang (CL7569E4B6)";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HellCook/HellCook-Prefix.pch";
@@ -1511,8 +1519,8 @@
 					"\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "15C6C8B7-407F-415D-82FA-B8BB1F0C7AA2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15C6C8B7-407F-415D-82FA-B8BB1F0C7AA2";
+				PROVISIONING_PROFILE = "3F669731-DA45-450D-B765-18813A0FF48E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F669731-DA45-450D-B765-18813A0FF48E";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -1524,8 +1532,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Fan (3T4XTKEX83)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Fan (3T4XTKEX83)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: YiTian Wang (6J5E6QMXJ4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YiTian Wang (6J5E6QMXJ4)";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HellCook/HellCook-Prefix.pch";
@@ -1537,8 +1545,8 @@
 					"\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "15C6C8B7-407F-415D-82FA-B8BB1F0C7AA2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15C6C8B7-407F-415D-82FA-B8BB1F0C7AA2";
+				PROVISIONING_PROFILE = "3674DB26-25FD-4447-92CE-F2771D16AA0E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3674DB26-25FD-4447-92CE-F2771D16AA0E";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
