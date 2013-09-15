@@ -10,6 +10,7 @@
 #import "UserAccount.h"
 #import "User.h"
 #import "Encrypt.h"
+#import "DBHandler.h"
 
 @implementation HellEngine
 
@@ -389,14 +390,16 @@
                                             params:dic
                                         httpMethod:@"POST"];
   [op useCookie:NO];
-//  NSString* aStr;
-//  aStr = [[NSString alloc] initWithData:[[op readonlyRequest] HTTPBody] encoding:NSASCIIStringEncoding];
-//  NSLog(@"%@",  aStr);
-  
+
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    //NSLog(@"%@",completedOperation.responseString);
-    
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      if (jsonObject!=nil && [[jsonObject objectForKey:@"result"] intValue] == 0) {
+        UserAccount* userAccount = [[User sharedInstance] account];
+        userAccount.username = dict[@"nickname"];
+        DBHandler* dbHandler = [DBHandler sharedInstance];
+        [dbHandler changeName:dict[@"nickname"]];
+        [[[User sharedInstance] account] setShouldResetLogin:YES];
+      }
       completionBlock(jsonObject);
     }];
   }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
@@ -446,9 +449,14 @@
   }
   
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    //NSLog(@"%@",completedOperation.responseString);
-    
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      if (jsonObject!=nil && [[jsonObject objectForKey:@"result"] intValue] == 0) {
+        UserAccount* userAccount = [[User sharedInstance] account];
+        userAccount.avatar = jsonObject[@"avatar"];
+        DBHandler* dbHandler = [DBHandler sharedInstance];
+        [dbHandler changeAvatar:jsonObject[@"avatar"]];
+        [[[User sharedInstance] account] setShouldResetLogin:YES];
+      }
       completionBlock(jsonObject);
     }];
   }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
@@ -474,7 +482,9 @@
     [op addFile:imagePath forKey:@"step"];
   }
     
-  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){    
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+      NSLog(@"%@",completedOperation.responseString);
+
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject, index);
     }];

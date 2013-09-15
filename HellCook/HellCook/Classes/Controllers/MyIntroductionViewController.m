@@ -10,7 +10,7 @@
 #import "NetManager.h"
 #import "LoginController.h"
 #import "MyIntroEditViewController.h"
-#import "HomePageController.h"
+#import "CommonDef.h"
 #import "User.h"
 
 @interface MyIntroductionViewController ()
@@ -21,77 +21,72 @@
 @synthesize netOperation;
 @synthesize pPicCell,pIntroCell;
 @synthesize rightBarButtonItem;
-@synthesize bSessionInvalid;
+@synthesize bShouldRefresh;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userid from:(ViewControllerCalledFrom)calledFrom
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
       mUserID = userid;
-      bSessionInvalid = FALSE;
+      bShouldRefresh = YES;
       eCalledFrom = calledFrom;
       
       pMyInfo = [[NSMutableDictionary alloc] init];
       pPicCell = [[MyIntroductionPicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionPicCell"];
       pIntroCell = [[MyIntroductionIntroCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionIntroCell"];
-      
-      if (eCalledFrom == ViewControllerCalledFromMyIndividual)
-      {
-        [self getMyIntroductionData];
-      }
-      else
-      {
-        [self getOtherIntroData];
-      }
+
+      // check if need refresh
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnUserInfoChange:) name:@"EVT_OnUserInfoChange" object:nil];
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
     }
     return self;
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  // Do any additional setup after loading the view from its nib.
-//  self.tabBarController.navigationItem.title = @"个人简介";
-//  [self setRightButton];
   
   [self setLeftButton];
   
-  CGRect tableframe = self.myTableView.frame;
-  tableframe.size.height = _screenHeight_NoStBar - _navigationBarHeight;
-  [self.myTableView setFrame:tableframe];
+  CGRect tableFrame = self.myTableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar - _navigationBarHeight;
+  [self.myTableView setFrame:tableFrame];
+}
+
+- (void)viewDidUnload {
+  [self setMyTableView:nil];
+  [super viewDidUnload];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  self.tabBarController.navigationItem.title = [[[User sharedInstance] account] username];
-  
-  if (eCalledFrom == ViewControllerCalledFromMyIndividual)
-  {
+
+  if (eCalledFrom == ViewControllerCalledFromMyIndividual) {
+    self.tabBarController.navigationItem.title = [[[User sharedInstance] account] username];
     [self setRightButton];
-  }
-  else
-  {
+  } else {
+    self.tabBarController.navigationItem.title = @"";
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
   }
-  
-  if (bSessionInvalid)
+
+  // get data
+  if (bShouldRefresh)
   {
-    bSessionInvalid = FALSE;
-    [self getMyIntroductionData];
+    bShouldRefresh = NO;
+    if (eCalledFrom == ViewControllerCalledFromMyIndividual)
+    {
+      [self getMyIntroductionData];
+    }
+    else
+    {
+      [self getOtherIntroData];
+    }
   }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload {
-    [self setMyTableView:nil];
-    [super viewDidUnload];
 }
 
 - (void)setRightButton
@@ -153,30 +148,26 @@
 
 - (void)followBtnTapped
 {
-  if ([pPicCell.followBtn.titleLabel.text isEqual:@"已关注"])
-  {
+  if ([pPicCell.followBtn.titleLabel.text isEqual:@"已关注"]) {
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
         unwatchWithUserID:mUserID
         completionHandler:^(NSMutableDictionary *resultDic) {
           [self unwatchDataCallBack:resultDic];
         }
-             errorHandler:^(NSError *error) {
-             }
+        errorHandler:^(NSError *error) {
+        }
     ];
-  }
-  else
-  {
+  } else {
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
         watchWithUserID:mUserID
       completionHandler:^(NSMutableDictionary *resultDic) {
         [self watchDataCallBack:resultDic];
       }
-           errorHandler:^(NSError *error) {
-           }
+      errorHandler:^(NSError *error) {
+      }
     ];
   }
 }
-
 
 #pragma mark - Table view data source
 
@@ -254,11 +245,6 @@
   }
 }
 
-
-
-
-
-
 #pragma mark - Net
 
 -(void)getMyIntroductionData
@@ -273,19 +259,23 @@
 - (void)getMyIntroductionDataCallBack:(NSMutableDictionary*) resultDic
 {
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result == 0)
+  if (result == GC_Success)
   {
     [pMyInfo addEntriesFromDictionary:[resultDic valueForKey:@"result_user_info"]];
-    
     [self.myTableView reloadData];
+    self.tabBarController.navigationItem.title = [[resultDic valueForKey:@"result_user_info"] valueForKey:@"nickname"];
   }
-  else if (result == 1)
+  else if (result == GC_Failed)
   {
-    bSessionInvalid = TRUE;
-    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
-    if (self.navigationController)
-    {
-      [self.navigationController presentViewController:m animated:YES completion:nil];
+    NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (error_code == GC_AuthAccountInvalid) {
+      LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+      if (self.navigationController) {
+        [self.navigationController presentViewController:m animated:YES completion:nil];
+      } else if (self.tabBarController.navigationController) {
+        [self.tabBarController.navigationController presentViewController:m animated:YES completion:nil];
+      }
     }
   }
 }
@@ -293,49 +283,44 @@
 -(void)getOtherIntroData
 {
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
-      getOtherIntroWithUserID:mUserID
+            getOtherIntroWithUserID:mUserID
             completionHandler:^(NSMutableDictionary *resultDic) {
               [self getOtherIntroDataCallBack:resultDic];
             }
-                 errorHandler:^(NSError *error) {
-                 }
+            errorHandler:^(NSError *error) {
+            }
   ];
 }
 
 - (void)getOtherIntroDataCallBack:(NSMutableDictionary*) resultDic
 {
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result == 0)
-  {
+  if (result == GC_Success) {
     [pMyInfo addEntriesFromDictionary:[resultDic valueForKey:@"result_kitchen_info"]];
-    
     [self.myTableView reloadData];
+    self.tabBarController.navigationItem.title = [[resultDic valueForKey:@"result_kitchen_info"] valueForKey:@"nickname"];
   }
-  else if (result == 1)
-  {
-    bSessionInvalid = TRUE;
-    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
-    if (self.navigationController)
-    {
-      [self.navigationController presentViewController:m animated:YES completion:nil];
-    }
+  else if (result == GC_Failed) {
+    // TODO:
   }
 }
 
 - (void)watchDataCallBack:(NSMutableDictionary*) resultDic
 {
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result == 0)
-  {
+  if (result == GC_Success) {
     [pPicCell.followBtn setTitle:@"已关注" forState:UIControlStateNormal];
   }
-  else if (result == 1)
-  {
-    bSessionInvalid = TRUE;
-    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
-    if (self.navigationController)
-    {
-      [self.navigationController presentViewController:m animated:YES completion:nil];
+  else if (result == GC_Failed) {
+    NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (error_code == GC_AuthAccountInvalid) {
+      LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+      if (self.navigationController) {
+        [self.navigationController presentViewController:m animated:YES completion:nil];
+      } else if (self.tabBarController.navigationController) {
+        [self.tabBarController.navigationController presentViewController:m animated:YES completion:nil];
+      }
     }
   }
 }
@@ -343,18 +328,33 @@
 - (void)unwatchDataCallBack:(NSMutableDictionary*) resultDic
 {
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result == 0)
-  {
+  if (result == GC_Success) {
     [pPicCell.followBtn setTitle:@"未关注" forState:UIControlStateNormal];
-  }
-  else if (result == 1)
-  {
-    bSessionInvalid = TRUE;
-    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
-    if (self.navigationController)
-    {
-      [self.navigationController presentViewController:m animated:YES completion:nil];
+  } else {
+    NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (error_code == GC_AuthAccountInvalid) {
+      LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+      if (self.navigationController) {
+        [self.navigationController presentViewController:m animated:YES completion:nil];
+      } else if (self.tabBarController.navigationController) {
+        [self.tabBarController.navigationController presentViewController:m animated:YES completion:nil];
+      }
     }
+  }
+}
+
+#pragma mark - Notification Handler
+
+-(void)OnUserInfoChange:(NSNotification *)notification
+{
+    bShouldRefresh = YES;
+}
+
+- (void)OnLoginSuccess:(NSNotification *)notification {
+  NSString *className = (NSString *) notification.object;
+  if ([className isEqualToString:NSStringFromClass([self class])]) {
+    bShouldRefresh = YES;
   }
 }
 

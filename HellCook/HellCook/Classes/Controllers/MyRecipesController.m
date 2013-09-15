@@ -69,6 +69,7 @@
 - (void)reloadRecipeData {
   [mMyRecipeArray removeAllObjects];
   curPage = 0;
+  isPageEnd = NO;
   //[self.tableView reloadData];
   [self getRecipesData];
 }
@@ -184,6 +185,10 @@
 }
 
 - (void)getRecipesResultCallBack:(NSMutableDictionary *)resultDic {
+  if ([refreshControl isRefreshing]) {
+    [refreshControl endRefreshing];
+  }
+
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success) {
     int totalCount = [resultDic[@"total"] intValue];
@@ -205,9 +210,6 @@
 
       if (originSize == 0) {
         [self.tableView reloadData];
-        if ([refreshControl isRefreshing]) {
-          [refreshControl endRefreshing];
-        }
       }
       else {
         [self.tableView beginUpdates];

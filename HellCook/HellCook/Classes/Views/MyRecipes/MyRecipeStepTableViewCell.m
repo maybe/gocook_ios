@@ -154,8 +154,13 @@
   if ([[dictionary allKeys] containsObject:@"imageState"] && [dictionary[@"imageState"] intValue] == RecipeImage_UPLOADED)
   {
     [selectButton setTitle:@"替换" forState:UIControlStateNormal];
-    [upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:dictionary[@"imageUrl"] withType:RecipeStepImageUrl]]
-                placeholderImage:defaultImage];
+    if ([[dictionary allKeys] containsObject:@"tmpImageUrl"]) {
+      [upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:dictionary[@"tmpImageUrl"] withType:RecipeStepImageUrl]]
+                  placeholderImage:defaultImage];
+    } else {
+      [upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:dictionary[@"imageUrl"] withType:RecipeStepImageUrl]]
+                  placeholderImage:defaultImage];
+    }
   } else if ([[dictionary allKeys] containsObject:@"imageState"] && [dictionary[@"imageState"] intValue] == RecipeImage_SELECTED) {
     if ([[dictionary allKeys] containsObject: @"pickRealImage"]) {
       [upImageView setImage:dictionary[@"pickRealImage"]];

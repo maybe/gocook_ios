@@ -15,10 +15,9 @@
   NSMutableDictionary *pMyInfo;
   MyIntroductionPicCell *pPicCell;
   MyIntroductionIntroCell *pIntroCell;
-  BOOL bSessionInvalid;
+  BOOL bShouldRefresh;
   NSInteger mUserID;
   ViewControllerCalledFrom eCalledFrom;
-  
   UIBarButtonItem *rightBarButtonItem;
 }
 
@@ -27,7 +26,7 @@
 @property (nonatomic, retain) MyIntroductionIntroCell *pIntroCell;
 @property (nonatomic, retain) MyIntroductionPicCell *pPicCell;
 @property (nonatomic, retain) UIBarButtonItem *rightBarButtonItem;
-@property BOOL bSessionInvalid;
+@property BOOL bShouldRefresh;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userid from:(ViewControllerCalledFrom)calledFrom;
 

@@ -64,6 +64,27 @@
   return NO;
 }
 
+- (BOOL)changeAvatar:(NSString *)avatar {
+  if ([self openDB])
+  {
+    [db executeUpdate:@"UPDATE account SET avatar=?;", avatar];
+    [db close];
+    return YES;
+  }
+  return NO;
+}
+
+- (BOOL)changeName:(NSString *)name {
+  if ([self openDB])
+  {
+    [db executeUpdate:@"UPDATE account SET username=?;", name];
+    [db close];
+    return YES;
+  }
+  return NO;
+}
+
+
 - (BOOL)delAccount
 {
   if ([self openDB]){

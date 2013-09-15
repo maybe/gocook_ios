@@ -315,7 +315,7 @@
   
   pUploadRecipeDic[@"steps"] = stepString;
 
-  if ([[[User sharedInstance] recipe] getIsCreate]) {
+  if (![[[User sharedInstance] recipe] getIsCreate]) {
     pUploadRecipeDic[@"recipe_id"] = [NSString stringWithFormat:@"%d", pRecipeData.recipe_id];
   }
   

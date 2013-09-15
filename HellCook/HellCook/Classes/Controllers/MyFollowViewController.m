@@ -27,8 +27,8 @@
     if (self) {
         // Custom initialization
       curPage = 0;
-      bSessionInvalid = FALSE;
-      bShouldRefresh = TRUE;
+      firstLoad = YES;
+      isPageEnd = NO;
       myFollowsArray = [[NSMutableArray alloc] init];
       [self initLoadingView];
     }
@@ -38,14 +38,10 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  // Do any additional setup after loading the view from its nib.
   [self.tabBarController.navigationItem setRightBarButtonItem:nil];
-  
   refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
   refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
-  
-  [self getMyFollowData];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -53,18 +49,18 @@
   [super viewWillAppear:animated];
   self.tabBarController.navigationItem.title = @"我的关注";
   
-  if (bSessionInvalid)
+  if (firstLoad)
   {
-    bSessionInvalid = FALSE;
+    firstLoad = NO;
     [self getMyFollowData];
   }
 }
 
-- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl
 {
   [myFollowsArray removeAllObjects];
   curPage = 0;
-  bShouldRefresh = YES;
+  isPageEnd = NO;
   [self.myTableView reloadData];
   [self getMyFollowData];
 }
@@ -139,7 +135,7 @@
     cell = [[MyFollowTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
   
-  [cell setData:myFollowsArray[indexPath.row]];
+  [cell setData:myFollowsArray[(NSUInteger)indexPath.row]];
   
   return cell;
 }
@@ -149,7 +145,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  NSMutableDictionary *pFollowDict = [myFollowsArray objectAtIndex:indexPath.row];
+  NSMutableDictionary *pFollowDict = [myFollowsArray objectAtIndex:(NSUInteger)indexPath.row];
   NSInteger userid = [pFollowDict[@"user_id"] intValue];
   
   HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:userid from:ViewControllerCalledFromMyFollow showIndex:0];
@@ -161,7 +157,7 @@
   // 下拉到最底部时显示更多数据
   if(scrollView.contentOffset.y + 40 >= ((scrollView.contentSize.height - scrollView.frame.size.height)))
   {
-    if (![self.netOperation isExecuting] && bShouldRefresh) {
+    if (![self.netOperation isExecuting] && !isPageEnd) {
       [self showLoadingView];
       [self getMyFollowData];
     }
@@ -186,6 +182,10 @@
 
 - (void)getMyFollowDataCallBack:(NSMutableDictionary*) resultDic
 {
+  if ([refreshControl isRefreshing]) {
+    [refreshControl endRefreshing];
+  }
+
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
@@ -201,9 +201,6 @@
       if (originsize == 0)
       {
         [self.myTableView reloadData];
-        if ([refreshControl isRefreshing]){
-          [refreshControl endRefreshing];
-        }
       }
       else
       {
@@ -221,8 +218,8 @@
     }
     
     if (curPage >= totalPage)
-      bShouldRefresh = FALSE;
-    if (!bShouldRefresh)
+      isPageEnd = YES;
+    if (isPageEnd)
       [self deleteLoadingView];
   }
   else if (result == 1)
@@ -231,7 +228,6 @@
       [refreshControl endRefreshing];
     }
     
-    bSessionInvalid = TRUE;
     LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
     if (self.navigationController)
     {

@@ -233,9 +233,7 @@
 
 -(void)returnToPrev
 {
-  NSArray *viewControllers = [NSArray arrayWithArray:self.navigationController.viewControllers];
-  HomePageController *prevController = [viewControllers objectAtIndex:[viewControllers count]-2];
-  prevController.isMyInfoChanged = isChanged;
+  // NSArray *viewControllers = [NSArray arrayWithArray:self.navigationController.viewControllers];
   [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -666,6 +664,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     HUD.labelText = @"个人基本信息上传成功";
     [HUD show:YES];
     [HUD hide:YES afterDelay:2];
+
+    // notify
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnUserInfoChange" object:nil];
   }
   else
   {
@@ -725,15 +726,20 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     isChanged = TRUE;
     User* user = [User sharedInstance];
     user.account.avatar = newHeadImagePath;
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"头像上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+
+    HUD.labelText = @"头像上传成功";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
+
+    // notify
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnUserInfoChange" object:nil];
   }
   else
   {
-    NSString *msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+    // NSString *msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
+    HUD.labelText = @"头像上传失败";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
   }
 }
 

@@ -137,7 +137,7 @@
 
   if (isGridCell) {
     AccountTableViewGridCell *aCell = (AccountTableViewGridCell *) cell;
-    aCell.countLabel1.text = @"1";
+    aCell.countLabel1.text = @"0";
     aCell.nameLabel1.text = [dic valueForKey:@"title1"];
     aCell.countLabel2.text = @"0";
     aCell.nameLabel2.text = [dic valueForKey:@"title2"];

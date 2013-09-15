@@ -236,6 +236,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   if (result == 0)
   {
     cellContentList[(NSUInteger)index][@"imageUrl"] = resultDic[@"avatar"];
+    cellContentList[(NSUInteger)index][@"tmpImageUrl"] = [NSString stringWithFormat: @"http://%@/images/tmp/%@", [[NetManager sharedInstance] host], resultDic[@"avatar"]];
     cellContentList[(NSUInteger)index][@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_UPLOADED];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)[tableView cellForRowAtIndexPath: indexPath];

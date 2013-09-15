@@ -185,13 +185,17 @@
               completionHandler:^(NSMutableDictionary *resultDic) {
                 [self getMyCollectionDataCallBack:resultDic];
               }
-                   errorHandler:^(NSError *error) {
-                   }
+              errorHandler:^(NSError *error) {
+              }
   ];
 
 }
 
 - (void)getMyCollectionDataCallBack:(NSMutableDictionary *)resultDic {
+  if ([refreshControl isRefreshing]) {
+    [refreshControl endRefreshing];
+  }
+
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0) {
     int totalCount = [resultDic[@"total"] intValue];
@@ -204,9 +208,6 @@
 
       if (originSize == 0) {
         [self.tableView reloadData];
-        if ([refreshControl isRefreshing]) {
-          [refreshControl endRefreshing];
-        }
       }
       else {
         NSMutableArray *indexPathArray = [[NSMutableArray alloc] init];

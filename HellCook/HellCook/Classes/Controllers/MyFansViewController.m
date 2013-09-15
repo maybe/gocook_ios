@@ -27,8 +27,8 @@
   if (self) {
     // Custom initialization
     curPage = 0;
-    bShouldRefresh = TRUE;
-    bSessionInvalid = FALSE;
+    firstLoad = TRUE;
+    isPageEnd = NO;
     myFansArray = [[NSMutableArray alloc] init];
     [self initLoadingView];
   }
@@ -55,26 +55,19 @@
   
   [self.tabBarController.navigationItem setRightBarButtonItem:nil];
   
-  if (bSessionInvalid)
-  {
-    bSessionInvalid = FALSE;
+  if (firstLoad) {
+    firstLoad = NO;
     [self getMyFansData];
   }
 }
 
-- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl
 {
   [myFansArray removeAllObjects];
   curPage = 0;
-  bShouldRefresh = YES;
+  isPageEnd = NO;
   [self.myTableView reloadData];
   [self getMyFansData];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setLeftButton
@@ -181,7 +174,7 @@
   // 下拉到最底部时显示更多数据
   if(scrollView.contentOffset.y + 40 >= ((scrollView.contentSize.height - scrollView.frame.size.height)))
   {
-    if (![self.netOperation isExecuting] && bShouldRefresh) {
+    if (![self.netOperation isExecuting] && !isPageEnd) {
       [self showLoadingView];
       [self getMyFansData];
     }
@@ -205,9 +198,12 @@
 
 - (void)getMyFansDataCallBack:(NSMutableDictionary*) resultDic
 {
+  if ([refreshControl isRefreshing]) {
+    [refreshControl endRefreshing];
+  }
+
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result == 0)
-  {
+  if (result == 0) {
     int totalCount = [resultDic[@"total"] intValue];
     totalPage = totalCount/10 + (totalCount % 10 > 0 ? 1 : 0);
     int originsize = myFansArray.count;
@@ -240,8 +236,9 @@
     }
     
     if (curPage >= totalPage)
-      bShouldRefresh = FALSE;
-    if (!bShouldRefresh)
+      isPageEnd = YES;
+
+    if (isPageEnd)
       [self deleteLoadingView];
   }
   else if (result == 1)
@@ -250,7 +247,6 @@
       [refreshControl endRefreshing];
     }
     
-    bSessionInvalid = TRUE;
     LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
     if (self.navigationController)
     {

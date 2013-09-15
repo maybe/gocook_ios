@@ -13,11 +13,10 @@
 {
   NSInteger curPage;
   NSMutableArray *myFansArray;
-  BOOL bShouldRefresh;
   NSInteger totalPage;
   UIActivityIndicatorView* mLoadingActivity;
-  BOOL bSessionInvalid;
-  
+  bool firstLoad; //第一次显示需要刷新
+  bool isPageEnd;//是否全部加载完毕
   ODRefreshControl *refreshControl;
 }
 

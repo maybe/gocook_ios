@@ -28,6 +28,8 @@
 
 - (NSMutableDictionary*)getAccount;
 - (BOOL)setAccount:(NSMutableDictionary*)accountDic;
+- (BOOL)changeAvatar:(NSString*)avatar;
+- (BOOL)changeName:(NSString*)name;
 - (BOOL)delAccount;
 
 - (BOOL)emptyShoppingList;

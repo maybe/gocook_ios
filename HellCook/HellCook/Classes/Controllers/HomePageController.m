@@ -18,13 +18,10 @@
 
 @implementation HomePageController
 @synthesize mTabBar;
-@synthesize isMyInfoChanged;
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID from:(ViewControllerCalledFrom)calledFrom showIndex:(NSInteger)index {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    isMyInfoChanged = FALSE;
     eCalledFrom = calledFrom;
     //个人简介
     MyIntroductionViewController *pIntroController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:userID from:calledFrom];
@@ -69,7 +66,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  //设置tabbar背景图
+  //设置tab bar背景图
   UIImageView *tabBarBgView = [[UIImageView alloc] initWithFrame:self.tabBar.bounds];
   [tabBarBgView setImage:[UIImage imageNamed:@"Images/TabBarBackground.png"]];
   [tabBarBgView setContentMode:UIViewContentModeScaleToFill];
@@ -77,26 +74,19 @@
 
   [self setLeftButton];
 
-  CGRect viewframe = self.view.frame;
+  CGRect viewFrame = self.view.frame;
   [self.view setBackgroundColor:[UIColor redColor]];
-  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
-  [self.view setFrame:viewframe];
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
 
   [self.tabBar setFrame:CGRectMake(0, _screenHeight_NoStBar_NoNavBar_NoTabBar - _stateBarHeight, _screenWidth, _tabBarHeight)]; // don't know why must minus 20px...
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  if (isMyInfoChanged) {
-    MyIntroductionViewController *pIntroController = [self.viewControllers objectAtIndex:0];
-    pIntroController.bSessionInvalid = YES;
-
-    isMyInfoChanged = FALSE;
-  }
-
   [super viewWillAppear:animated];
 }
 
-#pragma mark - Navi Button
+#pragma mark - Navigation Button
 
 - (void)setLeftButton {
   UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
