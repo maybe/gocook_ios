@@ -25,7 +25,9 @@
   
   searchBarView = [[SearchBarView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
   [self.view addSubview:searchBarView];
-  
+  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
   [self getIOSMainData];
   [super viewDidLoad];
 }
@@ -45,7 +47,9 @@
 - (void) viewWillAppear:(BOOL)animated
 {
   [self.revealSideViewController setIsSwipeEnabled:YES];
-  [self.view setFrame:CGRectMake(0, 0, 199, 199)];
+  CGRect viewFrame = self.tableView.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar - _navigationBarHeight;
+  [self.tableView setFrame:viewFrame];
 //  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 //  [self.revealSideViewController preloadViewController:appDelegate.leftNavController forSide:PPRevealSideDirectionLeft];
 

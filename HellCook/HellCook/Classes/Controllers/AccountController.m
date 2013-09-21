@@ -68,7 +68,11 @@
   CGRect tableFrame = self.tableView.frame;
   tableFrame.size.height = _screenHeight_NoStBar_NoNavBar - 120;
   [self.tableView setFrame:tableFrame];
-
+  
+  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
+  
   [super viewDidLoad];
 }
 
