@@ -65,6 +65,8 @@
   //NSString* encr = [Encrypt EncryptAppReqCMD:1 WithData:@"{\"Account\":\"15000021036\",\"Password\":\"rmHSyDSm1Dk=\"}"];
   //NSLog(@"%@", encr);
 
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+  
   return YES;
 }
 
