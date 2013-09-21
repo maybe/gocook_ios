@@ -103,7 +103,7 @@ static SDWebImageDecoder *sharedInstance;
     BOOL imageHasAlphaInfo = (alphaInfo != kCGImageAlphaNone);
 
     int bytesPerPixel = imageHasAlphaInfo ? 4 : 3;
-    CGBitmapInfo bitmapInfo = imageHasAlphaInfo ? kCGImageAlphaPremultipliedLast : kCGImageAlphaNone;
+    CGBitmapInfo bitmapInfo = imageHasAlphaInfo ? (kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast) : (kCGBitmapAlphaInfoMask & kCGImageAlphaNone);
 
     CGContextRef context = CGBitmapContextCreate(NULL,
                                                  CGImageGetWidth(imageRef),

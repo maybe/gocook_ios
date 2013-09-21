@@ -62,7 +62,7 @@ typedef enum {
 /*!
  *  @class MKNetworkOperation
  *  @abstract Represents a single unique network operation.
- *  
+ *
  *  @discussion
  *	You normally create an instance of this class using the methods exposed by MKNetworkEngine
  *  Created operations are enqueued into the shared queue on MKNetworkEngine
@@ -81,39 +81,39 @@ typedef enum {
 /*!
  *  @abstract Request URL Property
  *  @property url
- *  
+ *
  *  @discussion
  *	Returns the operation's URL
- *  This property is readonly cannot be updated. 
- *  To create an operation with a specific URL, use the operationWithURLString:params:httpMethod: 
+ *  This property is readonly cannot be updated.
+ *  To create an operation with a specific URL, use the operationWithURLString:params:httpMethod:
  */
 @property (nonatomic, copy, readonly) NSString *url;
 
 /*!
  *  @abstract The internal request object
  *  @property readonlyRequest
- *  
+ *
  *  @discussion
  *	Returns the operation's actual request object
- *  This property is readonly cannot be modified. 
- *  To create an operation with a new request, use the operationWithURLString:params:httpMethod: 
+ *  This property is readonly cannot be modified.
+ *  To create an operation with a new request, use the operationWithURLString:params:httpMethod:
  */
 @property (nonatomic, strong, readonly) NSURLRequest *readonlyRequest;
 
 /*!
  *  @abstract The internal HTTP Response Object
  *  @property readonlyResponse
- *  
+ *
  *  @discussion
  *	Returns the operation's actual response object
- *  This property is readonly cannot be updated. 
+ *  This property is readonly cannot be updated.
  */
 @property (nonatomic, strong, readonly) NSHTTPURLResponse *readonlyResponse;
 
 /*!
  *  @abstract The internal HTTP Post data values
  *  @property readonlyPostDictionary
- *  
+ *
  *  @discussion
  *	Returns the operation's post data dictionary
  *  This property is readonly cannot be updated.
@@ -128,36 +128,36 @@ typedef enum {
 /*!
  *  @abstract The internal request object's method type
  *  @property HTTPMethod
- *  
+ *
  *  @discussion
  *	Returns the operation's method type
- *  This property is readonly cannot be modified. 
- *  To create an operation with a new method type, use the operationWithURLString:params:httpMethod: 
+ *  This property is readonly cannot be modified.
+ *  To create an operation with a new method type, use the operationWithURLString:params:httpMethod:
  */
 @property (nonatomic, copy, readonly) NSString *HTTPMethod;
 
 /*!
  *  @abstract The internal response object's status code
  *  @property HTTPStatusCode
- *  
+ *
  *  @discussion
  *	Returns the operation's response's status code.
  *  Returns 0 when the operation has not yet started and the response is not available.
- *  This property is readonly cannot be modified. 
+ *  This property is readonly cannot be modified.
  */
 @property (nonatomic, assign, readonly) NSInteger HTTPStatusCode;
 
 /*!
  *  @abstract Post Data Encoding Type Property
  *  @property postDataEncoding
- *  
+ *
  *  @discussion
  *  Specifies which type of encoding should be used to encode post data.
  *  MKNKPostDataEncodingTypeURL is the default which defaults to application/x-www-form-urlencoded
- *  MKNKPostDataEncodingTypeJSON uses JSON encoding. 
+ *  MKNKPostDataEncodingTypeJSON uses JSON encoding.
  *  JSON Encoding is supported only in iOS 5 or Mac OS X 10.7 and above.
  *  On older operating systems, JSON Encoding reverts back to URL Encoding
- *  You can use the postDataEncodingHandler to provide a custom postDataEncoding 
+ *  You can use the postDataEncodingHandler to provide a custom postDataEncoding
  *  For example, JSON encoding using a third party library.
  *
  *  @seealso
@@ -168,7 +168,7 @@ typedef enum {
 
 /*!
  *  @abstract Set a customized Post Data Encoding Handler for a given HTTP Content Type
- *  
+ *
  *  @discussion
  *  If you need customized post data encoding support, provide a block method here.
  *  This block method will be invoked only when your HTTP Method is POST or PUT
@@ -183,7 +183,7 @@ typedef enum {
 /*!
  *  @abstract String Encoding Property
  *  @property stringEncoding
- *  
+ *
  *  @discussion
  *  Specifies which type of encoding should be used to encode URL strings
  */
@@ -192,7 +192,7 @@ typedef enum {
 /*!
  *  @abstract Freezable request
  *  @property freezable
- *  
+ *
  *  @discussion
  *	Freezable operations are serialized when the network goes down and restored when the connectivity is up again.
  *  Only POST, PUT and DELETE operations are freezable.
@@ -204,7 +204,7 @@ typedef enum {
 /*!
  *  @abstract Error object
  *  @property error
- *  
+ *
  *  @discussion
  *	If the network operation results in an error, this will hold the response error, otherwise it will be nil
  */
@@ -254,7 +254,7 @@ typedef enum {
 /*!
  *  @abstract Cache headers of the response
  *  @property cacheHeaders
- *  
+ *
  *  @discussion
  *	If the network operation is a GET, this dictionary will be populated with relevant cache related headers
  *	MKNetworkKit assumes a 7 day cache for images and 1 minute cache for all requests with no-cache set
@@ -264,7 +264,7 @@ typedef enum {
 
 /*!
  *  @abstract Authentication methods
- *  
+ *
  *  @discussion
  *	If your request needs to be authenticated, set your username and password using this method.
  */
@@ -272,7 +272,7 @@ typedef enum {
 
 /*!
  *  @abstract Authentication methods
- *  
+ *
  *  @discussion
  *	If your request needs to be authenticated using HTTP Basic, use this method to set your username and password.
  *  Calling this method with basicAuth:NO is same as calling setUserName:password:
@@ -284,7 +284,7 @@ typedef enum {
 /*!
  *  @abstract Authentication methods (Client Certificate)
  *  @property clientCertificate
- *  
+ *
  *  @discussion
  *	If your request needs to be authenticated using a client certificate, set the certificate path here
  */
@@ -302,7 +302,7 @@ typedef enum {
 /*!
  *  @abstract Custom authentication handler
  *  @property authHandler
- *  
+ *
  *  @discussion
  *	If your request needs to be authenticated using a custom method (like a Web page/HTML Form), add a block method here
  *  and process the NSURLAuthenticationChallenge
@@ -312,7 +312,7 @@ typedef enum {
 /*!
  *  @abstract Handler that you implement to monitor reachability changes
  *  @property operationStateChangedHandler
- *  
+ *
  *  @discussion
  *	The framework calls this handler whenever the operation state changes
  */
@@ -321,7 +321,7 @@ typedef enum {
 /*!
  *  @abstract controls persistence of authentication credentials
  *  @property credentialPersistence
- *  
+ *
  *  @discussion
  *  The default value is set to NSURLCredentialPersistenceForSession, change it to NSURLCredentialPersistenceNone to avoid caching issues (isse #35)
  */
@@ -331,7 +331,7 @@ typedef enum {
 /*!
  *  @abstract notification that has to be shown when an error occurs and the app is in background
  *  @property localNotification
- *  
+ *
  *  @discussion
  *  The default value nil. No notification is shown when an error occurs.
  *  To show a notification when the app is in background and the network operation running in background fails,
@@ -342,7 +342,7 @@ typedef enum {
 /*!
  *  @abstract Shows a local notification when an error occurs
  *  @property shouldShowLocalNotificationOnError
- *  
+ *
  *  @discussion
  *  The default value NO. No notification is shown when an error occurs.
  *  When set to YES, MKNetworkKit shows the NSError localizedDescription text as a notification when the app is in background and the network operation ended in error.
@@ -373,7 +373,7 @@ typedef enum {
 
 /*!
  *  @abstract Add additional header parameters
- *  
+ *
  *  @discussion
  *	If you ever need to set additional headers after creating your operation, you this method.
  *  You normally set default headers to the engine and they get added to every request you create.
@@ -391,7 +391,7 @@ typedef enum {
 
 /*!
  *  @abstract Sets the authorization header after prefixing it with a given auth type
- *  
+ *
  *  @discussion
  *	If you need to set the HTTP Authorization header, you can use this convinience method.
  *  This method internally calls addHeaders:
@@ -401,7 +401,7 @@ typedef enum {
  *  Example
  *  [op setAuthorizationHeaderValue:@"abracadabra" forAuthType:@"Token"] will set the header value to
  *  "Authorization: Token abracadabra"
- * 
+ *
  *  @seealso
  *  setUsername:password:basicAuth:
  *  addHeaders:
@@ -410,7 +410,7 @@ typedef enum {
 
 /*!
  *  @abstract Set whether to use cookie
- *  
+ *
  *  @discussion
  *  Default set to YES.
  *	If you want to disable using cookie, use this method.
@@ -419,7 +419,7 @@ typedef enum {
 
 /*!
  *  @abstract Attaches a file to the request
- *  
+ *
  *  @discussion
  *	This method lets you attach a file to the request
  *  The method has a side effect. It changes the HTTPMethod to "POST" regardless of what it was before.
@@ -430,7 +430,7 @@ typedef enum {
 
 /*!
  *  @abstract Attaches a file to the request and allows you to specify a mime-type
- *  
+ *
  *  @discussion
  *	This method lets you attach a file to the request
  *  The method has a side effect. It changes the HTTPMethod to "POST" regardless of what it was before.
@@ -440,7 +440,7 @@ typedef enum {
 
 /*!
  *  @abstract Attaches a resource to the request from a NSData pointer
- *  
+ *
  *  @discussion
  *	This method lets you attach a NSData object to the request. The behaviour is exactly similar to addFile:forKey:
  *  The method has a side effect. It changes the HTTPMethod to "POST" regardless of what it was before.
@@ -451,7 +451,7 @@ typedef enum {
 
 /*!
  *  @abstract Attaches a resource to the request from a NSData pointer and allows you to specify a mime-type
- *  
+ *
  *  @discussion
  *	This method lets you attach a NSData object to the request. The behaviour is exactly similar to addFile:forKey:mimeType:
  *  The method has a side effect. It changes the HTTPMethod to "POST" regardless of what it was before.
@@ -461,10 +461,10 @@ typedef enum {
 
 /*!
  *  @abstract Block Handler for completion and error
- *  
+ *
  *  @discussion
  *	This method sets your completion and error blocks. If your operation's response data was previously called,
- *  the completion block will be called almost immediately with the cached response. You can check if the completion 
+ *  the completion block will be called almost immediately with the cached response. You can check if the completion
  *  handler was invoked with a cached data or with real data by calling the isCachedResponse method.
  *  This method is deprecated in favour of addCompletionHandler:errorHandler: that returns the completedOperation in the error block as well.
  *  While I will still continue to support this method, I'll remove it completely in a future release.
@@ -499,9 +499,9 @@ typedef enum {
 
 /*!
  *  @abstract Block Handler for tracking upload progress
- *  
+ *
  *  @discussion
- *	This method can be used to update your progress bars when an upload is in progress. 
+ *	This method can be used to update your progress bars when an upload is in progress.
  *  The value range of the progress is 0 to 1.
  *
  */
@@ -509,9 +509,9 @@ typedef enum {
 
 /*!
  *  @abstract Block Handler for tracking download progress
- *  
+ *
  *  @discussion
- *	This method can be used to update your progress bars when a download is in progress. 
+ *	This method can be used to update your progress bars when a download is in progress.
  *  The value range of the progress is 0 to 1.
  *
  */
@@ -519,7 +519,7 @@ typedef enum {
 
 /*!
  *  @abstract Uploads a resource from a stream
- *  
+ *
  *  @discussion
  *	This method can be used to upload a resource for a post body directly from a stream.
  *
@@ -528,7 +528,7 @@ typedef enum {
 
 /*!
  *  @abstract Downloads a resource directly to a file or any output stream
- *  
+ *
  *  @discussion
  *	This method can be used to download a resource directly to a stream (It's normally a file in most cases).
  *  Calling this method multiple times adds new streams to the same operation.
@@ -539,7 +539,7 @@ typedef enum {
 
 /*!
  *  @abstract Helper method to check if the response is from cache
- *  
+ *
  *  @discussion
  *	This method should be used to check if your response is cached.
  *  When you enable caching on MKNetworkEngine, your completionHandler will be called with cached data first and then
@@ -550,7 +550,7 @@ typedef enum {
 
 /*!
  *  @abstract Helper method to retrieve the contents
- *  
+ *
  *  @discussion
  *	This method is used for accessing the downloaded data. If the operation is still in progress, the method returns nil instead of partial data. To access partial data, use a downloadStream.
  *
@@ -561,7 +561,7 @@ typedef enum {
 
 /*!
  *  @abstract Helper method to retrieve the contents as a NSString
- *  
+ *
  *  @discussion
  *	This method is used for accessing the downloaded data. If the operation is still in progress, the method returns nil instead of partial data. To access partial data, use a downloadStream. The method also converts the responseData to a NSString using the stringEncoding specified in the operation
  *
@@ -573,7 +573,7 @@ typedef enum {
 
 /*!
  *  @abstract Helper method to print the request as a cURL command
- *  
+ *
  *  @discussion
  *	This method is used for displaying the request you created as a cURL command
  *
@@ -582,7 +582,7 @@ typedef enum {
 
 /*!
  *  @abstract Helper method to retrieve the contents as a NSString encoded using a specific string encoding
- *  
+ *
  *  @discussion
  *	This method is used for accessing the downloaded data. If the operation is still in progress, the method returns nil instead of partial data. To access partial data, use a downloadStream. The method also converts the responseData to a NSString using the stringEncoding specified in the parameter
  *
@@ -594,7 +594,7 @@ typedef enum {
 
 /*!
  *  @abstract Helper method to retrieve the contents as a UIImage
- *  
+ *
  *  @discussion
  *	This method is used for accessing the downloaded data as a UIImage. If the operation is still in progress, the method returns nil instead of a partial image. To access partial data, use a downloadStream. If the response is not a valid image, this method returns nil. This method doesn't obey the response mime type property. If the server response with a proper image data but set the mime type incorrectly, this method will still be able access the response as an image.
  *
@@ -611,13 +611,13 @@ typedef enum {
 
 /*!
  *  @abstract Helper method to retrieve the contents as a NSDictionary or NSArray depending on the JSON contents
- *  
+ *
  *  @discussion
  *	This method is used for accessing the downloaded data as a NSDictionary or an NSArray. If the operation is still in progress, the method returns nil. If the response is not a valid JSON, this method returns nil.
  *
  *  @seealso
  *  responseJSONWithCompletionHandler:
-
+ 
  *  @availability
  *  iOS 5 and above or Mac OS 10.7 and above
  */
@@ -655,7 +655,7 @@ typedef enum {
 
 /*!
  *  @abstract Overridable custom method where you can add your custom business logic error handling
- *  
+ *
  *  @discussion
  *	This optional method can be overridden to do custom error handling. Be sure to call [super operationSucceeded] at the last.
  *  For example, a valid HTTP response (200) like "Item not found in database" might have a custom business error code
@@ -667,7 +667,7 @@ typedef enum {
 
 /*!
  *  @abstract Overridable custom method where you can add your custom business logic error handling
- *  
+ *
  *  @discussion
  *	This optional method can be overridden to do custom error handling. Be sure to call [super operationSucceeded] at the last.
  *  For example, a invalid HTTP response (401) like "Unauthorized" might be a valid case in your app.
@@ -695,7 +695,7 @@ typedef enum {
 -(void) updateOperationBasedOnPreviousHeaders:(NSMutableDictionary*) headers;
 -(NSString*) uniqueIdentifier;
 
-- (id)initWithURLString:(NSString *)aURLString
-                 params:(NSDictionary *)params
-             httpMethod:(NSString *)method;
+- (instancetype)initWithURLString:(NSString *)aURLString
+                           params:(NSDictionary *)params
+                       httpMethod:(NSString *)method;
 @end
