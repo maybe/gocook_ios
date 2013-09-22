@@ -52,7 +52,6 @@
   self.navigationItem.title = @"选购商品";
   [self setLeftButton];
   [self setRightButton];
-
 }
 
 - (void)didReceiveMemoryWarning
