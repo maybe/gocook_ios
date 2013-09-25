@@ -39,6 +39,10 @@
 {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
+  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
+  
   [self setLeftButton];
   
   refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];

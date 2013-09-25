@@ -78,8 +78,15 @@
   [self.view setBackgroundColor:[UIColor redColor]];
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.view setFrame:viewFrame];
-
-  [self.tabBar setFrame:CGRectMake(0, _screenHeight_NoStBar_NoNavBar_NoTabBar - _stateBarHeight, _screenWidth, _tabBarHeight)]; // don't know why must minus 20px...
+  
+  if([self respondsToSelector:@selector(edgesForExtendedLayout)])
+  {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
+  else//not need in ios7......
+  {
+    [self.tabBar setFrame:CGRectMake(0, _screenHeight_NoStBar_NoNavBar_NoTabBar - _stateBarHeight, _screenWidth, _tabBarHeight)]; // don't know why must minus 20px...
+  }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -39,7 +39,7 @@
   [self resetTableHeader];
   
   CGRect viewFrame = self.view.frame;
-  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar + 20;
   //viewFrame.size.width = _sideWindowWidth;
   [self.view setFrame:viewFrame];
   [self.tableView setFrame:viewFrame];
@@ -50,6 +50,12 @@
 
   [self.navigationController.view setFrame:CGRectMake(40, 0, _sideWindowWidth, _screenHeight_NoStBar)];
 
+  if([self respondsToSelector:@selector(edgesForExtendedLayout)])
+  {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
+  
+  
   [super viewDidLoad];
 }
 

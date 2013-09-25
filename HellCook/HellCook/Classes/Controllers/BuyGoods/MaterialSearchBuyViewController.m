@@ -52,6 +52,11 @@
   self.navigationItem.title = @"选购商品";
   [self setLeftButton];
   [self setRightButton];
+  
+  if([self respondsToSelector:@selector(edgesForExtendedLayout)])
+  {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
 }
 
 - (void)didReceiveMemoryWarning
