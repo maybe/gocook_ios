@@ -56,7 +56,7 @@
 + (void)dumpView:(UIView *)aView atIndent:(int)indent into:(NSMutableString *)outString
 {
   for (int i = 0; i < indent; i++) [outString appendString:@"--"];
-  [outString appendFormat:@"[%2d] %@\n", indent, [[aView class] description]];
+  [outString appendFormat:@"[%2d] %@ (x:%.1f,y:%.1f,width:%.1f,height:%.1f)\n", indent, [[aView class] description], aView.frame.origin.x, aView.frame.origin.y, aView.frame.size.width, aView.frame.size.height];
   for (UIView *view in [aView subviews])
     [self dumpView:view atIndent:indent + 1 into:outString];
 }
@@ -86,6 +86,7 @@
 + (NSString *) displayViews: (UIView *) aView
 {
   NSMutableString *outString = [[NSMutableString alloc] init];
+  [outString appendString:@"\n"];
   [self dumpView: aView atIndent:0 into:outString];
   return outString;
 }
