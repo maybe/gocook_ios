@@ -42,6 +42,7 @@
 #define HCSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
 
 #define isRetina4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define isIOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 
 #define _screenHeight [[UIScreen mainScreen] bounds].size.height
 #define _screenWidth [[UIScreen mainScreen] bounds].size.width

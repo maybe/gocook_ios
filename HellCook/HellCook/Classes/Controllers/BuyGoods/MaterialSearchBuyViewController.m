@@ -52,6 +52,17 @@
   self.navigationItem.title = @"选购商品";
   [self setLeftButton];
   [self setRightButton];
+
+  CGRect viewFrame = self.view.frame;
+  if (isIOS7) {
+    viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  } else {
+    viewFrame.size.height = _screenHeight_NoStBar_NoNavBar + 20;
+  }
+
+  //viewFrame.size.width = _sideWindowWidth;
+  [self.view setFrame:viewFrame];
+  [self.myTableView setFrame:viewFrame];
   
   if([self respondsToSelector:@selector(edgesForExtendedLayout)])
   {

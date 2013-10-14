@@ -39,7 +39,12 @@
   [self resetTableHeader];
   
   CGRect viewFrame = self.view.frame;
-  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar + 20;
+  if (isIOS7) {
+    viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  } else {
+    viewFrame.size.height = _screenHeight_NoStBar_NoNavBar + 20;
+  }
+  
   //viewFrame.size.width = _sideWindowWidth;
   [self.view setFrame:viewFrame];
   [self.tableView setFrame:viewFrame];

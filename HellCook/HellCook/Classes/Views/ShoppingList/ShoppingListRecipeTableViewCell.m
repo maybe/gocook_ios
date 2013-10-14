@@ -213,7 +213,7 @@
     
     cellDictionary[@"select"] = @"slash";
 
-    NSIndexPath *indexPath = [(UITableView *)self.superview indexPathForCell: self];
+    NSIndexPath *indexPath = [[self relatedTable] indexPathForCell: self];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShoppingListSlashMaterialItem" object:[NSNumber numberWithInt:indexPath.row]];
         
     [UIView animateWithDuration:0.3 animations:^{
@@ -239,7 +239,7 @@
     
     cellDictionary[@"select"] = @"unslash";
 
-    NSIndexPath *indexPath = [(UITableView *)self.superview indexPathForCell: self];
+    NSIndexPath *indexPath = [[self relatedTable] indexPathForCell: self];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShoppingListUnSlashMaterialItem" object:[NSNumber numberWithInt:indexPath.row]];
     
     [UIView animateWithDuration:0.2 animations:^{
@@ -291,6 +291,20 @@
   } else {
     middleLine.hidden = true;
   }
+}
+
+- (UITableView *)relatedTable
+{
+  if ([self.superview isKindOfClass:[UITableView class]])
+    return (UITableView *)self.superview;
+  else if ([self.superview.superview isKindOfClass:[UITableView class]])
+    return (UITableView *)self.superview.superview;
+  else
+  {
+    NSAssert(NO, @"UITableView shall always be found.");
+    return nil;
+  }
+  
 }
 
 @end
