@@ -83,7 +83,7 @@
     if (self.theCellStyle == CellStyle_Middle) {
       [sepImageView setFrame:CGRectMake(12, tableCellBodyHeight-1, 295, 1)];
     }else if (self.theCellStyle == CellStyle_Top){
-      [sepImageView setFrame:CGRectMake(12, tableCellHeaderHeight, 295, 1)];
+      [sepImageView setFrame:CGRectMake(12, tableCellHeaderHeight-1, 295, 1)];
     }else if (self.theCellStyle == CellStyle_Bottom){
       [sepImageView setFrame:CGRectMake(12, tableCellFooterHeight, 295, 1)];
     }else{

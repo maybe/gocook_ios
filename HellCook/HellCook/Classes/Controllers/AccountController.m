@@ -60,6 +60,10 @@
   [self hideLoginView];
 
   [self initCellContentArray];
+  
+  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
 
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
@@ -69,15 +73,12 @@
   tableFrame.size.height = _screenHeight_NoStBar_NoNavBar - 120;
   [self.tableView setFrame:tableFrame];
   
-  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-  }
-  
   [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight_NoStBar)];
+  
+  [self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight)];
 
   if ([[[User sharedInstance] account] isLogin] && [[[User sharedInstance] account] shouldResetLogin]) {
     [self resetAccountView];

@@ -147,7 +147,7 @@
   cell.tableCellHeaderHeight = kTableCellHeader;
   cell.accessoryType = UITableViewCellAccessoryNone;
   [cell setCellStyle:[cellList count] Index:indexPath.row];
-
+  [cell setBackgroundColor: [UIColor clearColor]];
   return cell;
 }
 
