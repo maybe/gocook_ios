@@ -121,7 +121,7 @@
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
   if (self.delegate) {
-    NSIndexPath *indexPath = [(UITableView *)self.superview indexPathForCell: self];
+    NSIndexPath *indexPath = [[self relatedTable] indexPathForCell: self];
     [delegate changeInputData:textView.text WithIndex:indexPath.row];
   }
   
@@ -185,6 +185,19 @@
 
 -(void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (UITableView *)relatedTable
+{
+  if ([self.superview isKindOfClass:[UITableView class]])
+    return (UITableView *)self.superview;
+  else if ([self.superview.superview isKindOfClass:[UITableView class]])
+    return (UITableView *)self.superview.superview;
+  else
+  {
+    NSAssert(NO, @"UITableView shall always be found.");
+    return nil;
+  }
 }
 
 @end

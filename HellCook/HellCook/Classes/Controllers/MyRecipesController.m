@@ -140,6 +140,7 @@
 
 #pragma  mark - Recipe Operation
 - (void)modifyOneMyRecipe:(id)sender {
+  // fix
   MyRecipesTableViewCell* cell = (MyRecipesTableViewCell*)(((UIButton*)sender).superview);
   NSIndexPath *indexPath = [tableView indexPathForCell: cell];
   if (mMyRecipeArray.count > indexPath.row) {

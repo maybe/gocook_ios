@@ -304,7 +304,6 @@
     NSAssert(NO, @"UITableView shall always be found.");
     return nil;
   }
-  
 }
 
 @end
