@@ -91,9 +91,6 @@
     [self hideAccountView];
     [self showLoginView];
   }
-
-  NSString *layString =[NSString stringWithString:[Common displayViews:self.view]];
-  NSLog(@"%@",layString);
   
   [super viewWillAppear:animated];
 }

@@ -57,6 +57,9 @@
   {
     self.edgesForExtendedLayout = UIRectEdgeNone;
   }
+  
+  NSString *layString =[NSString stringWithString:[Common displayViews:self.view]];
+  NSLog(@"%@",layString);
 }
 
 - (void)didReceiveMemoryWarning
