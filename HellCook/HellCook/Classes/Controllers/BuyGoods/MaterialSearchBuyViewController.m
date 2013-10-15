@@ -66,19 +66,12 @@
   [self.myTableView setFrame:viewFrame];
   
   
-  UIView *rootView = self.view;
-  while (true) {
-    if ([rootView.superview isKindOfClass:[UIWindow class]])
-    {
-      rootView = rootView.superview;
-      break;
-    }
-    
+  UIView *rootView = self.myTableView;
+  while (rootView.superview != nil) {
     rootView = rootView.superview;
   }
-  
-  
-  NSString *layString =[NSString stringWithString:[Common displayViews:self.view]];
+
+  NSString *layString =[NSString stringWithString:[Common displayViews:rootView]];
   NSLog(@"%@",layString);
 
   [super viewDidLoad];
