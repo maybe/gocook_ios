@@ -69,6 +69,19 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
   }
   
+  
+  UIView *rootView = self.view;
+  while (true) {
+    if ([rootView.superview isKindOfClass:[UIWindow class]])
+    {
+      rootView = rootView.superview;
+      break;
+    }
+    
+    rootView = rootView.superview;
+  }
+  
+  
   NSString *layString =[NSString stringWithString:[Common displayViews:self.view]];
   NSLog(@"%@",layString);
 }
