@@ -37,35 +37,29 @@
   cellAllMaterialArray = [[NSMutableArray alloc]init];
   
   [self resetTableHeader];
-  
-  CGRect viewFrame = self.view.frame;
-  if (isIOS7) {
-    viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
-  } else {
-    viewFrame.size.height = _screenHeight_NoStBar_NoNavBar + 20;
-  }
-  
-  //viewFrame.size.width = _sideWindowWidth;
-  [self.view setFrame:viewFrame];
-  [self.tableView setFrame:viewFrame];
     
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnSlashMaterialItem:) name:@"ShoppingListSlashMaterialItem" object:nil];
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnUnSlashMaterialItem:) name:@"ShoppingListUnSlashMaterialItem" object:nil];
 
-  [self.navigationController.view setFrame:CGRectMake(40, 0, _sideWindowWidth, _screenHeight_NoStBar)];
-
   if([self respondsToSelector:@selector(edgesForExtendedLayout)])
   {
     self.edgesForExtendedLayout = UIRectEdgeNone;
   }
-  
-  
+
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+
+  //viewFrame.size.width = _sideWindowWidth;
+  [self.view setFrame:viewFrame];
+  [self.tableView setFrame:viewFrame];
+
   [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+  [self.navigationController.view setFrame:CGRectMake(40, 0, _sideWindowWidth, _screenHeight)];
 
   if (isRecipeView == YES) {
     [self setDataList];
@@ -75,8 +69,6 @@
   }
   
   [self.tableView reloadData];
-  
-  [self.navigationController.view setFrame:CGRectMake(40, 0, _sideWindowWidth, _screenHeight_NoStBar)];
 
   [super viewWillAppear:animated];  
 }

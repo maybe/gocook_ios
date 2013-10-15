@@ -47,27 +47,23 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = @"选购商品";
   [self setLeftButton];
   [self setRightButton];
 
-  CGRect viewFrame = self.view.frame;
-  if (isIOS7) {
-    viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
-  } else {
-    viewFrame.size.height = _screenHeight_NoStBar_NoNavBar + 20;
-  }
-
-  //viewFrame.size.width = _sideWindowWidth;
-  [self.view setFrame:viewFrame];
-  [self.myTableView setFrame:viewFrame];
   
   if([self respondsToSelector:@selector(edgesForExtendedLayout)])
   {
     self.edgesForExtendedLayout = UIRectEdgeNone;
   }
+
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+
+  //viewFrame.size.width = _sideWindowWidth;
+  [self.view setFrame:viewFrame];
+  [self.myTableView setFrame:viewFrame];
   
   
   UIView *rootView = self.view;
@@ -84,12 +80,12 @@
   
   NSString *layString =[NSString stringWithString:[Common displayViews:self.view]];
   NSLog(@"%@",layString);
+
+  [super viewDidLoad];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
 }
 
 - (void)setLeftButton
