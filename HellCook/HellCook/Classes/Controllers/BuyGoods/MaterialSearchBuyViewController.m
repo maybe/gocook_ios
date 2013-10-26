@@ -64,6 +64,7 @@
   [self.view setFrame:viewFrame];
   [self.myTableView setFrame:viewFrame];
   
+  
   if([self respondsToSelector:@selector(edgesForExtendedLayout)])
   {
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -71,13 +72,15 @@
   
   
   UIView *rootView = self.view;
-  while (true) {
-    if ([rootView.superview isKindOfClass:[UIWindow class]])
-    {
-      rootView = rootView.superview;
-      break;
-    }
+  
+  while (rootView.superview) {
     
+    if ([rootView.superview isKindOfClass:[UIWindow class]]) {
+      
+      break;
+      
+    }
+  
     rootView = rootView.superview;
   }
   
