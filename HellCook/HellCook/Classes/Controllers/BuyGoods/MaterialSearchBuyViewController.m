@@ -52,12 +52,10 @@
   [self setLeftButton];
   [self setRightButton];
 
-  
-  
-  if([self respondsToSelector:@selector(edgesForExtendedLayout)])
-  {
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-  }
+//  if([self respondsToSelector:@selector(edgesForExtendedLayout)])
+//  {
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+//  }
 
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;

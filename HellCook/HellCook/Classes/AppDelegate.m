@@ -15,22 +15,29 @@
 #import "User.h"
 #import "ConfigHandler.h"
 #import "DBHandler.h"
-#import "UIZoomNavigationController.h"
+#import "HCNavigationController.h"
 #import "Encrypt.h"
+#import "MMDrawerController.h"
+#import "MMExampleDrawerVisualStateManager.h"
+
+@interface AppDelegate ()
+@property (nonatomic,strong) MMDrawerController * drawerController;
+
+@end
 
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize revealSideViewController = _revealSideViewController;
 @synthesize leftNavController = _leftNavController;
 @synthesize centerNavController = _centerNavController;
 @synthesize rightNavController = _rightNavController;
 @synthesize connectionTimer, done;
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   
-/*  //等待2秒进入首页
+  /*  //等待2秒进入首页
   self.connectionTimer=[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:NO];
   [[NSRunLoop currentRunLoop] addTimer:self.connectionTimer forMode:NSDefaultRunLoopMode];
   do{
@@ -46,9 +53,43 @@
   [self resetLeftNavController];
   [self resetRightNavController];
   
-  [self resetRevealSideviewController];
+  if(HCSystemVersionGreaterOrEqualThan(7.0)){
+      self.drawerController = [[MMDrawerController alloc]
+                               initWithCenterViewController:_centerNavController
+                               leftDrawerViewController:_leftNavController
+                               rightDrawerViewController:_rightNavController];
+  }
+  else{
+      self.drawerController = [[MMDrawerController alloc]
+                               initWithCenterViewController:_centerNavController
+                               leftDrawerViewController:_leftNavController
+                               rightDrawerViewController:_rightNavController];
+  }
   
-  self.window.rootViewController = _revealSideViewController;
+  [self.drawerController setShouldStretchDrawer:NO];
+  [self.drawerController setShowsShadow:YES];
+  [self.drawerController setMaximumRightDrawerWidth:200.0];
+  [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+  [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+  
+  [self.drawerController
+   setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
+       MMDrawerControllerDrawerVisualStateBlock block;
+       block = [[MMExampleDrawerVisualStateManager sharedManager]
+                drawerVisualStateBlockForDrawerSide:drawerSide];
+       if(block){
+           block(drawerController, drawerSide, percentVisible);
+       }
+   }];
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  if(HCSystemVersionGreaterOrEqualThan(7.0)){
+      UIColor * tintColor = [UIColor colorWithRed:29.0/255.0
+                                            green:173.0/255.0
+                                             blue:234.0/255.0
+                                            alpha:1.0];
+      [self.window setTintColor:tintColor];
+  }
+  [self.window setRootViewController:self.drawerController];
   
   self.window.backgroundColor = [UIColor blackColor];
   [self.window makeKeyAndVisible];
@@ -96,7 +137,12 @@
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
   //navigationbar
   UINavigationBar *navigationBar = [UINavigationBar appearance];
-  [navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+  if (HCSystemVersionGreaterOrEqualThan(7.0)) {
+    [navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarH.png"] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
+  }
+  else {
+    [navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+  }
   
   [[UINavigationBar appearance] setTitleTextAttributes: @{
                               UITextAttributeTextColor: [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0],
@@ -111,7 +157,7 @@
 - (void)resetLeftNavController
 {
   AccountController* accountController = [[AccountController alloc] initWithNibName:@"AccountView" bundle:nil];
-  _leftNavController = [[UINavigationController alloc] initWithRootViewController:accountController];
+  _leftNavController = [[HCNavigationController alloc] initWithRootViewController:accountController];
   _leftNavController.navigationBarHidden = NO;
   _leftNavController.view.clipsToBounds = YES;
   _leftNavController.navigationBar.clipsToBounds = YES;
@@ -121,7 +167,7 @@
 - (void)resetRightNavController
 {
   ShoppingListController* slController = [[ShoppingListController alloc] initWithNibName:@"ShoppingListView" bundle:nil];
-  _rightNavController = [[UINavigationController alloc] initWithRootViewController:slController];
+  _rightNavController = [[HCNavigationController alloc] initWithRootViewController:slController];
   _rightNavController.navigationBarHidden = NO;
   _rightNavController.view.clipsToBounds = YES;
   _rightNavController.navigationBar.clipsToBounds = YES;
@@ -131,25 +177,13 @@
 - (void)resetCenterNavController
 {
   MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];
-  _centerNavController = [[UIZoomNavigationController alloc] initWithRootViewController:mainController];
+  _centerNavController = [[HCNavigationController alloc] initWithRootViewController:mainController];
   CGRect viewframe = _centerNavController.view.frame;
   viewframe.size.height = _screenHeight;
   [_centerNavController.view setFrame:viewframe];
   _centerNavController.view.autoresizesSubviews = NO;
 }
 
-- (void)resetRevealSideviewController
-{
-  _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_centerNavController];
-  _revealSideViewController.delegate = self;
-  
-  [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionLeft |PPRevealSideDirectionRight];
-  [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
-  [self.revealSideViewController setOption:PPRevealSideOptionsResizeSideView];
-  
-  [self.revealSideViewController preloadViewController:_leftNavController forSide:PPRevealSideDirectionLeft withOffset:_offset];
-  [self.revealSideViewController preloadViewController:_rightNavController forSide:PPRevealSideDirectionRight withOffset:_offset];
-}
 
 -(void)timerFired:(NSTimer *)timer{
   done=YES;

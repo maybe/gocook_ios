@@ -4,6 +4,9 @@
 #import "NetManager.h"
 #import "TopListController.h"
 #import "SearchController.h"
+#import "UIViewController+MMDrawerController.h"
+#import "MMDrawerBarButtonItem.h"
+#import "HCNavigationController.h"
 
 @interface MainController ()
 
@@ -14,45 +17,40 @@
 
 - (void)viewDidLoad
 {
-
   self.title = @"今日热门";
-
-  self.navigationController.navigationBar.clipsToBounds = NO;
-
   
   [self setLeftButton];
   [self setRightButton];
   
-  searchBarView = [[SearchBarView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
-  [self.view addSubview:searchBarView];
-  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-  }
+  [self addSearchBar];
+  
   [self getIOSMainData];
+  
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
+  viewFrame = self.tableView.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar - _navigationBarHeight;
+  [self.tableView setFrame:viewFrame];
+  
+  [self autoLayout];
   [super viewDidLoad];
 }
 
 - (void) showLeft:(id)sender
 {
   [searchBarView hideMaskView];
-  [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
+  [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 - (void) showRight:(id)sender
 {
   [searchBarView hideMaskView];
-  [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:_offset animated:YES];
+  [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
-  [self.revealSideViewController setIsSwipeEnabled:YES];
-  CGRect viewFrame = self.tableView.frame;
-  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar - _navigationBarHeight;
-  [self.tableView setFrame:viewFrame];
-//  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//  [self.revealSideViewController preloadViewController:appDelegate.leftNavController forSide:PPRevealSideDirectionLeft];
-
   [super viewWillAppear:animated];
 }
 
@@ -138,7 +136,7 @@
 
 - (void)selectTopNewCell
 {
-  [self.revealSideViewController setIsSwipeEnabled:NO];
+  //[self.revealSideViewController setIsSwipeEnabled:NO];
   TopListController* topController = [[TopListController alloc]initWithNibName:@"TopListView" bundle:nil];
   topController.topListType = TLT_TopNew;
   [self.navigationController pushViewController:topController animated:YES];
@@ -146,7 +144,7 @@
 
 - (void)selectTopHotCell
 {
-  [self.revealSideViewController setIsSwipeEnabled:NO];
+  //[self.revealSideViewController setIsSwipeEnabled:NO];
   TopListController* topController = [[TopListController alloc]initWithNibName:@"TopListView" bundle:nil];
   topController.topListType = TLT_TopHot;
   [self.navigationController pushViewController:topController animated:YES];
@@ -200,11 +198,17 @@
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
 
+- (void)addSearchBar
+{
+  searchBarView = [[SearchBarView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+  [self.view addSubview:searchBarView];
+}
+
 - (void)goSearch
 {
   if (![[searchBarView getSearchKeyword] isEqualToString:@""])
   {
-    [self.revealSideViewController setIsSwipeEnabled:NO];
+    //[self.revealSideViewController setIsSwipeEnabled:NO];
     [self.navigationController pushViewController:[[SearchController alloc]initWithNibName:@"SearchView" bundle:nil keyword:[searchBarView getSearchKeyword]] animated:YES];
   }
 }

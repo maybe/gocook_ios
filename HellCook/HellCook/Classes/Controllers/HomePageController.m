@@ -11,6 +11,8 @@
 #import "MyFollowViewController.h"
 #import "MyRecipesController.h"
 #import "MyFansViewController.h"
+#import "UIViewController+MMDrawerController.h"
+#import "MMDrawerBarButtonItem.h"
 
 @interface HomePageController ()
 
@@ -114,7 +116,9 @@
 
 
 - (void)returnToPrev {
-  [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
+  [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+
+  //[self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
 }
 
 

@@ -24,6 +24,9 @@
 #import "MainController.h"
 #import "HomePageController.h"
 #import "HistoryDealViewController.h"
+#import "UIViewController+MMDrawerController.h"
+#import "MMDrawerBarButtonItem.h"
+#import "HCNavigationController.h"
 
 @interface AccountController ()
 
@@ -44,7 +47,7 @@
   [titleImageView setImage:[UIImage imageNamed:@"Images/leftPageTitle.png"]];
   self.navigationItem.titleView = titleImageView;
 
-  [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
+  //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
   self.navigationController.navigationBar.clipsToBounds = NO;
 
   self.view.clipsToBounds = YES;
@@ -61,9 +64,9 @@
 
   [self initCellContentArray];
   
-  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-  }
+//  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+//  }
 
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
@@ -78,7 +81,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   
-  [self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight)];
+  //[self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight)];
 
   if ([[[User sharedInstance] account] isLogin] && [[[User sharedInstance] account] shouldResetLogin]) {
     [self resetAccountView];
@@ -182,12 +185,12 @@
      cancelButtonTitle:@"取消"
 destructiveButtonTitle:@"确定"
      otherButtonTitles:nil];
-    [actionSheet showInView:self.revealSideViewController.view];
+    [actionSheet showInView:self.mm_drawerController.view];
   }
   else if (indexPath.row == 0) {
     MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];
     [ApplicationDelegate.centerNavController setViewControllers:@[mainController] animated:NO];
-    [self.revealSideViewController popViewControllerAnimated:YES];
+    //[self.revealSideViewController popViewControllerAnimated:YES];
   }
   else {
   }
@@ -255,7 +258,7 @@ destructiveButtonTitle:@"确定"
 
   //[self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:_offset animated:YES];
 
-  [self.revealSideViewController popViewControllerAnimated:YES];
+  [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
 }
 
 
@@ -436,7 +439,9 @@ destructiveButtonTitle:@"确定"
 
     [ApplicationDelegate.centerNavController setViewControllers:@[pHomePageController] animated:NO];
 
-    [self.revealSideViewController popViewControllerAnimated:YES];
+    [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
+
+    //[self.revealSideViewController popViewControllerAnimated:YES];
   }
   else if (sender.tag == 10003)//我的收藏
   {

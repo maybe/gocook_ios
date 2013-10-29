@@ -12,6 +12,8 @@
 #import "MyIntroEditViewController.h"
 #import "CommonDef.h"
 #import "User.h"
+#import "UIViewController+MMDrawerController.h"
+#import "MMDrawerBarButtonItem.h"
 
 @interface MyIntroductionViewController ()
 
@@ -138,7 +140,8 @@
 {
   if (eCalledFrom == ViewControllerCalledFromMyIndividual)
   {
-    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    //[self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
   }
   else
   {

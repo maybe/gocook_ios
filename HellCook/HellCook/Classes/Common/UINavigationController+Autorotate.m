@@ -1,6 +1,6 @@
 #import "UINavigationController+Autorotate.h"
 
-@implementation UINavigationController (MyTransition)
+@implementation UINavigationController (Autorotate)
 
 -(BOOL)shouldAutorotate
 {

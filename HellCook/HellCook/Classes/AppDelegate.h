@@ -8,18 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class UIZoomNavigationController;
-@interface AppDelegate : UIResponder <UIApplicationDelegate, PPRevealSideViewControllerDelegate>
+@class HCNavigationController;
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
   NSTimer *connectionTimer; //timer对象
   BOOL done;
 }
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) PPRevealSideViewController *revealSideViewController;
-@property (strong, nonatomic) UINavigationController *leftNavController;
-@property (strong, nonatomic) UIZoomNavigationController *centerNavController;
-@property (strong, nonatomic) UINavigationController *rightNavController;
+@property (strong, nonatomic) HCNavigationController *leftNavController;
+@property (strong, nonatomic) HCNavigationController *centerNavController;
+@property (strong, nonatomic) HCNavigationController *rightNavController;
 @property (strong, nonatomic) UIImageView *startView;
 @property (nonatomic, retain) NSTimer *connectionTimer;
 @property BOOL done;

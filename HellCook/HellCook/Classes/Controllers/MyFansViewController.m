@@ -12,6 +12,8 @@
 #import "MyFansTableViewCell.h"
 #import "HomePageController.h"
 #import "ODRefreshControl.h"
+#import "UIViewController+MMDrawerController.h"
+#import "MMDrawerBarButtonItem.h"
 
 @interface MyFansViewController ()
 
@@ -38,10 +40,10 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  // Do any additional setup after loading the view from its nib.
-  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-  }
+//  // Do any additional setup after loading the view from its nib.
+//  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+//  }
   
   [self setLeftButton];
   
@@ -94,7 +96,9 @@
 
 -(void)returnToPrev
 {
-    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
+  [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+
+   // [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
 }
 
 

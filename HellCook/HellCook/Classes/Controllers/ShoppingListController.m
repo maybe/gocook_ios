@@ -25,7 +25,7 @@
   
   [self setRightButton];
     
-  [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
+  //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
     
   self.navigationController.navigationBar.clipsToBounds = NO;
   self.view.clipsToBounds = YES;
@@ -41,11 +41,11 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnSlashMaterialItem:) name:@"ShoppingListSlashMaterialItem" object:nil];
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnUnSlashMaterialItem:) name:@"ShoppingListUnSlashMaterialItem" object:nil];
-
-  if([self respondsToSelector:@selector(edgesForExtendedLayout)])
-  {
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-  }
+//
+//  if([self respondsToSelector:@selector(edgesForExtendedLayout)])
+//  {
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+//  }
 
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
@@ -59,8 +59,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  [self.navigationController.view setFrame:CGRectMake(40, 0, _sideWindowWidth, _screenHeight)];
-
   if (isRecipeView == YES) {
     [self setDataList];
   } else {
