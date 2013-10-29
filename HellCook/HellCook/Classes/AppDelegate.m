@@ -145,7 +145,7 @@
   }
   
   [[UINavigationBar appearance] setTitleTextAttributes: @{
-                              UITextAttributeTextColor: [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0],
+                              UITextAttributeTextColor: [UIColor whiteColor],
                         UITextAttributeTextShadowColor: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8],
                        UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 0.5f)],
    }];

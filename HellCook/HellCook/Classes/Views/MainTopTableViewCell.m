@@ -43,7 +43,7 @@
     [leftImageView setFrame:CGRectMake(0, 0, 145, 90)];
     [leftView addSubview:leftImageView];
     
-    UIImageView* maskImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Images/topmask.png"]];
+    UIImageView* maskImageView = [[UIImageView alloc]init];//WithImage:[UIImage imageNamed:@"Images/topmask.png"]];
     [maskImageView setFrame:CGRectMake(0, 0, 145, 90)];    
     
     UIView* maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 145, 25)];
@@ -86,7 +86,7 @@
     [rightImageView setFrame:CGRectMake(0, 0, 145, 90)];
     [rightView addSubview:rightImageView];
     
-    UIImageView* maskImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Images/topmask.png"]];
+    UIImageView* maskImageView = [[UIImageView alloc]init]; //WithImage:[UIImage imageNamed:@"Images/topmask.png"]];
     [maskImageView setFrame:CGRectMake(0, 0, 145, 90)];
     
     UIView* maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 145, 25)];
