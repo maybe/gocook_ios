@@ -129,6 +129,7 @@
 		BAA892D5182028C6006A89BB /* HCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA892D4182028C6006A89BB /* HCNavigationController.m */; };
 		BAA892D818202AB1006A89BB /* MMExampleDrawerVisualStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA892D718202AB1006A89BB /* MMExampleDrawerVisualStateManager.m */; };
 		BAA892DB182037C9006A89BB /* UIViewController+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA892DA182037C9006A89BB /* UIViewController+AutoLayout.m */; };
+		BAA892DE1822BA53006A89BB /* HCDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA892DD1822BA53006A89BB /* HCDrawerController.m */; };
 		BAB32B9217BFEC7C00B0C150 /* Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB32B9117BFEC7C00B0C150 /* Encrypt.m */; };
 		BAB32BA117BFFCCF00B0C150 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB32BA017BFFCCF00B0C150 /* Base64.m */; };
 		BABAE9D217AE779F0099BE45 /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = BABAE9D017AE779F0099BE45 /* HomePageController.m */; };
@@ -406,6 +407,8 @@
 		BAA892D718202AB1006A89BB /* MMExampleDrawerVisualStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMExampleDrawerVisualStateManager.m; path = Classes/Common/MMExampleDrawerVisualStateManager.m; sourceTree = "<group>"; };
 		BAA892D9182037C9006A89BB /* UIViewController+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+AutoLayout.h"; path = "Classes/Common/UIViewController+AutoLayout.h"; sourceTree = "<group>"; };
 		BAA892DA182037C9006A89BB /* UIViewController+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+AutoLayout.m"; path = "Classes/Common/UIViewController+AutoLayout.m"; sourceTree = "<group>"; };
+		BAA892DC1822BA53006A89BB /* HCDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCDrawerController.h; path = Classes/Common/HCDrawerController.h; sourceTree = "<group>"; };
+		BAA892DD1822BA53006A89BB /* HCDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCDrawerController.m; path = Classes/Common/HCDrawerController.m; sourceTree = "<group>"; };
 		BAB32B9017BFEC7C00B0C150 /* Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Encrypt.h; path = Classes/Common/Encrypt.h; sourceTree = "<group>"; };
 		BAB32B9117BFEC7C00B0C150 /* Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Encrypt.m; path = Classes/Common/Encrypt.m; sourceTree = "<group>"; };
 		BAB32B9F17BFFCCF00B0C150 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
@@ -796,6 +799,8 @@
 				BAA892D718202AB1006A89BB /* MMExampleDrawerVisualStateManager.m */,
 				BAA892D9182037C9006A89BB /* UIViewController+AutoLayout.h */,
 				BAA892DA182037C9006A89BB /* UIViewController+AutoLayout.m */,
+				BAA892DC1822BA53006A89BB /* HCDrawerController.h */,
+				BAA892DD1822BA53006A89BB /* HCDrawerController.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1372,6 +1377,7 @@
 				BACCF88A16ED0BD60094F1E5 /* Reachability.m in Sources */,
 				BA05128616FA14C10091D3C6 /* UIImage+Retina4.m in Sources */,
 				BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */,
+				BAA892DE1822BA53006A89BB /* HCDrawerController.m in Sources */,
 				BAA892D21820250B006A89BB /* UIViewController+MMDrawerController.m in Sources */,
 				BA829BF017049DE400B0341A /* DefaultGroupedTableCell.m in Sources */,
 				BA829BF717057FCB00B0341A /* KeyboardHandler.m in Sources */,

@@ -38,7 +38,7 @@
   if (!leftView) {
     leftView = [[UIView alloc]initWithFrame:CGRectMake(10, 13, 145, 90)];
     
-    leftImageView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"Images/tmptophot.png"]];
+    leftImageView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"Images/topDefaultMask.png"]];
     [leftImageView setContentMode:UIViewContentModeScaleAspectFill];
     [leftImageView setFrame:CGRectMake(0, 0, 145, 90)];
     [leftView addSubview:leftImageView];
@@ -81,7 +81,7 @@
 {
   if (!rightView) {
     rightView = [[UIView alloc]initWithFrame:CGRectMake(165, 13, 145, 90)];
-    rightImageView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"Images/tmptophot.png"]];
+    rightImageView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"Images/topDefaultMask.png"]];
     [rightImageView setContentMode:UIViewContentModeScaleAspectFill];
     [rightImageView setFrame:CGRectMake(0, 0, 145, 90)];
     [rightView addSubview:rightImageView];
@@ -125,11 +125,11 @@
       
   NSString* leftImageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, dictionary[@"tophot_img"]];
       
-  [leftImageView setImageWithURL:[NSURL URLWithString:leftImageUrl] placeholderImage:nil];
+  [leftImageView setImageWithURL:[NSURL URLWithString:leftImageUrl] placeholderImage: [UIImage imageNamed:@"Images/topDefaultMask.png"]];
 
   NSString* rightImageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, dictionary[@"topnew_img"]];
   
-  [rightImageView setImageWithURL:[NSURL URLWithString:rightImageUrl] placeholderImage:nil];
+  [rightImageView setImageWithURL:[NSURL URLWithString:rightImageUrl] placeholderImage:[UIImage imageNamed:@"Images/topDefaultMask.png"]];
 }
 
 @end

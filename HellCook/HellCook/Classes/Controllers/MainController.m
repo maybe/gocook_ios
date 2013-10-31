@@ -26,10 +26,7 @@
   
   [self getIOSMainData];
   
-  CGRect viewFrame = self.view.frame;
-  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
-  [self.view setFrame:viewFrame];
-  viewFrame = self.tableView.frame;
+  CGRect viewFrame = self.tableView.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar - _navigationBarHeight;
   [self.tableView setFrame:viewFrame];
   

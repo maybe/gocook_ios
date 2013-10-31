@@ -17,11 +17,11 @@
 #import "DBHandler.h"
 #import "HCNavigationController.h"
 #import "Encrypt.h"
-#import "MMDrawerController.h"
+#import "HCDrawerController.h"
 #import "MMExampleDrawerVisualStateManager.h"
 
 @interface AppDelegate ()
-@property (nonatomic,strong) MMDrawerController * drawerController;
+@property (nonatomic,strong) HCDrawerController * drawerController;
 
 @end
 
@@ -54,13 +54,13 @@
   [self resetRightNavController];
   
   if(HCSystemVersionGreaterOrEqualThan(7.0)){
-      self.drawerController = [[MMDrawerController alloc]
+      self.drawerController = [[HCDrawerController alloc]
                                initWithCenterViewController:_centerNavController
                                leftDrawerViewController:_leftNavController
                                rightDrawerViewController:_rightNavController];
   }
   else{
-      self.drawerController = [[MMDrawerController alloc]
+      self.drawerController = [[HCDrawerController alloc]
                                initWithCenterViewController:_centerNavController
                                leftDrawerViewController:_leftNavController
                                rightDrawerViewController:_rightNavController];
@@ -68,9 +68,10 @@
   
   [self.drawerController setShouldStretchDrawer:NO];
   [self.drawerController setShowsShadow:YES];
-  [self.drawerController setMaximumRightDrawerWidth:200.0];
+  //[self.drawerController setMaximumRightDrawerWidth:280.0];
   [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
   [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+  self.drawerController.closeDrawerGestureModeMask ^= MMCloseDrawerGestureModePanningDrawerView;
   
   [self.drawerController
    setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {

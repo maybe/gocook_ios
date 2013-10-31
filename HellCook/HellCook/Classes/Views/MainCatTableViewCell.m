@@ -59,11 +59,11 @@
       [imageView setClipsToBounds:YES];
       [imageContainer addSubview:imageView];
     }
-    for (int i = 0; i < 4; i++) {
-      UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i*49, 0, 45, 45)];
-      [imageView setImage: [UIImage imageNamed:@"Images/roundMask.png"]];
-      [imageContainer addSubview:imageView];
-    }
+//    for (int i = 0; i < 4; i++) {
+//      UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i*49, 0, 45, 45)];
+//      [imageView setImage: [UIImage imageNamed:@"Images/roundMask.png"]];
+//      [imageContainer addSubview:imageView];
+//    }
     
   }
   return imageContainer;
