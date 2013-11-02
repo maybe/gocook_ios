@@ -14,6 +14,8 @@
 #import "KeyboardHandler.h"
 #import "UIView+FindFirstResponder.h"
 #import "MBProgressHUD.h"
+#import "User.h"
+#import "AppDelegate.h"
 
 @interface RecipeCommentViewController ()
 
@@ -27,35 +29,35 @@
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    // Custom initialization
     mRecipeID = recipeID;
     dataArray = [NSMutableArray arrayWithArray:data];
     cellForHeight = [[RecipeCommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NoUseJustForCaculateHeight"];
     sendView = [[RecipeSendCommentView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     
     keyboard = [[KeyboardHandler alloc] init];
+
+    self.sendMessageDic = [[NSMutableDictionary alloc] init];
   }
   return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = @"留言";
   [self setLeftButton];
-  
-  HUD = [[MBProgressHUD alloc] initWithView:self.view];
+
+  HUD = [[MBProgressHUD alloc] initWithView: self.view];
   [self.view addSubview:HUD];
   HUD.mode = MBProgressHUDModeText;
   HUD.delegate = self;
-  
+
   CGRect viewframe = self.view.frame;
   viewframe.size.height = _screenHeight_NoStBar;
   [self.view setFrame:viewframe];
+  self.view.autoresizesSubviews = NO;
   
   CGRect tableframe = self.myTableView.frame;
-  tableframe.size.height = _screenHeight_NoStBar_NoNavBar + _stateBarHeight +4 -40;
+  tableframe.size.height = _screenHeight_NoStBar_NoNavBar - 40;
   [self.myTableView setFrame:tableframe];
   
   [self.view addSubview:sendView];
@@ -63,6 +65,9 @@
   CGRect sendViewFrame = sendView.frame;
   sendViewFrame.origin.y = _screenHeight_NoStBar_NoNavBar - 40;
   [sendView setFrame:sendViewFrame];
+
+  [self autoLayout];
+  [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -74,7 +79,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
   keyboard.delegate = nil;
-  
+  [HUD removeFromSuperview];
   [super viewWillDisappear:animated];
 }
 
@@ -99,14 +104,11 @@
   UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
   [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
   [leftBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/commonBackBackgroundNormal.png"]
+   [UIImage imageNamed:@"Images/BackButtonNormal.png"]
                                forState:UIControlStateNormal];
   [leftBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/commonBackBackgroundHighlighted.png"]
+   [UIImage imageNamed:@"Images/BackButtonHighLight.png"]
                                forState:UIControlStateHighlighted];
-  [leftBarButtonView setTitle:@"  返回 " forState:UIControlStateNormal];
-  [leftBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-  
   UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
   
   [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
@@ -127,12 +129,31 @@
 
 - (void)tapSend
 {
+  [sendView hideTextView];
   if ([sendView.contentTextView.text length] > 0)
   {
+    HUD.labelText = @"发送中...";
+    [HUD show:YES];
+
     NSMutableDictionary *pCommentDict = [[NSMutableDictionary alloc] init];
     [pCommentDict setObject:[NSString stringWithFormat:@"%d",mRecipeID] forKey:@"recipe_id"];
     [pCommentDict setObject:sendView.contentTextView.text forKey:@"content"];
-    
+
+    [self.sendMessageDic setObject:sendView.contentTextView.text forKey:@"content"];
+    UserAccount *userAccount = [[User sharedInstance] account];
+    [self.sendMessageDic setObject:userAccount.username forKey:@"name"];
+    [self.sendMessageDic setObject:[NSString stringWithFormat:@"%d",userAccount.user_id] forKey:@"user_id"];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *nowDate = [NSDate date];
+    NSString *nowDateString =  [dateFormat stringFromDate:nowDate];
+    NSMutableDictionary * timeDic = [[NSMutableDictionary alloc] init];
+    timeDic[@"timezone"] = @"Asia/Shanghai";
+    timeDic[@"timezone_type"] = @"3";
+    timeDic[@"date"] = nowDateString;
+    [self.sendMessageDic setObject:timeDic forKey:@"create_time"];
+    [self.sendMessageDic setObject:userAccount.avatar forKey:@"portrait"];
+
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
                          commentWithDict:pCommentDict
                          completionHandler:^(NSMutableDictionary *resultDic) {
@@ -152,12 +173,21 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
+    [sendView hideTextView];
+    [sendView emptyTextView];
     HUD.labelText = @"评论成功";
     [HUD show:YES];
     [HUD hide:YES afterDelay:2];
+
+    NSDictionary *tmpDic = [[NSDictionary alloc] initWithDictionary:self.sendMessageDic];
+    [dataArray insertObject:tmpDic atIndex:0];
+    [self.myTableView reloadData];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnCommentSuccess" object:self.sendMessageDic];
   }
   else
   {
+    [sendView hideTextView];
     NSString *msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
     HUD.labelText = msg;
     [HUD show:YES];

@@ -24,7 +24,7 @@
     self.layer.shadowColor = [UIColor blackColor].CGColor;
     
     //contentTextView
-    contentTextView = [[SSTextView alloc] initWithFrame:CGRectMake(5, 5, 255, 30)];
+    contentTextView = [[SSTextView alloc] initWithFrame:CGRectMake(5, 4, 255, 30)];
     [contentTextView setBackgroundColor: [UIColor clearColor]];
     contentTextView.placeholder = @"评论";
     contentTextView.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -35,13 +35,13 @@
     [contentTextView setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
     //sendBtn
     sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [sendBtn setFrame:CGRectMake(270, 8, 45, 24)];
+    [sendBtn setFrame:CGRectMake(265, 6, 50, 28)];
     [sendBtn setBackgroundColor:[UIColor clearColor]];
-    [sendBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
-    [sendBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"] forState:UIControlStateHighlighted];
+    [sendBtn setBackgroundImage:[UIImage imageNamed:@"Images/rightPageButtonBackgroundNormal.png"] forState:UIControlStateNormal];
+    [sendBtn setBackgroundImage:[UIImage imageNamed:@"Images/rightPageButtonBackgroundHighlighted.png"] forState:UIControlStateHighlighted];
     [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
     sendBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
-    [sendBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [sendBtn addTarget:nil action:@selector(tapSend) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:contentTextView];
@@ -50,13 +50,15 @@
   return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)hideTextView
 {
-    // Drawing code
+  [contentTextView resignFirstResponder];
 }
-*/
+
+- (void)emptyTextView
+{
+  contentTextView.text = @"";
+}
+
 
 @end

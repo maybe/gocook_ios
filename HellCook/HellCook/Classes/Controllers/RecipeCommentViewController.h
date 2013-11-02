@@ -31,6 +31,7 @@
 @property (retain, nonatomic) RecipeCommentsTableViewCell *cellForHeight;
 @property (retain, nonatomic) RecipeSendCommentView *sendView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
+@property (strong, nonatomic) NSMutableDictionary *sendMessageDic;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withRecipeID:(NSInteger)recipeID withData:(NSMutableArray*)data;
 

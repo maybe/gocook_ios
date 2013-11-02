@@ -42,7 +42,7 @@
   CGRect viewFrame = self.view.frame;
   if (HCSystemVersionGreaterOrEqualThan(7.0)) {
     viewFrame.origin.y = -_stateBarHeight;
-    viewFrame.size.height = _screenHeight;
+    viewFrame.size.height = _screenHeight + _stateBarHeight;
   } else {
     viewFrame.size.height = _screenHeight_NoStBar;
   }
@@ -52,7 +52,7 @@
   CGRect tableFrame = self.tableView.frame;
   if (HCSystemVersionGreaterOrEqualThan(7.0)) {
     tableFrame.origin.y = -_stateBarHeight;
-    tableFrame.size.height = _screenHeight;
+    tableFrame.size.height = _screenHeight + _stateBarHeight;
   } else {
     tableFrame.size.height = _screenHeight_NoStBar;
   }
@@ -64,6 +64,9 @@
   [backImageView setContentMode:UIViewContentModeTop];
   [backView addSubview:backImageView];
   [self.tableView setBackgroundView:backView];
+  self.tableView.backgroundColor = [UIColor whiteColor];
+  self.view.backgroundColor = [UIColor whiteColor];
+  self.navigationController.view.backgroundColor = [UIColor whiteColor];
 
   [self setLeftButton];
   [self initLoadingView];
@@ -71,12 +74,13 @@
   [self getRecipeDetailData:mRecipeId];
   [self getCommentsData];
 
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnCommentSuccess:) name:@"EVT_OnCommentSuccess" object:nil];
+
   [super viewDidLoad];
 }
 
-- (void)didReceiveMemoryWarning
-{
-  [super didReceiveMemoryWarning];
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -301,14 +305,7 @@
   if (result == 0)
   {
     recipeCommentsArray = [NSMutableArray arrayWithArray:resultDic[@"result_recipe_comments"]];
-    
-    CGRect frame = self.tableView.tableFooterView.frame;
-    frame.size.height = 50;
-    frame.size.width = _screenWidth;
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
-    RecipeDetailFooterView *footerView = [[RecipeDetailFooterView alloc] initWithFrame:frame withCommentNum:[recipeCommentsArray count]];
-    
-    [self.tableView.tableFooterView addSubview:footerView];
+    [self ResetCommentView];
   }
   else
   {
@@ -389,4 +386,23 @@
   [mLoadingActivity stopAnimating];
 }
 
+- (void)OnCommentSuccess: (NSNotification *)notification
+{
+  NSMutableDictionary *dict = (NSMutableDictionary*)notification.object;
+  NSDictionary *tmpDic = [[NSDictionary alloc] initWithDictionary:dict];
+  [recipeCommentsArray insertObject:tmpDic atIndex:0];
+
+  [self ResetCommentView];
+}
+
+-(void)ResetCommentView
+{
+  CGRect frame = self.tableView.tableFooterView.bounds;
+  frame.size.height = 50;
+  frame.size.width = _screenWidth;
+  self.tableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
+  RecipeDetailFooterView *footerView = [[RecipeDetailFooterView alloc] initWithFrame:frame withCommentNum:[recipeCommentsArray count]];
+
+  [self.tableView.tableFooterView addSubview:footerView];
+}
 @end

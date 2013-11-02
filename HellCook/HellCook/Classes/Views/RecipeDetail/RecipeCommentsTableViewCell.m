@@ -27,15 +27,15 @@
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320, mCellHeight)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
+
     //avatarImageView
     avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 55, 60)];
     [avataImageView setContentMode:UIViewContentModeScaleAspectFill];
     [avataImageView setClipsToBounds:YES];
-    avataImageView.layer.cornerRadius = 4.0;
+    // avataImageView.layer.cornerRadius = 4.0;
     avataImageView.layer.masksToBounds = YES;
-    avataImageView.layer.borderColor = [UIColor clearColor].CGColor;
-    avataImageView.layer.borderWidth = 1.0;
+    // avataImageView.layer.borderColor = [UIColor clearColor].CGColor;
+    // avataImageView.layer.borderWidth = 1.0;
     //avatarBtn
     avatarBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [avatarBtn setFrame:avataImageView.frame];
@@ -63,7 +63,7 @@
     dateLabel.font = [UIFont systemFontOfSize:14];
     //seperator image
     sepImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, mCellHeight-2, 320, 1)];
-    [sepImageView setImage:[UIImage imageNamed:@"Images/TableCellSeparater.png"]];
+    [sepImageView setImage:[UIImage imageNamed:@"Images/homeHeaderSeperator.png"]];
     
     [self addSubview:avataImageView];
     [self addSubview:avatarBtn];
