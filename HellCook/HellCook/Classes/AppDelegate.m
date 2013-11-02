@@ -46,30 +46,23 @@
   */
   
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  
-  [[self class] Generalstyle];
+
+  [[self class] GeneralStyle];
   
   [self resetCenterNavController];
   [self resetLeftNavController];
   [self resetRightNavController];
   
-  if(HCSystemVersionGreaterOrEqualThan(7.0)){
-      self.drawerController = [[HCDrawerController alloc]
+
+  self.drawerController = [[HCDrawerController alloc]
                                initWithCenterViewController:_centerNavController
                                leftDrawerViewController:_leftNavController
                                rightDrawerViewController:_rightNavController];
-  }
-  else{
-      self.drawerController = [[HCDrawerController alloc]
-                               initWithCenterViewController:_centerNavController
-                               leftDrawerViewController:_leftNavController
-                               rightDrawerViewController:_rightNavController];
-  }
   
   [self.drawerController setShouldStretchDrawer:NO];
   [self.drawerController setShowsShadow:YES];
   self.drawerController.view.autoresizesSubviews = NO;
-  self.drawerController.view.autoresizingMask = NO;
+  self.drawerController.view.autoresizingMask = UIViewAutoresizingNone;
   [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
   [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
   self.drawerController.closeDrawerGestureModeMask ^= MMCloseDrawerGestureModePanningDrawerView;
@@ -135,9 +128,9 @@
 
 #pragma mark  general style
 
-+ (void)Generalstyle {
++ (void)GeneralStyle {
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
-  //navigationbar
+  //navigation bar
   UINavigationBar *navigationBar = [UINavigationBar appearance];
   if (HCSystemVersionGreaterOrEqualThan(7.0)) {
     [navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarH.png"] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
@@ -152,6 +145,26 @@
                        UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 0.5f)],
    }];
 }
+
+- (void)disableLeftDrawer {
+  self.drawerController.leftDrawerViewController = nil;
+}
+
+- (void)disableRightDrawer {
+  self.drawerController.rightDrawerViewController = nil;
+}
+
+- (void)enableLeftDrawer {
+  if (!self.drawerController.leftDrawerViewController)
+    [self.drawerController setLeftDrawerViewController:_leftNavController];
+}
+
+- (void)enableRightDrawer {
+  if (!self.drawerController.rightDrawerViewController)
+    [self.drawerController setRightDrawerViewController:_rightNavController];
+}
+
+
 
 
 #pragma mark  setting nav
@@ -183,6 +196,7 @@
   _centerNavController.view.frame = viewFrame;
   _centerNavController.view.autoresizesSubviews = NO;
   _centerNavController.view.clipsToBounds = YES;
+  _centerNavController.delegate = _centerNavController;
 
   // temp drop here
   [mainController getIOSMainData];

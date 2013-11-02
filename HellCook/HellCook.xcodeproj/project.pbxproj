@@ -32,6 +32,7 @@
 		5EF9F44D17D8550F005ABA82 /* SearchGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9F44917D8550F005ABA82 /* SearchGoodsTableViewCell.m */; };
 		5EF9F45517D855E1005ABA82 /* GoodsDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F45417D855E0005ABA82 /* GoodsDetailView.xib */; };
 		5EF9F45C17D8A82C005ABA82 /* BuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF9F45B17D8A82B005ABA82 /* BuyView.xib */; };
+		6580903EF91F30CF752922D8 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 658093E89CEB473974D096C0 /* TTTAttributedLabel.m */; };
 		658090A667414B0C7C0FC74C /* MyFansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580968DA2D5E059A32783EE /* MyFansTableViewCell.m */; };
 		6580911C6856794208CF4756 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809B0E00C8DBF54C173AA2 /* ShoppingListController.m */; };
 		65809156E7DABE799C2F7FA7 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809B02DB1E620DC0202A9C /* MainController.m */; };
@@ -65,6 +66,7 @@
 		65809D44F9F94B87AEF62598 /* MyIntroAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580940F178C7D60BCB4D524 /* MyIntroAvatarView.m */; };
 		65809D7B64069D743BC707A3 /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 658094784DFB11C219085E23 /* SearchTableViewCell.m */; };
 		65809DADD93573AC8045A5A2 /* AccountTableViewGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580937C9842E4EDD0C59193 /* AccountTableViewGridCell.m */; };
+		65809DB6DDFEA4775E8C2967 /* RecipeDetailTipsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809924B1D3CF2F565C7FC6 /* RecipeDetailTipsTableViewCell.m */; };
 		65809DC42EED0DCF3B8B1CC8 /* MyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809B7471B9CD5BFADF5A98 /* MyCollectionController.m */; };
 		65809F128C431D188328697E /* RecipeCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809442FFE9EA1888FD4791 /* RecipeCommentViewController.m */; };
 		BA02634516D7579700298803 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634416D7579700298803 /* AppDelegate.m */; };
@@ -246,6 +248,7 @@
 		6580937C9842E4EDD0C59193 /* AccountTableViewGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewGridCell.m; path = Classes/Views/AccountTableViewGridCell.m; sourceTree = "<group>"; };
 		6580938282D18BE4B8A35D45 /* SSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTextView.h; sourceTree = "<group>"; };
 		6580939B5A09BFE26AC75BCF /* RecipeCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeCommentViewController.h; path = Classes/Controllers/RecipeCommentViewController.h; sourceTree = "<group>"; };
+		658093E89CEB473974D096C0 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		658094010EC35D2374007CC9 /* MaterialSearchBuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaterialSearchBuyViewController.m; path = Classes/Controllers/BuyGoods/MaterialSearchBuyViewController.m; sourceTree = "<group>"; };
 		6580940B6BB08C5A944096C5 /* DebugOptionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DebugOptionController.m; path = Classes/Controllers/DebugOptionController.m; sourceTree = "<group>"; };
 		6580940F178C7D60BCB4D524 /* MyIntroAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroAvatarView.m; path = Classes/Views/MyIntroAvatarView.m; sourceTree = "<group>"; };
@@ -256,6 +259,7 @@
 		658094784DFB11C219085E23 /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewCell.m; path = Classes/Views/SearchTableViewCell.m; sourceTree = "<group>"; };
 		6580948CB788DB72DAB4BA5A /* MyRecipesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesTableViewCell.m; path = Classes/Views/MyRecipesTableViewCell.m; sourceTree = "<group>"; };
 		658094916F917A57632BDC85 /* NSAlert+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
+		658094CBBA145A694796DF69 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		6580952CA5143171B09D57C5 /* BuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyViewController.h; path = Classes/Controllers/BuyGoods/BuyViewController.h; sourceTree = "<group>"; };
 		658095B3BD5741A74056E868 /* AccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountController.m; path = Classes/Controllers/AccountController.m; sourceTree = "<group>"; };
 		658095FAD3831271D58D41C6 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterController.m; path = Classes/Controllers/RegisterController.m; sourceTree = "<group>"; };
@@ -269,6 +273,7 @@
 		658098D9C49D1D9C4C5720AE /* AccountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewCell.m; path = Classes/Views/AccountTableViewCell.m; sourceTree = "<group>"; };
 		658098E9B48969597935FE03 /* MyFansTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFansTableViewCell.h; path = Classes/Views/MyFansTableViewCell.h; sourceTree = "<group>"; };
 		658099102A268E520B5654F2 /* MaterialSearchBuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaterialSearchBuyViewController.h; path = Classes/Controllers/BuyGoods/MaterialSearchBuyViewController.h; sourceTree = "<group>"; };
+		65809924B1D3CF2F565C7FC6 /* RecipeDetailTipsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailTipsTableViewCell.m; sourceTree = "<group>"; };
 		65809941411D3CAF25B0E87C /* MyIntroductionPicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroductionPicCell.m; path = Classes/Views/MyIntroductionPicCell.m; sourceTree = "<group>"; };
 		658099782420598A1FDB08F0 /* TopListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopListController.m; path = Classes/Controllers/TopListController.m; sourceTree = "<group>"; };
 		658099E450638994305DB057 /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewCell.h; path = Classes/Views/SearchTableViewCell.h; sourceTree = "<group>"; };
@@ -295,6 +300,7 @@
 		65809D43F875B66A661F1D86 /* MyRecipesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesTableViewCell.h; path = Classes/Views/MyRecipesTableViewCell.h; sourceTree = "<group>"; };
 		65809D47873547AB59E8DACE /* SearchBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchBarView.m; path = Classes/Views/SearchBarView.m; sourceTree = "<group>"; };
 		65809D4D0405FD740245FDE0 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainController.h; path = Classes/Controllers/MainController.h; sourceTree = "<group>"; };
+		65809D6C318AABFFA98D343F /* RecipeDetailTipsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailTipsTableViewCell.h; sourceTree = "<group>"; };
 		65809D7E95C3C15B991813FE /* CommonDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonDef.h; path = Classes/Common/CommonDef.h; sourceTree = "<group>"; };
 		65809DA15D945E7C62FCE893 /* MyRecipeMaterialTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipeMaterialTableViewCell.h; path = Classes/Views/MyRecipes/MyRecipeMaterialTableViewCell.h; sourceTree = "<group>"; };
 		65809DD0E5E5A5EA8826C091 /* DebugOptionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugOptionController.h; path = Classes/Controllers/DebugOptionController.h; sourceTree = "<group>"; };
@@ -616,6 +622,16 @@
 			name = Recipe;
 			sourceTree = "<group>";
 		};
+		65809896E7E4409007CBCA4D /* TTTAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				658094CBBA145A694796DF69 /* TTTAttributedLabel.h */,
+				658093E89CEB473974D096C0 /* TTTAttributedLabel.m */,
+			);
+			name = TTTAttributedLabel;
+			path = Libs/TTTAttributedLabel;
+			sourceTree = "<group>";
+		};
 		6580992E6910AEBD0AFDD975 /* SSTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,6 +769,7 @@
 				BACCF82A16ECFC420094F1E5 /* fmdb */,
 				BA02634616D759CB00298803 /* PPRevealSideviewController */,
 				6580992E6910AEBD0AFDD975 /* SSTextView */,
+				65809896E7E4409007CBCA4D /* TTTAttributedLabel */,
 			);
 			name = Libs;
 			sourceTree = "<group>";
@@ -1142,6 +1159,8 @@
 				5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */,
 				5ED7F13617C0EF8200223884 /* RecipeSendCommentView.h */,
 				5ED7F13717C0EF8200223884 /* RecipeSendCommentView.m */,
+				65809924B1D3CF2F565C7FC6 /* RecipeDetailTipsTableViewCell.m */,
+				65809D6C318AABFFA98D343F /* RecipeDetailTipsTableViewCell.h */,
 			);
 			name = RecipeDetail;
 			path = Classes/Views/RecipeDetail;
@@ -1487,6 +1506,8 @@
 				5E001D7717E2AC4200BDAC62 /* HistoryDealViewController.m in Sources */,
 				5E001D7D17E2AF5400BDAC62 /* HistoryDealTableViewCell.m in Sources */,
 				5E001D8117E307C900BDAC62 /* DealDetailViewController.m in Sources */,
+				6580903EF91F30CF752922D8 /* TTTAttributedLabel.m in Sources */,
+				65809DB6DDFEA4775E8C2967 /* RecipeDetailTipsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1528,9 +1549,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos7.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1552,9 +1573,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos7.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

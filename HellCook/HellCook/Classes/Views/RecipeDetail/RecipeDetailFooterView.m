@@ -16,9 +16,9 @@
   self = [super initWithFrame:frame];
   if (self) {
     // Initialization code
-    [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:frame];
-   
+    self.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
+
 /*    commentLabel = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 180, 30)];
     commentLabel.textColor = [UIColor blackColor];
     commentLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
@@ -37,11 +37,12 @@
     
     
     commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [commentBtn setFrame:CGRectMake(50, 0, 180, 30)];
+    [commentBtn setFrame:CGRectMake(0, 0, 320, 30)];
     [commentBtn setBackgroundColor:[UIColor clearColor]];
     NSString *str = [NSString stringWithFormat:@"%d条评论",commentNum];
     [commentBtn setTitle:str forState:UIControlStateNormal];
-    [commentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [commentBtn.titleLabel setFont: [UIFont boldSystemFontOfSize:18]];
+    [commentBtn setTitleColor:[UIColor colorWithRed:108.0f/255.0f green:146.0f/255.0f blue:75.0f/255.0f alpha:1] forState:UIControlStateNormal];
     [commentBtn addTarget:nil action:@selector(tapComment) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:commentBtn];
   }

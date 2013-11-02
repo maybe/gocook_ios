@@ -10,6 +10,7 @@
 #import "TopListTableViewCell.h"
 #import "NetManager.h"
 #import "RecipeDetailController.h"
+#import "AppDelegate.h"
 
 @interface TopListController ()
 
@@ -30,26 +31,26 @@
 
 - (void)viewDidLoad
 {
-  CGRect viewframe = self.view.frame;
-  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
-  [self.view setFrame:viewframe];
-  
-  CGRect tableframe = self.tableView.frame;
-  tableframe.size.height = _screenHeight_NoStBar_NoNavBar;
-  [self.tableView setFrame:tableframe];
-  
-  [super viewDidLoad];
-  
+  CGRect tableFrame = self.tableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.tableView setFrame:tableFrame];
+
   [self setLeftButton];
   
   topArray = [[NSMutableArray alloc]init];
   [self initLoadingView];
   [self showLoadingView];
   [self getTopListData];
+
+  [self autoLayout];
+  [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+  [ApplicationDelegate disableLeftDrawer];
+  [ApplicationDelegate disableRightDrawer];
+
   [self.navigationController.navigationBar setHidden:NO];
   
   [super viewWillAppear:animated];
@@ -84,7 +85,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return 210;
+  return 208;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -238,17 +239,15 @@
 
 - (void)setLeftButton
 {
-  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
   [leftBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/commonBackBackgroundNormal.png"]
+   [UIImage imageNamed:@"Images/BackButtonNormal.png"]
                                forState:UIControlStateNormal];
   [leftBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/commonBackBackgroundHighlighted.png"]
+   [UIImage imageNamed:@"Images/BackButtonHighLight.png"]
                                forState:UIControlStateHighlighted];
-  [leftBarButtonView setTitle:@"返回" forState:UIControlStateNormal];
-  [leftBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-  
+
   UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
   
   [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];

@@ -633,7 +633,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"recipe/comments?recipe_id=%d",recipeid] params:nil httpMethod:@"GET"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    NSLog(@"%@",completedOperation.responseString);
+    // NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];
@@ -657,7 +657,7 @@
                                         httpMethod:@"POST"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    NSLog(@"%@",completedOperation.responseString);
+    // NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];
@@ -723,7 +723,7 @@
   MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/search_wares?keyword=%@&page=%d",encodingKey,page] params:nil httpMethod:@"GET"];
   
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    NSLog(@"%@",completedOperation.responseString);
+    // NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];
@@ -741,7 +741,7 @@
                            errorHandler:(MKNKErrorBlock)errorBlock
 {
   NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dict];
-  NSLog(@"%@",dic);
+  // NSLog(@"%@",dic);
   
   MKNetworkOperation *op = [self operationWithPath:@"cook/order"
                                             params:dic

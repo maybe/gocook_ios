@@ -5,8 +5,7 @@
 #import "TopListController.h"
 #import "SearchController.h"
 #import "UIViewController+MMDrawerController.h"
-#import "MMDrawerBarButtonItem.h"
-#import "HCNavigationController.h"
+#import "AppDelegate.h"
 
 @interface MainController ()
 
@@ -62,6 +61,8 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+  [ApplicationDelegate enableLeftDrawer];
+  [ApplicationDelegate enableRightDrawer];
   [super viewWillAppear:animated];
 }
 

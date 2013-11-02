@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "RecipeDetailBaseTableViewCell.h"
+#import "TTTAttributedLabel.h"
 
 @interface RecipeDetailStepsTableViewCell : RecipeDetailBaseTableViewCell{
   UILabel* mTitleLabel;
-  UILabel* mTemplateStepContentLabel;
+  TTTAttributedLabel* mTemplateStepContentLabel;
   NSMutableArray* mStepNumberLabelArray;
   NSMutableArray* mStepContentLabelArray;
   NSMutableArray* mStepImageArray;
@@ -26,14 +27,14 @@
 }
 
 @property (nonatomic, retain) UILabel* mTitleLabel;
-@property (nonatomic, retain) UILabel* mTemplateStepContentLabel;
+@property (nonatomic, retain) TTTAttributedLabel* mTemplateStepContentLabel;
 @property (nonatomic, retain) NSMutableArray* mStepNumberLabelArray;
 @property (nonatomic, retain) NSMutableArray* mStepContentLabelArray;
 @property (nonatomic, retain) NSMutableArray* mStepImageArray;
 
 - (UILabel*)mTitleLabel;
 - (UILabel*)createStepNumberLabel;
-- (UILabel*)createStepContentLabel;
+- (TTTAttributedLabel*)createStepContentLabel;
 - (UIImageView*)createStepImage;
 
 @end

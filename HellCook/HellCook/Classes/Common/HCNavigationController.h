@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
 
-@interface HCNavigationController : UINavigationController
+@interface HCNavigationController : UINavigationController<UINavigationControllerDelegate>
 
 @end

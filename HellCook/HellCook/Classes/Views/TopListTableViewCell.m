@@ -13,17 +13,17 @@
 
 
 @implementation TopListTableViewCell
-@synthesize titleLabel, materialLabel, imageView, maskImageView;;
+@synthesize titleLabel, materialLabel, imageView, maskImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
       [self setBackgroundColor: [UIColor clearColor]];
-      [self setFrame:CGRectMake(0, 0, 320, 210)];
+      [self setFrame:CGRectMake(0, 0, 320, 208)];
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
       
-      imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 200)];
+      imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 192)];
       [imageView setContentMode:UIViewContentModeScaleAspectFill];
       [imageView setClipsToBounds:YES];
       [self addSubview:imageView];
@@ -31,11 +31,11 @@
       [self addSubview: [self titleLabel]];
       [self addSubview:[self materialLabel]];
       
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/topmask.png"];
-      UIImage *stretchedBackgroundImage = [buttonBackgroundImage stretchableImageWithLeftCapWidth:6 topCapHeight:6.5];
-      maskImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 200)];
-      [maskImageView setImage:stretchedBackgroundImage];
-      [self addSubview:maskImageView];
+      //UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/topmask.png"];
+      //UIImage *stretchedBackgroundImage = [buttonBackgroundImage stretchableImageWithLeftCapWidth:6 topCapHeight:6.5];
+      //maskImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 200)];
+      //[maskImageView setImage:stretchedBackgroundImage];
+      //[self addSubview:maskImageView];
       
     }
     return self;
@@ -86,8 +86,8 @@
   NetManager* netManager = [NetManager sharedInstance];
       
   NSString* imageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, dictionary[@"image"]];
-        
-  [imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
+
+  [imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage: [UIImage imageNamed:@"Images/TopListPlaceHolder.png"]];
 }
 
 

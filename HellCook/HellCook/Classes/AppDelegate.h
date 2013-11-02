@@ -23,6 +23,10 @@
 @property (nonatomic, retain) NSTimer *connectionTimer;
 @property BOOL done;
 
-+ (void) Generalstyle;
++ (void)GeneralStyle;
 
+- (void)disableLeftDrawer;
+- (void)disableRightDrawer;
+- (void)enableLeftDrawer;
+- (void)enableRightDrawer;
 @end

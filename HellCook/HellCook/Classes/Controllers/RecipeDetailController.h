@@ -12,7 +12,7 @@ typedef enum{
   kDetailHeaderCell = 0,
   kDetailMaterialCell,
   kDetailStepsCell,
-  kDetailFooterCell,
+  kDetailTipsCell,
   kTotalDetailCellNum
 } DetailCellType;
 
@@ -28,6 +28,8 @@ typedef enum{
   NSString* mPrevTitle;
   
   NSMutableArray *recipeCommentsArray;
+
+  UIActivityIndicatorView* mLoadingActivity;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

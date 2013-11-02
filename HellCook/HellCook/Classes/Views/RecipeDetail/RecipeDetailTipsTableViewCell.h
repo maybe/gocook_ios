@@ -1,5 +1,5 @@
 //
-//  TopListTableViewCell.h
+//  RecipeDetailHeaderTableViewCell.h
 //  HC
 //
 //  Created by panda on 13-1-11.
@@ -7,25 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecipeDetailBaseTableViewCell.h"
+#import "TTTAttributedLabel.h"
 
-@interface TopListTableViewCell : UITableViewCell{
+
+@interface RecipeDetailTipsTableViewCell : RecipeDetailBaseTableViewCell{
   UILabel* titleLabel;
-  UILabel* materialLabel;
-  UIImageView* imageView;
-  UIImageView* maskImageView;
+  TTTAttributedLabel* tipsLabel;
+
+  CGFloat mTitleLabelTop;
+  CGFloat mIntroLabelTop;
+  CGFloat mTitleLabelHeight;
+  CGFloat mIntroLabelHeight;
 }
 
 @property (nonatomic, retain) UILabel* titleLabel;
-@property (nonatomic, retain) UILabel* materialLabel;
-@property (nonatomic, retain) UIImageView* imageView;
-@property (nonatomic, retain) UIImageView* maskImageView;
+@property (nonatomic, retain) TTTAttributedLabel* tipsLabel;
 
 - (UILabel*)titleLabel;
-- (UILabel*)materialLabel;
-- (UIImageView*)imageView;
-- (UIImageView*)maskImageView;
-
-
-- (void)setData:(NSMutableDictionary*) dictionary;
+- (TTTAttributedLabel*)tipsLabel;
 
 @end

@@ -19,10 +19,9 @@
 {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
-    [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320, 210)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-        
+    self.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
     [self addSubview: [self mTitleLabel]];
     mTemplateMaterialLabel = [self createMaterialLabel];
     
