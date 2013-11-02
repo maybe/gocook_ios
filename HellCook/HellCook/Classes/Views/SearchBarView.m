@@ -26,7 +26,7 @@
   backImageView = [[UIImageView alloc]initWithImage: backImage];
   [backImageView setFrame:CGRectMake(10, 7, backImage.size.width, backImage.size.height)];
   
-  [self setBackgroundColor:[UIColor colorWithRed:222.0f/255.0f green:222.0f/255.0f blue:222.0f/255.0f alpha:1.0f]];
+  [self setBackgroundColor:[UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1.0f]];
 
   self.layer.shadowOffset = CGSizeMake(0, 1);
   self.layer.shadowOpacity = 0.1;

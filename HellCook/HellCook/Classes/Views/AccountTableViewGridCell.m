@@ -33,7 +33,7 @@
       [self.bottomLine2 setImage: [UIImage imageNamed:@"Images/line.png"]];
      // [self.bottomLine2 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
 
-      self.bottomLine3 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 192, 280, 1.2)];
+      self.bottomLine3 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 191, 280, 1.2)];
       [self.bottomLine3 setImage: [UIImage imageNamed:@"Images/line.png"]];
 
       self.sepLine1 = [[UIImageView alloc]initWithFrame:CGRectMake(140-30, 0+30, 64, 1.2)];

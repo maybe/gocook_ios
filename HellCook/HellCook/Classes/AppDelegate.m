@@ -68,7 +68,8 @@
   
   [self.drawerController setShouldStretchDrawer:NO];
   [self.drawerController setShowsShadow:YES];
-  //[self.drawerController setMaximumRightDrawerWidth:280.0];
+  self.drawerController.view.autoresizesSubviews = NO;
+  self.drawerController.view.autoresizingMask = NO;
   [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
   [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
   self.drawerController.closeDrawerGestureModeMask ^= MMCloseDrawerGestureModePanningDrawerView;
@@ -82,7 +83,7 @@
            block(drawerController, drawerSide, percentVisible);
        }
    }];
-  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
   if(HCSystemVersionGreaterOrEqualThan(7.0)){
       UIColor * tintColor = [UIColor colorWithRed:29.0/255.0
                                             green:173.0/255.0
@@ -160,29 +161,32 @@
   AccountController* accountController = [[AccountController alloc] initWithNibName:@"AccountView" bundle:nil];
   _leftNavController = [[HCNavigationController alloc] initWithRootViewController:accountController];
   _leftNavController.navigationBarHidden = NO;
-  _leftNavController.view.clipsToBounds = YES;
-  _leftNavController.navigationBar.clipsToBounds = YES;
-  _leftNavController.view.bounds = CGRectMake(0, 0, _sideWindowWidth, _screenHeight_NoStBar);
+  _leftNavController.view.autoresizesSubviews = NO;
+  _leftNavController.view.frame = CGRectMake(0, 0, _sideWindowWidth, _screenHeight);
 }
 
 - (void)resetRightNavController
 {
   ShoppingListController* slController = [[ShoppingListController alloc] initWithNibName:@"ShoppingListView" bundle:nil];
   _rightNavController = [[HCNavigationController alloc] initWithRootViewController:slController];
-  _rightNavController.navigationBarHidden = NO;
-  _rightNavController.view.clipsToBounds = YES;
-  _rightNavController.navigationBar.clipsToBounds = YES;
-  _rightNavController.view.frame = CGRectMake(40, 0, _sideWindowWidth, _screenHeight_NoStBar);
+  _rightNavController.view.autoresizesSubviews = NO;
+  _rightNavController.view.frame = CGRectMake(0, 0, _sideWindowWidth, _screenHeight);
+  [_rightNavController viewWillAppear:NO]; // hack by panda
 }
 
 - (void)resetCenterNavController
 {
   MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];
   _centerNavController = [[HCNavigationController alloc] initWithRootViewController:mainController];
-  CGRect viewframe = _centerNavController.view.frame;
-  viewframe.size.height = _screenHeight;
-  [_centerNavController.view setFrame:viewframe];
+  CGRect viewFrame = _centerNavController.view.frame;
+  viewFrame.size.height = _screenHeight;
+  _centerNavController.view.frame = viewFrame;
   _centerNavController.view.autoresizesSubviews = NO;
+  _centerNavController.view.clipsToBounds = YES;
+
+  // temp drop here
+  [mainController getIOSMainData];
+
 }
 
 

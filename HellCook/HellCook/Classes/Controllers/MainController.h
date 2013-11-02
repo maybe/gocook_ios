@@ -23,4 +23,6 @@
 @property (nonatomic, retain)SearchBarView* searchBarView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
 
+- (void)getIOSMainData;
+
 @end

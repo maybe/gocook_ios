@@ -24,12 +24,26 @@
   
   [self addSearchBar];
   
-  [self getIOSMainData];
+  //[self getIOSMainData];
+  
+  CGRect selfFrame = self.view.frame;
+  selfFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:selfFrame];
+  self.view.autoresizesSubviews = NO;
   
   CGRect viewFrame = self.tableView.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar - _navigationBarHeight;
   [self.tableView setFrame:viewFrame];
-  
+
+  NSString* home_dir =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+  NSString* fileName = [home_dir  stringByAppendingPathComponent:@"main_data.plist"];
+  NSFileManager* manager = [NSFileManager defaultManager];  //设置文件管理器
+  if ([manager fileExistsAtPath:fileName]) {
+    NSDictionary* dic = [[NSDictionary alloc] initWithContentsOfFile:fileName];
+    iosMainDataDic = [[NSDictionary alloc] initWithDictionary:dic];
+    catArray = [[NSMutableArray alloc] initWithArray:iosMainDataDic[@"recommend_items"]];
+  }
+
   [self autoLayout];
   [super viewDidLoad];
 }
@@ -227,6 +241,11 @@
 {
   iosMainDataDic = [[NSDictionary alloc]initWithDictionary:resultDic];
   catArray = [[NSMutableArray alloc]initWithArray:resultDic[@"recommend_items"]];
+
+  NSString* home_dir =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+  NSString* recFileName = [home_dir  stringByAppendingPathComponent:@"main_data.plist"];
+  [iosMainDataDic writeToFile:recFileName atomically:NO];
+
   [self.tableView reloadData];
 }
 

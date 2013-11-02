@@ -18,6 +18,7 @@
   UILabel* nameLabel;
   UIButton* loginButton;
   UIButton* registerButton;
+  UILabel* loginTitleLabel;
   UIButton* debugOptionButton;
   NSMutableArray* cellContentArray;
 }

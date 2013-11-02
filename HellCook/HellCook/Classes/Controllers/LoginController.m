@@ -10,10 +10,10 @@
 #import "DefaultGroupedTableCell.h"
 #import "NetManager.h"
 
-#define kTableCellHeader  48
-#define kTableCellBody    45
-#define kTableCellFooter  49
-#define kTableCellSingle  50
+#define kTableCellHeader  44
+#define kTableCellBody    44
+#define kTableCellFooter  44
+#define kTableCellSingle  44
 
 @interface LoginController ()
 
@@ -21,7 +21,6 @@
 
 @implementation LoginController
 @synthesize tableView;
-@synthesize navigationItem;
 @synthesize callerClassName;
 
 
@@ -36,13 +35,13 @@
   frame.size.height = 24;
   self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
   
-  self.navigationItem.title = @"登录";
+  self.title = @"登录";
   
   [self setLeftButton];
   [self setRightButton];
 
-  // callerClassName = @"";
-  
+
+  [self autoLayout];
   [super viewDidLoad];
 
 }
@@ -51,6 +50,7 @@
 {
   [super viewWillAppear:animated];
   [usernameField becomeFirstResponder];
+  self.title = @"登录";
 }
 
 - (void)viewWillDisappear:(BOOL)animated

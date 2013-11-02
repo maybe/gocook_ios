@@ -43,40 +43,48 @@
 
 
 - (void)viewDidLoad {
-  UIImageView *titleImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 59, 27)];
+  UIImageView *titleImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 108, 19)];
   [titleImageView setImage:[UIImage imageNamed:@"Images/leftPageTitle.png"]];
   self.navigationItem.titleView = titleImageView;
-
-  //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
-  self.navigationController.navigationBar.clipsToBounds = NO;
-
-  self.view.clipsToBounds = YES;
-
-  nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 70, 180, 30)];
-  bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 120)];
-  avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 65, 40, 40)];
+  //self.title = @"分享厨房";
+  
+  nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 54, 180, 30)];
+  bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 138)];
+  avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 46, 46)];
 
   [self.view addSubview:bannerImageView];
   [self.view addSubview:avatarImageView];
   [self.view addSubview:nameLabel];
+  
+  loginTitleLabel =  [[UILabel alloc] initWithFrame:CGRectMake(0, 56, 280, 30)];
+  loginTitleLabel.textAlignment = NSTextAlignmentCenter;
+  loginTitleLabel.text = @"分享新鲜 分享美味 分享幸福";
+  loginTitleLabel.textColor = [UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1];
+  [loginTitleLabel setFont: [UIFont boldSystemFontOfSize:18]];
+
+  [self.view addSubview:loginTitleLabel];
 
   [self hideLoginView];
 
   [self initCellContentArray];
-  
-//  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-//  }
 
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.view setFrame:viewFrame];
 
   CGRect tableFrame = self.tableView.frame;
-  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar - 120;
+  tableFrame.origin.y = 138;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar - 138;
   [self.tableView setFrame:tableFrame];
-  
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
+
+  [self autoLayout];
   [super viewDidLoad];
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -175,21 +183,22 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  if (indexPath.row == cellContentArray.count - 1) {
-    [self openDebugOption];
-  }
-  else if (indexPath.row == 2) {
+//  if (indexPath.row == cellContentArray.count - 1) {
+//    [self openDebugOption];
+//  }
+  if (indexPath.row == 2) {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
-        initWithTitle:@"确定要退出吗?"
-             delegate:self
-     cancelButtonTitle:@"取消"
-destructiveButtonTitle:@"确定"
-     otherButtonTitles:nil];
+                        initWithTitle:@"确定要退出吗?"
+                             delegate:self
+                     cancelButtonTitle:@"取消"
+                destructiveButtonTitle:@"确定"
+                     otherButtonTitles:nil];
     [actionSheet showInView:self.mm_drawerController.view];
   }
   else if (indexPath.row == 0) {
     MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];
     [ApplicationDelegate.centerNavController setViewControllers:@[mainController] animated:NO];
+    [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
     //[self.revealSideViewController popViewControllerAnimated:YES];
   }
   else {
@@ -205,12 +214,14 @@ destructiveButtonTitle:@"确定"
 
 #pragma mark - Login view
 - (void)showLoginView {
+  [loginTitleLabel setHidden:NO];
   [[self loginButton] setHidden:NO];
   [[self registerButton] setHidden:NO];
   [[self debugOptionButton] setHidden:NO];
 }
 
 - (void)hideLoginView {
+  [loginTitleLabel setHidden:YES];
   [[self loginButton] setHidden:YES];
   [[self registerButton] setHidden:YES];
   [[self debugOptionButton] setHidden:YES];
@@ -232,11 +243,11 @@ destructiveButtonTitle:@"确定"
 }
 
 - (void)resetAccountView {
-  nameLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-  nameLabel.shadowOffset = CGSizeMake(0.0f, 0.5f);
-  nameLabel.shadowColor = [UIColor colorWithRed:120.0 / 255.0 green:120.0 / 255.0 blue:120.0 / 255.0 alpha:0.8];
-  nameLabel.backgroundColor = [UIColor clearColor];
-  nameLabel.font = [UIFont boldSystemFontOfSize:20];
+  nameLabel.textColor = [UIColor colorWithRed:101.0 / 255.0 green:107.0 / 255.0 blue:55.0 / 255.0 alpha:0.8];
+//  nameLabel.shadowOffset = CGSizeMake(0.0f, 0.5f);
+//  nameLabel.shadowColor = [UIColor colorWithRed:101.0 / 255.0 green:107.0 / 255.0 blue:55.0 / 255.0 alpha:0.8];
+//  nameLabel.backgroundColor = [UIColor clearColor];
+  nameLabel.font = [UIFont boldSystemFontOfSize:22];
 
   [nameLabel setText:[[[User sharedInstance] account] username]];
 
@@ -264,13 +275,12 @@ destructiveButtonTitle:@"确定"
 
 - (id)loginButton {
   if (!loginButton) {
-    loginButton = [[UIButton alloc] initWithFrame:CGRectMake(90, 100, 120, 30)];
-    [loginButton setTitle:@"用手机号登录" forState:UIControlStateNormal];
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
+    loginButton = [[UIButton alloc] initWithFrame:CGRectMake(280/2 - 171/2, 170, 171, 39)];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/LoginButtonNormal.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [loginButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
 
-    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
+    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/LoginButtonHighLight.png"];
     UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [loginButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
 
@@ -285,13 +295,12 @@ destructiveButtonTitle:@"确定"
 
 - (id)registerButton {
   if (!registerButton) {
-    registerButton = [[UIButton alloc] initWithFrame:CGRectMake(90, 150, 120, 30)];
-    [registerButton setTitle:@"注册新帐号" forState:UIControlStateNormal];
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
+    registerButton = [[UIButton alloc] initWithFrame:CGRectMake(280/2 - 171/2, 220, 171, 39)];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RegisterButtonNormal.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [registerButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
 
-    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
+    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/RegisterButtonHighLight.png"];
     UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [registerButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
 
@@ -305,7 +314,7 @@ destructiveButtonTitle:@"确定"
 
 - (id)debugOptionButton {
   if (!debugOptionButton) {
-    debugOptionButton = [[UIButton alloc] initWithFrame:CGRectMake(90, 200, 120, 30)];
+    debugOptionButton = [[UIButton alloc] initWithFrame:CGRectMake(80, 280, 120, 30)];
     [debugOptionButton setTitle:@"Debug Option" forState:UIControlStateNormal];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
@@ -344,29 +353,32 @@ destructiveButtonTitle:@"确定"
       @"Images/leftPageLogout.png", @"image", @"退出", @"title", nil];
   [cellContentArray addObject:cellDic];
 
-  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
-      @"Images/leftPageScore.png", @"image", @"帮助我们评分", @"title", nil];
-  [cellContentArray addObject:cellDic];
-
-  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
-      @"Images/leftPageScore.png", @"image", @"Debug Options", @"title", nil];
-  [cellContentArray addObject:cellDic];
+//  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+//      @"Images/leftPageScore.png", @"image", @"帮助我们评分", @"title", nil];
+//  [cellContentArray addObject:cellDic];
+//
+//  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+//      @"Images/leftPageScore.png", @"image", @"Debug Options", @"title", nil];
+//  [cellContentArray addObject:cellDic];
 }
 
 
 - (void)openLoginWindow {
   LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
   m.callerClassName = NSStringFromClass([self class]);
+  HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
 
   if (self.navigationController) {
-    [self.navigationController presentViewController:m animated:YES completion:nil];
+    [self.navigationController presentViewController:nc animated:YES completion:nil];
   }
 }
 
 - (void)openRegisterWindow {
   RegisterController *m = [[RegisterController alloc] initWithNibName:@"RegisterView" bundle:nil];
+  HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
+
   if (self.navigationController) {
-    [self.navigationController presentViewController:m animated:YES completion:nil];
+    [self.navigationController presentViewController:nc animated:YES completion:nil];
   }
 }
 
@@ -401,7 +413,7 @@ destructiveButtonTitle:@"确定"
   } else {
     [avatarImageView setImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
   }
-  avatarImageView.layer.cornerRadius = 4.0;
+  //avatarImageView.layer.cornerRadius = 4.0;
   avatarImageView.layer.masksToBounds = YES;
   avatarImageView.layer.borderColor = [UIColor clearColor].CGColor;
   avatarImageView.layer.borderWidth = 1.0;
@@ -456,6 +468,26 @@ destructiveButtonTitle:@"确定"
     }
   }
 }
+
+
+- (void)OnLoginSuccess:(NSNotification *)notification {
+  // NSString *className = (NSString *) notification.object;
+  // if ([className isEqualToString:NSStringFromClass([self class])]) {
+  // }
+  if ([[[User sharedInstance] account] isLogin] && [[[User sharedInstance] account] shouldResetLogin]) {
+    [self resetAccountView];
+  }
+
+  if ([[[User sharedInstance] account] isLogin]) {
+    [self hideLoginView];
+    [self showAccountView];
+  }
+  else {
+    [self hideAccountView];
+    [self showLoginView];
+  }
+}
+
 
 @end
 

@@ -27,7 +27,6 @@
 @end
 
 @implementation RegisterController
-@synthesize navigationItem;
 @synthesize tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

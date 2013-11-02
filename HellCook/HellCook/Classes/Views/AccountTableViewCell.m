@@ -24,7 +24,8 @@
       [titleLabel setBackgroundColor: [UIColor clearColor]];
 
       bottomlineView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 62, 280, 1.2)];
-      imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 20, 23, 23)];
+      imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 16, 26, 26)];
+      [imageView setContentMode:UIViewContentModeTopLeft];
 
       [imageView setBackgroundColor: [UIColor clearColor]];
 

@@ -12,7 +12,6 @@
 @interface LoginController : UIViewController <UITextFieldDelegate, MBProgressHUDDelegate> {
   MBProgressHUD *HUD;
 
-  UINavigationItem *navigationItem;
   UITableView *tableView;
   NSMutableArray *cellList;
   UITextField *usernameField;
@@ -20,7 +19,6 @@
   NSString *callerClassName;
 }
 
-@property(nonatomic, retain) IBOutlet UINavigationItem *navigationItem;
 @property(nonatomic, retain) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) MKNetworkOperation *loginOperation;
 
