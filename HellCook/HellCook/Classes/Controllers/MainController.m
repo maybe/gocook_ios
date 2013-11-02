@@ -6,13 +6,14 @@
 #import "SearchController.h"
 #import "UIViewController+MMDrawerController.h"
 #import "AppDelegate.h"
+#import "DBHandler.h"
 
 @interface MainController ()
 
 @end
 
 @implementation MainController
-@synthesize tableView, searchBarView;
+@synthesize tableView, searchBarView, rightNumLabel;
 
 - (void)viewDidLoad
 {
@@ -43,8 +44,14 @@
     catArray = [[NSMutableArray alloc] initWithArray:iosMainDataDic[@"recommend_items"]];
   }
 
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnRemoveFromShoppingListSuccess:) name:@"EVT_OnRemoveFromShoppingListSuccess" object:nil];
+
   [self autoLayout];
   [super viewDidLoad];
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void) showLeft:(id)sender
@@ -56,13 +63,17 @@
 - (void) showRight:(id)sender
 {
   [searchBarView hideMaskView];
-  [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+  [self.mm_drawerController toggleDrawerSide:MMDrawerSideRight animated:YES completion:nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
   [ApplicationDelegate enableLeftDrawer];
   [ApplicationDelegate enableRightDrawer];
+
+  NSInteger shoppingCount = [[DBHandler sharedInstance] getShoppingListCount];
+  [rightNumLabel setText: [NSString stringWithFormat:@"%d", shoppingCount]];
+
   [super viewWillAppear:animated];
 }
 
@@ -191,12 +202,12 @@
      [UIImage imageNamed:@"Images/rightPageButtonBackgroundHighlighted.png"]
                                   forState:UIControlStateHighlighted];
     
-    UILabel* rightNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 3, 27, 22)];
+    rightNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 3, 27, 22)];
     [rightNumLabel setBackgroundColor:[UIColor clearColor]];
     [rightNumLabel setTextColor:[UIColor whiteColor]];
     [rightNumLabel setAdjustsFontSizeToFitWidth:YES];
     [rightNumLabel setTextAlignment:NSTextAlignmentCenter];
-    [rightNumLabel setText:@"1"];
+    [rightNumLabel setText:@"0"];
     [rightBarButtonView addSubview:rightNumLabel];
     
     UIImage* rightBLImage = [UIImage imageNamed:@"Images/buylistButtonImage.png"];
@@ -223,6 +234,13 @@
     //[self.revealSideViewController setIsSwipeEnabled:NO];
     [self.navigationController pushViewController:[[SearchController alloc]initWithNibName:@"SearchView" bundle:nil keyword:[searchBarView getSearchKeyword]] animated:YES];
   }
+}
+
+
+- (void)OnRemoveFromShoppingListSuccess: (NSNotification *)notification
+{
+  NSInteger shoppingCount = [[DBHandler sharedInstance] getShoppingListCount];
+  [rightNumLabel setText: [NSString stringWithFormat:@"%d", shoppingCount]];
 }
 
 

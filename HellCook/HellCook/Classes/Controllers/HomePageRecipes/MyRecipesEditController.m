@@ -344,16 +344,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)setLeftButton
 {
-  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
   [leftBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/commonBackBackgroundNormal.png"]
+      [UIImage imageNamed:@"Images/BackButtonNormal.png"]
                                forState:UIControlStateNormal];
   [leftBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/commonBackBackgroundHighlighted.png"]
+      [UIImage imageNamed:@"Images/BackButtonHighLight.png"]
                                forState:UIControlStateHighlighted];
-  [leftBarButtonView setTitle:@"返回" forState:UIControlStateNormal];
-  [leftBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
   
   UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
   

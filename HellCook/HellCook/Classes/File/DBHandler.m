@@ -164,6 +164,19 @@
   return retArray;
 }
 
+- (NSInteger)getShoppingListCount
+{
+  NSInteger count = 0;
+  if ([self openDB]){
+    FMResultSet *rs = [db executeQuery:@"SELECT count(*) FROM shopping;"];
+    if([rs next]) {
+      count = [rs intForColumnIndex: 0];
+    }
+    [db close];
+  }
+  return count;
+}
+
 #pragma mark  data cache
 
 - (void)addDataCache:(NSString*)data For:(NSInteger)dataType

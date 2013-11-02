@@ -17,11 +17,13 @@
   
   NSMutableArray* catArray;
   NSDictionary* iosMainDataDic;
+  UILabel *rightNumLabel;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain)SearchBarView* searchBarView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
+@property (nonatomic, retain)UILabel* rightNumLabel;
 
 - (void)getIOSMainData;
 

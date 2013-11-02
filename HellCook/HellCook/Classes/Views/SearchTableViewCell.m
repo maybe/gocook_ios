@@ -29,11 +29,11 @@
       [self addSubview: [self titleLabel]];
       [self addSubview:[self materialLabel]];
       
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/topmask.png"];
-      UIImage *stretchedBackgroundImage = [buttonBackgroundImage stretchableImageWithLeftCapWidth:6 topCapHeight:6.5];
-      maskImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 95, 70)];
-      [maskImageView setImage:stretchedBackgroundImage];
-      [self addSubview:maskImageView];
+//      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/topmask.png"];
+//      UIImage *stretchedBackgroundImage = [buttonBackgroundImage stretchableImageWithLeftCapWidth:6 topCapHeight:6.5];
+//      maskImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 95, 70)];
+//      [maskImageView setImage:stretchedBackgroundImage];
+//      [self addSubview:maskImageView];
       
       UIImage* dotImage = [UIImage imageNamed:@"Images/homeHeaderSeperator.png"];
       UIImageView* dotImageView = [[UIImageView alloc]initWithImage:dotImage];

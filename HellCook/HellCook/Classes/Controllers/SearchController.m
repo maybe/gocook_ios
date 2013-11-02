@@ -11,6 +11,7 @@
 #import "NetManager.h"
 #import "SearchTableViewCell.h"
 #import "RecipeDetailController.h"
+#import "UIViewController+MMDrawerController.h"
 
 @interface SearchController ()
 
@@ -37,8 +38,6 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-
   CGRect viewframe = self.view.frame;
   viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.view setFrame:viewframe];
@@ -56,10 +55,16 @@
   [self initLoadingView];
   [self showLoadingView];
   [self getSearchData];
+
+  [self autoLayout];
+  [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+  [ApplicationDelegate disableLeftDrawer];
+  [ApplicationDelegate disableRightDrawer];
+
   [self.navigationController.navigationBar setHidden:NO];
   self.title = searchKey;
   [searchBarView setSearchKeyword:searchKey];
@@ -223,17 +228,14 @@
 
 - (void)setLeftButton
 {
-  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
   [leftBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/commonBackBackgroundNormal.png"]
+   [UIImage imageNamed:@"Images/BackButtonNormal.png"]
                                forState:UIControlStateNormal];
   [leftBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/commonBackBackgroundHighlighted.png"]
+   [UIImage imageNamed:@"Images/BackButtonHighLight.png"]
                                forState:UIControlStateHighlighted];
-  [leftBarButtonView setTitle:@"返回" forState:UIControlStateNormal];
-  [leftBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-  
   UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
   
   [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];

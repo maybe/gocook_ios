@@ -54,6 +54,7 @@
   [self.view setFrame:viewFrame];
   [self.tableView setFrame:viewFrame];
 
+  [self autoLayout];
   [super viewDidLoad];
 }
 
@@ -459,11 +460,13 @@
 - (void)delOneRecipeFromShoppingList:(id)sender
 {
   UIView* button = sender;
-  
-  NSIndexPath *indexPath = [(UITableView *)button.superview.superview indexPathForCell: (UITableViewCell*)button.superview];
+
+  NSIndexPath *indexPath = [[self relatedTable:[self relatedCell:button]] indexPathForCell:[self relatedCell:button]];
   
   [[DBHandler sharedInstance] removeFromShoppingList: [cellContentArray[(NSUInteger)indexPath.row][@"recipeid"] intValue]];
-  
+
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnRemoveFromShoppingListSuccess" object:nil];
+
   [self setDataList];
   
   [self.tableView reloadData];
@@ -500,6 +503,32 @@
   
   MaterialSearchBuyViewController *pController = [[MaterialSearchBuyViewController alloc] initWithNibName:@"MaterialSearchBuyView" bundle:nil withData:cellAllMaterialArray];
   [self.navigationController pushViewController:pController animated:YES];
+}
+
+- (UITableView *)relatedTable:(UIView *)view
+{
+  if ([view.superview isKindOfClass:[UITableView class]])
+    return (UITableView *)view.superview;
+  else if ([view.superview.superview isKindOfClass:[UITableView class]])
+    return (UITableView *)view.superview.superview;
+  else
+  {
+    NSAssert(NO, @"UITableView shall always be found.");
+    return nil;
+  }
+}
+
+- (UITableViewCell *)relatedCell:(UIView *)view
+{
+  if ([view.superview isKindOfClass:[UITableViewCell class]])
+    return (UITableViewCell *)view.superview;
+  else if ([view.superview.superview isKindOfClass:[UITableViewCell class]])
+    return (UITableViewCell *)view.superview.superview;
+  else
+  {
+    NSAssert(NO, @"UITableViewCell shall always be found.");
+    return nil;
+  }
 }
 
 @end

@@ -37,6 +37,7 @@
 - (void)removeFromShoppingList:(NSInteger)recipeId;
 - (BOOL)isInShoppingList:(NSInteger)recipeId;
 - (NSMutableArray*)getShoppingList;
+- (NSInteger)getShoppingListCount;
 
 - (void)addDataCache:(NSString*)data For:(NSInteger)datatype;
 - (void)removeDataCache:(NSInteger)datatype;

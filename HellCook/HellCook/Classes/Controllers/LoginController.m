@@ -177,16 +177,14 @@
 
 - (void)setLeftButton
 {
-    UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
-    [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
-    [leftBarButtonView setBackgroundImage:
-     [UIImage imageNamed:@"Images/commonBackBackgroundNormal.png"]
-                                 forState:UIControlStateNormal];
-    [leftBarButtonView setBackgroundImage:
-     [UIImage imageNamed:@"Images/commonBackBackgroundHighlighted.png"]
-                                 forState:UIControlStateHighlighted];
-    [leftBarButtonView setTitle:@"  返回 " forState:UIControlStateNormal];
-    [leftBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
+  [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
+  [leftBarButtonView setBackgroundImage:
+      [UIImage imageNamed:@"Images/BackButtonNormal.png"]
+                               forState:UIControlStateNormal];
+  [leftBarButtonView setBackgroundImage:
+      [UIImage imageNamed:@"Images/BackButtonHighLight.png"]
+                               forState:UIControlStateHighlighted];
     
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
     

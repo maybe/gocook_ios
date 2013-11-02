@@ -101,7 +101,7 @@
 
 - (void)setLeftButton
 {
-  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
   [leftBarButtonView setBackgroundImage:
    [UIImage imageNamed:@"Images/BackButtonNormal.png"]
