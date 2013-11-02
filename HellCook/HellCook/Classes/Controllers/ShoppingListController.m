@@ -477,17 +477,17 @@
     UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 45, 30)];
     [rightBarButtonView addTarget:self action:@selector(emptyShoppingList:) forControlEvents:UIControlEventTouchUpInside];
     [rightBarButtonView setBackgroundImage:
-     [UIImage imageNamed:@"Images/rightPageButtonBackgroundNormal.png"]
+     [UIImage imageNamed:@"Images/buylistPageclear.png"]
                                   forState:UIControlStateNormal];
     
     [rightBarButtonView setBackgroundImage:
-     [UIImage imageNamed:@"Images/rightPageButtonBackgroundHighlighted.png"]
+     [UIImage imageNamed:@"Images/buylistPageclearHighLight.png"]
                                   forState:UIControlStateHighlighted];
     
-    UIImage* rightBLImage = [UIImage imageNamed:@"Images/buylistPageclear.png"];
-    UIImageView *rightImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 5, 15, 18)];
-    [rightImageView setImage:rightBLImage];
-    [rightBarButtonView addSubview:rightImageView];
+//    UIImage* rightBLImage = [UIImage imageNamed:@"Images/buylistPageclear.png"];
+//    UIImageView *rightImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 5, 15, 18)];
+//    [rightImageView setImage:rightBLImage];
+//    [rightBarButtonView addSubview:rightImageView];
     
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
