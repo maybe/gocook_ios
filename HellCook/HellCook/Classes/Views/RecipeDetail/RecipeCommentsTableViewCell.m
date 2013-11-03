@@ -29,7 +29,7 @@
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
 
     //avatarImageView
-    avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 55, 60)];
+    avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 55, 55)];
     [avataImageView setContentMode:UIViewContentModeScaleAspectFill];
     [avataImageView setClipsToBounds:YES];
     // avataImageView.layer.cornerRadius = 4.0;

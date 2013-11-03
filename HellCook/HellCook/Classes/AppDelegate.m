@@ -19,6 +19,7 @@
 #import "Encrypt.h"
 #import "HCDrawerController.h"
 #import "MMExampleDrawerVisualStateManager.h"
+#import "RootNavigationController.h"
 
 @interface AppDelegate ()
 @property (nonatomic,strong) HCDrawerController * drawerController;
@@ -52,7 +53,6 @@
   [self resetCenterNavController];
   [self resetLeftNavController];
   [self resetRightNavController];
-  
 
   self.drawerController = [[HCDrawerController alloc]
                                initWithCenterViewController:_centerNavController
@@ -77,6 +77,14 @@
        }
    }];
 
+  RootNavigationController* rootNC = [[RootNavigationController alloc] initWithRootViewController:self.drawerController];
+  CGRect rootNCViewFrame = rootNC.view.frame;
+  rootNCViewFrame.size.height = _screenHeight;
+  rootNC.view.frame = rootNCViewFrame;
+  rootNC.view.autoresizesSubviews = NO;
+  rootNC.view.clipsToBounds = YES;
+  rootNC.delegate = rootNC;
+
   if(HCSystemVersionGreaterOrEqualThan(7.0)){
       UIColor * tintColor = [UIColor colorWithRed:29.0/255.0
                                             green:173.0/255.0
@@ -84,7 +92,7 @@
                                             alpha:1.0];
       [self.window setTintColor:tintColor];
   }
-  [self.window setRootViewController:self.drawerController];
+  [self.window setRootViewController: rootNC];
   
   self.window.backgroundColor = [UIColor blackColor];
   [self.window makeKeyAndVisible];

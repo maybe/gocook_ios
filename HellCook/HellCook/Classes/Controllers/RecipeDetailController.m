@@ -231,12 +231,8 @@
   if ([netOperation isExecuting]) {
     [netOperation cancel];
   }
-  
-  if ([mPrevTitle isEqualToString:@"我的收藏"] || [mPrevTitle isEqualToString:@"购买清单"]) {
-    [self dismissViewControllerAnimated:YES completion:nil];
-  }
-  else
-    [self.navigationController popViewControllerAnimated:YES];
+
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)tapComment

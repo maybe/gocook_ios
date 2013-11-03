@@ -13,6 +13,7 @@
 #import "User.h"
 #import "LoginController.h"
 #import "ODRefreshControl.h"
+#import "UIViewController+MMDrawerController.h"
 
 @interface MyCollectionController ()
 
@@ -35,11 +36,11 @@
 }
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
   self.navigationItem.title = @"我的收藏";
 
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  viewFrame.size.width = _sideWindowWidth;
   [self.view setFrame:viewFrame];
   [self.tableView setFrame:viewFrame];
 
@@ -52,6 +53,9 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
 
   [self getMyCollectionData];
+
+  [self autoLayout];
+  [super viewDidLoad];
 }
 
 - (void)dealloc {
@@ -138,7 +142,7 @@
   NSInteger recipeId = [recipeIdStr intValue];
 
 //  [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId withPrevTitle:titile] animated:YES];
-  [self.navigationController presentViewController:[[RecipeDetailController alloc] initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId withPrevTitle:@"我的收藏"] animated:YES completion:nil];
+  [self.mm_drawerController.navigationController pushViewController:[[RecipeDetailController alloc] initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId withPrevTitle:@"我的收藏"] animated:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

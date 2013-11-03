@@ -12,10 +12,8 @@
 #import "RecipeSendCommentView.h"
 #import "NetManager.h"
 #import "KeyboardHandler.h"
-#import "UIView+FindFirstResponder.h"
 #import "MBProgressHUD.h"
 #import "User.h"
-#import "AppDelegate.h"
 
 @interface RecipeCommentViewController ()
 

@@ -69,6 +69,7 @@
 		65809DB6DDFEA4775E8C2967 /* RecipeDetailTipsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809924B1D3CF2F565C7FC6 /* RecipeDetailTipsTableViewCell.m */; };
 		65809DC42EED0DCF3B8B1CC8 /* MyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809B7471B9CD5BFADF5A98 /* MyCollectionController.m */; };
 		65809F128C431D188328697E /* RecipeCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809442FFE9EA1888FD4791 /* RecipeCommentViewController.m */; };
+		65809FE0167BB52FDE35EF8A /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809B3F4F3E41171F455D97 /* RootNavigationController.m */; };
 		BA02634516D7579700298803 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634416D7579700298803 /* AppDelegate.m */; };
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
 		BA02635216D75E4F00298803 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02635116D75E4F00298803 /* Common.m */; };
@@ -286,6 +287,7 @@
 		65809AF5A523FFFD4AD568D0 /* MyRecipeEditAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipeEditAvatarView.h; path = Classes/Views/MyRecipes/MyRecipeEditAvatarView.h; sourceTree = "<group>"; };
 		65809B02DB1E620DC0202A9C /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainController.m; path = Classes/Controllers/MainController.m; sourceTree = "<group>"; };
 		65809B0E00C8DBF54C173AA2 /* ShoppingListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingListController.m; path = Classes/Controllers/ShoppingListController.m; sourceTree = "<group>"; };
+		65809B3F4F3E41171F455D97 /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootNavigationController.m; path = Classes/Common/RootNavigationController.m; sourceTree = "<group>"; };
 		65809B7471B9CD5BFADF5A98 /* MyCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionController.m; path = Classes/Controllers/MyCollectionController.m; sourceTree = "<group>"; };
 		65809C4F113BFAFCB1551762 /* TopListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopListTableViewCell.h; path = Classes/Views/TopListTableViewCell.h; sourceTree = "<group>"; };
 		65809C4FEA50A58E368BE896 /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodsDetailViewController.h; path = Classes/Controllers/BuyGoods/GoodsDetailViewController.h; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 		65809E9C9ACFA88204E3C309 /* SearchGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchGoodsViewController.m; path = Classes/Controllers/BuyGoods/SearchGoodsViewController.m; sourceTree = "<group>"; };
 		65809F4F87DF7B86515B2F8B /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyViewController.m; path = Classes/Controllers/BuyGoods/BuyViewController.m; sourceTree = "<group>"; };
 		65809FAF8932AFE7872BF760 /* MainTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTopTableViewCell.h; path = Classes/Views/MainTopTableViewCell.h; sourceTree = "<group>"; };
+		65809FD06094A9C81A302265 /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootNavigationController.h; path = Classes/Common/RootNavigationController.h; sourceTree = "<group>"; };
 		65809FE062C46199C71BFD2F /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsDetailViewController.m; path = Classes/Controllers/BuyGoods/GoodsDetailViewController.m; sourceTree = "<group>"; };
 		BA02634316D7579700298803 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		BA02634416D7579700298803 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
@@ -818,6 +821,8 @@
 				BAA892DA182037C9006A89BB /* UIViewController+AutoLayout.m */,
 				BAA892DC1822BA53006A89BB /* HCDrawerController.h */,
 				BAA892DD1822BA53006A89BB /* HCDrawerController.m */,
+				65809B3F4F3E41171F455D97 /* RootNavigationController.m */,
+				65809FD06094A9C81A302265 /* RootNavigationController.h */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1508,6 +1513,7 @@
 				5E001D8117E307C900BDAC62 /* DealDetailViewController.m in Sources */,
 				6580903EF91F30CF752922D8 /* TTTAttributedLabel.m in Sources */,
 				65809DB6DDFEA4775E8C2967 /* RecipeDetailTipsTableViewCell.m in Sources */,
+				65809FE0167BB52FDE35EF8A /* RootNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

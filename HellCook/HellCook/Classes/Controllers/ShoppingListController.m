@@ -11,6 +11,7 @@
 #import "DBHandler.h"
 #import "RecipeDetailController.h"
 #import "MaterialSearchBuyViewController.h"
+#import "UIViewController+MMDrawerController.h"
 
 @interface ShoppingListController ()
 
@@ -427,11 +428,30 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if (cellContentArray[(NSUInteger)indexPath.row][@"recipeid"]) {
-    
-    int recipeid = [cellContentArray[(NSUInteger)indexPath.row][@"recipeid"] intValue];
-    if (recipeid != 0) {
-      [self.navigationController presentViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeid withPrevTitle:@"购买清单"] animated:YES completion:nil];
+  NSMutableArray* contentArray = NULL;
+  if (isRecipeView) {
+    contentArray = cellContentArray;
+  } else {
+    contentArray = cellAllMaterialArray;
+  }
+
+  if (contentArray[(NSUInteger)indexPath.row][@"recipeid"]) {
+    int recipe_id = [contentArray[(NSUInteger)indexPath.row][@"recipeid"] intValue];
+    if (recipe_id != 0) {
+      [self.mm_drawerController.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipe_id withPrevTitle:@"购买清单"] animated:YES];
+    }
+  }
+  else {
+    NSMutableDictionary *dictionary = contentArray[(NSUInteger)indexPath.row];
+    if (dictionary[@"select"] && [dictionary[@"select"] isEqualToString:@"slash"]) {
+      dictionary[@"select"] = @"unslash";
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"ShoppingListUnSlashMaterialItem" object:[NSNumber numberWithInt:indexPath.row]];
+      [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+
+    } else {
+      dictionary[@"select"] = @"slash";
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"ShoppingListSlashMaterialItem" object:[NSNumber numberWithInt:indexPath.row]];
+      [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
   }
 }
@@ -474,7 +494,7 @@
 
 - (void)setRightButton
 {
-    UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 45, 30)];
+    UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
     [rightBarButtonView addTarget:self action:@selector(emptyShoppingList:) forControlEvents:UIControlEventTouchUpInside];
     [rightBarButtonView setBackgroundImage:
      [UIImage imageNamed:@"Images/buylistPageclear.png"]

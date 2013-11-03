@@ -21,14 +21,18 @@
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
     [self setBackgroundColor: [UIColor clearColor]];
-    [self setFrame:CGRectMake(0, 0, 320, 60)];
+    [self setFrame:CGRectMake(0, 0, _sideWindowWidth, 60)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     [self addSubview: [self titleLabel]];
         
     [self addSubview: [self delButton]];
     [self addSubview: [self buyButton]];
-    
+
+    UIImageView *sepImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 59, _sideWindowWidth, 60)];
+    [sepImageView setImage:[UIImage imageNamed:@"Images/TableCellSeparater.png"]];
+    [self addSubview:sepImageView];
+
     buyButton.hidden = YES;
     delButton.hidden = YES;
     
@@ -185,6 +189,10 @@
     middleLine.hidden = YES;
     
     [self addSubview:middleLine];
+
+    UIImageView *sepImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 43, _sideWindowWidth, 44)];
+    [sepImageView setImage:[UIImage imageNamed:@"Images/TableCellSeparater.png"]];
+    [self addSubview:sepImageView];
     
     UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeRight:)];
     [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];

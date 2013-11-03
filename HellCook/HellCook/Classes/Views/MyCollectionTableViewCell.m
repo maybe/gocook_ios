@@ -19,25 +19,27 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-      [self setBackgroundColor: [UIColor blackColor]];
-      [self setFrame:CGRectMake(0, 0, 320, 90)];
+      [self setBackgroundColor: [UIColor clearColor]];
+      [self setFrame:CGRectMake(0, 0, _sideWindowWidth, 90)];
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
       
       imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 95, 70)];
+      [imageView setContentMode:UIViewContentModeScaleAspectFill];
+      [imageView setClipsToBounds:YES];
       [self addSubview:imageView];
       
       [self addSubview: [self titleLabel]];
       [self addSubview:[self materialLabel]];
       
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/topmask.png"];
-      UIImage *stretchedBackgroundImage = [buttonBackgroundImage stretchableImageWithLeftCapWidth:6 topCapHeight:6.5];
-      maskImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 95, 70)];
-      [maskImageView setImage:stretchedBackgroundImage];
-      [self addSubview:maskImageView];
+//      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/topmask.png"];
+//      UIImage *stretchedBackgroundImage = [buttonBackgroundImage stretchableImageWithLeftCapWidth:6 topCapHeight:6.5];
+//      maskImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 95, 70)];
+//      [maskImageView setImage:stretchedBackgroundImage];
+//      [self addSubview:maskImageView];
       
       UIImage* dotImage = [UIImage imageNamed:@"Images/homeHeaderSeperator.png"];
       UIImageView* dotImageView = [[UIImageView alloc]initWithImage:dotImage];
-      [dotImageView setFrame:CGRectMake(0, 88, 320, 1)];
+      [dotImageView setFrame:CGRectMake(0, 89, _sideWindowWidth, 1)];
       
       [self addSubview:dotImageView];
     }
@@ -54,7 +56,7 @@
 - (UILabel*)titleLabel
 {
   if (!titleLabel) {
-    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(124, 24, 168, 20)];
+    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(124, 24, 148, 20)];
     [titleLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
     [titleLabel setFont: [UIFont boldSystemFontOfSize:16]];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
@@ -66,7 +68,7 @@
 - (UILabel*)materialLabel
 {
   if (!materialLabel) {
-    materialLabel = [[UILabel alloc]initWithFrame:CGRectMake(124, 50, 168, 20)];
+    materialLabel = [[UILabel alloc]initWithFrame:CGRectMake(124, 50, 148, 20)];
     [materialLabel setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
     
     [materialLabel setFont: [UIFont systemFontOfSize:14]];
