@@ -10,7 +10,7 @@
 #import "Common.h"
 
 @implementation MaterialSearchBuyTableViewCell
-@synthesize nameLabel,stateLabel,goBuyBtn,sepImageView,goodsLabel,specLabel,amountLabel,priceLabel,processLabel;
+@synthesize nameLabel,stateLabel,goBuyBtn,backgroundView,goodsLabel,specLabel,amountLabel,priceLabel,processLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -19,83 +19,73 @@
   // Initialization code
     keyword = @"";
     [self setBackgroundColor: [UIColor clearColor]];
-    [self setFrame:CGRectMake(0, 0, 320-_offset, 90)];
+    [self setFrame:CGRectMake(0, 0, 320-_offset, 130)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
+
+
+    backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 280 - 20, 120)];
+    [backgroundView setImage:[UIImage imageNamed:@"Images/WhiteBlock.png"]];
+    [backgroundView setContentMode:UIViewContentModeScaleToFill];
+    [self addSubview:backgroundView];
+
     //nameLabel
-    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-_offset, 16)];
-    nameLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    nameLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(26, 26, 320-_offset, 16)];
     nameLabel.backgroundColor = [UIColor clearColor];
     nameLabel.font = [UIFont boldSystemFontOfSize:16];
+    nameLabel.textColor = [UIColor colorWithRed:107.0/255.0 green:174.0/255.0 blue:42.0/255.0 alpha:1];
     //stateLabel
-    stateLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 31, 180, 16)];
-    stateLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    stateLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+    stateLabel = [[UILabel alloc]initWithFrame:CGRectMake(26, 52, 180, 16)];
     stateLabel.backgroundColor = [UIColor clearColor];
     stateLabel.font = [UIFont systemFontOfSize:16];
     [stateLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
     [stateLabel setText:@"尚未选购该商品"];
     //goBuyBtn
-    goBuyBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 57, 300-_offset, 20)];
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"];
-    UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    [goBuyBtn setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-    UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"];
-    UIImage *stretchedBackgroundPressed = [btnBakimagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    [goBuyBtn setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
-    [goBuyBtn setTitle:@"前往m6生鲜网络超市选购商品" forState:UIControlStateNormal];
+    goBuyBtn = [[UIButton alloc] initWithFrame:CGRectMake(25, 80, 230, 30)];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/GoToM6Buy.png"];
+    [goBuyBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+    UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/GoToM6BuyHighLight.png"];
+    [goBuyBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
     [goBuyBtn addTarget:nil action:@selector(GotoSearchGoods:) forControlEvents:UIControlEventTouchUpInside];
-    //seperator image
-    sepImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 88, 320-_offset, 1)];
-    [sepImageView setImage:[UIImage imageNamed:@"Images/homeHeaderSeperator.png"]];
+
+//    //seperator image
+//    sepImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 88, 320-_offset, 1)];
+//    [sepImageView setImage:[UIImage imageNamed:@"Images/homeHeaderSeperator.png"]];
     
     //goodsLabel
     goodsLabel = [[UILabel alloc] init];
-    goodsLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    goodsLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     goodsLabel.backgroundColor = [UIColor clearColor];
     goodsLabel.font = [UIFont systemFontOfSize:16];
-    [goodsLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
+    [goodsLabel setTextColor:[UIColor colorWithRed:108.0/255.0 green:108.0/255.0 blue:108.0/255.0 alpha:1.0]];
     [goodsLabel setHidden:YES];
     //specLabel
     specLabel = [[UILabel alloc] init];
-    specLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    specLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     specLabel.backgroundColor = [UIColor clearColor];
     specLabel.font = [UIFont systemFontOfSize:16];
-    [specLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
+    [specLabel setTextColor:[UIColor colorWithRed:108.0/255.0 green:108.0/255.0 blue:108.0/255.0 alpha:1.0]];
     [specLabel setHidden:YES];
     //amountLabel
     amountLabel = [[UILabel alloc] init];
-    amountLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    amountLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     amountLabel.backgroundColor = [UIColor clearColor];
     amountLabel.font = [UIFont systemFontOfSize:16];
-    [amountLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
+    [amountLabel setTextColor:[UIColor colorWithRed:108.0/255.0 green:108.0/255.0 blue:108.0/255.0 alpha:1.0]];
     [amountLabel setHidden:YES];
     //priceLabel
     priceLabel = [[UILabel alloc] init];
-    priceLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    priceLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     priceLabel.backgroundColor = [UIColor clearColor];
     priceLabel.font = [UIFont systemFontOfSize:16];
-    [priceLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
+    [priceLabel setTextColor:[UIColor colorWithRed:108.0/255.0 green:108.0/255.0 blue:108.0/255.0 alpha:1.0]];
     [priceLabel setHidden:YES];
     //processLabel
     processLabel = [[UILabel alloc] init];
-    processLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    processLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     processLabel.backgroundColor = [UIColor clearColor];
     processLabel.font = [UIFont systemFontOfSize:16];
-    [processLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
+    [processLabel setTextColor:[UIColor colorWithRed:108.0/255.0 green:108.0/255.0 blue:108.0/255.0 alpha:1.0]];
     [processLabel setHidden:YES];
-    
 
     [self addSubview:nameLabel];
     [self addSubview:stateLabel];
     [self addSubview:goBuyBtn];
-    [self addSubview:sepImageView];
+    // [self addSubview:sepImageView];
     [self addSubview:goodsLabel];
     [self addSubview:specLabel];
     [self addSubview:amountLabel];
@@ -116,44 +106,49 @@
   if ([dict[@"state"] isEqual:@"NotBuy"])
   {
     CGRect cellRect = self.frame;
-    cellRect.size.height = 90;
+    cellRect.size.height = 130;
     [self setFrame:cellRect];
     
     [stateLabel setHidden:NO];
-    [goBuyBtn setFrame:CGRectMake(10, 57, 300-_offset, 20)];
+    [goBuyBtn setFrame:CGRectMake(25, 80, 230, 30)];
+    goBuyBtn.hidden = NO;
     [goodsLabel setHidden:YES];
     [specLabel setHidden:YES];
     [amountLabel setHidden:YES];
     [priceLabel setHidden:YES];
     [processLabel setHidden:YES];
-    [sepImageView setFrame:CGRectMake(0, 88, 320-_offset, 1)];
+
+    [backgroundView setFrame: CGRectMake(10, 10, 280 - 20, 120)];
   }
   else
   {
     CGRect cellRect = self.frame;
-    cellRect.size.height = 135;
+    cellRect.size.height = 253;
     [self setFrame:cellRect];
     
     [stateLabel setHidden:YES];
-    [goodsLabel setHidden:YES];
-    [goBuyBtn setHidden:YES];
-    
+    [goBuyBtn setHidden:NO];
+    [goBuyBtn setFrame:CGRectMake(25, 205, 230, 30)];
+
+    [goodsLabel setHidden:NO];
+    [goodsLabel setFrame:CGRectMake(25, 52, 230, 16)];
+    [goodsLabel setText:dict[@"name"]];
     [specLabel setHidden:NO];
-    [specLabel setFrame:CGRectMake(10, 41, 180, 16)];
+    [specLabel setFrame:CGRectMake(25, 78, 230, 16)];
     [specLabel setText:[NSString stringWithFormat:@"规格：%@",dict[@"norm"]]];
     [amountLabel setHidden:NO];
-    [amountLabel setFrame:CGRectMake(10, 60, 180, 16)];
+    [amountLabel setFrame:CGRectMake(25, 104, 230, 16)];
     NSString *strAmount = [NSString stringWithFormat:@"￥%.2f/%@ × %@%@",[dict[@"price"] floatValue],dict[@"unit"],dict[@"Quantity"],dict[@"unit"]];
     [amountLabel setText:strAmount];
     [priceLabel setHidden:NO];
-    [priceLabel setFrame:CGRectMake(10, 79, 180, 16)];
+    [priceLabel setFrame:CGRectMake(25, 130, 230, 16)];
     double price = [dict[@"price"] floatValue] * [dict[@"Quantity"] intValue];
     [priceLabel setText:[NSString stringWithFormat:@"=￥%.2f",price]];
     [processLabel setHidden:NO];
-    [processLabel setFrame:CGRectMake(10, 98, 180, 16)];
+    [processLabel setFrame:CGRectMake(25, 156, 230, 16)];
     [processLabel setText:[NSString stringWithFormat:@"加工方式：%@",dict[@"Remark"]]];
     
-    [sepImageView setFrame:CGRectMake(0, 133, 320-_offset, 1)];
+    [backgroundView setFrame:CGRectMake(10, 10, 280 - 20, 244)];
   }
 }
 

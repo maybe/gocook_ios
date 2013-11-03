@@ -17,7 +17,7 @@
 @end
 
 @implementation SearchGoodsViewController
-@synthesize myTableView,mLoadingActivity,netOperation,mWaitingActivity;
+@synthesize myTableView,mLoadingActivity,netOperation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withKeyword:(NSString*)keyword
 {
@@ -35,14 +35,14 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-  // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = @"搜索商品";
   
-/*  CGRect viewFrame = self.view.frame;
+  CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  viewFrame.size.width = _sideWindowWidth;
   [self.view setFrame:viewFrame];
-  [self.myTableView setFrame:viewFrame];*/
+  self.view.autoresizesSubviews = NO;
+  [self.myTableView setFrame:viewFrame];
   
   [self setLeftButton];
   refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
@@ -50,6 +50,9 @@
   refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
   
   [self getGoodsInfo];
+
+  [self autoLayout];
+  [super viewDidLoad];
 }
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
@@ -172,17 +175,8 @@
 }
 
 
-
-
-
-
-
-
-
-
 -(void)getGoodsInfo
 {
-  [mWaitingActivity startAnimating];
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
                        getGoodsWithKeyword:myKeywords
                        withPage:curPage
@@ -193,7 +187,6 @@
 
 -(void)getGoodsInfoCallBack:(NSMutableDictionary*) resultDic
 {
-  [mWaitingActivity stopAnimating];
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {

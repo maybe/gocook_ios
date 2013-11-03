@@ -19,8 +19,7 @@
   BOOL bShouldRefresh;
   NSInteger totalPage;
   UIActivityIndicatorView* mLoadingActivity;
-  UIActivityIndicatorView* mWaitingActivity;
-  ODRefreshControl *refreshControl; 
+  ODRefreshControl *refreshControl;
 }
 
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;

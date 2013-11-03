@@ -64,6 +64,7 @@
   [self.view setFrame:viewFrame];
   [self.myTableView setFrame:viewFrame];
 
+  [self autoLayout];
   [super viewDidLoad];
 }
 
@@ -97,11 +98,10 @@
 
 - (void)setRightButton
 {
-  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
+  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [rightBarButtonView addTarget:self action:@selector(buy) forControlEvents:UIControlEventTouchUpInside];
-  [rightBarButtonView setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
-  [rightBarButtonView setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"] forState:UIControlStateHighlighted];
-  [rightBarButtonView setTitle:@"下单" forState:UIControlStateNormal];
+  [rightBarButtonView setBackgroundImage:[UIImage imageNamed:@"Images/OrderRightButton.png"] forState:UIControlStateNormal];
+  [rightBarButtonView setBackgroundImage:[UIImage imageNamed:@"Images/OrderRightButtonHighLight.png"] forState:UIControlStateHighlighted];
   [rightBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
     
   UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
@@ -177,10 +177,10 @@
 {
   if ([[unslashMaterialArray objectAtIndex:indexPath.row][@"state"] isEqual:@"NotBuy"])
   {
-    return 90;
+    return 130;
   }
   else
-    return 135;
+    return 253;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

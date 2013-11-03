@@ -25,6 +25,10 @@
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     [self addSubview: [self titleLabel]];
+
+    UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(280-38, 21, 13, 18)];
+    [arrowImageView setImage:[UIImage imageNamed:@"Images/ShoppingListRightArrow.png"]];
+    [self addSubview:arrowImageView];
         
     [self addSubview: [self delButton]];
     [self addSubview: [self buyButton]];
@@ -68,11 +72,11 @@
     delButton = [[UIButton alloc]initWithFrame:CGRectMake(105, 15, 80, 30)];
     [delButton setTitle:@"删 除" forState:UIControlStateNormal];
     [delButton.titleLabel setFont: [UIFont boldSystemFontOfSize:13]];
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/ShoppingListDelete.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [delButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
     
-    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
+    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/ShoppingListDeleteHighLight.png"];
     UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [delButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
     
@@ -88,15 +92,15 @@
     buyButton = [[UIButton alloc]initWithFrame:CGRectMake(190, 15, 80, 30)];
     [buyButton setTitle:@"购买食材" forState:UIControlStateNormal];
     [buyButton.titleLabel setFont: [UIFont boldSystemFontOfSize:13]];
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/ShoppingListBuyMaterial.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [buyButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
     
-    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
+    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/ShoppingListBuyMaterialHighLight.png"];
     UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [buyButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
     
-    [buyButton addTarget:nil action:@selector(gotoMaterialSearchBuy) forControlEvents:UIControlEventTouchUpInside];
+    [buyButton addTarget:nil action:@selector(gotoMaterialSearchBuy:) forControlEvents:UIControlEventTouchUpInside];
   }
   return buyButton;
 }

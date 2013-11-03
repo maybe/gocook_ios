@@ -21,31 +21,24 @@
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     //nameLabel
-    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-_offset, 14)];
-    nameLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    nameLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 8, 320-_offset, 20)];
     nameLabel.backgroundColor = [UIColor clearColor];
-    nameLabel.font = [UIFont boldSystemFontOfSize:14];
+    [nameLabel setTextColor:[UIColor colorWithRed:108.0/255.0 green:108.0/255.0 blue:108.0/255.0 alpha:1.0]];
+    nameLabel.font = [UIFont boldSystemFontOfSize:16];
     //specLabel
     specLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 29, 180, 18)];
-    specLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    specLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     specLabel.backgroundColor = [UIColor clearColor];
-    specLabel.font = [UIFont systemFontOfSize:16];
+    specLabel.font = [UIFont systemFontOfSize:15];
     [specLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
     //unitLabel
     unitLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 50, 180, 18)];
-    unitLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    unitLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     unitLabel.backgroundColor = [UIColor clearColor];
-    unitLabel.font = [UIFont systemFontOfSize:16];
+    unitLabel.font = [UIFont systemFontOfSize:15];
     [unitLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
     //priceLabel
     priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 71, 180, 16)];
-    priceLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    priceLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     priceLabel.backgroundColor = [UIColor clearColor];
-    priceLabel.font = [UIFont systemFontOfSize:16];
+    priceLabel.font = [UIFont systemFontOfSize:15];
     [priceLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
     
     sepImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 95, 320-_offset, 1)];

@@ -20,7 +20,7 @@
   UILabel *priceLabel;
   UILabel *processLabel;
   
-  UIImageView* sepImageView;
+  UIImageView* backgroundView;
   
   NSString *keyword;
 }
@@ -28,7 +28,7 @@
 @property (nonatomic,retain) UILabel *nameLabel;
 @property (nonatomic,retain) UILabel *stateLabel;
 @property (nonatomic,retain) UIButton *goBuyBtn;
-@property (nonatomic, retain)UIImageView* sepImageView;
+@property (nonatomic, retain)UIImageView* backgroundView;
 @property (nonatomic,retain) UILabel *goodsLabel;
 @property (nonatomic,retain) UILabel *specLabel;
 @property (nonatomic,retain) UILabel *amountLabel;

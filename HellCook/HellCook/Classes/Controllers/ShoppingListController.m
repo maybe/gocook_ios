@@ -18,16 +18,14 @@
 @end
 
 @implementation ShoppingListController
-@synthesize tableView, leftListButton, rightListButton, listCountLabel, cellContentArray, cellAllMaterialArray;
+@synthesize tableView, leftListButton, rightListButton, listCountLabel, cellContentArray, cellAllMaterialArray, buyAllButton;
 
 - (void)viewDidLoad
 {
   isRecipeView = YES;
   
   [self setRightButton];
-    
-  //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Images/NavigationBarSide.png"] forBarMetrics:UIBarMetricsDefault];
-    
+
   self.navigationController.navigationBar.clipsToBounds = NO;
   self.view.clipsToBounds = YES;
     
@@ -61,13 +59,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  if (isRecipeView == YES) {
+  if (isRecipeView) {
     [self setDataList];
   } else {
     [self setDataList];
     [self setAllMaterialDataList];
   }
-  
+
+  [self refreshHeaderView];
   [self.tableView reloadData];
 
   [super viewWillAppear:animated];  
@@ -169,6 +168,12 @@
     }
   }
 
+}
+
+- (void)refreshHeaderView
+{
+  NSInteger shoppingCount = [[DBHandler sharedInstance] getShoppingListCount];
+  listCountLabel.text = [NSString stringWithFormat:@"已添加%d个", shoppingCount];
 }
 
 - (void)setDataList
@@ -301,13 +306,25 @@
   [self.tableView.tableHeaderView addSubview:leftListButton];
   [self.tableView.tableHeaderView addSubview:rightListButton];
   
-  listCountLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 15, 150, 20)];
+  listCountLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 16, 150, 20)];
   listCountLabel.text = @"";
   [listCountLabel setBackgroundColor: [UIColor clearColor]];
-  [listCountLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
-  
+  [listCountLabel setTextColor:[UIColor colorWithRed:128.0/255.0 green:128.0/255.0 blue:128.0/255.0 alpha:1.0]];
+  [listCountLabel setFont: [UIFont systemFontOfSize:14]];
+
   [self.tableView.tableHeaderView addSubview:listCountLabel];
-  
+
+  buyAllButton = [[UIButton alloc]initWithFrame:CGRectMake(280/2 - 108/2, 12, 108, 29)];
+  [buyAllButton addTarget:self action:@selector(gotoAllMaterialSearchBuy) forControlEvents:UIControlEventTouchUpInside];
+  [buyAllButton setBackgroundImage:
+      [UIImage imageNamed:@"Images/ShoppingListBuyAll.png"] forState:UIControlStateNormal];
+  [buyAllButton setBackgroundImage:
+      [UIImage imageNamed:@"Images/ShoppingListBuyAllHighLight.png"] forState:UIControlStateHighlighted];
+  [self.tableView.tableHeaderView addSubview:buyAllButton];
+  buyAllButton.hidden = YES;
+  [buyAllButton setTitle:@"购买所有食材" forState:UIControlStateNormal];
+  [buyAllButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+
   UIImage* dotImage = [UIImage imageNamed:@"Images/homeHeaderSeperator.png"];
   UIImageView* dotImageView = [[UIImageView alloc]initWithImage:dotImage];
   [dotImageView setFrame:CGRectMake(0, 49, 280, 1)];
@@ -321,7 +338,7 @@
 
   [self selectLeftListButton];
   [self setDataList];
-  
+  buyAllButton.hidden = YES;
   [self.tableView reloadData];
 }
 
@@ -332,7 +349,7 @@
   [self selectRightListButton];
   [self setDataList];
   [self setAllMaterialDataList];
-
+  buyAllButton.hidden = NO;
   [self.tableView reloadData];
 }
 
@@ -473,6 +490,7 @@
     [[DBHandler sharedInstance] emptyShoppingList];
     [self setDataList];
     [self setAllMaterialDataList];
+    [self refreshHeaderView];
     [self.tableView reloadData];
   }
 }
@@ -488,7 +506,7 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnRemoveFromShoppingListSuccess" object:nil];
 
   [self setDataList];
-  
+  [self refreshHeaderView];
   [self.tableView reloadData];
 }
 
@@ -514,16 +532,19 @@
     
 }
 
--(void)gotoMaterialSearchBuy
+-(void)gotoMaterialSearchBuy:(UIButton*)sender
 {
-  if ([cellAllMaterialArray count] <= 0)
-  {
-    [self setAllMaterialDataList];
-  }
-  
+  NSIndexPath *indexPath = [[self relatedTable:[self relatedCell:sender]] indexPathForCell:[self relatedCell:sender]];
+  MaterialSearchBuyViewController *pController = [[MaterialSearchBuyViewController alloc] initWithNibName:@"MaterialSearchBuyView" bundle:nil withData:cellContentArray[(NSUInteger)indexPath.row][@"materials"]];
+  [self.navigationController pushViewController:pController animated:YES];
+}
+
+-(void)gotoAllMaterialSearchBuy
+{
   MaterialSearchBuyViewController *pController = [[MaterialSearchBuyViewController alloc] initWithNibName:@"MaterialSearchBuyView" bundle:nil withData:cellAllMaterialArray];
   [self.navigationController pushViewController:pController animated:YES];
 }
+
 
 - (UITableView *)relatedTable:(UIView *)view
 {
