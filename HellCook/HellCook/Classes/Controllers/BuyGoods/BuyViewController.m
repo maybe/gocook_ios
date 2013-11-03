@@ -36,22 +36,28 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-  // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = @"输入购买信息";
   [self setLeftButton];
   [self initControls];
   
   [self hidePicker];
+
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  viewFrame.size.width = _sideWindowWidth;
+  [self.view setFrame:viewFrame];
+  self.view.autoresizesSubviews = NO;
+
+  [self autoLayout];
+  [super viewDidLoad];
 }
 
 -(void)initControls
 {
   //nameLabel
   nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-_offset, 20)];
-  nameLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-  nameLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
   nameLabel.backgroundColor = [UIColor clearColor];
+  [nameLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
   nameLabel.font = [UIFont boldSystemFontOfSize:18];
   [nameLabel setText:goodsDataDict[@"name"]];
   //priceTitleLabel
@@ -64,12 +70,9 @@
   [priceTitleLabel setText:@"价格："];
   //priceLabel
   priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 42, 120, 20)];
-  priceLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-  priceLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+  [priceLabel setTextColor:[UIColor colorWithRed:121.0/255.0 green:143.0/255.0 blue:57.0/255.0 alpha:1.0]];
   priceLabel.backgroundColor = [UIColor clearColor];
   priceLabel.font = [UIFont systemFontOfSize:20];
-  [priceLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
-  [priceLabel setTextColor:[UIColor redColor]];
   [priceLabel setText:[NSString stringWithFormat:@"%.2f元",[goodsDataDict[@"price"] floatValue]]];
   //unitLabel
   unitLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 75, 80, 18)];

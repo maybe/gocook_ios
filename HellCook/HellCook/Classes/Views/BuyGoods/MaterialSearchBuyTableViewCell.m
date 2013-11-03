@@ -55,7 +55,7 @@
     goodsLabel = [[UILabel alloc] init];
     goodsLabel.backgroundColor = [UIColor clearColor];
     goodsLabel.font = [UIFont systemFontOfSize:16];
-    [goodsLabel setTextColor:[UIColor colorWithRed:108.0/255.0 green:108.0/255.0 blue:108.0/255.0 alpha:1.0]];
+    [goodsLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
     [goodsLabel setHidden:YES];
     //specLabel
     specLabel = [[UILabel alloc] init];

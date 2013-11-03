@@ -25,70 +25,51 @@
     
     //nameLabel
     nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-_offset, 20)];
-    nameLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    nameLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+    [nameLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
     nameLabel.backgroundColor = [UIColor clearColor];
     nameLabel.font = [UIFont boldSystemFontOfSize:18];
     //buyBtn
-    buyBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 38, 60, 27)];
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"];
-    UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    [buyBtn setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-    UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"];
-    UIImage *stretchedBackgroundPressed = [btnBakimagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    [buyBtn setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
-    [buyBtn setTitle:@"购买" forState:UIControlStateNormal];
+    buyBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 38, 72, 26)];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/BuyGoods.png"];
+    [buyBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+    UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/BuyGoodsHighLight.png"];
+    [buyBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
     [buyBtn addTarget:nil action:@selector(buy) forControlEvents:UIControlEventTouchUpInside];
     //priceTitleLabel
     priceTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 45, 50, 16)];
-    priceTitleLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    priceTitleLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     priceTitleLabel.backgroundColor = [UIColor clearColor];
     priceTitleLabel.font = [UIFont systemFontOfSize:16];
     [priceTitleLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
     [priceTitleLabel setText:@"价格："];
     //priceLabel
     priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 42, 120, 20)];
-    priceLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    priceLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     priceLabel.backgroundColor = [UIColor clearColor];
     priceLabel.font = [UIFont systemFontOfSize:20];
-    [priceLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
-    [priceLabel setTextColor:[UIColor redColor]];
+    [priceLabel setTextColor:[UIColor colorWithRed:121.0/255.0 green:143.0/255.0 blue:57.0/255.0 alpha:1.0]];
     //unitLabel
-    unitLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 70, 80, 18)];
-    unitLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    unitLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+    unitLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 75, 80, 18)];
     unitLabel.backgroundColor = [UIColor clearColor];
     unitLabel.font = [UIFont systemFontOfSize:16];
     [unitLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
     //specLabel
-    specLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 70, 80, 18)];
-    specLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    specLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+    specLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 75, 80, 18)];
     specLabel.backgroundColor = [UIColor clearColor];
     specLabel.font = [UIFont systemFontOfSize:16];
     [specLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
     //processTitleLabel
-    processTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 95, 70, 16)];
-    processTitleLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    processTitleLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+    processTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 105, 70, 16)];
     processTitleLabel.backgroundColor = [UIColor clearColor];
     processTitleLabel.font = [UIFont systemFontOfSize:16];
     [processTitleLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
     [processTitleLabel setText:@"加工方式"];
     //introTitleLabel
-    introTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 120, 100, 16)];
-    introTitleLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    introTitleLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+    introTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 145, 100, 16)];
     introTitleLabel.backgroundColor = [UIColor clearColor];
     introTitleLabel.font = [UIFont systemFontOfSize:16];
     [introTitleLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
     [introTitleLabel setText:@"商品介绍："];
     //introLabel
     introLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 140, 320-_offset-10, 16)];
-    introLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-    introLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     introLabel.backgroundColor = [UIColor clearColor];
     introLabel.font = [UIFont systemFontOfSize:16];
     [introLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
@@ -119,15 +100,13 @@
 -(void)caculateHeight:(NSMutableDictionary*)dict
 {
   char startC = 'A';
-  NSInteger labelPositionY = 95;
+  NSInteger labelPositionY = 105;
   NSArray *dealMethodArray = dict[@"deal_method"];
   if ([dealMethodArray count] > 0)
   {
     for (int i=0; i<[dealMethodArray count]; i++)
     {
       UILabel *dmLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, labelPositionY, 100, 16)];
-      dmLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-      dmLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
       dmLabel.backgroundColor = [UIColor clearColor];
       dmLabel.font = [UIFont systemFontOfSize:16];
       [dmLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
@@ -140,8 +119,6 @@
     }
   }
   UILabel *dmLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, labelPositionY, 100, 16)];
-  dmLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-  dmLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
   dmLabel.backgroundColor = [UIColor clearColor];
   dmLabel.font = [UIFont systemFontOfSize:16];
   [dmLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
@@ -149,9 +126,9 @@
   [dealMethodLabelArray addObject:dmLabel];
   [self addSubview:dmLabel];
   
-  labelPositionY += 25;
+  labelPositionY += 30;
   [introTitleLabel setFrame:CGRectMake(10, labelPositionY, 100, 16)];
-  labelPositionY += 21;
+  labelPositionY += 26;
   if (dict[@"remark"]!=[NSNull null] && ![dict[@"remark"] isEqual:@""])
   {
     introLabel.text = dict[@"remark"];

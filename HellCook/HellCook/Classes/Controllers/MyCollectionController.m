@@ -14,6 +14,7 @@
 #import "LoginController.h"
 #import "ODRefreshControl.h"
 #import "UIViewController+MMDrawerController.h"
+#import "HCNavigationController.h"
 
 @interface MyCollectionController ()
 
@@ -240,8 +241,10 @@
 
     LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
     m.callerClassName = NSStringFromClass([self class]);
+    HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
+
     if (self.navigationController) {
-      [self.navigationController presentViewController:m animated:YES completion:nil];
+      [self.navigationController presentViewController:nc animated:YES completion:nil];
     }
   }
 }
