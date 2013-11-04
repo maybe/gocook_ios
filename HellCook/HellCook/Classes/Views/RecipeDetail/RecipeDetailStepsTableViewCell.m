@@ -29,6 +29,10 @@
     mStepNumberLabelArray = [[NSMutableArray alloc]init];
     mStepContentLabelArray = [[NSMutableArray alloc]init];
     mStepImageArray = [[NSMutableArray alloc]init];
+
+    UIView *backView = [[UIView alloc] initWithFrame:self.frame];
+    backView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
+    self.backgroundView = backView;
   }
   return self;
 }
@@ -63,13 +67,13 @@
 - (TTTAttributedLabel*)createStepContentLabel
 {
   TTTAttributedLabel* label = [[TTTAttributedLabel alloc]initWithFrame:CGRectMake(64, 0, 224, 0.0)];
-  [label setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
-  [label setFont: [UIFont systemFontOfSize:16]];
-  label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
-  [label setBackgroundColor:[UIColor clearColor]];
-  [label setText:@""];
+  label.lineBreakMode = NSLineBreakByWordWrapping;
+  [label setFont: [UIFont systemFontOfSize:16]];
   label.lineHeightMultiple = 1.4;
+  [label setBackgroundColor:[UIColor clearColor]];
+  [label setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
+
   return label;
 }
 
@@ -111,12 +115,17 @@
     }
     
     //文字高度
-    UILabel* label1 = [mStepContentLabelArray objectAtIndex:i];
+    TTTAttributedLabel* label1 = [mStepContentLabelArray objectAtIndex:i];
     //CGSize stepLabelSize = [label1.text sizeWithFont:label1.font constrainedToSize:CGSizeMake(224, 1000) lineBreakMode:NSLineBreakByWordWrapping];
     CGSize stepLabelSize = [label1 sizeThatFits:CGSizeMake(label1.frame.size.width, CGFLOAT_MAX)];
-    label1.frame = CGRectMake(0.0, 0.0, label1.frame.size.width, stepLabelSize.height);
+    //label1.frame = CGRectMake(64, mCellHeight, label1.frame.size.width, stepLabelSize.height);
+    if (HCSystemVersionGreaterOrEqualThan(7.0)) {
+      label1.frame = CGRectMake(64, mCellHeight, label1.frame.size.width, stepLabelSize.height);
+    } else {
+      label1.frame = CGRectMake(64, mCellHeight, label1.frame.size.width, stepLabelSize.height + 1);
+    }
 
-    mCellHeight += stepLabelSize.height;    
+    mCellHeight += stepLabelSize.height;
     mStepOneContentHeight = stepLabelSize.height;
     
     UILabel* label2 = [mStepNumberLabelArray objectAtIndex:i];
@@ -167,14 +176,17 @@
     }
     
     //文字高度
-    UILabel* label1 = [mStepContentLabelArray objectAtIndex:i];
+    TTTAttributedLabel* label1 = [mStepContentLabelArray objectAtIndex:i];
     //CGSize stepLabelSize = [label1.text sizeWithFont:label1.font constrainedToSize:CGSizeMake(224, 1000) lineBreakMode:NSLineBreakByWordWrapping];
     CGSize stepLabelSize = [label1 sizeThatFits:CGSizeMake(label1.frame.size.width, CGFLOAT_MAX)];
-    label1.frame = CGRectMake(0.0, 0.0, label1.frame.size.width, stepLabelSize.height);
+    if (HCSystemVersionGreaterOrEqualThan(7.0)) {
+      label1.frame = CGRectMake(64, mCellHeight, label1.frame.size.width, stepLabelSize.height);
+    } else {
+      label1.frame = CGRectMake(64, mCellHeight, label1.frame.size.width, stepLabelSize.height + 1);
+    }
 
     mStepOneContentHeight = stepLabelSize.height;
-    [label1 setFrame:CGRectMake(64, mCellHeight, 224, mStepOneContentHeight)];
-    
+
     mCellHeight += stepLabelSize.height;
     
     mCellHeight += 20;
@@ -197,7 +209,7 @@
   if (mStepContentLabelArray.count < stepCount) {
     int labelcount = mStepContentLabelArray.count;
     for (int i = 0; i < stepCount - labelcount; i++) {
-      UILabel* label1 = [self createStepContentLabel];
+      TTTAttributedLabel* label1 = [self createStepContentLabel];
       UILabel* label2 = [self createStepNumberLabel];
       UIImageView* image = [self createStepImage];
       
@@ -226,7 +238,7 @@
   for (int i = 0; i < stepCount; i++) {
     NSDictionary* pDic = [stepArray objectAtIndex:i];
     
-    UILabel* label1 = [mStepNumberLabelArray objectAtIndex:i];
+    TTTAttributedLabel* label1 = [mStepNumberLabelArray objectAtIndex:i];
     [label1 setText: [NSString stringWithFormat:@"%d", i+1]];
     
     UILabel* label2 = [mStepContentLabelArray objectAtIndex:i];
