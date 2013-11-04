@@ -27,20 +27,19 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
   [self setLeftButton];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
-  [super viewWillAppear:animated];
   self.title = @"摇一摇";
+  [self becomeFirstResponder];
+  [super viewWillAppear:animated];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillDisappear:(BOOL)animated {
+  [self resignFirstResponder];
+  [super viewWillDisappear:animated];
 }
 
 - (void)setLeftButton
@@ -84,4 +83,18 @@
   NSLog(@"取消");
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (BOOL)shouldAutorotate {
+
+  return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+
+  return UIInterfaceOrientationMaskPortrait;
+}
 @end

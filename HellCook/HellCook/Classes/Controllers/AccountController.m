@@ -50,6 +50,7 @@
   //self.title = @"分享厨房";
   
   nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 54, 180, 30)];
+  nameLabel.backgroundColor = [UIColor clearColor];
   bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 138)];
   avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 46, 46)];
 
