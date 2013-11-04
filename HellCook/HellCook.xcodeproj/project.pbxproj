@@ -18,6 +18,8 @@
 		5E13569917AD3AED009C623B /* MyFollowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E13569817AD3AED009C623B /* MyFollowView.xib */; };
 		5E896BE117DEED86009E210D /* GoodsDetailBelowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E896BDE17DEED86009E210D /* GoodsDetailBelowCell.m */; };
 		5E896BE217DEED86009E210D /* GoodsDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E896BE017DEED86009E210D /* GoodsDetailTopCell.m */; };
+		5EA66DC91827E27300AB6322 /* RollMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66DC81827E27300AB6322 /* RollMainViewController.m */; };
+		5EA66DCB1827E28700AB6322 /* RollMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA66DCA1827E28700AB6322 /* RollMainView.xib */; };
 		5ED7F11B17BDC86400223884 /* RecipeDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */; };
 		5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */; };
 		5ED7F13517BF837E00223884 /* RecipeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED7F13417BF837E00223884 /* RecipeCommentView.xib */; };
@@ -215,6 +217,9 @@
 		5E896BDE17DEED86009E210D /* GoodsDetailBelowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsDetailBelowCell.m; path = Classes/Views/BuyGoods/GoodsDetailBelowCell.m; sourceTree = "<group>"; };
 		5E896BDF17DEED86009E210D /* GoodsDetailTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodsDetailTopCell.h; path = Classes/Views/BuyGoods/GoodsDetailTopCell.h; sourceTree = "<group>"; };
 		5E896BE017DEED86009E210D /* GoodsDetailTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsDetailTopCell.m; path = Classes/Views/BuyGoods/GoodsDetailTopCell.m; sourceTree = "<group>"; };
+		5EA66DC71827E27300AB6322 /* RollMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RollMainViewController.h; path = Classes/Controllers/Roll/RollMainViewController.h; sourceTree = "<group>"; };
+		5EA66DC81827E27300AB6322 /* RollMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RollMainViewController.m; path = Classes/Controllers/Roll/RollMainViewController.m; sourceTree = "<group>"; };
+		5EA66DCA1827E28700AB6322 /* RollMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RollMainView.xib; sourceTree = "<group>"; };
 		5ED7F11917BDC86400223884 /* RecipeDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailFooterView.h; sourceTree = "<group>"; };
 		5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailFooterView.m; sourceTree = "<group>"; };
 		5ED7F11C17BF301800223884 /* RecipeCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCommentsTableViewCell.h; sourceTree = "<group>"; };
@@ -563,6 +568,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5EA66DC11827E0C700AB6322 /* Roll */ = {
+			isa = PBXGroup;
+			children = (
+				5EA66DC71827E27300AB6322 /* RollMainViewController.h */,
+				5EA66DC81827E27300AB6322 /* RollMainViewController.m */,
+			);
+			name = Roll;
+			sourceTree = "<group>";
+		};
 		5EF9F44717D854DC005ABA82 /* BuyGoods */ = {
 			isa = PBXGroup;
 			children = (
@@ -989,6 +1003,7 @@
 		BA73C95316FE37D9008284D8 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				5EA66DCA1827E28700AB6322 /* RollMainView.xib */,
 				5E001D8317E3082700BDAC62 /* DealDetailView.xib */,
 				5E001D7917E2AD5C00BDAC62 /* HistoryDealView.xib */,
 				5EF9F45B17D8A82B005ABA82 /* BuyView.xib */,
@@ -1275,6 +1290,7 @@
 		BAEFA66416E652C20044B36C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5EA66DC11827E0C700AB6322 /* Roll */,
 				BA2BC2B217BBD9F5005A551C /* HomePage */,
 				6580942BE43231AAB6CEC932 /* Account */,
 				65809FEA8045081ED0A85B4B /* Main */,
@@ -1353,6 +1369,7 @@
 				BAE38C9B1737984C00936382 /* RecipeDetailView.xib in Resources */,
 				5E13569217AD37AF009C623B /* MyIntroductionView.xib in Resources */,
 				5E13569917AD3AED009C623B /* MyFollowView.xib in Resources */,
+				5EA66DCB1827E28700AB6322 /* RollMainView.xib in Resources */,
 				BA7CC61F17AD5BE700A6C8AE /* MyRecipesView.xib in Resources */,
 				BABAE9D517AE7D0F0099BE45 /* HomePageView.xib in Resources */,
 				BABAE9DD17AFFC4A0099BE45 /* MyRecipesEditView.xib in Resources */,
@@ -1428,6 +1445,7 @@
 				BAE67BD1170B45AD00414AD5 /* UIImageView+WebCache.m in Sources */,
 				BAE67BF0170B70C300414AD5 /* UIImage+Blurring.m in Sources */,
 				BAE67BF1170B70C300414AD5 /* UIImage+Enhancing.m in Sources */,
+				5EA66DC91827E27300AB6322 /* RollMainViewController.m in Sources */,
 				BAE67BF2170B70C300414AD5 /* UIImage+Filtering.m in Sources */,
 				BAE67BF3170B70C300414AD5 /* UIImage+Masking.m in Sources */,
 				BAE67BF4170B70C300414AD5 /* UIImage+Reflection.m in Sources */,

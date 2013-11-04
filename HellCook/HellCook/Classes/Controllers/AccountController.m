@@ -27,6 +27,7 @@
 #import "UIViewController+MMDrawerController.h"
 #import "MMDrawerBarButtonItem.h"
 #import "HCNavigationController.h"
+#import "RollMainViewController.h"
 
 @interface AccountController ()
 
@@ -186,7 +187,7 @@
 //  if (indexPath.row == cellContentArray.count - 1) {
 //    [self openDebugOption];
 //  }
-  if (indexPath.row == 2) {
+  if (indexPath.row == 3) {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
                         initWithTitle:@"确定要退出吗?"
                              delegate:self
@@ -196,6 +197,11 @@
     [actionSheet showInView:self.mm_drawerController.view];
   }
   else if (indexPath.row == 0) {
+    RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" bundle:nil];
+    [ApplicationDelegate.centerNavController setViewControllers:@[pViewController] animated:NO];
+    [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
+  }
+  else if (indexPath.row == 1) {
     MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];
     [ApplicationDelegate.centerNavController setViewControllers:@[mainController] animated:NO];
     [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
@@ -336,6 +342,10 @@
 - (void)initCellContentArray {
   cellContentArray = [[NSMutableArray alloc] init];
   NSMutableDictionary *cellDic;
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+             @"Images/leftPageHot.png", @"image", @"摇一摇·我的优惠券", @"title", nil];
+  [cellContentArray addObject:cellDic];
+  
   cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
       @"Images/leftPageHot.png", @"image", @"今日热门", @"title", nil];
   [cellContentArray addObject:cellDic];
