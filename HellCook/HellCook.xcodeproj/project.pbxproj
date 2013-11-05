@@ -20,6 +20,9 @@
 		5E896BE217DEED86009E210D /* GoodsDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E896BE017DEED86009E210D /* GoodsDetailTopCell.m */; };
 		5EA66DC91827E27300AB6322 /* RollMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66DC81827E27300AB6322 /* RollMainViewController.m */; };
 		5EA66DCB1827E28700AB6322 /* RollMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA66DCA1827E28700AB6322 /* RollMainView.xib */; };
+		5EA66DD318292ECD00AB6322 /* CouponsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66DD218292ECD00AB6322 /* CouponsViewController.m */; };
+		5EA66DD518292EFF00AB6322 /* CouponsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA66DD418292EFF00AB6322 /* CouponsView.xib */; };
+		5EA66DD91829334D00AB6322 /* CouponViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66DD81829334D00AB6322 /* CouponViewCell.m */; };
 		5ED7F11B17BDC86400223884 /* RecipeDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */; };
 		5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */; };
 		5ED7F13517BF837E00223884 /* RecipeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED7F13417BF837E00223884 /* RecipeCommentView.xib */; };
@@ -224,6 +227,11 @@
 		5EA66DC71827E27300AB6322 /* RollMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RollMainViewController.h; path = Classes/Controllers/Roll/RollMainViewController.h; sourceTree = "<group>"; };
 		5EA66DC81827E27300AB6322 /* RollMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RollMainViewController.m; path = Classes/Controllers/Roll/RollMainViewController.m; sourceTree = "<group>"; };
 		5EA66DCA1827E28700AB6322 /* RollMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RollMainView.xib; sourceTree = "<group>"; };
+		5EA66DD118292ECD00AB6322 /* CouponsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CouponsViewController.h; path = Classes/Controllers/Roll/CouponsViewController.h; sourceTree = "<group>"; };
+		5EA66DD218292ECD00AB6322 /* CouponsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CouponsViewController.m; path = Classes/Controllers/Roll/CouponsViewController.m; sourceTree = "<group>"; };
+		5EA66DD418292EFF00AB6322 /* CouponsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CouponsView.xib; sourceTree = "<group>"; };
+		5EA66DD71829334D00AB6322 /* CouponViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CouponViewCell.h; path = Classes/Views/Roll/CouponViewCell.h; sourceTree = "<group>"; };
+		5EA66DD81829334D00AB6322 /* CouponViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CouponViewCell.m; path = Classes/Views/Roll/CouponViewCell.m; sourceTree = "<group>"; };
 		5ED7F11917BDC86400223884 /* RecipeDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailFooterView.h; sourceTree = "<group>"; };
 		5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailFooterView.m; sourceTree = "<group>"; };
 		5ED7F11C17BF301800223884 /* RecipeCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCommentsTableViewCell.h; sourceTree = "<group>"; };
@@ -579,8 +587,19 @@
 		5EA66DC11827E0C700AB6322 /* Roll */ = {
 			isa = PBXGroup;
 			children = (
+				5EA66DD118292ECD00AB6322 /* CouponsViewController.h */,
+				5EA66DD218292ECD00AB6322 /* CouponsViewController.m */,
 				5EA66DC71827E27300AB6322 /* RollMainViewController.h */,
 				5EA66DC81827E27300AB6322 /* RollMainViewController.m */,
+			);
+			name = Roll;
+			sourceTree = "<group>";
+		};
+		5EA66DD6182932E600AB6322 /* Roll */ = {
+			isa = PBXGroup;
+			children = (
+				5EA66DD71829334D00AB6322 /* CouponViewCell.h */,
+				5EA66DD81829334D00AB6322 /* CouponViewCell.m */,
 			);
 			name = Roll;
 			sourceTree = "<group>";
@@ -986,6 +1005,7 @@
 		BA73C94E16FE3668008284D8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5EA66DD6182932E600AB6322 /* Roll */,
 				BA8705C716FF5AF600BA7039 /* Custom */,
 				5EF9F44717D854DC005ABA82 /* BuyGoods */,
 				BA4550EF17BA80AA008CBD00 /* ShoppingList */,
@@ -1015,6 +1035,7 @@
 		BA73C95316FE37D9008284D8 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				5EA66DD418292EFF00AB6322 /* CouponsView.xib */,
 				5EA66DCA1827E28700AB6322 /* RollMainView.xib */,
 				5E001D8317E3082700BDAC62 /* DealDetailView.xib */,
 				5E001D7917E2AD5C00BDAC62 /* HistoryDealView.xib */,
@@ -1339,7 +1360,7 @@
 		BA0DC15F16D4C3A500E4CED9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = panda;
 			};
 			buildConfigurationList = BA0DC16216D4C3A500E4CED9 /* Build configuration list for PBXProject "HellCook" */;
@@ -1366,6 +1387,7 @@
 			files = (
 				BA0DC17516D4C3A500E4CED9 /* InfoPlist.strings in Resources */,
 				BA0DC17D16D4C3A500E4CED9 /* Default.png in Resources */,
+				5EA66DD518292EFF00AB6322 /* CouponsView.xib in Resources */,
 				BA0DC17F16D4C3A500E4CED9 /* Default@2x.png in Resources */,
 				BA0DC18116D4C3A500E4CED9 /* Default-568h@2x.png in Resources */,
 				BACCF83616ECFC420094F1E5 /* .gitignore in Resources */,
@@ -1503,6 +1525,7 @@
 				5EF9F44C17D8550F005ABA82 /* MaterialSearchBuyTableViewCell.m in Sources */,
 				5EF9F44D17D8550F005ABA82 /* SearchGoodsTableViewCell.m in Sources */,
 				6580959500C5872FF90F20D7 /* NSAlert+MKNetworkKitAdditions.m in Sources */,
+				5EA66DD91829334D00AB6322 /* CouponViewCell.m in Sources */,
 				658098A29CBB41BD0CB20D1D /* DebugOptionController.m in Sources */,
 				658094DB5D7A7A8E7839B9ED /* AccountController.m in Sources */,
 				658098B9F1C9AF6EB523AAC8 /* RegisterController.m in Sources */,
@@ -1517,6 +1540,7 @@
 				65809DADD93573AC8045A5A2 /* AccountTableViewGridCell.m in Sources */,
 				65809BF815EE9A15953B7960 /* AccountTableViewCell.m in Sources */,
 				658092ACE286F8686A7C1A5B /* MainCatTableViewCell.m in Sources */,
+				5EA66DD318292ECD00AB6322 /* CouponsViewController.m in Sources */,
 				658095153AFF18C8FF56E297 /* MainTopTableViewCell.m in Sources */,
 				658090A667414B0C7C0FC74C /* MyFansTableViewCell.m in Sources */,
 				65809C9DCF46635E5885767D /* MyIntroductionPicCell.m in Sources */,
@@ -1591,7 +1615,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1615,7 +1639,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

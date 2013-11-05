@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad
 {
+  [self autoLayout];
   [super viewDidLoad];
   [self setLeftButton];
 }
@@ -33,13 +34,13 @@
 - (void) viewWillAppear:(BOOL)animated
 {
   self.title = @"摇一摇";
-  [self becomeFirstResponder];
   [super viewWillAppear:animated];
+  [self becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-  [self resignFirstResponder];
   [super viewWillDisappear:animated];
+  [self resignFirstResponder];
 }
 
 - (void)setLeftButton
@@ -60,6 +61,7 @@
 
 -(void)returnToPrev
 {
+  [self resignFirstResponder];
   [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 

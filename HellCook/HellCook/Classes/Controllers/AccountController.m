@@ -27,7 +27,7 @@
 #import "UIViewController+MMDrawerController.h"
 #import "MMDrawerBarButtonItem.h"
 #import "HCNavigationController.h"
-#import "RollMainViewController.h"
+#import "CouponsViewController.h"
 
 @interface AccountController ()
 
@@ -198,7 +198,7 @@
     [actionSheet showInView:self.mm_drawerController.view];
   }
   else if (indexPath.row == 0) {
-    RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" bundle:nil];
+    CouponsViewController *pViewController = [[CouponsViewController alloc] initWithNibName:@"CouponsView" bundle:nil];
     [ApplicationDelegate.centerNavController setViewControllers:@[pViewController] animated:NO];
     [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
   }
