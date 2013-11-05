@@ -59,12 +59,18 @@
   [self.tableView setFrame:tableFrame];
 
   UIView * backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _screenWidth, _screenHeight)];
-  UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, _screenWidth, _screenHeight)];
+  UIImageView *backImageView = NULL;
+  if (HCSystemVersionGreaterOrEqualThan(7.0)) {
+    backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, _screenWidth, _screenHeight)];
+  } else {
+    backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _screenWidth, _screenHeight)];
+  }
+
   [backImageView setImage:[UIImage imageNamed:@"Images/RecipeDetailBackground.png"]];
   [backImageView setContentMode:UIViewContentModeTop];
   [backView addSubview:backImageView];
   [self.tableView setBackgroundView:backView];
-  self.tableView.backgroundColor = [UIColor whiteColor];
+  self.tableView.backgroundColor = [UIColor clearColor];
   self.view.backgroundColor = [UIColor whiteColor];
   self.navigationController.view.backgroundColor = [UIColor whiteColor];
 

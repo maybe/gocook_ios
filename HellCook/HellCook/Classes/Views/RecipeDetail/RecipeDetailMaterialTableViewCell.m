@@ -28,6 +28,10 @@
     mMaterialLabelArray = [[NSMutableArray alloc]init];
     mWeightLabelArray = [[NSMutableArray alloc]init];
     mLineArray = [[NSMutableArray alloc]init];
+
+    UIView *backView = [[UIView alloc] initWithFrame:self.frame];
+    backView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
+    self.backgroundView = backView;
   }
   return self;
 }

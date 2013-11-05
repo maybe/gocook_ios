@@ -121,6 +121,10 @@
 		BA79118F1710786500BC77C9 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118E1710786500BC77C9 /* Recipe.m */; };
 		BA7CC61C17AD5BB900A6C8AE /* MyRecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */; };
 		BA7CC61F17AD5BE700A6C8AE /* MyRecipesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA7CC61E17AD5BE600A6C8AE /* MyRecipesView.xib */; };
+		BA81CFA018281AFA001467B1 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA81CF9F18281AFA001467B1 /* Icon-60@2x.png */; };
+		BA81CFA318281DEE001467B1 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = BA81CFA118281DEE001467B1 /* Icon-29.png */; };
+		BA81CFA418281DEE001467B1 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA81CFA218281DEE001467B1 /* Icon-29@2x.png */; };
+		BA81CFA618281E23001467B1 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA81CFA518281E23001467B1 /* Icon-40@2x.png */; };
 		BA829BE51704880100B0341A /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE41704880100B0341A /* MainView.xib */; };
 		BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */; };
 		BA829BEA1704995300B0341A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE91704995300B0341A /* LoginView.xib */; };
@@ -395,6 +399,10 @@
 		BA7CC61917AD5BB600A6C8AE /* MyRecipesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesController.h; path = Classes/Controllers/MyRecipesController.h; sourceTree = "<group>"; };
 		BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesController.m; path = Classes/Controllers/MyRecipesController.m; sourceTree = "<group>"; };
 		BA7CC61E17AD5BE600A6C8AE /* MyRecipesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRecipesView.xib; sourceTree = "<group>"; };
+		BA81CF9F18281AFA001467B1 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		BA81CFA118281DEE001467B1 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
+		BA81CFA218281DEE001467B1 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
+		BA81CFA518281E23001467B1 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
 		BA829BE41704880100B0341A /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Autorotate.h"; path = "Classes/Common/UINavigationController+Autorotate.h"; sourceTree = "<group>"; };
 		BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Autorotate.m"; path = "Classes/Common/UINavigationController+Autorotate.m"; sourceTree = "<group>"; };
@@ -898,6 +906,10 @@
 		BA0DC17116D4C3A500E4CED9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BA81CFA518281E23001467B1 /* Icon-40@2x.png */,
+				BA81CFA118281DEE001467B1 /* Icon-29.png */,
+				BA81CFA218281DEE001467B1 /* Icon-29@2x.png */,
+				BA81CF9F18281AFA001467B1 /* Icon-60@2x.png */,
 				BA0DC17216D4C3A500E4CED9 /* HellCook-Info.plist */,
 				BA0DC17316D4C3A500E4CED9 /* InfoPlist.strings */,
 				BA0DC17616D4C3A500E4CED9 /* main.m */,
@@ -1361,10 +1373,13 @@
 				BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */,
 				BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */,
 				BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */,
+				BA81CFA618281E23001467B1 /* Icon-40@2x.png in Resources */,
 				BA829BE51704880100B0341A /* MainView.xib in Resources */,
 				BA829BEA1704995300B0341A /* LoginView.xib in Resources */,
 				BA6069AD1708E3DA0060C251 /* DebugOption.xib in Resources */,
+				BA81CFA018281AFA001467B1 /* Icon-60@2x.png in Resources */,
 				BAE38C841736997500936382 /* TopListView.xib in Resources */,
+				BA81CFA418281DEE001467B1 /* Icon-29@2x.png in Resources */,
 				BAE38C8B1736C36000936382 /* SearchView.xib in Resources */,
 				BAE38C9B1737984C00936382 /* RecipeDetailView.xib in Resources */,
 				5E13569217AD37AF009C623B /* MyIntroductionView.xib in Resources */,
@@ -1377,6 +1392,7 @@
 				BA3E044017B3F572007F1E86 /* MyRecipesMatieralView.xib in Resources */,
 				BA3E044B17B6B257007F1E86 /* MyRecipesStepView.xib in Resources */,
 				5EEB7E1817B7AE7100BCB1CB /* MyIntroEditView.xib in Resources */,
+				BA81CFA318281DEE001467B1 /* Icon-29.png in Resources */,
 				BA3E045A17B7E9DF007F1E86 /* MyRecipesTipsView.xib in Resources */,
 				5ED7F13517BF837E00223884 /* RecipeCommentView.xib in Resources */,
 				5EF9F41F17D47E6A005ABA82 /* MaterialSearchBuyView.xib in Resources */,
@@ -1609,6 +1625,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: YiTian Wang (CL7569E4B6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YiTian Wang (CL7569E4B6)";
@@ -1617,7 +1634,7 @@
 				GCC_PREFIX_HEADER = "HellCook/HellCook-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "HellCook/HellCook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"/**",
@@ -1635,6 +1652,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: YiTian Wang (6J5E6QMXJ4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YiTian Wang (6J5E6QMXJ4)";
@@ -1643,7 +1661,7 @@
 				GCC_PREFIX_HEADER = "HellCook/HellCook-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "HellCook/HellCook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/HellCook/Libs/NYXImagesKit\"/**",

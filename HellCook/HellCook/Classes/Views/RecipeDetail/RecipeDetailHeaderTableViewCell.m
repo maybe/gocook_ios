@@ -33,7 +33,9 @@
     [self addSubview: [self collectButton]];
     [self addSubview: [self buyButton]];
 
-    self.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
+    UIView *backView = [[UIView alloc] initWithFrame:self.frame];
+    backView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
+    self.backgroundView = backView;
 
   }
   return self;
@@ -62,6 +64,7 @@
     introLabel.lineBreakMode = NSLineBreakByWordWrapping;
     introLabel.font = [UIFont systemFontOfSize:16.0];
     introLabel.lineHeightMultiple = 1.4;
+    [introLabel setBackgroundColor:[UIColor clearColor]];
     [introLabel setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
   }
   return introLabel;

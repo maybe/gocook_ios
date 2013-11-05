@@ -21,7 +21,9 @@
     [self addSubview:[self tipsLabel]];
 
     self.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
-
+    UIView *backView = [[UIView alloc] initWithFrame:self.frame];
+    backView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
+    self.backgroundView = backView;
   }
   return self;
 }
@@ -50,6 +52,7 @@
     tipsLabel.lineBreakMode = NSLineBreakByWordWrapping;
     tipsLabel.font = [UIFont systemFontOfSize:15.0];
     tipsLabel.lineHeightMultiple = 1.4;
+    [tipsLabel setBackgroundColor:[UIColor clearColor]];
     [tipsLabel setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
   }
   return tipsLabel;

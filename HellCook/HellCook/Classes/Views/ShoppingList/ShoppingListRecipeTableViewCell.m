@@ -33,7 +33,7 @@
     [self addSubview: [self delButton]];
     [self addSubview: [self buyButton]];
 
-    UIImageView *sepImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 59, _sideWindowWidth, 60)];
+    UIImageView *sepImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 59, _sideWindowWidth, 1)];
     [sepImageView setImage:[UIImage imageNamed:@"Images/TableCellSeparater.png"]];
     [self addSubview:sepImageView];
 
@@ -52,7 +52,7 @@
 
 - (void)hideOptionButton
 {
-  if (buyButton.hidden == NO) {
+  if (!buyButton.hidden) {
     buyButton.alpha = 1;
     delButton.alpha = 1;
     
@@ -194,7 +194,7 @@
     
     [self addSubview:middleLine];
 
-    UIImageView *sepImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 43, _sideWindowWidth, 44)];
+    UIImageView *sepImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 43, _sideWindowWidth, 1)];
     [sepImageView setImage:[UIImage imageNamed:@"Images/TableCellSeparater.png"]];
     [self addSubview:sepImageView];
     
@@ -215,7 +215,7 @@
   //CGPoint point = [recognizer locationInView:self];
   //NSLog(@"Swipe up - start location: %f,%f", point.x, point.y);
   
-  if (middleLine.hidden == YES) {
+  if (middleLine.hidden) {
     middleLine.hidden = NO;
     CGRect rect = middleLine.frame;
     
@@ -242,7 +242,7 @@
   //CGPoint point = [recognizer locationInView:self];
   //NSLog(@"Swipe up - start location: %f,%f", point.x, point.y);
   
-  if (middleLine.hidden == NO) {
+  if (!middleLine.hidden) {
     CGRect rect = middleLine.frame;
     
     CGRect beginFrame = rect;
