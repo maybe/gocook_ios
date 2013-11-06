@@ -8,6 +8,7 @@
 
 #import "RollMainViewController.h"
 #import "UIViewController+MMDrawerController.h"
+#import "AppDelegate.h"
 
 @interface RollMainViewController ()
 
@@ -27,23 +28,30 @@
 
 - (void)viewDidLoad
 {
-  [self autoLayout];
-  [super viewDidLoad];
+  CGRect selfFrame = self.view.frame;
+  selfFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:selfFrame];
+
   [self setLeftButton];
   
   //backgroundView
-  CGRect viewFrame = self.view.frame;
-  backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, viewFrame.size.width, viewFrame.size.height)];
+  backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, - _stateBarHeight - _navigationBarHeight, _screenWidth, _screenHeight)];
   [backgroundView setImage:[UIImage imageNamed:@"Images/RollBackground.png"]];
-  [backgroundView setContentMode:UIViewContentModeScaleToFill];
+  [backgroundView setContentMode:UIViewContentModeCenter];
   [self.view addSubview:backgroundView];
+  
+  [self autoLayout];
+  [super viewDidLoad];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
+  [ApplicationDelegate disableLeftDrawer];
+  [ApplicationDelegate disableRightDrawer];
   self.title = @"摇一摇";
   [super viewWillAppear:animated];
   [self becomeFirstResponder];
+  
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

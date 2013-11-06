@@ -61,6 +61,7 @@
   loginTitleLabel =  [[UILabel alloc] initWithFrame:CGRectMake(0, 56, 280, 30)];
   loginTitleLabel.textAlignment = NSTextAlignmentCenter;
   loginTitleLabel.text = @"分享新鲜 分享美味 分享幸福";
+  loginTitleLabel.backgroundColor = [UIColor clearColor];
   loginTitleLabel.textColor = [UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1];
   [loginTitleLabel setFont: [UIFont boldSystemFontOfSize:18]];
 
