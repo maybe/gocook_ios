@@ -344,7 +344,7 @@
   cellContentArray = [[NSMutableArray alloc] init];
   NSMutableDictionary *cellDic;
   cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
-             @"Images/leftPageHot.png", @"image", @"摇一摇·我的优惠券", @"title", nil];
+             @"Images/RollLittle.png", @"image", @"摇一摇·我的优惠券", @"title", nil];
   [cellContentArray addObject:cellDic];
   
   cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :

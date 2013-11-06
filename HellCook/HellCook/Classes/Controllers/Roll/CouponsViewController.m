@@ -76,6 +76,14 @@
   return UIInterfaceOrientationMaskPortrait;
 }
 
+-(void)RightButtonClicked:(UIButton*)btn
+{
+  if (btn.tag == 1)
+  {
+    RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" bundle:nil];
+    [self.navigationController pushViewController:pViewController animated:YES];
+  }
+}
 
 #pragma mark - Table view data source
 

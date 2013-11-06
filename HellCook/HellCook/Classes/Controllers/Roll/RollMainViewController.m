@@ -21,11 +21,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-      //backgroundView
-      backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-      [backgroundView setImage:[UIImage imageNamed:@"Images/RollBackground.png"]];
-      [backgroundView setContentMode:UIViewContentModeScaleToFill];
-      [self.view addSubview:backgroundView];
     }
     return self;
 }
@@ -35,6 +30,13 @@
   [self autoLayout];
   [super viewDidLoad];
   [self setLeftButton];
+  
+  //backgroundView
+  CGRect viewFrame = self.view.frame;
+  backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, viewFrame.size.width, viewFrame.size.height)];
+  [backgroundView setImage:[UIImage imageNamed:@"Images/RollBackground.png"]];
+  [backgroundView setContentMode:UIViewContentModeScaleToFill];
+  [self.view addSubview:backgroundView];
 }
 
 - (void) viewWillAppear:(BOOL)animated

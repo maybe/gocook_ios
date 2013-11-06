@@ -42,7 +42,7 @@
     contentLabel.hidden = YES;
     //rightButton
     rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(270, 40, 35, 35)];
-    [rightBtn addTarget:nil action:@selector(GoForRoll) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn addTarget:nil action:@selector(RightButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:rightBtn];
     //bottomButton
     bottomBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 70, 20, 20)];
@@ -69,6 +69,9 @@
       [backgroundView setImage:[UIImage imageNamed:@"Images/WhiteBlock.png"]];
       [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
       rightBtn.hidden = YES;
+      bottomBtn.hidden = YES;
+      rightBtn.tag = 0;
+      bottomBtn.tag = 0;
       break;
     case 1://红色
     {
@@ -85,6 +88,8 @@
       [bottomBtn setBackgroundImage:buttonBackgroundImage2 forState:UIControlStateNormal];
       UIImage *btnBakimagePressed2 = [UIImage imageNamed:@"Images/GreyBottom.png"];
       [bottomBtn setBackgroundImage:btnBakimagePressed2 forState:UIControlStateHighlighted];
+      rightBtn.tag = 1;
+      bottomBtn.tag = 1;
       break;
     }
     case 2://绿色
@@ -102,6 +107,8 @@
       [bottomBtn setBackgroundImage:buttonBackgroundImage2 forState:UIControlStateNormal];
       UIImage *btnBakimagePressed2 = [UIImage imageNamed:@"Images/GreyBottom.png"];
       [bottomBtn setBackgroundImage:btnBakimagePressed2 forState:UIControlStateHighlighted];
+      rightBtn.tag = 2;
+      bottomBtn.tag = 2;
       break;
     }
     case 3://灰色
@@ -119,6 +126,8 @@
       [bottomBtn setBackgroundImage:buttonBackgroundImage2 forState:UIControlStateNormal];
       UIImage *btnBakimagePressed2 = [UIImage imageNamed:@"Images/OrangeBottom.png"];
       [bottomBtn setBackgroundImage:btnBakimagePressed2 forState:UIControlStateHighlighted];
+      rightBtn.tag = 3;
+      bottomBtn.tag = 3;
       break;
     }
   }
