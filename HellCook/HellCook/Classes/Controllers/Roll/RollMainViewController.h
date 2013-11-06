@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface RollMainViewController : UIViewController
+{
+  UIImageView* backgroundView;
+}
+
+@property(nonatomic,retain)UIImageView* backgroundView;
 
 @end

@@ -15,6 +15,7 @@
   UILabel *contentLabel;
   UIButton *rightBtn;
   UIButton *bottomBtn;
+  NSInteger height;
 }
 
 @property(nonatomic,retain)UIImageView* backgroundView;
@@ -25,5 +26,7 @@
 
 - (void)setData:(NSMutableDictionary*)dict withRow:(NSInteger)row withStatus:(NSInteger)status;
 //status=0表示未展开状态，status=1表示展开状态
+
+-(NSInteger)getCellHeight;
 
 @end

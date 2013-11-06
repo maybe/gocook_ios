@@ -14,12 +14,18 @@
 @end
 
 @implementation RollMainViewController
+@synthesize backgroundView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+      //backgroundView
+      backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+      [backgroundView setImage:[UIImage imageNamed:@"Images/RollBackground.png"]];
+      [backgroundView setContentMode:UIViewContentModeScaleToFill];
+      [self.view addSubview:backgroundView];
     }
     return self;
 }
@@ -62,7 +68,7 @@
 -(void)returnToPrev
 {
   [self resignFirstResponder];
-  [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma Roll Delegate
