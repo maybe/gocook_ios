@@ -62,6 +62,8 @@
 
 - (void)setData:(NSMutableDictionary*)dict withRow:(NSInteger)row withStatus:(NSInteger)status
 {
+  rightBtn.hidden = YES;
+  
   switch (row) {
     case 0://白色
       rollLabel.hidden = NO;
@@ -80,16 +82,26 @@
       [contentLabel setText:@"orange"];
       [backgroundView setImage:[UIImage imageNamed:@"Images/OrangeBlock.png"]];
       [rightBtn setFrame:CGRectMake(270, 50, 35, 35)];
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/OrangeRight.png"];
+/*      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/OrangeRight.png"];
       [rightBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
       UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/OrangeRightHighlighted.png"];
-      [rightBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
+      [rightBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];*/
       UIImage *buttonBackgroundImage2 = [UIImage imageNamed:@"Images/OrangeBottom.png"];
       [bottomBtn setBackgroundImage:buttonBackgroundImage2 forState:UIControlStateNormal];
       UIImage *btnBakimagePressed2 = [UIImage imageNamed:@"Images/GreyBottom.png"];
       [bottomBtn setBackgroundImage:btnBakimagePressed2 forState:UIControlStateHighlighted];
       rightBtn.tag = 1;
       bottomBtn.tag = 1;
+      
+      rightBtn.hidden = YES;
+      UIButton *rightBtn1 = [[UIButton alloc] initWithFrame:CGRectMake(270, 40, 35, 35)];
+      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/OrangeRight.png"];
+      [rightBtn1 setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+      UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/OrangeRightHighlighted.png"];
+      [rightBtn1 setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
+      [rightBtn1 addTarget:nil action:@selector(RightButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+      [self addSubview:rightBtn1];
+      rightBtn1.tag = 1;
       break;
     }
     case 2://绿色
@@ -109,6 +121,7 @@
       [bottomBtn setBackgroundImage:btnBakimagePressed2 forState:UIControlStateHighlighted];
       rightBtn.tag = 2;
       bottomBtn.tag = 2;
+      
       break;
     }
     case 3://灰色
@@ -133,9 +146,15 @@
   }
 }
 
--(NSInteger)getCellHeight
+-(CGFloat)getCellHeight
 {
   return height;
+}
+
+-(CGFloat)caculateCellHeight:(NSMutableArray*)data withStatus:(NSInteger)status
+{
+  
+  return 0;
 }
 
 @end
