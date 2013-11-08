@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define OriginHeight 90
+
 @interface CouponViewCell : UITableViewCell
 {
   UIImageView* backgroundView;

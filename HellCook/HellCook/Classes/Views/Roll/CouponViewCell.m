@@ -15,7 +15,7 @@
 {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
-    height = 90;
+    height = OriginHeight;
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320, height)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
