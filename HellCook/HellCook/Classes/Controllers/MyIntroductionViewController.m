@@ -271,13 +271,11 @@
   {
     NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
     if (error_code == GC_AuthAccountInvalid) {
-      LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
       m.callerClassName = NSStringFromClass([self class]);
-      HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
+
       if (self.navigationController) {
-        [self.navigationController presentViewController:nc animated:YES completion:nil];
-      } else if (self.tabBarController.navigationController) {
-        [self.tabBarController.navigationController presentViewController:m animated:YES completion:nil];
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
       }
     }
   }
@@ -317,13 +315,11 @@
   else if (result == GC_Failed) {
     NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
     if (error_code == GC_AuthAccountInvalid) {
-      LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
       m.callerClassName = NSStringFromClass([self class]);
-      HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
+
       if (self.navigationController) {
-        [self.navigationController presentViewController:nc animated:YES completion:nil];
-      } else if (self.tabBarController.navigationController) {
-        [self.tabBarController.navigationController presentViewController:m animated:YES completion:nil];
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
       }
     }
   }
@@ -337,13 +333,11 @@
   } else {
     NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
     if (error_code == GC_AuthAccountInvalid) {
-      LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
       m.callerClassName = NSStringFromClass([self class]);
-      HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
+
       if (self.navigationController) {
-        [self.navigationController presentViewController:nc animated:YES completion:nil];
-      } else if (self.tabBarController.navigationController) {
-        [self.tabBarController.navigationController presentViewController:m animated:YES completion:nil];
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
       }
     }
   }

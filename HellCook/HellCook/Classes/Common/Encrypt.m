@@ -6,6 +6,10 @@
 //  Copyright (c) 2013 panda. All rights reserved.
 //
 
+//  How To Use:
+//  NSString* decrypt = [Encrypt tripleDES:@"111111" encryptOrDecrypt:kCCEncrypt key:@"DAB578EC-6C01-4180-939A-37E6BE8A81AF" initVec:@"117A5C0F"];
+//  NSString* encr = [Encrypt EncryptAppReqCMD:1 WithData:@"{\"Account\":\"15000021036\",\"Password\":\"rmHSyDSm1Dk=\"}"];
+
 #import "Encrypt.h"
 #import "Base64.h"
 

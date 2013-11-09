@@ -188,7 +188,7 @@
   }
 
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result == 0)
+  if (result == GC_Success)
   {
     int totalCount = [resultDic[@"total"] intValue];
     totalPage = totalCount/10 + (totalCount % 10 > 0 ? 1 : 0);
@@ -223,18 +223,20 @@
     if (isPageEnd)
       [self deleteLoadingView];
   }
-  else if (result == 1)
+  else if (result == GC_Failed)
   {
     if ([refreshControl isRefreshing]){
       [refreshControl endRefreshing];
     }
-    
-    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
-    m.callerClassName = NSStringFromClass([self class]);
-    HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
-    if (self.navigationController)
-    {
-      [self.navigationController presentViewController:nc animated:YES completion:nil];
+
+    NSInteger errorCode = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (errorCode == GC_AuthAccountInvalid) {
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+
+      if (self.navigationController) {
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+      }
     }
   }
 }

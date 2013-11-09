@@ -23,7 +23,6 @@
 #import "MainController.h"
 #import "HomePageController.h"
 #import "HistoryDealViewController.h"
-#import "UIViewController+MMDrawerController.h"
 #import "MMDrawerBarButtonItem.h"
 #import "HCNavigationController.h"
 #import "CouponsViewController.h"
@@ -435,7 +434,6 @@
 }
 
 - (void)onClickCountGrid:(UIButton *)sender {
-//  NSLog(@"%d",sender.tag);
   if (sender.tag == 10001 || sender.tag == 10002 || sender.tag == 10004)
   {
     NSInteger index = 0;
@@ -458,8 +456,6 @@
     [ApplicationDelegate.centerNavController setViewControllers:@[pHomePageController] animated:NO];
 
     [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
-
-    //[self.revealSideViewController popViewControllerAnimated:YES];
   }
   else if (sender.tag == 10003)//我的收藏
   {
