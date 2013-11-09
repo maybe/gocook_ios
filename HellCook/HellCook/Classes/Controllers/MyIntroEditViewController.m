@@ -13,7 +13,6 @@
 #import "NetManager.h"
 #import "UIImage+Resize.h"
 #import "UIImage+Resizing.h"
-#import "HomePageController.h"
 #import "User.h"
 
 #define kTableCellHeader  48

@@ -10,11 +10,7 @@
 #import "NetManager.h"
 #import "LoginController.h"
 #import "MyIntroEditViewController.h"
-#import "CommonDef.h"
 #import "User.h"
-#import "UIViewController+MMDrawerController.h"
-#import "MMDrawerBarButtonItem.h"
-#import "HCNavigationController.h"
 
 @interface MyIntroductionViewController ()
 

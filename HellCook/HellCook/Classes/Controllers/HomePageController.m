@@ -11,8 +11,6 @@
 #import "MyFollowViewController.h"
 #import "MyRecipesController.h"
 #import "MyFansViewController.h"
-#import "UIViewController+MMDrawerController.h"
-#import "MMDrawerBarButtonItem.h"
 
 @interface HomePageController ()
 

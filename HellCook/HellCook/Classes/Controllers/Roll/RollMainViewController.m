@@ -7,11 +7,9 @@
 //
 
 #import "RollMainViewController.h"
-#import "UIViewController+MMDrawerController.h"
 #import "AppDelegate.h"
 #import "LoginController.h"
 #import "HCNavigationController.h"
-#import "NetManager.h"
 
 @interface RollMainViewController ()
 

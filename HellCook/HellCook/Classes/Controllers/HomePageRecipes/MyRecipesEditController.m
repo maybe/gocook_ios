@@ -17,7 +17,6 @@
 #import "UIImageView+WebCache.h"
 #import "DefaultGroupedTableCell.h"
 #import "MyRecipesMaterialController.h"
-#import "CommonDef.h"
 
 #define kTableCellHeader  48
 #define kTableCellBody    45

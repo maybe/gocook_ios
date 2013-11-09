@@ -11,7 +11,6 @@
 #import "UIView+FindFirstResponder.h"
 #import "NetManager.h"
 #import "User.h"
-#import "DBHandler.h"
 #import "DefaultGroupedTableCell.h"
 
 #define kTableCellHeader  48

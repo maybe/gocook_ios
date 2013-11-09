@@ -7,11 +7,9 @@
 //
 
 #import "MyRecipesMaterialController.h"
-#import "MyRecipeMaterialTableViewCell.h"
 #import "KeyboardHandler.h"
 #import "UIView+FindFirstResponder.h"
 #import "User.h"
-#import "DefaultGroupedTableCell.h"
 #import "MyRecipesStepController.h"
 
 @interface MyRecipesMaterialController ()

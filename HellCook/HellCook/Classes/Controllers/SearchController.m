@@ -11,7 +11,6 @@
 #import "NetManager.h"
 #import "SearchTableViewCell.h"
 #import "RecipeDetailController.h"
-#import "UIViewController+MMDrawerController.h"
 
 @interface SearchController ()
 

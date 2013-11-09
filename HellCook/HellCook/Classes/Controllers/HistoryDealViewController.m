@@ -12,7 +12,6 @@
 #import "HistoryDealTableViewCell.h"
 #import "DealDetailViewController.h"
 #import "ODRefreshControl.h"
-#import "HCNavigationController.h"
 
 @interface HistoryDealViewController ()
 

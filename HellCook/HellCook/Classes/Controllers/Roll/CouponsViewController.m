@@ -7,12 +7,9 @@
 //
 
 #import "CouponsViewController.h"
-#import "UIViewController+MMDrawerController.h"
 #import "RollMainViewController.h"
 #import "NetManager.h"
 #import "LoginController.h"
-#import "HCNavigationController.h"
-#import "CommonDef.h"
 
 @interface CouponsViewController ()
 
@@ -47,11 +44,21 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
   self.title = @"我的优惠券";
+
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
+
+  CGRect tableFrame = self.myTableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.myTableView setFrame:tableFrame];
+
   [self setLeftButton];
-  
   [self getAllMyCoupons];
+
+  [self autoLayout];
+  [super viewDidLoad];
 }
 
 - (void)setLeftButton
@@ -104,22 +111,25 @@
 -(void)ValidCouponShowDetail
 {
   statusForValidCoupons = statusForValidCoupons==0?1:0;
-  NSIndexPath *indexpath = [NSIndexPath indexPathForRow:2 inSection:0];
-  [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
+  //NSIndexPath *indexpath = [NSIndexPath indexPathForRow:2 inSection:0];
+  [self.myTableView reloadData];
+  //[self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)InvalidsShowDetail
 {
   statusForInvalids = statusForInvalids==0?1:0;
-  NSIndexPath *indexpath = [NSIndexPath indexPathForRow:3 inSection:0];
-  [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
+  //NSIndexPath *indexpath = [NSIndexPath indexPathForRow:3 inSection:0];
+  [self.myTableView reloadData];
+  // [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)ValidLotteryShowDetail
 {
   statusForValidLottery = statusForValidLottery==0?1:0;
-  NSIndexPath *indexpath = [NSIndexPath indexPathForRow:1 inSection:0];
-  [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
+  //NSIndexPath *indexpath = [NSIndexPath indexPathForRow:1 inSection:0];
+  [self.myTableView reloadData];
+  //[self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Table view data source

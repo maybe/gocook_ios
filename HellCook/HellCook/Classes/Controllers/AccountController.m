@@ -7,7 +7,6 @@
 //
 
 #import "AccountController.h"
-#import "QuartzCore/QuartzCore.h"
 #import "LoginController.h"
 #import "UserAccount.h"
 #import "AccountTableViewCell.h"
@@ -19,11 +18,9 @@
 #import "NetManager.h"
 #import "MyCollectionController.h"
 #import "AppDelegate.h"
-#import "UIZoomNavigationController.h"
 #import "MainController.h"
 #import "HomePageController.h"
 #import "HistoryDealViewController.h"
-#import "MMDrawerBarButtonItem.h"
 #import "HCNavigationController.h"
 #import "CouponsViewController.h"
 
@@ -46,7 +43,7 @@
   [titleImageView setImage:[UIImage imageNamed:@"Images/leftPageTitle.png"]];
   self.navigationItem.titleView = titleImageView;
   //self.title = @"分享厨房";
-  
+
   nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 54, 180, 30)];
   nameLabel.backgroundColor = [UIColor clearColor];
   bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 138)];
@@ -55,13 +52,13 @@
   [self.view addSubview:bannerImageView];
   [self.view addSubview:avatarImageView];
   [self.view addSubview:nameLabel];
-  
-  loginTitleLabel =  [[UILabel alloc] initWithFrame:CGRectMake(0, 56, 280, 30)];
+
+  loginTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 56, 280, 30)];
   loginTitleLabel.textAlignment = NSTextAlignmentCenter;
   loginTitleLabel.text = @"分享新鲜 分享美味 分享幸福";
   loginTitleLabel.backgroundColor = [UIColor clearColor];
-  loginTitleLabel.textColor = [UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1];
-  [loginTitleLabel setFont: [UIFont boldSystemFontOfSize:18]];
+  loginTitleLabel.textColor = [UIColor colorWithRed:128.0f / 255.0f green:128.0f / 255.0f blue:128.0f / 255.0f alpha:1];
+  [loginTitleLabel setFont:[UIFont boldSystemFontOfSize:18]];
 
   [self.view addSubview:loginTitleLabel];
 
@@ -89,7 +86,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  
+
   //[self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight)];
 
   if ([[[User sharedInstance] account] isLogin] && [[[User sharedInstance] account] shouldResetLogin]) {
@@ -104,7 +101,7 @@
     [self hideAccountView];
     [self showLoginView];
   }
-  
+
   [super viewWillAppear:animated];
 }
 
@@ -189,11 +186,11 @@
 //  }
   if (indexPath.row == 3) {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                        initWithTitle:@"确定要退出吗?"
-                             delegate:self
-                     cancelButtonTitle:@"取消"
-                destructiveButtonTitle:@"确定"
-                     otherButtonTitles:nil];
+        initWithTitle:@"确定要退出吗?"
+             delegate:self
+     cancelButtonTitle:@"取消"
+destructiveButtonTitle:@"确定"
+     otherButtonTitles:nil];
     [actionSheet showInView:self.mm_drawerController.view];
   }
   else if (indexPath.row == 0) {
@@ -281,7 +278,7 @@
 
 - (id)loginButton {
   if (!loginButton) {
-    loginButton = [[UIButton alloc] initWithFrame:CGRectMake(280/2 - 171/2, 170, 171, 39)];
+    loginButton = [[UIButton alloc] initWithFrame:CGRectMake(280 / 2 - 171 / 2, 170, 171, 39)];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/LoginButtonNormal.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [loginButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
@@ -301,7 +298,7 @@
 
 - (id)registerButton {
   if (!registerButton) {
-    registerButton = [[UIButton alloc] initWithFrame:CGRectMake(280/2 - 171/2, 220, 171, 39)];
+    registerButton = [[UIButton alloc] initWithFrame:CGRectMake(280 / 2 - 171 / 2, 220, 171, 39)];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RegisterButtonNormal.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [registerButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
@@ -342,15 +339,15 @@
 - (void)initCellContentArray {
   cellContentArray = [[NSMutableArray alloc] init];
   NSMutableDictionary *cellDic;
-  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
-             @"Images/RollLittle.png", @"image", @"摇一摇·我的优惠券", @"title", nil];
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+      @"Images/RollLittle.png", @"image", @"摇一摇·我的优惠券", @"title", nil];
   [cellContentArray addObject:cellDic];
-  
-  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
       @"Images/leftPageHot.png", @"image", @"今日热门", @"title", nil];
   [cellContentArray addObject:cellDic];
 
-  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
       @"0", @"count1", @"关注", @"title1",
       @"0", @"count2", @"粉丝", @"title2",
       @"0", @"count3", @"收藏", @"title3",
@@ -359,7 +356,7 @@
       @"0", @"count6", @"作品", @"title6", nil];
   [cellContentArray addObject:cellDic];
 
-  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys :
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
       @"Images/leftPageLogout.png", @"image", @"退出", @"title", nil];
   [cellContentArray addObject:cellDic];
 
@@ -434,8 +431,7 @@
 }
 
 - (void)onClickCountGrid:(UIButton *)sender {
-  if (sender.tag == 10001 || sender.tag == 10002 || sender.tag == 10004)
-  {
+  if (sender.tag == 10001 || sender.tag == 10002 || sender.tag == 10004) {
     NSInteger index = 0;
     switch (sender.tag) {
       case 10001://我的关注

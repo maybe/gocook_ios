@@ -12,7 +12,6 @@
 #import "MyFollowTableViewCell.h"
 #import "HomePageController.h"
 #import "ODRefreshControl.h"
-#import "HCNavigationController.h"
 
 @interface MyFollowViewController ()
 
