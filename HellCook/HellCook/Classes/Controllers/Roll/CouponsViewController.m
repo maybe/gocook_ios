@@ -20,7 +20,7 @@
 @implementation CouponsViewController
 @synthesize myTableView;
 @synthesize netOperation;
-@synthesize pCellForHeight;
+@synthesize pCellForHeight,pRollCell,cellSecond,pValidCouponCell,cellFourth;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +36,10 @@
     myInvalids = [[NSMutableArray alloc] init];
     
     pCellForHeight = [[CouponViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellForHeight"];
+    pRollCell = [[RollCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RollCell"];
+    cellSecond = [[CouponViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellSecond"];
+    pValidCouponCell = [[ValidCouponCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ValidCouponCell"];
+    cellFourth = [[CouponViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellFourth"];
   }
   return self;
 }
@@ -100,6 +104,13 @@
   }
 }
 
+-(void)ValidCouponShowDetail
+{
+  statusForValidCoupons = statusForValidCoupons==0?1:0;
+  NSIndexPath *indexpath = [NSIndexPath indexPathForRow:2 inSection:0];
+  [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -117,16 +128,16 @@
   CGFloat cellHeight;
   switch (indexPath.row) {
     case 0:
-      cellHeight = 90;
+      cellHeight = [pRollCell getCellHeight];
       break;
     case 1://有效的抽奖机会
-      cellHeight = [pCellForHeight caculateCellHeight:myValidLottery withStatus:statusForValidLottery];
+      cellHeight = [pCellForHeight caculateCellHeight:myValidLottery withRow:1 withStatus:statusForValidLottery];
       break;
     case 2://有效的优惠券
-      cellHeight = [pCellForHeight caculateCellHeight:myValidCoupons withStatus:statusForValidCoupons];
+      cellHeight = [pValidCouponCell caculateCellHeight:myValidCoupons withStatus:statusForValidCoupons];
       break;
     case 3://过期的
-      cellHeight = [pCellForHeight caculateCellHeight:myInvalids withStatus:statusForInvalids];
+      cellHeight = [pCellForHeight caculateCellHeight:myInvalids withRow:3 withStatus:statusForInvalids];
       break;
     default:
       cellHeight = 90;
@@ -138,17 +149,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *CellIdentifier = @"CouponViewCell";
-  
-  CouponViewCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (!cell)
+  if (indexPath.row == 0)
   {
-    cell = [[CouponViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    return pRollCell;
   }
-  
-  [cell setData:nil withRow:indexPath.row withStatus:0];
-  
-  return cell;
+  else if (indexPath.row == 1)
+  {
+    [cellSecond setData:myValidLottery withRow:indexPath.row withStatus:statusForValidLottery];
+    return cellSecond;
+  }
+  else if (indexPath.row == 2)
+  {
+    [pValidCouponCell setData:myValidCoupons withStatus:statusForValidCoupons];
+    return pValidCouponCell;
+  }
+  else
+  {
+    [cellFourth setData:myInvalids withRow:indexPath.row withStatus:statusForInvalids];
+    return cellFourth;
+  }
 }
 
 
@@ -203,6 +222,7 @@
       }
     }
     
+    [myTableView reloadData];
   }
   else if (result == 1)
   {

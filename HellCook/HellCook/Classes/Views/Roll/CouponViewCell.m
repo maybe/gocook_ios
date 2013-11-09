@@ -9,13 +9,15 @@
 #import "CouponViewCell.h"
 
 @implementation CouponViewCell
-@synthesize backgroundView,rollLabel,contentLabel,rightBtn,bottomBtn;
+@synthesize backgroundView,rollLabel,bottomBtn;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
     height = OriginHeight;
+    rightBtnsArray = [[NSMutableArray alloc] init];
+    contentLabelsArray = [[NSMutableArray alloc] init];
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320, height)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -33,17 +35,6 @@
     [rollLabel setText:@"摇一摇抽取优惠券"];
     [self addSubview:rollLabel];
     rollLabel.hidden = YES;
-    //contentLabel
-    contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 15, 270, 20)];
-    contentLabel.backgroundColor = [UIColor clearColor];
-    contentLabel.font = [UIFont boldSystemFontOfSize:16];
-    contentLabel.textColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1];
-    [self addSubview:contentLabel];
-    contentLabel.hidden = YES;
-    //rightButton
-    rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(270, 40, 35, 35)];
-    [rightBtn addTarget:nil action:@selector(RightButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:rightBtn];
     //bottomButton
     bottomBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 70, 20, 20)];
     [bottomBtn addTarget:nil action:@selector(GoDownDetail:) forControlEvents:UIControlEventTouchUpInside];
@@ -60,89 +51,123 @@
     // Configure the view for the selected state
 }
 
-- (void)setData:(NSMutableDictionary*)dict withRow:(NSInteger)row withStatus:(NSInteger)status
+- (void)setData:(NSMutableArray*)data withRow:(NSInteger)row withStatus:(NSInteger)status
 {
-  rightBtn.hidden = YES;
+  for (int i=0; i<[rightBtnsArray count]; i++)
+  {
+    UIButton *btn = [rightBtnsArray objectAtIndex:i];
+    btn.hidden = YES;
+    [btn removeFromSuperview];
+  }
+  [rightBtnsArray removeAllObjects];
+  for (int i=0; i<[contentLabelsArray count]; i++)
+  {
+    UILabel *label = [contentLabelsArray objectAtIndex:i];
+    label.hidden = YES;
+    [label removeFromSuperview];
+  }
+  [contentLabelsArray removeAllObjects];
   
-  switch (row) {
-    case 0://白色
-      rollLabel.hidden = NO;
-      contentLabel.hidden = YES;
-      [backgroundView setImage:[UIImage imageNamed:@"Images/WhiteBlock.png"]];
-      [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-      rightBtn.hidden = YES;
-      bottomBtn.hidden = YES;
-      rightBtn.tag = 0;
-      bottomBtn.tag = 0;
-      break;
-    case 1://红色
-    {
-      rollLabel.hidden = YES;
-      contentLabel.hidden = NO;
-      [contentLabel setText:@"orange"];
+  if (row == 0)
+  {
+    rollLabel.hidden = NO;
+    bottomBtn.hidden = YES;
+    [backgroundView setImage:[UIImage imageNamed:@"Images/WhiteBlock.png"]];
+    [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+  }
+  else
+  {
+    rollLabel.hidden = YES;
+    bottomBtn.hidden = NO;
+    [self caculateCellHeight:data withRow:row withStatus:status];
+    //统一设置背景
+    if (row == 1){
       [backgroundView setImage:[UIImage imageNamed:@"Images/OrangeBlock.png"]];
-      [rightBtn setFrame:CGRectMake(270, 50, 35, 35)];
-/*      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/OrangeRight.png"];
-      [rightBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
-      UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/OrangeRightHighlighted.png"];
-      [rightBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];*/
-      UIImage *buttonBackgroundImage2 = [UIImage imageNamed:@"Images/OrangeBottom.png"];
-      [bottomBtn setBackgroundImage:buttonBackgroundImage2 forState:UIControlStateNormal];
-      UIImage *btnBakimagePressed2 = [UIImage imageNamed:@"Images/GreyBottom.png"];
-      [bottomBtn setBackgroundImage:btnBakimagePressed2 forState:UIControlStateHighlighted];
-      rightBtn.tag = 1;
-      bottomBtn.tag = 1;
-      
-      rightBtn.hidden = YES;
-      UIButton *rightBtn1 = [[UIButton alloc] initWithFrame:CGRectMake(270, 40, 35, 35)];
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/OrangeRight.png"];
-      [rightBtn1 setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
-      UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/OrangeRightHighlighted.png"];
-      [rightBtn1 setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
-      [rightBtn1 addTarget:nil action:@selector(RightButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-      [self addSubview:rightBtn1];
-      rightBtn1.tag = 1;
-      break;
     }
-    case 2://绿色
-    {
-      rollLabel.hidden = YES;
-      contentLabel.hidden = NO;
-      [contentLabel setText:@"green"];
+    else if (row == 2){
       [backgroundView setImage:[UIImage imageNamed:@"Images/GreenBlock.png"]];
-      [rightBtn setFrame:CGRectMake(270, 50, 35, 35)];
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/GreenRight.png"];
-      [rightBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
-      UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/GreenRightHighlighted.png"];
-      [rightBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
-      UIImage *buttonBackgroundImage2 = [UIImage imageNamed:@"Images/GreenBottom.png"];
-      [bottomBtn setBackgroundImage:buttonBackgroundImage2 forState:UIControlStateNormal];
-      UIImage *btnBakimagePressed2 = [UIImage imageNamed:@"Images/GreyBottom.png"];
-      [bottomBtn setBackgroundImage:btnBakimagePressed2 forState:UIControlStateHighlighted];
-      rightBtn.tag = 2;
-      bottomBtn.tag = 2;
-      
-      break;
     }
-    case 3://灰色
-    {
-      rollLabel.hidden = YES;
-      contentLabel.hidden = NO;
-      [contentLabel setText:@"gray"];
+    else{
       [backgroundView setImage:[UIImage imageNamed:@"Images/GrayBlock.png"]];
-      [rightBtn setFrame:CGRectMake(270, 50, 35, 35)];
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/GreyRight.png"];
-      [rightBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
-      UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/GreyRightHighlighted.png"];
-      [rightBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
-      UIImage *buttonBackgroundImage2 = [UIImage imageNamed:@"Images/GreyBottom.png"];
-      [bottomBtn setBackgroundImage:buttonBackgroundImage2 forState:UIControlStateNormal];
-      UIImage *btnBakimagePressed2 = [UIImage imageNamed:@"Images/OrangeBottom.png"];
-      [bottomBtn setBackgroundImage:btnBakimagePressed2 forState:UIControlStateHighlighted];
-      rightBtn.tag = 3;
-      bottomBtn.tag = 3;
-      break;
     }
+    [backgroundView setFrame:CGRectMake(10, 10, 300, height-10)];
+    
+    
+    if (status == 0)//收起
+    {
+/*      UIButton *rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(270, 40, 35, 35)];
+      [rightBtn addTarget:nil action:@selector(RightButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+      [self addSubview:rightBtn];
+      [rightBtnsArray addObject:rightBtn];*/
+      NSString *content;
+      if ([data count] > 0)
+      {
+        NSMutableDictionary *dict = [data objectAtIndex:0];
+        if (row == 1)
+        {
+          content = [NSString stringWithFormat:@"%@（优惠券延期生效日期），您有一次延迟抽取优惠券的机会，有效期至%@",(NSString*)dict[@"eff_day"],(NSString*)dict[@"exp_day"]];
+          
+          UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/OrangeBottom.png"];
+          [bottomBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+          UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/GreyBottom.png"];
+          [bottomBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
+        }
+        else
+        {
+          content = [NSString stringWithFormat:@"%@，您获得价值%.2f的%@，有效期至%@。券号%@适用门店%@ \n%@",(NSString*)dict[@"eff_day"],[dict[@"val"] floatValue],(NSString*)dict[@"name"],(NSString*)dict[@"exp_day"],(NSString*)dict[@"coupon_id"],(NSString*)dict[@"stores"],(NSString*)dict[@"coupon_remark"]];
+          
+          if (row == 2)
+          {
+            UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/GreenBottom.png"];
+            [bottomBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+            UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/GreyBottom.png"];
+            [bottomBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
+          }
+          else
+          {
+            UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/GreyBottom.png"];
+            [bottomBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+            UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/OrangeBottom.png"];
+            [bottomBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
+          }
+        }
+      }
+      else
+      {
+        content = @"暂无数据";
+      }
+      UILabel *contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 20, 270, 40)];
+      contentLabel.backgroundColor = [UIColor clearColor];
+      contentLabel.font = [UIFont boldSystemFontOfSize:16];
+      contentLabel.textColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1];
+      contentLabel.lineBreakMode = NSLineBreakByWordWrapping|NSLineBreakByTruncatingTail;
+      contentLabel.numberOfLines = 2;
+      [contentLabel setText:content];
+      
+      [self addSubview:contentLabel];
+      [contentLabelsArray addObject:contentLabel];
+    }
+    else//展开
+    {
+      if ([data count] > 0)
+      {
+        
+      }
+      else
+      {
+        [bottomBtn setFrame:CGRectMake(150, 70, 20, 20)];
+        
+      }
+      
+    }
+    
+    
+    
+    
+    
+    
+    
+    
   }
 }
 
@@ -151,10 +176,41 @@
   return height;
 }
 
--(CGFloat)caculateCellHeight:(NSMutableArray*)data withStatus:(NSInteger)status
+-(CGFloat)caculateCellHeight:(NSMutableArray*)data withRow:(NSInteger)row withStatus:(NSInteger)status
 {
+  if (status == 0)
+  {
+    height = OriginHeight;
+  }
+  else
+  {
+    if ([data count] > 0)
+    {
+      height = 10;
+      for (int i=0; i<[data count]; i++)
+      {
+        NSMutableDictionary *dict = [data objectAtIndex:i];
+        NSString *content;
+        if (row == 1)
+        {
+          content = [NSString stringWithFormat:@"%@（优惠券延期生效日期），您有一次延迟抽取优惠券的机会，有效期至%@",(NSString*)dict[@"eff_day"],(NSString*)dict[@"exp_day"]];
+        }
+        else
+        {
+          content = [NSString stringWithFormat:@"%@，您获得价值%.2f的%@，有效期至%@。券号%@适用门店%@ \n%@",(NSString*)dict[@"eff_day"],[dict[@"val"] floatValue],(NSString*)dict[@"name"],(NSString*)dict[@"exp_day"],(NSString*)dict[@"coupon_id"],(NSString*)dict[@"stores"],(NSString*)dict[@"coupon_remark"]];
+        }
+        
+        CGSize contentSize = [content sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(270, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+        height = height + contentSize.height + 10;
+      }
+    }
+    else
+    {
+      height = OriginHeight;
+    }
+  }
   
-  return 0;
+  return height;
 }
 
 @end
