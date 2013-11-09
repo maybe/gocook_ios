@@ -10,6 +10,8 @@
 #import "CouponViewCell.h"
 #import "RollCell.h"
 #import "ValidCouponCell.h"
+#import "InvalidCell.h"
+#import "ValidLotteryCell.h"
 
 @interface CouponsViewController : UIViewController
 {
@@ -20,9 +22,9 @@
   NSMutableArray *myInvalids;//无效（已过期）的抽奖机会或优惠券
   CouponViewCell *pCellForHeight;
   RollCell *pRollCell;
-  CouponViewCell *cellSecond;
+  ValidLotteryCell *pCellValidLottery;
   ValidCouponCell *pValidCouponCell;
-  CouponViewCell *cellFourth;
+  InvalidCell *pInvalidCell;
   
   NSInteger statusForValidLottery;//0表示未展开状态，1表示展开状态
   NSInteger statusForValidCoupons;
@@ -35,8 +37,8 @@
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
 @property (nonatomic,retain) CouponViewCell *pCellForHeight;
 @property (nonatomic,retain) RollCell *pRollCell;
-@property (nonatomic,retain) CouponViewCell *cellSecond;
+@property (nonatomic,retain) ValidLotteryCell *pCellValidLottery;
 @property (nonatomic,retain) ValidCouponCell *pValidCouponCell;
-@property (nonatomic,retain) CouponViewCell *cellFourth;
+@property (nonatomic,retain) InvalidCell *pInvalidCell;
 
 @end

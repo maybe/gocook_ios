@@ -8,6 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
+#define OriginHeight 90
+
 @interface InvalidCell : UITableViewCell
+{
+  UIImageView* backgroundView;
+  UIButton *bottomBtn;
+  CGFloat height;
+  
+  NSMutableArray *rightBtnsArray;
+  NSMutableArray *contentLabelsArray;
+}
+
+@property(nonatomic,retain)UIImageView* backgroundView;
+@property(nonatomic,retain)UIButton *bottomBtn;
+
+- (void)setData:(NSMutableArray*)data withStatus:(NSInteger)status;
+//status=0表示未展开状态，status=1表示展开状态
+
+-(CGFloat)getCellHeight;
+-(CGFloat)caculateCellHeight:(NSMutableArray*)data withStatus:(NSInteger)status;
+
 
 @end

@@ -135,6 +135,18 @@
       }
       
     }
+    else
+    {
+      UILabel *contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 20, 270, 40)];
+      contentLabel.backgroundColor = [UIColor clearColor];
+      contentLabel.font = [UIFont boldSystemFontOfSize:16];
+      contentLabel.textColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1];
+      contentLabel.lineBreakMode = NSLineBreakByWordWrapping|NSLineBreakByTruncatingTail;
+      contentLabel.numberOfLines = 2;
+      [contentLabel setText:@"暂无有效的优惠券数据"];
+      [self addSubview:contentLabel];
+      [contentLabelsArray addObject:contentLabel];
+    }
     
     [bottomBtn setFrame:CGRectMake(150, height-20, 20, 20)];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/GreenBottomUp.png"];
