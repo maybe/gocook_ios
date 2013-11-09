@@ -12,9 +12,20 @@
 {
   UIImageView* backgroundView;
   BOOL bInRoll;
+  UILabel *contentLabel;
+  UIButton *confirmBtn;
+  UIButton *delayBtn;
+  UIButton *goBackBtn;
+  NSString *coupID;
 }
 
 @property(nonatomic,retain)UIImageView* backgroundView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
+@property (nonatomic,retain)UILabel *contentLabel;
+@property (nonatomic,retain)UIButton *confirmBtn;
+@property (nonatomic,retain)UIButton *delayBtn;
+@property (nonatomic,retain)UIButton *goBackBtn;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil withCouponId:(NSString*)couponid bundle:(NSBundle *)nibBundleOrNil;
 
 @end

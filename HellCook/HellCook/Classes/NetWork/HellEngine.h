@@ -42,6 +42,8 @@ typedef void (^deleteRecipeRespondBlock)(NSMutableDictionary* resultDic);
 
 typedef void (^allMyCouponsResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^getSalesOfTodayResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^getCouponsResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^delayLotteryResponseBlock)(NSMutableDictionary* resultDic);
 
 // 设置cookie
 - (void) setCookie:(NSString*)cookie;
@@ -195,5 +197,14 @@ typedef void (^getSalesOfTodayResponseBlock)(NSMutableDictionary* resultDic);
 - (MKNetworkOperation*)getSalesOfTodayWithcompletionHandler:(getSalesOfTodayResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock;
 
+//获取优惠券
+- (MKNetworkOperation*)getCouponsById:(NSString*)couponId
+                           completionHandler:(getCouponsResponseBlock)completionBlock
+                                errorHandler:(MKNKErrorBlock) errorBlock;
+
+//延期获取优惠券
+- (MKNetworkOperation*)delayLotteryById:(NSString*)couponId
+                    completionHandler:(delayLotteryResponseBlock)completionBlock
+                         errorHandler:(MKNKErrorBlock) errorBlock;
 
 @end

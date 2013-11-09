@@ -746,7 +746,51 @@
                                         httpMethod:@"GET"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-  // NSLog(@"%@",completedOperation.responseString);
+//   NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+- (MKNetworkOperation*)getCouponsById:(NSString*)couponId
+                    completionHandler:(getCouponsResponseBlock)completionBlock
+                         errorHandler:(MKNKErrorBlock) errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/get_coupon?id=%@&test_id=2",couponId]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  [op useCookie:NO];
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+     NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+  
+  [self enqueueOperation:op];
+  
+  return op;
+}
+
+- (MKNetworkOperation*)delayLotteryById:(NSString*)couponId
+                      completionHandler:(delayLotteryResponseBlock)completionBlock
+                           errorHandler:(MKNKErrorBlock) errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/delay_coupon?id=%@&test_id=2",couponId]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  [op useCookie:NO];
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];

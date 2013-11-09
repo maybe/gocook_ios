@@ -18,6 +18,7 @@
     height = OriginHeight;
     rightBtnsArray = [[NSMutableArray alloc] init];
     contentLabelsArray = [[NSMutableArray alloc] init];
+    seperatorsArray =[[NSMutableArray alloc] init];
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320, height)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -51,6 +52,13 @@
     [label removeFromSuperview];
   }
   [contentLabelsArray removeAllObjects];
+  for (int i=0; i<[seperatorsArray count]; i++)
+  {
+    UIImageView *sep = [seperatorsArray objectAtIndex:i];
+    sep.hidden = YES;
+    [sep removeFromSuperview];
+  }
+  [seperatorsArray removeAllObjects];
   
   
   [self caculateCellHeight:data withStatus:status];
@@ -139,6 +147,7 @@
           [sepImageView setFrame:CGRectMake(10, tempHeight-2, 300, 1)];
           [self addSubview:sepImageView];
           [self bringSubviewToFront:sepImageView];
+          [seperatorsArray addObject:sepImageView];
         }
       }
       

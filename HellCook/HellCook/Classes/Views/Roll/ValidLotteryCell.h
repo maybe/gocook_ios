@@ -18,6 +18,7 @@
   
   NSMutableArray *rightBtnsArray;
   NSMutableArray *contentLabelsArray;
+  NSMutableArray *seperatorsArray;
 }
 
 @property(nonatomic,retain)UIImageView* backgroundView;

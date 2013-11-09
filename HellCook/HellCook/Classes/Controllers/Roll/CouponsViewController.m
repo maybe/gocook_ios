@@ -13,6 +13,7 @@
 #import "LoginController.h"
 #import "HCNavigationController.h"
 #import "CommonDef.h"
+#import "WebViewController.h"
 
 @interface CouponsViewController ()
 
@@ -96,30 +97,55 @@
   return UIInterfaceOrientationMaskPortrait;
 }
 
+-(void)RightButtonOfValidLotteryClicked:(UIButton*)btn
+{
+  int index = btn.tag;
+  NSMutableDictionary *dict = [myValidCoupons objectAtIndex:index];
+  NSString *couponId = (NSString*)dict[@"coupon_id"];
+  RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" withCouponId:couponId bundle:nil];
+  [self.navigationController pushViewController:pViewController animated:YES];
+}
+
 -(void)RightButtonOfValidCouponClicked:(UIButton*)btn
 {
-  int a = 0;
+  int index = btn.tag;
+  NSMutableDictionary *dict = [myValidCoupons objectAtIndex:index];
+  NSString *url = (NSString*)dict[@"url"];
+  WebViewController *pViewController = [[WebViewController alloc] initWithNibName:@"WebView" withURL:url bundle:nil];
+  [self.navigationController pushViewController:pViewController animated:YES];
+}
+
+-(void)RightButtonOfInvalidsClicked:(UIButton*)btn
+{
+  int index = btn.tag;
+  NSMutableDictionary *dict = [myValidCoupons objectAtIndex:index];
+  NSString *url = (NSString*)dict[@"url"];
+  WebViewController *pViewController = [[WebViewController alloc] initWithNibName:@"WebView" withURL:url bundle:nil];
+  [self.navigationController pushViewController:pViewController animated:YES];
 }
 
 -(void)ValidCouponShowDetail
 {
   statusForValidCoupons = statusForValidCoupons==0?1:0;
-  NSIndexPath *indexpath = [NSIndexPath indexPathForRow:2 inSection:0];
-  [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
+  [myTableView reloadData];
+//  NSIndexPath *indexpath = [NSIndexPath indexPathForRow:2 inSection:0];
+//  [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)InvalidsShowDetail
 {
   statusForInvalids = statusForInvalids==0?1:0;
-  NSIndexPath *indexpath = [NSIndexPath indexPathForRow:3 inSection:0];
-  [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
+  [myTableView reloadData];
+//  NSIndexPath *indexpath = [NSIndexPath indexPathForRow:3 inSection:0];
+//  [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)ValidLotteryShowDetail
 {
   statusForValidLottery = statusForValidLottery==0?1:0;
-  NSIndexPath *indexpath = [NSIndexPath indexPathForRow:1 inSection:0];
-  [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
+  [myTableView reloadData];
+//  NSIndexPath *indexpath = [NSIndexPath indexPathForRow:1 inSection:0];
+//  [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Table view data source
@@ -188,7 +214,7 @@
 {
   if (indexPath.row == 0)
   {
-    RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" bundle:nil];
+    RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" withCouponId:@"0" bundle:nil];
     [self.navigationController pushViewController:pViewController animated:YES];
   }
 }
