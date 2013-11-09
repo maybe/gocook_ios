@@ -7,7 +7,6 @@
 //
 
 #import "CouponsViewController.h"
-#import "UIViewController+MMDrawerController.h"
 #import "RollMainViewController.h"
 #import "NetManager.h"
 #import "LoginController.h"
@@ -48,11 +47,21 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
   self.title = @"我的优惠券";
+
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
+
+  CGRect tableFrame = self.myTableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.myTableView setFrame:tableFrame];
+
   [self setLeftButton];
-  
   [self getAllMyCoupons];
+
+  [self autoLayout];
+  [super viewDidLoad];
 }
 
 - (void)setLeftButton

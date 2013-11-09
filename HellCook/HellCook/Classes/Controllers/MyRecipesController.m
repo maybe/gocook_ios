@@ -13,8 +13,6 @@
 #import "MyRecipesEditController.h"
 #import "User.h"
 #import "ODRefreshControl.h"
-#import "CommonDef.h"
-#import "HCNavigationController.h"
 
 @interface MyRecipesController ()
 

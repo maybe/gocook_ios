@@ -11,7 +11,6 @@
 #import "DBHandler.h"
 #import "RecipeDetailController.h"
 #import "MaterialSearchBuyViewController.h"
-#import "UIViewController+MMDrawerController.h"
 
 @interface ShoppingListController ()
 

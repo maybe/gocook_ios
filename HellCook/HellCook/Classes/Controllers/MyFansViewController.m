@@ -12,9 +12,6 @@
 #import "MyFansTableViewCell.h"
 #import "HomePageController.h"
 #import "ODRefreshControl.h"
-#import "UIViewController+MMDrawerController.h"
-#import "MMDrawerBarButtonItem.h"
-#import "HCNavigationController.h"
 
 @interface MyFansViewController ()
 

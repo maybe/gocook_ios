@@ -13,8 +13,6 @@
 #import "User.h"
 #import "LoginController.h"
 #import "ODRefreshControl.h"
-#import "UIViewController+MMDrawerController.h"
-#import "HCNavigationController.h"
 
 @interface MyCollectionController ()
 
