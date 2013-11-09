@@ -132,6 +132,14 @@
         [rightBtnsArray addObject:rightBtn];
         
         tempHeight = tempHeight + contentSize.height +20;
+        
+        if (i != [data count]-1) {
+          UIImageView *sepImageView = [[UIImageView alloc] init];;
+          [sepImageView setImage:[UIImage imageNamed:@"Images/TableCellSeparater.png"]];
+          [sepImageView setFrame:CGRectMake(10, tempHeight-2, 300, 1)];
+          [self addSubview:sepImageView];
+          [self bringSubviewToFront:sepImageView];
+        }
       }
       
     }
@@ -195,7 +203,7 @@
       height = OriginHeight;
     }
   }
-  
+  [self setFrame:CGRectMake(0, 0, 320, height)];
   return height;
 }
 
