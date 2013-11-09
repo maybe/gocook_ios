@@ -13,6 +13,8 @@
     #import <Foundation/Foundation.h>
     #import "MMDrawerController.h"
     #import "Common.h"
+    #import "CommonDef.h"
+    #import "UIViewController+MMDrawerController.h"
     #import "MKNetworkKit.h"
     #import "UIImage+Retina4.h"
     #import "NSObject+AssociativeObject.h"

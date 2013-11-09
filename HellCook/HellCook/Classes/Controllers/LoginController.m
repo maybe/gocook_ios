@@ -127,15 +127,11 @@
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView
 {
   NSString *currentURL = [aWebView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
-  NSLog(@"URL = %@", currentURL);
   if ([currentURL isEqualToString:@"http://o.m6fresh.com/ws/appcallback.aspx"]) {
     NSString *content = [aWebView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-    NSLog(@"Content = %@", content);
-
     NSString* inputString = [content stringByMatching:@"<input name=\"tb_data\" type=\"hidden\" id=\"tb_data\" value=\"(.+?)\">"];
     if (inputString) {
       NSString* loginData = [content stringByMatching:@"<input name=\"tb_data\" type=\"hidden\" id=\"tb_data\" value=\"(.+?)\">" capture:1L];
-      NSLog(@"%@", loginData);
       // send to our server
       [self onLogin:loginData];
     }

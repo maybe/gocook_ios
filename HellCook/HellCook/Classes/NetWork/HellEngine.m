@@ -40,7 +40,7 @@
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
-      NSLog(@"%@",completedOperation.responseString);
+      //NSLog(@"%@",completedOperation.responseString);
       // save login info
       if (jsonObject!=nil && [[jsonObject objectForKey:@"result"] intValue] == 0) {
 
@@ -412,7 +412,7 @@
   }
     
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-      NSLog(@"%@",completedOperation.responseString);
+      //NSLog(@"%@",completedOperation.responseString);
 
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject, index);
@@ -725,7 +725,7 @@
                                         httpMethod:@"GET"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-//        NSLog(@"%@",completedOperation.responseString);
+  // NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];
@@ -746,7 +746,7 @@
                                         httpMethod:@"GET"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    NSLog(@"%@",completedOperation.responseString);
+  // NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];

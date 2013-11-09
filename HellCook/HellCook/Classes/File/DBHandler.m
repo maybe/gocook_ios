@@ -55,7 +55,7 @@
     //NSLog(@"%@", accountDic[@"session"]);
     //NSString* session_str = [[accountDic[@"session"] componentsSeparatedByString:@";"] objectAtIndex:0];
     
-    [db executeUpdate:@"INSERT INTO account (userid, username, avatar, session) VALUES (?,?,?,?,?,?);", accountDic[@"user_id"], accountDic[@"username"], accountDic[@"avatar"], accountDic[@"session"]];
+    [db executeUpdate:@"INSERT INTO account (userid, username, avatar, session) VALUES (?,?,?,?);", accountDic[@"user_id"], accountDic[@"username"], accountDic[@"avatar"], accountDic[@"session"]];
     [db close];
     return YES;
   }
