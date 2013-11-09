@@ -8,7 +8,6 @@
 
 #import "AccountController.h"
 #import "QuartzCore/QuartzCore.h"
-#import "RegisterController.h"
 #import "LoginController.h"
 #import "UserAccount.h"
 #import "AccountTableViewCell.h"
@@ -378,20 +377,15 @@
 - (void)openLoginWindow {
   LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
   m.callerClassName = NSStringFromClass([self class]);
-  HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
 
   if (self.navigationController) {
-    [self.navigationController presentViewController:nc animated:YES completion:nil];
+    [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+
   }
 }
 
 - (void)openRegisterWindow {
-  RegisterController *m = [[RegisterController alloc] initWithNibName:@"RegisterView" bundle:nil];
-  HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
 
-  if (self.navigationController) {
-    [self.navigationController presentViewController:nc animated:YES completion:nil];
-  }
 }
 
 - (void)openDebugOption {

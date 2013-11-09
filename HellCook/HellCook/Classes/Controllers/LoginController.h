@@ -9,19 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
-@interface LoginController : UIViewController <UITextFieldDelegate, MBProgressHUDDelegate> {
+@interface LoginController : UIViewController <UITextFieldDelegate, MBProgressHUDDelegate, UIWebViewDelegate> {
   MBProgressHUD *HUD;
-
-  UITableView *tableView;
-  NSMutableArray *cellList;
-  UITextField *usernameField;
-  UITextField *passwordField;
+  UIWebView *webView;
   NSString *callerClassName;
+  NSInteger rndValue;
 }
 
-@property(nonatomic, retain) IBOutlet UITableView *tableView;
+@property(nonatomic, retain) IBOutlet UIWebView *webView;
 @property(strong, nonatomic) MKNetworkOperation *loginOperation;
-
+@property NSInteger rndValue;
 @property(nonatomic, retain) NSString *callerClassName;
 
 @end

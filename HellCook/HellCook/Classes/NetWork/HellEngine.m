@@ -26,22 +26,21 @@
   self.customHeaders = newHeadersDict;
 }
 
-- (MKNetworkOperation*)loginWithUser:(NSString*)tel AndPass:(NSString*)pass
-                   completionHandler:(LoginResponseBlock) completionBlock
-                        errorHandler:(MKNKErrorBlock) errorBlock
+- (MKNetworkOperation*)authWithData:(NSString*)data AndRnd:(NSString*)rnd
+                  completionHandler:(AuthResponseBlock) completionBlock
+                       errorHandler:(MKNKErrorBlock) errorBlock
 {
   NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-  [dic setValue:tel forKey:@"login"];
-  NSString* password = [Encrypt tripleDES:pass encryptOrDecrypt:kCCEncrypt key:APP_KEY  initVec:APP_IV];
-  [dic setValue:password forKey:@"password"];
-  
-  MKNetworkOperation *op = [self operationWithPath:@"user/login"
+  [dic setValue:data forKey:@"data"];
+  [dic setValue:rnd forKey:@"rnd"];
+
+  MKNetworkOperation *op = [self operationWithPath:@"user/login_ex"
                                             params:dic
                                         httpMethod:@"POST"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
-
+      NSLog(@"%@",completedOperation.responseString);
       // save login info
       if (jsonObject!=nil && [[jsonObject objectForKey:@"result"] intValue] == 0) {
 
@@ -60,97 +59,27 @@
 
         NSMutableDictionary* login_dic = nil;
         login_dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
-               jsonObject[@"user_id"], @"user_id",
-               jsonObject[@"username"], @"username",
-               tel, @"tel",
-               @"1", @"password",
-               real_session, @"session",
-               jsonObject[@"icon"], @"avatar", nil];
-        
-        [userAccount login:login_dic];
-        
-        [[[User sharedInstance] account] setShouldResetLogin:YES];
-      }
-      
-      completionBlock(jsonObject);
-    }];
-  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
-    errorBlock(error);
-  }];
-  
-  [self enqueueOperation:op];
-  
-  return op;
-}
-
-
-- (MKNetworkOperation*)registerWithTel:(NSString *)tel AndNick:(NSString *)nick
-                               AndPass:(NSString *)pass AndRePass:(NSString *)repass
-                         AndAvatarPath:(NSString *)avatar
-                     completionHandler:(RegResponseBlock)completionBlock
-                          errorHandler:(MKNKErrorBlock) errorBlock
-{
-  NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-  [dic setValue:nick forKey:@"nickname"];
-  NSString* password = [Encrypt tripleDES:pass encryptOrDecrypt:kCCEncrypt key:APP_KEY  initVec:APP_IV];
-  NSString* rePassword = [Encrypt tripleDES:pass encryptOrDecrypt:kCCEncrypt key:APP_KEY  initVec:APP_IV];
-  [dic setValue:password forKey:@"password"];
-  [dic setValue:tel forKey:@"tel"];
-  [dic setValue:rePassword forKey:@"repassword"];
-
-  MKNetworkOperation *op = [self operationWithPath:@"user/register"
-                                            params:dic
-                                        httpMethod:@"POST"];
-  [op useCookie:NO];
-  if (avatar&&![avatar isEqualToString:@""]) {
-    [op addFile:avatar forKey:@"avatar"];
-  }
-
-  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    NSLog(@"%@",completedOperation.responseString);
-    
-    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
-      if (jsonObject!=nil && [[jsonObject objectForKey:@"result"] intValue] == 0) {
-        NSString* session = completedOperation.readonlyResponse.allHeaderFields[@"Set-Cookie"];
-        NSArray* session_array = [session componentsSeparatedByString:@"path=/, "];
-        NSString* real_session = @"";
-        NSUInteger session_array_count = [session_array count];
-        if (session_array_count > 0) {
-          real_session = session_array[session_array_count - 1];
-        }
-        [self setCookie:real_session];
-
-        User* user = [User sharedInstance];
-        user.account.username = jsonObject[@"username"];
-        user.account.isLogin = YES;
-        user.account.avatar = jsonObject[@"icon"];
-        user.account.user_id = [jsonObject[@"user_id"] intValue];
-
-        UserAccount* userAccount = [[User sharedInstance] account];
-        NSMutableDictionary* dic = nil;
-        dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
-            jsonObject[@"user_id"] , @"user_id",
+            jsonObject[@"user_id"], @"user_id",
             jsonObject[@"username"], @"username",
-            tel, @"tel",
-            @"1", @"password",
             real_session, @"session",
             jsonObject[@"icon"], @"avatar", nil];
 
-        [userAccount login:dic];
+        [userAccount login:login_dic];
 
         [[[User sharedInstance] account] setShouldResetLogin:YES];
       }
+
       completionBlock(jsonObject);
     }];
   }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
     errorBlock(error);
   }];
-  
-  [self enqueueOperation:op];
-  
-  return op;
-}
 
+  [self enqueueOperation:op];
+
+  return op;
+
+}
 
 - (MKNetworkOperation*)getIOSMainDataWithCompletionHandler:(iosMainResponseBlock) completionBlock
                                               errorHandler:(MKNKErrorBlock) errorBlock

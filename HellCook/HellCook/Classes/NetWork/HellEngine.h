@@ -8,8 +8,7 @@
 
 @interface HellEngine : MKNetworkEngine
 
-typedef void (^LoginResponseBlock)(NSMutableDictionary* resultDic);
-typedef void (^RegResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^AuthResponseBlock)(NSMutableDictionary* resultDic);
 
 typedef void (^iosMainResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^topNewResponseBlock)(NSMutableDictionary* resultDic);
@@ -48,17 +47,10 @@ typedef void (^getSalesOfTodayResponseBlock)(NSMutableDictionary* resultDic);
 - (void) setCookie:(NSString*)cookie;
 - (void) removeCookie;
 
-// 登录
-- (MKNetworkOperation*)loginWithUser:(NSString*)username AndPass:(NSString*)pass
-                   completionHandler:(LoginResponseBlock) completionBlock
+// 认证
+- (MKNetworkOperation*)authWithData:(NSString*)data AndRnd:(NSString*)rnd
+                   completionHandler:(AuthResponseBlock) completionBlock
                         errorHandler:(MKNKErrorBlock) errorBlock;
-
-// 注册
-- (MKNetworkOperation*)registerWithTel:(NSString *)username AndNick:(NSString *)nick
-                               AndPass:(NSString *)pass AndRePass:(NSString *)repass
-                         AndAvatarPath:(NSString *)avatar
-                     completionHandler:(RegResponseBlock)completionBlock
-                          errorHandler:(MKNKErrorBlock) errorBlock;
 
 // 获取主界面
 - (MKNetworkOperation*)getIOSMainDataWithCompletionHandler:(iosMainResponseBlock) completionBlock

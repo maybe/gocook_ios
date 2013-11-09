@@ -49,6 +49,7 @@
 		658092ACE286F8686A7C1A5B /* MainCatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809357F1407AB6672716BE /* MainCatTableViewCell.m */; };
 		658093335D0DAF06A1D43215 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658091650B219FCFA570043D /* LoginController.m */; };
 		65809348FFD20073E58F7C5C /* MyIntroductionIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809D03A4F8824C335CD5A6 /* MyIntroductionIntroCell.m */; };
+		65809372D3F2496C69D29E54 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809174AB555F56A44FCF6A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		658094DB5D7A7A8E7839B9ED /* AccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658095B3BD5741A74056E868 /* AccountController.m */; };
 		658095133790AD5CF781A644 /* TopListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658099782420598A1FDB08F0 /* TopListController.m */; };
 		658095153AFF18C8FF56E297 /* MainTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809D32FA3D234BCFBEDD79 /* MainTopTableViewCell.m */; };
@@ -58,7 +59,6 @@
 		65809852A1D94ED038EC5840 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809FE062C46199C71BFD2F /* GoodsDetailViewController.m */; };
 		65809892D26E9DBA8ADF83AB /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658096D0EE4B43A9EBDC64FD /* SearchController.m */; };
 		658098A29CBB41BD0CB20D1D /* DebugOptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580940B6BB08C5A944096C5 /* DebugOptionController.m */; };
-		658098B9F1C9AF6EB523AAC8 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658095FAD3831271D58D41C6 /* RegisterController.m */; };
 		658098EDE0EE4D3FF3A9B19D /* RegisterAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658091E7C6D98A99A9231C8B /* RegisterAvatarView.m */; };
 		658099880806B59B7812736B /* MyRecipesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580948CB788DB72DAB4BA5A /* MyRecipesTableViewCell.m */; };
 		65809994EA82965D50F427B6 /* RecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658096C143F4506BEAE868FD /* RecipeDetailController.m */; };
@@ -83,7 +83,6 @@
 		BA02634916D759CB00298803 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02634816D759CB00298803 /* PPRevealSideViewController.m */; };
 		BA02635216D75E4F00298803 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA02635116D75E4F00298803 /* Common.m */; };
 		BA05128616FA14C10091D3C6 /* UIImage+Retina4.m in Sources */ = {isa = PBXBuildFile; fileRef = BA05128516FA14C10091D3C6 /* UIImage+Retina4.m */; };
-		BA0873E2179AFC1F00A270D5 /* LineSpaceLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0873E1179AFC1F00A270D5 /* LineSpaceLabel.m */; };
 		BA0873E4179AFD3200A270D5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0873E3179AFD3200A270D5 /* CoreText.framework */; };
 		BA0DC16B16D4C3A500E4CED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0DC16A16D4C3A500E4CED9 /* UIKit.framework */; };
 		BA0DC16D16D4C3A500E4CED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0DC16C16D4C3A500E4CED9 /* Foundation.framework */; };
@@ -270,6 +269,7 @@
 		658090FDDBB189A22C25C714 /* MyIntroductionPicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroductionPicCell.h; path = Classes/Views/MyIntroductionPicCell.h; sourceTree = "<group>"; };
 		65809158A65AA7F54C19730E /* SearchBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchBarView.h; path = Classes/Views/SearchBarView.h; sourceTree = "<group>"; };
 		658091650B219FCFA570043D /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginController.m; path = Classes/Controllers/LoginController.m; sourceTree = "<group>"; };
+		65809174AB555F56A44FCF6A /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		658091AFFC698249215E82E8 /* MyFollowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFollowTableViewCell.h; path = Classes/Views/MyFollowTableViewCell.h; sourceTree = "<group>"; };
 		658091E7C6D98A99A9231C8B /* RegisterAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterAvatarView.m; path = Classes/Views/RegisterAvatarView.m; sourceTree = "<group>"; };
 		658091F4562FF6D4AF3E6388 /* MyCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollectionTableViewCell.m; path = Classes/Views/MyCollectionTableViewCell.m; sourceTree = "<group>"; };
@@ -292,14 +292,12 @@
 		658094CBBA145A694796DF69 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		6580952CA5143171B09D57C5 /* BuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyViewController.h; path = Classes/Controllers/BuyGoods/BuyViewController.h; sourceTree = "<group>"; };
 		658095B3BD5741A74056E868 /* AccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountController.m; path = Classes/Controllers/AccountController.m; sourceTree = "<group>"; };
-		658095FAD3831271D58D41C6 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterController.m; path = Classes/Controllers/RegisterController.m; sourceTree = "<group>"; };
 		6580968DA2D5E059A32783EE /* MyFansTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFansTableViewCell.m; path = Classes/Views/MyFansTableViewCell.m; sourceTree = "<group>"; };
 		658096C143F4506BEAE868FD /* RecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeDetailController.m; path = Classes/Controllers/RecipeDetailController.m; sourceTree = "<group>"; };
 		658096D0EE4B43A9EBDC64FD /* SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchController.m; path = Classes/Controllers/SearchController.m; sourceTree = "<group>"; };
 		6580978FC7902CC6E26AEF3D /* SearchGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchGoodsViewController.h; path = Classes/Controllers/BuyGoods/SearchGoodsViewController.h; sourceTree = "<group>"; };
 		658098098A86A0456C03D5F4 /* SSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTextView.m; sourceTree = "<group>"; };
 		6580986DCFD24EFA4C4591B3 /* MyRecipeStepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipeStepTableViewCell.m; path = Classes/Views/MyRecipes/MyRecipeStepTableViewCell.m; sourceTree = "<group>"; };
-		658098D698C24138011800E3 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterController.h; path = Classes/Controllers/RegisterController.h; sourceTree = "<group>"; };
 		658098D9C49D1D9C4C5720AE /* AccountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewCell.m; path = Classes/Views/AccountTableViewCell.m; sourceTree = "<group>"; };
 		658098E9B48969597935FE03 /* MyFansTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFansTableViewCell.h; path = Classes/Views/MyFansTableViewCell.h; sourceTree = "<group>"; };
 		658099102A268E520B5654F2 /* MaterialSearchBuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaterialSearchBuyViewController.h; path = Classes/Controllers/BuyGoods/MaterialSearchBuyViewController.h; sourceTree = "<group>"; };
@@ -338,6 +336,7 @@
 		65809E8CB060BBF11E38CA35 /* SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchController.h; path = Classes/Controllers/SearchController.h; sourceTree = "<group>"; };
 		65809E8E3BE0ED477C92E98C /* NSAlert+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
 		65809E9C9ACFA88204E3C309 /* SearchGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchGoodsViewController.m; path = Classes/Controllers/BuyGoods/SearchGoodsViewController.m; sourceTree = "<group>"; };
+		65809EA44DB59ACA97DD86C7 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		65809F4F87DF7B86515B2F8B /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyViewController.m; path = Classes/Controllers/BuyGoods/BuyViewController.m; sourceTree = "<group>"; };
 		65809FAF8932AFE7872BF760 /* MainTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTopTableViewCell.h; path = Classes/Views/MainTopTableViewCell.h; sourceTree = "<group>"; };
 		65809FD06094A9C81A302265 /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootNavigationController.h; path = Classes/Common/RootNavigationController.h; sourceTree = "<group>"; };
@@ -350,8 +349,6 @@
 		BA02635116D75E4F00298803 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Common.m; path = Classes/Common/Common.m; sourceTree = "<group>"; };
 		BA05128416FA14C10091D3C6 /* UIImage+Retina4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Retina4.h"; path = "Classes/Common/UIImage+Retina4.h"; sourceTree = "<group>"; };
 		BA05128516FA14C10091D3C6 /* UIImage+Retina4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Retina4.m"; path = "Classes/Common/UIImage+Retina4.m"; sourceTree = "<group>"; };
-		BA0873E0179AFC1F00A270D5 /* LineSpaceLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineSpaceLabel.h; path = Classes/Common/LineSpaceLabel.h; sourceTree = "<group>"; };
-		BA0873E1179AFC1F00A270D5 /* LineSpaceLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineSpaceLabel.m; path = Classes/Common/LineSpaceLabel.m; sourceTree = "<group>"; };
 		BA0873E3179AFD3200A270D5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		BA0DC16716D4C3A500E4CED9 /* HellCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HellCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0DC16A16D4C3A500E4CED9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -646,8 +643,6 @@
 				6580940B6BB08C5A944096C5 /* DebugOptionController.m */,
 				65809C6523D390F6B4CCF41B /* AccountController.h */,
 				658095B3BD5741A74056E868 /* AccountController.m */,
-				658098D698C24138011800E3 /* RegisterController.h */,
-				658095FAD3831271D58D41C6 /* RegisterController.m */,
 				6580926E300199B427BC37E6 /* MyCollectionController.h */,
 				65809B7471B9CD5BFADF5A98 /* MyCollectionController.m */,
 				6580900978A163FF82F332A8 /* LoginController.h */,
@@ -684,6 +679,16 @@
 				658096C143F4506BEAE868FD /* RecipeDetailController.m */,
 			);
 			name = Recipe;
+			sourceTree = "<group>";
+		};
+		65809830902DAF6A9C18B8F4 /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				65809EA44DB59ACA97DD86C7 /* RegexKitLite.h */,
+				65809174AB555F56A44FCF6A /* RegexKitLite.m */,
+			);
+			name = RegexKitLite;
+			path = Libs/RegexKitLite;
 			sourceTree = "<group>";
 		};
 		65809896E7E4409007CBCA4D /* TTTAttributedLabel */ = {
@@ -834,6 +839,7 @@
 				BA02634616D759CB00298803 /* PPRevealSideviewController */,
 				6580992E6910AEBD0AFDD975 /* SSTextView */,
 				65809896E7E4409007CBCA4D /* TTTAttributedLabel */,
+				65809830902DAF6A9C18B8F4 /* RegexKitLite */,
 			);
 			name = Libs;
 			sourceTree = "<group>";
@@ -869,8 +875,6 @@
 				BA829BF617057FCA00B0341A /* KeyboardHandler.m */,
 				BA829BF81705877600B0341A /* UIView+FindFirstResponder.h */,
 				BA829BF91705877700B0341A /* UIView+FindFirstResponder.m */,
-				BA0873E0179AFC1F00A270D5 /* LineSpaceLabel.h */,
-				BA0873E1179AFC1F00A270D5 /* LineSpaceLabel.m */,
 				BAB32B9017BFEC7C00B0C150 /* Encrypt.h */,
 				BAB32B9117BFEC7C00B0C150 /* Encrypt.m */,
 				65809D7E95C3C15B991813FE /* CommonDef.h */,
@@ -1526,7 +1530,6 @@
 				BA56F2B41795AAD2001E8909 /* RecipeDetailBaseTableViewCell.m in Sources */,
 				BA56F2B7179665A5001E8909 /* RecipeDetailMaterialTableViewCell.m in Sources */,
 				BA56F2BA17971B36001E8909 /* RecipeDetailStepsTableViewCell.m in Sources */,
-				BA0873E2179AFC1F00A270D5 /* LineSpaceLabel.m in Sources */,
 				5E13568F17AD34D6009C623B /* MyIntroductionViewController.m in Sources */,
 				5E13569617AD3AC5009C623B /* MyFollowViewController.m in Sources */,
 				BA7CC61C17AD5BB900A6C8AE /* MyRecipesController.m in Sources */,
@@ -1551,7 +1554,6 @@
 				5EA66DD91829334D00AB6322 /* CouponViewCell.m in Sources */,
 				658098A29CBB41BD0CB20D1D /* DebugOptionController.m in Sources */,
 				658094DB5D7A7A8E7839B9ED /* AccountController.m in Sources */,
-				658098B9F1C9AF6EB523AAC8 /* RegisterController.m in Sources */,
 				65809DC42EED0DCF3B8B1CC8 /* MyCollectionController.m in Sources */,
 				65809156E7DABE799C2F7FA7 /* MainController.m in Sources */,
 				658093335D0DAF06A1D43215 /* LoginController.m in Sources */,
@@ -1596,6 +1598,7 @@
 				6580903EF91F30CF752922D8 /* TTTAttributedLabel.m in Sources */,
 				65809DB6DDFEA4775E8C2967 /* RecipeDetailTipsTableViewCell.m in Sources */,
 				65809FE0167BB52FDE35EF8A /* RootNavigationController.m in Sources */,
+				65809372D3F2496C69D29E54 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
