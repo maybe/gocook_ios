@@ -11,8 +11,10 @@
 @interface RollMainViewController : UIViewController
 {
   UIImageView* backgroundView;
+  BOOL bInRoll;
 }
 
 @property(nonatomic,retain)UIImageView* backgroundView;
+@property (strong, nonatomic) MKNetworkOperation *netOperation;
 
 @end

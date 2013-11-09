@@ -9,6 +9,9 @@
 #import "RollMainViewController.h"
 #import "UIViewController+MMDrawerController.h"
 #import "AppDelegate.h"
+#import "LoginController.h"
+#import "HCNavigationController.h"
+#import "NetManager.h"
 
 @interface RollMainViewController ()
 
@@ -19,11 +22,11 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    bInRoll = TRUE;
+  }
+  return self;
 }
 
 - (void)viewDidLoad
@@ -114,5 +117,39 @@
 - (NSUInteger)supportedInterfaceOrientations {
 
   return UIInterfaceOrientationMaskPortrait;
+}
+
+
+#pragma mark - network
+-(void)getAllMyCoupons
+{
+/*  self.netOperation = [[[NetManager sharedInstance] hellEngine]
+                       getAllMyCouponsByPage:(curPage + 1)
+                       completionHandler:^(NSMutableDictionary *resultDic) {
+                         [self getAllMyCouponsDataCallBack:resultDic];
+                       }
+                       errorHandler:^(NSError *error) {
+                       }
+                       ];*/
+}
+
+- (void)getAllMyCouponsDataCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0)
+  {
+    
+    
+  }
+  else if (result == 1)
+  {
+    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
+    m.callerClassName = NSStringFromClass([self class]);
+    HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
+    if (self.navigationController)
+    {
+      [self.navigationController presentViewController:nc animated:YES completion:nil];
+    }
+  }
 }
 @end

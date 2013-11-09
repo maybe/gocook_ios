@@ -95,13 +95,9 @@
   return UIInterfaceOrientationMaskPortrait;
 }
 
--(void)RightButtonClicked:(UIButton*)btn
+-(void)RightButtonOfValidCouponClicked:(UIButton*)btn
 {
-  if (btn.tag == 1)
-  {
-    RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" bundle:nil];
-    [self.navigationController pushViewController:pViewController animated:YES];
-  }
+  int a = 0;
 }
 
 -(void)ValidCouponShowDetail
