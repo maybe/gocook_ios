@@ -25,31 +25,23 @@
     eCalledFrom = calledFrom;
     //个人简介
     MyIntroductionViewController *pIntroController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:userID from:calledFrom];
-    [pIntroController.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor redColor]} forState:UIControlStateNormal];
-    [pIntroController.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor blackColor]} forState:UIControlStateNormal];
-    [pIntroController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
-    pIntroController.tabBarItem.title = @"个人简介";
+    [pIntroController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/IntroductionSelectTab.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/IntroductionNormalTab.png"]];
+    pIntroController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, -1, -6, 0);
     //我的菜谱
     MyRecipesController *pMyRecipesController = [[MyRecipesController alloc] initWithNibName:@"MyRecipesView" bundle:nil];
-    [pMyRecipesController.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor redColor]} forState:UIControlStateNormal];
-    [pMyRecipesController.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor blackColor]} forState:UIControlStateNormal];
-    [pMyRecipesController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
-    pMyRecipesController.tabBarItem.title = @"我的菜谱";
+    [pMyRecipesController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/MyRecipesSelectTab.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/MyRecipesNormalTab.png"]];
+    pMyRecipesController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
 
     NSArray *viewControllerArray;
     if (eCalledFrom == ViewControllerCalledFromMyIndividual) {
       //我的关注
       MyFollowViewController *pFollowController = [[MyFollowViewController alloc] initWithNibName:@"MyFollowView" bundle:nil];
-      [pFollowController.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor redColor]} forState:UIControlStateNormal];
-      [pFollowController.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor blackColor]} forState:UIControlStateNormal];
-      [pFollowController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
-      pFollowController.tabBarItem.title = @"我的关注";
+      [pFollowController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/MyFollowSelectTab.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/MyFollowNormalTab.png"]];
+      pFollowController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
       //我的粉丝
       MyFansViewController *pFanController = [[MyFansViewController alloc] initWithNibName:@"MyFansView" bundle:nil];
-      [pFanController.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor redColor]} forState:UIControlStateNormal];
-      [pFanController.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor blackColor]} forState:UIControlStateNormal];
-      [pFanController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/RecipeItemImageSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/RecipeItemImageDeSelected.png"]];
-      pFanController.tabBarItem.title = @"我的粉丝";
+      [pFanController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/MyFanSelectTab.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/MyFanNormalTab.png"]];
+      pFanController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
 
       viewControllerArray = [NSArray arrayWithObjects:pIntroController, pFollowController, pFanController, pMyRecipesController, nil];
     }
@@ -65,12 +57,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
-  //设置tab bar背景图
-  UIImageView *tabBarBgView = [[UIImageView alloc] initWithFrame:self.tabBar.bounds];
-  [tabBarBgView setImage:[UIImage imageNamed:@"Images/TabBarBackground.png"]];
-  [tabBarBgView setContentMode:UIViewContentModeScaleToFill];
-  [self.tabBar insertSubview:tabBarBgView atIndex:1];
 
   [self setLeftButton];
 
@@ -112,9 +98,8 @@
 
 
 - (void)returnToPrev {
+  // [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
   [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-
-  //[self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
 }
 
 
