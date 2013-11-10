@@ -25,27 +25,33 @@
     [self setFrame:CGRectMake(0, 0, 320, 150)];
     
     //bannerImageView
-    bannerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 150)];
-    [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
-    [bannerImageView setClipsToBounds:YES];
+//    bannerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 140)];
+//    [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
+//    [bannerImageView setClipsToBounds:YES];
     //avatarImageView
-    avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(135, 45, 50, 50)];
+    avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(131, 35, 58, 58)];
     [avataImageView setContentMode:UIViewContentModeScaleAspectFill];
-    [avataImageView setClipsToBounds:YES];
-    avataImageView.layer.cornerRadius = 4.0;
     avataImageView.layer.masksToBounds = YES;
     avataImageView.layer.borderColor = [UIColor clearColor].CGColor;
     avataImageView.layer.borderWidth = 1.0;
+    [avataImageView setClipsToBounds:YES];
+
+    UIButton *avatarButton = [[UIButton alloc] initWithFrame:avataImageView.frame];
+    [avatarButton addTarget:[self viewController] action:@selector(loadImagePicker) forControlEvents:UIControlEventTouchUpInside];
+    [avatarButton setBackgroundColor:[UIColor clearColor]];
+
     //uploadButton
     uploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [uploadBtn setFrame:CGRectMake(110,110,110,20)];
+    [uploadBtn setFrame:CGRectMake(105,100,110,20)];
     [uploadBtn setBackgroundColor:[UIColor clearColor]];
     [uploadBtn setTitle:@"上传头像" forState:UIControlStateNormal];
+    [uploadBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [uploadBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [uploadBtn addTarget:[self viewController] action:@selector(loadImagePicker) forControlEvents:UIControlEventTouchUpInside];
     
-    [self addSubview:bannerImageView];
+    //[self addSubview:bannerImageView];
     [self addSubview:avataImageView];
+    [self addSubview:avatarButton];
     [self addSubview:uploadBtn];
     
     data = [NSMutableDictionary dictionaryWithDictionary:dict];
@@ -66,36 +72,27 @@
   return nil;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-
 - (void)setData:(NSMutableDictionary*)dict
 {
   if (dict[@"avatar"]!=[NSNull null] && ![dict[@"avatar"] isEqual:@""])
   {
     NSString* avatarUrl = [NSString stringWithFormat: @"http://%@/%@", [[NetManager sharedInstance] host], dict[@"avatar"]];
     [avataImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:defaultImage];
-    [bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:defaultImage options:0  andGaussianBlurWithBias:20];
+    //[bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:defaultImage options:0  andGaussianBlurWithBias:20];
     
     defaultImage = avataImageView.image;
   }
   else
   {
     [avataImageView setImage:defaultImage];
-    [bannerImageView setImage: [defaultImage gaussianBlurWithBias:20]];
+    //[bannerImageView setImage: [defaultImage gaussianBlurWithBias:20]];
   }
 }
 
 - (void)setNewImage:(UIImage*)newImage
 {
   [avataImageView setImage:newImage];
-  [bannerImageView setImage:[newImage gaussianBlurWithBias:20]];
+  //[bannerImageView setImage:[newImage gaussianBlurWithBias:20]];
 }
 
 @end

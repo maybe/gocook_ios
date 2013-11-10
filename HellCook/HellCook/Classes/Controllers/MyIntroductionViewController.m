@@ -107,8 +107,10 @@
 
 - (void)edit
 {
-  MyIntroEditViewController *pController = [[MyIntroEditViewController alloc] initWithNibName:@"MyIntroEditView" bundle:nil data:pMyInfo];
-  [self.tabBarController.navigationController pushViewController:pController animated:YES];
+  if ([pMyInfo count] != 0) {
+    MyIntroEditViewController *pController = [[MyIntroEditViewController alloc] initWithNibName:@"MyIntroEditView" bundle:nil data:pMyInfo];
+    [self.tabBarController.navigationController pushViewController:pController animated:YES];
+  }
 }
 
 - (void)setLeftButton

@@ -15,9 +15,9 @@
 #import "UIImage+Resizing.h"
 #import "User.h"
 
-#define kTableCellHeader  48
-#define kTableCellBody    45
-#define kTableCellFooter  160
+#define kTableCellHeader  52
+#define kTableCellBody    52
+#define kTableCellFooter  120
 
 @interface MyIntroEditViewController ()
 
@@ -56,17 +56,17 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+  [super viewDidLoad];
+
   [self setLeftButton];
   [self setRightButton];
   
   [self initcellContentList];
   
   CGRect frame = self.myTableView.tableHeaderView.frame;
-  frame.size.height = 150;
+  frame.size.height = 140;
   self.myTableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
-  headImageView = [[MyIntroAvatarView alloc]initWithFrame:CGRectMake(0, 0, 320, 150) withData:data];
+  headImageView = [[MyIntroAvatarView alloc]initWithFrame:CGRectMake(0, 0, 320, 140) withData:data];
   [self.myTableView.tableHeaderView addSubview:headImageView];
   //keyboard
   keyboard = [[KeyboardHandler alloc] init];
@@ -76,12 +76,18 @@
   HUD.mode = MBProgressHUDModeText;
   HUD.delegate = self;
   
-  CGRect viewframe = self.view.frame;
-  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
-  [self.view setFrame:viewframe];
-  [self.myTableView setFrame:viewframe];
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
+  self.view.autoresizesSubviews = NO;
+
+  CGRect tableFrame = self.myTableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.myTableView setFrame:tableFrame];
   
   [self initLoadingView];
+
+  [self autoLayout];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -138,7 +144,7 @@
   }
   else
   {
-    gender = @"";
+    gender = @"2";
   }
   if (data[@"age"]!=[NSNull null] && ![data[@"age"] isEqual:@""])
   {
@@ -212,17 +218,15 @@
 
 - (void)setRightButton
 {
-  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
+  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [rightBarButtonView addTarget:self action:@selector(Save) forControlEvents:UIControlEventTouchUpInside];
   [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
+   [UIImage imageNamed:@"Images/SaveButtonNormal.png"]
                                 forState:UIControlStateNormal];
   [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"]
+   [UIImage imageNamed:@"Images/SaveButtonHighLight.png"]
                                 forState:UIControlStateHighlighted];
-  [rightBarButtonView setTitle:@"保存" forState:UIControlStateNormal];
-  [rightBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-  
+
   UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
   
   [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
@@ -249,7 +253,7 @@
 
 - (IBAction) maleBtnPressed
 {
-  [maleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
+  [maleBtn setBackgroundImage:[UIImage imageNamed:@"Images/GenderSelected.png"] forState:UIControlStateNormal];
   [femaleBtn setBackgroundImage:nil forState:UIControlStateNormal];
   [otherBtn setBackgroundImage:nil forState:UIControlStateNormal];
   [maleBtn setSelected:YES];
@@ -259,7 +263,7 @@
 
 - (IBAction) femaleBtnPressed
 {
-  [femaleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
+  [femaleBtn setBackgroundImage:[UIImage imageNamed:@"Images/GenderSelected.png"] forState:UIControlStateNormal];
   [maleBtn setBackgroundImage:nil forState:UIControlStateNormal];
   [otherBtn setBackgroundImage:nil forState:UIControlStateNormal];
   [maleBtn setSelected:NO];
@@ -269,7 +273,7 @@
 
 - (IBAction) otherBtnPressed
 {
-  [otherBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
+  [otherBtn setBackgroundImage:[UIImage imageNamed:@"Images/GenderSelected.png"] forState:UIControlStateNormal];
   [femaleBtn setBackgroundImage:nil forState:UIControlStateNormal];
   [maleBtn setBackgroundImage:nil forState:UIControlStateNormal];
   [maleBtn setSelected:NO];
@@ -305,10 +309,12 @@
   if (indexPath.row==0)
   {
     return kTableCellHeader;
-  }else if (indexPath.row == [cellContentList count]-1)
+  }
+  else if (indexPath.row == [cellContentList count]-1)
   {
     return kTableCellFooter;
-  }else
+  }
+  else
   {
     return kTableCellBody;
   }
@@ -353,7 +359,7 @@
   if (textField)
   {
     [textField setDelegate:self];
-    [textField setFrame:CGRectMake(30, 15, 200, 34)];
+    [textField setFrame:CGRectMake(30, 0, 200, kTableCellBody)];
     [textField setPlaceholder:[dic objectForKey:@"placeHolder"]];
     if (![dic[@"content"] isEqual:@""])
     {
@@ -370,7 +376,7 @@
   else if (textView)
   {
     textView.delegate = self;
-    [textView setFrame:CGRectMake(15, 0, 290, 150)];
+    [textView setFrame:CGRectMake(30, 0, 260, kTableCellFooter)];
     [textView setBackgroundColor: [UIColor clearColor]];
     textView.placeholder = [dic objectForKey:@"placeHolder"];
     if (![dic[@"content"] isEqual:@""])
@@ -389,7 +395,7 @@
     if (dic[@"city"])
     {
       [provinceField setDelegate:self];
-      [provinceField setFrame:CGRectMake(30, 15, 100, 34)];
+      [provinceField setFrame:CGRectMake(30, 0, 100, kTableCellBody)];
       [provinceField setPlaceholder:@"省份"];
       if (![dic[@"province"] isEqual:@""])
       {
@@ -404,7 +410,7 @@
       [provinceField setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
       
       [cityField setDelegate:self];
-      [cityField setFrame:CGRectMake(140, 15, 100, 34)];
+      [cityField setFrame:CGRectMake(140, 0, 100, kTableCellBody)];
       [cityField setPlaceholder:@"城市"];
       if (![dic[@"city"] isEqual:@""])
       {
@@ -420,7 +426,7 @@
     }
     else//年龄性别
     {
-      [ageField setFrame:CGRectMake(30, 13, 80, 30)];
+      [ageField setFrame:CGRectMake(30, 0, 80, kTableCellBody)];
       [ageField setPlaceholder:@"年龄"];
       if (![dic[@"age"] isEqual:@""])
       {
@@ -434,42 +440,46 @@
       ageField.returnKeyType = UIReturnKeyDone;
       [ageField setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
       
-      [maleBtn setFrame:CGRectMake(150, 10, 50, 30)];
-      [maleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateSelected];
+      [maleBtn setFrame:CGRectMake(150, kTableCellBody/2 -12, 40, 24)];
+      [maleBtn setBackgroundImage:[UIImage imageNamed:@"Images/GenderSelected.png"] forState:UIControlStateSelected];
       [maleBtn setTitleColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
       [maleBtn setTitle:@"男" forState:UIControlStateNormal];
-      maleBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+      maleBtn.titleLabel.font = [UIFont systemFontOfSize:16];
       
-      [femaleBtn setFrame:CGRectMake(200, 10, 50, 30)];
-      [femaleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateSelected];
+      [femaleBtn setFrame:CGRectMake(200, kTableCellBody/2 -12, 40, 24)];
+      [femaleBtn setBackgroundImage:[UIImage imageNamed:@"Images/GenderSelected.png"] forState:UIControlStateSelected];
       [femaleBtn setTitleColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
       [femaleBtn setTitle:@"女" forState:UIControlStateNormal];
-      femaleBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+      femaleBtn.titleLabel.font = [UIFont systemFontOfSize:16];
       
-      [otherBtn setFrame:CGRectMake(250, 10, 50, 30)];
-      [otherBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateSelected];
+      [otherBtn setFrame:CGRectMake(250, kTableCellBody/2 -12, 40, 24)];
+      [otherBtn setBackgroundImage:[UIImage imageNamed:@"Images/GenderSelected.png"] forState:UIControlStateSelected];
       [otherBtn setTitleColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
       [otherBtn setTitle:@"其他" forState:UIControlStateNormal];
-      otherBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+      otherBtn.titleLabel.font = [UIFont systemFontOfSize:16];
       
       if (![dic[@"gender"] isEqual:@""])
       {
         if ([dic[@"gender"] isEqual:@"0"])
         {
-          [maleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
+          [maleBtn setBackgroundImage:[UIImage imageNamed:@"Images/GenderSelected.png"] forState:UIControlStateNormal];
           [maleBtn setSelected:YES];
         }
         else if ([dic[@"gender"] isEqual:@"1"])
         {
-          [femaleBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
+          [femaleBtn setBackgroundImage:[UIImage imageNamed:@"Images/GenderSelected.png"] forState:UIControlStateNormal];
           [femaleBtn setSelected:YES];
         }
         else
         {
-          [otherBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
+          [otherBtn setBackgroundImage:[UIImage imageNamed:@"Images/GenderSelected.png"] forState:UIControlStateNormal];
           [otherBtn setSelected:YES];
         }
+      } else {
+        [otherBtn setBackgroundImage:[UIImage imageNamed:@"Images/GenderSelected.png"] forState:UIControlStateNormal];
+        [otherBtn setSelected:YES];
       }
+
     }    
   }
   
@@ -516,7 +526,7 @@
 {
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
   picker.delegate = self;
-  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]==YES) {
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
   }
   picker.allowsEditing = NO;
@@ -581,7 +591,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [pBasicInfoDict setObject:nameField.text forKey:@"nickname"];
   }
   //年龄
-  if (ageField.text.length!=0 && [data[@"age"] intValue]!=[ageField.text intValue])
+  if (ageField.text.length!=0 && (data[@"age"] == [NSNull null] || [data[@"age"] intValue]!=[ageField.text intValue]))
   {
     [pBasicInfoDict setObject:ageField.text forKey:@"age"];
   }
@@ -601,9 +611,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   }
   else
   {
-    gender = @"";
+    gender = @"2";
   }
-  if (![gender isEqual:@""] && [data[@"gender"] intValue]!=[gender intValue])
+
+  if (data[@"age"] == [NSNull null] || [data[@"gender"] intValue]!=[gender intValue])
   {
     [pBasicInfoDict setObject:gender forKey:@"gender"];
   }
