@@ -48,8 +48,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  [ApplicationDelegate disableLeftDrawer];
-  [ApplicationDelegate disableRightDrawer];
+  [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
 
   [self.navigationController.navigationBar setHidden:NO];
   

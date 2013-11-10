@@ -105,8 +105,6 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-//  [ApplicationDelegate disableLeftDrawer];
-//  [ApplicationDelegate disableRightDrawer];
   self.title = @"摇一摇";
   [super viewWillAppear:animated];
   [self becomeFirstResponder];

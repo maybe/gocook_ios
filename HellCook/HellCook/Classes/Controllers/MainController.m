@@ -67,8 +67,7 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-  [ApplicationDelegate enableLeftDrawer];
-  [ApplicationDelegate enableRightDrawer];
+  [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
 
   NSInteger shoppingCount = [[DBHandler sharedInstance] getShoppingListCount];
   [rightNumLabel setText: [NSString stringWithFormat:@"%d", shoppingCount]];

@@ -48,6 +48,10 @@
 
   NSURL* url = [[NSURL alloc] initWithString: [NSString stringWithFormat:@"http://o.m6fresh.com/ws/mobile_reg.aspx?sid=%d", rndValue]];
   [webView loadRequest:[NSURLRequest requestWithURL: url]];
+
+  HUD.mode = MBProgressHUDModeCustomView;
+  HUD.labelText = @"加载页面中...";
+  [HUD show:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -136,6 +140,9 @@
       // send to our server
       [self onLogin:loginData];
     }
+  }
+  else{
+    [HUD hide:YES];
   }
 
 }
