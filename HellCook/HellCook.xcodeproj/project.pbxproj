@@ -29,6 +29,7 @@
 		5EA66DE5182DBF5600AB6322 /* InvalidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66DE4182DBF5600AB6322 /* InvalidCell.m */; };
 		5EA66DEE182E0BF300AB6322 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66DEC182E0BF300AB6322 /* WebViewController.m */; };
 		5EA66DF1182E0D0C00AB6322 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA66DF0182E0D0C00AB6322 /* WebView.xib */; };
+		5EA66DF3182F32C400AB6322 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA66DF2182F32C400AB6322 /* AudioToolbox.framework */; };
 		5ED7F11B17BDC86400223884 /* RecipeDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */; };
 		5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */; };
 		5ED7F13517BF837E00223884 /* RecipeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED7F13417BF837E00223884 /* RecipeCommentView.xib */; };
@@ -248,6 +249,7 @@
 		5EA66DEB182E0BF300AB6322 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = Classes/Controllers/Roll/WebViewController.h; sourceTree = "<group>"; };
 		5EA66DEC182E0BF300AB6322 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = Classes/Controllers/Roll/WebViewController.m; sourceTree = "<group>"; };
 		5EA66DF0182E0D0C00AB6322 /* WebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
+		5EA66DF2182F32C400AB6322 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5ED7F11917BDC86400223884 /* RecipeDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailFooterView.h; sourceTree = "<group>"; };
 		5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailFooterView.m; sourceTree = "<group>"; };
 		5ED7F11C17BF301800223884 /* RecipeCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCommentsTableViewCell.h; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EA66DF3182F32C400AB6322 /* AudioToolbox.framework in Frameworks */,
 				BA3F5E6416FA295B00493260 /* AssetsLibrary.framework in Frameworks */,
 				BA0873E4179AFD3200A270D5 /* CoreText.framework in Frameworks */,
 				BA6069D5170ADE680060C251 /* MapKit.framework in Frameworks */,
@@ -919,6 +922,7 @@
 		BA0DC16916D4C3A500E4CED9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5EA66DF2182F32C400AB6322 /* AudioToolbox.framework */,
 				BACCF89516ED0D630094F1E5 /* libicucore.dylib */,
 				BACCF88F16ED0D090094F1E5 /* libsqlite3.0.dylib */,
 				BACCF88D16ED0CFB0094F1E5 /* libiconv.dylib */,

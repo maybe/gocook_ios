@@ -11,6 +11,7 @@
 #import "LoginController.h"
 #import "HCNavigationController.h"
 #import "NetManager.h"
+#import "AudioToolbox/AudioToolbox.h"
 
 @interface RollMainViewController ()
 
@@ -139,10 +140,12 @@
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
   NSLog(@"开始摇动手机");
+  AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
+  AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
   if (bInRoll)
   {
     [self getSalesToday];
@@ -156,6 +159,7 @@
 
 - (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
+  AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
   NSLog(@"取消");
 }
 
