@@ -268,7 +268,9 @@ destructiveButtonTitle:@"确定"
   nameLabel.userInteractionEnabled = YES;
   UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapNameLabel:)];
   [nameLabel addGestureRecognizer:tapGestureTel];
-
+  avatarImageView.userInteractionEnabled = YES;
+  UITapGestureRecognizer *tapGestureAva = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapNameLabel:)];
+  [avatarImageView addGestureRecognizer:tapGestureAva];
 }
 
 - (IBAction)tapNameLabel:(id)sender {
@@ -430,11 +432,12 @@ destructiveButtonTitle:@"确定"
 
   [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
   [bannerImageView setClipsToBounds:YES];
-  if (avatarUrl) {
-    [bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"] options:0 andGaussianBlurWithBias:20];
-  } else {
-    [bannerImageView setImage:[[UIImage imageNamed:@"Images/avatar.jpg"] gaussianBlurWithBias:20]];
-  }
+  [bannerImageView setImage:[UIImage imageNamed:@"Images/AvatarBackground.png"]];
+//  if (avatarUrl) {
+//    [bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"] options:0 andGaussianBlurWithBias:20];
+//  } else {
+//    [bannerImageView setImage:[[UIImage imageNamed:@"Images/avatar.jpg"] gaussianBlurWithBias:20]];
+//  }
 
 }
 

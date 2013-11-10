@@ -20,7 +20,7 @@
       [self setFrame:CGRectMake(0, 0, 320, mCellHeight)];
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
       
-      introLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 15, 280, mCellHeight-30)];
+      introLabel = [[UILabel alloc]initWithFrame:CGRectMake(26, 15, 268, mCellHeight-30)];
       [introLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
       introLabel.lineBreakMode = NSLineBreakByWordWrapping;
       introLabel.numberOfLines = 0;
