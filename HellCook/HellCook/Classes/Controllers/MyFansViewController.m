@@ -92,9 +92,8 @@
 
 -(void)returnToPrev
 {
+  // [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
   [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-
-   // [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:_offset animated:YES];
 }
 
 

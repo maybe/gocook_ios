@@ -102,7 +102,16 @@
     [self showLoginView];
   }
 
+  [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
   [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  if ([[[[ApplicationDelegate centerNavController] viewControllers] objectAtIndex:0] isKindOfClass:[MainController class]]) {
+    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+  } else {
+    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
+  }
 }
 
 
@@ -202,7 +211,6 @@ destructiveButtonTitle:@"确定"
     MainController *mainController = [[MainController alloc] initWithNibName:@"MainView" bundle:nil];
     [ApplicationDelegate.centerNavController setViewControllers:@[mainController] animated:NO];
     [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
-    //[self.revealSideViewController popViewControllerAnimated:YES];
   }
   else {
   }
@@ -220,7 +228,7 @@ destructiveButtonTitle:@"确定"
   [loginTitleLabel setHidden:NO];
   [[self loginButton] setHidden:NO];
   [[self registerButton] setHidden:NO];
-  [[self debugOptionButton] setHidden:NO];
+  [[self debugOptionButton] setHidden:YES];
 }
 
 - (void)hideLoginView {
@@ -381,7 +389,7 @@ destructiveButtonTitle:@"确定"
 }
 
 - (void)openRegisterWindow {
-
+  [self openLoginWindow];
 }
 
 - (void)openDebugOption {

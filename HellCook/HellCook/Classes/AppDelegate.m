@@ -34,6 +34,7 @@
 @synthesize rightNavController = _rightNavController;
 @synthesize connectionTimer, done;
 
+typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerController, UIGestureRecognizer * gesture);
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -76,6 +77,7 @@
            block(drawerController, drawerSide, percentVisible);
        }
    }];
+
 
   RootNavigationController* rootNC = [[RootNavigationController alloc] initWithRootViewController:self.drawerController];
   CGRect rootNCViewFrame = rootNC.view.frame;
@@ -146,6 +148,10 @@
                         UITextAttributeTextShadowColor: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8],
                        UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 0.5f)],
    }];
+
+  [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
+  [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
+  [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)disableLeftDrawer {

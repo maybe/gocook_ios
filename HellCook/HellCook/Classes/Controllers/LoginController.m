@@ -29,6 +29,7 @@
   webFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.webView setFrame:webFrame];
   [self.webView setDelegate:self];
+  [self.webView setBackgroundColor:[UIColor colorWithRed:234.0f/255.0f green:234.0f/255.0f blue:234.0f/255.0f alpha:1]];
 
   self.title = @"登录";
   
