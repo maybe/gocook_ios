@@ -30,7 +30,7 @@
     //我的菜谱
     MyRecipesController *pMyRecipesController = [[MyRecipesController alloc] initWithNibName:@"MyRecipesView" bundle:nil];
     [pMyRecipesController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/MyRecipesSelectTab.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/MyRecipesNormalTab.png"]];
-    pMyRecipesController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+    pMyRecipesController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, -1);
 
     NSArray *viewControllerArray;
     if (eCalledFrom == ViewControllerCalledFromMyIndividual) {
@@ -64,15 +64,14 @@
   [self.view setBackgroundColor:[UIColor redColor]];
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.view setFrame:viewFrame];
-  
-  if([self respondsToSelector:@selector(edgesForExtendedLayout)])
-  {
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-  }
-  else//not need in ios7......
+
+
+  if (!HCSystemVersionGreaterOrEqualThan(7))
   {
     [self.tabBar setFrame:CGRectMake(0, _screenHeight_NoStBar_NoNavBar_NoTabBar - _stateBarHeight, _screenWidth, _tabBarHeight)]; // don't know why must minus 20px...
   }
+
+  [self autoLayout];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

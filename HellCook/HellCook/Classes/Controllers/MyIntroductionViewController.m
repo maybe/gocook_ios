@@ -48,17 +48,14 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
+
   [self setLeftButton];
   
   CGRect tableFrame = self.myTableView.frame;
   tableFrame.size.height = _screenHeight_NoStBar - _navigationBarHeight;
   [self.myTableView setFrame:tableFrame];
-}
 
-- (void)viewDidUnload {
-  [self setMyTableView:nil];
-  [super viewDidUnload];
+  [self autoLayout];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -92,15 +89,14 @@
 {
   if (!rightBarButtonItem)
   {
-    UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
+    UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
     [rightBarButtonView addTarget:self action:@selector(edit) forControlEvents:UIControlEventTouchUpInside];
     [rightBarButtonView setBackgroundImage:
-     [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
+     [UIImage imageNamed:@"Images/EditNormalButton.png"]
                                   forState:UIControlStateNormal];
     [rightBarButtonView setBackgroundImage:
-     [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"]
+     [UIImage imageNamed:@"Images/EditSelectButton.png"]
                                   forState:UIControlStateHighlighted];
-    [rightBarButtonView setTitle:@"编辑" forState:UIControlStateNormal];
     [rightBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
     
     rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
@@ -183,7 +179,7 @@
 {
   if (indexPath.row == 0)
   {
-    return 150;
+    return 140;
   }
   else
   {
@@ -196,7 +192,7 @@
     }
     return [pIntroCell GetCellHeight];
   }
-  
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -260,6 +256,9 @@
   if (result == GC_Success)
   {
     [pMyInfo addEntriesFromDictionary:[resultDic valueForKey:@"result_user_info"]];
+    if (pMyInfo[@"intro"] == [NSNull null]) {
+      pMyInfo[@"intro"] = @"暂时无个人信息哦～";
+    }
     [self.myTableView reloadData];
     self.tabBarController.navigationItem.title = [[resultDic valueForKey:@"result_user_info"] valueForKey:@"nickname"];
   }
@@ -294,6 +293,9 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success) {
     [pMyInfo addEntriesFromDictionary:[resultDic valueForKey:@"result_kitchen_info"]];
+    if (pMyInfo[@"intro"] == [NSNull null]) {
+      pMyInfo[@"intro"] = @"暂时无个人信息哦～";
+    }
     [self.myTableView reloadData];
     self.tabBarController.navigationItem.title = [[resultDic valueForKey:@"result_kitchen_info"] valueForKey:@"nickname"];
   }
