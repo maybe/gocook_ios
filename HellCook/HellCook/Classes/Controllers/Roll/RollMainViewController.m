@@ -12,6 +12,7 @@
 #import "HCNavigationController.h"
 #import "NetManager.h"
 #import "AudioToolbox/AudioToolbox.h"
+#import "ZXingObjC.h"
 
 @interface RollMainViewController ()
 
@@ -19,6 +20,7 @@
 
 @implementation RollMainViewController
 @synthesize backgroundView,contentLabel,delayBtn,confirmBtn,goBackBtn;
+@synthesize resultImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil withCouponId:(NSString*)couponid bundle:(NSBundle *)nibBundleOrNil
 {
@@ -90,8 +92,8 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-  [ApplicationDelegate disableLeftDrawer];
-  [ApplicationDelegate disableRightDrawer];
+//  [ApplicationDelegate disableLeftDrawer];
+//  [ApplicationDelegate disableRightDrawer];
   self.title = @"摇一摇";
   [super viewWillAppear:animated];
   [self becomeFirstResponder];
@@ -121,7 +123,7 @@
 
 -(void)returnToPrev
 {
-  [self resignFirstResponder];
+//  [self resignFirstResponder];
   [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -303,6 +305,20 @@
     CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(270, 2000) lineBreakMode:NSLineBreakByWordWrapping];
     [contentLabel setFrame:CGRectMake(20, 40, 280, contentSize.height)];
     [contentLabel setText:content];
+    
+    //******
+    resultImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 100, 300, 60)];
+    [self.view addSubview:resultImage];
+    NSString *data = @"111122233433";
+    ZXMultiFormatWriter *writer = [[ZXMultiFormatWriter alloc] init];
+    ZXBitMatrix *result = [writer encode:data format:kBarcodeFormatCode128 width:self.resultImage.frame.size.width height:self.resultImage.frame.size.width error:nil];
+    if (result) {
+      self.resultImage.image = [UIImage imageWithCGImage:[ZXImage imageWithMatrix:result].cgimage];
+    } else {
+      self.resultImage.image = nil;
+    }
+    //******
+    
     [goBackBtn setFrame:CGRectMake(50, 40+contentSize.height+40, 230, 50)];
   }
   else if (result == 1)

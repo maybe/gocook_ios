@@ -21,6 +21,7 @@
   NSString *coupID;
   
   MBProgressHUD *HUD;
+  UIImageView *resultImage;
 }
 
 @property(nonatomic,retain)UIImageView* backgroundView;
@@ -29,6 +30,8 @@
 @property (nonatomic,retain)UIButton *confirmBtn;
 @property (nonatomic,retain)UIButton *delayBtn;
 @property (nonatomic,retain)UIButton *goBackBtn;
+
+@property (nonatomic, retain) UIImageView *resultImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil withCouponId:(NSString*)couponid bundle:(NSBundle *)nibBundleOrNil;
 

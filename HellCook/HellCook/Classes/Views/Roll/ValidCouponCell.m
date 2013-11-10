@@ -7,6 +7,7 @@
 //
 
 #import "ValidCouponCell.h"
+#import "ZXingObjC.h"
 
 @implementation ValidCouponCell
 @synthesize backgroundView,bottomBtn;
@@ -19,6 +20,8 @@
     rightBtnsArray = [[NSMutableArray alloc] init];
     contentLabelsArray = [[NSMutableArray alloc] init];
     seperatorsArray =[[NSMutableArray alloc] init];
+    resultImagesArray = [[NSMutableArray alloc] init];
+    
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320, height)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -29,7 +32,7 @@
     [backgroundView setContentMode:UIViewContentModeScaleToFill];
     [self addSubview:backgroundView];
     //bottomButton
-    bottomBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, height-20, 20, 20)];
+    bottomBtn = [[UIButton alloc] initWithFrame:CGRectMake(145, height-30, 30, 30)];
     [bottomBtn addTarget:nil action:@selector(ValidCouponShowDetail) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:bottomBtn];
   }
@@ -52,6 +55,13 @@
     [label removeFromSuperview];
   }
   [contentLabelsArray removeAllObjects];
+  for (int i=0; i<[resultImagesArray count]; i++)
+  {
+    UIImageView *img = [resultImagesArray objectAtIndex:i];
+    img.hidden = YES;
+    [img removeFromSuperview];
+  }
+  [resultImagesArray removeAllObjects];
   for (int i=0; i<[seperatorsArray count]; i++)
   {
     UIImageView *sep = [seperatorsArray objectAtIndex:i];
@@ -93,7 +103,7 @@
     [self addSubview:contentLabel];
     [contentLabelsArray addObject:contentLabel];
     
-    [bottomBtn setFrame:CGRectMake(150, height-20, 20, 20)];
+    [bottomBtn setFrame:CGRectMake(145, height-30, 30, 30)];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/GreenBottom.png"];
     [bottomBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
     UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/GreyBottom.png"];
@@ -129,7 +139,7 @@
         [self addSubview:contentLabel];
         [contentLabelsArray addObject:contentLabel];
         
-        UIButton *rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(270, tempHeight+contentSize.height-20, 35, 35)];
+        UIButton *rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(270, tempHeight+contentSize.height-25, 35, 35)];
         UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/GreenRight.png"];
         [rightBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
         UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/GreenRightHighlighted.png"];
@@ -139,7 +149,21 @@
         [self addSubview:rightBtn];
         [rightBtnsArray addObject:rightBtn];
         
-        tempHeight = tempHeight + contentSize.height +20;
+        tempHeight = tempHeight + contentSize.height + 10;
+        //******
+        UIImageView *resultImage = [[UIImageView alloc]initWithFrame:CGRectMake(25, tempHeight, 270, 40)];
+        [self addSubview:resultImage];
+        [resultImagesArray addObject:resultImage];
+        ZXMultiFormatWriter *writer = [[ZXMultiFormatWriter alloc] init];
+        ZXBitMatrix *result = [writer encode:(NSString*)dict[@"coupon"] format:kBarcodeFormatCode128 width:resultImage.frame.size.width height:resultImage.frame.size.width error:nil];
+        if (result) {
+          resultImage.image = [UIImage imageWithCGImage:[ZXImage imageWithMatrix:result].cgimage];
+        } else {
+          resultImage.image = nil;
+        }
+        //******
+        
+        tempHeight = tempHeight + 40 +20;
         
         if (i != [data count]-1) {
           UIImageView *sepImageView = [[UIImageView alloc] init];;
@@ -165,7 +189,7 @@
       [contentLabelsArray addObject:contentLabel];
     }
     
-    [bottomBtn setFrame:CGRectMake(150, height-20, 20, 20)];
+    [bottomBtn setFrame:CGRectMake(145, height-30, 30, 30)];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/GreenBottomUp.png"];
     [bottomBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
     UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/GreyBottomUp.png"];
@@ -203,7 +227,7 @@
         NSString *content = [NSString stringWithFormat:@"%@，您获得价值%.2f的%@，有效期至%@。券号%@适用门店%@ \n%@",strEffDay,[dict[@"val"] floatValue],(NSString*)dict[@"name"],strExpDay,(NSString*)dict[@"coupon_id"],(NSString*)dict[@"stores"],(NSString*)dict[@"coupon_remark"]];
                 
         CGSize contentSize = [content sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(270, 1000) lineBreakMode:NSLineBreakByWordWrapping];
-        height = height + contentSize.height + 20;
+        height = height + contentSize.height + 50 + 20;
       }
       height += 20;
     }

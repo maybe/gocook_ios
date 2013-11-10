@@ -29,7 +29,7 @@
     [backgroundView setContentMode:UIViewContentModeScaleToFill];
     [self addSubview:backgroundView];
     //bottomButton
-    bottomBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, height-20, 20, 20)];
+    bottomBtn = [[UIButton alloc] initWithFrame:CGRectMake(145, height-30, 30, 30)];
     [bottomBtn addTarget:nil action:@selector(InvalidsShowDetail) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:bottomBtn];
   }
@@ -93,7 +93,7 @@
     [self addSubview:contentLabel];
     [contentLabelsArray addObject:contentLabel];
     
-    [bottomBtn setFrame:CGRectMake(150, height-20, 20, 20)];
+    [bottomBtn setFrame:CGRectMake(145, height-30, 30, 30)];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/GreyBottom.png"];
     [bottomBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
     UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/GreenBottom.png"];
@@ -165,7 +165,7 @@
       [contentLabelsArray addObject:contentLabel];
     }
     
-    [bottomBtn setFrame:CGRectMake(150, height-20, 20, 20)];
+    [bottomBtn setFrame:CGRectMake(145, height-30, 30, 30)];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/GreyBottomUp.png"];
     [bottomBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
     UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/GreenBottomUp.png"];
