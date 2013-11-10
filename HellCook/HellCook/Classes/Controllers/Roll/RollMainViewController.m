@@ -26,6 +26,10 @@
   if (self) {
     bInRoll = TRUE;
     coupID = [NSString stringWithString:couponid];
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.mode = MBProgressHUDModeText;
   }
   return self;
 }
@@ -124,11 +128,19 @@
 -(void)confirm
 {
   [self getCoupons:coupID];
+  
+  HUD.labelText = @"获取优惠券中，请稍后";
+  [HUD show:YES];
+  [HUD hide:YES afterDelay:2];
 }
 
 -(void)delay
 {
   [self delayLottery:coupID];
+  
+  HUD.labelText = @"请求延期中，请稍后";
+  [HUD show:YES];
+  [HUD hide:YES afterDelay:2];
 }
 
 #pragma Roll Delegate
@@ -145,21 +157,32 @@
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-  AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
   if (bInRoll)
   {
-    [self getSalesToday];
     bInRoll = FALSE;
+    if ([coupID isEqualToString:@"0"]) {
+      [self getSalesToday];
+      
+      HUD.labelText = @"请求销售额中，请稍后";
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:2];
+
+    }
+    else
+    {
+      [self getCoupons:coupID];
+      
+      HUD.labelText = @"获取优惠券中，请稍后";
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:2];
+    }
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示：" message:@"请求当日数据中" delegate:nil cancelButtonTitle:@"CANCEL" otherButtonTitles:nil];
-    [alert show];
   }
   
 }
 
 - (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-  AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
   NSLog(@"取消");
 }
 
@@ -199,7 +222,10 @@
     backgroundView.hidden = YES;
     contentLabel.hidden = NO;
     confirmBtn.hidden = NO;
-    delayBtn.hidden = NO;
+    if ([coupID isEqual:@"0"]) {
+      delayBtn.hidden = NO;
+    }
+    
     
     NSString *strTime = [NSString stringWithString:(NSString*)resultDic[@"time"]];
     NSRange range = [strTime rangeOfString:@" "];
@@ -241,6 +267,8 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
+    backgroundView.hidden = YES;
+    contentLabel.hidden = NO;
     confirmBtn.hidden = YES;
     delayBtn.hidden = YES;
     goBackBtn.hidden = NO;
@@ -312,15 +340,26 @@
     goBackBtn.hidden = NO;
     
     NSString *content = [[NSString alloc] init];
-    if ([coupID isEqual:@"0"])//第一次延期
+    if ([resultDic[@"delay_rst"] intValue] == 0)//延期成功
     {
-      
+      NSString *strExpDay = [NSString stringWithString:(NSString*)resultDic[@"exp_day"]];
+      NSRange range = [strExpDay rangeOfString:@" "];
+      strExpDay = [strExpDay substringToIndex:range.location];
+      content = [content stringByAppendingFormat:@"您有一次延迟抽取优惠券的机会，有效期至%@",strExpDay];
     }
-    else
+    else if ([resultDic[@"delay_rst"] intValue] == 1)//延期未成功
     {
-      content = [content stringByAppendingString:@"\n\n"];
+      content = [content stringByAppendingFormat:@"返回提示信息抱歉，您不符合延期抽取条件。 %@",(NSString*)resultDic[@"remark"]];
+    }
+    else// 已经延期过
+    {
+      content = [content stringByAppendingString:@"继续为您保留抽取机会，请您在限定日期之前抽取优惠券"];
     }
     
+    CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(270, 2000) lineBreakMode:NSLineBreakByWordWrapping];
+    [contentLabel setFrame:CGRectMake(20, 40, 280, contentSize.height)];
+    [contentLabel setText:content];
+    [goBackBtn setFrame:CGRectMake(50, 40+contentSize.height+40, 230, 50)];
   }
   else if (result == 1)
   {

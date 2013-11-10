@@ -12,11 +12,16 @@
 #import "ValidCouponCell.h"
 #import "InvalidCell.h"
 #import "ValidLotteryCell.h"
+#import "MBProgressHUD.h"
 
+@class MBProgressHUD;
+@class ODRefreshControl;
 @interface CouponsViewController : UIViewController
 {
   UITableView *myTableView;
   NSInteger curPage;
+  NSInteger totalPage;
+  BOOL isPageEnd;
   NSMutableArray *myValidLottery;//有效的抽奖机会
   NSMutableArray *myValidCoupons;//有效的优惠券
   NSMutableArray *myInvalids;//无效（已过期）的抽奖机会或优惠券
@@ -30,7 +35,8 @@
   NSInteger statusForValidCoupons;
   NSInteger statusForInvalids;
   
-  
+  MBProgressHUD *HUD;
+  ODRefreshControl *refreshControl;
 }
 
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;

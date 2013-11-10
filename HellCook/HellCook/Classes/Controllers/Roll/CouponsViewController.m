@@ -13,6 +13,7 @@
 #import "HCNavigationController.h"
 #import "CommonDef.h"
 #import "WebViewController.h"
+#import "ODRefreshControl.h"
 
 @interface CouponsViewController ()
 
@@ -29,6 +30,7 @@
   if (self) {
     // Custom initialization
     curPage = 0;
+    isPageEnd = FALSE;
     statusForValidLottery = 0;
     statusForValidCoupons = 0;
     statusForInvalids = 0;
@@ -41,6 +43,14 @@
     pCellValidLottery = [[ValidLotteryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellValidLottery"];
     pValidCouponCell = [[ValidCouponCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ValidCouponCell"];
     pInvalidCell = [[InvalidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellFourth"];
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.mode = MBProgressHUDModeText;
+    
+    refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
+    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+    refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
   }
   return self;
 }
@@ -58,6 +68,9 @@
   [self.myTableView setFrame:tableFrame];
 
   [self setLeftButton];
+  HUD.labelText = @"请求优惠券数据中，请稍后";
+  [HUD show:YES];
+  [HUD hide:YES afterDelay:2];
   [self getAllMyCoupons];
 
   [self autoLayout];
@@ -85,10 +98,17 @@
   [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  if (!isPageEnd) {
+    [self getAllMyCoupons];
+  }
+  else
+  {
+    if ([refreshControl isRefreshing]) {
+      [refreshControl endRefreshing];
+    }
+  }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -110,7 +130,7 @@
 {
   int index = btn.tag;
   NSMutableDictionary *dict = [myValidCoupons objectAtIndex:index];
-  NSString *couponId = (NSString*)dict[@"coupon_id"];
+  NSString *couponId = [NSString stringWithFormat:@"%d",[dict[@"coupon_id"] intValue]];
   RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" withCouponId:couponId bundle:nil];
   [self.navigationController pushViewController:pViewController animated:YES];
 }
@@ -240,35 +260,51 @@
                        errorHandler:^(NSError *error) {
                        }
                        ];
+  
+  
 }
 
 - (void)getAllMyCouponsDataCallBack:(NSMutableDictionary*) resultDic
 {
+  if ([refreshControl isRefreshing]) {
+    [refreshControl endRefreshing];
+  }
+  
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success)
   {
-    NSMutableArray *items = [[NSMutableArray alloc] initWithArray:resultDic[@"coupons"]];
-    for (int i=0; i<[items count]; i++)
+    int totalCount = [resultDic[@"total_count"] intValue];
+    totalPage = totalCount/10 + (totalCount % 10 > 0 ? 1 : 0);
+    int addsize = [(NSArray*)resultDic[@"coupons"] count];
+    if (addsize > 0)
     {
-      NSMutableDictionary *currentItem = [items objectAtIndex:i];
-      if ([currentItem[@"status"] intValue] == 1)//有效
+      curPage++;
+      NSMutableArray *items = [[NSMutableArray alloc] initWithArray:resultDic[@"coupons"]];
+      for (int i=0; i<[items count]; i++)
       {
-        if ([currentItem[@"is_delay"] intValue] == 1)//抽奖机会
+        NSMutableDictionary *currentItem = [items objectAtIndex:i];
+        if ([currentItem[@"status"] intValue] == 1)//有效
         {
-          [myValidLottery addObject:currentItem];
+          if ([currentItem[@"is_delay"] intValue] == 1)//抽奖机会
+          {
+            [myValidLottery addObject:currentItem];
+          }
+          else//优惠券
+          {
+            [myValidCoupons addObject:currentItem];
+          }
         }
-        else//优惠券
+        else//过期
         {
-          [myValidCoupons addObject:currentItem];
+          [myInvalids addObject:currentItem];
         }
       }
-      else//过期
-      {
-        [myInvalids addObject:currentItem];
-      }
+      
+      [myTableView reloadData];
     }
     
-    [myTableView reloadData];
+    if (curPage >= totalPage)
+      isPageEnd = YES;
   }
   else if (result == GC_Failed)
   {

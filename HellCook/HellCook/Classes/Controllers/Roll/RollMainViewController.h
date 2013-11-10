@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
+@class MBProgressHUD;
 @interface RollMainViewController : UIViewController
 {
   UIImageView* backgroundView;
@@ -17,6 +19,8 @@
   UIButton *delayBtn;
   UIButton *goBackBtn;
   NSString *coupID;
+  
+  MBProgressHUD *HUD;
 }
 
 @property(nonatomic,retain)UIImageView* backgroundView;

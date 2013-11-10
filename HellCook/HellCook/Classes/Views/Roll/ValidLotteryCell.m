@@ -76,7 +76,7 @@
       range = [strExpDay rangeOfString:@" "];
       strExpDay = [strExpDay substringToIndex:range.location];
       
-      content = [NSString stringWithFormat:@"%@（优惠券延期生效日期），您有一次延迟抽取优惠券的机会，有效期至%@",strEffDay,strExpDay];
+      content = [NSString stringWithFormat:@"%@，您有一次延迟抽取优惠券的机会，有效期至%@",strEffDay,strExpDay];
     }
     else
     {
@@ -115,10 +115,10 @@
         range = [strExpDay rangeOfString:@" "];
         strExpDay = [strExpDay substringToIndex:range.location];
         
-        NSString *content = [NSString stringWithFormat:@"%@，您获得价值%.2f的%@，有效期至%@。券号%@适用门店%@ \n%@",strEffDay,[dict[@"val"] floatValue],(NSString*)dict[@"name"],strExpDay,(NSString*)dict[@"coupon_id"],(NSString*)dict[@"stores"],(NSString*)dict[@"coupon_remark"]];
+        NSString *content = [NSString stringWithFormat:@"%@，您有一次延迟抽取优惠券的机会，有效期至%@",strEffDay,strExpDay];
         
         UILabel *contentLabel = [[UILabel alloc] init];
-        contentLabel.backgroundColor = [UIColor redColor];
+        contentLabel.backgroundColor = [UIColor clearColor];
         contentLabel.font = [UIFont boldSystemFontOfSize:16];
         contentLabel.textColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1];
         contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -200,7 +200,7 @@
         range = [strExpDay rangeOfString:@" "];
         strExpDay = [strExpDay substringToIndex:range.location];
         
-        NSString *content = [NSString stringWithFormat:@"%@（优惠券延期生效日期），您有一次延迟抽取优惠券的机会，有效期至%@",strEffDay,strExpDay];
+        NSString *content = [NSString stringWithFormat:@"%@，您有一次延迟抽取优惠券的机会，有效期至%@",strEffDay,strExpDay];
         
         CGSize contentSize = [content sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(270, 1000) lineBreakMode:NSLineBreakByWordWrapping];
         height = height + contentSize.height + 20;
