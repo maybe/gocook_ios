@@ -30,7 +30,7 @@
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
  
       //namelabel
-      nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(70, 60, 160, 30)];
+      nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 65, 160, 30)];
       nameLabel.textColor = [UIColor colorWithRed:101.0 / 255.0 green:107.0 / 255.0 blue:55.0 / 255.0 alpha:0.8];
       nameLabel.font = [UIFont boldSystemFontOfSize:20];
       //bannerImageView
@@ -39,7 +39,7 @@
       [bannerImageView setClipsToBounds:YES];
       [bannerImageView setImage:[UIImage imageNamed:@"Images/AvatarBackground.png"]];
       //avatarImageView
-      avataImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 46, 46)];
+      avataImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 40, 58, 58)];
       [avataImageView setContentMode:UIViewContentModeScaleAspectFill];
       [avataImageView setClipsToBounds:YES];
       avataImageView.layer.masksToBounds = YES;
