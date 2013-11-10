@@ -110,7 +110,7 @@
 		BA1152A5182F8AB100EED238 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = BA115294182F8AB100EED238 /* UIView+Screenshot.m */; };
 		BA1152A6182F8AB100EED238 /* NYXProgressiveImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA115297182F8AB100EED238 /* NYXProgressiveImageView.m */; };
 		BA1152A7182F8AB100EED238 /* NYXImagesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BA11529A182F8AB100EED238 /* NYXImagesHelper.m */; };
-		BA1156FD182FB64C00EED238 /* libZXingObjC-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1156FC182FB64C00EED238 /* libZXingObjC-iOS.a */; };
+		BA1157E2182FBD9E00EED238 /* libZXingObjC-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1157E1182FBD9E00EED238 /* libZXingObjC-iOS.a */; };
 		BA1CE94E17E60468007F42AA /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA1CE94D17E60468007F42AA /* Icon@2x.png */; };
 		BA1CE95017E60479007F42AA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA1CE94F17E60479007F42AA /* Icon.png */; };
 		BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */; };
@@ -400,7 +400,6 @@
 		BA115299182F8AB100EED238 /* NYXImagesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesHelper.h; sourceTree = "<group>"; };
 		BA11529A182F8AB100EED238 /* NYXImagesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYXImagesHelper.m; sourceTree = "<group>"; };
 		BA11529B182F8AB100EED238 /* NYXImagesKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesKit.h; sourceTree = "<group>"; };
-		BA1156FC182FB64C00EED238 /* libZXingObjC-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libZXingObjC-iOS.a"; path = "HellCook/Libs/ZXingObjC/libZXingObjC-iOS.a"; sourceTree = "<group>"; };
 		BA1156FF182FB66200EED238 /* ZXAbstractDoCoMoResultParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAbstractDoCoMoResultParser.h; sourceTree = "<group>"; };
 		BA115700182FB66200EED238 /* ZXAbstractExpandedDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAbstractExpandedDecoder.h; sourceTree = "<group>"; };
 		BA115701182FB66200EED238 /* ZXAbstractRSSReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAbstractRSSReader.h; sourceTree = "<group>"; };
@@ -625,6 +624,7 @@
 		BA1157DC182FB66400EED238 /* ZXWifiResultParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXWifiResultParser.h; sourceTree = "<group>"; };
 		BA1157DD182FB66400EED238 /* ZXWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXWriter.h; sourceTree = "<group>"; };
 		BA1157DE182FB66400EED238 /* ZXX12Encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXX12Encoder.h; sourceTree = "<group>"; };
+		BA1157E1182FBD9E00EED238 /* libZXingObjC-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libZXingObjC-iOS.a"; path = "HellCook/Libs/ZXingObjC/universal/libZXingObjC-iOS.a"; sourceTree = "<group>"; };
 		BA1CE94D17E60468007F42AA /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		BA1CE94F17E60479007F42AA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingListView.xib; sourceTree = "<group>"; };
@@ -808,6 +808,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EA66DF3182F32C400AB6322 /* AudioToolbox.framework in Frameworks */,
+				BA1157E2182FBD9E00EED238 /* libZXingObjC-iOS.a in Frameworks */,
 				BACCF88E16ED0CFB0094F1E5 /* libiconv.dylib in Frameworks */,
 				BA115236182F82BB00EED238 /* CoreVideo.framework in Frameworks */,
 				BA115234182F82B400EED238 /* CoreMedia.framework in Frameworks */,
@@ -821,7 +822,6 @@
 				BA3F5E6516FA295B00493260 /* Accelerate.framework in Frameworks */,
 				BACCF89616ED0D630094F1E5 /* libicucore.dylib in Frameworks */,
 				BACCF89016ED0D090094F1E5 /* libsqlite3.0.dylib in Frameworks */,
-				BA1156FD182FB64C00EED238 /* libZXingObjC-iOS.a in Frameworks */,
 				BACCF88C16ED0C2C0094F1E5 /* Security.framework in Frameworks */,
 				BACCF86816ECFFFA0094F1E5 /* libxml2.dylib in Frameworks */,
 				BACCF86616ECFF780094F1E5 /* libz.dylib in Frameworks */,
@@ -1159,8 +1159,8 @@
 		BA0DC16916D4C3A500E4CED9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA1157E1182FBD9E00EED238 /* libZXingObjC-iOS.a */,
 				5EA66DF2182F32C400AB6322 /* AudioToolbox.framework */,
-				BA1156FC182FB64C00EED238 /* libZXingObjC-iOS.a */,
 				BA115235182F82BB00EED238 /* CoreVideo.framework */,
 				BA115233182F82B400EED238 /* CoreMedia.framework */,
 				BA115231182F82AB00EED238 /* AVFoundation.framework */,
@@ -2173,11 +2173,7 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "HellCook/HellCook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/panda/Develop/gocook_ios/HellCook/HellCook/Libs,
-					/Users/panda/Develop/gocook_ios/HellCook/HellCook/Libs/ZXingObjC,
-				);
+				LIBRARY_SEARCH_PATHS = "HellCook/Libs/ZXingObjC/universal/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "D23C6DF1-148F-45F6-8682-BD04D398615C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D23C6DF1-148F-45F6-8682-BD04D398615C";
@@ -2201,9 +2197,7 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "HellCook/HellCook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "HellCook/Libs/ZXingObjC/universal/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "D23C6DF1-148F-45F6-8682-BD04D398615C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D23C6DF1-148F-45F6-8682-BD04D398615C";
