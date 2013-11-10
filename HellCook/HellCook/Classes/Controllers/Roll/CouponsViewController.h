@@ -37,6 +37,7 @@
   
   MBProgressHUD *HUD;
   ODRefreshControl *refreshControl;
+  BOOL bComeFromRoll;
 }
 
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;

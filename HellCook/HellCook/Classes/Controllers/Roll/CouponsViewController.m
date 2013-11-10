@@ -31,6 +31,7 @@
     // Custom initialization
     curPage = 0;
     isPageEnd = FALSE;
+    bComeFromRoll = FALSE;
     statusForValidLottery = 0;
     statusForValidCoupons = 0;
     statusForInvalids = 0;
@@ -38,7 +39,6 @@
     myValidCoupons = [[NSMutableArray alloc] init];
     myInvalids = [[NSMutableArray alloc] init];
     
-    pCellForHeight = [[CouponViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellForHeight"];
     pRollCell = [[RollCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RollCell"];
     pCellValidLottery = [[ValidLotteryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellValidLottery"];
     pValidCouponCell = [[ValidCouponCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ValidCouponCell"];
@@ -68,13 +68,37 @@
   [self.myTableView setFrame:tableFrame];
 
   [self setLeftButton];
+  
+  [self getAllMyCoupons];
   HUD.labelText = @"请求优惠券数据中，请稍后";
   [HUD show:YES];
   [HUD hide:YES afterDelay:2];
-  [self getAllMyCoupons];
 
   [self autoLayout];
   [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  if (bComeFromRoll)
+  {
+    curPage = 0;
+    isPageEnd = FALSE;
+    bComeFromRoll = FALSE;
+    statusForValidLottery = 0;
+    statusForValidCoupons = 0;
+    statusForInvalids = 0;
+    [myValidLottery removeAllObjects];
+    [myValidCoupons removeAllObjects];
+    [myInvalids removeAllObjects];
+    
+    
+    [self getAllMyCoupons];
+    HUD.labelText = @"请求优惠券数据中，请稍后";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
+  }
 }
 
 - (void)setLeftButton
@@ -132,6 +156,7 @@
   NSMutableDictionary *dict = [myValidCoupons objectAtIndex:index];
   NSString *couponId = [NSString stringWithFormat:@"%d",[dict[@"coupon_id"] intValue]];
   RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" withCouponId:couponId bundle:nil];
+  bComeFromRoll = YES;
   [self.navigationController pushViewController:pViewController animated:YES];
 }
 
@@ -244,6 +269,7 @@
   if (indexPath.row == 0)
   {
     RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" withCouponId:@"0" bundle:nil];
+    bComeFromRoll = YES;
     [self.navigationController pushViewController:pViewController animated:YES];
   }
 }
