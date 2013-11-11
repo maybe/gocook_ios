@@ -18,10 +18,10 @@
 #import "DefaultGroupedTableCell.h"
 #import "MyRecipesMaterialController.h"
 
-#define kTableCellHeader  48
-#define kTableCellBody    45
+#define kTableCellHeader  52
+#define kTableCellBody    52
 #define kTableCellFooter  160
-#define kTableCellSingle  50
+#define kTableCellSingle  52
 
 @interface MyRecipesEditController ()
 
@@ -62,7 +62,7 @@
   frame.size.height = 184;
   self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
   CGFloat tableWidth = self.tableView.frame.size.width;
-  headImageView = [[MyRecipeEditAvatarView alloc]initWithFrame:CGRectMake(tableWidth /2-75, 30, 150, 150)];
+  headImageView = [[MyRecipeEditAvatarView alloc]initWithFrame:CGRectMake(tableWidth /2-75, 15, 150, 150)];
   [self.tableView.tableHeaderView addSubview:headImageView];
   
   //keyboard
@@ -157,7 +157,7 @@
   
   if (textField) {
     [textField setDelegate:self];
-    [textField setFrame:CGRectMake(30, 15, 200, 34)];
+    [textField setFrame:CGRectMake(30, 0, 260, kTableCellBody)];
     [textField setPlaceholder:[dic objectForKey:@"placeHolder"]];
     [textField setBackgroundColor: [UIColor clearColor]];
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -168,7 +168,7 @@
     [textField setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
   } else if (textView) {
     textView.delegate = self;
-    [textView setFrame:CGRectMake(20, 5, 300, 120)];
+    [textView setFrame:CGRectMake(30, 5, 260, 120)];
     [textView setBackgroundColor: [UIColor clearColor]];
     [textView setPlaceholder: [dic objectForKey:@"placeHolder"]];
     textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -363,14 +363,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
   [rightBarButtonView addTarget:self action:@selector(onNext) forControlEvents:UIControlEventTouchUpInside];
   [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
+   [UIImage imageNamed:@"Images/NextStepNormal.png"]
                                 forState:UIControlStateNormal];
   [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"]
+   [UIImage imageNamed:@"Images/NextStepHighLight.png"]
                                 forState:UIControlStateHighlighted];
-  [rightBarButtonView setTitle:@"下一步" forState:UIControlStateNormal];
-  [rightBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-  
+
   UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
   
   [self.navigationItem setRightBarButtonItem:rightBarButtonItem];

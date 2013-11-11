@@ -218,13 +218,11 @@
   UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
   [rightBarButtonView addTarget:self action:@selector(onNext) forControlEvents:UIControlEventTouchUpInside];
   [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"]
+   [UIImage imageNamed:@"Images/NextStepNormal.png"]
                                 forState:UIControlStateNormal];
   [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"]
+   [UIImage imageNamed:@"Images/NextStepHighLight.png"]
                                 forState:UIControlStateHighlighted];
-  [rightBarButtonView setTitle:@"下一步" forState:UIControlStateNormal];
-  [rightBarButtonView.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
   
   UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];
   
@@ -329,6 +327,7 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
+    [self.navigationController popToRootViewControllerAnimated:YES];
     NSLog(@"success");
   }
   else if (result == 1){

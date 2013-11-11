@@ -414,7 +414,11 @@ destructiveButtonTitle:@"确定"
   NSString *avatarUrl = nil;
 
   if (account.avatar && ![account.avatar isEqual:@""]) {
-    avatarUrl = [NSString stringWithFormat:@"http://%@/images/avatars/%@", netManager.host, account.avatar];
+    if ([[account.avatar substringToIndex:15] isEqualToString:@"images/avatars/"]) {
+      avatarUrl = [NSString stringWithFormat:@"http://%@/%@", netManager.host, account.avatar];
+    } else {
+      avatarUrl = [NSString stringWithFormat:@"http://%@/images/avatars/%@", netManager.host, account.avatar];
+    }
   }
 
   [avatarImageView setContentMode:UIViewContentModeScaleAspectFill];

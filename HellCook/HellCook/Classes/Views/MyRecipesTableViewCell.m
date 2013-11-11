@@ -29,11 +29,11 @@
       [self addSubview: [self titleLabel]];
       [self addSubview:[self materialLabel]];
       
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/topmask.png"];
-      UIImage *stretchedBackgroundImage = [buttonBackgroundImage stretchableImageWithLeftCapWidth:6 topCapHeight:6.5];
-      maskImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 95, 70)];
-      [maskImageView setImage:stretchedBackgroundImage];
-      [self addSubview:maskImageView];
+//      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/topmask.png"];
+//      UIImage *stretchedBackgroundImage = [buttonBackgroundImage stretchableImageWithLeftCapWidth:6 topCapHeight:6.5];
+//      maskImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 95, 70)];
+//      [maskImageView setImage:stretchedBackgroundImage];
+//      [self addSubview:maskImageView];
       
       UIImage* dotImage = [UIImage imageNamed:@"Images/homeHeaderSeperator.png"];
       UIImageView* dotImageView = [[UIImageView alloc]initWithImage:dotImage];
@@ -74,29 +74,22 @@
 
 - (void)setAdminButtons
 {
-  modifyButton = [[UIButton alloc]initWithFrame:CGRectMake(250, 10, 60, 30)];
-  [modifyButton setTitle:@"修改" forState:UIControlStateNormal];
-  [modifyButton.titleLabel setFont: [UIFont boldSystemFontOfSize:13]];
-  UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
-  UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:5 topCapHeight:5];
-  [modifyButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-  
-  UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
-  UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:5 topCapHeight:5];
-  [modifyButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
-  
+  UIImage *modifyBackgroundImage = [UIImage imageNamed:@"Images/ModifyRecipeNormal.png"];
+  UIImage *modifyBackgroundImagePressed = [UIImage imageNamed:@"Images/ModifyRecipeHighLight.png"];
+
+  modifyButton = [[UIButton alloc]initWithFrame:CGRectMake(260, 10, 49, 29)];
+  [modifyButton setBackgroundImage:modifyBackgroundImage forState:UIControlStateNormal];
+  [modifyButton setBackgroundImage:modifyBackgroundImagePressed forState:UIControlStateHighlighted];
   [modifyButton addTarget:nil action:@selector(modifyOneMyRecipe:) forControlEvents:UIControlEventTouchUpInside];
 
-  
-  delButton = [[UIButton alloc]initWithFrame:CGRectMake(250, 50, 60, 30)];
-  [delButton setTitle:@"删除" forState:UIControlStateNormal];
-  [delButton.titleLabel setFont: [UIFont boldSystemFontOfSize:13]];
-  [delButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-  
-  [delButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
-  
+  UIImage *deleteBackgroundImage = [UIImage imageNamed:@"Images/DeleteRecipeNormal.png"];
+  UIImage *deleteBackgroundImagePressed = [UIImage imageNamed:@"Images/DeleteRecipeHighLight.png"];
+
+  delButton = [[UIButton alloc]initWithFrame:CGRectMake(260, 50, 49, 29)];
+  [delButton setBackgroundImage:deleteBackgroundImage forState:UIControlStateNormal];
+  [delButton setBackgroundImage:deleteBackgroundImagePressed forState:UIControlStateHighlighted];
   [delButton addTarget:nil action:@selector(deleteOneMyRecipe:) forControlEvents:UIControlEventTouchUpInside];
-  
+
   [self addSubview:modifyButton];
   [self addSubview:delButton];
 }

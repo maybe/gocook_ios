@@ -241,10 +241,10 @@
 -(void)Save
 {
   [mLoadingActivity startAnimating];
-  
-  [self uploadBasicInfo];
+
   [self uploadAvatar];
-  
+  [self uploadBasicInfo];
+
   if (waitCallBack<=0)
     [mLoadingActivity stopAnimating];
 }
@@ -614,7 +614,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     gender = @"2";
   }
 
-  if (data[@"age"] == [NSNull null] || [data[@"gender"] intValue]!=[gender intValue])
+  if (data[@"gender"] == [NSNull null] || [data[@"gender"] intValue]!=[gender intValue])
   {
     [pBasicInfoDict setObject:gender forKey:@"gender"];
   }
@@ -650,9 +650,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   else
   {
     waitCallBack--;
-    HUD.labelText = @"个人信息无改变，不需保存";
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:2];
+    if (waitCallBack == 0) {
+      HUD.labelText = @"个人信息无改变，不需保存";
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:2];
+    }
   }
 }
 

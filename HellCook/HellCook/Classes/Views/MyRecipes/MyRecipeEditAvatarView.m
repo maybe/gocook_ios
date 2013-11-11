@@ -36,13 +36,13 @@
   [self addSubview:selectImageButton];
   
   selectButton = [[UIButton alloc]init];
-  [selectButton setFrame:CGRectMake(self.frame.size.width/2-30, 100, 60, 28)];
+  [selectButton setFrame:CGRectMake(self.frame.size.width/2-30, 100, 60, 29)];
 
-  UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/redStretchBackgroundNormal.png"];
+  UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/AddCoverNormal.png"];
   UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
   [selectButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
   
-  UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/redStretchBackgroundHighlighted.png"];
+  UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/AddCoverNormal.png"];
   UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
   [selectButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
   

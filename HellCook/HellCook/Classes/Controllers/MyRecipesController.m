@@ -372,13 +372,12 @@
   self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
   CGFloat tableWidth = self.tableView.frame.size.width;
 
-  UIButton *uploadButton = [[UIButton alloc] initWithFrame:CGRectMake(tableWidth / 2 - 60, 20, 120, 30)];
-  [uploadButton setTitle:@"上传菜谱" forState:UIControlStateNormal];
-  UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
+  UIButton *uploadButton = [[UIButton alloc] initWithFrame:CGRectMake(tableWidth / 2 - 106, 20, 212, 28)];
+  UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/UploadRecipeNormal.png"];
   UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
   [uploadButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
 
-  UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
+  UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/UploadRecipeHighLight.png"];
   UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
   [uploadButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
 

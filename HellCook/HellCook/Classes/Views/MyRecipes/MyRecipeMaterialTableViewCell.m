@@ -18,6 +18,10 @@
 {
   self = [super initWithFrame:frame];
   if (self) {
+    UIImageView * descView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/MaterialTitle.png"]];
+    [descView setFrame:CGRectMake(160 - 106, 22 - 6, 212, 13)];
+    [self addSubview:descView];
+
     UIImageView* bottomLine = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/TableCellSeparater.png"]];
     [bottomLine setFrame:CGRectMake(0, 43, 320, 1)];
     [self addSubview: bottomLine];
@@ -37,13 +41,11 @@
     mAddButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 10, 60, 30)];
     [mAddButton setTitle:@"+加一行" forState:UIControlStateNormal];
     [mAddButton.titleLabel setFont: [UIFont boldSystemFontOfSize:13]];
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
-    UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:5 topCapHeight:5];
-    [mAddButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/AddMaterialLineNormal.png"];
+    [mAddButton setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
     
-    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
-    UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:5 topCapHeight:5];
-    [mAddButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
+    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/AddMaterialLineHighLight.png"];
+    [mAddButton setBackgroundImage:buttonBackgroundImagePressed forState:UIControlStateHighlighted];
     
     [mAddButton addTarget:nil action:@selector(addMaterialLine) forControlEvents:UIControlEventTouchUpInside];
     

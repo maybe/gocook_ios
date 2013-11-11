@@ -44,7 +44,7 @@
   [super viewDidLoad];
 
   srand((unsigned)time(0));
-  rndValue = rand() % 100;
+  rndValue = 1229676229;// rand() % 100;
 
   NSURL* url = [[NSURL alloc] initWithString: [NSString stringWithFormat:@"http://o.m6fresh.com/ws/mobile_reg.aspx?sid=%d", rndValue]];
   [webView loadRequest:[NSURLRequest requestWithURL: url]];

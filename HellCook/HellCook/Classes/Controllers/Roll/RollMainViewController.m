@@ -86,19 +86,6 @@
   [self.view addSubview:goBackBtn];
   goBackBtn.hidden = YES;
   
-  //******
-  resultImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 100, 300, 60)];
-  [self.view addSubview:resultImage];
-  NSString *data = @"111122233433";
-  ZXMultiFormatWriter *writer = [[ZXMultiFormatWriter alloc] init];
-  ZXBitMatrix *result = [writer encode:data format:kBarcodeFormatCode128 width:self.resultImage.frame.size.width height:self.resultImage.frame.size.width error:nil];
-  if (result) {
-    self.resultImage.image = [UIImage imageWithCGImage:[ZXImage imageWithMatrix:result].cgimage];
-  } else {
-    self.resultImage.image = nil;
-  }
-  //******
-  
   [self autoLayout];
   [super viewDidLoad];
 }

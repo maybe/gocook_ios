@@ -106,7 +106,7 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
   [User sharedInstance];
 
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-  
+
   return YES;
 }
 
