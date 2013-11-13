@@ -23,6 +23,7 @@
 #import "HistoryDealViewController.h"
 #import "HCNavigationController.h"
 #import "CouponsViewController.h"
+#import "NewCouponsViewController.h"
 
 @interface AccountController ()
 
@@ -203,7 +204,7 @@ destructiveButtonTitle:@"确定"
     [actionSheet showInView:self.mm_drawerController.view];
   }
   else if (indexPath.row == 0) {
-    CouponsViewController *pViewController = [[CouponsViewController alloc] initWithNibName:@"CouponsView" bundle:nil];
+    NewCouponsViewController *pViewController = [[NewCouponsViewController alloc] initWithNibName:@"NewCouponsView" bundle:nil];
     [ApplicationDelegate.centerNavController setViewControllers:@[pViewController] animated:NO];
     [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
   }
