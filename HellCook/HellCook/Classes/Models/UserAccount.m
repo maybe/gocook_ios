@@ -18,10 +18,14 @@
     NSMutableDictionary* dic = [[DBHandler sharedInstance] getAccount];
     if (dic) {
       username = [dic valueForKey:@"username"];
-      avatar = [dic valueForKey:@"avatar"];
-      user_id = [[dic valueForKey:@"user_id"] intValue];
-      isLogin = YES;
-      shouldResetLogin = YES;
+      if (username == nil]) {
+        isLogin = NO;
+      } else {
+        avatar = [dic valueForKey:@"avatar"];
+        user_id = [[dic valueForKey:@"user_id"] intValue];
+        isLogin = YES;
+        shouldResetLogin = YES;
+      }
     }
     else{
       isLogin = NO;

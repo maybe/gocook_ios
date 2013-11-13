@@ -324,10 +324,12 @@
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       if (jsonObject!=nil && [[jsonObject objectForKey:@"result"] intValue] == 0) {
         UserAccount* userAccount = [[User sharedInstance] account];
-        userAccount.username = dict[@"nickname"];
-        DBHandler* dbHandler = [DBHandler sharedInstance];
-        [dbHandler changeName:dict[@"nickname"]];
-        [[[User sharedInstance] account] setShouldResetLogin:YES];
+        if ([[dict allKeys] containsObject:@"nickname"]) {
+          userAccount.username = dict[@"nickname"];
+          DBHandler* dbHandler = [DBHandler sharedInstance];
+          [dbHandler changeName:dict[@"nickname"]];
+          [[[User sharedInstance] account] setShouldResetLogin:YES];
+        }
       }
       completionBlock(jsonObject);
     }];
