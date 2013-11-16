@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class ODRefreshControl;
 @interface NewCouponsViewController : UIViewController
 {
   UIButton *topBtn;
@@ -16,10 +17,14 @@
   NSInteger totalPage;
   BOOL isPageEnd;
   NSMutableArray *itmesArray;
+  
+  ODRefreshControl *refreshControl;
+  UIActivityIndicatorView* mLoadingActivity;
 }
 
 @property (nonatomic,retain) IBOutlet UIButton *topBtn;
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
+@property (nonatomic, retain) UIActivityIndicatorView* mLoadingActivity;
 
 @end

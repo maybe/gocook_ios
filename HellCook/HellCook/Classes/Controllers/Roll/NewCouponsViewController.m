@@ -10,6 +10,7 @@
 #import "LoginController.h"
 #import "NetManager.h"
 #import "NewCouponCell.h"
+#import "ODRefreshControl.h"
 
 @interface NewCouponsViewController ()
 
@@ -26,6 +27,10 @@
     curPage = 0;
     isPageEnd = FALSE;
     itmesArray = [[NSMutableArray alloc] init];
+    
+    refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
+    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+    refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
   }
   return self;
 }
@@ -80,6 +85,45 @@
   [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl
+{
+  curPage = 0;
+  isPageEnd = FALSE;
+  [itmesArray removeAllObjects];
+    
+  [self getAllMyCoupons];
+}
+
+- (void)initLoadingView
+{
+  CGRect frame = self.myTableView.tableFooterView.frame;
+  frame.size.height = 50;
+  self.myTableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
+  //CGFloat tablewidth = self.tableView.frame.size.width;
+  mLoadingActivity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+  [mLoadingActivity setCenter:CGPointMake(160, 25)];
+  [mLoadingActivity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+  [self.myTableView.tableFooterView addSubview:mLoadingActivity];
+  [mLoadingActivity stopAnimating];
+}
+
+- (void)showLoadingView
+{
+  CGRect frame = self.myTableView.tableFooterView.frame;
+  frame.size.height = 50;
+  [self.myTableView.tableFooterView setFrame:frame];
+  [mLoadingActivity startAnimating];
+}
+
+- (void)deleteLoadingView
+{
+  CGRect frame = self.myTableView.tableFooterView.frame;
+  frame.size.height = 3;
+  [mLoadingActivity stopAnimating];
+  [mLoadingActivity setHidden:YES];
+  self.myTableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -96,6 +140,17 @@
   return UIInterfaceOrientationMaskPortrait;
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+  // 下拉到最底部时显示更多数据
+  if(scrollView.contentOffset.y + 40 >= ((scrollView.contentSize.height - scrollView.frame.size.height)))
+  {
+    if (![self.netOperation isExecuting] && !isPageEnd) {
+      [self showLoadingView];
+      [self getAllMyCoupons];
+    }
+  }
+}
 
 #pragma mark - Table view data source
 
@@ -147,6 +202,13 @@
 #pragma mark - network
 -(void)getAllMyCoupons
 {
+  if (isPageEnd)
+  {
+    if ([refreshControl isRefreshing]) {
+      [refreshControl endRefreshing];
+    }
+    return;
+  }
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
                        getAllMyCouponsByPage:(curPage + 1)
                        completionHandler:^(NSMutableDictionary *resultDic) {
@@ -161,6 +223,10 @@
 
 - (void)getAllMyCouponsDataCallBack:(NSMutableDictionary*) resultDic
 {
+  if ([refreshControl isRefreshing]) {
+    [refreshControl endRefreshing];
+  }
+  
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success)
   {
