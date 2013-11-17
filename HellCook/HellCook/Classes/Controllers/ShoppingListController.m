@@ -454,7 +454,7 @@
   if (contentArray[(NSUInteger)indexPath.row][@"recipeid"]) {
     int recipe_id = [contentArray[(NSUInteger)indexPath.row][@"recipeid"] intValue];
     if (recipe_id != 0) {
-      [self.mm_drawerController.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipe_id withPrevTitle:@"购买清单"] animated:YES];
+      [self.mm_drawerController.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipe_id] animated:YES];
     }
   }
   else {
