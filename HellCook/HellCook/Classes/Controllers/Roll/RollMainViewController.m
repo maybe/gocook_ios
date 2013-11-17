@@ -12,7 +12,6 @@
 #import "HCNavigationController.h"
 #import "NetManager.h"
 #import "AudioToolbox/AudioToolbox.h"
-#import "ZXingObjC.h"
 
 @interface RollMainViewController ()
 
@@ -304,18 +303,7 @@
     [contentLabel setFrame:CGRectMake(20, 40, 280, contentSize.height)];
     [contentLabel setText:content];
     
-    //******
-    resultImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 100, 300, 60)];
-    [self.view addSubview:resultImage];
-    NSString *data = @"111122233433";
-    ZXMultiFormatWriter *writer = [[ZXMultiFormatWriter alloc] init];
-    ZXBitMatrix *result = [writer encode:data format:kBarcodeFormatCode128 width:self.resultImage.frame.size.width height:self.resultImage.frame.size.width error:nil];
-    if (result) {
-      self.resultImage.image = [UIImage imageWithCGImage:[ZXImage imageWithMatrix:result].cgimage];
-    } else {
-      self.resultImage.image = nil;
-    }
-    //******
+    
     
     [goBackBtn setFrame:CGRectMake(50, 40+contentSize.height+40, 230, 50)];
   }

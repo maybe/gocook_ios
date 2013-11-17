@@ -48,10 +48,6 @@
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
     HUD.mode = MBProgressHUDModeText;
-    
-    refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
-    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
-    refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
   }
   return self;
 }
@@ -67,6 +63,9 @@
   CGRect tableFrame = self.myTableView.frame;
   tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.myTableView setFrame:tableFrame];
+  refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
+  [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+  refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
 
   [self setLeftButton];
   

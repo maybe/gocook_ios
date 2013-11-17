@@ -23,7 +23,7 @@
     [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     //backgroundView
-    backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, height-10)];
+    backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 320, height-10)];
     [backgroundView setContentMode:UIViewContentModeScaleToFill];
     [self addSubview:backgroundView];
     //contentLabel

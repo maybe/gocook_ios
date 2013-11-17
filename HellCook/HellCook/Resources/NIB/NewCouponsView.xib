@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewCouponsViewController">
             <connections>
+                <outlet property="mWaitingActivity" destination="tcL-17-pqg" id="QNJ-rj-62K"/>
                 <outlet property="myTableView" destination="E2U-xz-T5d" id="9Ax-iG-Dqx"/>
                 <outlet property="topBtn" destination="iJ1-dj-Rr1" id="cqG-fR-fBO"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -17,10 +18,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="485"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="E2U-xz-T5d">
+                <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="E2U-xz-T5d">
                     <rect key="frame" x="0.0" y="69" width="320" height="416"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="QU2-cY-9Zw"/>
                         <outlet property="delegate" destination="-1" id="DXn-Ws-Xd5"/>
@@ -31,16 +32,20 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal">
-                        <color key="titleColor" patternImage="8CFD0629-94B0-42E4-BCBD-854A9D0F7C6F" colorSpace="pattern"/>
+                        <color key="titleColor" patternImage="E8D35E38-A1D0-4EAC-9177-A5403BD00A2D" colorSpace="pattern"/>
                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <activityIndicatorView hidden="YES" autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="tcL-17-pqg">
+                    <rect key="frame" x="150" y="249" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
         </view>
     </objects>
     <resources>
-        <image name="8CFD0629-94B0-42E4-BCBD-854A9D0F7C6F" width="320" height="460">
+        <image name="E8D35E38-A1D0-4EAC-9177-A5403BD00A2D" width="320" height="460">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

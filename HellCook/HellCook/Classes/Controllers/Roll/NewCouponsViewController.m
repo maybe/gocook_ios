@@ -11,6 +11,8 @@
 #import "NetManager.h"
 #import "NewCouponCell.h"
 #import "ODRefreshControl.h"
+#import "RollMainViewController.h"
+#import "NewCouponsDetailViewController.h"
 
 @interface NewCouponsViewController ()
 
@@ -19,6 +21,7 @@
 @implementation NewCouponsViewController
 @synthesize topBtn,myTableView;
 @synthesize netOperation;
+@synthesize mLoadingActivity,mWaitingActivity;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,10 +30,6 @@
     curPage = 0;
     isPageEnd = FALSE;
     itmesArray = [[NSMutableArray alloc] init];
-    
-    refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
-    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
-    refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
   }
   return self;
 }
@@ -51,11 +50,16 @@
   [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
   UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/RollBtnBackgroundHighlighted.png"];
   [topBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
+  [topBtn addTarget:self action:@selector(Roll) forControlEvents:UIControlEventTouchUpInside];
   
   CGRect tableFrame = self.myTableView.frame;
   tableFrame.origin.y = btnFrame.size.height;
   tableFrame.size.height = _screenHeight_NoStBar_NoNavBar - btnFrame.size.height;
   [self.myTableView setFrame:tableFrame];
+  
+  refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
+  [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+  refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
   
   [self setLeftButton];
   
@@ -83,6 +87,12 @@
 -(void)returnToPrev
 {
   [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
+-(void)Roll
+{
+  RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" withCouponId:@"0" bundle:nil];
+  [self.navigationController pushViewController:pViewController animated:YES];
 }
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl
@@ -199,6 +209,30 @@
   return cell;
 }
 
+
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  NSMutableDictionary *dict = [itmesArray objectAtIndex:indexPath.row];
+  NSInteger type;
+  if ([dict[@"status"] intValue] == 1)//有效
+  {
+    if ([dict[@"is_delay"] intValue] == 1){//抽奖机会
+      type = 0;
+    }
+    else{//优惠券
+      type = 1;
+    }
+  }
+  else{//过期
+    type = 2;
+  }
+  NewCouponsDetailViewController *pController = [[NewCouponsDetailViewController alloc] initWithNibName:@"NewCouponsDetailView" withType:type withData:dict bundle:nil];
+  [self.navigationController pushViewController:pController animated:YES];
+}
+
 #pragma mark - network
 -(void)getAllMyCoupons
 {
@@ -209,6 +243,8 @@
     }
     return;
   }
+  [mWaitingActivity startAnimating];
+  
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
                        getAllMyCouponsByPage:(curPage + 1)
                        completionHandler:^(NSMutableDictionary *resultDic) {
@@ -223,6 +259,7 @@
 
 - (void)getAllMyCouponsDataCallBack:(NSMutableDictionary*) resultDic
 {
+  [mWaitingActivity stopAnimating];
   if ([refreshControl isRefreshing]) {
     [refreshControl endRefreshing];
   }

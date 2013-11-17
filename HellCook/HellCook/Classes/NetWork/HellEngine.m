@@ -722,7 +722,7 @@
                            completionHandler:(allMyCouponsResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/my_coupons?page=%d",page]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/my_coupons?page=%d&test_id=2",page]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -743,7 +743,7 @@
 - (MKNetworkOperation*)getSalesOfTodayWithcompletionHandler:(getSalesOfTodayResponseBlock)completionBlock
                                                errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/day_sales"]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/day_sales?test_id=2"]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -765,7 +765,7 @@
                     completionHandler:(getCouponsResponseBlock)completionBlock
                          errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/get_coupon?id=%@",couponId]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/get_coupon?id=%@&test_id=2",couponId]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -787,7 +787,7 @@
                       completionHandler:(delayLotteryResponseBlock)completionBlock
                            errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/delay_coupon?id=%@",couponId]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/delay_coupon?id=%@&test_id=2",couponId]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
