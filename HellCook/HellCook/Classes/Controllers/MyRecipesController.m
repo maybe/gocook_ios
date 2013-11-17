@@ -13,6 +13,7 @@
 #import "MyRecipesEditController.h"
 #import "User.h"
 #import "ODRefreshControl.h"
+#import "MyRecipeDetailController.h"
 
 @interface MyRecipesController ()
 
@@ -37,12 +38,17 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  [self autoLayout];
+
   [self resetTableHeader];
 
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar_NoTabBar;
+  CGRect tableFrame = self.tableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar_NoTabBar;
   [self.view setFrame:viewFrame];
-  [self.tableView setFrame:viewFrame];
+  self.view.autoresizesSubviews = NO;
+  [self.tableView setFrame:tableFrame];
 
   refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
@@ -66,7 +72,6 @@
 }
 
 - (void)reloadRecipeData {
-  [mMyRecipeArray removeAllObjects];
   curPage = 0;
   isPageEnd = NO;
   //[self.tableView reloadData];
@@ -74,11 +79,16 @@
 }
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl {
+  [self initLoadingView];
   [self reloadRecipeData]; //下拉刷新的话就不显示loadingView的圈了
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+
+  self.tabBarController.navigationItem.title = @"我的菜谱";
+  [self.tabBarController.navigationItem setRightBarButtonItem:nil];
+
   if (firstLoad) {
     [self reloadRecipeData];
     [self showLoadingView];
@@ -98,7 +108,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath; {
-  return 90;
+  return 208;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -119,6 +129,11 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  NSString* recipeIdStr = mMyRecipeArray[(NSUInteger)indexPath.row][@"recipe_id"];
+  NSInteger recipeId = [recipeIdStr intValue];
+
+  [self.navigationController pushViewController:[[MyRecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId] animated:YES];
+
   // [self.navigationController pushViewController:[[RegisterController alloc]initWithNibName:@"RegisterView" bundle:nil] animated:YES];
   // NSString* recipeIdStr = mMyRecipeArray[indexPath.row][@"recipe_id"];
   // NSInteger recipeId = [recipeIdStr intValue];
@@ -186,6 +201,7 @@
 
 - (void)getRecipesResultCallBack:(NSMutableDictionary *)resultDic {
   if ([refreshControl isRefreshing]) {
+    [mMyRecipeArray removeAllObjects];
     [refreshControl endRefreshing];
   }
 
@@ -353,6 +369,7 @@
   frame.size.height = 50;
   [self.tableView.tableFooterView setFrame:frame];
   [mLoadingActivity startAnimating];
+  [mLoadingActivity setHidden:NO];
 }
 
 - (void)deleteLoadingView {
@@ -368,11 +385,11 @@
 
 - (void)resetTableHeader {
   CGRect frame = self.tableView.tableHeaderView.frame;
-  frame.size.height = 72;
+  frame.size.height = 44;
   self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
   CGFloat tableWidth = self.tableView.frame.size.width;
 
-  UIButton *uploadButton = [[UIButton alloc] initWithFrame:CGRectMake(tableWidth / 2 - 106, 20, 212, 28)];
+  UIButton *uploadButton = [[UIButton alloc] initWithFrame:CGRectMake(tableWidth / 2 - 106, 8, 212, 28)];
   UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/UploadRecipeNormal.png"];
   UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
   [uploadButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
@@ -387,7 +404,7 @@
 
   UIImage *dotImage = [UIImage imageNamed:@"Images/homeHeaderSeperator.png"];
   UIImageView *dotImageView = [[UIImageView alloc] initWithImage:dotImage];
-  [dotImageView setFrame:CGRectMake(0, 71, 320, 1)];
+  [dotImageView setFrame:CGRectMake(0, 43, 320, 1)];
 
   [self.tableView.tableHeaderView addSubview:dotImageView];
 }

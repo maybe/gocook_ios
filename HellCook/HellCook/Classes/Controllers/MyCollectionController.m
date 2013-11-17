@@ -29,12 +29,14 @@
     curPage = 0;
     bShouldRefresh = TRUE;
     myCollectionArray = [[NSMutableArray alloc] init];
-    [self initLoadingView];
   }
   return self;
 }
 
 - (void)viewDidLoad {
+  [super viewDidLoad];
+  [self autoLayout];
+
   self.navigationItem.title = @"我的收藏";
 
   CGRect viewFrame = self.view.frame;
@@ -44,6 +46,7 @@
   [self.tableView setFrame:viewFrame];
 
   [self setLeftButton];
+  [self initLoadingView];
 
   refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
@@ -53,8 +56,6 @@
 
   [self getMyCollectionData];
 
-  [self autoLayout];
-  [super viewDidLoad];
 }
 
 - (void)dealloc {
@@ -62,10 +63,9 @@
 }
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl {
-  [myCollectionArray removeAllObjects];
+  [self initLoadingView];
   curPage = 0;
   bShouldRefresh = YES;
-  [self.tableView reloadData];
   [self getMyCollectionData];
 }
 
@@ -83,7 +83,7 @@
   frame.size.height = 50;
   self.tableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
   mLoadingActivity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-  [mLoadingActivity setCenter:CGPointMake(160, 25)];
+  [mLoadingActivity setCenter:CGPointMake(140, 25)];
   [mLoadingActivity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
   [self.tableView.tableFooterView addSubview:mLoadingActivity];
   [mLoadingActivity stopAnimating];
@@ -100,7 +100,6 @@
   CGRect frame = self.tableView.tableFooterView.frame;
   frame.size.height = 3;
   [mLoadingActivity stopAnimating];
-  [mLoadingActivity setHidden:YES];
   self.tableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
 }
 
@@ -141,7 +140,7 @@
   NSInteger recipeId = [recipeIdStr intValue];
 
 //  [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId withPrevTitle:titile] animated:YES];
-  [self.mm_drawerController.navigationController pushViewController:[[RecipeDetailController alloc] initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId withPrevTitle:@"我的收藏"] animated:YES];
+  [self.mm_drawerController.navigationController pushViewController:[[RecipeDetailController alloc] initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId] animated:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -195,6 +194,7 @@
 - (void)getMyCollectionDataCallBack:(NSMutableDictionary *)resultDic {
   if ([refreshControl isRefreshing]) {
     [refreshControl endRefreshing];
+    [myCollectionArray removeAllObjects];
   }
 
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];

@@ -54,6 +54,7 @@
 		658090A667414B0C7C0FC74C /* MyFansTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580968DA2D5E059A32783EE /* MyFansTableViewCell.m */; };
 		6580911C6856794208CF4756 /* ShoppingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809B0E00C8DBF54C173AA2 /* ShoppingListController.m */; };
 		65809156E7DABE799C2F7FA7 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809B02DB1E620DC0202A9C /* MainController.m */; };
+		658091ADADDEFB5B0E7B279C /* MyRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809EF8FF714A281B68CF77 /* MyRecipeDetailController.m */; };
 		658091F6C60F8CF7C573F92D /* MyRecipeMaterialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809059F94DB0CAFAA69B52 /* MyRecipeMaterialTableViewCell.m */; };
 		658092ACE286F8686A7C1A5B /* MainCatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809357F1407AB6672716BE /* MainCatTableViewCell.m */; };
 		658093335D0DAF06A1D43215 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658091650B219FCFA570043D /* LoginController.m */; };
@@ -358,12 +359,14 @@
 		65809D4D0405FD740245FDE0 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainController.h; path = Classes/Controllers/MainController.h; sourceTree = "<group>"; };
 		65809D6C318AABFFA98D343F /* RecipeDetailTipsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailTipsTableViewCell.h; sourceTree = "<group>"; };
 		65809D7E95C3C15B991813FE /* CommonDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonDef.h; path = Classes/Common/CommonDef.h; sourceTree = "<group>"; };
+		65809D9E6640A6C4958217D4 /* MyRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipeDetailController.h; path = Classes/Controllers/HomePageRecipes/MyRecipeDetailController.h; sourceTree = "<group>"; };
 		65809DA15D945E7C62FCE893 /* MyRecipeMaterialTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipeMaterialTableViewCell.h; path = Classes/Views/MyRecipes/MyRecipeMaterialTableViewCell.h; sourceTree = "<group>"; };
 		65809DD0E5E5A5EA8826C091 /* DebugOptionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugOptionController.h; path = Classes/Controllers/DebugOptionController.h; sourceTree = "<group>"; };
 		65809E8CB060BBF11E38CA35 /* SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchController.h; path = Classes/Controllers/SearchController.h; sourceTree = "<group>"; };
 		65809E8E3BE0ED477C92E98C /* NSAlert+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
 		65809E9C9ACFA88204E3C309 /* SearchGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchGoodsViewController.m; path = Classes/Controllers/BuyGoods/SearchGoodsViewController.m; sourceTree = "<group>"; };
 		65809EA44DB59ACA97DD86C7 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		65809EF8FF714A281B68CF77 /* MyRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipeDetailController.m; path = Classes/Controllers/HomePageRecipes/MyRecipeDetailController.m; sourceTree = "<group>"; };
 		65809F4F87DF7B86515B2F8B /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyViewController.m; path = Classes/Controllers/BuyGoods/BuyViewController.m; sourceTree = "<group>"; };
 		65809FAF8932AFE7872BF760 /* MainTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTopTableViewCell.h; path = Classes/Views/MainTopTableViewCell.h; sourceTree = "<group>"; };
 		65809FD06094A9C81A302265 /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootNavigationController.h; path = Classes/Common/RootNavigationController.h; sourceTree = "<group>"; };
@@ -1710,6 +1713,8 @@
 				BA3E044517B68B63007F1E86 /* MyRecipesStepController.m */,
 				BA3E045617B7E960007F1E86 /* MyRecipesTipsController.h */,
 				BA3E045717B7E961007F1E86 /* MyRecipesTipsController.m */,
+				65809EF8FF714A281B68CF77 /* MyRecipeDetailController.m */,
+				65809D9E6640A6C4958217D4 /* MyRecipeDetailController.h */,
 			);
 			name = MyRecipes;
 			sourceTree = "<group>";
@@ -2118,6 +2123,7 @@
 				65809DB6DDFEA4775E8C2967 /* RecipeDetailTipsTableViewCell.m in Sources */,
 				65809FE0167BB52FDE35EF8A /* RootNavigationController.m in Sources */,
 				65809372D3F2496C69D29E54 /* RegexKitLite.m in Sources */,
+				658091ADADDEFB5B0E7B279C /* MyRecipeDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

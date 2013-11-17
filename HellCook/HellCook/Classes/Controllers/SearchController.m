@@ -121,7 +121,7 @@
   NSString* recipeIdStr = recipeArray[indexPath.row][@"recipe_id"];
   NSInteger recipeId = [recipeIdStr intValue];
   
-  [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId withPrevTitle:self.title] animated:YES];
+  [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId] animated:YES];
 }
 
 

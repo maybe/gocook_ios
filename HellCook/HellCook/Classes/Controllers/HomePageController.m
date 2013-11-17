@@ -3,7 +3,7 @@
 //  HellCook
 //
 //  Created by panda on 8/4/13.
-//  Copyright (c) 2013 panda. All rights reserved.
+//  Copyright (c) 2013 panda. All ws reserved.
 //
 
 #import "HomePageController.h"

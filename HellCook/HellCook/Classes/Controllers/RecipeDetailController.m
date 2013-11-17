@@ -21,17 +21,16 @@
 @end
 
 @implementation RecipeDetailController
-@synthesize tableView,netOperation,recipeDataDic,cellContentArray,mPrevTitle;
+@synthesize tableView,netOperation,recipeDataDic,cellContentArray;
 @synthesize recipeCommentsArray;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId withPrevTitle:(NSString*) prevName
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
   }
   
   mRecipeId = recipeId;
-  mPrevTitle = [[NSString alloc]initWithString:prevName];
   recipeCommentsArray = [[NSMutableArray alloc] init];
 
   return self;
@@ -282,7 +281,7 @@
 
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0) {
-    recipeDataDic = [[NSDictionary alloc]initWithDictionary:resultDic[@"result_recipe"]];
+    recipeDataDic = [[NSMutableDictionary alloc]initWithDictionary:resultDic[@"result_recipe"]];
   }
 
   [self.tableView reloadData];
@@ -350,6 +349,8 @@
     [cell.collectButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
 
     [cell.collectButton setAssociativeObject:@"已收藏" forKey:@"title"];
+
+    recipeDataDic[@"collect"] = @"0";
   }
 }
 
@@ -376,6 +377,8 @@
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/CollectButton.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [cell.collectButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
+
+    recipeDataDic[@"collect"] = @"1";
   }
 }
 

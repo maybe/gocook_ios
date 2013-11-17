@@ -20,13 +20,11 @@ typedef enum{
 @interface RecipeDetailController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
   UITableView* tableView;
-  NSDictionary* recipeDataDic;
+  NSMutableDictionary* recipeDataDic;
   NSMutableArray* cellContentArray;
   
   NSInteger mRecipeId;
-  
-  NSString* mPrevTitle;
-  
+
   NSMutableArray *recipeCommentsArray;
 
   UIActivityIndicatorView* mLoadingActivity;
@@ -34,12 +32,11 @@ typedef enum{
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
-@property (nonatomic, retain) NSDictionary* recipeDataDic;
+@property (nonatomic, retain) NSMutableDictionary* recipeDataDic;
 @property (nonatomic, retain) NSMutableArray* cellContentArray;
-@property (nonatomic, retain) NSString* mPrevTitle;
 @property (nonatomic, retain) NSMutableArray *recipeCommentsArray;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId withPrevTitle:(NSString*) prevName;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId;
 
 - (RecipeDetailBaseTableViewCell*)GetTableCell:(NSInteger)index;
 

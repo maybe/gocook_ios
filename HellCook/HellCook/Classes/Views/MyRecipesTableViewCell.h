@@ -7,31 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TopListTableViewCell.h"
 
-@interface MyRecipesTableViewCell : UITableViewCell{
-  UILabel* titleLabel;
-  UILabel* materialLabel;
-  UIImageView* imageView;
-  UIImageView* maskImageView;
-  UIButton* delButton;
-  UIButton* modifyButton;
+@interface MyRecipesTableViewCell : TopListTableViewCell {
 }
-
-@property (nonatomic, retain) UILabel* titleLabel;
-@property (nonatomic, retain) UILabel* materialLabel;
-@property (nonatomic, retain) UIImageView* imageView;
-@property (nonatomic, retain) UIImageView* maskImageView;
-@property (nonatomic, retain) UIButton* delButton;
-@property (nonatomic, retain) UIButton* modifyButton;
-
-
-- (UILabel*)titleLabel;
-- (UILabel*)materialLabel;
-- (UIImageView*)imageView;
-- (UIImageView*)maskImageView;
-
-- (void)setAdminButtons;
-
-- (void)setData:(NSMutableDictionary*) dictionary;
 
 @end

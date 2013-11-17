@@ -1,5 +1,4 @@
 #import "HCNavigationController.h"
-#import "UIViewController+MMDrawerController.h"
 #import "RecipeDetailController.h"
 
 @interface HCNavigationController ()
