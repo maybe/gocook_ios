@@ -16,14 +16,14 @@
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
     // Initialization code
-    height = 90;
+    height = 70;
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320, height)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    //[self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     //backgroundView
-    backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 320, height-10)];
+    backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 66)];
     [backgroundView setContentMode:UIViewContentModeScaleToFill];
     [self addSubview:backgroundView];
     //contentLabel

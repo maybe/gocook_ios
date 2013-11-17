@@ -44,19 +44,20 @@
   [self.view setFrame:viewFrame];
   
   CGRect btnFrame = topBtn.frame;
-  btnFrame.size.height = 80;
+  btnFrame.size.height = 56;
   [topBtn setFrame:btnFrame];
   UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RollBtnBackground.png"];
   [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
-  UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/RollBtnBackgroundHighlighted.png"];
-  [topBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
+  [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateHighlighted];
   [topBtn addTarget:self action:@selector(Roll) forControlEvents:UIControlEventTouchUpInside];
   
   CGRect tableFrame = self.myTableView.frame;
   tableFrame.origin.y = btnFrame.size.height;
   tableFrame.size.height = _screenHeight_NoStBar_NoNavBar - btnFrame.size.height;
   [self.myTableView setFrame:tableFrame];
-  
+
+  myTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+
   refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
   refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
@@ -176,7 +177,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return 90;
+  return 70;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -261,8 +262,8 @@
 {
   [mWaitingActivity stopAnimating];
   if ([refreshControl isRefreshing]) {
-    [itmesArray removeAllObjects];
     [refreshControl endRefreshing];
+    [itmesArray removeAllObjects];
   }
   
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];

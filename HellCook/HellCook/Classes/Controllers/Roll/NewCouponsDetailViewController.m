@@ -40,13 +40,13 @@
   [self.view setFrame:viewFrame];
   
   CGRect btnFrame = topBtn.frame;
-  btnFrame.size.height = 80;
+  btnFrame.size.height = 56;
   [topBtn setFrame:btnFrame];
   if (myType == 0)//抽奖机会
   {
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RollBtnBackground.png"];
     [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
-    UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/RollBtnBackgroundHighlighted.png"];
+    UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/RollBtnBackground.png"];
     [topBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
   }
   else if (myType == 1)//有效优惠券
@@ -78,7 +78,8 @@
   tableFrame.origin.y = btnFrame.size.height;
   tableFrame.size.height = _screenHeight_NoStBar_NoNavBar - btnFrame.size.height;
   [self.myTableView setFrame:tableFrame];
-  
+  myTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+
   [self setLeftButton];
   
   [self autoLayout];
