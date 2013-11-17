@@ -99,7 +99,7 @@
 {
   curPage = 0;
   isPageEnd = FALSE;
-  [itmesArray removeAllObjects];
+//  [itmesArray removeAllObjects];
     
   [self getAllMyCoupons];
 }
@@ -261,6 +261,7 @@
 {
   [mWaitingActivity stopAnimating];
   if ([refreshControl isRefreshing]) {
+    [itmesArray removeAllObjects];
     [refreshControl endRefreshing];
   }
   
