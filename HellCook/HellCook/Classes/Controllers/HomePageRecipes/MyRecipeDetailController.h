@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "RecipeDetailController.h"
+#import "MBProgressHUD.h"
 
 @class RecipeDetailBaseTableViewCell;
-@interface MyRecipeDetailController : RecipeDetailController
+@interface MyRecipeDetailController : RecipeDetailController <UIActionSheetDelegate, UIAlertViewDelegate, MBProgressHUDDelegate>
 {
+  MBProgressHUD *HUD;
+  BOOL isDelRecipe;
 }
 
 @end

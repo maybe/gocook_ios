@@ -39,5 +39,6 @@ typedef enum{
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withId:(NSInteger)recipeId;
 
 - (RecipeDetailBaseTableViewCell*)GetTableCell:(NSInteger)index;
+- (void)returnToPrev;
 
 @end

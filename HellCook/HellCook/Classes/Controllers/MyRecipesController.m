@@ -64,7 +64,7 @@
   HUD.delegate = self;
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
-
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnDeleteRecipe:) name:@"EVT_OnDeleteRecipe" object:nil];
 }
 
 - (void)dealloc {
@@ -90,6 +90,7 @@
   [self.tabBarController.navigationItem setRightBarButtonItem:nil];
 
   if (firstLoad) {
+    [mMyRecipeArray removeAllObjects];
     [self reloadRecipeData];
     [self showLoadingView];
     firstLoad = NO;
@@ -163,29 +164,6 @@
   }
 }
 
-- (void)deleteOneMyRecipe:(id)sender {
-  MyRecipesTableViewCell* cell = (MyRecipesTableViewCell*)(((UIButton*)sender).superview);
-  NSIndexPath *indexPath = [tableView indexPathForCell: cell];
-  if (mMyRecipeArray.count > indexPath.row) {
-    deleteRecipeId = [mMyRecipeArray[(NSUInteger) indexPath.row][@"recipe_id"] intValue];
-    UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"确认删除吗？"
-                                                       message:@""
-                                                      delegate:self
-                                             cancelButtonTitle:@"取消"
-                                             otherButtonTitles:@"确定",nil];
-    [alert show];
-  }
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-  if (buttonIndex == 1) {
-    [self deleteRecipeData:deleteRecipeId];
-    [self.tableView reloadData];
-  }
-}
-
-
 #pragma mark - Net
 
 - (void)getRecipesData {
@@ -254,46 +232,6 @@
     }
   }
 }
-
-- (void)deleteRecipeData:(NSInteger)recipeId {
-
-  HUD.labelText = @"正在删除...";
-  [HUD show:YES];
-
-  self.mNetOperation = [[[NetManager sharedInstance] hellEngine]
-           deleteRecipe:recipeId
-           completionHandler:^(NSMutableDictionary *resultDic) {
-             [self deleteRecipeResultCallBack:resultDic];
-           }
-           errorHandler:^(NSError *error) {
-           }
-  ];
-}
-
-- (void)deleteRecipeResultCallBack:(NSMutableDictionary *)resultDic {
-
-  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result == GC_Success) {
-    HUD.labelText = @"删除成功";
-    [HUD hide:YES afterDelay:1.0];
-
-    [self reloadRecipeData];
-    [self showLoadingView];
-  }
-  else {
-    [HUD hide:YES];
-    NSInteger $errorCode = [[resultDic valueForKey:@"errorcode"] intValue];
-    if ($errorCode == GC_AuthAccountInvalid) {
-      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
-      m.callerClassName = NSStringFromClass([self class]);
-
-      if (self.navigationController) {
-        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
-      }
-    }
-  }
-}
-
 
 -(void)getOneRecipeDetailData:(NSInteger)recipeId
 {
@@ -424,6 +362,10 @@
     [self reloadRecipeData];
     [self showLoadingView];
   }
+}
+
+- (void)OnDeleteRecipe:(NSNotification *)notification {
+  firstLoad = YES;
 }
 
 @end
