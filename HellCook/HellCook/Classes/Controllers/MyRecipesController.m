@@ -64,7 +64,7 @@
   HUD.delegate = self;
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnDeleteRecipe:) name:@"EVT_OnDeleteRecipe" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnReloadRecipe:) name:@"EVT_ReloadRecipes" object:nil];
 }
 
 - (void)dealloc {
@@ -153,16 +153,7 @@
   }
 }
 
-#pragma  mark - Recipe Operation
-- (void)modifyOneMyRecipe:(id)sender {
-  // fix
-  MyRecipesTableViewCell* cell = (MyRecipesTableViewCell*)(((UIButton*)sender).superview);
-  NSIndexPath *indexPath = [tableView indexPathForCell: cell];
-  if (mMyRecipeArray.count > indexPath.row) {
-    modifyRecipeId = [mMyRecipeArray[(NSUInteger) indexPath.row][@"recipe_id"] intValue];
-    [self getOneRecipeDetailData:modifyRecipeId];
-  }
-}
+
 
 #pragma mark - Net
 
@@ -233,63 +224,6 @@
   }
 }
 
--(void)getOneRecipeDetailData:(NSInteger)recipeId
-{
-  self.mNetOperation = [[[NetManager sharedInstance] hellEngine]
-      getRecipeDetailData:recipeId
-             completionHandler:^(NSMutableDictionary *resultDic) {
-               [self getOneRecipeDetailCallBack:resultDic];
-             }
-             errorHandler:^(NSError *error) {
-             }];
-}
-
-- (void)getOneRecipeDetailCallBack:(NSMutableDictionary*) resultDic
-{
-  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result == GC_Success) {
-    NSDictionary* recipeDic = [[NSDictionary alloc]initWithDictionary:resultDic[@"result_recipe"]];
-    //初始化修改数据
-    [[[User sharedInstance] recipe] resetModifyRecipeData];
-    [[[User sharedInstance] recipe] setIsCreate:NO];
-    RecipeData* recipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
-    recipeData.recipe_id = [recipeDic[@"recipe_id"] intValue];
-    recipeData.user_id = [recipeDic[@"author_id"] intValue];
-    recipeData.name = recipeDic[@"recipe_name"];
-    recipeData.description = recipeDic[@"intro"];
-    recipeData.cover_img = recipeDic[@"cover_image"];
-    recipeData.cover_img_status = RecipeImage_UPLOADED;
-    recipeData.tips = recipeDic[@"tips"];
-
-    NSArray* materialArray = [recipeDic[@"materials"] componentsSeparatedByString:@"|"];
-    for (int i = 0; i < materialArray.count/2; i++) {
-      NSMutableDictionary* pDic = [[NSMutableDictionary alloc]init];
-      pDic[@"material"] = [[NSString alloc]initWithString:[materialArray objectAtIndex:(NSUInteger)i*2]];
-      pDic[@"weight"] = [[NSString alloc]initWithString:[materialArray objectAtIndex:(NSUInteger)i*2+1]];
-
-      [recipeData.materials addObject:pDic];
-    }
-
-    NSArray* stepArray = (NSArray*)recipeDic[@"steps"];
-    for (NSUInteger j = 0; j < stepArray.count; j++) {
-      NSMutableDictionary* pDic = [[NSMutableDictionary alloc]init];
-
-      pDic[@"step"] = [[NSString alloc]initWithString:stepArray[j][@"content"]];
-      pDic[@"imageUrl"] = [[NSString alloc]initWithString:stepArray[j][@"img"]];
-      if ([pDic[@"imageUrl"] isEqual:@""]) {
-        pDic[@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_UNSELECTED];
-
-      } else {
-        pDic[@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_UPLOADED];
-      }
-
-      [recipeData.recipe_steps addObject:pDic];
-    }
-
-    MyRecipesEditController *pEditController = [[MyRecipesEditController alloc] initWithNibName:@"MyRecipesEditView" bundle:nil];
-    [self.tabBarController.navigationController pushViewController:pEditController animated:YES];
-  }
-}
 
 - (void)initLoadingView {
   CGRect frame = self.tableView.tableFooterView.frame;
@@ -364,7 +298,7 @@
   }
 }
 
-- (void)OnDeleteRecipe:(NSNotification *)notification {
+- (void)OnReloadRecipe:(NSNotification *)notification {
   firstLoad = YES;
 }
 

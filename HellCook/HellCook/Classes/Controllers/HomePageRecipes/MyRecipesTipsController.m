@@ -330,8 +330,8 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_ReloadRecipes" object:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
-    NSLog(@"success");
   }
   else if (result == 1){
     //TODO:
