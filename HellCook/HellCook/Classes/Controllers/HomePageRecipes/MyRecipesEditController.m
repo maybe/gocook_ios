@@ -16,7 +16,6 @@
 #import "UIImage+Resizing.h"
 #import "UIImageView+WebCache.h"
 #import "DefaultGroupedTableCell.h"
-#import "MyRecipesMaterialController.h"
 
 #define kTableCellHeader  52
 #define kTableCellBody    52
@@ -28,7 +27,7 @@
 @end
 
 @implementation MyRecipesEditController
-@synthesize tableView, nameField, introTextView, uploadOperation;
+@synthesize tableView, nameField, isCoverUploaded, introTextView, uploadOperation, tipsController, stepController, materialController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +39,11 @@
 
 - (void)viewDidLoad
 {
+  [super viewDidLoad];
+  [self autoLayout];
+
+  isCoverUploaded = NO;
+
   [self setLeftButton];
   [self setRightButton];
   
@@ -77,14 +81,24 @@
     RecipeData* pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
     [self.nameField setText: pRecipeData.name];
     [self.introTextView setText:pRecipeData.description];
+    isCoverUploaded = YES;
 
     [headImageView.upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:pRecipeData.cover_img withType:Recipe526ImageUrl]]
-                              placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+                              placeholderImage:[UIImage imageNamed:@"Images/UploadCover.jpg"]];
 
     [headImageView.selectButton setTitle:@"替换" forState:UIControlStateNormal];
   }
-  
-  [super viewDidLoad];
+
+  materialController = [[MyRecipesMaterialController alloc] initWithNibName:@"MyRecipesMatieralView" bundle:nil];
+  stepController = [[MyRecipesStepController alloc] initWithNibName:@"MyRecipesStepView" bundle:nil];
+  tipsController = [[MyRecipesTipsController alloc]initWithNibName:@"MyRecipesTipsView" bundle:nil];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnPushStepController:) name:@"EVT_OnPushStepController" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnPushTipsController:) name:@"EVT_OnPushTipsController" object:nil];
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -249,7 +263,7 @@
 {
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
   picker.delegate = self;
-  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]==YES) {
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
   }
   picker.allowsEditing = NO;
@@ -262,7 +276,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   // Access the uncropped image from info dictionary
   UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
   
-  [headImageView setAssociativeObject:image forKey:@"cover_image_obj"];
+  //[headImageView setAssociativeObject:image forKey:@"cover_image_obj"];
   
   //Find the image url.
   //self.pickedImagePath = [(NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL] absoluteString];
@@ -297,6 +311,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
                               [self UploadCallBack:resultDic];}
                             errorHandler:^(NSError *error) {}
                             ];
+    isCoverUploaded = NO;
   }
 }
 
@@ -305,6 +320,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success)
   {
+    isCoverUploaded = YES;
+
     [headImageView setAssociativeObject:resultDic[@"avatar"] forKey:@"cover_img"];
     [headImageView.selectButton setTitle:@"替换" forState:UIControlStateNormal];
   }
@@ -360,7 +377,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)setRightButton
 {
-  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
+  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [rightBarButtonView addTarget:self action:@selector(onNext) forControlEvents:UIControlEventTouchUpInside];
   [rightBarButtonView setBackgroundImage:
    [UIImage imageNamed:@"Images/NextStepNormal.png"]
@@ -408,14 +425,26 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   if (![trimedDesc isEqualToString:@""]) {
     pRecipeData.description = [[NSString alloc]initWithString: trimedDesc];
   }
-  
+
+  if (!isCoverUploaded) {
+    return;
+  }
+
   if ([headImageView associativeObjectForKey:@"cover_img"]
       && ![[headImageView associativeObjectForKey:@"cover_img"] isEqual:@""]) {
     pRecipeData.cover_img = [headImageView associativeObjectForKey:@"cover_img"];
   }
-  
-  MyRecipesMaterialController* pController = [[MyRecipesMaterialController alloc] initWithNibName:@"MyRecipesMatieralView" bundle:nil];
-  [self.navigationController pushViewController:pController animated:YES];
+
+  [self.view endEditing:YES];
+  [self.navigationController pushViewController:materialController animated:YES];
+}
+
+- (void)OnPushStepController:(NSNotification *)notification {
+  [self.navigationController pushViewController:stepController animated:YES];
+}
+
+- (void)OnPushTipsController:(NSNotification *)notification {
+  [self.navigationController pushViewController:tipsController animated:YES];
 }
 
 @end

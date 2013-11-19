@@ -35,13 +35,15 @@
   UIImageView* upImageView;
   UIImage* defaultImage;
   NSInteger indexInTable;
+  UIButton* delButton;
 }
 
 @property (nonatomic, retain) SSTextView* stepTextView;
-@property (nonatomic,retain) UIButton* selectButton;
-@property (nonatomic,retain) UIImageView* upImageView;
-@property (nonatomic,retain) UIImage* defaultImage;
-@property(nonatomic, weak) id<RecipeStepCellInputDelegate> delegate;
+@property (nonatomic, retain) UIButton* selectButton;
+@property (nonatomic, retain) UIImageView* upImageView;
+@property (nonatomic, retain) UIImage* defaultImage;
+@property (nonatomic,   weak) id<RecipeStepCellInputDelegate> delegate;
+@property (nonatomic, retain) UIButton* delButton;
 @property NSInteger indexInTable;
 
 - (void)setData:(NSMutableDictionary*) dictionary;

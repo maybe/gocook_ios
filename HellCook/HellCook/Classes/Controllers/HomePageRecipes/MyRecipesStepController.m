@@ -20,12 +20,13 @@
 @end
 
 @implementation MyRecipesStepController
-@synthesize tableView, uploadOperation;
+@synthesize tableView, uploadOperation, recipeData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
+    isImagePickerDismiss = NO;
   }
   return self;
 }
@@ -46,29 +47,37 @@
   //keyboard
   keyboard = [[KeyboardHandler alloc] init];
   
-  CGRect viewframe = self.view.frame;
-  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
-  [self.view setFrame:viewframe];
-  [self.tableView setFrame:viewframe];
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
+  [self.tableView setFrame:viewFrame];
   
   cellContentList = [[NSMutableArray alloc]init];
 
-  RecipeData* pRecipeData = nil;
   if ([[[User sharedInstance] recipe] getIsCreate]) {
-    pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
+    recipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
   } else {
-    pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
+    recipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
   }
 
-  [cellContentList addObjectsFromArray: pRecipeData.recipe_steps];
-  
+
+  [self autoLayout];
   [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   keyboard.delegate = self;
-  
+
+  if (!isImagePickerDismiss) {
+    [cellContentList removeAllObjects];
+    [cellContentList addObjectsFromArray: recipeData.recipe_steps];
+    [tableView reloadData];
+  } else {
+    isImagePickerDismiss = NO;
+  }
+
+
   [super viewWillAppear:animated];
 }
 
@@ -80,12 +89,10 @@
 }
 
 - (BOOL)shouldAutorotate {
-  
   return NO;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-  
   return UIInterfaceOrientationMaskAll;
 }
 
@@ -146,12 +153,12 @@
   [pStepLineDic setObject:@"" forKey:@"step"];
   [cellContentList addObject: pStepLineDic];
   
-  NSMutableArray* indexpathArray = [[NSMutableArray alloc]init];
+  NSMutableArray*indexPathArray = [[NSMutableArray alloc]init];
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:cellContentList.count-1 inSection:0];
-  [indexpathArray addObject:indexPath];
+  [indexPathArray addObject:indexPath];
   
   [self.tableView beginUpdates];
-  [self.tableView insertRowsAtIndexPaths:indexpathArray withRowAnimation:UITableViewRowAnimationNone];
+  [self.tableView insertRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationNone];
   [self.tableView endUpdates];
 }
 
@@ -171,7 +178,7 @@
 {
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
   picker.delegate = self;
-  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]==YES) {
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
   }
   picker.allowsEditing = NO;
@@ -182,18 +189,12 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-  // Access the uncropped image from info dictionary
   UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-  
-  //Find the image url.
-  //self.pickedImagePath = [(NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL] absoluteString];
-  
-  // Dismiss the camera
+  isImagePickerDismiss = YES;
   [self dismissViewControllerAnimated:YES completion:nil];
-  
-  MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)imagePickerButton.superview;
-  //[cell.upImageView setImage:image];
-  
+
+  MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)[self relatedCell:imagePickerButton];
+
   NSIndexPath *indexPath = [tableView indexPathForCell: cell];
   cellContentList[(NSUInteger)indexPath.row][@"pickRealImage"] = image;
   cellContentList[(NSUInteger)indexPath.row][@"pickImage"] = (NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL];
@@ -206,7 +207,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
   NSString  *pngPath = @"";
   
-  MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)imagePickerButton.superview;
+  MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)[self relatedCell:imagePickerButton];
   NSIndexPath *indexPath = [tableView indexPathForCell: cell];
   
   UIImage* uploadImage = cell.upImageView.image;
@@ -246,6 +247,23 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     //TODO:
   }
   
+}
+
+#pragma mark - Delete One Step
+-(void) onDeleteOneStep:(id)sender
+{
+  [self.view endEditing:YES];
+
+  UITableViewCell* cell = [self relatedCell:sender];
+  NSIndexPath *indexPath = [tableView indexPathForCell: cell];
+  NSUInteger index = (NSUInteger)indexPath.row;
+  [cellContentList removeObjectAtIndex:index];
+  [tableView reloadData];
+//  NSMutableArray* indexPathArray = [[NSMutableArray alloc]init];
+//  [indexPathArray addObject:indexPath];
+//  [self.tableView beginUpdates];
+//  [self.tableView deleteRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationNone];
+//  [self.tableView endUpdates];
 }
 
 #pragma mark - Keyboard
@@ -296,7 +314,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)setRightButton
 {
-  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
+  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [rightBarButtonView addTarget:self action:@selector(onNext) forControlEvents:UIControlEventTouchUpInside];
   [rightBarButtonView setBackgroundImage:
    [UIImage imageNamed:@"Images/NextStepNormal.png"]
@@ -323,28 +341,22 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   [[NSNotificationCenter defaultCenter] postNotificationName:@"ResignMyRecipeStepTextView" object:nil];
   
   [self setDataToRecipe];
-  
-  MyRecipesTipsController* pController = [[MyRecipesTipsController alloc]initWithNibName:@"MyRecipesTipsView" bundle:nil];
-  [self.navigationController pushViewController:pController animated:YES];
+
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnPushTipsController" object:nil];
 }
 
 #pragma mark - Set Data to Recipe
 -(void)setDataToRecipe
-{  
-  RecipeData* pRecipeData = nil;
-  if ([[[User sharedInstance] recipe] getIsCreate]) {
-    pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
-  } else {
-    pRecipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
-  }
+{
 
-  [pRecipeData.recipe_steps removeAllObjects];
+  [recipeData.recipe_steps removeAllObjects];
   
   for (int i = 0; i < cellContentList.count; i++) {
     NSString* stepStr = [cellContentList[(NSUInteger)i][@"step"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     NSString* imageUrl = cellContentList[(NSUInteger)i][@"imageUrl"];
-    
+    NSString* tmpImageUrl = cellContentList[(NSUInteger)i][@"tmpImageUrl"];
+
     if (![stepStr isEqualToString:@""]) {
       
       NSMutableDictionary* pDic = [[NSMutableDictionary alloc]init];
@@ -354,12 +366,15 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
       if (imageUrl && ![imageUrl isEqualToString:@""]) {
         pDic[@"imageUrl"] = [[NSString alloc]initWithString:imageUrl];
         pDic[@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_UPLOADED];
+        if (tmpImageUrl && ![tmpImageUrl isEqualToString:@""]) {
+          pDic[@"tmpImageUrl"] = [[NSString alloc]initWithString:tmpImageUrl];
+        }
       } else {
         pDic[@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_UNSELECTED];
       }
 
       
-      [pRecipeData.recipe_steps addObject:pDic];
+      [recipeData.recipe_steps addObject:pDic];
     }
   }
 }
@@ -369,5 +384,17 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   cellContentList[(NSUInteger)index][@"step"] = [[NSString alloc]initWithString:data];
 }
 
+- (UITableViewCell *)relatedCell:(UIView *)view
+{
+  if ([view.superview isKindOfClass:[UITableViewCell class]])
+    return (UITableViewCell *)view.superview;
+  else if ([view.superview.superview isKindOfClass:[UITableViewCell class]])
+    return (UITableViewCell *)view.superview.superview;
+  else
+  {
+    NSAssert(NO, @"UITableViewCell shall always be found.");
+    return nil;
+  }
+}
 
 @end

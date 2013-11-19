@@ -19,7 +19,7 @@
   self = [super initWithFrame:frame];
   if (self) {
     UIImageView * descView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/MaterialTitle.png"]];
-    [descView setFrame:CGRectMake(160 - 106, 22 - 6, 212, 13)];
+    [descView setFrame:CGRectMake(160 - 103, 22 - 7, 206, 14)];
     [self addSubview:descView];
 
     UIImageView* bottomLine = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/TableCellSeparater.png"]];
@@ -69,7 +69,7 @@
       
       materialTextField = [[UITextField alloc]init];
       [materialTextField setDelegate:self];
-      [materialTextField setFrame:CGRectMake(10, 10, 140, 32)];
+      [materialTextField setFrame:CGRectMake(10, 0, 140, 44)];
       [materialTextField setBackgroundColor: [UIColor clearColor]];
       materialTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
       materialTextField.keyboardType = UIKeyboardTypeDefault;
@@ -80,7 +80,7 @@
       
       weightTextField = [[UITextField alloc]init];
       [weightTextField setDelegate:self];
-      [weightTextField setFrame:CGRectMake(170, 10, 140, 32)];
+      [weightTextField setFrame:CGRectMake(170, 0, 140, 44)];
       [weightTextField setBackgroundColor: [UIColor clearColor]];
       weightTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
       weightTextField.keyboardType = UIKeyboardTypeDefault;

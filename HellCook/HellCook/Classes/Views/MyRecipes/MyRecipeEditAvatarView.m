@@ -22,7 +22,7 @@
 - (void)InitLayout
 {
   [self setBackgroundColor:[UIColor whiteColor]];
-  defaultImage = [UIImage imageNamed:@"Images/defaultUpload.png"];
+  defaultImage = [UIImage imageNamed:@"Images/UploadCover.png"];
   upImageView = [[UIImageView alloc]initWithImage:defaultImage];
   [upImageView setContentMode:UIViewContentModeScaleAspectFill];
   [upImageView setClipsToBounds:YES];

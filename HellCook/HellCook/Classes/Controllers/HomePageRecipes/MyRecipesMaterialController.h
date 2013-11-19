@@ -11,13 +11,16 @@
 #import "MyRecipeMaterialTableViewCell.h"
 
 @class KeyboardHandler;
+@class RecipeData;
 @interface MyRecipesMaterialController : UIViewController<KeyboardHandlerDelegate, RecipeMaterialCellInputDelegate, UITableViewDataSource,UITableViewDelegate>
 {
   UITableView* tableView;
   NSMutableArray* cellContentList;
   KeyboardHandler *keyboard;
+  RecipeData* recipeData;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
+@property (nonatomic, retain) RecipeData* recipeData;
 
 @end

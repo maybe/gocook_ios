@@ -43,14 +43,17 @@
   CGRect frame = self.tableView.tableHeaderView.frame;
   frame.size.height = 44;
   self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
-  
+  UIImageView* headerImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/TipsHeader.png"]];
+  [headerImageView setFrame:CGRectMake(26, 15, 168, 13)];
+  [self.tableView.tableHeaderView addSubview:headerImageView];
+
   //keyboard
   keyboard = [[KeyboardHandler alloc] init];
   
-  CGRect viewframe = self.view.frame;
-  viewframe.size.height = _screenHeight_NoStBar_NoNavBar;
-  [self.view setFrame:viewframe];
-  [self.tableView setFrame:viewframe];
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
+  [self.tableView setFrame:viewFrame];
 
   RecipeData* pRecipeData = nil;
   if ([[[User sharedInstance] recipe] getIsCreate]) {
@@ -215,7 +218,7 @@
 
 - (void)setRightButton
 {
-  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
+  UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [rightBarButtonView addTarget:self action:@selector(onNext) forControlEvents:UIControlEventTouchUpInside];
   [rightBarButtonView setBackgroundImage:
    [UIImage imageNamed:@"Images/NextStepNormal.png"]

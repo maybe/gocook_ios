@@ -11,6 +11,7 @@
 #import "MyRecipeStepTableViewCell.h"
 
 @class KeyboardHandler;
+@class RecipeData;
 @interface MyRecipesStepController : UIViewController<KeyboardHandlerDelegate,
                                                       RecipeStepCellInputDelegate,
                                                       UITableViewDataSource,
@@ -22,9 +23,12 @@
   NSMutableArray* cellContentList;
   KeyboardHandler *keyboard;
   UIButton* imagePickerButton;
+  RecipeData* recipeData;
+  BOOL isImagePickerDismiss;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (strong, nonatomic) MKNetworkOperation *uploadOperation;
+@property (strong, nonatomic) RecipeData* recipeData;
 
 @end

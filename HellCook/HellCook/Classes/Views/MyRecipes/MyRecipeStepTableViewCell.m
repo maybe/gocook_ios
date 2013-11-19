@@ -32,16 +32,16 @@
     mAddButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 10, 60, 30)];
     [mAddButton setTitle:@"+加一步" forState:UIControlStateNormal];
     [mAddButton.titleLabel setFont: [UIFont boldSystemFontOfSize:13]];
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/grayStretchBackgroundNormal.png"];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/AddMaterialLineNormal.png"];
     UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:5 topCapHeight:5];
     [mAddButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
     
-    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/grayStretchBackgroundHighlighted.png"];
+    UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/AddMaterialLineNormal.png"];
     UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:5 topCapHeight:5];
     [mAddButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
     
     [mAddButton addTarget:nil action:@selector(addStepLine) forControlEvents:UIControlEventTouchUpInside];
-    
+
     [self addSubview:mAddButton];
   }
   return self;
@@ -50,32 +50,30 @@
 @end
 
 @implementation MyRecipeStepTableViewCell
-@synthesize stepTextView, delegate, selectButton, defaultImage, upImageView, indexInTable;
+@synthesize stepTextView, delegate, selectButton, defaultImage, upImageView, indexInTable, delButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
       [self setBackgroundColor: [UIColor clearColor]];
-      [self setFrame:CGRectMake(0, 0, 320, 120)];
+      [self setFrame:CGRectMake(0, 0, 320, 130)];
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
       
-      UIImage *leftBackgroundImage = [UIImage imageNamed:@"Images/RoundTableCellSingle.png"];
-      UIImage *stretchedleftBackground = [leftBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-      UIImageView* pleftImageView = [[UIImageView alloc]initWithImage:stretchedleftBackground];
-      [pleftImageView setFrame:CGRectMake(10, 10, 179, 120)];
+      UIImage *leftBackgroundImage = [UIImage imageNamed:@"Images/WhiteBlock.png"];
+      UIImageView*leftImageView = [[UIImageView alloc] initWithImage:leftBackgroundImage];
+      [leftImageView setFrame:CGRectMake(10, 10, 175, 120)];
    
-      UIImage *rightBackgroundImage = [UIImage imageNamed:@"Images/RoundTableCellSingle.png"];
-      UIImage *stretchedrightBackground = [rightBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-      UIImageView* prightImageView = [[UIImageView alloc]initWithImage:stretchedrightBackground];
-      [prightImageView setFrame:CGRectMake(190, 10, 120, 120)];
-      
-      [self addSubview:pleftImageView];
-      [self addSubview:prightImageView];
+      UIImage *rightBackgroundImage = [UIImage imageNamed:@"Images/WhiteBlock.png"];
+      UIImageView*rightImageView = [[UIImageView alloc] initWithImage:rightBackgroundImage];
+      [rightImageView setFrame:CGRectMake(190, 10, 120, 120)];
+
+      [self addSubview:leftImageView];
+      [self addSubview:rightImageView];
       
       stepTextView = [[SSTextView alloc]init];
       [stepTextView setDelegate:self];
-      [stepTextView setFrame:CGRectMake(15, 17, 170, 105)];
+      [stepTextView setFrame:CGRectMake(26, 6, 162, 115)];
       [stepTextView setBackgroundColor: [UIColor clearColor]];
       stepTextView.autocapitalizationType = UITextAutocapitalizationTypeNone;
       stepTextView.keyboardType = UIKeyboardTypeDefault;
@@ -97,11 +95,11 @@
       selectButton = [[UIButton alloc]init];
       [selectButton setFrame:CGRectMake(220, 95, 60, 28)];
       
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/redStretchBackgroundNormal.png"];
+      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/rightPageButtonBackgroundNormal.png"];
       UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
       [selectButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
       
-      UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/redStretchBackgroundHighlighted.png"];
+      UIImage *buttonBackgroundImagePressed = [UIImage imageNamed:@"Images/rightPageButtonBackgroundHighlighted.png"];
       UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
       [selectButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
       
@@ -111,7 +109,20 @@
       [selectButton addTarget:[self viewController] action:@selector(onSelectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
       
       [self addSubview:selectButton];
-      
+
+      delButton = [[UIButton alloc]init];
+      [delButton setFrame:CGRectMake(10, 10, 20, 20)];
+
+      UIImage *delButtonBackgroundImage = [UIImage imageNamed:@"Images/DeleteStepNormal.png"];
+      [delButton setBackgroundImage:delButtonBackgroundImage forState:UIControlStateNormal];
+
+      UIImage *delButtonBackgroundImagePressed = [UIImage imageNamed:@"Images/DeleteStepHighLight.png"];
+      [delButton setBackgroundImage:delButtonBackgroundImagePressed forState:UIControlStateHighlighted];
+
+      [delButton addTarget:[self viewController] action:@selector(onDeleteOneStep:) forControlEvents:UIControlEventTouchUpInside];
+
+      [self addSubview:delButton];
+
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resignTextViewFirstResponder) name:@"ResignMyRecipeStepTextView" object:nil];
 
     }

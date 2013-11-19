@@ -11,7 +11,7 @@
 @protocol RecipeMaterialCellInputDelegate <NSObject>
 
 // data change on material/weight
-- (void)changeInputData:(NSString*)data On:(NSInteger)type WithIndex:(NSInteger)index;
+- (void)changeInputData:(NSString*)data On:(NSInteger)type WithIndex:(NSUInteger)index;
 
 @end
 
