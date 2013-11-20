@@ -212,8 +212,6 @@
       cell = [[NewCouponCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSInteger row = indexPath.row;
-    NSInteger count = [itmesArray count];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[itmesArray objectAtIndex:(indexPath.row-1)]];
     NSInteger type;
     if ([dict[@"status"] intValue] == 1)//有效
