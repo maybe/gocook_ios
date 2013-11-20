@@ -13,6 +13,7 @@
 #import "ODRefreshControl.h"
 #import "RollMainViewController.h"
 #import "NewCouponsDetailViewController.h"
+#import "BlankCell.h"
 
 @interface NewCouponsViewController ()
 
@@ -44,7 +45,7 @@
   [self.view setFrame:viewFrame];
   
   CGRect btnFrame = topBtn.frame;
-  btnFrame.size.height = 56;
+  btnFrame.size.height = 45;
   [topBtn setFrame:btnFrame];
   UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RollBtnBackground.png"];
   [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
@@ -172,42 +173,66 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return itmesArray.count;
+  return itmesArray.count+1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return 70;
+  if (indexPath.row == 0)
+  {
+    return 34;
+  }
+  else
+  {
+    return 70;
+  }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *CellIdentifier = @"NewCouponCell";
-  
-  NewCouponCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (!cell)
+  if (indexPath.row == 0)
   {
-    cell = [[NewCouponCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"BlankCell";
+    
+    BlankCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell)
+    {
+      cell = [[BlankCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    return cell;
   }
-  
-  NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[itmesArray objectAtIndex:indexPath.row]];
-  NSInteger type;
-  if ([dict[@"status"] intValue] == 1)//有效
+  else
   {
-    if ([dict[@"is_delay"] intValue] == 1){//抽奖机会
-      type = 0;
+    static NSString *CellIdentifier = @"NewCouponCell";
+    
+    NewCouponCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell)
+    {
+      cell = [[NewCouponCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    else{//优惠券
-      type = 1;
+    
+    NSInteger row = indexPath.row;
+    NSInteger count = [itmesArray count];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[itmesArray objectAtIndex:(indexPath.row-1)]];
+    NSInteger type;
+    if ([dict[@"status"] intValue] == 1)//有效
+    {
+      if ([dict[@"is_delay"] intValue] == 1){//抽奖机会
+        type = 0;
+      }
+      else{//优惠券
+        type = 1;
+      }
     }
+    else{//过期
+      type = 2;
+    }
+    
+    [cell setData:dict withType:type];
+    
+    return cell;
   }
-  else{//过期
-    type = 2;
-  }
-  
-  [cell setData:dict withType:type];
-  
-  return cell;
 }
 
 

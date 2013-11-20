@@ -36,6 +36,7 @@
 		5EA66E011837577100AB6322 /* NewCouponsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66DFF1837577100AB6322 /* NewCouponsDetailViewController.m */; };
 		5EA66E04183757CE00AB6322 /* NewCouponsDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA66E03183757CE00AB6322 /* NewCouponsDetailView.xib */; };
 		5EA66E0A183861FC00AB6322 /* NewCouponsDetailContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66E09183861FC00AB6322 /* NewCouponsDetailContentCell.m */; };
+		5EA66E0D183CF96800AB6322 /* BlankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66E0C183CF96800AB6322 /* BlankCell.m */; };
 		5ED7F11B17BDC86400223884 /* RecipeDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */; };
 		5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */; };
 		5ED7F13517BF837E00223884 /* RecipeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED7F13417BF837E00223884 /* RecipeCommentView.xib */; };
@@ -271,6 +272,8 @@
 		5EA66E03183757CE00AB6322 /* NewCouponsDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCouponsDetailView.xib; sourceTree = "<group>"; };
 		5EA66E08183861FC00AB6322 /* NewCouponsDetailContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewCouponsDetailContentCell.h; path = Classes/Views/Roll/NewCouponsDetailContentCell.h; sourceTree = "<group>"; };
 		5EA66E09183861FC00AB6322 /* NewCouponsDetailContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewCouponsDetailContentCell.m; path = Classes/Views/Roll/NewCouponsDetailContentCell.m; sourceTree = "<group>"; };
+		5EA66E0B183CF96800AB6322 /* BlankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlankCell.h; path = Classes/Views/Roll/BlankCell.h; sourceTree = "<group>"; };
+		5EA66E0C183CF96800AB6322 /* BlankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlankCell.m; path = Classes/Views/Roll/BlankCell.m; sourceTree = "<group>"; };
 		5ED7F11917BDC86400223884 /* RecipeDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailFooterView.h; sourceTree = "<group>"; };
 		5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailFooterView.m; sourceTree = "<group>"; };
 		5ED7F11C17BF301800223884 /* RecipeCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCommentsTableViewCell.h; sourceTree = "<group>"; };
@@ -890,6 +893,8 @@
 				5EA66DFC1833B9B500AB6322 /* NewCouponCell.m */,
 				5EA66E08183861FC00AB6322 /* NewCouponsDetailContentCell.h */,
 				5EA66E09183861FC00AB6322 /* NewCouponsDetailContentCell.m */,
+				5EA66E0B183CF96800AB6322 /* BlankCell.h */,
+				5EA66E0C183CF96800AB6322 /* BlankCell.m */,
 			);
 			name = Roll;
 			sourceTree = "<group>";
@@ -2080,6 +2085,7 @@
 				65809994EA82965D50F427B6 /* RecipeDetailController.m in Sources */,
 				65809892D26E9DBA8ADF83AB /* SearchController.m in Sources */,
 				BA1152A4182F8AB100EED238 /* UIScrollView+Screenshot.m in Sources */,
+				5EA66E0D183CF96800AB6322 /* BlankCell.m in Sources */,
 				658095133790AD5CF781A644 /* TopListController.m in Sources */,
 				6580911C6856794208CF4756 /* ShoppingListController.m in Sources */,
 				65809DADD93573AC8045A5A2 /* AccountTableViewGridCell.m in Sources */,

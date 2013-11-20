@@ -23,13 +23,13 @@
     //[self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     //backgroundView
-    backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 66)];
+    backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 0, 320, 64)];
     [backgroundView setContentMode:UIViewContentModeScaleToFill];
     [self addSubview:backgroundView];
     //contentLabel
-    contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 20, 270, 40)];
+    contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 14, 240, 32)];
     contentLabel.backgroundColor = [UIColor clearColor];
-    contentLabel.font = [UIFont boldSystemFontOfSize:16];
+    contentLabel.font = [UIFont systemFontOfSize:14];
     contentLabel.textColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1];
     contentLabel.lineBreakMode = NSLineBreakByWordWrapping|NSLineBreakByTruncatingTail;
     contentLabel.numberOfLines = 2;
@@ -88,6 +88,7 @@
     }
   }
   [contentLabel setText:content];
+  
 }
 
 @end
