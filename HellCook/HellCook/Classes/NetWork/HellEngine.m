@@ -295,7 +295,7 @@
                                         httpMethod:@"GET"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-//    NSLog(@"%@",completedOperation.responseString);
+    //NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];
@@ -705,7 +705,7 @@
   
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-//    NSLog(@"%@",completedOperation.responseString);
+   // NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];
@@ -722,7 +722,7 @@
                            completionHandler:(allMyCouponsResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/my_coupons?page=%d&test_id=2",page]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/my_coupons?page=%d",page]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -740,10 +740,10 @@
   return op;
 }
 
-- (MKNetworkOperation*)getSalesOfTodayWithcompletionHandler:(getSalesOfTodayResponseBlock)completionBlock
+- (MKNetworkOperation*)getSalesOfTodayWithCompletionHandler:(getSalesOfTodayResponseBlock)completionBlock
                                                errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/day_sales?test_id=2"]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/day_sales"]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -765,12 +765,12 @@
                     completionHandler:(getCouponsResponseBlock)completionBlock
                          errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/get_coupon?id=%@&test_id=2",couponId]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/get_coupon?id=%@",couponId]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-     NSLog(@"%@",completedOperation.responseString);
+     // NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];
@@ -787,12 +787,12 @@
                       completionHandler:(delayLotteryResponseBlock)completionBlock
                            errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/delay_coupon?id=%@&test_id=2",couponId]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/delay_coupon?id=%@",couponId]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    NSLog(@"%@",completedOperation.responseString);
+    // NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];
@@ -804,5 +804,28 @@
   
   return op;
 }
+
+- (MKNetworkOperation *)getKitchenInfoById:(NSString *)userId
+                         completionHandler:(kitchenInfoResponseBlock)completionBlock
+                              errorHandler:(MKNKErrorBlock)errorBlock
+{
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/kitchen_info?userid=%@",userId]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  [op useCookie:NO];
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    //NSLog(@"%@",completedOperation.responseString);
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+
+  [self enqueueOperation:op];
+
+  return op;
+}
+
 
 @end

@@ -205,12 +205,12 @@
 -(void)getSalesToday
 {
  self.netOperation = [[[NetManager sharedInstance] hellEngine]
-                       getSalesOfTodayWithcompletionHandler:^(NSMutableDictionary *resultDic) {
-                         [self getSalesTodayDataCallBack:resultDic];
-                       }
-                       errorHandler:^(NSError *error) {
-                       }
-                       ];
+     getSalesOfTodayWithCompletionHandler:^(NSMutableDictionary *resultDic) {
+       [self getSalesTodayDataCallBack:resultDic];
+     }
+                             errorHandler:^(NSError *error) {
+                             }
+ ];
 }
 
 - (void)getSalesTodayDataCallBack:(NSMutableDictionary*) resultDic

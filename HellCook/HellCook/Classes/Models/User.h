@@ -10,17 +10,22 @@
 #import "UserAccount.h"
 #import "UserCollection.h"
 #import "Recipe.h"
+#import "KitchenInfo.h"
+
+@class KitchenInfo;
 
 @interface User : NSObject
 {
   UserAccount* account;
   UserCollection* collection;
   Recipe* recipe;
+  KitchenInfo* kitchenInfo;
 }
 
 @property (nonatomic, retain)UserAccount* account;
 @property (nonatomic, retain)UserCollection* collection;
 @property (nonatomic, retain)Recipe* recipe;
+@property (nonatomic, retain)KitchenInfo* kitchenInfo;
 
 + (id)sharedInstance;
 - (id)init;
