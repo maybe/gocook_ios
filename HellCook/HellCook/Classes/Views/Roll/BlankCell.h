@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface BlankCell : UITableViewCell
+{
+  UIImageView* backgroundView;
+}
+
+@property(nonatomic,retain)UIImageView* backgroundView;
 
 @end

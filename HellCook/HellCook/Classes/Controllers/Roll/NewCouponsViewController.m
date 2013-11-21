@@ -56,6 +56,7 @@
   tableFrame.origin.y = btnFrame.size.height;
   tableFrame.size.height = _screenHeight_NoStBar_NoNavBar - btnFrame.size.height;
   [self.myTableView setFrame:tableFrame];
+  [self.myTableView setBackgroundColor:[UIColor clearColor]];
 
   myTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
 
