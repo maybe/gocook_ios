@@ -166,8 +166,8 @@
   NSString *strDate = [dateFormat stringFromDate:date];
   NSString *strOldDate = [dateFormat stringFromDate:oldDate];
   NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-  [dict setObject:strDate forKey:@"start_day"];
-  [dict setObject:strOldDate forKey:@"end_day"];
+  [dict setObject:strOldDate forKey:@"start_day"];
+  [dict setObject:strDate forKey:@"end_day"];
   [dict setObject:[NSString stringWithFormat:@"%d",curPage] forKey:@"page"];
   
   self.netOperation = [[[NetManager sharedInstance] hellEngine]

@@ -30,6 +30,7 @@
 @property (nonatomic, retain) UIButton* loginButton;
 @property (nonatomic, retain) UIButton* registerButton;
 @property (nonatomic, retain) NSMutableArray* cellContentArray;
+@property (strong, nonatomic) MKNetworkOperation *netOperation;
 
 -(IBAction)tapNameLabel:(id)sender;
 

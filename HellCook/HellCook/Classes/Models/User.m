@@ -8,10 +8,11 @@
 
 #import "User.h"
 #import "GCDSingleton.h"
+#import "KitchenInfo.h"
 
 
 @implementation User
-@synthesize account, collection, recipe;
+@synthesize account, collection, recipe, kitchenInfo;
 
 + (id)sharedInstance
 {
@@ -23,9 +24,10 @@
 - (id)init
 {
   if(self=[super init]){
-    collection = [[UserCollection alloc]init];
-    account = [[UserAccount alloc]init];
-    recipe = [[Recipe alloc]init];
+    collection = [[UserCollection alloc] init];
+    account = [[UserAccount alloc] init];
+    recipe = [[Recipe alloc] init];
+    kitchenInfo = [[KitchenInfo alloc] init];
   }
   return self;
 }

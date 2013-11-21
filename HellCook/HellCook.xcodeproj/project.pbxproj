@@ -57,6 +57,7 @@
 		65809156E7DABE799C2F7FA7 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809B02DB1E620DC0202A9C /* MainController.m */; };
 		658091ADADDEFB5B0E7B279C /* MyRecipeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809EF8FF714A281B68CF77 /* MyRecipeDetailController.m */; };
 		658091F6C60F8CF7C573F92D /* MyRecipeMaterialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809059F94DB0CAFAA69B52 /* MyRecipeMaterialTableViewCell.m */; };
+		65809294A5CEE68663B57F97 /* KitchenInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580976EF34F52F6C9F32774 /* KitchenInfo.m */; };
 		658092ACE286F8686A7C1A5B /* MainCatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809357F1407AB6672716BE /* MainCatTableViewCell.m */; };
 		658093335D0DAF06A1D43215 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658091650B219FCFA570043D /* LoginController.m */; };
 		65809348FFD20073E58F7C5C /* MyIntroductionIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65809D03A4F8824C335CD5A6 /* MyIntroductionIntroCell.m */; };
@@ -326,8 +327,10 @@
 		6580968DA2D5E059A32783EE /* MyFansTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFansTableViewCell.m; path = Classes/Views/MyFansTableViewCell.m; sourceTree = "<group>"; };
 		658096C143F4506BEAE868FD /* RecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeDetailController.m; path = Classes/Controllers/RecipeDetailController.m; sourceTree = "<group>"; };
 		658096D0EE4B43A9EBDC64FD /* SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchController.m; path = Classes/Controllers/SearchController.m; sourceTree = "<group>"; };
+		6580976EF34F52F6C9F32774 /* KitchenInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KitchenInfo.m; path = Classes/Models/KitchenInfo.m; sourceTree = "<group>"; };
 		6580978FC7902CC6E26AEF3D /* SearchGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchGoodsViewController.h; path = Classes/Controllers/BuyGoods/SearchGoodsViewController.h; sourceTree = "<group>"; };
 		658098098A86A0456C03D5F4 /* SSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTextView.m; sourceTree = "<group>"; };
+		6580981B17177129B8B5B19A /* KitchenInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KitchenInfo.h; path = Classes/Models/KitchenInfo.h; sourceTree = "<group>"; };
 		6580986DCFD24EFA4C4591B3 /* MyRecipeStepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipeStepTableViewCell.m; path = Classes/Views/MyRecipes/MyRecipeStepTableViewCell.m; sourceTree = "<group>"; };
 		658098D9C49D1D9C4C5720AE /* AccountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewCell.m; path = Classes/Views/AccountTableViewCell.m; sourceTree = "<group>"; };
 		658098E9B48969597935FE03 /* MyFansTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFansTableViewCell.h; path = Classes/Views/MyFansTableViewCell.h; sourceTree = "<group>"; };
@@ -1625,6 +1628,8 @@
 				BA60699D17080F340060C251 /* UserCollection.m */,
 				BA60699F170810C80060C251 /* User.h */,
 				BA6069A0170810C80060C251 /* User.m */,
+				6580976EF34F52F6C9F32774 /* KitchenInfo.m */,
+				6580981B17177129B8B5B19A /* KitchenInfo.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2130,6 +2135,7 @@
 				65809FE0167BB52FDE35EF8A /* RootNavigationController.m in Sources */,
 				65809372D3F2496C69D29E54 /* RegexKitLite.m in Sources */,
 				658091ADADDEFB5B0E7B279C /* MyRecipeDetailController.m in Sources */,
+				65809294A5CEE68663B57F97 /* KitchenInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

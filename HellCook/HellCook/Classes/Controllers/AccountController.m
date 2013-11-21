@@ -22,7 +22,6 @@
 #import "HomePageController.h"
 #import "HistoryDealViewController.h"
 #import "HCNavigationController.h"
-#import "CouponsViewController.h"
 #import "NewCouponsViewController.h"
 
 @interface AccountController ()
@@ -104,6 +103,9 @@
   }
 
   [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+
+  [self getKitchenInfo];
+
   [super viewWillAppear:animated];
 }
 
@@ -160,16 +162,18 @@
   }
 
   if (isGridCell) {
+    KitchenInfo* kitchenInfo = [[User sharedInstance] kitchenInfo];
+
     AccountTableViewGridCell *aCell = (AccountTableViewGridCell *) cell;
-    aCell.countLabel1.text = @"0";
+    aCell.countLabel1.text = [NSString stringWithFormat:@"%d", kitchenInfo.following_count];
     aCell.nameLabel1.text = [dic valueForKey:@"title1"];
-    aCell.countLabel2.text = @"0";
+    aCell.countLabel2.text = [NSString stringWithFormat:@"%d", kitchenInfo.followed_count];
     aCell.nameLabel2.text = [dic valueForKey:@"title2"];
-    aCell.countLabel3.text = @"0";
+    aCell.countLabel3.text = [NSString stringWithFormat:@"%d", kitchenInfo.coll_count];
     aCell.nameLabel3.text = [dic valueForKey:@"title3"];
-    aCell.countLabel4.text = @"0";
+    aCell.countLabel4.text = [NSString stringWithFormat:@"%d", kitchenInfo.recipe_count];
     aCell.nameLabel4.text = [dic valueForKey:@"title4"];
-    aCell.countLabel5.text = @"0";
+    aCell.countLabel5.text = [NSString stringWithFormat:@"%d", kitchenInfo.order_count];
     aCell.nameLabel5.text = [dic valueForKey:@"title5"];
     aCell.countLabel6.text = @"0";
     aCell.nameLabel6.text = [dic valueForKey:@"title6"];
@@ -502,6 +506,41 @@ destructiveButtonTitle:@"确定"
   }
 }
 
+
+
+#pragma get kitchen info
+
+-(void)getKitchenInfo
+{
+  NSString* user_id = [NSString stringWithFormat:@"%d",[[User sharedInstance] account].user_id];
+  self.netOperation = [[[NetManager sharedInstance] hellEngine]
+               getKitchenInfoById:user_id
+               completionHandler:^(NSMutableDictionary *resultDic) {
+                 [self getKitchenInfoCallBack:resultDic];
+               }
+               errorHandler:^(NSError *error) {
+               }
+  ];
+}
+
+- (void)getKitchenInfoCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == GC_Success)
+  {
+    KitchenInfo* kitchenInfo = [[User sharedInstance] kitchenInfo];
+    kitchenInfo.recipe_count = [resultDic[@"recipe_count"] intValue];
+    kitchenInfo.coll_count = [resultDic[@"collect_count"] intValue];
+    kitchenInfo.followed_count = [resultDic[@"followed_count"] intValue];
+    kitchenInfo.following_count = [resultDic[@"following_count"] intValue];
+    kitchenInfo.order_count = [resultDic[@"order_count"] intValue];
+
+    [tableView reloadData];
+  }
+  else if (result == GC_Failed)
+  {
+  }
+}
 
 @end
 
