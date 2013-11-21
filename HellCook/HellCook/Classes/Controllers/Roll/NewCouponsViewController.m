@@ -174,24 +174,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return itmesArray.count+1;
+  return itmesArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if (indexPath.row == 0)
-  {
-    return 34;
-  }
-  else
-  {
+//  if (indexPath.row == 0)
+//  {
+//    return 34;
+//  }
+//  else
+//  {
     return 70;
-  }
+//  }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if (indexPath.row == 0)
+/*  if (indexPath.row == 0)
   {
     static NSString *CellIdentifier = @"BlankCell";
     
@@ -204,7 +204,7 @@
     return cell;
   }
   else
-  {
+  {*/
     static NSString *CellIdentifier = @"NewCouponCell";
     
     NewCouponCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -213,7 +213,7 @@
       cell = [[NewCouponCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[itmesArray objectAtIndex:(indexPath.row-1)]];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[itmesArray objectAtIndex:(indexPath.row)]];
     NSInteger type;
     if ([dict[@"status"] intValue] == 1)//有效
     {
@@ -231,7 +231,7 @@
     [cell setData:dict withType:type];
     
     return cell;
-  }
+//  }
 }
 
 
