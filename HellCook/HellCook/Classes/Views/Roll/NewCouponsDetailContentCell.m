@@ -65,21 +65,21 @@
     
     contentLabel = [[UILabel alloc] init];
     contentLabel.backgroundColor = [UIColor clearColor];
-    contentLabel.font = [UIFont boldSystemFontOfSize:22];
+    contentLabel.font = [UIFont boldSystemFontOfSize:20];
     contentLabel.textColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1];
     contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     contentLabel.numberOfLines = 0;
-    CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(270, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(250, 1000) lineBreakMode:NSLineBreakByWordWrapping];
     
     height = contentSize.height + 70;
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320, height)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
-    [labelBackgroundView setFrame:CGRectMake(0, 20, 320, height)];
+    [labelBackgroundView setFrame:CGRectMake(20, 0, 280, height)];
     [self addSubview:labelBackgroundView];
     
-    [contentLabel setFrame:CGRectMake(25, 25, 270, contentSize.height)];
+    [contentLabel setFrame:CGRectMake(40, 15, 250, contentSize.height)];
     [contentLabel setText:content];
     [self addSubview:contentLabel];
     

@@ -120,6 +120,20 @@
   [self.navigationController pushViewController:pViewController animated:YES];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (BOOL)shouldAutorotate {
+  
+  return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+  
+  return UIInterfaceOrientationMaskPortrait;
+}
 
 #pragma mark - Table view data source
 
