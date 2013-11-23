@@ -15,6 +15,7 @@
 #import "DBHandler.h"
 #import "RecipeDetailFooterView.h"
 #import "RecipeCommentViewController.h"
+#import "HomePageController.h"
 
 @interface RecipeDetailController ()
 
@@ -257,7 +258,14 @@
   {
     [self addCollection];
   }
-  
+}
+
+- (void)onClickAuthor:(UIButton*)btn
+{
+  NSInteger author_id = [[btn associativeObjectForKey:@"author_id"] intValue];
+  NSString *author_name = [btn associativeObjectForKey:@"author_name"];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:author_id AndName:author_name showIndex:0];
+  [self.navigationController pushViewController:pHomePageController animated:YES];
 }
 
 #pragma mark - Net

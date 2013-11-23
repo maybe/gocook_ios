@@ -817,7 +817,7 @@
                                         httpMethod:@"GET"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    NSLog(@"%@",completedOperation.responseString);
+    // NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];

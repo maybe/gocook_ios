@@ -8,7 +8,7 @@
 
 #import "RecipeCommentViewController.h"
 #import "RecipeCommentsTableViewCell.h"
-#import "MyIntroductionViewController.h"
+#import "HomePageController.h"
 #import "RecipeSendCommentView.h"
 #import "NetManager.h"
 #import "KeyboardHandler.h"
@@ -128,8 +128,8 @@
     }
   }
 
-  MyIntroductionViewController *pController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:user_id AndName:user_name];
-  [self.navigationController pushViewController:pController animated:YES];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id AndName:user_name showIndex:0];
+  [self.navigationController pushViewController:pHomePageController animated:YES];
 }
 
 - (void)tapSend
