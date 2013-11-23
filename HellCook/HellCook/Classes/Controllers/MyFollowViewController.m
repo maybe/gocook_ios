@@ -21,8 +21,9 @@
 @implementation MyFollowViewController
 @synthesize netOperation;
 @synthesize mLoadingActivity;
+@synthesize titleName;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID AndName:(NSString *)userName
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -32,6 +33,8 @@
       isPageEnd = NO;
       userId = userID;
       myFollowsArray = [[NSMutableArray alloc] init];
+
+      titleName = [[NSString alloc] initWithFormat:@"%@的关注", userName];
     }
     return self;
 }
@@ -62,8 +65,15 @@
 - (void) viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  self.tabBarController.navigationItem.title = @"关注";
-  
+
+  if ([[[User sharedInstance] account] user_id] == userId) {
+    self.tabBarController.navigationItem.title = @"我的关注";
+  } else {
+    self.tabBarController.navigationItem.title = titleName;
+  }
+
+  [self.tabBarController.navigationItem setRightBarButtonItem:nil];
+
   if (firstLoad)
   {
     firstLoad = NO;
@@ -182,8 +192,9 @@
 {
   NSMutableDictionary *pFollowDict = [myFollowsArray objectAtIndex:(NSUInteger)indexPath.row];
   NSInteger user_id = [pFollowDict[@"user_id"] intValue];
+  NSString* user_name = pFollowDict[@"name"];
   
-  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id showIndex:0];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id AndName:user_name showIndex:0];
   [self.tabBarController.navigationController pushViewController:pHomePageController animated:YES];
 }
 

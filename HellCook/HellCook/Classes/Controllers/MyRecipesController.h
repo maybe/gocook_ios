@@ -25,6 +25,7 @@
   ODRefreshControl *refreshControl;
 
   NSInteger userId;
+  NSString* titleName;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
@@ -32,7 +33,9 @@
 @property (nonatomic, retain) UIActivityIndicatorView* mLoadingActivity;
 @property (strong, nonatomic) MKNetworkOperation *mNetOperation;
 @property NSInteger userId;
+@property (strong, nonatomic) NSString* titleName;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID AndName:(NSString *)userName;
 
 @end

@@ -25,15 +25,17 @@
 @synthesize mLoadingActivity;
 @synthesize mNetOperation;
 @synthesize userId;
+@synthesize titleName;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID AndName:(NSString *)userName
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     curPage = 0;
     firstLoad = YES;
     userId = userID;
+    titleName = [[NSString alloc] initWithFormat:@"%@的菜谱", userName];
   }
   return self;
 }
@@ -88,7 +90,12 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
-  self.tabBarController.navigationItem.title = @"我的菜谱";
+  if ([[[User sharedInstance] account] user_id] == userId) {
+    self.tabBarController.navigationItem.title = @"我的菜谱";
+  } else {
+    self.tabBarController.navigationItem.title = titleName;
+  }
+
   [self.tabBarController.navigationItem setRightBarButtonItem:nil];
 
   if (firstLoad) {

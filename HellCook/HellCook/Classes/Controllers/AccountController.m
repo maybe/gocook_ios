@@ -279,7 +279,8 @@ destructiveButtonTitle:@"确定"
 
 - (IBAction)tapNameLabel:(id)sender {
   NSInteger user_id = [[[User sharedInstance] account] user_id];
-  HomePageController *pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id showIndex:0];
+  NSString* user_name = [[[User sharedInstance] account] username];
+  HomePageController *pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id AndName:user_name showIndex:0];
   [ApplicationDelegate.centerNavController setViewControllers:@[pHomePageController] animated:NO];
   [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
 }
@@ -462,7 +463,8 @@ destructiveButtonTitle:@"确定"
     }
 
     NSInteger user_id = [[[User sharedInstance] account] user_id];
-    HomePageController *pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id showIndex:index];
+    NSString* user_name = [[[User sharedInstance] account] username];
+    HomePageController *pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id AndName:user_name showIndex:index];
     [ApplicationDelegate.centerNavController setViewControllers:@[pHomePageController] animated:NO];
     [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
   }

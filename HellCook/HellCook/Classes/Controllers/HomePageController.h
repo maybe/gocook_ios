@@ -15,6 +15,6 @@
 
 @property(retain, nonatomic) UITabBar *mTabBar;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID showIndex:(NSInteger)index;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID AndName:(NSString *)userName showIndex:(NSInteger)index;
 
 @end

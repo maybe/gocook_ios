@@ -120,8 +120,15 @@
 - (void)gotoOtherIntro:(UIButton*)btn
 {
   NSInteger user_id = [[btn associativeObjectForKey:@"userid"] integerValue];
-  
-  MyIntroductionViewController *pController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:user_id];
+  NSString* user_name = @"";
+  for (int j = 0; j < dataArray.count; j++) {
+    if ([dataArray[j][@"user_id"] intValue] == user_id) {
+      user_name = dataArray[j][@"name"];
+      break;
+    }
+  }
+
+  MyIntroductionViewController *pController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:user_id AndName:user_name];
   [self.navigationController pushViewController:pController animated:YES];
 }
 

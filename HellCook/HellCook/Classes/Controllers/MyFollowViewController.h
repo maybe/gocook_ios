@@ -19,12 +19,14 @@
   bool isPageEnd;//是否全部加载完毕
   ODRefreshControl *refreshControl;
   NSInteger userId;
+  NSString* titleName;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
 @property (nonatomic, retain) UIActivityIndicatorView* mLoadingActivity;
+@property (nonatomic, retain) NSString* titleName;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID AndName:(NSString *)userName;
 
 @end

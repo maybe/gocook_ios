@@ -21,13 +21,16 @@
 @synthesize pPicCell,pIntroCell;
 @synthesize rightBarButtonItem;
 @synthesize bShouldRefresh;
+@synthesize titleName;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID AndName:(NSString *)userName
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
       userId = userID;
       bShouldRefresh = YES;
+
+      titleName = [[NSString alloc] initWithFormat:@"%@", userName];
 
       pMyInfo = [[NSMutableDictionary alloc] init];
       pPicCell = [[MyIntroductionPicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionPicCell"];
@@ -61,11 +64,10 @@
 {
   [super viewWillAppear:animated];
 
+  self.tabBarController.navigationItem.title = titleName;
   if ([[[User sharedInstance] account] user_id] == userId) {
-    self.tabBarController.navigationItem.title = [[[User sharedInstance] account] username];
     [self setRightButton];
   } else {
-    self.tabBarController.navigationItem.title = @"";
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
   }
 
