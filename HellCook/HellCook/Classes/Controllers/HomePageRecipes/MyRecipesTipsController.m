@@ -65,6 +65,11 @@
   if (pRecipeData.tips) {
     [tipsTextView setText:pRecipeData.tips];
   }
+
+  HUD = [[MBProgressHUD alloc] initWithView:self.view];
+  [self.view addSubview:HUD];
+  HUD.mode = MBProgressHUDModeCustomView;
+  HUD.delegate = self;
   
   [super viewDidLoad];
 }
@@ -204,10 +209,10 @@
   UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
   [leftBarButtonView setBackgroundImage:
-      [UIImage imageNamed:@"Images/BackButtonNormal.png"]
+      [UIImage imageNamed:@"Images/CompleteButtonNormal.png"]
                                forState:UIControlStateNormal];
   [leftBarButtonView setBackgroundImage:
-      [UIImage imageNamed:@"Images/BackButtonHighLight.png"]
+      [UIImage imageNamed:@"Images/CompleteButtonHighLight.png"]
                                forState:UIControlStateHighlighted];
   
   UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
@@ -316,7 +321,11 @@
   if (![[[User sharedInstance] recipe] getIsCreate]) {
     pUploadRecipeDic[@"recipe_id"] = [NSString stringWithFormat:@"%d", pRecipeData.recipe_id];
   }
-  
+
+  HUD.labelText = @"发布中...";
+  [HUD show:YES];
+  isCreate = NO;
+
   self.uploadOperation = [[[NetManager sharedInstance] hellEngine]
                           createRecipe: pUploadRecipeDic
                           completionHandler:^(NSMutableDictionary *resultDic) {
@@ -330,13 +339,26 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
+    HUD.labelText = @"发布成功";
+    [HUD hide:YES afterDelay:1.0];
+    isCreate = YES;
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_ReloadRecipes" object:nil];
-    [self.navigationController popToRootViewControllerAnimated:YES];
   }
   else if (result == 1){
-    //TODO:
+    HUD.labelText = @"发布失败";
+    [HUD hide:YES afterDelay:1.0];
+    isCreate = NO;
   }
   
+}
+
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+  if (isCreate)
+  {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+  }
 }
 
 @end

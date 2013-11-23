@@ -21,6 +21,8 @@
   UITableView* tableView;
   SSTextView* tipsTextView;
   KeyboardHandler *keyboard;
+  MBProgressHUD *HUD;
+  BOOL isCreate;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
