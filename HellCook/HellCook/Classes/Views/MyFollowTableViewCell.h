@@ -12,7 +12,7 @@
 {
   UIImageView *avataImageView;
   UILabel *nameLabel;
-  UILabel *fanLabel;
+  UILabel *fansLabel;
   UILabel *recipeLabel;
   
   UIImageView* sepImageView;
@@ -20,7 +20,7 @@
 
 @property (nonatomic, retain) UIImageView* avataImageView;
 @property (nonatomic, retain) UILabel* nameLabel;
-@property (nonatomic, retain) UILabel* fanLabel;
+@property (nonatomic, retain) UILabel* fansLabel;
 @property (nonatomic, retain) UILabel* recipeLabel;
 @property (nonatomic, retain)UIImageView* sepImageView;
 

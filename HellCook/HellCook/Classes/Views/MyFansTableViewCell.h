@@ -12,13 +12,17 @@
 {
   UIImageView *avataImageView;
   UILabel *nameLabel;
+  UILabel *fansLabel;
+  UILabel *recipeLabel;
   
   UIImageView* sepImageView;
 }
 
 @property (nonatomic, retain) UIImageView* avataImageView;
 @property (nonatomic, retain) UILabel* nameLabel;
-@property (nonatomic, retain)UIImageView* sepImageView;
+@property (nonatomic, retain) UIImageView* sepImageView;
+@property (nonatomic, retain) UILabel *fansLabel;
+@property (nonatomic, retain) UILabel *recipeLabel;
 
 - (void)setData:(NSMutableDictionary*)dict;
 

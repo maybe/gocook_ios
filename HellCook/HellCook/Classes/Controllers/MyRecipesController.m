@@ -145,13 +145,11 @@
   NSString* recipeIdStr = mMyRecipeArray[(NSUInteger)indexPath.row][@"recipe_id"];
   NSInteger recipeId = [recipeIdStr intValue];
 
-  [self.navigationController pushViewController:[[MyRecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId] animated:YES];
-
-  // [self.navigationController pushViewController:[[RegisterController alloc]initWithNibName:@"RegisterView" bundle:nil] animated:YES];
-  // NSString* recipeIdStr = mMyRecipeArray[indexPath.row][@"recipe_id"];
-  // NSInteger recipeId = [recipeIdStr intValue];
-
-//  [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId withPrevTitle:self.title] animated:YES];
+  if ([[[User sharedInstance] account] user_id] == userId) {
+    [self.navigationController pushViewController:[[MyRecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId] animated:YES];
+  } else {
+    [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId] animated:YES];
+  }
 }
 
 
