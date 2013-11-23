@@ -37,6 +37,8 @@
 		5EA66E04183757CE00AB6322 /* NewCouponsDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA66E03183757CE00AB6322 /* NewCouponsDetailView.xib */; };
 		5EA66E0A183861FC00AB6322 /* NewCouponsDetailContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66E09183861FC00AB6322 /* NewCouponsDetailContentCell.m */; };
 		5EA66E0D183CF96800AB6322 /* BlankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66E0C183CF96800AB6322 /* BlankCell.m */; };
+		5EA66E111840E99B00AB6322 /* ProcessMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66E0F1840E99B00AB6322 /* ProcessMethodsViewController.m */; };
+		5EA66E121840E99B00AB6322 /* ProcessMethodsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA66E101840E99B00AB6322 /* ProcessMethodsView.xib */; };
 		5ED7F11B17BDC86400223884 /* RecipeDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */; };
 		5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */; };
 		5ED7F13517BF837E00223884 /* RecipeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED7F13417BF837E00223884 /* RecipeCommentView.xib */; };
@@ -275,6 +277,9 @@
 		5EA66E09183861FC00AB6322 /* NewCouponsDetailContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewCouponsDetailContentCell.m; path = Classes/Views/Roll/NewCouponsDetailContentCell.m; sourceTree = "<group>"; };
 		5EA66E0B183CF96800AB6322 /* BlankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlankCell.h; path = Classes/Views/Roll/BlankCell.h; sourceTree = "<group>"; };
 		5EA66E0C183CF96800AB6322 /* BlankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlankCell.m; path = Classes/Views/Roll/BlankCell.m; sourceTree = "<group>"; };
+		5EA66E0E1840E99B00AB6322 /* ProcessMethodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessMethodsViewController.h; path = Classes/Controllers/BuyGoods/ProcessMethodsViewController.h; sourceTree = "<group>"; };
+		5EA66E0F1840E99B00AB6322 /* ProcessMethodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProcessMethodsViewController.m; path = Classes/Controllers/BuyGoods/ProcessMethodsViewController.m; sourceTree = "<group>"; };
+		5EA66E101840E99B00AB6322 /* ProcessMethodsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProcessMethodsView.xib; path = Classes/Controllers/BuyGoods/ProcessMethodsView.xib; sourceTree = "<group>"; };
 		5ED7F11917BDC86400223884 /* RecipeDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailFooterView.h; sourceTree = "<group>"; };
 		5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailFooterView.m; sourceTree = "<group>"; };
 		5ED7F11C17BF301800223884 /* RecipeCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCommentsTableViewCell.h; sourceTree = "<group>"; };
@@ -947,6 +952,9 @@
 				65809FE062C46199C71BFD2F /* GoodsDetailViewController.m */,
 				6580952CA5143171B09D57C5 /* BuyViewController.h */,
 				65809F4F87DF7B86515B2F8B /* BuyViewController.m */,
+				5EA66E0E1840E99B00AB6322 /* ProcessMethodsViewController.h */,
+				5EA66E0F1840E99B00AB6322 /* ProcessMethodsViewController.m */,
+				5EA66E101840E99B00AB6322 /* ProcessMethodsView.xib */,
 			);
 			name = BuyGoods;
 			sourceTree = "<group>";
@@ -1941,6 +1949,7 @@
 				BA0DC17F16D4C3A500E4CED9 /* Default@2x.png in Resources */,
 				BA0DC18116D4C3A500E4CED9 /* Default-568h@2x.png in Resources */,
 				BACCF83616ECFC420094F1E5 /* .gitignore in Resources */,
+				5EA66E121840E99B00AB6322 /* ProcessMethodsView.xib in Resources */,
 				BA3F5E6716FA297800493260 /* Images in Resources */,
 				BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */,
 				BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */,
@@ -2055,6 +2064,7 @@
 				BA1152A1182F8AB100EED238 /* UIImage+Resizing.m in Sources */,
 				BA56F2B7179665A5001E8909 /* RecipeDetailMaterialTableViewCell.m in Sources */,
 				BA56F2BA17971B36001E8909 /* RecipeDetailStepsTableViewCell.m in Sources */,
+				5EA66E111840E99B00AB6322 /* ProcessMethodsViewController.m in Sources */,
 				5E13568F17AD34D6009C623B /* MyIntroductionViewController.m in Sources */,
 				5E13569617AD3AC5009C623B /* MyFollowViewController.m in Sources */,
 				BA7CC61C17AD5BB900A6C8AE /* MyRecipesController.m in Sources */,

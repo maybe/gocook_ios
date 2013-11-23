@@ -14,7 +14,7 @@
 @end
 
 @implementation BuyViewController
-@synthesize nameLabel,priceTitleLabel,priceLabel,unitLabel,specLabel,processTitleLabel,buyTitleLabel,amountTextField,confirmBtn,dropBtn,methodTextField,picker,unitLabel2;
+@synthesize nameLabel,priceTitleLabel,priceLabel,unitLabel,specLabel,processTitleLabel,buyTitleLabel,amountTextField,confirmBtn,dropBtn,methodTextField,picker,unitLabel2,methodLabel,labelBackgroundView,arrowImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withData:(NSMutableDictionary*)data
 {
@@ -39,14 +39,13 @@
   self.navigationItem.title = @"输入购买信息";
   [self setLeftButton];
   [self initControls];
-  
-  [self hidePicker];
 
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   viewFrame.size.width = _sideWindowWidth;
   [self.view setFrame:viewFrame];
   self.view.autoresizesSubviews = NO;
+  [self hidePicker];
 
   [self autoLayout];
   [super viewDidLoad];
@@ -109,7 +108,7 @@
   amountTextField.returnKeyType = UIReturnKeyDone;
   amountTextField.tag = 0;
   //unitLabel2
-  unitLabel = [[UILabel alloc]initWithFrame:CGRectMake(170, 105, 50, 18)];
+  unitLabel = [[UILabel alloc]initWithFrame:CGRectMake(173, 105, 50, 18)];
   unitLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
   unitLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
   unitLabel.backgroundColor = [UIColor clearColor];
@@ -117,7 +116,7 @@
   [unitLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
   [unitLabel setText:[NSString stringWithFormat:@"%@",goodsDataDict[@"unit"]]];
   //processTitleLabel
-  processTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 143, 70, 16)];
+  processTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 143, 80, 16)];
   processTitleLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
   processTitleLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
   processTitleLabel.backgroundColor = [UIColor clearColor];
@@ -134,6 +133,7 @@
   UIImage *stretchedBackgroundPressed = [btnBakimagePressed stretchableImageWithLeftCapWidth:2 topCapHeight:0];
   [dropBtn setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
   [dropBtn addTarget:self action:@selector(dropDown) forControlEvents:UIControlEventTouchUpInside];
+  dropBtn.hidden = YES;
   //methodTextField
   methodTextField = [[UITextField alloc] initWithFrame:CGRectMake(90, 140, 100, 20)];
   [methodTextField setDelegate:self];
@@ -151,8 +151,36 @@
   else{
     [methodTextField setText:[NSString stringWithFormat:@"用户指定"]];
   }
+  methodTextField.hidden = YES;
+  //labelBackgroundView
+  labelBackgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 300-_offset, 60)];
+  [labelBackgroundView setImage:[UIImage imageNamed:@"Images/WhiteBlock.png"]];
+  [labelBackgroundView setContentMode:UIViewContentModeScaleToFill];
+  [self.view addSubview:labelBackgroundView];
+  //methodLabel
+  methodLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 180, 280-_offset, 40)];
+  methodLabel.backgroundColor = [UIColor clearColor];
+  methodLabel.font = [UIFont boldSystemFontOfSize:16];
+  methodLabel.textColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1];
+  methodLabel.lineBreakMode = NSLineBreakByWordWrapping;
+  methodLabel.numberOfLines = 2;
+  if ([dealMethodArray count] > 0){
+    [methodLabel setText:[NSString stringWithFormat:@"%@",[dealMethodArray objectAtIndex:0]]];
+  }
+  else{
+    [methodLabel setText:[NSString stringWithFormat:@"无"]];
+  }
+  [self.view addSubview:methodLabel];
+  methodLabel.userInteractionEnabled = YES;
+  UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMethodLabel)];
+  [methodLabel addGestureRecognizer:tapGestureTel];
+  //arrowImage
+  arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(290-_offset, 195, 10, 10)];
+  [arrowImage setImage:[UIImage imageNamed:@"Images/arrow.png"]];
+  [arrowImage setContentMode:UIViewContentModeScaleToFill];
+  [self.view addSubview:arrowImage];
   //confirmBtn
-  confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(90, 180, 60, 27)];
+  confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 250, 60, 27)];
   UIImage *btnBakImage = [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"];
   UIImage *strechBakImage = [btnBakImage stretchableImageWithLeftCapWidth:0 topCapHeight:0];
   [confirmBtn setBackgroundImage:strechBakImage forState:UIControlStateNormal];
@@ -192,6 +220,11 @@
 -(void)returnToPrev
 {
   [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)tapMethodLabel
+{
+  int  a = 0;
 }
 
 - (void)hidePicker

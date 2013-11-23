@@ -25,6 +25,9 @@
   UIButton *dropBtn;
   UITextField *methodTextField;
   UIPickerView *picker;
+  UILabel *methodLabel;
+  UIImageView *labelBackgroundView;
+  UIImageView *arrowImage;
   
   NSMutableArray *dealMethodLabelArray;
   NSMutableDictionary *goodsDataDict;
@@ -44,6 +47,9 @@
 @property (nonatomic,retain) UIButton *confirmBtn;
 @property (nonatomic,retain) UIButton *dropBtn;
 @property (nonatomic,retain) UITextField *methodTextField;
+@property (nonatomic,retain) UILabel *methodLabel;
+@property (nonatomic,retain) UIImageView *labelBackgroundView;
+@property (nonatomic,retain) UIImageView *arrowImage;
 @property (nonatomic,retain) IBOutlet UIPickerView *picker;
 
 
