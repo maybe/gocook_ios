@@ -119,9 +119,9 @@
 
 - (void)gotoOtherIntro:(UIButton*)btn
 {
-  NSInteger userid = [[btn associativeObjectForKey:@"userid"] integerValue];
+  NSInteger user_id = [[btn associativeObjectForKey:@"userid"] integerValue];
   
-  MyIntroductionViewController *pController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:userid from:ViewControllerCalledFromRecipeComment];
+  MyIntroductionViewController *pController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:user_id];
   [self.navigationController pushViewController:pController animated:YES];
 }
 

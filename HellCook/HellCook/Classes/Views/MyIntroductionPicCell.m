@@ -48,12 +48,15 @@
 
       //follow button
       followBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-      [followBtn setFrame:CGRectMake(240,60,70,30)];
+      [followBtn setFrame:CGRectMake(240,60,68,29)];
       [followBtn setBackgroundColor:[UIColor clearColor]];
       [followBtn setTitle:@"已关注" forState:UIControlStateNormal];
-      [followBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-      [followBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"] forState:UIControlStateNormal];
-      [followBtn setBackgroundImage:[UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"] forState:UIControlStateHighlighted];
+      [followBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+      [followBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
+
+      [followBtn setBackgroundImage:[UIImage imageNamed:@"Images/GreenButtonNormal136.png"] forState:UIControlStateNormal];
+      [followBtn setBackgroundImage:[UIImage imageNamed:@"Images/GreenButtonHighLight136.png"] forState:UIControlStateHighlighted];
+
       [followBtn addTarget:[self viewController] action:@selector(followBtnTapped) forControlEvents:UIControlEventTouchUpInside];
       
       [self addSubview:bannerImageView];

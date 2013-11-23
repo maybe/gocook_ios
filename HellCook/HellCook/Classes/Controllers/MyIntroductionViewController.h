@@ -16,8 +16,7 @@
   MyIntroductionPicCell *pPicCell;
   MyIntroductionIntroCell *pIntroCell;
   BOOL bShouldRefresh;
-  NSInteger mUserID;
-  ViewControllerCalledFrom eCalledFrom;
+  NSInteger userId;
   UIBarButtonItem *rightBarButtonItem;
 }
 
@@ -28,6 +27,6 @@
 @property (nonatomic, retain) UIBarButtonItem *rightBarButtonItem;
 @property BOOL bShouldRefresh;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userid from:(ViewControllerCalledFrom)calledFrom;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID;
 
 @end

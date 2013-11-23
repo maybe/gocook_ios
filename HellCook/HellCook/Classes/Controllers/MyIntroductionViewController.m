@@ -22,14 +22,13 @@
 @synthesize rightBarButtonItem;
 @synthesize bShouldRefresh;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userid from:(ViewControllerCalledFrom)calledFrom
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-      mUserID = userid;
+      userId = userID;
       bShouldRefresh = YES;
-      eCalledFrom = calledFrom;
-      
+
       pMyInfo = [[NSMutableDictionary alloc] init];
       pPicCell = [[MyIntroductionPicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionPicCell"];
       pIntroCell = [[MyIntroductionIntroCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIntroductionIntroCell"];
@@ -62,7 +61,7 @@
 {
   [super viewWillAppear:animated];
 
-  if (eCalledFrom == ViewControllerCalledFromMyIndividual) {
+  if ([[[User sharedInstance] account] user_id] == userId) {
     self.tabBarController.navigationItem.title = [[[User sharedInstance] account] username];
     [self setRightButton];
   } else {
@@ -74,7 +73,7 @@
   if (bShouldRefresh)
   {
     bShouldRefresh = NO;
-    if (eCalledFrom == ViewControllerCalledFromMyIndividual)
+    if ([[[User sharedInstance] account] user_id] == userId)
     {
       [self getMyIntroductionData];
     }
@@ -131,9 +130,8 @@
 
 -(void)returnToPrev
 {
-  if (eCalledFrom == ViewControllerCalledFromMyIndividual)
+  if (self.navigationController.viewControllers.count == 1)
   {
-    // [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
   }
   else
@@ -146,7 +144,7 @@
 {
   if ([pPicCell.followBtn.titleLabel.text isEqual:@"已关注"]) {
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
-        unwatchWithUserID:mUserID
+        unwatchWithUserID:userId
         completionHandler:^(NSMutableDictionary *resultDic) {
           [self unwatchDataCallBack:resultDic];
         }
@@ -155,7 +153,7 @@
     ];
   } else {
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
-        watchWithUserID:mUserID
+        watchWithUserID:userId
       completionHandler:^(NSMutableDictionary *resultDic) {
         [self watchDataCallBack:resultDic];
       }
@@ -204,24 +202,34 @@
     if ([pMyInfo count] > 0)
     {
       [pPicCell setData:pMyInfo];
-      if (eCalledFrom==ViewControllerCalledFromMyFollow || eCalledFrom==ViewControllerCalledFromMyFan)
+      if ([[[User sharedInstance] account] user_id] != userId)
       {
         [pPicCell.followBtn setHidden:NO];
         if (pMyInfo[@"watch"]!=[NSNull null])
         {
-          if ([pMyInfo[@"watch"] intValue] == -1)
+          if ([pMyInfo[@"watch"] intValue] == E_NotMyWatch)
           {
             [pPicCell.followBtn setTitle:@"未关注" forState:UIControlStateNormal];
+
+            [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/AddMaterialLineNormal.png"] forState:UIControlStateNormal];
+            [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/AddMaterialLineHighLight.png"] forState:UIControlStateHighlighted];
           }
           else
           {
             [pPicCell.followBtn setTitle:@"已关注" forState:UIControlStateNormal];
+            [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/GreenButtonNormal136.png"] forState:UIControlStateNormal];
+            [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/GreenButtonHighLight136.png"] forState:UIControlStateHighlighted];
           }
         }
         else
         {
           [pPicCell.followBtn setTitle:@"未关注" forState:UIControlStateNormal];
+          [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/AddMaterialLineNormal.png"] forState:UIControlStateNormal];
+          [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/AddMaterialLineHighLight.png"] forState:UIControlStateHighlighted];
         }
+        [pPicCell.followBtn setHidden:NO];
+      } else {
+        [pPicCell.followBtn setHidden:YES];
       }
     }
         
@@ -281,7 +289,7 @@
 -(void)getOtherIntroData
 {
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
-            getOtherIntroWithUserID:mUserID
+            getOtherIntroWithUserID:userId
             completionHandler:^(NSMutableDictionary *resultDic) {
               [self getOtherIntroDataCallBack:resultDic];
             }
@@ -311,6 +319,9 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success) {
     [pPicCell.followBtn setTitle:@"已关注" forState:UIControlStateNormal];
+
+    [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/GreenButtonNormal136.png"] forState:UIControlStateNormal];
+    [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/GreenButtonHighLight136.png"] forState:UIControlStateHighlighted];
   }
   else if (result == GC_Failed) {
     NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
@@ -330,6 +341,8 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success) {
     [pPicCell.followBtn setTitle:@"未关注" forState:UIControlStateNormal];
+    [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/AddMaterialLineNormal.png"] forState:UIControlStateNormal];
+    [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/AddMaterialLineHighLight.png"] forState:UIControlStateHighlighted];
   } else {
     NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
     if (error_code == GC_AuthAccountInvalid) {

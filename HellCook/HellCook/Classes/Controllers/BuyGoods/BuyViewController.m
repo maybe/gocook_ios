@@ -224,7 +224,6 @@
 
 -(void)tapMethodLabel
 {
-  int  a = 0;
 }
 
 - (void)hidePicker

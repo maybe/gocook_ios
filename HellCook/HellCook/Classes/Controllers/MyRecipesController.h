@@ -21,18 +21,18 @@
   NSInteger curPage;
   NSInteger totalPage;
   UIActivityIndicatorView* mLoadingActivity;
-  
   MKNetworkOperation *mNetOperation;
-
   ODRefreshControl *refreshControl;
 
-  NSInteger deleteRecipeId;
-  NSInteger modifyRecipeId;
+  NSInteger userId;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) NSMutableArray* mMyRecipeArray;
 @property (nonatomic, retain) UIActivityIndicatorView* mLoadingActivity;
 @property (strong, nonatomic) MKNetworkOperation *mNetOperation;
+@property NSInteger userId;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID;
 
 @end

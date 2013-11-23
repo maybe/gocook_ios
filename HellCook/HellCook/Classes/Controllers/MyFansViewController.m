@@ -21,16 +21,15 @@
 @synthesize netOperation;
 @synthesize mLoadingActivity;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    // Custom initialization
     curPage = 0;
-    firstLoad = TRUE;
+    firstLoad = YES;
     isPageEnd = NO;
+    userId = userID;
     myFansArray = [[NSMutableArray alloc] init];
-    [self initLoadingView];
   }
   return self;
 }
@@ -38,30 +37,35 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-//  // Do any additional setup after loading the view from its nib.
-//  if([self respondsToSelector:@selector(edgesForExtendedLayout)]){
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-//  }
-  
+  [self autoLayout];
+
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
+
+  CGRect tableFrame = self.myTableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.myTableView setFrame:tableFrame];
+
   [self setLeftButton];
   
   refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
   refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
-  
-  [self getMyFansData];
+
+  [self initLoadingView];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  self.tabBarController.navigationItem.title = @"我的粉丝";
+  self.tabBarController.navigationItem.title = @"粉丝";
   
   [self.tabBarController.navigationItem setRightBarButtonItem:nil];
   
   if (firstLoad) {
     firstLoad = NO;
-    [self getMyFansData];
+    [self getUserFansData];
   }
 }
 
@@ -71,7 +75,7 @@
   curPage = 0;
   isPageEnd = NO;
   [self.myTableView reloadData];
-  [self getMyFansData];
+  [self getUserFansData];
 }
 
 - (void)setLeftButton
@@ -92,10 +96,15 @@
 
 -(void)returnToPrev
 {
-  // [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
-  [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+  if (self.navigationController.viewControllers.count == 1)
+  {
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+  }
+  else
+  {
+    [self.navigationController popViewControllerAnimated:YES];
+  }
 }
-
 
 - (void)initLoadingView
 {
@@ -155,7 +164,7 @@
     cell = [[MyFansTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
   
-  [cell setData:myFansArray[indexPath.row]];
+  [cell setData:myFansArray[(NSUInteger)indexPath.row]];
   
   return cell;
 }
@@ -165,10 +174,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  NSMutableDictionary *pFanDict = [myFansArray objectAtIndex:indexPath.row];
-  NSInteger userid = [pFanDict[@"user_id"] intValue];
+  NSMutableDictionary *pFanDict = [myFansArray objectAtIndex:(NSUInteger)indexPath.row];
+  NSInteger user_id = [pFanDict[@"user_id"] intValue];
   
-  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:userid from:ViewControllerCalledFromMyFan showIndex:0];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id showIndex:0];
   [self.tabBarController.navigationController pushViewController:pHomePageController animated:YES];
 }
 
@@ -179,7 +188,7 @@
   {
     if (![self.netOperation isExecuting] && !isPageEnd) {
       [self showLoadingView];
-      [self getMyFansData];
+      [self getUserFansData];
     }
   }
 }
@@ -187,19 +196,20 @@
 
 #pragma mark - Net
 
--(void)getMyFansData
+-(void)getUserFansData
 {
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
       getMyFansDataByPage:(curPage + 1)
+        WithUserID:userId
         completionHandler:^(NSMutableDictionary *resultDic) {
-          [self getMyFansDataCallBack:resultDic];
+          [self getUserFansDataCallBack:resultDic];
         }
              errorHandler:^(NSError *error) {
              }
   ];
 }
 
-- (void)getMyFansDataCallBack:(NSMutableDictionary*) resultDic
+- (void)getUserFansDataCallBack:(NSMutableDictionary*) resultDic
 {
   if ([refreshControl isRefreshing]) {
     [refreshControl endRefreshing];

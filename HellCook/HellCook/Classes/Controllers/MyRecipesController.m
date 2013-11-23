@@ -24,14 +24,16 @@
 @synthesize mMyRecipeArray;
 @synthesize mLoadingActivity;
 @synthesize mNetOperation;
+@synthesize userId;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID
+{
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     curPage = 0;
     firstLoad = YES;
-    deleteRecipeId = 0;
+    userId = userID;
   }
   return self;
 }

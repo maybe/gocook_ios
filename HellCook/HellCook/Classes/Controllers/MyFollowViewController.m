@@ -12,6 +12,7 @@
 #import "MyFollowTableViewCell.h"
 #import "HomePageController.h"
 #import "ODRefreshControl.h"
+#import "User.h"
 
 @interface MyFollowViewController ()
 
@@ -21,7 +22,7 @@
 @synthesize netOperation;
 @synthesize mLoadingActivity;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -29,8 +30,8 @@
       curPage = 0;
       firstLoad = YES;
       isPageEnd = NO;
+      userId = userID;
       myFollowsArray = [[NSMutableArray alloc] init];
-      [self initLoadingView];
     }
     return self;
 }
@@ -38,21 +39,63 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self autoLayout];
+
+  [self setLeftButton];
+
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
+
+  CGRect tableFrame = self.myTableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.myTableView setFrame:tableFrame];
+
   [self.tabBarController.navigationItem setRightBarButtonItem:nil];
   refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
   refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
+
+  [self initLoadingView];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  self.tabBarController.navigationItem.title = @"我的关注";
+  self.tabBarController.navigationItem.title = @"关注";
   
   if (firstLoad)
   {
     firstLoad = NO;
-    [self getMyFollowData];
+    [self getUserFollowData];
+  }
+}
+
+- (void)setLeftButton
+{
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
+  [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
+  [leftBarButtonView setBackgroundImage:
+      [UIImage imageNamed:@"Images/BackButtonNormal.png"]
+                               forState:UIControlStateNormal];
+  [leftBarButtonView setBackgroundImage:
+      [UIImage imageNamed:@"Images/BackButtonHighLight.png"]
+                               forState:UIControlStateHighlighted];
+
+  UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
+
+  [self.tabBarController.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+}
+
+-(void)returnToPrev
+{
+  if (self.navigationController.viewControllers.count == 1)
+  {
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+  }
+  else
+  {
+    [self.navigationController popViewControllerAnimated:YES];
   }
 }
 
@@ -62,18 +105,11 @@
   curPage = 0;
   isPageEnd = NO;
   [self.myTableView reloadData];
-  [self getMyFollowData];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [self getUserFollowData];
 }
 
 - (void)viewDidUnload {
     [self setMyTableView:nil];
-    [super viewDidUnload];
 }
 
 - (void)initLoadingView
@@ -81,7 +117,6 @@
   CGRect frame = self.myTableView.tableFooterView.frame;
   frame.size.height = 50;
   self.myTableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
-  //CGFloat tablewidth = self.tableView.frame.size.width;
   mLoadingActivity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
   [mLoadingActivity setCenter:CGPointMake(160, 25)];
   [mLoadingActivity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
@@ -146,9 +181,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   NSMutableDictionary *pFollowDict = [myFollowsArray objectAtIndex:(NSUInteger)indexPath.row];
-  NSInteger userid = [pFollowDict[@"user_id"] intValue];
+  NSInteger user_id = [pFollowDict[@"user_id"] intValue];
   
-  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:userid from:ViewControllerCalledFromMyFollow showIndex:0];
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id showIndex:0];
   [self.tabBarController.navigationController pushViewController:pHomePageController animated:YES];
 }
 
@@ -159,28 +194,27 @@
   {
     if (![self.netOperation isExecuting] && !isPageEnd) {
       [self showLoadingView];
-      [self getMyFollowData];
+      [self getUserFollowData];
     }
   }
 }
 
-
-
 #pragma mark - Net
 
--(void)getMyFollowData
+-(void)getUserFollowData
 {
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
-      getMyFollowDataByPage:(curPage + 1)
-          completionHandler:^(NSMutableDictionary *resultDic) {
-            [self getMyFollowDataCallBack:resultDic];
-          }
-               errorHandler:^(NSError *error) {
-               }
+      getUserFollowDataByPage:(curPage + 1)
+                   WithUserID:userId
+      completionHandler:^(NSMutableDictionary *resultDic) {
+        [self getUserFollowDataCallBack:resultDic];
+            }
+                 errorHandler:^(NSError *error) {
+                 }
   ];
 }
 
-- (void)getMyFollowDataCallBack:(NSMutableDictionary*) resultDic
+- (void)getUserFollowDataCallBack:(NSMutableDictionary*) resultDic
 {
   if ([refreshControl isRefreshing]) {
     [refreshControl endRefreshing];
@@ -204,15 +238,15 @@
       }
       else
       {
-        NSMutableArray* indexpathArray = [[NSMutableArray alloc]init];
+        NSMutableArray*indexPathArray = [[NSMutableArray alloc]init];
         for (int i = 0; i<addsize; i++)
         {
           NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i+originsize inSection:0];
-          [indexpathArray addObject:indexPath];
+          [indexPathArray addObject:indexPath];
         }
         
         [self.myTableView beginUpdates];
-        [self.myTableView insertRowsAtIndexPaths:indexpathArray withRowAnimation:UITableViewRowAnimationNone];
+        [self.myTableView insertRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationNone];
         [self.myTableView endUpdates];
       }
     }
