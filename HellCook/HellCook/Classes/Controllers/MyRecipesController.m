@@ -44,7 +44,9 @@
   [super viewDidLoad];
   [self autoLayout];
 
-  [self resetTableHeader];
+  if ([[[User sharedInstance] account] user_id] == userId) {
+    [self resetTableHeader];
+  }
 
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar_NoTabBar;
@@ -169,12 +171,13 @@
 
 - (void)getRecipesData {
   self.mNetOperation = [[[NetManager sharedInstance] hellEngine]
-      getMyRecipesDataByPage:(curPage + 1)
-           completionHandler:^(NSMutableDictionary *resultDic) {
-             [self getRecipesResultCallBack:resultDic];
-           }
-                errorHandler:^(NSError *error) {
-                }
+      getUserRecipesDataByPage:(curPage + 1)
+            WithUserID:userId
+             completionHandler:^(NSMutableDictionary *resultDic) {
+               [self getRecipesResultCallBack:resultDic];
+             }
+                  errorHandler:^(NSError *error) {
+                  }
   ];
 }
 
@@ -186,7 +189,7 @@
 
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success) {
-    int totalCount = [resultDic[@"total"] intValue];
+    int totalCount = [resultDic[@"totalrecipecount"] intValue];
     totalPage = totalCount / 10 + (totalCount % 10 > 0 ? 1 : 0);
 
     curPage++;

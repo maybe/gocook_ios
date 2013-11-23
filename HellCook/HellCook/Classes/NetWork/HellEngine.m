@@ -220,11 +220,12 @@
 }
 
 
-- (MKNetworkOperation*)getMyRecipesDataByPage:(NSInteger)page
-                            completionHandler:(myRecipesResponseBlock)completionBlock
-                                 errorHandler:(MKNKErrorBlock) errorBlock
+- (MKNetworkOperation*)getUserRecipesDataByPage:(NSInteger)page
+                                     WithUserID:(NSInteger)userID
+                              completionHandler:(userRecipesResponseBlock)completionBlock
+                                   errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/myrecipes?page=%d",page]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/usersrecipes?userid=%d&page=%d",userID,page]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
