@@ -40,7 +40,7 @@
   [self.view setFrame:viewFrame];
   
   CGRect btnFrame = topBtn.frame;
-  btnFrame.size.height = 56;
+  btnFrame.size.height = 45;
   [topBtn setFrame:btnFrame];
   if (myType == 0)//抽奖机会
   {
@@ -51,9 +51,16 @@
   }
   else if (myType == 1)//有效优惠券
   {
-    topBtn.enabled = FALSE;
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RollBtnBackground.png"];
+    [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+    topBtn.userInteractionEnabled = FALSE;
     //******
-    UIImageView *resultImage = [[UIImageView alloc]initWithFrame:btnFrame];
+    CGRect imageFrame = topBtn.frame;
+    imageFrame.origin.x = 75;
+    imageFrame.origin.y = 3;
+    imageFrame.size.width = 170;
+    imageFrame.size.height = topBtn.frame.size.height - 5;
+    UIImageView *resultImage = [[UIImageView alloc]initWithFrame:imageFrame];
     [self.view addSubview:resultImage];
     ZXMultiFormatWriter *writer = [[ZXMultiFormatWriter alloc] init];
     ZXBitMatrix *result = [writer encode:(NSString*)data[@"coupon"] format:kBarcodeFormatCode128 width:resultImage.frame.size.width height:resultImage.frame.size.width error:nil];
@@ -70,7 +77,7 @@
     [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
     UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/overdue.png"];
     [topBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
-    topBtn.enabled = FALSE;
+    topBtn.userInteractionEnabled = FALSE;
   }
   [topBtn addTarget:self action:@selector(topBtnPressed) forControlEvents:UIControlEventTouchUpInside];
   

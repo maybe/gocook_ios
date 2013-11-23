@@ -84,7 +84,7 @@
     [self addSubview:contentLabel];
     
     if (bHaveBottomBtn) {
-      bottomBtn = [[UIButton alloc] initWithFrame:CGRectMake(140, height-15, 40, 18)];
+      bottomBtn = [[UIButton alloc] initWithFrame:CGRectMake(140, height-25, 40, 13)];
       UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/detail.png"];
       [bottomBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
       UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/detail.png"];

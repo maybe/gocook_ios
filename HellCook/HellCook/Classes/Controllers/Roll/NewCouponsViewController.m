@@ -44,6 +44,10 @@
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.view setFrame:viewFrame];
   
+  HUD = [[MBProgressHUD alloc] initWithView:self.view];
+  [self.view addSubview:HUD];
+  HUD.mode = MBProgressHUDModeText;
+  
   CGRect btnFrame = topBtn.frame;
   btnFrame.size.height = 45;
   [topBtn setFrame:btnFrame];
@@ -161,6 +165,12 @@
     if (![self.netOperation isExecuting] && !isPageEnd) {
       [self showLoadingView];
       [self getAllMyCoupons];
+    }
+    else
+    {
+      HUD.labelText = @"暂无更多优惠券信息";
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:1];
     }
   }
 }

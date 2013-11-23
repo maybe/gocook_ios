@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class ODRefreshControl;
+@class MBProgressHUD;
 @interface NewCouponsViewController : UIViewController
 {
   UIButton *topBtn;
@@ -18,6 +19,7 @@
   BOOL isPageEnd;
   NSMutableArray *itmesArray;
   
+  MBProgressHUD *HUD;
   ODRefreshControl *refreshControl;
   UIActivityIndicatorView* mLoadingActivity;
   UIActivityIndicatorView* mWaitingActivity;
