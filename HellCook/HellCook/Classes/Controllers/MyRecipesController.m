@@ -91,6 +91,7 @@
 
   if (firstLoad) {
     [mMyRecipeArray removeAllObjects];
+    [tableView reloadData];
     [self reloadRecipeData];
     [self showLoadingView];
     firstLoad = NO;
