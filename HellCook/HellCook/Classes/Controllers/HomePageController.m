@@ -19,35 +19,29 @@
 @implementation HomePageController
 @synthesize mTabBar;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID from:(ViewControllerCalledFrom)calledFrom showIndex:(NSInteger)index {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID AndName:(NSString *)userName showIndex:(NSInteger)index {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    eCalledFrom = calledFrom;
     //个人简介
-    MyIntroductionViewController *pIntroController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:userID from:calledFrom];
+    MyIntroductionViewController *pIntroController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:userID AndName:userName];
     [pIntroController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/IntroductionSelectTab.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/IntroductionNormalTab.png"]];
     pIntroController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, -1, -6, 0);
     //我的菜谱
-    MyRecipesController *pMyRecipesController = [[MyRecipesController alloc] initWithNibName:@"MyRecipesView" bundle:nil];
+    MyRecipesController *pMyRecipesController = [[MyRecipesController alloc] initWithNibName:@"MyRecipesView" bundle:nil withUserID:userID AndName:userName];
     [pMyRecipesController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/MyRecipesSelectTab.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/MyRecipesNormalTab.png"]];
     pMyRecipesController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, -1);
 
     NSArray *viewControllerArray;
-    if (eCalledFrom == ViewControllerCalledFromMyIndividual) {
-      //我的关注
-      MyFollowViewController *pFollowController = [[MyFollowViewController alloc] initWithNibName:@"MyFollowView" bundle:nil];
-      [pFollowController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/MyFollowSelectTab.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/MyFollowNormalTab.png"]];
-      pFollowController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-      //我的粉丝
-      MyFansViewController *pFanController = [[MyFansViewController alloc] initWithNibName:@"MyFansView" bundle:nil];
-      [pFanController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/MyFanSelectTab.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/MyFanNormalTab.png"]];
-      pFanController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+    //我的关注
+    MyFollowViewController *pFollowController = [[MyFollowViewController alloc] initWithNibName:@"MyFollowView" bundle:nil withUserID:userID AndName:userName];
+    [pFollowController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/MyFollowSelectTab.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/MyFollowNormalTab.png"]];
+    pFollowController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+    //我的粉丝
+    MyFansViewController *pFanController = [[MyFansViewController alloc] initWithNibName:@"MyFansView" bundle:nil withUserID:userID AndName:userName];
+    [pFanController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Images/MyFanSelectTab.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Images/MyFanNormalTab.png"]];
+    pFanController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
 
-      viewControllerArray = [NSArray arrayWithObjects:pIntroController, pFollowController, pFanController, pMyRecipesController, nil];
-    }
-    else {
-      viewControllerArray = [NSArray arrayWithObjects:pIntroController, pMyRecipesController, nil];
-    }
+    viewControllerArray = [NSArray arrayWithObjects:pIntroController, pFollowController, pFanController, pMyRecipesController, nil];
 
     self.viewControllers = viewControllerArray;
     self.selectedIndex = (NSUInteger) index;

@@ -10,13 +10,15 @@
 #import "MBProgressHUD.h"
 
 @class MBProgressHUD;
-@interface MaterialSearchBuyViewController : UIViewController
+@interface MaterialSearchBuyViewController : UIViewController<MBProgressHUDDelegate>
 {
   UITableView *myTableView;
   NSMutableArray *unslashMaterialArray;
   NSInteger selectedRowOfCell;
   
   MBProgressHUD *HUD;
+
+  BOOL isOrderSuccess;
 }
 
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;

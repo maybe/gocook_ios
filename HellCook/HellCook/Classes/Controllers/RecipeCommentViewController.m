@@ -8,12 +8,13 @@
 
 #import "RecipeCommentViewController.h"
 #import "RecipeCommentsTableViewCell.h"
-#import "MyIntroductionViewController.h"
+#import "HomePageController.h"
 #import "RecipeSendCommentView.h"
 #import "NetManager.h"
 #import "KeyboardHandler.h"
 #import "MBProgressHUD.h"
 #import "User.h"
+#import "LoginController.h"
 
 @interface RecipeCommentViewController ()
 
@@ -119,10 +120,17 @@
 
 - (void)gotoOtherIntro:(UIButton*)btn
 {
-  NSInteger userid = [[btn associativeObjectForKey:@"userid"] integerValue];
-  
-  MyIntroductionViewController *pController = [[MyIntroductionViewController alloc] initWithNibName:@"MyIntroductionView" bundle:nil withUserID:userid from:ViewControllerCalledFromRecipeComment];
-  [self.navigationController pushViewController:pController animated:YES];
+  NSInteger user_id = [[btn associativeObjectForKey:@"userid"] integerValue];
+  NSString* user_name = @"";
+  for (int j = 0; j < dataArray.count; j++) {
+    if ([dataArray[j][@"user_id"] intValue] == user_id) {
+      user_name = dataArray[j][@"name"];
+      break;
+    }
+  }
+
+  HomePageController* pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id AndName:user_name showIndex:0];
+  [self.navigationController pushViewController:pHomePageController animated:YES];
 }
 
 - (void)tapSend
@@ -185,11 +193,29 @@
   }
   else
   {
-    [sendView hideTextView];
-    NSString *msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
-    HUD.labelText = msg;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:2];
+    NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
+
+    if (error_code == GC_AuthAccountInvalid) {
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+
+      if (self.navigationController) {
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+
+      }
+    } else {
+      NSString *msg = NULL;
+      if (error_code == GC_PostInvalid) {
+        msg = @"字数不够";
+      } else {
+        msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
+      }
+
+      [sendView hideTextView];
+      HUD.labelText = msg;
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:1];
+    }
   }
 }
 

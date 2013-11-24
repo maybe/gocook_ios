@@ -29,6 +29,10 @@
     }
     else{
       isLogin = NO;
+      user_id = 0;
+      shouldResetLogin = NO;
+      username = @"";
+      avatar = @"";
     }
   }
   return self;

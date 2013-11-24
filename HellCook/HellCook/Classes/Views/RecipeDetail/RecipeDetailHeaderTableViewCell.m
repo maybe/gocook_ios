@@ -7,13 +7,11 @@
 //
 
 #import "RecipeDetailHeaderTableViewCell.h"
-#import "QuartzCore/QuartzCore.h"
 #import "UIImageView+WebCache.h"
 #import "NetManager.h"
-#import "DBHandler.h"
 
 @implementation RecipeDetailHeaderTableViewCell
-@synthesize titleLabel,imageView,buyButton,collectButton,introLabel;
+@synthesize titleLabel,imageView,buyButton,collectButton,introLabel,authorButton,authorLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -30,8 +28,20 @@
     [self addSubview: [self titleLabel]];
     [self addSubview:[self introLabel]];
 
+    authorButton = [[UIButton alloc]initWithFrame:CGRectMake(168, 0, 120, 25)];
+    [authorButton setTitle:@"" forState:UIControlStateNormal];
+    [authorButton addTarget:nil action:@selector(onClickAuthor:) forControlEvents:UIControlEventTouchUpInside];
+
+    authorLabel = [[UILabel alloc]initWithFrame:CGRectMake(168, 0, 120, 20)];
+    [authorLabel setText:@""];
+    [authorLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+    [authorLabel setTextAlignment:NSTextAlignmentRight];
+    authorLabel.textColor = [UIColor colorWithRed:108.0f/255.0f green:146.0f/255.0f blue:75.0f/255.0f alpha:1];
+
     [self addSubview: [self collectButton]];
     [self addSubview: [self buyButton]];
+    [self addSubview:authorLabel];
+    [self addSubview:authorButton];
 
     UIView *backView = [[UIView alloc] initWithFrame:self.frame];
     backView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
@@ -128,9 +138,11 @@
   mCellHeight += introLabelSize.height;
   mIntroLabelHeight = introLabelSize.height;
 
-  mCollButtonTop = mCellHeight +30;
+  mAuthorButtonTop = mCellHeight + 5;
 
-  mCellHeight += 100;
+  mCollButtonTop = mCellHeight + 50;
+
+  mCellHeight += 120;
 }
 
 - (void)ReformCell
@@ -140,6 +152,9 @@
 
   CGRect introRect = CGRectMake(32, mIntroLabelTop, 256, mIntroLabelHeight);
   [introLabel setFrame: introRect];
+
+  [authorButton setFrame:CGRectMake(168, mAuthorButtonTop, 120, 25)];
+  [authorLabel setFrame:CGRectMake(168, mAuthorButtonTop, 120, 20)];
 
   [collectButton setFrame:CGRectMake(30, mCollButtonTop, 120, 34)];
   [buyButton setFrame:CGRectMake(168, mCollButtonTop, 120, 34)];
@@ -170,6 +185,10 @@
       [collectButton setAssociativeObject:@"未收藏" forKey:@"title"];
     }
   }
+
+  [authorLabel setText: dictionary[@"author_name"]];
+  [authorButton setAssociativeObject:dictionary[@"author_id"] forKey:@"author_id"];
+  [authorButton setAssociativeObject:dictionary[@"author_name"] forKey:@"author_name"];
 
   NetManager* netManager = [NetManager sharedInstance];
 

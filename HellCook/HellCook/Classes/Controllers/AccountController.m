@@ -90,6 +90,7 @@
   //[self.navigationController.view setFrame:CGRectMake(0, 0, _sideWindowWidth, _screenHeight)];
 
   if ([[[User sharedInstance] account] isLogin] && [[[User sharedInstance] account] shouldResetLogin]) {
+    [self getKitchenInfo];
     [self resetAccountView];
   }
 
@@ -103,8 +104,6 @@
   }
 
   [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
-
-  [self getKitchenInfo];
 
   [super viewWillAppear:animated];
 }
@@ -279,14 +278,10 @@ destructiveButtonTitle:@"确定"
 }
 
 - (IBAction)tapNameLabel:(id)sender {
-  HomePageController *pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:-1 from:ViewControllerCalledFromMyIndividual showIndex:0];
-
-  // MyselfRootViewController *pViewController = [[MyselfRootViewController alloc] initWithNibName:@"MyselfRootView" bundle:nil];
-
+  NSInteger user_id = [[[User sharedInstance] account] user_id];
+  NSString* user_name = [[[User sharedInstance] account] username];
+  HomePageController *pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id AndName:user_name showIndex:0];
   [ApplicationDelegate.centerNavController setViewControllers:@[pHomePageController] animated:NO];
-
-  //[self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:_offset animated:YES];
-
   [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
 }
 
@@ -467,10 +462,10 @@ destructiveButtonTitle:@"确定"
         break;
     }
 
-    HomePageController *pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:-1 from:ViewControllerCalledFromMyIndividual showIndex:index];
-
+    NSInteger user_id = [[[User sharedInstance] account] user_id];
+    NSString* user_name = [[[User sharedInstance] account] username];
+    HomePageController *pHomePageController = [[HomePageController alloc] initWithNibName:@"HomePageView" bundle:nil withUserID:user_id AndName:user_name showIndex:index];
     [ApplicationDelegate.centerNavController setViewControllers:@[pHomePageController] animated:NO];
-
     [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
   }
   else if (sender.tag == 10003)//我的收藏
@@ -493,6 +488,7 @@ destructiveButtonTitle:@"确定"
   // if ([className isEqualToString:NSStringFromClass([self class])]) {
   // }
   if ([[[User sharedInstance] account] isLogin] && [[[User sharedInstance] account] shouldResetLogin]) {
+    [self getKitchenInfo];
     [self resetAccountView];
   }
 

@@ -110,10 +110,10 @@
   for (int i = 0; i < mMaterialLabelArray.count; i++) {
     CGFloat y = mMaterialTop + (20 + mMaterialOneHeight) * i + 10;
     UILabel* label1 = [mMaterialLabelArray objectAtIndex:i];
-    [label1 setFrame:CGRectMake(30, y, 256, mMaterialOneHeight)];
+    [label1 setFrame:CGRectMake(30, y, 128, mMaterialOneHeight)];
     
     UILabel* label2 = [mWeightLabelArray objectAtIndex:i];
-    [label2 setFrame:CGRectMake(160, y, 256, mMaterialOneHeight)];
+    [label2 setFrame:CGRectMake(160, y, 130, mMaterialOneHeight)];
     
     UIImageView* imageView = [mLineArray objectAtIndex:i];
     [imageView setFrame:CGRectMake(30, y-10, 260, 1)];

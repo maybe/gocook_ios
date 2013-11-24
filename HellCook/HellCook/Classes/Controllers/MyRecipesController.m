@@ -24,14 +24,18 @@
 @synthesize mMyRecipeArray;
 @synthesize mLoadingActivity;
 @synthesize mNetOperation;
+@synthesize userId;
+@synthesize titleName;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID AndName:(NSString *)userName
+{
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     curPage = 0;
     firstLoad = YES;
-    deleteRecipeId = 0;
+    userId = userID;
+    titleName = [[NSString alloc] initWithFormat:@"%@的菜谱", userName];
   }
   return self;
 }
@@ -40,7 +44,9 @@
   [super viewDidLoad];
   [self autoLayout];
 
-  [self resetTableHeader];
+  if ([[[User sharedInstance] account] user_id] == userId) {
+    [self resetTableHeader];
+  }
 
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar_NoTabBar;
@@ -86,7 +92,12 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
-  self.tabBarController.navigationItem.title = @"我的菜谱";
+  if ([[[User sharedInstance] account] user_id] == userId) {
+    self.tabBarController.navigationItem.title = @"我的菜谱";
+  } else {
+    self.tabBarController.navigationItem.title = titleName;
+  }
+
   [self.tabBarController.navigationItem setRightBarButtonItem:nil];
 
   if (firstLoad) {
@@ -134,13 +145,11 @@
   NSString* recipeIdStr = mMyRecipeArray[(NSUInteger)indexPath.row][@"recipe_id"];
   NSInteger recipeId = [recipeIdStr intValue];
 
-  [self.navigationController pushViewController:[[MyRecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId] animated:YES];
-
-  // [self.navigationController pushViewController:[[RegisterController alloc]initWithNibName:@"RegisterView" bundle:nil] animated:YES];
-  // NSString* recipeIdStr = mMyRecipeArray[indexPath.row][@"recipe_id"];
-  // NSInteger recipeId = [recipeIdStr intValue];
-
-//  [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId withPrevTitle:self.title] animated:YES];
+  if ([[[User sharedInstance] account] user_id] == userId) {
+    [self.navigationController pushViewController:[[MyRecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId] animated:YES];
+  } else {
+    [self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil withId:recipeId] animated:YES];
+  }
 }
 
 
@@ -160,12 +169,13 @@
 
 - (void)getRecipesData {
   self.mNetOperation = [[[NetManager sharedInstance] hellEngine]
-      getMyRecipesDataByPage:(curPage + 1)
-           completionHandler:^(NSMutableDictionary *resultDic) {
-             [self getRecipesResultCallBack:resultDic];
-           }
-                errorHandler:^(NSError *error) {
-                }
+      getUserRecipesDataByPage:(curPage + 1)
+            WithUserID:userId
+             completionHandler:^(NSMutableDictionary *resultDic) {
+               [self getRecipesResultCallBack:resultDic];
+             }
+                  errorHandler:^(NSError *error) {
+                  }
   ];
 }
 
@@ -177,7 +187,7 @@
 
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success) {
-    int totalCount = [resultDic[@"total"] intValue];
+    int totalCount = [resultDic[@"totalrecipecount"] intValue];
     totalPage = totalCount / 10 + (totalCount % 10 > 0 ? 1 : 0);
 
     curPage++;

@@ -220,11 +220,12 @@
 }
 
 
-- (MKNetworkOperation*)getMyRecipesDataByPage:(NSInteger)page
-                            completionHandler:(myRecipesResponseBlock)completionBlock
-                                 errorHandler:(MKNKErrorBlock) errorBlock
+- (MKNetworkOperation*)getUserRecipesDataByPage:(NSInteger)page
+                                     WithUserID:(NSInteger)userID
+                              completionHandler:(userRecipesResponseBlock)completionBlock
+                                   errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/myrecipes?page=%d",page]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/usersrecipes?userid=%d&page=%d",userID,page]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -263,11 +264,12 @@
 }
 
 
-- (MKNetworkOperation*)getMyFollowDataByPage:(NSInteger)page
-                           completionHandler:(myFollowResponseBlock)completionBlock
-                                errorHandler:(MKNKErrorBlock) errorBlock
+- (MKNetworkOperation*)getUserFollowDataByPage:(NSInteger)page
+                                    WithUserID:(NSInteger)userID
+                             completionHandler:(userFollowResponseBlock)completionBlock
+                                  errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/mywatch?page=%d",page]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/user_watch?page=%d&userid=%d",page,userID]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -287,10 +289,11 @@
 
 
 - (MKNetworkOperation*)getMyFansDataByPage:(NSInteger)page
-                         completionHandler:(myFansResponseBlock)completionBlock
+                                WithUserID:(NSInteger)userID
+                         completionHandler:(userFansResponseBlock)completionBlock
                               errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/myfans?page=%d",page]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/user_fans?page=%d&userid=%d",page,userID]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -722,7 +725,7 @@
                            completionHandler:(allMyCouponsResponseBlock)completionBlock
                                 errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/my_coupons?page=%d&test_id=2",page]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/my_coupons?page=%d",page]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -743,7 +746,7 @@
 - (MKNetworkOperation*)getSalesOfTodayWithCompletionHandler:(getSalesOfTodayResponseBlock)completionBlock
                                                errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/day_sales?test_id=2"]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/day_sales"]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -765,7 +768,7 @@
                     completionHandler:(getCouponsResponseBlock)completionBlock
                          errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/get_coupon?id=%@&test_id=2",couponId]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/get_coupon?id=%@",couponId]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -787,7 +790,7 @@
                       completionHandler:(delayLotteryResponseBlock)completionBlock
                            errorHandler:(MKNKErrorBlock) errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/delay_coupon?id=%@&test_id=2",couponId]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/delay_coupon?id=%@",couponId]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
@@ -809,12 +812,12 @@
                          completionHandler:(kitchenInfoResponseBlock)completionBlock
                               errorHandler:(MKNKErrorBlock)errorBlock
 {
-  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/kitchen_info?userid=%@&test_id=2",userId]
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/kitchen_info?userid=%@",userId]
                                             params:nil
                                         httpMethod:@"GET"];
   [op useCookie:NO];
   [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
-    //NSLog(@"%@",completedOperation.responseString);
+    // NSLog(@"%@",completedOperation.responseString);
     [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
       completionBlock(jsonObject);
     }];

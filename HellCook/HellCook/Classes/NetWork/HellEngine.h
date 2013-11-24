@@ -17,10 +17,10 @@ typedef void (^searchResponseBlock)(NSMutableDictionary* resultDic);
 
 typedef void (^recipeDetailDataResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^myCollectionResponseBlock)(NSMutableDictionary* resultDic);
-typedef void (^myRecipesResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^userRecipesResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^myIntroductionResponseBlock)(NSMutableDictionary* resultDic);
-typedef void (^myFollowResponseBlock)(NSMutableDictionary* resultDic);
-typedef void (^myFansResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^userFollowResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^userFansResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^uploadBasicInfoResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^uploadAvatarResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^getOtherIntroResponseBlock)(NSMutableDictionary* resultDic);
@@ -86,22 +86,25 @@ typedef void (^kitchenInfoResponseBlock)(NSMutableDictionary* resultDic);
                                     errorHandler:(MKNKErrorBlock) errorBlock;
 
 //获取我的菜谱
-- (MKNetworkOperation*)getMyRecipesDataByPage:(NSInteger)page
-                            completionHandler:(myRecipesResponseBlock)completionBlock
-                                 errorHandler:(MKNKErrorBlock) errorBlock;
+- (MKNetworkOperation*)getUserRecipesDataByPage:(NSInteger)page
+                                     WithUserID:(NSInteger)userID
+    						  completionHandler:(userRecipesResponseBlock)completionBlock
+                                   errorHandler:(MKNKErrorBlock) errorBlock;
 
 //获取个人信息
-- (MKNetworkOperation*)getMyIntroductionDataWithCompletionHandler:(myRecipesResponseBlock)completionBlock
+- (MKNetworkOperation*)getMyIntroductionDataWithCompletionHandler:(myIntroductionResponseBlock)completionBlock
                                                 errorHandler:(MKNKErrorBlock) errorBlock;
 
-//获取我的关注
-- (MKNetworkOperation*)getMyFollowDataByPage:(NSInteger)page
-                           completionHandler:(myFollowResponseBlock)completionBlock
-                                errorHandler:(MKNKErrorBlock) errorBlock;
+//获取某人的关注
+- (MKNetworkOperation*)getUserFollowDataByPage:(NSInteger)page
+                                    WithUserID:(NSInteger)userID
+                             completionHandler:(userFollowResponseBlock)completionBlock
+                                  errorHandler:(MKNKErrorBlock) errorBlock;
 
-//获取我的粉丝
+//获取某人的粉丝
 - (MKNetworkOperation*)getMyFansDataByPage:(NSInteger)page
-                         completionHandler:(myFansResponseBlock)completionBlock
+                                WithUserID:(NSInteger)userID
+                         completionHandler:(userFansResponseBlock)completionBlock
                               errorHandler:(MKNKErrorBlock) errorBlock;
 
 // 上传个人基本信息

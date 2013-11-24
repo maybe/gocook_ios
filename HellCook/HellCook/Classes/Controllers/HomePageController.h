@@ -11,11 +11,10 @@
 
 @interface HomePageController : UITabBarController {
   UITabBar *mTabBar;
-  ViewControllerCalledFrom eCalledFrom;
 }
 
 @property(retain, nonatomic) UITabBar *mTabBar;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID from:(ViewControllerCalledFrom)calledFrom showIndex:(NSInteger)index;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID AndName:(NSString *)userName showIndex:(NSInteger)index;
 
 @end
