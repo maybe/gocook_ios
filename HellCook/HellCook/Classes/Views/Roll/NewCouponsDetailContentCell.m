@@ -65,7 +65,7 @@
     
     contentLabel = [[UILabel alloc] init];
     contentLabel.backgroundColor = [UIColor clearColor];
-    contentLabel.font = [UIFont boldSystemFontOfSize:20];
+    contentLabel.font = [UIFont systemFontOfSize:17];
     contentLabel.textColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1];
     contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     contentLabel.numberOfLines = 0;

@@ -27,7 +27,7 @@
     [backgroundView setContentMode:UIViewContentModeScaleToFill];
     [self addSubview:backgroundView];
     //contentLabel
-    contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 14, 240, 32)];
+    contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 0, 240, 64)];
     contentLabel.backgroundColor = [UIColor clearColor];
     contentLabel.font = [UIFont systemFontOfSize:14];
     contentLabel.textColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1];

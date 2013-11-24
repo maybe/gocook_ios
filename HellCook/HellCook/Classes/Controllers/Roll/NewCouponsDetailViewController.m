@@ -40,7 +40,7 @@
   [self.view setFrame:viewFrame];
   
   CGRect btnFrame = topBtn.frame;
-  btnFrame.size.height = 45;
+  btnFrame.size.height = 56;
   [topBtn setFrame:btnFrame];
   if (myType == 0)//抽奖机会
   {
