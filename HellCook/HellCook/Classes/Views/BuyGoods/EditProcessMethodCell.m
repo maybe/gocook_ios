@@ -56,7 +56,12 @@
 
 
 #pragma textview
--(void)textViewDidBeginEditing:(UITextView *)textView
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+  return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView
 {
 }
 
@@ -67,6 +72,11 @@
     return NO;
   }
   return YES;
+}
+
+- (void)resignTextViewFirstResponder
+{
+  [methodTextField resignFirstResponder];
 }
 
 
