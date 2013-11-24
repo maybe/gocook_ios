@@ -14,6 +14,7 @@
 #import "KeyboardHandler.h"
 #import "MBProgressHUD.h"
 #import "User.h"
+#import "LoginController.h"
 
 @interface RecipeCommentViewController ()
 
@@ -192,11 +193,27 @@
   }
   else
   {
+    NSString *msg = NULL;
+    NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
+
+    if (error_code == GC_AuthAccountInvalid) {
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+
+      if (self.navigationController) {
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+
+      }
+    } else if (error_code == GC_PostInvalid) {
+      msg = @"字数不够";
+    } else {
+      msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
+    }
+
     [sendView hideTextView];
-    NSString *msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
     HUD.labelText = msg;
     [HUD show:YES];
-    [HUD hide:YES afterDelay:2];
+    [HUD hide:YES afterDelay:1];
   }
 }
 

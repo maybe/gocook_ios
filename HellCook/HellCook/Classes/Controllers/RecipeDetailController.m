@@ -16,6 +16,7 @@
 #import "RecipeDetailFooterView.h"
 #import "RecipeCommentViewController.h"
 #import "HomePageController.h"
+#import "LoginController.h"
 
 @interface RecipeDetailController ()
 
@@ -77,10 +78,12 @@
   [self setLeftButton];
   [self initLoadingView];
 
+  [self.tableView.tableFooterView setHidden:YES];
   [self getRecipeDetailData:mRecipeId];
   [self getCommentsData];
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnCommentSuccess:) name:@"EVT_OnCommentSuccess" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
 
   [super viewDidLoad];
 }
@@ -359,6 +362,17 @@
     [cell.collectButton setAssociativeObject:@"已收藏" forKey:@"title"];
 
     recipeDataDic[@"collect"] = @"0";
+  } else {
+    NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (error_code == GC_AuthAccountInvalid) {
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+
+      if (self.navigationController) {
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+
+      }
+    }
   }
 }
 
@@ -417,5 +431,12 @@
   RecipeDetailFooterView *footerView = [[RecipeDetailFooterView alloc] initWithFrame:frame withCommentNum:[recipeCommentsArray count]];
 
   [self.tableView.tableFooterView addSubview:footerView];
+}
+
+- (void)OnLoginSuccess:(NSNotification *)notification {
+  recipeDataDic = NULL;
+  [self.tableView reloadData];
+  [self.tableView.tableFooterView setHidden:YES];
+  [self getRecipeDetailData:mRecipeId];
 }
 @end
