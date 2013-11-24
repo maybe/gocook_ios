@@ -193,7 +193,6 @@
   }
   else
   {
-    NSString *msg = NULL;
     NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
 
     if (error_code == GC_AuthAccountInvalid) {
@@ -204,16 +203,19 @@
         [self.mm_drawerController.navigationController pushViewController:m animated:YES];
 
       }
-    } else if (error_code == GC_PostInvalid) {
-      msg = @"字数不够";
     } else {
-      msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
-    }
+      NSString *msg = NULL;
+      if (error_code == GC_PostInvalid) {
+        msg = @"字数不够";
+      } else {
+        msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
+      }
 
-    [sendView hideTextView];
-    HUD.labelText = msg;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1];
+      [sendView hideTextView];
+      HUD.labelText = msg;
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:1];
+    }
   }
 }
 

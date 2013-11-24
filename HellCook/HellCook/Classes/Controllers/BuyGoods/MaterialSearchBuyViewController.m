@@ -10,6 +10,7 @@
 #import "MaterialSearchBuyTableViewCell.h"
 #import "SearchGoodsViewController.h"
 #import "NetManager.h"
+#import "LoginController.h"
 
 @interface MaterialSearchBuyViewController ()
 
@@ -22,7 +23,6 @@
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-  // Custom initialization
     selectedRowOfCell = -1;
     unslashMaterialArray = [[NSMutableArray alloc] init];
     for (int i=0; i<[data count]; i++)
@@ -37,32 +37,30 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(confirm:) name:@"ConfirmGoods" object:nil];
       }
     }
-    
-    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.view addSubview:HUD];
-    HUD.mode = MBProgressHUDModeText;
+
+    isOrderSuccess = NO;
   }
   return self;
 }
 
 - (void)viewDidLoad
 {
-  // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = @"选购商品";
   [self setLeftButton];
   [self setRightButton];
 
-//  if([self respondsToSelector:@selector(edgesForExtendedLayout)])
-//  {
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-//  }
-
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  viewFrame.size.width = _sideWindowWidth;
 
   //viewFrame.size.width = _sideWindowWidth;
   [self.view setFrame:viewFrame];
   [self.myTableView setFrame:viewFrame];
+
+  HUD = [[MBProgressHUD alloc] initWithView:self.view];
+  [self.view addSubview:HUD];
+  HUD.mode = MBProgressHUDModeText;
+  HUD.delegate = self;
 
   [self autoLayout];
   [super viewDidLoad];
@@ -226,15 +224,38 @@
   if (result == 0)
   {
     content = [NSString stringWithFormat:@"下单成功，订单号%@",resultDic[@"order_id"]];
+    HUD.detailsLabelText = content;
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
+    isOrderSuccess = YES;
   }
   else
   {
-    content = [NSString stringWithFormat:@"下单失败，错误代码%@",resultDic[@"errorcode"]];
+    NSInteger errorCode = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (errorCode == GC_AuthAccountInvalid) {
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+      if (self.navigationController) {
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+      }
+    } else {
+      content = [NSString stringWithFormat:@"下单失败，错误代码%@",resultDic[@"errorcode"]];
+      HUD.detailsLabelText = content;
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:2];
+    }
+
+    isOrderSuccess = NO;
   }
-  
-  HUD.labelText = content;
-  [HUD show:YES];
-  [HUD hide:YES afterDelay:2];
+
 }
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+  if (isOrderSuccess) {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+  }
+
+}
+
 
 @end
