@@ -9,15 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "KeyboardHandlerDelegate.h"
 #import "MyRecipeMaterialTableViewCell.h"
+#import "MBProgressHUD.h"
 
 @class KeyboardHandler;
 @class RecipeData;
-@interface MyRecipesMaterialController : UIViewController<KeyboardHandlerDelegate, RecipeMaterialCellInputDelegate, UITableViewDataSource,UITableViewDelegate>
+@interface MyRecipesMaterialController : UIViewController<KeyboardHandlerDelegate,
+                                                          RecipeMaterialCellInputDelegate,
+                                                          UITableViewDataSource,
+                                                          UITableViewDelegate,
+                                                          MBProgressHUDDelegate>
 {
   UITableView* tableView;
   NSMutableArray* cellContentList;
   KeyboardHandler *keyboard;
   RecipeData* recipeData;
+  MBProgressHUD* HUD;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

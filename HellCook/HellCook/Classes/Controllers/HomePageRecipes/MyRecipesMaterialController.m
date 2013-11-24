@@ -56,6 +56,11 @@
     recipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
   }
 
+  HUD = [[MBProgressHUD alloc] initWithView: self.view];
+  [self.view addSubview:HUD];
+  HUD.mode = MBProgressHUDModeText;
+  HUD.delegate = self;
+
   [self autoLayout];
   [super viewDidLoad];
 }
@@ -221,7 +226,13 @@
   
   [self setDataToRecipe];
 
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnPushStepController" object:nil];
+  if (recipeData.materials.count > 0) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnPushStepController" object:nil];
+  } else {
+    HUD.labelText = @"材料不能为空";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
+  }
 }
 
 #pragma mark - Set Data to Recipe

@@ -79,6 +79,8 @@
   keyboard.delegate = self;
   
   [super viewWillAppear:animated];
+
+  [tipsTextView becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -209,10 +211,10 @@
   UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
   [leftBarButtonView setBackgroundImage:
-      [UIImage imageNamed:@"Images/CompleteButtonNormal.png"]
+      [UIImage imageNamed:@"Images/BackButtonNormal.png"]
                                forState:UIControlStateNormal];
   [leftBarButtonView setBackgroundImage:
-      [UIImage imageNamed:@"Images/CompleteButtonHighLight.png"]
+      [UIImage imageNamed:@"Images/BackButtonHighLight.png"]
                                forState:UIControlStateHighlighted];
   
   UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
@@ -226,10 +228,10 @@
   UIButton *rightBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
   [rightBarButtonView addTarget:self action:@selector(onNext) forControlEvents:UIControlEventTouchUpInside];
   [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/NextStepNormal.png"]
+   [UIImage imageNamed:@"Images/CompleteButtonNormal.png"]
                                 forState:UIControlStateNormal];
   [rightBarButtonView setBackgroundImage:
-   [UIImage imageNamed:@"Images/NextStepHighLight.png"]
+   [UIImage imageNamed:@"Images/CompleteButtonHighLight.png"]
                                 forState:UIControlStateHighlighted];
   
   UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonView];

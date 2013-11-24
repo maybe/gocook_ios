@@ -60,6 +60,10 @@
     recipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
   }
 
+  HUD = [[MBProgressHUD alloc] initWithView: self.view];
+  [self.view addSubview:HUD];
+  HUD.mode = MBProgressHUDModeText;
+  HUD.delegate = self;
 
   [self autoLayout];
   [super viewDidLoad];
@@ -242,9 +246,15 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)[tableView cellForRowAtIndexPath: indexPath];
     [cell setData:cellContentList[(NSUInteger)indexPath.row]];
+
+    HUD.labelText = @"上传成功";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
   }
   else if (result == 1){
-    //TODO:
+    HUD.labelText = @"上传失败";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
   }
   
 }
@@ -342,7 +352,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   
   [self setDataToRecipe];
 
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnPushTipsController" object:nil];
+  if (recipeData.recipe_steps.count > 0) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnPushTipsController" object:nil];
+  } else {
+    HUD.labelText = @"步骤不能为空";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
+  }
 }
 
 #pragma mark - Set Data to Recipe

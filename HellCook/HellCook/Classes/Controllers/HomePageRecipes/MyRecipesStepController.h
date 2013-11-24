@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KeyboardHandlerDelegate.h"
 #import "MyRecipeStepTableViewCell.h"
+#import "MBProgressHUD.h"
 
 @class KeyboardHandler;
 @class RecipeData;
@@ -16,6 +17,7 @@
                                                       RecipeStepCellInputDelegate,
                                                       UITableViewDataSource,
                                                       UITableViewDelegate,
+                                                      MBProgressHUDDelegate,
                                                       UINavigationControllerDelegate,
                                                       UIImagePickerControllerDelegate>
 {
@@ -25,6 +27,7 @@
   UIButton* imagePickerButton;
   RecipeData* recipeData;
   BOOL isImagePickerDismiss;
+  MBProgressHUD *HUD;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
