@@ -9,7 +9,7 @@
 #import "ProcessMethodCell.h"
 
 @implementation ProcessMethodCell
-@synthesize contentLabel;
+@synthesize contentLabel,sepImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withContent:(NSString*)content
 {
@@ -26,6 +26,10 @@
     contentLabel.font = [UIFont boldSystemFontOfSize:16];
     [contentLabel setText:content];
     [self addSubview:contentLabel];
+    
+    sepImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 68, 320-_offset, 1)];
+    [sepImageView setImage:[UIImage imageNamed:@"Images/homeHeaderSeperator.png"]];
+    [self addSubview:sepImageView];
   }
   return self;
 }

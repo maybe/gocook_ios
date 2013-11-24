@@ -31,6 +31,7 @@
     HUD.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(afterConfirm:) name:@"AfterConfirmGoods" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeMethod:) name:@"ConfirmMethod" object:nil];
   }
   return self;
 }
@@ -225,7 +226,7 @@
 
 -(void)tapMethodLabel
 {
-  ProcessMethodsViewController *pViewController = [[ProcessMethodsViewController alloc] initWithNibName:@"ProcessMethodsView" bundle:nil];
+  ProcessMethodsViewController *pViewController = [[ProcessMethodsViewController alloc] initWithNibName:@"ProcessMethodsView" withMethods:goodsDataDict[@"deal_method"] bundle:nil];
   [self.navigationController pushViewController:pViewController animated:YES];
 }
 
@@ -267,11 +268,6 @@
     return;
   }
   
-/*  NSString *content = [NSString stringWithFormat:@"\"Wares\":[{\"WareId\":%d,\"Quantity\":%@,\"Remark\":\"%@\"}]",[goodsDataDict[@"id"] intValue], amountTextField.text, methodTextField.text];
-  NSMutableDictionary *finalDataDict = [[NSMutableDictionary alloc] init];
-  [finalDataDict setObject:content forKey:@"wares"];*/
-//  [self buyGoods:finalDataDict];
-  
   [goodsDataDict setObject:amountTextField.text forKey:@"Quantity"];
   [goodsDataDict setObject:methodTextField.text forKey:@"Remark"];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmGoods" object:goodsDataDict];
@@ -282,6 +278,22 @@
   [self.navigationController popToViewController:(MaterialSearchBuyViewController*)notification.object animated:YES];
 }
 
+-(void)changeMethod:(NSNotification *)notification
+{
+  NSMutableDictionary *dict = (NSMutableDictionary*)notification.object;
+  if ([(NSString*)dict[@"type"] isEqualToString:@"0"])//用户指定，内容是string
+  {
+    [methodLabel setText:(NSString*)dict[@"content"]];
+  }
+  else if ([(NSString*)dict[@"type"] isEqualToString:@"1"])//预先指定，内容是索引号
+  {
+    NSInteger index = [(NSString*)dict[@"content"] intValue];
+    NSArray *dealMethodArray = goodsDataDict[@"deal_method"];
+    [methodLabel setText:[dealMethodArray objectAtIndex:index]];
+  }
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"afterChangeMethod" object:nil];
+}
 
 #pragma mark - TextField Delegate
 

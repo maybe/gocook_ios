@@ -16,4 +16,7 @@
 
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;
 
+
+- (id)initWithNibName:(NSString *)nibNameOrNil withMethods:(NSMutableArray*)data bundle:(NSBundle *)nibBundleOrNil;
+
 @end

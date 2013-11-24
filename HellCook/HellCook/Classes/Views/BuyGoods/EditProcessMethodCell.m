@@ -48,7 +48,8 @@
     [confirmBtn setBackgroundImage:strechBakImage forState:UIControlStateNormal];
     [confirmBtn setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
     [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
-    [confirmBtn addTarget:nil action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
+    [confirmBtn setAssociativeObject:@"" forKey:@"content"];
+    [confirmBtn addTarget:nil action:@selector(confirm:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:confirmBtn];
   }
   return self;
@@ -58,6 +59,7 @@
 #pragma textview
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
+  [confirmBtn setAssociativeObject:methodTextField.text forKey:@"content"];
   return YES;
 }
 

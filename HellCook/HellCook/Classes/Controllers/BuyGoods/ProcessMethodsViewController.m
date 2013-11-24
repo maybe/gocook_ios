@@ -23,18 +23,32 @@
   if (self) {
     methodsArray = [NSMutableArray arrayWithArray:data];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(afterConfirmMethod:) name:@"afterChangeMethod" object:nil];
   }
   return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+  [super viewDidLoad];
+  [self.navigationItem setLeftBarButtonItem:nil];
 }
 
+-(void)confirm:(UIButton*)btn
+{
+  NSString *content = [btn associativeObjectForKey:@"content"];
+  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+  NSString *temp;
+  temp = [NSString stringWithFormat:@"%d",0];
+  [dict setObject:temp forKey:@"type"];
+  [dict setObject:content forKey:@"content"];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmMethod" object:dict];
+}
 
-
+-(void)afterConfirmMethod:(NSNotification *)notification
+{
+  [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark - Table view data source
 
@@ -144,7 +158,31 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  
+  if ([methodsArray count] == 0)
+  {
+    if (indexPath.row == 0)
+    {
+      NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+      NSString *temp;
+      temp = [NSString stringWithFormat:@"%d",0];
+      [dict setObject:temp forKey:@"type"];
+      [dict setObject:@"无" forKey:@"content"];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmMethod" object:dict];
+    }
+  }
+  else
+  {
+    if (indexPath.row != [methodsArray count])
+    {
+      NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+      NSString *temp;
+      temp = [NSString stringWithFormat:@"%d",1];
+      [dict setObject:temp forKey:@"type"];
+      temp = [NSString stringWithFormat:@"%d",indexPath.row];
+      [dict setObject:temp forKey:@"content"];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmMethod" object:dict];
+    }
+  }
 }
 
 @end

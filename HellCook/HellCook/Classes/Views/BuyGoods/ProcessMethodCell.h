@@ -11,9 +11,11 @@
 @interface ProcessMethodCell : UITableViewCell
 {
   UILabel *contentLabel;
+  UIImageView* sepImageView;
 }
 
 @property (nonatomic,retain) UILabel *contentLabel;
+@property (nonatomic, retain) UIImageView* sepImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withContent:(NSString*)content;
 
