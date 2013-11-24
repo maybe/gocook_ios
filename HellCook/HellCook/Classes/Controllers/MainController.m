@@ -4,8 +4,8 @@
 #import "NetManager.h"
 #import "TopListController.h"
 #import "SearchController.h"
-#import "AppDelegate.h"
 #import "DBHandler.h"
+#import "WebViewController.h"
 
 @interface MainController ()
 
@@ -99,15 +99,18 @@
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return catArray.count+1;
+    return catArray.count + 2;
 }
 
 - (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (indexPath.row == 0) {
     return 121;
+  } else if (indexPath.row == 1) {
+    return 145;
+  } else {
+    return 64;
   }
-  return 64;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,7 +122,9 @@
     CellIdentifier = @"TopCell";
     isTopCell = YES;
   }
-  else{
+  else if (indexPath.row == 1){
+    CellIdentifier = @"BannerCell";
+  } else {
     CellIdentifier = @"CatCell";
   }
   
@@ -127,8 +132,9 @@
   if (!cell) {
     if (isTopCell) {
       cell = [[MainTopTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    else {
+    } else if ([CellIdentifier isEqualToString:@"BannerCell"]) {
+      cell = [[MainTopBannerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    } else {
       cell = [[MainCatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
   }
@@ -136,10 +142,11 @@
   if (isTopCell) {
     MainTopTableViewCell* aCell = (MainTopTableViewCell*)cell;
     [aCell setData:iosMainDataDic];
-  }
-  else{
+  } else if ([CellIdentifier isEqualToString:@"BannerCell"]) {
+
+  } else {
     MainCatTableViewCell* aCell = (MainCatTableViewCell*)cell;
-    [aCell setData:[catArray objectAtIndex:(NSUInteger)(indexPath.row-1)]];
+    [aCell setData:[catArray objectAtIndex:(NSUInteger)(indexPath.row - 2)]];
   }
 
   return cell;
@@ -150,8 +157,8 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if (indexPath.row != 0) {
-    [self.navigationController pushViewController:[[SearchController alloc]initWithNibName:@"SearchView" bundle:nil keyword:catArray[(NSUInteger)(indexPath.row-1)][@"name"]] animated:YES];
+  if (indexPath.row != 0 && indexPath.row != 1) {
+    [self.navigationController pushViewController:[[SearchController alloc]initWithNibName:@"SearchView" bundle:nil keyword:catArray[(NSUInteger)(indexPath.row-2)][@"name"]] animated:YES];
   }
 }
 
@@ -264,6 +271,24 @@
   [iosMainDataDic writeToFile:recFileName atomically:NO];
 
   [self.tableView reloadData];
+}
+
+- (void)openBanner1
+{
+  WebViewController *pViewController = [[WebViewController alloc] initWithNibName:@"WebView" withURL:@"http://c2b.m6fresh.com" bundle:nil];
+  [self.navigationController pushViewController:pViewController animated:YES];
+}
+
+- (void)openBanner2
+{
+  WebViewController *pViewController = [[WebViewController alloc] initWithNibName:@"WebView" withURL:@"http://share.m6fresh.com" bundle:nil];
+  [self.navigationController pushViewController:pViewController animated:YES];
+}
+
+- (void)openBanner3
+{
+  WebViewController *pViewController = [[WebViewController alloc] initWithNibName:@"WebView" withURL:@"http://o2o.m6fresh.com" bundle:nil];
+  [self.navigationController pushViewController:pViewController animated:YES];
 }
 
 @end

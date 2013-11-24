@@ -47,7 +47,7 @@
     [maskImageView setFrame:CGRectMake(0, 0, 145, 90)];    
     
     UIView* maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 145, 25)];
-    UIColor* maskColor = [UIColor colorWithRed:29.0f/255.0f green:29.0f/255.0f blue:29.0f/255.0f alpha:0.8];
+    UIColor* maskColor = [UIColor colorWithRed:29.0f/255.0f green:29.0f/255.0f blue:29.0f/255.0f alpha:0.6];
     [maskView setBackgroundColor:maskColor];
     [leftView addSubview:maskView];
     UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(28, 67, 90, 20)];
@@ -90,7 +90,7 @@
     [maskImageView setFrame:CGRectMake(0, 0, 145, 90)];
     
     UIView* maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 145, 25)];
-    UIColor* maskColor = [UIColor colorWithRed:29.0f/255.0f green:29.0f/255.0f blue:29.0f/255.0f alpha:0.8];
+    UIColor* maskColor = [UIColor colorWithRed:29.0f/255.0f green:29.0f/255.0f blue:29.0f/255.0f alpha:0.6];
     [maskView setBackgroundColor:maskColor];
     [rightView addSubview:maskView];
     UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(28, 67, 90, 20)];
@@ -100,7 +100,9 @@
     label.textColor = [UIColor whiteColor];
     [label setBackgroundColor:[UIColor clearColor]];
     [rightView addSubview:label];
-    
+
+    [rightImageView setImage:[UIImage imageNamed:@"Images/tmptophot.png"]];
+
     [rightView addSubview:maskImageView];
 
     
@@ -127,9 +129,62 @@
       
   [leftImageView setImageWithURL:[NSURL URLWithString:leftImageUrl] placeholderImage: [UIImage imageNamed:@"Images/topDefaultMask.png"]];
 
-  NSString* rightImageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, dictionary[@"topnew_img"]];
+  //NSString* rightImageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, dictionary[@"topnew_img"]];
   
-  [rightImageView setImageWithURL:[NSURL URLWithString:rightImageUrl] placeholderImage:[UIImage imageNamed:@"Images/topDefaultMask.png"]];
+  //[rightImageView setImageWithURL:[NSURL URLWithString:rightImageUrl] placeholderImage:[UIImage imageNamed:@"Images/topDefaultMask.png"]];
 }
 
+@end
+
+
+@implementation MainTopBannerCell
+@synthesize banner1ImageView, banner2ImageView, banner3ImageView, button1, button2, button3;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  if (self) {
+    [self setBackgroundColor: [UIColor clearColor]];
+    [self setFrame:CGRectMake(0, 0, 320, 145)];
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+
+    banner1ImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/Banner1.png"]];
+    [banner1ImageView setFrame:CGRectMake(10, 6, 300, 68)];
+
+    banner2ImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/Banner2.png"]];
+    [banner2ImageView setFrame:CGRectMake(10, 83, 146, 56)];
+
+    banner3ImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/Banner3.png"]];
+    [banner3ImageView setFrame:CGRectMake(162, 83, 148, 56)];
+
+    [self addSubview:banner1ImageView];
+    [self addSubview:banner2ImageView];
+    [self addSubview:banner3ImageView];
+
+    button1 = [[UIButton alloc] initWithFrame:CGRectMake(10, 6, 300, 68)];
+    [button1 setBackgroundColor:[UIColor clearColor]];
+    [button1 addTarget:nil action:@selector(openBanner1) forControlEvents:UIControlEventTouchUpInside];
+
+    button2 = [[UIButton alloc] initWithFrame:CGRectMake(10, 83, 146, 56)];
+    [button2 setBackgroundColor:[UIColor clearColor]];
+    [button2 addTarget:nil action:@selector(openBanner2) forControlEvents:UIControlEventTouchUpInside];
+
+    button3 = [[UIButton alloc] initWithFrame:CGRectMake(162, 83, 148, 56)];
+    [button3 setBackgroundColor:[UIColor clearColor]];
+    [button3 addTarget:nil action:@selector(openBanner3) forControlEvents:UIControlEventTouchUpInside];
+
+    [self addSubview:button1];
+    [self addSubview:button2];
+    [self addSubview:button3];
+//    UIImageView *dotLine = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Images/homeHeaderSeperator@2x.png"]];
+//    [dotLine setFrame:CGRectMake(0, 154, 320, 1)];
+//    [self addSubview:dotLine];
+  }
+  return self;
+}
+
+- (void)setData:(NSDictionary*) dictionary
+{
+
+}
 @end

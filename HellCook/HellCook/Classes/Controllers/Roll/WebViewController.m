@@ -37,6 +37,8 @@
   
   NSURL* url = [[NSURL alloc] initWithString:strURL];
   [webView loadRequest:[NSURLRequest requestWithURL: url]];
+
+  self.title = @"浏览";
 }
 
 - (void)setLeftButton
@@ -60,10 +62,19 @@
   [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)didReceiveMemoryWarning
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (BOOL)shouldAutorotate {
+
+  return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+
+  return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

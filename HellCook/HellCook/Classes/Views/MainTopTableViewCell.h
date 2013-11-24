@@ -27,3 +27,23 @@
 - (void)setData:(NSDictionary*) dictionary;
 
 @end
+
+@interface MainTopBannerCell : UITableViewCell{
+  UIImageView* banner1ImageView;
+  UIImageView* banner2ImageView;
+  UIImageView* banner3ImageView;
+
+  UIButton* button1;
+  UIButton* button2;
+  UIButton* button3;
+}
+
+@property (nonatomic, retain) UIImageView* banner1ImageView;
+@property (nonatomic, retain) UIImageView* banner2ImageView;
+@property (nonatomic, retain) UIImageView* banner3ImageView;
+
+@property (nonatomic, retain) UIButton* button1;
+@property (nonatomic, retain) UIButton* button2;
+@property (nonatomic, retain) UIButton* button3;
+
+@end
