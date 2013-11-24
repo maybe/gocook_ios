@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ProcessMethodsViewController : UIViewController
+{
+  UITableView *myTableView;
+  NSMutableArray *methodsArray;
+}
+
+@property (nonatomic,retain) IBOutlet UITableView *myTableView;
 
 @end

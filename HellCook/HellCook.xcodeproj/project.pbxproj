@@ -38,7 +38,9 @@
 		5EA66E0A183861FC00AB6322 /* NewCouponsDetailContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66E09183861FC00AB6322 /* NewCouponsDetailContentCell.m */; };
 		5EA66E0D183CF96800AB6322 /* BlankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66E0C183CF96800AB6322 /* BlankCell.m */; };
 		5EA66E111840E99B00AB6322 /* ProcessMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66E0F1840E99B00AB6322 /* ProcessMethodsViewController.m */; };
-		5EA66E121840E99B00AB6322 /* ProcessMethodsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA66E101840E99B00AB6322 /* ProcessMethodsView.xib */; };
+		5EA66E141841ABA200AB6322 /* ProcessMethodsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA66E131841ABA200AB6322 /* ProcessMethodsView.xib */; };
+		5EA66E171841AEF400AB6322 /* ProcessMethodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66E161841AEF300AB6322 /* ProcessMethodCell.m */; };
+		5EA66E1A1841B6C900AB6322 /* EditProcessMethodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA66E191841B6C900AB6322 /* EditProcessMethodCell.m */; };
 		5ED7F11B17BDC86400223884 /* RecipeDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */; };
 		5ED7F11E17BF301800223884 /* RecipeCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7F11D17BF301800223884 /* RecipeCommentsTableViewCell.m */; };
 		5ED7F13517BF837E00223884 /* RecipeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED7F13417BF837E00223884 /* RecipeCommentView.xib */; };
@@ -279,7 +281,11 @@
 		5EA66E0C183CF96800AB6322 /* BlankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlankCell.m; path = Classes/Views/Roll/BlankCell.m; sourceTree = "<group>"; };
 		5EA66E0E1840E99B00AB6322 /* ProcessMethodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessMethodsViewController.h; path = Classes/Controllers/BuyGoods/ProcessMethodsViewController.h; sourceTree = "<group>"; };
 		5EA66E0F1840E99B00AB6322 /* ProcessMethodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProcessMethodsViewController.m; path = Classes/Controllers/BuyGoods/ProcessMethodsViewController.m; sourceTree = "<group>"; };
-		5EA66E101840E99B00AB6322 /* ProcessMethodsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProcessMethodsView.xib; path = Classes/Controllers/BuyGoods/ProcessMethodsView.xib; sourceTree = "<group>"; };
+		5EA66E131841ABA200AB6322 /* ProcessMethodsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProcessMethodsView.xib; sourceTree = "<group>"; };
+		5EA66E151841AEF300AB6322 /* ProcessMethodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessMethodCell.h; path = Classes/Views/BuyGoods/ProcessMethodCell.h; sourceTree = "<group>"; };
+		5EA66E161841AEF300AB6322 /* ProcessMethodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProcessMethodCell.m; path = Classes/Views/BuyGoods/ProcessMethodCell.m; sourceTree = "<group>"; };
+		5EA66E181841B6C900AB6322 /* EditProcessMethodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditProcessMethodCell.h; path = Classes/Views/BuyGoods/EditProcessMethodCell.h; sourceTree = "<group>"; };
+		5EA66E191841B6C900AB6322 /* EditProcessMethodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditProcessMethodCell.m; path = Classes/Views/BuyGoods/EditProcessMethodCell.m; sourceTree = "<group>"; };
 		5ED7F11917BDC86400223884 /* RecipeDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailFooterView.h; sourceTree = "<group>"; };
 		5ED7F11A17BDC86400223884 /* RecipeDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailFooterView.m; sourceTree = "<group>"; };
 		5ED7F11C17BF301800223884 /* RecipeCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCommentsTableViewCell.h; sourceTree = "<group>"; };
@@ -918,6 +924,10 @@
 				5E896BE017DEED86009E210D /* GoodsDetailTopCell.m */,
 				5E896BDD17DEED86009E210D /* GoodsDetailBelowCell.h */,
 				5E896BDE17DEED86009E210D /* GoodsDetailBelowCell.m */,
+				5EA66E151841AEF300AB6322 /* ProcessMethodCell.h */,
+				5EA66E161841AEF300AB6322 /* ProcessMethodCell.m */,
+				5EA66E181841B6C900AB6322 /* EditProcessMethodCell.h */,
+				5EA66E191841B6C900AB6322 /* EditProcessMethodCell.m */,
 			);
 			name = BuyGoods;
 			sourceTree = "<group>";
@@ -954,7 +964,6 @@
 				65809F4F87DF7B86515B2F8B /* BuyViewController.m */,
 				5EA66E0E1840E99B00AB6322 /* ProcessMethodsViewController.h */,
 				5EA66E0F1840E99B00AB6322 /* ProcessMethodsViewController.m */,
-				5EA66E101840E99B00AB6322 /* ProcessMethodsView.xib */,
 			);
 			name = BuyGoods;
 			sourceTree = "<group>";
@@ -1645,6 +1654,7 @@
 		BA73C95316FE37D9008284D8 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				5EA66E131841ABA200AB6322 /* ProcessMethodsView.xib */,
 				5EA66E03183757CE00AB6322 /* NewCouponsDetailView.xib */,
 				5EA66DF91833ACD100AB6322 /* NewCouponsView.xib */,
 				5EA66DF0182E0D0C00AB6322 /* WebView.xib */,
@@ -1949,7 +1959,6 @@
 				BA0DC17F16D4C3A500E4CED9 /* Default@2x.png in Resources */,
 				BA0DC18116D4C3A500E4CED9 /* Default-568h@2x.png in Resources */,
 				BACCF83616ECFC420094F1E5 /* .gitignore in Resources */,
-				5EA66E121840E99B00AB6322 /* ProcessMethodsView.xib in Resources */,
 				BA3F5E6716FA297800493260 /* Images in Resources */,
 				BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */,
 				BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */,
@@ -1965,6 +1974,7 @@
 				5EA66DF1182E0D0C00AB6322 /* WebView.xib in Resources */,
 				BAE38C8B1736C36000936382 /* SearchView.xib in Resources */,
 				BAE38C9B1737984C00936382 /* RecipeDetailView.xib in Resources */,
+				5EA66E141841ABA200AB6322 /* ProcessMethodsView.xib in Resources */,
 				5E13569217AD37AF009C623B /* MyIntroductionView.xib in Resources */,
 				5E13569917AD3AED009C623B /* MyFollowView.xib in Resources */,
 				5EA66DCB1827E28700AB6322 /* RollMainView.xib in Resources */,
@@ -2115,6 +2125,7 @@
 				65809686A096A73162451BD9 /* MyCollectionTableViewCell.m in Sources */,
 				65809348FFD20073E58F7C5C /* MyIntroductionIntroCell.m in Sources */,
 				658095F3299CFD3EA1F98A79 /* MyFollowTableViewCell.m in Sources */,
+				5EA66E171841AEF400AB6322 /* ProcessMethodCell.m in Sources */,
 				658098EDE0EE4D3FF3A9B19D /* RegisterAvatarView.m in Sources */,
 				BAA892D818202AB1006A89BB /* MMExampleDrawerVisualStateManager.m in Sources */,
 				65809C6D6905BE2BD5956A43 /* SearchBarView.m in Sources */,
@@ -2136,6 +2147,7 @@
 				5E896BE117DEED86009E210D /* GoodsDetailBelowCell.m in Sources */,
 				5E896BE217DEED86009E210D /* GoodsDetailTopCell.m in Sources */,
 				5EA66DFD1833B9B500AB6322 /* NewCouponCell.m in Sources */,
+				5EA66E1A1841B6C900AB6322 /* EditProcessMethodCell.m in Sources */,
 				5E001D7717E2AC4200BDAC62 /* HistoryDealViewController.m in Sources */,
 				5E001D7D17E2AF5400BDAC62 /* HistoryDealTableViewCell.m in Sources */,
 				5E001D8117E307C900BDAC62 /* DealDetailViewController.m in Sources */,

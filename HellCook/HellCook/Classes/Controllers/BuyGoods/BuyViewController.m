@@ -8,6 +8,7 @@
 
 #import "BuyViewController.h"
 #import "MaterialSearchBuyViewController.h"
+#import "ProcessMethodsViewController.h"
 
 @interface BuyViewController ()
 
@@ -224,7 +225,8 @@
 
 -(void)tapMethodLabel
 {
-  int  a = 0;
+  ProcessMethodsViewController *pViewController = [[ProcessMethodsViewController alloc] initWithNibName:@"ProcessMethodsView" bundle:nil];
+  [self.navigationController pushViewController:pViewController animated:YES];
 }
 
 - (void)hidePicker
@@ -278,12 +280,6 @@
 -(void)afterConfirm:(NSNotification *)notification
 {
   [self.navigationController popToViewController:(MaterialSearchBuyViewController*)notification.object animated:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
