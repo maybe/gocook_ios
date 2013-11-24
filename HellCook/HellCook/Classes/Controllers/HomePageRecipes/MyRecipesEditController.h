@@ -34,6 +34,7 @@
   MyRecipesStepController* stepController;
   MyRecipesTipsController* tipsController;
 
+  MBProgressHUD* HUD;
   BOOL isCoverUploaded;
 }
 
