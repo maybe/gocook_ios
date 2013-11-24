@@ -8,7 +8,6 @@
 
 #import "MyFollowTableViewCell.h"
 #import "UIImageView+WebCache.h"
-#import "QuartzCore/QuartzCore.h"
 #import "NetManager.h"
 
 @implementation MyFollowTableViewCell
@@ -106,9 +105,9 @@
     [recipeLabel setText:@"0"];
   }
 
-  if (dict[@"followed_count"]!=[NSNull null] && ![dict[@"followed_count"] isEqual:@""])
+  if (dict[@"following_count"]!=[NSNull null] && ![dict[@"following_count"] isEqual:@""])
   {
-    NSString *temString = [NSString stringWithFormat:@"%d", [dict[@"followed_count"] intValue]];
+    NSString *temString = [NSString stringWithFormat:@"%d", [dict[@"following_count"] intValue]];
     [fansLabel setText: temString];
   }
   else
