@@ -84,7 +84,7 @@
     isCoverUploaded = YES;
 
     [headImageView.upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:pRecipeData.cover_img withType:Recipe526ImageUrl]]
-                              placeholderImage:[UIImage imageNamed:@"Images/UploadCover.jpg"]];
+                              placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"]];
 
     [headImageView.selectButton setTitle:@"替换" forState:UIControlStateNormal];
   }
@@ -270,8 +270,7 @@
   [self presentViewController:picker animated:YES completion:nil];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
   // Access the uncropped image from info dictionary
   UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
@@ -288,13 +287,20 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   [headImageView.selectButton setTitle:@"上传" forState:UIControlStateNormal];
 }
 
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 -(void)uploadCoverTmpFile
 {
   if (![[headImageView.selectButton titleForState:UIControlStateNormal] isEqual: @"上传"]) {
+    [self loadImagePicker];
     return;
   }
-  
+
   NSString  *pngPath = @"";
   UIImage* uploadImage = headImageView.upImageView.image;
   

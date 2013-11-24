@@ -18,7 +18,7 @@
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
     // Initialization code
-    defaultImage = [UIImage imageNamed:@"Images/avatar.jpg"];
+    defaultImage = [UIImage imageNamed:@"Images/M6DefaultImage.png"];
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320-_offset, 150)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -35,7 +35,7 @@
 {
   if (dict[@"image_url"]!=[NSNull null] && ![dict[@"image_url"] isEqual:@""])
   {
-    [imageView setImageWithURL:[NSURL URLWithString:dict[@"image_url"]] placeholderImage:defaultImage];
+    [imageView setImageWithURL:[NSURL URLWithString:dict[@"image_url"]] placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"]];
     
     defaultImage = imageView.image;
   }

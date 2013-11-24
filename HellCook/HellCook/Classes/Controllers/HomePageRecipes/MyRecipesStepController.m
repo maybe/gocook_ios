@@ -173,9 +173,16 @@
   imagePickerButton = sender;
   if ([[imagePickerButton titleForState:UIControlStateNormal] isEqualToString:@"+图片"]) {
     [self loadImagePicker];
+  } else if([[imagePickerButton titleForState:UIControlStateNormal] isEqualToString:@"替换"]) {
+    [self loadImagePicker];
   } else if([[imagePickerButton titleForState:UIControlStateNormal] isEqualToString:@"上传"]) {
     [self uploadStepTmpFile];
   }
+}
+
+-(void) onSelectImageButton:(id)sender
+{
+    [self loadImagePicker];
 }
 
 -(void) loadImagePicker
@@ -205,6 +212,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   cellContentList[(NSUInteger)indexPath.row][@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_SELECTED];
 
   [cell setData:cellContentList[(NSUInteger)indexPath.row]];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+  isImagePickerDismiss = YES;
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)uploadStepTmpFile
