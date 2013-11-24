@@ -491,6 +491,8 @@
     [self setAllMaterialDataList];
     [self refreshHeaderView];
     [self.tableView reloadData];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnRemoveFromShoppingListSuccess" object:nil];
   }
 }
 
