@@ -105,9 +105,9 @@
     [recipeLabel setText:@"0"];
   }
 
-  if (dict[@"following_count"]!=[NSNull null] && ![dict[@"following_count"] isEqual:@""])
+  if (dict[@"followed_count"]!=[NSNull null] && ![dict[@"followed_count"] isEqual:@""])
   {
-    NSString *temString = [NSString stringWithFormat:@"%d", [dict[@"following_count"] intValue]];
+    NSString *temString = [NSString stringWithFormat:@"%d", [dict[@"followed_count"] intValue]];
     [fansLabel setText: temString];
   }
   else

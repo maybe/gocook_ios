@@ -25,10 +25,9 @@
   if (self) {
   // Custom initialization
     myKeywords = [NSString stringWithString:keyword];
-    curPage = 1;
+    curPage = 0;
     goodsListArray = [[NSMutableArray alloc] init];
     bShouldRefresh = TRUE;
-    [self initLoadingView];
   }
   return self;
 }
@@ -48,7 +47,9 @@
   refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
   refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
-  
+
+  [self initLoadingView];
+
   [self getGoodsInfo];
 
   [self autoLayout];
@@ -61,6 +62,7 @@
   curPage = 0;
   bShouldRefresh = YES;
   [self.myTableView reloadData];
+  [self initLoadingView];
   [self getGoodsInfo];
 }
 
@@ -96,9 +98,8 @@
   CGRect frame = self.myTableView.tableFooterView.frame;
   frame.size.height = 50;
   self.myTableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
-  //CGFloat tablewidth = self.tableView.frame.size.width;
   mLoadingActivity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-  [mLoadingActivity setCenter:CGPointMake(160, 25)];
+  [mLoadingActivity setCenter:CGPointMake(140, 25)];
   [mLoadingActivity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
   [self.myTableView.tableFooterView addSubview:mLoadingActivity];
   [mLoadingActivity stopAnimating];
@@ -110,6 +111,7 @@
   frame.size.height = 50;
   [self.myTableView.tableFooterView setFrame:frame];
   [mLoadingActivity startAnimating];
+  [mLoadingActivity setHidden:NO];
 }
 
 - (void)deleteLoadingView
@@ -179,7 +181,7 @@
 {
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
                        getGoodsWithKeyword:myKeywords
-                       withPage:curPage
+                       withPage:curPage + 1
                        completionHandler:^(NSMutableDictionary *resultDic){
                          [self getGoodsInfoCallBack:resultDic];}
                        errorHandler:^(NSError *error){}];

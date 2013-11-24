@@ -31,7 +31,24 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self.navigationItem setLeftBarButtonItem:nil];
+  [self autoLayout];
+
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  viewFrame.size.width = _sideWindowWidth;
+  [self.view setFrame:viewFrame];
+  self.view.autoresizesSubviews = NO;
+
+  CGRect tableFrame = self.myTableView.frame;
+  tableFrame.size.width = _sideWindowWidth;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.myTableView setFrame:tableFrame];
+
+  self.title = @"选择加工方式";
+
+  [self setLeftButton];
+
+  //[self.navigationItem setLeftBarButtonItem:nil];
 }
 
 -(void)confirm:(UIButton*)btn
@@ -47,6 +64,26 @@
 
 -(void)afterConfirmMethod:(NSNotification *)notification
 {
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Return Button
+- (void)setLeftButton {
+  UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
+  [leftBarButtonView addTarget:self action:@selector(returnToPrev) forControlEvents:UIControlEventTouchUpInside];
+  [leftBarButtonView setBackgroundImage:
+      [UIImage imageNamed:@"Images/BackButtonNormal.png"]
+                               forState:UIControlStateNormal];
+  [leftBarButtonView setBackgroundImage:
+      [UIImage imageNamed:@"Images/BackButtonHighLight.png"]
+                               forState:UIControlStateHighlighted];
+
+  UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButtonView];
+
+  [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+}
+
+- (void)returnToPrev {
   [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -79,14 +116,14 @@
     }
     else
     {
-      return 270;
+      return 310;
     }
   }
   else
   {
     if (indexPath.row == [methodsArray count])
     {
-      return 270;
+      return 310;
     }
     else
     {

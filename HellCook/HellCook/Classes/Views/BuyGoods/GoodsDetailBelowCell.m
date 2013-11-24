@@ -24,7 +24,7 @@
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     //nameLabel
-    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-_offset, 20)];
+    nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320 - _offset - 15, 20)];
     [nameLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
     nameLabel.backgroundColor = [UIColor clearColor];
     nameLabel.font = [UIFont boldSystemFontOfSize:18];

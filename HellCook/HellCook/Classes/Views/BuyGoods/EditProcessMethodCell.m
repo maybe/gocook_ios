@@ -7,6 +7,8 @@
 //
 
 #import "EditProcessMethodCell.h"
+#import "UIView+FindFirstResponder.h"
+#import "KeyboardHandler.h"
 
 @implementation EditProcessMethodCell
 @synthesize titleLabel,methodTextField,confirmBtn;
@@ -16,7 +18,7 @@
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
     [self setBackgroundColor: [UIColor clearColor]];
-    [self setFrame:CGRectMake(0, 0, 320-_offset, 270)];
+    [self setFrame:CGRectMake(0, 0, 320-_offset, 310)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     //titleLabel
@@ -40,17 +42,19 @@
     [self addSubview:methodTextField];
     
     //confirmBtn
-    confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 250, 60, 27)];
-    UIImage *btnBakImage = [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"];
-    UIImage *strechBakImage = [btnBakImage stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-    UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/redNavigationButtonBackgroundHighlighted.png"];
-    UIImage *stretchedBackgroundPressed = [btnBakimagePressed stretchableImageWithLeftCapWidth:2 topCapHeight:0];
-    [confirmBtn setBackgroundImage:strechBakImage forState:UIControlStateNormal];
-    [confirmBtn setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
+    confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 250, 64, 29)];
+    UIImage *btnBakImage = [UIImage imageNamed:@"Images/AddMaterialLineNormal.png"];
+    UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/AddMaterialLineHighLight.png"];
+    [confirmBtn setBackgroundImage:btnBakImage forState:UIControlStateNormal];
+    [confirmBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
     [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
     [confirmBtn setAssociativeObject:@"" forKey:@"content"];
     [confirmBtn addTarget:nil action:@selector(confirm:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:confirmBtn];
+
+    //keyboard
+    keyboard = [[KeyboardHandler alloc] init];
+    keyboard.delegate = self;
   }
   return self;
 }
@@ -81,5 +85,44 @@
   [methodTextField resignFirstResponder];
 }
 
+
+#pragma mark - Keyboard
+
+- (void)keyboardSizeChanged:(CGSize)delta
+{
+  UIView* frView = [[self relatedTable] findFirstResponder];
+  if ([frView isKindOfClass:[UITextField class]] || [frView isKindOfClass:[SSTextView class]]) {
+    if (delta.height > 0) {
+      CGPoint realOrigin = [frView convertPoint:frView.frame.origin toView:nil];
+      if (realOrigin.y + frView.frame.size.height  > _screenHeight - delta.height) {
+        CGFloat deltaHeight = realOrigin.y + frView.frame.size.height - ( _screenHeight - delta.height) -30;
+        CGRect frame = [self relatedTable].frame;
+        frame.origin.y -= deltaHeight;
+        if (-frame.origin.y > delta.height) {
+          frame.origin.y = - delta.height;
+        }
+        [self relatedTable].frame = frame;
+      }
+    }
+    else{
+      CGRect frame = [self relatedTable].frame;
+      frame.origin.y =  0;
+      [self relatedTable].frame = frame;
+    }
+  }
+}
+
+- (UITableView *)relatedTable
+{
+  if ([self.superview isKindOfClass:[UITableView class]])
+    return (UITableView *)self.superview;
+  else if ([self.superview.superview isKindOfClass:[UITableView class]])
+    return (UITableView *)self.superview.superview;
+  else
+  {
+    NSAssert(NO, @"UITableView shall always be found.");
+    return nil;
+  }
+}
 
 @end

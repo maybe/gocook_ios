@@ -56,7 +56,7 @@
 -(void)initControls
 {
   //nameLabel
-  nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-_offset, 20)];
+  nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320 - _offset - 15, 20)];
   nameLabel.backgroundColor = [UIColor clearColor];
   [nameLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
   nameLabel.font = [UIFont boldSystemFontOfSize:18];
@@ -100,7 +100,7 @@
   [buyTitleLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
   [buyTitleLabel setText:@"购买数量："];
   //amountTextField
-  amountTextField = [[UITextField alloc] initWithFrame:CGRectMake(90, 105, 80, 20)];
+  amountTextField = [[UITextField alloc] initWithFrame:CGRectMake(90, 106, 70, 20)];
   [amountTextField setDelegate:self];
   [amountTextField setBackgroundColor: [UIColor whiteColor]];
   amountTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -110,13 +110,13 @@
   amountTextField.returnKeyType = UIReturnKeyDone;
   amountTextField.tag = 0;
   //unitLabel2
-  unitLabel = [[UILabel alloc]initWithFrame:CGRectMake(173, 105, 50, 18)];
-  unitLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
-  unitLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
-  unitLabel.backgroundColor = [UIColor clearColor];
-  unitLabel.font = [UIFont systemFontOfSize:16];
-  [unitLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
-  [unitLabel setText:[NSString stringWithFormat:@"%@",goodsDataDict[@"unit"]]];
+  unitLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(173, 108, 50, 18)];
+  unitLabel2.shadowOffset =  CGSizeMake(0.0f, 0.5f);
+  unitLabel2.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
+  unitLabel2.backgroundColor = [UIColor clearColor];
+  unitLabel2.font = [UIFont systemFontOfSize:16];
+  [unitLabel2 setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
+  [unitLabel2 setText:[NSString stringWithFormat:@"%@",goodsDataDict[@"unit"]]];
   //processTitleLabel
   processTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 143, 80, 16)];
   processTitleLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
@@ -182,18 +182,20 @@
   [arrowImage setContentMode:UIViewContentModeScaleToFill];
   [self.view addSubview:arrowImage];
   //confirmBtn
-  confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 250, 60, 27)];
-  UIImage *btnBakImage = [UIImage imageNamed:@"Images/redNavigationButtonBackgroundNormal.png"];
-  UIImage *strechBakImage = [btnBakImage stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-  [confirmBtn setBackgroundImage:strechBakImage forState:UIControlStateNormal];
-  [confirmBtn setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
+  confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 250, 64, 29)];
+  UIImage *btnBakImage = [UIImage imageNamed:@"Images/AddMaterialLineNormal.png"];
+  UIImage *btnBakImage2 = [UIImage imageNamed:@"Images/AddMaterialLineHighLight.png"];
+  [confirmBtn setBackgroundImage:btnBakImage forState:UIControlStateNormal];
+  [confirmBtn setBackgroundImage:btnBakImage2 forState:UIControlStateHighlighted];
   [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
+  [confirmBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
   [confirmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
   
   [self.view addSubview:nameLabel];
   [self.view addSubview:priceTitleLabel];
   [self.view addSubview:priceLabel];
   [self.view addSubview:unitLabel];
+  [self.view addSubview:unitLabel2];
   [self.view addSubview:specLabel];
   [self.view addSubview:buyTitleLabel];
   [self.view addSubview:amountTextField];
@@ -283,7 +285,9 @@
   NSMutableDictionary *dict = (NSMutableDictionary*)notification.object;
   if ([(NSString*)dict[@"type"] isEqualToString:@"0"])//用户指定，内容是string
   {
-    [methodLabel setText:(NSString*)dict[@"content"]];
+    if (dict[@"content"] && ![dict[@"content"] isEqual:@""]) {
+      [methodLabel setText:(NSString*)dict[@"content"]];
+    }
   }
   else if ([(NSString*)dict[@"type"] isEqualToString:@"1"])//预先指定，内容是索引号
   {

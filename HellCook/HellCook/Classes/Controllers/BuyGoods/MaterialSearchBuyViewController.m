@@ -52,10 +52,13 @@
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   viewFrame.size.width = _sideWindowWidth;
-
-  //viewFrame.size.width = _sideWindowWidth;
   [self.view setFrame:viewFrame];
-  [self.myTableView setFrame:viewFrame];
+  self.view.autoresizesSubviews = NO;
+
+  CGRect tableFrame = self.myTableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  tableFrame.size.width = _sideWindowWidth;
+  [self.myTableView setFrame:tableFrame];
 
   HUD = [[MBProgressHUD alloc] initWithView:self.view];
   [self.view addSubview:HUD];

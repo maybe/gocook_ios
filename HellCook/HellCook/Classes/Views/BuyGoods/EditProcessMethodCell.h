@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "SSTextView.h"
+#import "KeyboardHandlerDelegate.h"
 
-@interface EditProcessMethodCell : UITableViewCell<UITextViewDelegate>
+@class KeyboardHandler;
+@interface EditProcessMethodCell : UITableViewCell<UITextViewDelegate,KeyboardHandlerDelegate>
 {
   UILabel *titleLabel;
   SSTextView *methodTextField;
   UIButton *confirmBtn;
+  KeyboardHandler *keyboard;
 }
 
 @property (nonatomic,retain) UILabel *titleLabel;
