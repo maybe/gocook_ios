@@ -194,7 +194,7 @@
 
   NSString* imageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, dictionary[@"cover_image"]];
 
-  [imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
+  [imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"]];
 }
 
 

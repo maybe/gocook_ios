@@ -50,7 +50,7 @@
 @end
 
 @implementation MyRecipeStepTableViewCell
-@synthesize stepTextView, delegate, selectButton, defaultImage, upImageView, indexInTable, delButton;
+@synthesize stepTextView, delegate, selectButton, defaultImage, upImageView, indexInTable, delButton, selectImageButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -85,15 +85,22 @@
       [self addSubview:stepTextView];
       
       
-      defaultImage = [UIImage imageNamed:@"Images/defaultUpload.png"];
+      defaultImage = [UIImage imageNamed:@"Images/NoStepImage.png"];
       upImageView = [[UIImageView alloc]initWithImage:defaultImage];
       [upImageView setContentMode:UIViewContentModeScaleAspectFill];
       [upImageView setClipsToBounds:YES];
-      [upImageView setFrame:CGRectMake(205, 20, 90, 70)];
+      [upImageView setFrame:CGRectMake(195, 15, 110, 105)];
       [self addSubview:upImageView];
-      
+
+      selectImageButton = [[UIButton alloc]init];
+      [selectImageButton setFrame:CGRectMake(195, 15, 110, 105)];
+      [selectImageButton setBackgroundColor:[UIColor clearColor]];
+      [selectImageButton addTarget:[self viewController] action:@selector(onSelectImageButton:) forControlEvents:UIControlEventTouchUpInside];
+      [self addSubview:selectImageButton];
+
+
       selectButton = [[UIButton alloc]init];
-      [selectButton setFrame:CGRectMake(220, 95, 60, 28)];
+      [selectButton setFrame:CGRectMake(220, 90, 60, 28)];
       
       UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/rightPageButtonBackgroundNormal.png"];
       UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
@@ -167,10 +174,10 @@
     [selectButton setTitle:@"替换" forState:UIControlStateNormal];
     if ([[dictionary allKeys] containsObject:@"tmpImageUrl"]) {
       [upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:dictionary[@"tmpImageUrl"] withType:RecipeStepImageUrl]]
-                  placeholderImage:defaultImage];
+                  placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"]];
     } else {
       [upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:dictionary[@"imageUrl"] withType:RecipeStepImageUrl]]
-                  placeholderImage:defaultImage];
+                  placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"]];
     }
   } else if ([[dictionary allKeys] containsObject:@"imageState"] && [dictionary[@"imageState"] intValue] == RecipeImage_SELECTED) {
     if ([[dictionary allKeys] containsObject: @"pickRealImage"]) {

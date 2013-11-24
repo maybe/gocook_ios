@@ -51,14 +51,14 @@
   //ContentLabel
   contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 40, 280, 30)];
   contentLabel.backgroundColor = [UIColor clearColor];
-  contentLabel.font = [UIFont boldSystemFontOfSize:24];
+  contentLabel.font = [UIFont boldSystemFontOfSize:22];
   contentLabel.textColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1];
   contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
   contentLabel.numberOfLines = 0;
   [self.view addSubview:contentLabel];
   contentLabel.hidden = YES;
   //confirmBtn
-  confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 320, 230, 50)];
+  confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(22, 320, 276, 47)];
   UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/confirm.png"];
   [confirmBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
   UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/confirmHighlighted.png"];
@@ -67,7 +67,7 @@
   [self.view addSubview:confirmBtn];
   confirmBtn.hidden = YES;
   //delayBtn
-  delayBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 400, 230, 50)];
+  delayBtn = [[UIButton alloc] initWithFrame:CGRectMake(22, 400, 276, 47)];
   UIImage *buttonBackgroundImage2 = [UIImage imageNamed:@"Images/delay.png"];
   [delayBtn setBackgroundImage:buttonBackgroundImage2 forState:UIControlStateNormal];
   UIImage *btnBakimagePressed2 = [UIImage imageNamed:@"Images/delayHighlighted.png"];
@@ -76,7 +76,7 @@
   [self.view addSubview:delayBtn];
   delayBtn.hidden = YES;
   //goBackBtn
-  goBackBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 320, 230, 50)];
+  goBackBtn = [[UIButton alloc] initWithFrame:CGRectMake(22, 320, 276, 47)];
   UIImage *buttonBackgroundImage3 = [UIImage imageNamed:@"Images/confirm.png"];
   [goBackBtn setBackgroundImage:buttonBackgroundImage3 forState:UIControlStateNormal];
   UIImage *btnBakimagePressed3 = [UIImage imageNamed:@"Images/confirmHighlighted.png"];
@@ -230,11 +230,11 @@
     NSRange range = [strTime rangeOfString:@" "];
     strTime = [strTime substringToIndex:range.location];
     NSString *content = [NSString stringWithFormat:@"尊敬的用户你好，您是否在%@进行了%d笔交易，共计%.2f元",strTime,[resultDic[@"sale_count"] intValue],[resultDic[@"sale_fee"] floatValue]];
-    CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(270, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(280, 1000) lineBreakMode:NSLineBreakByWordWrapping];
     [contentLabel setFrame:CGRectMake(20, 40, 280, contentSize.height)];
     [contentLabel setText:content];
-    [confirmBtn setFrame:CGRectMake(50, 40+contentSize.height+40, 230, 50)];
-    [delayBtn setFrame:CGRectMake(50, 40+contentSize.height+40+70, 230, 50)];
+    [confirmBtn setFrame:CGRectMake(22, 40+contentSize.height+40, 276, 47)];
+    [delayBtn setFrame:CGRectMake(22, 40+contentSize.height+40+70, 276, 47)];
   }
   else if (result == 1)
   {
@@ -299,13 +299,13 @@
         content = [content stringByAppendingString:@"对不起，您暂时无法抽取优惠券"];
       
     }
-    CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(270, 2000) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(280, 2000) lineBreakMode:NSLineBreakByWordWrapping];
     [contentLabel setFrame:CGRectMake(20, 40, 280, contentSize.height)];
     [contentLabel setText:content];
     
     
     
-    [goBackBtn setFrame:CGRectMake(50, 40+contentSize.height+40, 230, 50)];
+    [goBackBtn setFrame:CGRectMake(22, 40+contentSize.height+40, 276, 47)];
   }
   else if (result == 1)
   {
@@ -358,10 +358,10 @@
       content = [content stringByAppendingString:@"继续为您保留抽取机会，请您在限定日期之前抽取优惠券"];
     }
     
-    CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(270, 2000) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(280, 2000) lineBreakMode:NSLineBreakByWordWrapping];
     [contentLabel setFrame:CGRectMake(20, 40, 280, contentSize.height)];
     [contentLabel setText:content];
-    [goBackBtn setFrame:CGRectMake(50, 40+contentSize.height+40, 230, 50)];
+    [goBackBtn setFrame:CGRectMake(22, 40+contentSize.height+40, 276, 47)];
   }
   else if (result == 1)
   {

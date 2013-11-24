@@ -49,7 +49,7 @@
   HUD.mode = MBProgressHUDModeText;
   
   CGRect btnFrame = topBtn.frame;
-  btnFrame.size.height = 45;
+  btnFrame.size.height = 56;
   [topBtn setFrame:btnFrame];
   UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RollBtnBackground.png"];
   [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
@@ -168,9 +168,9 @@
     }
     else
     {
-      HUD.labelText = @"暂无更多优惠券信息";
-      [HUD show:YES];
-      [HUD hide:YES afterDelay:1];
+//      HUD.labelText = @"暂无更多优惠券信息";
+//      [HUD show:YES];
+//      [HUD hide:YES afterDelay:1];
     }
   }
 }

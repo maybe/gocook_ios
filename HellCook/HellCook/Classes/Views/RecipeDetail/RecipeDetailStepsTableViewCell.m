@@ -260,7 +260,7 @@
         imageurl = [NSString stringWithFormat: @"http://%@/images/recipe/step/%@", netManager.host, pDic[@"img"]];
       }
       
-      [image setImageWithURL:[NSURL URLWithString: imageurl] placeholderImage:nil];
+      [image setImageWithURL:[NSURL URLWithString: imageurl] placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"]];
       [image setHidden:NO];
     }
   }

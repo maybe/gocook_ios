@@ -84,7 +84,7 @@
     isCoverUploaded = YES;
 
     [headImageView.upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:pRecipeData.cover_img withType:Recipe526ImageUrl]]
-                              placeholderImage:[UIImage imageNamed:@"Images/UploadCover.jpg"]];
+                              placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"]];
 
     [headImageView.selectButton setTitle:@"替换" forState:UIControlStateNormal];
   }
@@ -92,6 +92,11 @@
   materialController = [[MyRecipesMaterialController alloc] initWithNibName:@"MyRecipesMatieralView" bundle:nil];
   stepController = [[MyRecipesStepController alloc] initWithNibName:@"MyRecipesStepView" bundle:nil];
   tipsController = [[MyRecipesTipsController alloc]initWithNibName:@"MyRecipesTipsView" bundle:nil];
+
+  HUD = [[MBProgressHUD alloc] initWithView: self.view];
+  [self.view addSubview:HUD];
+  HUD.mode = MBProgressHUDModeText;
+  HUD.delegate = self;
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnPushStepController:) name:@"EVT_OnPushStepController" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnPushTipsController:) name:@"EVT_OnPushTipsController" object:nil];
@@ -270,8 +275,7 @@
   [self presentViewController:picker animated:YES completion:nil];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
   // Access the uncropped image from info dictionary
   UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
@@ -288,13 +292,20 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   [headImageView.selectButton setTitle:@"上传" forState:UIControlStateNormal];
 }
 
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 -(void)uploadCoverTmpFile
 {
   if (![[headImageView.selectButton titleForState:UIControlStateNormal] isEqual: @"上传"]) {
+    [self loadImagePicker];
     return;
   }
-  
+
   NSString  *pngPath = @"";
   UIImage* uploadImage = headImageView.upImageView.image;
   
@@ -409,6 +420,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   }
   
   if ([trimedName isEqualToString:@""]) {
+    HUD.labelText = @"菜谱名不能为空";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2.0];
     return;
   }
   
@@ -427,6 +441,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   }
 
   if (!isCoverUploaded) {
+    HUD.labelText = @"必须先上传菜谱封面";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2.0];
     return;
   }
 
