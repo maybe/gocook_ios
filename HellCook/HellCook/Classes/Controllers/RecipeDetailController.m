@@ -221,6 +221,8 @@
       [cell.buyButton setTitle:@"已加入清单" forState:UIControlStateNormal];
     }
   }
+
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"OnShoppingListChange" object:nil];
 }
 
 - (void)setLeftButton

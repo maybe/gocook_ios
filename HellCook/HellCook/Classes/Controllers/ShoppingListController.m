@@ -37,8 +37,8 @@
   [self resetTableHeader];
     
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnSlashMaterialItem:) name:@"ShoppingListSlashMaterialItem" object:nil];
-
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnUnSlashMaterialItem:) name:@"ShoppingListUnSlashMaterialItem" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnShoppingListShouldReset) name:@"OnShoppingListChange" object:nil];
 //
 //  if([self respondsToSelector:@selector(edgesForExtendedLayout)])
 //  {
@@ -58,15 +58,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  if (isRecipeView) {
-    [self setDataList];
-  } else {
-    [self setDataList];
-    [self setAllMaterialDataList];
-  }
-
-  [self refreshHeaderView];
-  [self.tableView reloadData];
+  [self OnShoppingListShouldReset];
 
   [super viewWillAppear:animated];  
 }
@@ -166,7 +158,19 @@
       }
     }
   }
+}
 
+- (void)OnShoppingListShouldReset
+{
+  if (isRecipeView) {
+    [self setDataList];
+  } else {
+    [self setDataList];
+    [self setAllMaterialDataList];
+  }
+
+  [self refreshHeaderView];
+  [self.tableView reloadData];
 }
 
 - (void)refreshHeaderView
