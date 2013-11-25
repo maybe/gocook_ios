@@ -236,8 +236,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     // Write image to PNG
     [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
   }
-  
-  
+
+  HUD.labelText = @"上传中...";
+  [HUD show:YES];
+
   self.uploadOperation = [[[NetManager sharedInstance] hellEngine]
                             uploadStepTmpImage:pngPath
                             withIndex: indexPath.row
