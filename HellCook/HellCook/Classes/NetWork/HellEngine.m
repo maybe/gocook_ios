@@ -830,5 +830,41 @@
   return op;
 }
 
+- (MKNetworkOperation *)likeRecipe:(NSInteger)recipeId completionHandler:(likeResponseBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock {
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/like?likeid=%d",recipeId]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  [op useCookie:NO];
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+
+  [self enqueueOperation:op];
+
+  return op;
+}
+
+- (MKNetworkOperation *)unlikeRecipe:(NSInteger)recipeId completionHandler:(unlikeResponseBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock {
+  MKNetworkOperation *op = [self operationWithPath:[NSString stringWithFormat:@"cook/unlike?likeid=%d",recipeId]
+                                            params:nil
+                                        httpMethod:@"GET"];
+  [op useCookie:NO];
+  [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
+    [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+      completionBlock(jsonObject);
+    }];
+  }errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+    errorBlock(error);
+  }];
+
+  [self enqueueOperation:op];
+
+  return op;
+}
+
 
 @end

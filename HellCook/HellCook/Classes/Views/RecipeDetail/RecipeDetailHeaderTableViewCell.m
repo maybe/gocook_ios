@@ -11,7 +11,7 @@
 #import "NetManager.h"
 
 @implementation RecipeDetailHeaderTableViewCell
-@synthesize titleLabel,imageView,buyButton,collectButton,introLabel,authorButton,authorLabel;
+@synthesize titleLabel,imageView,buyButton,collectButton,introLabel,authorButton,authorLabel,likeButton,unlikeButton,likeLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,6 +27,17 @@
 
     [self addSubview: [self titleLabel]];
     [self addSubview:[self introLabel]];
+
+    [self addSubview:[self likeButton]];
+    [self addSubview:[self unlikeButton]];
+
+    unlikeButton.hidden = YES;
+
+    likeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 20)];
+    [likeLabel setText:@""];
+    [likeLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+    likeLabel.textColor = [UIColor colorWithRed:108.0f/255.0f green:146.0f/255.0f blue:75.0f/255.0f alpha:1];
+    [self addSubview:likeLabel];
 
     authorButton = [[UIButton alloc]initWithFrame:CGRectMake(168, 0, 120, 25)];
     [authorButton setTitle:@"" forState:UIControlStateNormal];
@@ -55,7 +66,7 @@
 - (UILabel*)titleLabel
 {
   if (!titleLabel) {
-    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 150, 256, CGFLOAT_MAX)];
+    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 130, 256, CGFLOAT_MAX)];
     [titleLabel setTextColor:[UIColor colorWithRed:42.0/255.0 green:42.0/255.0 blue:42.0/255.0 alpha:1.0]];
     [titleLabel setFont: [UIFont boldSystemFontOfSize:22]];
     titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -112,6 +123,30 @@
   return collectButton;
 }
 
+- (UIButton*)likeButton
+{
+  if (!likeButton) {
+    likeButton = [[UIButton alloc]initWithFrame:CGRectMake(32, 155, 18, 18)];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/unlike.png"];
+    [likeButton setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+    [likeButton addTarget:nil action:@selector(likeRecipe:) forControlEvents:UIControlEventTouchUpInside];
+  }
+
+  return likeButton;
+}
+
+- (UIButton*)unlikeButton
+{
+  if (!unlikeButton) {
+    unlikeButton = [[UIButton alloc]initWithFrame:CGRectMake(32, 155, 18, 18)];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/like.png"];
+    [unlikeButton setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+    [unlikeButton addTarget:nil action:@selector(unlikeRecipe:) forControlEvents:UIControlEventTouchUpInside];
+  }
+
+  return unlikeButton;
+}
+
 - (void)CalculateCellHeight
 {
   //封面高度
@@ -127,7 +162,8 @@
   mCellHeight += titleLabelSize.height;
   mTitleLabelHeight = titleLabelSize.height;
 
-  mCellHeight += 12;
+  mLikeButtonTop = mCellHeight + 8;
+  mCellHeight += 40;
 
   //计算描述信息高度
   //CGSize introLabelSize = [introLabel.text sizeWithFont:introLabel.font constrainedToSize:CGSizeMake(256, 1000) lineBreakMode:NSLineBreakByWordWrapping];
@@ -150,6 +186,13 @@
   CGRect titleRect = CGRectMake(32, mTitleLabelTop, 256, mTitleLabelHeight);
   [titleLabel setFrame: titleRect];
 
+  CGRect likeRect = CGRectMake(32, mLikeButtonTop - 7, 25, 25);
+  [likeButton setFrame: likeRect];
+  [unlikeButton setFrame: likeRect];
+
+  CGRect likeLabelRect = CGRectMake(56, mLikeButtonTop, 120, 18);
+  [likeLabel setFrame:likeLabelRect];
+
   CGRect introRect = CGRectMake(32, mIntroLabelTop, 256, mIntroLabelHeight);
   [introLabel setFrame: introRect];
 
@@ -166,6 +209,15 @@
 - (void)setData:(NSDictionary*) dictionary
 {
   [titleLabel setText:dictionary[@"recipe_name"]];
+  [likeLabel setText: [NSString stringWithFormat:@"%@人赞", dictionary[@"like_count"]]];
+  if ([dictionary[@"like"] intValue] == 0) {
+    likeButton.hidden = YES;
+    unlikeButton.hidden = NO;
+  } else {
+    likeButton.hidden = NO;
+    unlikeButton.hidden = YES;
+  }
+
   [introLabel setText:dictionary[@"intro"]];
   if (dictionary)
   {

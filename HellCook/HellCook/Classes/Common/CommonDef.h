@@ -56,6 +56,8 @@ typedef enum {
   GC_AlreadyCollectRecipe = 404,        // 已经收藏该菜谱
   GC_NotMyCollectRecipe = 405,          // 该菜谱本人未收藏
   GC_CommentOnRecipeFailed = 406,       // 评论失败
+  GC_AlreadyLikedRecipe = 407,          // 已经赞过该菜谱
+  GC_NotLikedRecipe = 408,              // 该菜谱本人未赞过
 
   GC_AlreadyWatchUser = 501,            // 已经关注过此用户
   GC_NotMyWatchUser = 502,              // 并未关注此用户

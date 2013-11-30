@@ -47,6 +47,10 @@ typedef void (^delayLotteryResponseBlock)(NSMutableDictionary* resultDic);
 
 typedef void (^kitchenInfoResponseBlock)(NSMutableDictionary* resultDic);
 
+typedef void (^likeResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^unlikeResponseBlock)(NSMutableDictionary* resultDic);
+
+
 // 设置cookie
 - (void) setCookie:(NSString*)cookie;
 - (void) removeCookie;
@@ -216,4 +220,11 @@ typedef void (^kitchenInfoResponseBlock)(NSMutableDictionary* resultDic);
                       completionHandler:(kitchenInfoResponseBlock)completionBlock
                            errorHandler:(MKNKErrorBlock) errorBlock;
 
+- (MKNetworkOperation*)likeRecipe:(NSInteger)recipeId
+                        completionHandler:(likeResponseBlock)completionBlock
+                             errorHandler:(MKNKErrorBlock) errorBlock;
+
+- (MKNetworkOperation*)unlikeRecipe:(NSInteger)recipeId
+                        completionHandler:(unlikeResponseBlock)completionBlock
+                             errorHandler:(MKNKErrorBlock) errorBlock;
 @end

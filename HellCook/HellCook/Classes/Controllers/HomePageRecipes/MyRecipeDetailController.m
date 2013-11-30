@@ -24,11 +24,6 @@
   [super viewDidLoad];
   [self setRightButton];
   isDelRecipe = NO;
-
-  HUD = [[MBProgressHUD alloc] initWithView:self.view];
-  [self.view addSubview:HUD];
-  HUD.mode = MBProgressHUDModeCustomView;
-  HUD.delegate = self;
 }
 
 - (void)setRightButton
@@ -120,6 +115,7 @@
 
 - (void)hudWasHidden:(MBProgressHUD *)hud
 {
+  [super hudWasHidden:hud];
   if (isDelRecipe)
   {
     [self returnToPrev];

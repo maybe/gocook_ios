@@ -11,9 +11,8 @@
 #import "MBProgressHUD.h"
 
 @class RecipeDetailBaseTableViewCell;
-@interface MyRecipeDetailController : RecipeDetailController <UIActionSheetDelegate, UIAlertViewDelegate, MBProgressHUDDelegate>
+@interface MyRecipeDetailController : RecipeDetailController <UIActionSheetDelegate, UIAlertViewDelegate>
 {
-  MBProgressHUD *HUD;
   BOOL isDelRecipe;
 }
 

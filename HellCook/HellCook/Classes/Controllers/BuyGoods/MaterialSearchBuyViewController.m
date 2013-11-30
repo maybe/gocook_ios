@@ -118,10 +118,6 @@
   
   NSIndexPath *indexpath = [NSIndexPath indexPathForRow:selectedRowOfCell inSection:0];
   [self.myTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexpath, nil] withRowAnimation:UITableViewRowAnimationNone];
-  
-  
-  
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"AfterConfirmGoods" object:self];
 }
 
 - (void)buy

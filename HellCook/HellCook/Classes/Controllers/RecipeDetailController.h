@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 typedef enum{
   kDetailHeaderCell = 0,
@@ -17,7 +18,7 @@ typedef enum{
 } DetailCellType;
 
 @class RecipeDetailBaseTableViewCell;
-@interface RecipeDetailController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface RecipeDetailController : UIViewController<UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate>
 {
   UITableView* tableView;
   NSMutableDictionary* recipeDataDic;
@@ -28,6 +29,8 @@ typedef enum{
   NSMutableArray *recipeCommentsArray;
 
   UIActivityIndicatorView* mLoadingActivity;
+
+  MBProgressHUD *HUD;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

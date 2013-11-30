@@ -47,8 +47,6 @@
   self.title = @"选择加工方式";
 
   [self setLeftButton];
-
-  //[self.navigationItem setLeftBarButtonItem:nil];
 }
 
 -(void)confirm:(UIButton*)btn
@@ -60,10 +58,6 @@
   [dict setObject:temp forKey:@"type"];
   [dict setObject:content forKey:@"content"];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmMethod" object:dict];
-}
-
--(void)afterConfirmMethod:(NSNotification *)notification
-{
   [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -205,6 +199,7 @@
       [dict setObject:temp forKey:@"type"];
       [dict setObject:@"无" forKey:@"content"];
       [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmMethod" object:dict];
+      [self.navigationController popViewControllerAnimated:YES];
     }
   }
   else
@@ -218,6 +213,7 @@
       temp = [NSString stringWithFormat:@"%d",indexPath.row];
       [dict setObject:temp forKey:@"content"];
       [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmMethod" object:dict];
+      [self.navigationController popViewControllerAnimated:YES];
     }
   }
 }

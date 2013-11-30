@@ -85,6 +85,11 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnCommentSuccess:) name:@"EVT_OnCommentSuccess" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
 
+  HUD = [[MBProgressHUD alloc] initWithView:self.view];
+  [self.view addSubview:HUD];
+  HUD.mode = MBProgressHUDModeCustomView;
+  HUD.delegate = self;
+
   [super viewDidLoad];
 }
 
@@ -110,12 +115,12 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
   return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
   if (recipeDataDic)
     return kTotalDetailCellNum;
@@ -123,7 +128,7 @@
     return 0;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   RecipeDetailBaseTableViewCell* cell = [self GetTableCell:indexPath.row];
   [cell setData: recipeDataDic];
@@ -131,7 +136,7 @@
   return [cell GetCellHeight];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   RecipeDetailBaseTableViewCell* cell = [self GetTableCell:indexPath.row];
   
@@ -182,7 +187,7 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   //[self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil] animated:YES];
 }
@@ -263,6 +268,86 @@
   {
     [self addCollection];
   }
+}
+
+- (void)likeRecipe:(UIButton*)btn
+{
+
+  self.netOperation = [[[NetManager sharedInstance] hellEngine]
+      likeRecipe:mRecipeId
+      completionHandler:^(NSMutableDictionary *resultDic) {
+        [self likeCallBack:resultDic];
+      }
+      errorHandler:^(NSError *error) {
+      }];
+}
+
+- (void)unlikeRecipe:(UIButton*)btn
+{
+  self.netOperation = [[[NetManager sharedInstance] hellEngine]
+      unlikeRecipe:mRecipeId
+      completionHandler:^(NSMutableDictionary *resultDic) {
+        [self unlikeCallBack:resultDic];
+      }
+      errorHandler:^(NSError *error) {
+      }];
+}
+
+- (void)likeCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == GC_Success) {
+    recipeDataDic[@"like"] = @"0";
+    NSInteger like_count = [recipeDataDic[@"like_count"] intValue];
+    like_count += 1;
+    recipeDataDic[@"like_count"] = [NSString stringWithFormat:@"%d", like_count];
+    [self.tableView reloadData];
+  } else if (result == GC_Failed) {
+    NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (error_code == GC_AuthAccountInvalid) {
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+
+      if (self.navigationController) {
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+      }
+    } else if (error_code == GC_AlreadyLikedRecipe) {
+      HUD.labelText = @"你已经赞过了！";
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:2];
+    }
+  }
+}
+
+- (void)unlikeCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == 0) {
+    recipeDataDic[@"like"] = @"1";
+    NSInteger like_count = [recipeDataDic[@"like_count"] intValue];
+    like_count -= 1;
+    if (like_count < 0) {
+      like_count = 0;
+    }
+    recipeDataDic[@"like_count"] = [NSString stringWithFormat:@"%d", like_count];
+    [self.tableView reloadData];
+  } else if (result == GC_Failed) {
+    NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (error_code == GC_AuthAccountInvalid) {
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+
+      if (self.navigationController) {
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+      }
+    } else if (error_code == GC_NotLikedRecipe) {
+      HUD.labelText = @"你还没有赞过！";
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:2];
+    }
+  }
+
+  [self.tableView reloadData];
 }
 
 - (void)onClickAuthor:(UIButton*)btn
@@ -440,5 +525,10 @@
   [self.tableView reloadData];
   [self.tableView.tableFooterView setHidden:YES];
   [self getRecipeDetailData:mRecipeId];
+}
+
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+
 }
 @end

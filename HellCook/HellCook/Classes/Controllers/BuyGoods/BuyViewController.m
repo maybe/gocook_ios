@@ -30,7 +30,6 @@
     HUD.mode = MBProgressHUDModeText;
     HUD.delegate = self;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(afterConfirm:) name:@"AfterConfirmGoods" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeMethod:) name:@"ConfirmMethod" object:nil];
   }
   return self;
@@ -273,11 +272,19 @@
   [goodsDataDict setObject:amountTextField.text forKey:@"Quantity"];
   [goodsDataDict setObject:methodTextField.text forKey:@"Remark"];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmGoods" object:goodsDataDict];
-}
 
--(void)afterConfirm:(NSNotification *)notification
-{
-  [self.navigationController popToViewController:(MaterialSearchBuyViewController*)notification.object animated:YES];
+  //
+  int j = 0;
+  for (; j < [[self.navigationController viewControllers] count]; j++) {
+    UIViewController * controller = [[self.navigationController viewControllers] objectAtIndex:j];
+    if ([controller isKindOfClass:[MaterialSearchBuyViewController class]]) {
+      [self.navigationController popToViewController:controller animated:YES];
+      break;
+    }
+  }
+  if (j == [[self.navigationController viewControllers] count]) {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+  }
 }
 
 -(void)changeMethod:(NSNotification *)notification
@@ -295,9 +302,7 @@
     NSArray *dealMethodArray = goodsDataDict[@"deal_method"];
     [methodLabel setText:[dealMethodArray objectAtIndex:index]];
   }
-  
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"afterChangeMethod" object:nil];
-}
+  }
 
 #pragma mark - TextField Delegate
 
