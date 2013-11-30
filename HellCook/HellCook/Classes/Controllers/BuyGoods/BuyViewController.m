@@ -48,8 +48,24 @@
   self.view.autoresizesSubviews = NO;
   [self hidePicker];
 
+  UITapGestureRecognizer* gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizer)];
+  [self.view addGestureRecognizer:gestureRecognizer];
+  self.view.userInteractionEnabled = YES;
+
   [self autoLayout];
   [super viewDidLoad];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  if ([amountTextField isFirstResponder])
+    [amountTextField resignFirstResponder];
+}
+
+- (void)tapGestureRecognizer
+{
+  if ([amountTextField isFirstResponder])
+    [amountTextField resignFirstResponder];
 }
 
 -(void)initControls

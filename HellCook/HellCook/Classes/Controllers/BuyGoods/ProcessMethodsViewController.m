@@ -49,6 +49,11 @@
   [self setLeftButton];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [self.view endEditing:YES];
+}
+
 -(void)confirm:(UIButton*)btn
 {
   NSString *content = [btn associativeObjectForKey:@"content"];
