@@ -49,6 +49,8 @@
   NSURL* url = [[NSURL alloc] initWithString: [NSString stringWithFormat:@"http://o.m6fresh.com/ws/mobile_reg.aspx?sid=%d", rndValue]];
   [webView loadRequest:[NSURLRequest requestWithURL: url]];
 
+  self.webView.keyboardDisplayRequiresUserAction = NO;
+
   HUD.mode = MBProgressHUDModeCustomView;
   HUD.labelText = @"加载页面中...";
   [HUD show:YES];
@@ -143,6 +145,7 @@
   }
   else{
     [HUD hide:YES];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('tb_mobile').focus()"];
   }
 
 }
