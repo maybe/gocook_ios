@@ -182,7 +182,7 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
   AccountController* accountController = [[AccountController alloc] initWithNibName:@"AccountView" bundle:nil];
   _leftNavController = [[HCNavigationController alloc] initWithRootViewController:accountController];
   _leftNavController.navigationBarHidden = NO;
-  _leftNavController.view.autoresizesSubviews = NO;
+  //_leftNavController.view.autoresizesSubviews = NO;
   _leftNavController.view.frame = CGRectMake(0, 0, _sideWindowWidth, _screenHeight);
 }
 
@@ -190,7 +190,7 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
 {
   ShoppingListController* slController = [[ShoppingListController alloc] initWithNibName:@"ShoppingListView" bundle:nil];
   _rightNavController = [[HCNavigationController alloc] initWithRootViewController:slController];
-  _rightNavController.view.autoresizesSubviews = NO;
+  //_rightNavController.view.autoresizesSubviews = NO; // fix HUD not centered bug
   _rightNavController.view.frame = CGRectMake(0, 0, _sideWindowWidth, _screenHeight);
   [_rightNavController viewWillAppear:NO]; // hack by panda
 }

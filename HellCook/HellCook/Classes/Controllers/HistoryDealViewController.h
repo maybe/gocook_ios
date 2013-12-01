@@ -18,12 +18,10 @@
   NSMutableArray *ordersArray;
   
   UIActivityIndicatorView* mLoadingActivity;
-  UIActivityIndicatorView* mWaitingActivity;
   ODRefreshControl *refreshControl;
 }
 
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
-@property (nonatomic, retain)IBOutlet UIActivityIndicatorView* mWaitingActivity;
 
 @end

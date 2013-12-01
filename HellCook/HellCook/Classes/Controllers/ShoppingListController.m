@@ -47,10 +47,11 @@
 
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
-
+  viewFrame.size.width = _sideWindowWidth;
   //viewFrame.size.width = _sideWindowWidth;
   [self.view setFrame:viewFrame];
   [self.tableView setFrame:viewFrame];
+  self.view.autoresizesSubviews = NO;
 
   [self autoLayout];
   [super viewDidLoad];

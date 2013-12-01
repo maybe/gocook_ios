@@ -22,13 +22,11 @@
   MBProgressHUD *HUD;
   ODRefreshControl *refreshControl;
   UIActivityIndicatorView* mLoadingActivity;
-  UIActivityIndicatorView* mWaitingActivity;
 }
 
 @property (nonatomic,retain) IBOutlet UIButton *topBtn;
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;
 @property (strong, nonatomic) MKNetworkOperation *netOperation;
 @property (nonatomic, retain) UIActivityIndicatorView* mLoadingActivity;
-@property (nonatomic, retain)IBOutlet UIActivityIndicatorView* mWaitingActivity;
 
 @end

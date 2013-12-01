@@ -22,7 +22,7 @@
 @implementation NewCouponsViewController
 @synthesize topBtn,myTableView;
 @synthesize netOperation;
-@synthesize mLoadingActivity,mWaitingActivity;
+@synthesize mLoadingActivity;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -278,8 +278,7 @@
     }
     return;
   }
-  [mWaitingActivity startAnimating];
-  
+
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
                        getAllMyCouponsByPage:(curPage + 1)
                        completionHandler:^(NSMutableDictionary *resultDic) {
@@ -294,7 +293,6 @@
 
 - (void)getAllMyCouponsDataCallBack:(NSMutableDictionary*) resultDic
 {
-  [mWaitingActivity stopAnimating];
   if ([refreshControl isRefreshing]) {
     [refreshControl endRefreshing];
     [itmesArray removeAllObjects];

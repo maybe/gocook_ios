@@ -18,7 +18,7 @@
 @end
 
 @implementation HistoryDealViewController
-@synthesize myTableView,netOperation,mWaitingActivity;
+@synthesize myTableView,netOperation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,9 +28,6 @@
     curPage = 0;
     ordersArray = [[NSMutableArray alloc] init];
     bShouldRefresh = TRUE;
-    refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
-    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
-    refreshControl.tintColor = [UIColor colorWithRed:120.0 / 255.0 green:120.0 / 255.0 blue:120.0 / 255.0 alpha:1.0];
   }
   return self;
 }
@@ -38,23 +35,33 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  // Do any additional setup after loading the view from its nib.
+  [self autoLayout];
+
   self.navigationItem.title = @"我的购买";
   [self setLeftButton];
 
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  viewFrame.size.width = _sideWindowWidth;
+  [self.view setFrame:viewFrame];
+  self.view.autoresizesSubviews = NO;
+
+  CGRect tableFrame = self.myTableView.frame;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  tableFrame.size.width = _sideWindowWidth;
+  [self.myTableView setFrame:tableFrame];
+
   mLoadingActivity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-  [mLoadingActivity setCenter:CGPointMake(160, 25)];
+  [mLoadingActivity setCenter:CGPointMake(_sideWindowWidth/2, 25)];
   [mLoadingActivity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
   [mLoadingActivity stopAnimating];
   [self initLoadingView];
 
-  [self getHistoryDeal];
-}
+  refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
+  [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+  refreshControl.tintColor = [UIColor colorWithRed:120.0 / 255.0 green:120.0 / 255.0 blue:120.0 / 255.0 alpha:1.0];
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [self getHistoryDeal];
 }
 
 - (void)initLoadingView {
@@ -160,8 +167,6 @@
 
 - (void)getHistoryDeal
 {
-  [mWaitingActivity startAnimating];
-  
   NSDate *date = [NSDate date];
   NSDate *oldDate = [date dateByAddingTimeInterval:-60*60*24*30*6];
   NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -184,7 +189,6 @@
 
 - (void)getHistoryDealCallBack:(NSMutableDictionary *)resultDic
 {
-  [mWaitingActivity stopAnimating];
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {

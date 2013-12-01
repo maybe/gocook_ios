@@ -53,7 +53,6 @@
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   viewFrame.size.width = _sideWindowWidth;
   [self.view setFrame:viewFrame];
-  self.view.autoresizesSubviews = NO;
 
   CGRect tableFrame = self.myTableView.frame;
   tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
@@ -124,13 +123,16 @@
 {
   NSMutableString *content = [NSMutableString stringWithString:@"\"Wares\":["];
   NSInteger buyNum = 0;
-  for (int i=0; i<[unslashMaterialArray count]; i++,buyNum++)
+  for (int i=0; i<[unslashMaterialArray count]; i++)
   {
     if (![unslashMaterialArray[i][@"state"] isEqual:@"NotBuy"])
     {
-      NSMutableString *oneBill = [NSMutableString stringWithFormat:@"{\"WareId\":%d,\"Quantity\":%@,\"Remark\":\"%@\"},",[unslashMaterialArray[i][@"id"] intValue], unslashMaterialArray[i][@"Quantity"], unslashMaterialArray[i][@"Remark"]];
+      NSMutableString *oneBill = [NSMutableString stringWithFormat:@"{\"WareId\":%d,\"Quantity\":%@,\"Remark\":\"%@\"},",
+              [unslashMaterialArray[i][@"id"] intValue], unslashMaterialArray[i][@"Quantity"], unslashMaterialArray[i][@"Remark"]];
       
       [content appendString:oneBill];
+
+      buyNum++;
     }
   }
   
