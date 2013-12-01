@@ -21,6 +21,7 @@
   UILabel* loginTitleLabel;
   UIButton* debugOptionButton;
   NSMutableArray* cellContentArray;
+  BOOL shouldRefreshKitchenInfo;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

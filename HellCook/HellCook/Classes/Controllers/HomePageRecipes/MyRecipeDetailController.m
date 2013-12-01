@@ -98,6 +98,7 @@
     [HUD hide:YES afterDelay:1.0];
     isDelRecipe = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_ReloadRecipes" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
   }
   else {
     [HUD hide:YES];

@@ -324,6 +324,9 @@
 
     [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/GreenButtonNormal136.png"] forState:UIControlStateNormal];
     [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/GreenButtonHighLight136.png"] forState:UIControlStateHighlighted];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshHPFollow" object:nil];
   }
   else if (result == GC_Failed) {
     NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
@@ -345,6 +348,8 @@
     [pPicCell.followBtn setTitle:@"未关注" forState:UIControlStateNormal];
     [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/AddMaterialLineNormal.png"] forState:UIControlStateNormal];
     [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/AddMaterialLineHighLight.png"] forState:UIControlStateHighlighted];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
   } else {
     NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
     if (error_code == GC_AuthAccountInvalid) {

@@ -25,10 +25,9 @@
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     // Custom initialization
-    curPage = 1;
+    curPage = 0;
     ordersArray = [[NSMutableArray alloc] init];
     bShouldRefresh = TRUE;
-    [self initLoadingView];
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.myTableView];
     [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
     refreshControl.tintColor = [UIColor colorWithRed:120.0 / 255.0 green:120.0 / 255.0 blue:120.0 / 255.0 alpha:1.0];
@@ -42,7 +41,13 @@
   // Do any additional setup after loading the view from its nib.
   self.navigationItem.title = @"我的购买";
   [self setLeftButton];
-  
+
+  mLoadingActivity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+  [mLoadingActivity setCenter:CGPointMake(160, 25)];
+  [mLoadingActivity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+  [mLoadingActivity stopAnimating];
+  [self initLoadingView];
+
   [self getHistoryDeal];
 }
 
@@ -56,9 +61,6 @@
   CGRect frame = self.myTableView.tableFooterView.frame;
   frame.size.height = 50;
   self.myTableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
-  mLoadingActivity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-  [mLoadingActivity setCenter:CGPointMake(160, 25)];
-  [mLoadingActivity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
   [self.myTableView.tableFooterView addSubview:mLoadingActivity];
   [mLoadingActivity stopAnimating];
 }
@@ -82,6 +84,7 @@
   [ordersArray removeAllObjects];
   curPage = 0;
   bShouldRefresh = YES;
+  [self initLoadingView];
   [self.myTableView reloadData];
   [self getHistoryDeal];
 }
@@ -168,7 +171,7 @@
   NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
   [dict setObject:strOldDate forKey:@"start_day"];
   [dict setObject:strDate forKey:@"end_day"];
-  [dict setObject:[NSString stringWithFormat:@"%d",curPage] forKey:@"page"];
+  [dict setObject:[NSString stringWithFormat:@"%d",curPage + 1] forKey:@"page"];
   
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
                        getHistoryDealWithDict:dict

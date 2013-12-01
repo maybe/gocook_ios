@@ -76,6 +76,9 @@
   [self.tableView setFrame:tableFrame];
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnShouldRefreshKitchenInfo:) name:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
+
+  shouldRefreshKitchenInfo = NO;
 
   [self autoLayout];
   [super viewDidLoad];
@@ -92,6 +95,11 @@
   if ([[[User sharedInstance] account] isLogin] && [[[User sharedInstance] account] shouldResetLogin]) {
     [self getKitchenInfo];
     [self resetAccountView];
+  }
+
+  if (shouldRefreshKitchenInfo) {
+    [self getKitchenInfo];
+    shouldRefreshKitchenInfo = NO;
   }
 
   if ([[[User sharedInstance] account] isLogin]) {
@@ -174,8 +182,8 @@
     aCell.nameLabel4.text = [dic valueForKey:@"title4"];
     aCell.countLabel5.text = [NSString stringWithFormat:@"%d", kitchenInfo.order_count];
     aCell.nameLabel5.text = [dic valueForKey:@"title5"];
-    aCell.countLabel6.text = @"0";
-    aCell.nameLabel6.text = [dic valueForKey:@"title6"];
+    aCell.countLabel6.text = @"";
+    aCell.nameLabel6.text = @"";
   }
   else {
     AccountTableViewCell *aCell = (AccountTableViewCell *) cell;
@@ -362,8 +370,7 @@ destructiveButtonTitle:@"确定"
       @"0", @"count2", @"粉丝", @"title2",
       @"0", @"count3", @"收藏", @"title3",
       @"0", @"count4", @"菜谱", @"title4",
-      @"0", @"count5", @"购买", @"title5",
-      @"0", @"count6", @"作品", @"title6", nil];
+      @"0", @"count5", @"购买", @"title5", nil];
   [cellContentArray addObject:cellDic];
 
   cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -502,7 +509,9 @@ destructiveButtonTitle:@"确定"
   }
 }
 
-
+- (void)OnShouldRefreshKitchenInfo:(NSNotification *)notification{
+  shouldRefreshKitchenInfo = YES;
+}
 
 #pragma get kitchen info
 

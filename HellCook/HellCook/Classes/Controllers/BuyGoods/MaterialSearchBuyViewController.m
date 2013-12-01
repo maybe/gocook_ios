@@ -227,6 +227,8 @@
     [HUD show:YES];
     [HUD hide:YES afterDelay:2];
     isOrderSuccess = YES;
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
   }
   else
   {

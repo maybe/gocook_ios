@@ -60,6 +60,10 @@
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
   refreshControl.tintColor = [UIColor colorWithRed:120.0 / 255.0 green:120.0 / 255.0 blue:120.0 / 255.0 alpha:1.0];
 
+  mLoadingActivity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+  [mLoadingActivity setCenter:CGPointMake(160, 25)];
+  [mLoadingActivity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+  [mLoadingActivity stopAnimating];
   [self initLoadingView];
 
   mMyRecipeArray = [[NSMutableArray alloc] init];
@@ -240,9 +244,6 @@
   CGRect frame = self.tableView.tableFooterView.frame;
   frame.size.height = 50;
   self.tableView.tableFooterView = [[UIView alloc] initWithFrame:frame];
-  mLoadingActivity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-  [mLoadingActivity setCenter:CGPointMake(160, 25)];
-  [mLoadingActivity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
   [self.tableView.tableFooterView addSubview:mLoadingActivity];
   [mLoadingActivity stopAnimating];
 }

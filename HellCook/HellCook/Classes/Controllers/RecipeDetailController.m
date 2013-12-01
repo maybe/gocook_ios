@@ -449,6 +449,8 @@
     [cell.collectButton setAssociativeObject:@"已收藏" forKey:@"title"];
 
     recipeDataDic[@"collect"] = @"0";
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
   } else {
     NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
     if (error_code == GC_AuthAccountInvalid) {
@@ -488,6 +490,8 @@
     [cell.collectButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
 
     recipeDataDic[@"collect"] = @"1";
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
   }
 }
 

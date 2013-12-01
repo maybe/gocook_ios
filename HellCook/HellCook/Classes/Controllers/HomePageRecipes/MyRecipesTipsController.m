@@ -346,6 +346,7 @@
     isCreate = YES;
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_ReloadRecipes" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
   }
   else if (result == 1){
     HUD.labelText = @"发布失败";
