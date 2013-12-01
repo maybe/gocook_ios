@@ -31,6 +31,8 @@
 {
   [self setLeftButton];
   [self setRightButton];
+
+  self.title = @"食材";
   
   CGRect frameHeader = self.tableView.tableHeaderView.frame;
   frameHeader.size.height = 44;

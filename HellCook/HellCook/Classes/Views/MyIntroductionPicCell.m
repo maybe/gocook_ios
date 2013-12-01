@@ -33,6 +33,7 @@
       nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 65, 160, 30)];
       nameLabel.textColor = [UIColor colorWithRed:101.0 / 255.0 green:107.0 / 255.0 blue:55.0 / 255.0 alpha:0.8];
       nameLabel.font = [UIFont boldSystemFontOfSize:20];
+      nameLabel.backgroundColor = [UIColor clearColor];
       //bannerImageView
       bannerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 150)];
       [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];

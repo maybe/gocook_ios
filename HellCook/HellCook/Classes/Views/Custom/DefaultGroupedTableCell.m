@@ -42,35 +42,35 @@
   if (self.theCellStyle == CellStyle_Single)
   {
     UIImage* tmpRowBackground = [UIImage imageNamed:@"Images/TableCellSingle.png"];
-    rowBackground = [tmpRowBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    rowBackground = tmpRowBackground; //[tmpRowBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
 
     UIImage* tmpSelectionBackground = [UIImage imageNamed:@"Images/TableCellSingle.png"];
-    selectionBackground = [tmpSelectionBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    selectionBackground = tmpSelectionBackground; //[tmpSelectionBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
 
   }
   else if (self.theCellStyle == CellStyle_Top)
   {
     UIImage* tmpRowBackground = [UIImage imageNamed:@"Images/TableCellHeader.png"];
-    rowBackground = [tmpRowBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    rowBackground = tmpRowBackground; //[tmpRowBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     
     UIImage* tmpSelectionBackground = [UIImage imageNamed:@"Images/TableCellHeader.png"];
-    selectionBackground = [tmpSelectionBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    selectionBackground = tmpSelectionBackground; //[tmpSelectionBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
   }
   else if (self.theCellStyle == CellStyle_Bottom)
   {
     UIImage* tmpRowBackground = [UIImage imageNamed:@"Images/TableCellFooter.png"];
-    rowBackground = [tmpRowBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    rowBackground = tmpRowBackground; //[tmpRowBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     
     UIImage* tmpSelectionBackground = [UIImage imageNamed:@"Images/TableCellFooter.png"];
-    selectionBackground = [tmpSelectionBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    selectionBackground = tmpSelectionBackground; //[tmpSelectionBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
   }
   else
   {    
     UIImage* tmpRowBackground = [UIImage imageNamed:@"Images/TableCellBody.png"];
-    rowBackground = [tmpRowBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    rowBackground = tmpRowBackground; //[tmpRowBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     
     UIImage* tmpSelectionBackground = [UIImage imageNamed:@"Images/TableCellBody.png"];
-    selectionBackground = [tmpSelectionBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    selectionBackground = tmpSelectionBackground; //[tmpSelectionBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
   }
   
   ((UIImageView *)self.backgroundView).image = rowBackground; 

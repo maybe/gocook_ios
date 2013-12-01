@@ -42,6 +42,8 @@
   [super viewDidLoad];
   [self autoLayout];
 
+  self.title = @"封面";
+
   isCoverUploaded = NO;
 
   [self setLeftButton];
@@ -179,6 +181,7 @@
     [textField setFrame:CGRectMake(30, 0, 260, kTableCellBody)];
     [textField setPlaceholder:[dic objectForKey:@"placeHolder"]];
     [textField setBackgroundColor: [UIColor clearColor]];
+    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     textField.keyboardType = UIKeyboardTypeDefault;
     textField.autocorrectionType = UITextAutocorrectionTypeNo;

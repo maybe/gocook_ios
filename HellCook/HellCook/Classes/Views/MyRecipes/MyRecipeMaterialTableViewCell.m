@@ -69,6 +69,7 @@
       
       materialTextField = [[UITextField alloc]init];
       [materialTextField setDelegate:self];
+      materialTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
       [materialTextField setFrame:CGRectMake(10, 0, 140, 44)];
       [materialTextField setBackgroundColor: [UIColor clearColor]];
       materialTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -82,6 +83,7 @@
       [weightTextField setDelegate:self];
       [weightTextField setFrame:CGRectMake(170, 0, 140, 44)];
       [weightTextField setBackgroundColor: [UIColor clearColor]];
+      weightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
       weightTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
       weightTextField.keyboardType = UIKeyboardTypeDefault;
       weightTextField.autocorrectionType = UITextAutocorrectionTypeNo;
