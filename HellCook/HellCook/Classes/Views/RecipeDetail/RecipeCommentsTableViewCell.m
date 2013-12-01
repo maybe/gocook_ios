@@ -8,9 +8,7 @@
 
 #import "RecipeCommentsTableViewCell.h"
 #import "UIImageView+WebCache.h"
-#import "QuartzCore/QuartzCore.h"
 #import "NetManager.h"
-#import <CoreText/CoreText.h>
 
 #define _commentLabelWidth 235
 
@@ -22,7 +20,6 @@
 {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
-    // Initialization code
     mCellHeight = 90;
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320, mCellHeight)];
@@ -32,10 +29,7 @@
     avataImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 55, 55)];
     [avataImageView setContentMode:UIViewContentModeScaleAspectFill];
     [avataImageView setClipsToBounds:YES];
-    // avataImageView.layer.cornerRadius = 4.0;
     avataImageView.layer.masksToBounds = YES;
-    // avataImageView.layer.borderColor = [UIColor clearColor].CGColor;
-    // avataImageView.layer.borderWidth = 1.0;
     //avatarBtn
     avatarBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [avatarBtn setFrame:avataImageView.frame];
@@ -56,12 +50,10 @@
     [nameBtn addTarget:nil action:@selector(gotoOtherIntro:) forControlEvents:UIControlEventTouchUpInside];
     //dateLabel
     dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(55, mCellHeight-30, 100, 20)];
-    //dateLabel.shadowOffset = CGSizeMake(0.0f, 0.5f);
-    //dateLabel.shadowColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.8];
     dateLabel.backgroundColor = [UIColor clearColor];
     [dateLabel setTextColor:[UIColor colorWithRed:160.0/255.0 green:160.0/255.0 blue:160.0/255.0 alpha:1.0]];
     dateLabel.font = [UIFont systemFontOfSize:14];
-    //seperator image
+    //sep image
     sepImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, mCellHeight-2, 320, 1)];
     [sepImageView setImage:[UIImage imageNamed:@"Images/homeHeaderSeperator.png"]];
     
@@ -125,7 +117,7 @@
   [attributedStrComment setAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:42/255.0 green:42/255.0 blue:42/255.0 alpha:1.0]} range:NSMakeRange([name length],[content length]+2)];
   [attributedStrComment addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange([name length], [content length]+2)];
   commentLabel.attributedText = attributedStrComment;
-  [self caculateCellHeight:strComment];
+  [self calculateCellHeight:strComment];
   
   
   NSMutableDictionary *createTimeDict = dict[@"create_time"];
@@ -135,8 +127,8 @@
     [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *otherDate =  [dateFormat dateFromString:createTimeDict[@"date"]];
     NSDate *nowDate = [NSDate date];
-    
-    NSUInteger componentFlags = NSYearCalendarUnit|NSMonthCalendarUnit |NSDayCalendarUnit;    
+
+    NSCalendarUnit componentFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSDateComponents *todayComponents = [[NSCalendar currentCalendar] components:componentFlags fromDate:nowDate];
     NSDateComponents *otherComponents = [[NSCalendar currentCalendar] components:componentFlags fromDate:otherDate];
     if ([todayComponents year]==[otherComponents year] && [todayComponents month]==[otherComponents month] && [todayComponents day]==[otherComponents day])
@@ -167,7 +159,7 @@
   }  
 }
 
-- (void)caculateCellHeight:(NSString*)strComment
+- (void)calculateCellHeight:(NSString*)strComment
 {
 //  commentLabel.text = strComment;
   CGSize contentSize = [strComment sizeWithFont:commentLabel.font constrainedToSize:CGSizeMake(_commentLabelWidth, 1000) lineBreakMode:NSLineBreakByWordWrapping];

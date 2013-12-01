@@ -249,8 +249,8 @@
     {
       strComment = [NSString stringWithFormat:@"%@: %@",dataDict[@"name"],dataDict[@"content"]];
     }
-    
-    [cellForHeight caculateCellHeight:strComment];
+
+    [cellForHeight calculateCellHeight:strComment];
     return [cellForHeight getCellHeight];
   }
 }

@@ -13,7 +13,7 @@
   UIImageView *avataImageView;
   UILabel *commentLabel;
   UILabel *dateLabel;
-  NSInteger mCellHeight;
+  CGFloat mCellHeight;
   
   UIImageView* sepImageView;
   
@@ -29,7 +29,7 @@
 @property (nonatomic, retain) UIButton *nameBtn;
 
 - (void)setData:(NSMutableDictionary*)dict;
-- (void)caculateCellHeight:(NSString*)strComment;
+- (void)calculateCellHeight:(NSString*)strComment;
 - (CGFloat)getCellHeight;
 
 @end
