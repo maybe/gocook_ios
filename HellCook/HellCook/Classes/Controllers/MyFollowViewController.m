@@ -59,16 +59,14 @@
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
   refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
 
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnShouldRefreshHPFollow) name:@"EVT_OnShouldRefreshHPFollow" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnShouldRefreshHPFollow) name:@"EVT_OnShouldRefreshFollow" object:nil];
 
   [self initLoadingView];
 }
 
 - (void) OnShouldRefreshHPFollow
 {
-  if ([[[User sharedInstance] account] user_id] == userId) {
     firstLoad = YES;
-  }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -86,6 +84,8 @@
   if (firstLoad)
   {
     firstLoad = NO;
+    curPage = 0;
+    isPageEnd = NO;
     [myFollowsArray removeAllObjects];
     [[self myTableView] reloadData];
     [self getUserFollowData];

@@ -56,7 +56,14 @@
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
   refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
 
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnShouldRefreshHPFans) name:@"EVT_OnShouldRefreshFollow" object:nil];
+
   [self initLoadingView];
+}
+
+- (void) OnShouldRefreshHPFans
+{
+  firstLoad = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -73,6 +80,10 @@
   
   if (firstLoad) {
     firstLoad = NO;
+    curPage = 0;
+    isPageEnd = NO;
+    [myFansArray removeAllObjects];
+    [_myTableView reloadData];
     [self getUserFansData];
   }
 }

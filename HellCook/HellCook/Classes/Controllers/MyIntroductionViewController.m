@@ -326,7 +326,7 @@
     [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/GreenButtonHighLight136.png"] forState:UIControlStateHighlighted];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshHPFollow" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshFollow" object:nil];
   }
   else if (result == GC_Failed) {
     NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
@@ -350,6 +350,7 @@
     [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/AddMaterialLineHighLight.png"] forState:UIControlStateHighlighted];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshFollow" object:nil];
   } else {
     NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
     if (error_code == GC_AuthAccountInvalid) {
