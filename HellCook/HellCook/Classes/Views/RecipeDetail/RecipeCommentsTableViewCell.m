@@ -46,7 +46,7 @@
     //commentLabel.shadowOffset = CGSizeMake(0.0f, 0.5f);
     //commentLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
     commentLabel.backgroundColor = [UIColor clearColor];
-    commentLabel.font = [UIFont boldSystemFontOfSize:14];
+    commentLabel.font = [UIFont systemFontOfSize:15];
     commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     commentLabel.numberOfLines = 0;
     //nameBtn
@@ -123,7 +123,7 @@
   NSMutableAttributedString *attributedStrComment = [[NSMutableAttributedString alloc] initWithString:strComment];
   [attributedStrComment setAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} range:NSMakeRange(0, [name length])];
   [attributedStrComment setAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:42/255.0 green:42/255.0 blue:42/255.0 alpha:1.0]} range:NSMakeRange([name length],[content length]+2)];
-  [attributedStrComment addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue" size:15.0] range:NSMakeRange([name length], [content length]+2)];
+  [attributedStrComment addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange([name length], [content length]+2)];
   commentLabel.attributedText = attributedStrComment;
   [self caculateCellHeight:strComment];
   
@@ -188,7 +188,7 @@
   [sepImageView setFrame:CGRectMake(0, mCellHeight-2, 320, 1)];
   
   CGRect labelRect = commentLabel.frame;
-  labelRect.size.height = contentSize.height;
+  labelRect.size.height = contentSize.height + 1;
   [commentLabel setFrame:labelRect];
 }
 

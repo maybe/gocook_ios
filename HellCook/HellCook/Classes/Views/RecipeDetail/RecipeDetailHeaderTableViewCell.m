@@ -35,6 +35,7 @@
 
     likeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 20)];
     [likeLabel setText:@""];
+    [likeLabel setBackgroundColor:[UIColor clearColor]];
     [likeLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
     likeLabel.textColor = [UIColor colorWithRed:108.0f/255.0f green:146.0f/255.0f blue:75.0f/255.0f alpha:1];
     [self addSubview:likeLabel];
@@ -45,6 +46,7 @@
 
     authorLabel = [[UILabel alloc]initWithFrame:CGRectMake(168, 0, 120, 20)];
     [authorLabel setText:@""];
+    [authorLabel setBackgroundColor:[UIColor clearColor]];
     [authorLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
     [authorLabel setTextAlignment:NSTextAlignmentRight];
     authorLabel.textColor = [UIColor colorWithRed:108.0f/255.0f green:146.0f/255.0f blue:75.0f/255.0f alpha:1];
