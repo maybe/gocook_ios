@@ -138,11 +138,22 @@
     [specLabel setText:[NSString stringWithFormat:@"规格：%@",dict[@"norm"]]];
     [amountLabel setHidden:NO];
     [amountLabel setFrame:CGRectMake(25, 104, 230, 16)];
-    NSString *strAmount = [NSString stringWithFormat:@"￥%.2f/%@ × %@%@",[dict[@"price"] floatValue],dict[@"unit"],dict[@"Quantity"],dict[@"unit"]];
+    NSString *strAmount;
+    double price = 0;
+    if ([(NSString*)dict[@"unit"] isEqualToString:@"kg"])
+    {
+      strAmount = [NSString stringWithFormat:@"￥%.2f/500g × %@市斤(500g)",[dict[@"price"] floatValue]/2,dict[@"Quantity"]];
+      price = [dict[@"price"] floatValue]/2 * [dict[@"Quantity"] floatValue];
+    }
+    else
+    {
+      strAmount = [NSString stringWithFormat:@"￥%.2f/%@ × %@%@",[dict[@"price"] floatValue],dict[@"unit"],dict[@"Quantity"],dict[@"unit"]];
+      price = [dict[@"price"] floatValue] * [dict[@"Quantity"] floatValue];
+    }
+    
     [amountLabel setText:strAmount];
     [priceLabel setHidden:NO];
     [priceLabel setFrame:CGRectMake(25, 130, 230, 16)];
-    double price = [dict[@"price"] floatValue] * [dict[@"Quantity"] intValue];
     [priceLabel setText:[NSString stringWithFormat:@"=￥%.2f",price]];
     [processLabel setHidden:NO];
     [processLabel setFrame:CGRectMake(25, 156, 230, 16)];

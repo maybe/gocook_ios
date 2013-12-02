@@ -42,17 +42,17 @@
     [priceTitleLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
     [priceTitleLabel setText:@"价格："];
     //priceLabel
-    priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 42, 120, 20)];
+    priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 42, 100, 20)];
     priceLabel.backgroundColor = [UIColor clearColor];
     priceLabel.font = [UIFont systemFontOfSize:20];
     [priceLabel setTextColor:[UIColor colorWithRed:121.0/255.0 green:143.0/255.0 blue:57.0/255.0 alpha:1.0]];
     //unitLabel
-    unitLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 75, 80, 18)];
+    unitLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 75, 120, 18)];
     unitLabel.backgroundColor = [UIColor clearColor];
     unitLabel.font = [UIFont systemFontOfSize:16];
     [unitLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
     //specLabel
-    specLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 75, 80, 18)];
+    specLabel = [[UILabel alloc]initWithFrame:CGRectMake(110, 75, 80, 18)];
     specLabel.backgroundColor = [UIColor clearColor];
     specLabel.font = [UIFont systemFontOfSize:16];
     [specLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
@@ -90,8 +90,17 @@
 -(void)setData:(NSMutableDictionary*)dict
 {
   [nameLabel setText:dict[@"name"]];
-  [priceLabel setText:[NSString stringWithFormat:@"%.2f元",[dict[@"price"] floatValue]]];
-  [unitLabel setText:[NSString stringWithFormat:@"单位：%@",dict[@"unit"]]];
+  
+  if ([(NSString*)dict[@"unit"] isEqualToString:@"kg"])
+  {
+    [unitLabel setText:@"单位：500g"];
+    [priceLabel setText:[NSString stringWithFormat:@"%.2f元",[dict[@"price"] floatValue]/2]];
+  }
+  else
+  {
+    [unitLabel setText:[NSString stringWithFormat:@"单位：%@",dict[@"unit"]]];
+    [priceLabel setText:[NSString stringWithFormat:@"%.2f元",[dict[@"price"] floatValue]]];
+  }
   [specLabel setText:[NSString stringWithFormat:@"规格：%@",dict[@"norm"]]];
   
   [self caculateHeight:dict];

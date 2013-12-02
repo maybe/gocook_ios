@@ -18,6 +18,7 @@
   NSInteger totalPage;
   BOOL isPageEnd;
   NSMutableArray *itmesArray;
+  BOOL bComeBack;
   
   MBProgressHUD *HUD;
   ODRefreshControl *refreshControl;

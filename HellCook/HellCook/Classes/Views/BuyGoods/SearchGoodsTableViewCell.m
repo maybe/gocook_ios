@@ -57,8 +57,16 @@
 {
   [nameLabel setText:dict[@"name"]];
   [specLabel setText:[NSString stringWithFormat:@"规格：%@",dict[@"norm"]]];
-  [unitLabel setText:[NSString stringWithFormat:@"单位：%@",dict[@"unit"]]];
-  [priceLabel setText:[NSString stringWithFormat:@"价格：¥%.2f",[dict[@"price"] floatValue]]];
+  if ([(NSString*)dict[@"unit"] isEqualToString:@"kg"])
+  {
+    [unitLabel setText:@"单位：500g"];
+    [priceLabel setText:[NSString stringWithFormat:@"价格：¥%.2f",[dict[@"price"] floatValue]/2]];
+  }
+  else
+  {
+    [unitLabel setText:[NSString stringWithFormat:@"单位：%@",dict[@"unit"]]];
+    [priceLabel setText:[NSString stringWithFormat:@"价格：¥%.2f",[dict[@"price"] floatValue]]];
+  }
 }
 
 

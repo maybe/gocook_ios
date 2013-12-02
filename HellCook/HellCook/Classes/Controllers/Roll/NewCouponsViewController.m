@@ -30,6 +30,7 @@
   if (self) {
     curPage = 0;
     isPageEnd = FALSE;
+    bComeBack = FALSE;
     itmesArray = [[NSMutableArray alloc] init];
   }
   return self;
@@ -75,6 +76,18 @@
   [self autoLayout];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  if (bComeBack)
+  {
+    curPage = 0;
+    isPageEnd = FALSE;
+    
+    [self getAllMyCoupons];
+  }
+}
+
 - (void)setLeftButton
 {
   UIButton *leftBarButtonView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 29)];
@@ -98,6 +111,7 @@
 
 -(void)Roll
 {
+  bComeBack = TRUE;
   RollMainViewController *pViewController = [[RollMainViewController alloc] initWithNibName:@"RollMainView" withCouponId:@"0" bundle:nil];
   [self.navigationController pushViewController:pViewController animated:YES];
 }
@@ -264,6 +278,7 @@
   else{//过期
     type = 2;
   }
+  bComeBack = TRUE;
   NewCouponsDetailViewController *pController = [[NewCouponsDetailViewController alloc] initWithNibName:@"NewCouponsDetailView" withType:type withData:dict bundle:nil];
   [self.navigationController pushViewController:pController animated:YES];
 }
@@ -293,9 +308,10 @@
 
 - (void)getAllMyCouponsDataCallBack:(NSMutableDictionary*) resultDic
 {
-  if ([refreshControl isRefreshing]) {
+  if ([refreshControl isRefreshing] || bComeBack) {
     [refreshControl endRefreshing];
     [itmesArray removeAllObjects];
+    bComeBack = FALSE;
   }
   
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];

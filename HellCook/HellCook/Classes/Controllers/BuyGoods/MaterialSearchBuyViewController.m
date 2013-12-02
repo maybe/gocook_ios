@@ -127,8 +127,16 @@
   {
     if (![unslashMaterialArray[i][@"state"] isEqual:@"NotBuy"])
     {
-      NSMutableString *oneBill = [NSMutableString stringWithFormat:@"{\"WareId\":%d,\"Quantity\":%@,\"Remark\":\"%@\"},",
-              [unslashMaterialArray[i][@"id"] intValue], unslashMaterialArray[i][@"Quantity"], unslashMaterialArray[i][@"Remark"]];
+      NSString *strQuantity;
+      if ([(NSString*)unslashMaterialArray[i][@"unit"] isEqualToString:@"kg"])
+      {
+        strQuantity = [NSString stringWithFormat:@"%.2f",[unslashMaterialArray[i][@"Quantity"] floatValue]/2];
+      }
+      else
+      {
+        strQuantity = [NSString stringWithString:unslashMaterialArray[i][@"Quantity"]];
+      }
+      NSMutableString *oneBill = [NSMutableString stringWithFormat:@"{\"WareId\":%d,\"Quantity\":%@,\"Remark\":\"%@\"},",[unslashMaterialArray[i][@"id"] intValue], strQuantity, unslashMaterialArray[i][@"Remark"]];
       
       [content appendString:oneBill];
 

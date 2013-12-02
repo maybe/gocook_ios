@@ -89,23 +89,39 @@
   [priceLabel setTextColor:[UIColor colorWithRed:121.0/255.0 green:143.0/255.0 blue:57.0/255.0 alpha:1.0]];
   priceLabel.backgroundColor = [UIColor clearColor];
   priceLabel.font = [UIFont systemFontOfSize:20];
-  [priceLabel setText:[NSString stringWithFormat:@"%.2f元",[goodsDataDict[@"price"] floatValue]]];
+  if ([(NSString*)goodsDataDict[@"unit"] isEqualToString:@"kg"])
+  {
+    [priceLabel setText:[NSString stringWithFormat:@"¥%.2f",[goodsDataDict[@"price"] floatValue]/2]];
+  }
+  else
+  {
+    [priceLabel setText:[NSString stringWithFormat:@"¥%.2f",[goodsDataDict[@"price"] floatValue]]];
+  }
   //unitLabel
-  unitLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 75, 80, 18)];
+  NSString *strUnit = [NSString stringWithString:(NSString*)goodsDataDict[@"unit"]];
+  unitLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 75, 120, 18)];
   unitLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
   unitLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
   unitLabel.backgroundColor = [UIColor clearColor];
   unitLabel.font = [UIFont systemFontOfSize:16];
   [unitLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
-  [unitLabel setText:[NSString stringWithFormat:@"单位：%@",goodsDataDict[@"unit"]]];
+  if ([strUnit isEqualToString:@"kg"])
+  {
+    [unitLabel setText:@"单位：500g"];
+  }
+  else
+  {
+    [unitLabel setText:[NSString stringWithFormat:@"单位：%@",strUnit]];
+  }
   //specLabel
-  specLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 75, 80, 18)];
+  NSString *strNorm = [NSString stringWithString:(NSString*)goodsDataDict[@"norm"]];
+  specLabel = [[UILabel alloc]initWithFrame:CGRectMake(130, 75, 80, 18)];
   specLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
   specLabel.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
   specLabel.backgroundColor = [UIColor clearColor];
   specLabel.font = [UIFont systemFontOfSize:16];
   [specLabel setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
-  [specLabel setText:[NSString stringWithFormat:@"规格：%@",goodsDataDict[@"norm"]]];
+  [specLabel setText:[NSString stringWithFormat:@"规格：%@",strNorm]];
   //buyTitleLabe
   buyTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 108, 80, 16)];
   buyTitleLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
@@ -119,19 +135,32 @@
   [amountTextField setDelegate:self];
   [amountTextField setBackgroundColor: [UIColor whiteColor]];
   amountTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  amountTextField.keyboardType = UIKeyboardTypeNumberPad;
+  if ([strUnit isEqualToString:@"kg"] || [strUnit isEqualToString:@"500g"] || [strUnit isEqualToString:@"g"])
+  {
+    amountTextField.keyboardType = UIKeyboardTypeDecimalPad;
+  }
+  else
+  {
+    amountTextField.keyboardType = UIKeyboardTypeNumberPad;
+  }
   amountTextField.autocorrectionType = UITextAutocorrectionTypeNo;
   [amountTextField setFont:[UIFont systemFontOfSize:16]];
   amountTextField.returnKeyType = UIReturnKeyDone;
   amountTextField.tag = 0;
   //unitLabel2
-  unitLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(173, 108, 50, 18)];
+  unitLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(172, 108, 100, 18)];
   unitLabel2.shadowOffset =  CGSizeMake(0.0f, 0.5f);
   unitLabel2.shadowColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:0.8];
   unitLabel2.backgroundColor = [UIColor clearColor];
   unitLabel2.font = [UIFont systemFontOfSize:16];
   [unitLabel2 setTextColor:[UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1.0]];
-  [unitLabel2 setText:[NSString stringWithFormat:@"%@",goodsDataDict[@"unit"]]];
+  if ([strUnit isEqualToString:@"kg"] || [strUnit isEqualToString:@"500g"]) {
+    [unitLabel2 setText:@"市斤(500g)"];
+  }
+  else
+  {
+    [unitLabel2 setText:strUnit];
+  }
   //processTitleLabel
   processTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 143, 80, 16)];
   processTitleLabel.shadowOffset =  CGSizeMake(0.0f, 0.5f);
@@ -286,7 +315,8 @@
   }
   
   [goodsDataDict setObject:amountTextField.text forKey:@"Quantity"];
-  [goodsDataDict setObject:methodTextField.text forKey:@"Remark"];
+//  [goodsDataDict setObject:methodTextField.text forKey:@"Remark"];
+  [goodsDataDict setObject:methodLabel.text forKey:@"Remark"];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmGoods" object:goodsDataDict];
 
   //
