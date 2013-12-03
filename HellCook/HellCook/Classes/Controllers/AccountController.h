@@ -22,6 +22,8 @@
   UIButton* debugOptionButton;
   NSMutableArray* cellContentArray;
   BOOL shouldRefreshKitchenInfo;
+  BOOL bRefreshAvatar;
+  NSString *avatarPath;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

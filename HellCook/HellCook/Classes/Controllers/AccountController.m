@@ -77,8 +77,11 @@
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnShouldRefreshKitchenInfo:) name:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AvatarChanged:) name:@"AvatarChanged" object:nil];
 
   shouldRefreshKitchenInfo = NO;
+  bRefreshAvatar = FALSE;
+  avatarPath = NULL;
 
   [self autoLayout];
   [super viewDidLoad];
@@ -450,6 +453,15 @@ destructiveButtonTitle:@"确定"
 //    [bannerImageView setImage:[[UIImage imageNamed:@"Images/avatar.jpg"] gaussianBlurWithBias:20]];
 //  }
 
+  if (bRefreshAvatar)
+  {
+    bRefreshAvatar = FALSE;
+    if (avatarPath)
+    {
+      NSString* avatarUrl = [NSString stringWithFormat: @"http://%@/%@", [[NetManager sharedInstance] host], avatarPath];
+      [avatarImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+    }
+  }
 }
 
 - (void)onClickCountGrid:(UIButton *)sender {
@@ -511,6 +523,15 @@ destructiveButtonTitle:@"确定"
 
 - (void)OnShouldRefreshKitchenInfo:(NSNotification *)notification{
   shouldRefreshKitchenInfo = YES;
+}
+
+-(void)AvatarChanged:(NSNotification *)notification
+{
+  NSMutableDictionary *dict = (NSMutableDictionary*)notification.object;
+//  [avatarImageView setImageWithURL:[NSURL URLWithString:(NSString*)dict[@"avatar"]]];
+//  [avatarImageView setImage:[UIImage imageNamed:(NSString*)dict[@"avatar"]]];
+  bRefreshAvatar = TRUE;
+  avatarPath = [NSString stringWithString:(NSString*)dict[@"avatar"]];
 }
 
 #pragma get kitchen info

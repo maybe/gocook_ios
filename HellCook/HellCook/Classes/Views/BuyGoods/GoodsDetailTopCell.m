@@ -18,7 +18,8 @@
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
     // Initialization code
-    defaultImage = [UIImage imageNamed:@"Images/M6DefaultImage.png"];
+//    defaultImage = [UIImage imageNamed:@"Images/M6DefaultImage.png"];
+    defaultImage = [UIImage imageNamed:@"Images/defaultUpload.png"];
     [self setBackgroundColor: [UIColor clearColor]];
     [self setFrame:CGRectMake(0, 0, 320-_offset, 150)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];

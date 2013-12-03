@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
+#import "AudioToolbox/AudioToolbox.h"
 
 @class MBProgressHUD;
 @interface RollMainViewController : UIViewController
@@ -22,6 +23,8 @@
   
   MBProgressHUD *HUD;
   UIImageView *resultImage;
+  
+  SystemSoundID soundID;
 }
 
 @property(nonatomic,retain)UIImageView* backgroundView;

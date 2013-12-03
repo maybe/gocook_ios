@@ -11,7 +11,7 @@
 #import "LoginController.h"
 #import "HCNavigationController.h"
 #import "NetManager.h"
-#import "AudioToolbox/AudioToolbox.h"
+
 
 @interface RollMainViewController ()
 
@@ -31,6 +31,9 @@
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
     HUD.mode = MBProgressHUDModeText;
+    
+    NSURL *filePath   = [[NSBundle mainBundle] URLForResource:@"yaoyiyao" withExtension:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)filePath, &soundID);
   }
   return self;
 }
@@ -152,6 +155,7 @@
 {
   NSLog(@"开始摇动手机");
   AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+  AudioServicesPlaySystemSound(soundID);
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event

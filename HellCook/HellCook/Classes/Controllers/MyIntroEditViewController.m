@@ -742,7 +742,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [HUD hide:YES afterDelay:1];
 
     // notify
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnUserInfoChange" object:nil];
+    UIImage* uploadImage = headImageView.avataImageView.image;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnUserInfoChange" object:uploadImage];
   }
   else
   {

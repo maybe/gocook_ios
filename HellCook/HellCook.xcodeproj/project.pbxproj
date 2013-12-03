@@ -12,6 +12,7 @@
 		5E001D7D17E2AF5400BDAC62 /* HistoryDealTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E001D7C17E2AF5400BDAC62 /* HistoryDealTableViewCell.m */; };
 		5E001D8117E307C900BDAC62 /* DealDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E001D7F17E307C800BDAC62 /* DealDetailViewController.m */; };
 		5E001D8417E3082700BDAC62 /* DealDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E001D8317E3082700BDAC62 /* DealDetailView.xib */; };
+		5E03A2F8184E1D8D00E4E293 /* yaoyiyao.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5E03A2F7184E1D8D00E4E293 /* yaoyiyao.wav */; };
 		5E13568F17AD34D6009C623B /* MyIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E13568D17AD34D5009C623B /* MyIntroductionViewController.m */; };
 		5E13569217AD37AF009C623B /* MyIntroductionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E13569117AD37AF009C623B /* MyIntroductionView.xib */; };
 		5E13569617AD3AC5009C623B /* MyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E13569417AD3AC4009C623B /* MyFollowViewController.m */; };
@@ -237,6 +238,7 @@
 		5E001D7E17E307C800BDAC62 /* DealDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DealDetailViewController.h; path = Classes/Controllers/DealDetailViewController.h; sourceTree = "<group>"; };
 		5E001D7F17E307C800BDAC62 /* DealDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DealDetailViewController.m; path = Classes/Controllers/DealDetailViewController.m; sourceTree = "<group>"; };
 		5E001D8317E3082700BDAC62 /* DealDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetailView.xib; sourceTree = "<group>"; };
+		5E03A2F7184E1D8D00E4E293 /* yaoyiyao.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = yaoyiyao.wav; path = Resources/yaoyiyao.wav; sourceTree = "<group>"; };
 		5E13568C17AD34D5009C623B /* MyIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyIntroductionViewController.h; path = Classes/Controllers/MyIntroductionViewController.h; sourceTree = "<group>"; };
 		5E13568D17AD34D5009C623B /* MyIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyIntroductionViewController.m; path = Classes/Controllers/MyIntroductionViewController.m; sourceTree = "<group>"; };
 		5E13569117AD37AF009C623B /* MyIntroductionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyIntroductionView.xib; sourceTree = "<group>"; };
@@ -1116,6 +1118,7 @@
 		BA02634116D756EB00298803 /* Resoueces */ = {
 			isa = PBXGroup;
 			children = (
+				5E03A2F7184E1D8D00E4E293 /* yaoyiyao.wav */,
 				BA73C95316FE37D9008284D8 /* NIB */,
 				BA3F5E6616FA297800493260 /* Images */,
 			);
@@ -1960,6 +1963,7 @@
 				BA0DC18116D4C3A500E4CED9 /* Default-568h@2x.png in Resources */,
 				BACCF83616ECFC420094F1E5 /* .gitignore in Resources */,
 				BA3F5E6716FA297800493260 /* Images in Resources */,
+				5E03A2F8184E1D8D00E4E293 /* yaoyiyao.wav in Resources */,
 				BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */,
 				BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */,
 				BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */,

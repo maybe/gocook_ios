@@ -271,6 +271,7 @@
     if (pMyInfo[@"intro"] == [NSNull null]) {
       pMyInfo[@"intro"] = @"暂时无个人信息哦～";
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AvatarChanged" object:pMyInfo];
     [self.myTableView reloadData];
     self.tabBarController.navigationItem.title = [[resultDic valueForKey:@"result_user_info"] valueForKey:@"nickname"];
   }
@@ -308,6 +309,7 @@
     if (pMyInfo[@"intro"] == [NSNull null]) {
       pMyInfo[@"intro"] = @"暂时无个人信息哦～";
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AvatarChanged" object:pMyInfo];
     [self.myTableView reloadData];
     self.tabBarController.navigationItem.title = [[resultDic valueForKey:@"result_kitchen_info"] valueForKey:@"nickname"];
   }
@@ -368,7 +370,9 @@
 
 -(void)OnUserInfoChange:(NSNotification *)notification
 {
-    bShouldRefresh = YES;
+  bShouldRefresh = YES;
+  UIImage *uploadImage = (UIImage*)notification.object;
+  [pPicCell.avataImageView setImage:uploadImage];
 }
 
 - (void)OnLoginSuccess:(NSNotification *)notification {
