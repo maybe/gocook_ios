@@ -21,7 +21,8 @@
                                                       UIImagePickerControllerDelegate,
                                                       UINavigationControllerDelegate,
                                                       KeyboardHandlerDelegate,
-                                                      MBProgressHUDDelegate>
+                                                      MBProgressHUDDelegate,
+                                                      UIActionSheetDelegate>
 {
   UITableView* tableView;
   NSMutableArray* cellContentList;

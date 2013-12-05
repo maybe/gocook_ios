@@ -35,6 +35,8 @@
 {
   [self setLeftButton];
   [self setRightButton];
+
+  self.title = @"步骤";
   
 //  CGRect frameHeader = self.tableView.tableHeaderView.frame;
 //  frameHeader.size.height = 44;
@@ -77,6 +79,11 @@
     [cellContentList removeAllObjects];
     [cellContentList addObjectsFromArray: recipeData.recipe_steps];
     [tableView reloadData];
+
+    if (recipeData.recipe_steps.count == 0) {
+      [self addStepLine];
+    }
+
   } else {
     isImagePickerDismiss = NO;
   }

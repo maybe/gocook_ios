@@ -589,7 +589,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   if (nameField.text.length!=0 && ![data[@"nickname"] isEqual:nameField.text])
   {
     [pBasicInfoDict setObject:nameField.text forKey:@"nickname"];
+  } else{
+    HUD.labelText = @"用户名不能为空";
+    HUD.detailsLabelText = nil;
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
+    return;
   }
+
   //年龄
   if (ageField.text.length!=0 && (data[@"age"] == [NSNull null] || [data[@"age"] intValue]!=[ageField.text intValue]))
   {

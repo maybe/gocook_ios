@@ -63,6 +63,11 @@ typedef enum {
   GC_AlreadyLikedRecipe = 407,          // 已经赞过该菜谱
   GC_NotLikedRecipe = 408,              // 该菜谱本人未赞过
 
+  GC_RecipeNameInvalid = 409,           // 菜谱名不合法或者为空
+  GC_RecipeMaterialInvalid = 410,       // 菜谱材料不合法或者为空
+  GC_RecipeStepInvalid = 410,           // 菜谱步骤不合法或者为空
+  GC_RecipeCoverInvalid = 410,          // 菜谱封面不合法或者为空
+
   GC_AlreadyWatchUser = 501,            // 已经关注过此用户
   GC_NotMyWatchUser = 502,              // 并未关注此用户
 } GCErrorCode;

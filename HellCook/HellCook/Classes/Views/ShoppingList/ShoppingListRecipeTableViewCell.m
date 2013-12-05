@@ -234,6 +234,25 @@
       middleLine.frame = endFrame;
     } completion:^(BOOL finished) {
     }];
+  } else {
+    CGRect rect = middleLine.frame;
+
+    CGRect beginFrame = rect;
+    beginFrame.size.width = 232;
+    middleLine.frame = beginFrame;
+
+    cellDictionary[@"select"] = @"unslash";
+
+    NSIndexPath *indexPath = [[self relatedTable] indexPathForCell: self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShoppingListUnSlashMaterialItem" object:[NSNumber numberWithInt:indexPath.row]];
+
+    [UIView animateWithDuration:0.2 animations:^{
+      CGRect endFrame = rect;
+      endFrame.size.width = 0;
+      middleLine.frame = endFrame;
+    } completion:^(BOOL finished) {
+      middleLine.hidden = YES;
+    }];
   }
 }
 
