@@ -20,6 +20,7 @@
   NSInteger totalPage;
   UIActivityIndicatorView* mLoadingActivity;
   ODRefreshControl *refreshControl;
+  UILabel* emptyLabel;
 }
 
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;
