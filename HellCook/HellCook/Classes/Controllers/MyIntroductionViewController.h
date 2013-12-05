@@ -28,6 +28,7 @@
 @property (nonatomic, retain) UIBarButtonItem *rightBarButtonItem;
 @property BOOL bShouldRefresh;
 @property (nonatomic, retain) NSString* titleName;
+@property (nonatomic, retain) UIImage* placeHolderImg;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withUserID:(NSInteger)userID AndName:(NSString *)userName;
 

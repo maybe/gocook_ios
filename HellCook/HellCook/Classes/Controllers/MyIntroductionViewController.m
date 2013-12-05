@@ -11,6 +11,7 @@
 #import "LoginController.h"
 #import "MyIntroEditViewController.h"
 #import "User.h"
+#import "UIImageView+WebCache.h"
 
 @interface MyIntroductionViewController ()
 
@@ -271,7 +272,7 @@
     if (pMyInfo[@"intro"] == [NSNull null]) {
       pMyInfo[@"intro"] = @"暂时无个人信息哦～";
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"AvatarChanged" object:pMyInfo];
+
     [self.myTableView reloadData];
     self.tabBarController.navigationItem.title = [[resultDic valueForKey:@"result_user_info"] valueForKey:@"nickname"];
   }
@@ -309,7 +310,7 @@
     if (pMyInfo[@"intro"] == [NSNull null]) {
       pMyInfo[@"intro"] = @"暂时无个人信息哦～";
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"AvatarChanged" object:pMyInfo];
+
     [self.myTableView reloadData];
     self.tabBarController.navigationItem.title = [[resultDic valueForKey:@"result_kitchen_info"] valueForKey:@"nickname"];
   }
@@ -370,9 +371,27 @@
 
 -(void)OnUserInfoChange:(NSNotification *)notification
 {
-  bShouldRefresh = YES;
-  UIImage *uploadImage = (UIImage*)notification.object;
-  [pPicCell.avataImageView setImage:uploadImage];
+  if ([[[User sharedInstance] account] user_id] == userId)
+  {
+    NSDictionary * dictionary = (NSDictionary*)notification.object;
+    if ([[dictionary allKeys] containsObject:@"avatar"]) {
+      UIImage *uploadImage = dictionary[@"avatar"];
+      [pPicCell.avataImageView setImage:uploadImage];
+      UserAccount *account = [[User sharedInstance] account];
+      pMyInfo[@"avatar"] = account.avatar;
+      [pPicCell.avataImageView setImageWithURL:[NSURL URLWithString:account.avatar] placeholderImage:uploadImage];
+      pPicCell.placeHolderImage = uploadImage;
+
+    }
+    if ([[dictionary allKeys] containsObject:@"nickname"]) {
+      pMyInfo[@"nickname"] = dictionary[@"nickname"];
+      pPicCell.nameLabel.text = dictionary[@"nickname"];
+    }
+    if ([[dictionary allKeys] containsObject:@"intro"]) {
+      pMyInfo[@"intro"] = dictionary[@"intro"];
+      pIntroCell.introLabel.text = dictionary[@"intro"];
+    }
+  }
 }
 
 - (void)OnLoginSuccess:(NSNotification *)notification {

@@ -13,14 +13,15 @@
   UIImageView* bannerImageView;
   UIImageView* avataImageView;
   UILabel* nameLabel;
-  UIButton *followBtn;
+  UIButton* followBtn;
+  UIImage* placeHolderImage;
 }
 
 @property (nonatomic, retain) UIImageView* bannerImageView;
 @property (nonatomic, retain) UIImageView* avataImageView;
 @property (nonatomic, retain) UILabel* nameLabel;
 @property (nonatomic, retain) UIButton *followBtn;
-
+@property (nonatomic, retain) UIImage* placeHolderImage;
 - (void)setData:(NSMutableDictionary*)dict;
 
 @end

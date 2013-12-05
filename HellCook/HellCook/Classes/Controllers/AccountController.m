@@ -14,7 +14,6 @@
 #import "User.h"
 #import "DebugOptionController.h"
 #import "UIImageView+WebCache.h"
-#import "UIImage+Blurring.h"
 #import "NetManager.h"
 #import "MyCollectionController.h"
 #import "AppDelegate.h"
@@ -42,7 +41,7 @@
   UIImageView *titleImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 108, 19)];
   [titleImageView setImage:[UIImage imageNamed:@"Images/leftPageTitle.png"]];
   self.navigationItem.titleView = titleImageView;
-  //self.title = @"分享厨房";
+  //self.title = @"M6分享厨房";
 
   nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 54, 180, 30)];
   nameLabel.backgroundColor = [UIColor clearColor];
@@ -76,12 +75,10 @@
   [self.tableView setFrame:tableFrame];
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnUserInfoChange:) name:@"EVT_OnUserInfoChange" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnShouldRefreshKitchenInfo:) name:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AvatarChanged:) name:@"AvatarChanged" object:nil];
 
   shouldRefreshKitchenInfo = NO;
-  bRefreshAvatar = FALSE;
-  avatarPath = NULL;
 
   [self autoLayout];
   [super viewDidLoad];
@@ -447,21 +444,6 @@ destructiveButtonTitle:@"确定"
   [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
   [bannerImageView setClipsToBounds:YES];
   [bannerImageView setImage:[UIImage imageNamed:@"Images/AvatarBackground.png"]];
-//  if (avatarUrl) {
-//    [bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"] options:0 andGaussianBlurWithBias:20];
-//  } else {
-//    [bannerImageView setImage:[[UIImage imageNamed:@"Images/avatar.jpg"] gaussianBlurWithBias:20]];
-//  }
-
-  if (bRefreshAvatar)
-  {
-    bRefreshAvatar = FALSE;
-    if (avatarPath)
-    {
-      NSString* avatarUrl = [NSString stringWithFormat: @"http://%@/%@", [[NetManager sharedInstance] host], avatarPath];
-      [avatarImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
-    }
-  }
 }
 
 - (void)onClickCountGrid:(UIButton *)sender {
@@ -525,15 +507,18 @@ destructiveButtonTitle:@"确定"
   shouldRefreshKitchenInfo = YES;
 }
 
--(void)AvatarChanged:(NSNotification *)notification
+-(void)OnUserInfoChange:(NSNotification *)notification
 {
-  NSMutableDictionary *dict = (NSMutableDictionary*)notification.object;
-//  [avatarImageView setImageWithURL:[NSURL URLWithString:(NSString*)dict[@"avatar"]]];
-//  [avatarImageView setImage:[UIImage imageNamed:(NSString*)dict[@"avatar"]]];
-  bRefreshAvatar = TRUE;
-  avatarPath = [NSString stringWithString:(NSString*)dict[@"avatar"]];
+  NSDictionary * dictionary = (NSDictionary*)notification.object;
+  if ([[dictionary allKeys] containsObject:@"avatar"]) {
+    UIImage *uploadImage = dictionary[@"avatar"];
+    UserAccount *account = [[User sharedInstance] account];
+    [avatarImageView setImageWithURL:[NSURL URLWithString:account.avatar] placeholderImage:uploadImage];
+  }
+  if ([[dictionary allKeys] containsObject:@"nickname"]) {
+    nameLabel.text = dictionary[@"nickname"];
+  }
 }
-
 #pragma get kitchen info
 
 -(void)getKitchenInfo
