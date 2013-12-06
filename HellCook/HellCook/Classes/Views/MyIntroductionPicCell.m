@@ -18,6 +18,7 @@
 @synthesize avataImageView;
 @synthesize nameLabel;
 @synthesize followBtn;
+@synthesize placeHolderImage;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -65,6 +66,8 @@
       [self addSubview:nameLabel];
       [self addSubview:followBtn];
       [followBtn setHidden:YES];
+
+      placeHolderImage = nil;
     }
     return self;
 }
@@ -102,7 +105,13 @@
   if (dict[@"avatar"]!=[NSNull null] && ![dict[@"avatar"] isEqual:@""])
   {
     NSString* avatarUrl = [NSString stringWithFormat: @"http://%@/%@", [[NetManager sharedInstance] host], dict[@"avatar"]];
-    [avataImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+    if (placeHolderImage) {
+      [avataImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:placeHolderImage];
+
+    } else {
+      [avataImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"]];
+
+    }
     //[bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"Images/avatar.jpg"] options:0  andGaussianBlurWithBias:20];
   }
   else

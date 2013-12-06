@@ -21,7 +21,7 @@
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
     [self setBackgroundColor: [UIColor clearColor]];
-    [self setFrame:CGRectMake(0, 0, _sideWindowWidth, 60)];
+    [self setFrame:CGRectMake(0, 0, _sideWindowWidth, 80)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     [self addSubview: [self titleLabel]];
@@ -33,18 +33,18 @@
     [self addSubview: [self delButton]];
     [self addSubview: [self buyButton]];
 
-    UIImageView *sepImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 59, _sideWindowWidth, 1)];
+    UIImageView *sepImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 79, _sideWindowWidth, 1)];
     [sepImageView setImage:[UIImage imageNamed:@"Images/TableCellSeparater.png"]];
     [self addSubview:sepImageView];
 
-    buyButton.hidden = YES;
-    delButton.hidden = YES;
+    buyButton.hidden = NO;
+    delButton.hidden = NO;
     
     UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeRight:)];
     [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [self addGestureRecognizer:oneFingerSwipeRight];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideOptionButton) name:@"ShoppingListHideOptionButton" object:nil];
+    // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideOptionButton) name:@"ShoppingListHideOptionButton" object:nil];
 
   }
   return self;
@@ -69,7 +69,7 @@
 - (id)delButton
 {
   if (!delButton) {
-    delButton = [[UIButton alloc]initWithFrame:CGRectMake(105, 15, 80, 30)];
+    delButton = [[UIButton alloc]initWithFrame:CGRectMake(48, 42, 80, 27)];
     [delButton setTitle:@"删 除" forState:UIControlStateNormal];
     [delButton.titleLabel setFont: [UIFont boldSystemFontOfSize:13]];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/ShoppingListDelete.png"];
@@ -89,7 +89,7 @@
 - (id)buyButton
 {
   if (!buyButton) {
-    buyButton = [[UIButton alloc]initWithFrame:CGRectMake(190, 15, 80, 30)];
+    buyButton = [[UIButton alloc]initWithFrame:CGRectMake(152, 42, 80, 27)];
     [buyButton setTitle:@"购买食材" forState:UIControlStateNormal];
     [buyButton.titleLabel setFont: [UIFont boldSystemFontOfSize:13]];
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/ShoppingListBuyMaterial.png"];
@@ -108,7 +108,7 @@
 
 - (void)delOneRecipe:(id)sender
 {
-  [self hideOptionButton];
+  // [self hideOptionButton];
   
   [((ShoppingListController*)[self viewController]) delOneRecipeFromShoppingList:sender];
 }
@@ -118,18 +118,18 @@
   //CGPoint point = [recognizer locationInView:self];
   //NSLog(@"Swipe up - start location: %f,%f", point.x, point.y);
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"ShoppingListHideOptionButton" object:nil];
+  // [[NSNotificationCenter defaultCenter] postNotificationName:@"ShoppingListHideOptionButton" object:nil];
 
-  buyButton.hidden = NO;
-  delButton.hidden = NO;
-  buyButton.alpha = 0;
-  delButton.alpha = 0;
-  
-  [UIView animateWithDuration:0.3 animations:^{
-    buyButton.alpha = 1;
-    delButton.alpha = 1;
-  } completion:^(BOOL finished) {
-  }];
+  //  buyButton.hidden = NO;
+  //  delButton.hidden = NO;
+  //  buyButton.alpha = 0;
+  //  delButton.alpha = 0;
+  //
+  //  [UIView animateWithDuration:0.3 animations:^{
+  //    buyButton.alpha = 1;
+  //    delButton.alpha = 1;
+  //  } completion:^(BOOL finished) {
+  //  }];
 }
 
 - (void)oneFingerSwipeLeft:(UISwipeGestureRecognizer *)recognizer
@@ -141,9 +141,9 @@
 - (UILabel*)titleLabel
 {
   if (!titleLabel) {
-    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 14, 168, 30)];
+    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 8, 168, 30)];
     [titleLabel setTextColor:[UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0]];
-    [titleLabel setFont: [UIFont boldSystemFontOfSize:22]];
+    [titleLabel setFont: [UIFont boldSystemFontOfSize:18]];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setText:@""];
   }
@@ -233,6 +233,25 @@
       endFrame.size.width = 232;
       middleLine.frame = endFrame;
     } completion:^(BOOL finished) {
+    }];
+  } else {
+    CGRect rect = middleLine.frame;
+
+    CGRect beginFrame = rect;
+    beginFrame.size.width = 232;
+    middleLine.frame = beginFrame;
+
+    cellDictionary[@"select"] = @"unslash";
+
+    NSIndexPath *indexPath = [[self relatedTable] indexPathForCell: self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShoppingListUnSlashMaterialItem" object:[NSNumber numberWithInt:indexPath.row]];
+
+    [UIView animateWithDuration:0.2 animations:^{
+      CGRect endFrame = rect;
+      endFrame.size.width = 0;
+      middleLine.frame = endFrame;
+    } completion:^(BOOL finished) {
+      middleLine.hidden = YES;
     }];
   }
 }

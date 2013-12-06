@@ -107,7 +107,7 @@
   if (indexPath.row == 0) {
     return 121;
   } else if (indexPath.row == 1) {
-    return 145;
+    return 158;
   } else {
     return 64;
   }
@@ -275,20 +275,12 @@
 
 - (void)openBanner1
 {
-  WebViewController *pViewController = [[WebViewController alloc] initWithNibName:@"WebView" withURL:@"http://c2b.m6fresh.com" bundle:nil];
-  [self.navigationController pushViewController:pViewController animated:YES];
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://c2b.m6fresh.com"]];
 }
 
 - (void)openBanner2
 {
-  WebViewController *pViewController = [[WebViewController alloc] initWithNibName:@"WebView" withURL:@"http://share.m6fresh.com" bundle:nil];
-  [self.navigationController pushViewController:pViewController animated:YES];
-}
-
-- (void)openBanner3
-{
-  WebViewController *pViewController = [[WebViewController alloc] initWithNibName:@"WebView" withURL:@"http://o2o.m6fresh.com" bundle:nil];
-  [self.navigationController pushViewController:pViewController animated:YES];
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://share.m6fresh.com"]];
 }
 
 @end

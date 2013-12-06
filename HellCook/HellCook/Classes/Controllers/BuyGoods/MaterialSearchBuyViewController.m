@@ -59,8 +59,8 @@
   tableFrame.size.width = _sideWindowWidth;
   [self.myTableView setFrame:tableFrame];
 
-  HUD = [[MBProgressHUD alloc] initWithView:self.view];
-  [self.view addSubview:HUD];
+  HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+  [self.navigationController.view addSubview:HUD];
   HUD.mode = MBProgressHUDModeText;
   HUD.delegate = self;
 
@@ -70,6 +70,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+}
+
+- (void)dealloc {
+  [HUD removeFromSuperview];
 }
 
 - (void)setLeftButton

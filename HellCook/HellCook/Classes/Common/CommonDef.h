@@ -45,6 +45,10 @@ typedef enum {
   GC_ChangeAvatarError = 209,           // 修改头像失败（保存时出错）
   GC_AvatarSizeTooSmall = 210,          // 头像文件小于1k
   GC_NoPostAvatarFile = 211,            // 上传的post中不包含avatar
+  GC_LoginError = 212,                  // 某种情况下登录失败（需要再细化）
+  GC_AccountUserInfoError = 213,        // user info不存在，理论上是不可能会这样的
+  GC_NickNameInvalid = 214,             // 用户名不合法
+
 
   GC_ProductInvalid = 301,              // 商品不存在或无效错误
   GC_OrderAccountInvalid = 302,         // 订购失败,客户不存在或无效
@@ -58,6 +62,11 @@ typedef enum {
   GC_CommentOnRecipeFailed = 406,       // 评论失败
   GC_AlreadyLikedRecipe = 407,          // 已经赞过该菜谱
   GC_NotLikedRecipe = 408,              // 该菜谱本人未赞过
+
+  GC_RecipeNameInvalid = 409,           // 菜谱名不合法或者为空
+  GC_RecipeMaterialInvalid = 410,       // 菜谱材料不合法或者为空
+  GC_RecipeStepInvalid = 410,           // 菜谱步骤不合法或者为空
+  GC_RecipeCoverInvalid = 410,          // 菜谱封面不合法或者为空
 
   GC_AlreadyWatchUser = 501,            // 已经关注过此用户
   GC_NotMyWatchUser = 502,              // 并未关注此用户

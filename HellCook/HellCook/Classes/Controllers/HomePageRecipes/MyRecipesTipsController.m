@@ -37,7 +37,9 @@
 {
   [self setLeftButton];
   [self setRightButton];
-  
+
+  self.title = @"小贴士";
+
   tipsTextView = [[SSTextView alloc]init];
   
   CGRect frame = self.tableView.tableHeaderView.frame;
@@ -324,6 +326,7 @@
     pUploadRecipeDic[@"recipe_id"] = [NSString stringWithFormat:@"%d", pRecipeData.recipe_id];
   }
 
+  HUD.detailsLabelText = nil;
   HUD.labelText = @"发布中...";
   [HUD show:YES];
   isCreate = NO;
@@ -342,6 +345,7 @@
   if (result == 0)
   {
     HUD.labelText = @"发布成功";
+    HUD.detailsLabelText = nil;
     [HUD hide:YES afterDelay:1.0];
     isCreate = YES;
 
@@ -349,11 +353,33 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
   }
   else if (result == 1){
+
     HUD.labelText = @"发布失败";
+
+    NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (error_code == GC_RecipeNameInvalid) {
+      HUD.labelText = nil;
+      HUD.detailsLabelText = @"菜谱名至少两个字并且为英文或是中文字符";
+    } else if (error_code == GC_RecipeMaterialInvalid) {
+      HUD.labelText = nil;
+      HUD.detailsLabelText = @"食材格式不符合规范";
+    } else if (error_code == GC_RecipeStepInvalid) {
+      HUD.labelText = nil;
+      HUD.detailsLabelText = @"步骤格式不符合规范";
+    } else if (error_code == GC_RecipeCoverInvalid) {
+      HUD.labelText = nil;
+      HUD.detailsLabelText = @"封面不存在或者未上传";
+    } else if (error_code == GC_RecipeNotBelong2U) {
+      HUD.labelText = nil;
+      HUD.detailsLabelText = @"你不是菜谱的作者";
+    } else if (error_code == GC_RecipeNotExist) {
+      HUD.labelText = nil;
+      HUD.detailsLabelText = @"菜谱不存在";
+    }
+
     [HUD hide:YES afterDelay:1.0];
     isCreate = NO;
   }
-  
 }
 
 - (void)hudWasHidden:(MBProgressHUD *)hud

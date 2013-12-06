@@ -38,7 +38,6 @@
   BOOL isChanged;
   UIActivityIndicatorView* mLoadingActivity;
   int waitCallBack;
-  NSString *newHeadImagePath;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* myTableView;

@@ -43,9 +43,14 @@
   return mCellHeight;
 }
 
-- (void)caculateCellHeight:(NSString*)strIntro
+- (void)calculateCellHeight:(NSString*)strIntro
 {
-  introLabel.text = strIntro;
+  if (![strIntro isEqualToString:@""]) {
+    introLabel.text = strIntro;
+  } else {
+    introLabel.text = @"暂时无个人信息";
+  }
+
   CGSize contentSize = [introLabel.text sizeWithFont:introLabel.font constrainedToSize:CGSizeMake(300, 1000) lineBreakMode:NSLineBreakByWordWrapping];
   if ((contentSize.height+30) > mCellHeight)
   {

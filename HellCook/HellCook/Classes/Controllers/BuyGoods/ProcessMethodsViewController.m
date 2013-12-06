@@ -115,14 +115,14 @@
     }
     else
     {
-      return 310;
+      return 220;
     }
   }
   else
   {
     if (indexPath.row == [methodsArray count])
     {
-      return 310;
+      return 220;
     }
     else
     {

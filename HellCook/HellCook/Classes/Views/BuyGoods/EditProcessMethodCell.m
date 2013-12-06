@@ -18,7 +18,7 @@
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
     [self setBackgroundColor: [UIColor clearColor]];
-    [self setFrame:CGRectMake(0, 0, 320-_offset, 310)];
+    [self setFrame:CGRectMake(0, 0, 320-_offset, 220)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     //titleLabel
@@ -30,7 +30,7 @@
     [self addSubview:titleLabel];
     
     //methodTextField
-    methodTextField = [[SSTextView alloc] initWithFrame:CGRectMake(20, 45, 280-_offset, 185)];
+    methodTextField = [[SSTextView alloc] initWithFrame:CGRectMake(20, 45, 280-_offset, 95)];
     [methodTextField setDelegate:self];
     [methodTextField setBackgroundColor: [UIColor whiteColor]];
     methodTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -42,7 +42,7 @@
     [self addSubview:methodTextField];
     
     //confirmBtn
-    confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 250, 64, 29)];
+    confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(190, 160, 64, 29)];
     UIImage *btnBakImage = [UIImage imageNamed:@"Images/AddMaterialLineNormal.png"];
     UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/AddMaterialLineHighLight.png"];
     [confirmBtn setBackgroundImage:btnBakImage forState:UIControlStateNormal];

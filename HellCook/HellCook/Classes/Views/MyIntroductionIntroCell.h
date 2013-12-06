@@ -17,7 +17,7 @@
 @property (nonatomic, retain) UILabel* introLabel;
 
 
-- (void)caculateCellHeight:(NSString*)strIntro;
+- (void)calculateCellHeight:(NSString*)strIntro;
 - (CGFloat)GetCellHeight;
 
 @end

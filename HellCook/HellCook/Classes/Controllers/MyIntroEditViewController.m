@@ -548,7 +548,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)hudWasHidden:(MBProgressHUD *)hud
 {
-  if (isChanged)
+  if (isChanged && waitCallBack == 0)
   {
     [self returnToPrev];
   }
@@ -589,7 +589,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   if (nameField.text.length!=0 && ![data[@"nickname"] isEqual:nameField.text])
   {
     [pBasicInfoDict setObject:nameField.text forKey:@"nickname"];
+  } else{
+    HUD.labelText = @"用户名不能为空";
+    HUD.detailsLabelText = nil;
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
+    return;
   }
+
   //年龄
   if (ageField.text.length!=0 && (data[@"age"] == [NSNull null] || [data[@"age"] intValue]!=[ageField.text intValue]))
   {
@@ -652,6 +659,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     waitCallBack--;
     if (waitCallBack == 0) {
       HUD.labelText = @"个人信息无改变，不需保存";
+      HUD.detailsLabelText = nil;
       [HUD show:YES];
       [HUD hide:YES afterDelay:2];
     }
@@ -665,31 +673,35 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [mLoadingActivity stopAnimating];
   
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result == 0)
+  if (result == GC_Success)
   {
     isChanged = TRUE;
     User* user = [User sharedInstance];
     user.account.username = nameField.text;
     
     HUD.labelText = @"个人基本信息上传成功";
+    HUD.detailsLabelText = nil;
     [HUD show:YES];
     [HUD hide:YES afterDelay:2];
 
     // notify
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnUserInfoChange" object:nil];
+    NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:nameField.text, @"nickname", introTextView.text, @"intro", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnUserInfoChange" object:dictionary];
   }
   else
   {
-    if ([[resultDic valueForKey:@"errorcode"] intValue] == 2)
+    NSInteger error_code = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (error_code == GC_NickNameExist)
     {
       HUD.labelText = @"用户名已存在";
+      HUD.detailsLabelText = nil;
       [HUD show:YES];
       [HUD hide:YES afterDelay:2];
     }
-    else
+    else if (error_code == GC_NickNameInvalid)
     {
-      NSString *msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
-      HUD.labelText = msg;
+      HUD.labelText = nil;
+      HUD.detailsLabelText = @"用户名必须大于两个字并且只能包含数字、字母、汉字和下划线";
       [HUD show:YES];
       [HUD hide:YES afterDelay:2];
     }
@@ -699,13 +711,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)uploadAvatar
 {
   waitCallBack++;
-  NSString  *pngPath = @"";
+  NSString  *pngPath;
   
   UIImage* uploadImage = headImageView.avataImageView.image;
   if (uploadImage != headImageView.defaultImage)
   {
     pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploadtmp.png"];
-    newHeadImagePath = [NSString stringWithString:pngPath];
     uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(100, 100) interpolationQuality:kCGInterpolationHigh];
     uploadImage = [uploadImage cropToSize:CGSizeMake(100, 100) usingMode:NYXCropModeTopCenter];
     // Write image to PNG
@@ -735,20 +746,22 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   {
     isChanged = TRUE;
     User* user = [User sharedInstance];
-    user.account.avatar = newHeadImagePath;
+    user.account.avatar = [resultDic valueForKey:@"avatar"];
 
     HUD.labelText = @"头像上传成功";
+    HUD.detailsLabelText = nil;
     [HUD show:YES];
     [HUD hide:YES afterDelay:1];
 
     // notify
     UIImage* uploadImage = headImageView.avataImageView.image;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnUserInfoChange" object:uploadImage];
+    NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:uploadImage, @"avatar", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnUserInfoChange" object:dictionary];
   }
   else
   {
-    // NSString *msg = [NSString stringWithFormat:@"errorcode:%d",[[resultDic valueForKey:@"errorcode"] intValue]];
     HUD.labelText = @"头像上传失败";
+    HUD.detailsLabelText = nil;
     [HUD show:YES];
     [HUD hide:YES afterDelay:1];
   }

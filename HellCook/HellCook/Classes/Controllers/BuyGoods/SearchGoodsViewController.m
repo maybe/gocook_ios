@@ -52,6 +52,15 @@
 
   [self getGoodsInfo];
 
+  emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2 - 20, _sideWindowWidth, 44)];
+  emptyLabel.text = @"对不起，我们未提供您需要的商品，\n请选择其他商品";
+  emptyLabel.numberOfLines = 0;
+  emptyLabel.textAlignment = NSTextAlignmentCenter;
+  emptyLabel.font = [UIFont systemFontOfSize:15];
+  [emptyLabel setTextColor:[UIColor colorWithRed:82.0f/255.0f green:82.0f/255.0f blue:82.0f/255.0f alpha:1.0f]];
+  emptyLabel.hidden = YES;
+  [self.view addSubview:emptyLabel];
+
   [self autoLayout];
   [super viewDidLoad];
 }
@@ -61,6 +70,7 @@
   [goodsListArray removeAllObjects];
   curPage = 0;
   bShouldRefresh = YES;
+  emptyLabel.hidden = YES;
   [self.myTableView reloadData];
   [self initLoadingView];
   [self getGoodsInfo];
@@ -184,7 +194,8 @@
                        withPage:curPage + 1
                        completionHandler:^(NSMutableDictionary *resultDic){
                          [self getGoodsInfoCallBack:resultDic];}
-                       errorHandler:^(NSError *error){}];
+                       errorHandler:^(NSError *error){
+                       }];
 }
 
 -(void)getGoodsInfoCallBack:(NSMutableDictionary*) resultDic
@@ -193,6 +204,14 @@
   if (result == 0)
   {
     int totalCount = [resultDic[@"total_count"] intValue];
+
+    if (totalCount == 0) {
+      emptyLabel.hidden = NO;
+      return;
+    }
+
+    emptyLabel.hidden = YES;
+
     totalPage = totalCount/10 + (totalCount % 10 > 0 ? 1 : 0);
     int originsize = goodsListArray.count;
     int addsize = [(NSArray*)resultDic[@"wares"] count];

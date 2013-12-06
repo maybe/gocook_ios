@@ -46,7 +46,7 @@
   UIImage *stretchedBackgroundPressed = [buttonBackgroundImagePressed stretchableImageWithLeftCapWidth:10 topCapHeight:0];
   [selectButton setBackgroundImage:stretchedBackgroundPressed forState:UIControlStateHighlighted];
   
-  [selectButton setTitle:@"未选择" forState:UIControlStateNormal];
+  [selectButton setTitle:@"上传" forState:UIControlStateNormal];
   [selectButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
 
   [selectButton addTarget:[self viewController] action:@selector(onSelectButton:) forControlEvents:UIControlEventTouchUpInside];

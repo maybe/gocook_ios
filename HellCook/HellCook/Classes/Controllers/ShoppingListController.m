@@ -392,7 +392,7 @@
 {
   if (isRecipeView) {
     if (cellContentArray[(NSUInteger)indexPath.row][@"name"]) {
-      return 60;
+      return 80;
     }
     return 44;
   } else {
@@ -481,23 +481,32 @@
 - (void)emptyShoppingList:(id)sender
 {
   UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"确认清空吗？"
-                                                 message:@""
+                                                 message:@"1"
                                                 delegate:self
                                        cancelButtonTitle:@"取消"
                                        otherButtonTitles:@"确定",nil];
+  alert.tag = 1;
   [alert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-  if (buttonIndex == 1) {
-    [[DBHandler sharedInstance] emptyShoppingList];
-    [self setDataList];
-    [self setAllMaterialDataList];
-    [self refreshHeaderView];
-    [self.tableView reloadData];
+  if (alertView.tag == 1)
+  {
+    if (buttonIndex == 1) {
+      [[DBHandler sharedInstance] emptyShoppingList];
+      [self setDataList];
+      [self setAllMaterialDataList];
+      [self refreshHeaderView];
+      [self.tableView reloadData];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnRemoveFromShoppingListSuccess" object:nil];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnRemoveFromShoppingListSuccess" object:nil];
+    }
+  }
+  else if (alertView.tag == 2) {
+    if (buttonIndex == 1) {
+      [self confirmDelOneRecipeFromShoppingList];
+    }
   }
 }
 
@@ -506,8 +515,20 @@
   UIView* button = sender;
 
   NSIndexPath *indexPath = [[self relatedTable:[self relatedCell:button]] indexPathForCell:[self relatedCell:button]];
-  
-  [[DBHandler sharedInstance] removeFromShoppingList: [cellContentArray[(NSUInteger)indexPath.row][@"recipeid"] intValue]];
+  removeRecipeRow = indexPath.row;
+
+  UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"确认删除吗？"
+                                                 message:@""
+                                                delegate:self
+                                       cancelButtonTitle:@"取消"
+                                       otherButtonTitles:@"确定",nil];
+  alert.tag = 2;
+  [alert show];
+}
+
+- (void)confirmDelOneRecipeFromShoppingList
+{
+  [[DBHandler sharedInstance] removeFromShoppingList: [cellContentArray[(NSUInteger)removeRecipeRow][@"recipeid"] intValue]];
 
   [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnRemoveFromShoppingListSuccess" object:nil];
 

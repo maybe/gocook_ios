@@ -76,6 +76,12 @@
   [cellContentList removeAllObjects];
   [cellContentList addObjectsFromArray: recipeData.materials];
   [tableView reloadData];
+
+  if (recipeData.materials.count == 0) {
+    [self addMaterialLine];
+    [self addMaterialLine];
+  }
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated

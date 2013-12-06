@@ -88,7 +88,7 @@
     [headImageView.upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:pRecipeData.cover_img withType:Recipe526ImageUrl]]
                               placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"]];
 
-    [headImageView.selectButton setTitle:@"替换" forState:UIControlStateNormal];
+    // [headImageView.selectButton setTitle:@"替换" forState:UIControlStateNormal];
   }
 
   materialController = [[MyRecipesMaterialController alloc] initWithNibName:@"MyRecipesMatieralView" bundle:nil];
@@ -259,7 +259,7 @@
 
 -(void) onSelectButton:(id)sender
 {
-    [self uploadCoverTmpFile];
+    [self selectCoverImage];
 }
 
 - (void) onSelectImageButton
@@ -278,21 +278,30 @@
   [self presentViewController:picker animated:YES completion:nil];
 }
 
+-(void)loadCameraPicker {
+
+  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+  picker.delegate = self;
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
+    [picker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+  }
+
+  picker.allowsEditing = NO;
+  [self presentViewController:picker animated:YES completion:nil];
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
   // Access the uncropped image from info dictionary
   UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-  
-  //[headImageView setAssociativeObject:image forKey:@"cover_image_obj"];
-  
-  //Find the image url.
-  //self.pickedImagePath = [(NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL] absoluteString];
-  
+
   // Dismiss the camera
   [self dismissViewControllerAnimated:YES completion:nil];
   
   [headImageView.upImageView setImage:image];
-  [headImageView.selectButton setTitle:@"上传" forState:UIControlStateNormal];
+  [self uploadCover];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -300,31 +309,49 @@
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-
--(void)uploadCoverTmpFile
+-(void)selectCoverImage
 {
-  if (![[headImageView.selectButton titleForState:UIControlStateNormal] isEqual: @"上传"]) {
-    [self loadImagePicker];
-    return;
-  }
+  UIActionSheet* actionSheet = [[UIActionSheet alloc]
+      initWithTitle:@"请选择文件来源"
+           delegate:self
+     cancelButtonTitle:@"取消"
+destructiveButtonTitle:nil
+     otherButtonTitles:@"照相机",@"本地相簿",nil];
+  [actionSheet setTag:1];
+  [actionSheet showInView:self.view];
+}
 
-  NSString  *pngPath = @"";
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (actionSheet.tag == 1) {
+    if (buttonIndex == 0) {
+      [self loadCameraPicker];
+    } else if (buttonIndex == 1) {
+      [self loadImagePicker];
+    }
+  }
+}
+
+
+-(void)uploadCover {
+  NSString  *pngPath = nil;
   UIImage* uploadImage = headImageView.upImageView.image;
-  
+
   if (uploadImage != headImageView.defaultImage) {
     pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploaCoverTmp.png"];
     uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(600, 600) interpolationQuality:kCGInterpolationHigh];
     uploadImage = [uploadImage cropToSize:CGSizeMake(600, 600) usingMode:NYXCropModeTopCenter];
     // Write image to PNG
     [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
+
+    HUD.labelText = @"上传封面中...";
+    [HUD show:YES];
     
     self.uploadOperation = [[[NetManager sharedInstance] hellEngine]
-                            uploadCoverTmpImage:pngPath
-                            completionHandler:^(NSMutableDictionary *resultDic) {
-                              [self UploadCallBack:resultDic];}
-                            errorHandler:^(NSError *error) {}
-                            ];
+        uploadCoverTmpImage:pngPath
+          completionHandler:^(NSMutableDictionary *resultDic) {
+            [self UploadCallBack:resultDic];}
+               errorHandler:^(NSError *error) {}
+    ];
     isCoverUploaded = NO;
   }
 }
@@ -335,12 +362,13 @@
   if (result == GC_Success)
   {
     isCoverUploaded = YES;
-
     [headImageView setAssociativeObject:resultDic[@"avatar"] forKey:@"cover_img"];
-    [headImageView.selectButton setTitle:@"替换" forState:UIControlStateNormal];
+    HUD.labelText = @"上传成功";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
   }
   else if (result == GC_AuthAccountInvalid){
-    //TODO:
+    [HUD hide:YES];
   }
   
 }

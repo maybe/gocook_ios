@@ -24,6 +24,8 @@
   NSMutableArray* cellAllMaterialArray;
   
   BOOL isRecipeView;
+
+  NSInteger removeRecipeRow;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
