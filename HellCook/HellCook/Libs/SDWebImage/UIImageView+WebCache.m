@@ -7,196 +7,133 @@
  */
 
 #import "UIImageView+WebCache.h"
-#import "UIImage+Resize.h"
-#import "UIImage+Blurring.h"
+#import "objc/runtime.h"
+
+static char operationKey;
+static char operationArrayKey;
 
 @implementation UIImageView (WebCache)
 
-- (CGSize)doubleSizeIfRetina:(CGSize) size
-{
-    BOOL isRetina = ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2);
-    size = isRetina ? CGSizeMake(size.width *2, size.height *2) : size;
-    return size;
-}
-
-- (void)setImageWithURL:(NSURL *)url andCropToBounds:(CGRect)bounds
-{
-    [self setImageWithURL:url placeholderImage:nil options:0 andCropToBounds: bounds];
-}
-
-- (void)setImageWithURL:(NSURL *)url andResize:(CGSize)size
-{
-    size = [self doubleSizeIfRetina:size];
-    [self setImageWithURL:url placeholderImage:nil options:0 andResize:size];
-}
-
-- (void)setImageWithURL:(NSURL *)url andResize:(CGSize)size withContentMode:(UIViewContentMode)mode
-{
-    size = [self doubleSizeIfRetina:size];
-    [self setImageWithURL:url placeholderImage:nil options:0 andResize:size withContentMode:mode];
-}
-
 - (void)setImageWithURL:(NSURL *)url
 {
-    [self setImageWithURL:url placeholderImage:nil];
-}
-
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options andGaussianBlurWithBias:(NSInteger)bias
-{
-  SDWebImageManager *manager = [SDWebImageManager sharedManager];
-  
-  // Remove in progress downloader from queue
-  [manager cancelForDelegate:self];
-  
-  self.image = [placeholder gaussianBlurWithBias:bias];
-  
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"blur", @"transformation",
-                            [NSString stringWithFormat:@"%d",bias], @"bias", nil];
-  
-  if (url)
-  {
-    [manager downloadWithURL:url delegate:self options:options userInfo:userInfo];
-  }
+    [self setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:nil];
 }
 
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder
 {
-    [self setImageWithURL:url placeholderImage:placeholder options:0];
+    [self setImageWithURL:url placeholderImage:placeholder options:0 progress:nil completed:nil];
 }
-
--(void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder andCropToBounds:(CGRect)bounds{
-    [self setImageWithURL:url placeholderImage:placeholder options:0 andCropToBounds: bounds];
-}
-
-
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options  andCropToBounds:(CGRect)bounds;
-{
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    
-    // Remove in progress downloader from queue
-    [manager cancelForDelegate:self];
-    
-    self.image = placeholder;
-    
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"crop", @"transformation",
-                              NSStringFromCGRect(bounds), @"bounds", nil];
-    
-    if (url)
-    {
-        [manager downloadWithURL:url delegate:self options:options userInfo:userInfo];
-    }
-}
-
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options  andResize:(CGSize)size
-{
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    
-    // Remove in progress downloader from queue
-    [manager cancelForDelegate:self];
-    
-    self.image = placeholder;
-    
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"resize", @"transformation",
-                              NSStringFromCGSize(size), @"size", nil];
-    
-    if (url)
-    {
-        [manager downloadWithURL:url delegate:self options:options userInfo:userInfo];
-    }
-}
-
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options  andResize:(CGSize)size withContentMode:(UIViewContentMode)mode
-{
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    
-    // Remove in progress downloader from queue
-    [manager cancelForDelegate:self];
-    
-    self.image = placeholder;
-    
-    
-    NSString *mode_str = nil;
-    
-    if (mode == UIViewContentModeScaleAspectFit)
-    {
-        mode_str = @"UIViewContentModeScaleAspectFit";
-    }
-    else
-    {
-        if (mode == UIViewContentModeScaleAspectFill)
-        {
-            mode_str = @"UIViewContentModeScaleAspectFill";
-        }
-    }
-
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"resize", @"transformation",
-                              NSStringFromCGSize(size), @"size",
-                              mode_str, @"content_mode", nil];
-    
-    if (url)
-    {
-        [manager downloadWithURL:url delegate:self options:options userInfo:userInfo];
-    }
-}
-
 
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options
 {
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [self setImageWithURL:url placeholderImage:placeholder options:options progress:nil completed:nil];
+}
 
-    // Remove in progress downloader from queue
-    [manager cancelForDelegate:self];
+- (void)setImageWithURL:(NSURL *)url completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url placeholderImage:placeholder options:0 progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url placeholderImage:placeholder options:options progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self cancelCurrentImageLoad];
 
     self.image = placeholder;
-
+    
     if (url)
     {
-        [manager downloadWithURL:url delegate:self options:options];
+        __weak UIImageView *wself = self;
+        id<SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished)
+        {
+            if (!wself) return;
+            dispatch_main_sync_safe(^
+            {
+                if (!wself) return;
+                if (image)
+                {
+                    wself.image = image;
+                    [wself setNeedsLayout];
+                }
+                if (completedBlock && finished)
+                {
+                    completedBlock(image, error, cacheType);
+                }
+            });
+        }];
+        objc_setAssociatedObject(self, &operationKey, operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
 
-#if NS_BLOCKS_AVAILABLE
-- (void)setImageWithURL:(NSURL *)url success:(SDWebImageSuccessBlock)success failure:(SDWebImageFailureBlock)failure;
+- (void)setAnimationImagesWithURLs:(NSArray *)arrayOfURLs
 {
-    [self setImageWithURL:url placeholderImage:nil success:success failure:failure];
-}
+    [self cancelCurrentArrayLoad];
+    __weak UIImageView *wself = self;
 
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder success:(SDWebImageSuccessBlock)success failure:(SDWebImageFailureBlock)failure;
-{
-    [self setImageWithURL:url placeholderImage:placeholder options:0 success:success failure:failure];
-}
+    NSMutableArray *operationsArray = [[NSMutableArray alloc] init];
 
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options success:(SDWebImageSuccessBlock)success failure:(SDWebImageFailureBlock)failure;
-{
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-
-    // Remove in progress downloader from queue
-    [manager cancelForDelegate:self];
-
-    self.image = placeholder;
-
-    if (url)
+    for (NSURL *logoImageURL in arrayOfURLs)
     {
-        [manager downloadWithURL:url delegate:self options:options success:success failure:failure];
+        id<SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadWithURL:logoImageURL options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished)
+        {
+            if (!wself) return;
+            dispatch_main_sync_safe(^
+            {
+                __strong UIImageView *sself = wself;
+                [sself stopAnimating];
+                if (sself && image)
+                {
+                    NSMutableArray *currentImages = [[sself animationImages] mutableCopy];
+                    if (!currentImages)
+                    {
+                        currentImages = [[NSMutableArray alloc] init];
+                    }
+                    [currentImages addObject:image];
+
+                    sself.animationImages = currentImages;
+                    [sself setNeedsLayout];
+                }
+                [sself startAnimating];
+            });
+        }];
+        [operationsArray addObject:operation];
     }
+
+    objc_setAssociatedObject(self, &operationArrayKey, [NSArray arrayWithArray:operationsArray], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-#endif
 
 - (void)cancelCurrentImageLoad
 {
-    [[SDWebImageManager sharedManager] cancelForDelegate:self];
+    // Cancel in progress downloader from queue
+    id<SDWebImageOperation> operation = objc_getAssociatedObject(self, &operationKey);
+    if (operation)
+    {
+        [operation cancel];
+        objc_setAssociatedObject(self, &operationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
 }
 
-- (void)webImageManager:(SDWebImageManager *)imageManager didProgressWithPartialImage:(UIImage *)image forURL:(NSURL *)url
+- (void)cancelCurrentArrayLoad
 {
-    self.image = image;
-    [self setNeedsLayout];
-}
-
-- (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
-{
-    self.image = image;
-    [self setNeedsLayout];
+    // Cancel in progress downloader from queue
+    NSArray *operations = objc_getAssociatedObject(self, &operationArrayKey);
+    for (id<SDWebImageOperation> operation in operations)
+    {
+        if (operation)
+        {
+            [operation cancel];
+        }
+    }
+    objc_setAssociatedObject(self, &operationArrayKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

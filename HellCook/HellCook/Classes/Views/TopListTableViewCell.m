@@ -7,8 +7,7 @@
 //
 
 #import "TopListTableViewCell.h"
-#import "QuartzCore/QuartzCore.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+ProgressView.h"
 #import "NetManager.h"
 
 
@@ -89,6 +88,5 @@
 
   [imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage: [UIImage imageNamed:@"Images/TopListPlaceHolder.png"]];
 }
-
 
 @end
