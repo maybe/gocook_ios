@@ -22,6 +22,6 @@
 
 -(CGFloat)getCellHeight;
 - (void)setData:(NSMutableDictionary*)data withType:(NSInteger)type;
-//type=0表示延期抽取机会，type=1表示有效优惠券，type=2表示过期的
+//type=0表示M6券，1广告，2延期获取，3网络商家券，-1使用过的券
 
 @end

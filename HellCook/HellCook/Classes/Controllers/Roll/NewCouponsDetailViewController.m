@@ -42,14 +42,14 @@
   CGRect btnFrame = topBtn.frame;
   btnFrame.size.height = 56;
   [topBtn setFrame:btnFrame];
-  if (myType == 0)//抽奖机会
+  if (myType == 2)//延期
   {
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RollBtnBackground.png"];
     [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
     UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/RollBtnBackground.png"];
     [topBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
   }
-  else if (myType == 1)//有效优惠券
+  else if (myType==0 || myType==3)//M6券 或 网络商家券
   {
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RollBtnBackground.png"];
     [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
@@ -71,7 +71,7 @@
     }
     //******
   }
-  else//过期
+  else if (myType == -1)//过期
   {
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/overdue.png"];
     [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
@@ -79,6 +79,15 @@
     [topBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
     topBtn.userInteractionEnabled = FALSE;
   }
+  else if (myType == 1)//广告
+  {
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/adButton.png"];
+    [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+    UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/adButton.png"];
+    [topBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
+    topBtn.userInteractionEnabled = FALSE;
+  }
+  
   [topBtn addTarget:self action:@selector(topBtnPressed) forControlEvents:UIControlEventTouchUpInside];
   
   CGRect tableFrame = self.myTableView.frame;

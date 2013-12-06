@@ -14,12 +14,16 @@
   UIImageView *labelBackgroundView;
   UIButton *bottomBtn;
   CGFloat height;
+  
+  UIImageView *contentImage;
+  UILabel *contentLabel2;
 }
 
 @property (nonatomic,retain) UILabel *contentLabel;
 @property (nonatomic,retain) UIImageView *labelBackgroundView;
 @property (nonatomic,retain) UIButton *bottomBtn;
-
+@property (nonatomic,retain) UIImageView *contentImage;
+@property (nonatomic,retain) UILabel *contentLabel2;
 
 -(CGFloat)getCellHeight;
 - (id)initWithStyle:(UITableViewCellStyle)style withType:(NSInteger)type withData:(NSMutableDictionary*)dict reuseIdentifier:(NSString *)reuseIdentifier;

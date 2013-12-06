@@ -222,23 +222,50 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
-    backgroundView.hidden = YES;
-    contentLabel.hidden = NO;
-    confirmBtn.hidden = NO;
-    if ([coupID isEqual:@"0"]) {
-      delayBtn.hidden = NO;
+    if ([resultDic[@"condition"] intValue] == 0)//不符合费用且没有其他券和广告
+    {
+      backgroundView.hidden = YES;
+      contentLabel.hidden = NO;
+      confirmBtn.hidden = YES;
+      delayBtn.hidden = YES;
+      goBackBtn.hidden = NO;
+      NSString *content = [[NSString alloc] init];
+      
+      content = [NSString stringWithString:(NSString*)resultDic[@"remark"]];
+      CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(280, 2000) lineBreakMode:NSLineBreakByWordWrapping];
+      [contentLabel setFrame:CGRectMake(20, 40, 280, contentSize.height)];
+      [contentLabel setText:content];
+      
+      [goBackBtn setFrame:CGRectMake(22, 40+contentSize.height+40, 276, 47)];
     }
-    
-    
-    NSString *strTime = [NSString stringWithString:(NSString*)resultDic[@"time"]];
-    NSRange range = [strTime rangeOfString:@" "];
-    strTime = [strTime substringToIndex:range.location];
-    NSString *content = [NSString stringWithFormat:@"尊敬的用户你好，您是否在%@进行了%d笔交易，共计%.2f元",strTime,[resultDic[@"sale_count"] intValue],[resultDic[@"sale_fee"] floatValue]];
-    CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(280, 1000) lineBreakMode:NSLineBreakByWordWrapping];
-    [contentLabel setFrame:CGRectMake(20, 40, 280, contentSize.height)];
-    [contentLabel setText:content];
-    [confirmBtn setFrame:CGRectMake(22, 40+contentSize.height+40, 276, 47)];
-    [delayBtn setFrame:CGRectMake(22, 40+contentSize.height+40+70, 276, 47)];
+    else if ([resultDic[@"condition"] intValue] == 1)//1费用符合M6券
+    {
+      backgroundView.hidden = YES;
+      contentLabel.hidden = NO;
+      confirmBtn.hidden = NO;
+      if ([coupID isEqual:@"0"]) {
+        delayBtn.hidden = NO;
+      }
+      
+      
+      NSString *strTime = [NSString stringWithString:(NSString*)resultDic[@"time"]];
+      NSRange range = [strTime rangeOfString:@" "];
+      strTime = [strTime substringToIndex:range.location];
+      NSString *content = [NSString stringWithFormat:@"尊敬的用户你好，您是否在%@进行了%d笔交易，共计%.2f元",strTime,[resultDic[@"sale_count"] intValue],[resultDic[@"sale_fee"] floatValue]];
+      CGSize contentSize = [content sizeWithFont:contentLabel.font constrainedToSize:CGSizeMake(280, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+      [contentLabel setFrame:CGRectMake(20, 40, 280, contentSize.height)];
+      [contentLabel setText:content];
+      [confirmBtn setFrame:CGRectMake(22, 40+contentSize.height+40, 276, 47)];
+      [delayBtn setFrame:CGRectMake(22, 40+contentSize.height+40+70, 276, 47)];
+    }
+    else//2有其他券或广告
+    {
+      [self getCoupons:@"-1"];
+      
+      HUD.labelText = @"获取优惠券中，请稍后";
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:2];
+    }
   }
   else if (result == 1)
   {

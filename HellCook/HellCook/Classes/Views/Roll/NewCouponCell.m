@@ -47,9 +47,9 @@
 {
   NSString *content;
   switch (type) {
-    case 0:
+    case 2://延期机会
     {
-      [backgroundView setImage:[UIImage imageNamed:@"Images/YellowBar.png"]];
+      [backgroundView setImage:[UIImage imageNamed:@"Images/redBar.png"]];
       
       NSString *strEffDay = [NSString stringWithString:(NSString*)data[@"eff_day"]];
       NSRange range = [strEffDay rangeOfString:@" "];
@@ -60,7 +60,7 @@
       content = [NSString stringWithFormat:@"延期抽取机会 %@获得 有效期至%@",strEffDay,strExpDay];
       break;
     }
-    case 1:
+    case 0://M6券
     {
       [backgroundView setImage:[UIImage imageNamed:@"Images/GreenBar.png"]];
       
@@ -73,7 +73,7 @@
       content = [NSString stringWithFormat:@"%@ 价值%.2f %@获得 有效期至%@",(NSString*)data[@"name"],[data[@"val"] floatValue],strEffDay,strExpDay];
       break;
     }
-    case 2:
+    case -1://已使用
     {
       [backgroundView setImage:[UIImage imageNamed:@"Images/GreyBar.png"]];
       
@@ -84,6 +84,32 @@
       range = [strExpDay rangeOfString:@" "];
       strExpDay = [strExpDay substringToIndex:range.location];
       content = [NSString stringWithFormat:@"%@ 价值%.2f %@获得 有效期至%@",(NSString*)data[@"name"],[data[@"val"] floatValue],strEffDay,strExpDay];
+      break;
+    }
+    case 1://广告
+    {
+      [backgroundView setImage:[UIImage imageNamed:@"Images/blueBar.png"]];
+      
+      NSString *strEffDay = [NSString stringWithString:(NSString*)data[@"eff_day"]];
+      NSRange range = [strEffDay rangeOfString:@" "];
+      strEffDay = [strEffDay substringToIndex:range.location];
+      NSString *strExpDay = [NSString stringWithString:(NSString*)data[@"exp_day"]];
+      range = [strExpDay rangeOfString:@" "];
+      strExpDay = [strExpDay substringToIndex:range.location];
+      content = [NSString stringWithFormat:@"广告券 %@ 价值%.2f %@获得 有效期至%@",(NSString*)data[@"name"],[data[@"val"] floatValue],strEffDay,strExpDay];
+      break;
+    }
+    case 3://网络商家券
+    {
+      [backgroundView setImage:[UIImage imageNamed:@"Images/YellowBar.png"]];
+      
+      NSString *strEffDay = [NSString stringWithString:(NSString*)data[@"eff_day"]];
+      NSRange range = [strEffDay rangeOfString:@" "];
+      strEffDay = [strEffDay substringToIndex:range.location];
+      NSString *strExpDay = [NSString stringWithString:(NSString*)data[@"exp_day"]];
+      range = [strExpDay rangeOfString:@" "];
+      strExpDay = [strExpDay substringToIndex:range.location];
+      content = [NSString stringWithFormat:@"网络商家券 %@ 价值%.2f %@获得 有效期至%@",(NSString*)data[@"name"],[data[@"val"] floatValue],strEffDay,strExpDay];
       break;
     }
   }

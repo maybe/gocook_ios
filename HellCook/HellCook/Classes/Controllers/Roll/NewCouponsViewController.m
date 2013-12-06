@@ -238,18 +238,14 @@
     }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[itmesArray objectAtIndex:(indexPath.row)]];
-    NSInteger type;
-    if ([dict[@"status"] intValue] == 1)//有效
+    NSInteger type = -1;
+    if ([dict[@"isused"] intValue] == 0)//未使用
     {
-      if ([dict[@"is_delay"] intValue] == 1){//抽奖机会
-        type = 0;
-      }
-      else{//优惠券
-        type = 1;
-      }
+      type = [dict[@"ktype"] intValue];
     }
-    else{//过期
-      type = 2;
+    else
+    {
+      type = -1;
     }
     
     [cell setData:dict withType:type];
@@ -264,19 +260,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  NSMutableDictionary *dict = [itmesArray objectAtIndex:indexPath.row];
-  NSInteger type;
-  if ([dict[@"status"] intValue] == 1)//有效
+  NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[itmesArray objectAtIndex:(indexPath.row)]];
+  NSInteger type = -1;
+  if ([dict[@"isused"] intValue] == 0)//未使用
   {
-    if ([dict[@"is_delay"] intValue] == 1){//抽奖机会
-      type = 0;
-    }
-    else{//优惠券
-      type = 1;
-    }
+    type = [dict[@"ktype"] intValue];
   }
-  else{//过期
-    type = 2;
+  else
+  {
+    type = -1;
   }
   bComeBack = TRUE;
   NewCouponsDetailViewController *pController = [[NewCouponsDetailViewController alloc] initWithNibName:@"NewCouponsDetailView" withType:type withData:dict bundle:nil];
