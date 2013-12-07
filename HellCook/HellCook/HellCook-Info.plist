@@ -4,10 +4,6 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
-	<key>CFBundleLocalizations</key>
-	<array>
-		<string>zh_CN</string>
-	</array>
 	<key>CFBundleDisplayName</key>
 	<string>M6分享厨房</string>
 	<key>CFBundleExecutable</key>
@@ -31,6 +27,11 @@
 	<string>com.m6fresh.sharekitchen</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>zh_CN</string>
+		<string>en</string>
+	</array>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
