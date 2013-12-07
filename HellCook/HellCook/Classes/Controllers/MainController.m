@@ -44,9 +44,20 @@
   }
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnRemoveFromShoppingListSuccess:) name:@"EVT_OnRemoveFromShoppingListSuccess" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnDrawerGestureCompletion:) name:@"EVT_OnDrawerGestureCompletion" object:nil];
 
   [self autoLayout];
   [super viewDidLoad];
+}
+
+- (void)OnDrawerGestureCompletion: (NSNotification *)notification
+{
+//  NSNumber * number = (NSNumber *)notification.object;
+//  if (number) {
+//    NSLog(@"%d", number.intValue);
+//  }
+
+  [searchBarView hideMaskView];
 }
 
 - (void)dealloc {

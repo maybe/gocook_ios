@@ -523,8 +523,7 @@
 }
 
 
-
--(void) loadImagePicker
+-(void)loadImagePicker
 {
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
   picker.delegate = self;
@@ -535,6 +534,43 @@
   [self presentViewController:picker animated:YES completion:nil];
   
 }
+
+-(void)loadCameraPicker {
+
+  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+  picker.delegate = self;
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
+    [picker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+  }
+
+  picker.allowsEditing = NO;
+  [self presentViewController:picker animated:YES completion:nil];
+}
+
+-(void)selectAvatarImage
+{
+  UIActionSheet* actionSheet = [[UIActionSheet alloc]
+      initWithTitle:@"请选择文件来源"
+           delegate:self
+     cancelButtonTitle:@"取消"
+destructiveButtonTitle:nil
+     otherButtonTitles:@"照相机",@"本地相簿",nil];
+  [actionSheet setTag:1];
+  [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (actionSheet.tag == 1) {
+    if (buttonIndex == 0) {
+      [self loadCameraPicker];
+    } else if (buttonIndex == 1) {
+      [self loadImagePicker];
+    }
+  }
+}
+
 
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -624,10 +660,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   {
     gender = @"1";
   }
-  else if (otherBtn.selected)
-  {
-    gender = @"2";
-  }
   else
   {
     gender = @"2";
@@ -708,7 +740,30 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [HUD hide:YES afterDelay:2];
 
     // notify
-    NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:nameField.text, @"nickname", introTextView.text, @"intro", nil];
+    //性别
+    NSString *gender;
+    if (maleBtn.selected)
+    {
+      gender = @"0";
+    }
+    else if (femaleBtn.selected)
+    {
+      gender = @"1";
+    }
+    else
+    {
+      gender = @"2";
+    }
+
+    NSDictionary * dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
+        nameField.text, @"nickname",
+        introTextView.text, @"intro",
+        ageField.text, @"age",
+        gender, @"gender",
+        careerField.text, @"career",
+        provinceField.text, @"province",
+        cityField.text, @"city", nil];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnUserInfoChange" object:dictionary];
   }
   else

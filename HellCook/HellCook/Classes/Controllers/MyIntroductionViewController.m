@@ -391,6 +391,26 @@
       pMyInfo[@"intro"] = dictionary[@"intro"];
       pIntroCell.introLabel.text = dictionary[@"intro"];
     }
+
+    if ([[dictionary allKeys] containsObject:@"age"]) {
+      pMyInfo[@"age"] = dictionary[@"age"];
+    }
+
+    if ([[dictionary allKeys] containsObject:@"gender"]) {
+      pMyInfo[@"gender"] = dictionary[@"gender"];
+    }
+
+    if ([[dictionary allKeys] containsObject:@"career"]) {
+      pMyInfo[@"career"] = dictionary[@"career"];
+    }
+
+    if ([[dictionary allKeys] containsObject:@"province"]) {
+      pMyInfo[@"province"] = dictionary[@"province"];
+    }
+
+    if ([[dictionary allKeys] containsObject:@"city"]) {
+      pMyInfo[@"city"] = dictionary[@"city"];
+    }
   }
 }
 

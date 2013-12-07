@@ -78,6 +78,9 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
        }
    }];
 
+  [self.drawerController setGestureCompletionBlock:^(MMDrawerController *drawerController, UIGestureRecognizer *gesture) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnDrawerGestureCompletion" object:[NSNumber numberWithInteger:drawerController.openSide]];
+  }];
 
   RootNavigationController* rootNC = [[RootNavigationController alloc] initWithRootViewController:self.drawerController];
   CGRect rootNCViewFrame = rootNC.view.frame;

@@ -37,7 +37,7 @@
     [avataImageView setClipsToBounds:YES];
 
     UIButton *avatarButton = [[UIButton alloc] initWithFrame:avataImageView.frame];
-    [avatarButton addTarget:[self viewController] action:@selector(loadImagePicker) forControlEvents:UIControlEventTouchUpInside];
+    [avatarButton addTarget:[self viewController] action:@selector(selectAvatarImage) forControlEvents:UIControlEventTouchUpInside];
     [avatarButton setBackgroundColor:[UIColor clearColor]];
 
     //uploadButton
@@ -47,7 +47,7 @@
     [uploadBtn setTitle:@"上传头像" forState:UIControlStateNormal];
     [uploadBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [uploadBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [uploadBtn addTarget:[self viewController] action:@selector(loadImagePicker) forControlEvents:UIControlEventTouchUpInside];
+    [uploadBtn addTarget:[self viewController] action:@selector(selectAvatarImage) forControlEvents:UIControlEventTouchUpInside];
     
     //[self addSubview:bannerImageView];
     [self addSubview:avataImageView];

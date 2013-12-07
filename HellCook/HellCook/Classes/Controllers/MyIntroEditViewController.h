@@ -15,7 +15,7 @@
 
 @class KeyboardHandler;
 @class MBProgressHUD;
-@interface MyIntroEditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,KeyboardHandlerDelegate,MBProgressHUDDelegate>
+@interface MyIntroEditViewController : UIViewController<UITextFieldDelegate,UIActionSheetDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,KeyboardHandlerDelegate,MBProgressHUDDelegate>
 {
   UITableView* myTableView;
   NSMutableArray* cellContentList;
