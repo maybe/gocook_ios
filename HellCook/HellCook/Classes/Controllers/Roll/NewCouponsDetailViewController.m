@@ -73,7 +73,7 @@
   }
   else if (myType == -1)//过期
   {
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/overdue.png"];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/CouponUsed.png"];
     [topBtn setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
     UIImage *btnBakimagePressed = [UIImage imageNamed:@"Images/overdue.png"];
     [topBtn setBackgroundImage:btnBakimagePressed forState:UIControlStateHighlighted];
