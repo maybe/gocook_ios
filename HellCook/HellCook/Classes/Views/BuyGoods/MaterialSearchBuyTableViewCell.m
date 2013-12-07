@@ -22,7 +22,6 @@
     [self setFrame:CGRectMake(0, 0, 320-_offset, 130)];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
 
-
     backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 280 - 20, 120)];
     [backgroundView setImage:[UIImage imageNamed:@"Images/WhiteBlock.png"]];
     [backgroundView setContentMode:UIViewContentModeScaleToFill];

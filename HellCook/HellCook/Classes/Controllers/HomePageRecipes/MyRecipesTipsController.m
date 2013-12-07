@@ -68,12 +68,17 @@
     [tipsTextView setText:pRecipeData.tips];
   }
 
-  HUD = [[MBProgressHUD alloc] initWithView:self.view];
-  [self.view addSubview:HUD];
+  HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+  [self.navigationController.view addSubview:HUD];
   HUD.mode = MBProgressHUDModeCustomView;
   HUD.delegate = self;
   
   [super viewDidLoad];
+}
+
+- (void)dealloc
+{
+  [HUD removeFromSuperview];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -335,7 +340,11 @@
                           createRecipe: pUploadRecipeDic
                           completionHandler:^(NSMutableDictionary *resultDic) {
                             [self createCallBack:resultDic];}
-                          errorHandler:^(NSError *error) {}
+                          errorHandler:^(NSError *error) {
+                            HUD.labelText = @"发布超时，请检查网络";
+                            HUD.detailsLabelText = nil;
+                            [HUD hide:YES afterDelay:1.0];
+                          }
                           ];
 }
 

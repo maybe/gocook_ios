@@ -16,6 +16,7 @@
 #import "UIImage+Resizing.h"
 #import "UIImageView+WebCache.h"
 #import "DefaultGroupedTableCell.h"
+#import "RegexKitLite.h"
 
 #define kTableCellHeader  52
 #define kTableCellBody    52
@@ -95,8 +96,8 @@
   stepController = [[MyRecipesStepController alloc] initWithNibName:@"MyRecipesStepView" bundle:nil];
   tipsController = [[MyRecipesTipsController alloc]initWithNibName:@"MyRecipesTipsView" bundle:nil];
 
-  HUD = [[MBProgressHUD alloc] initWithView: self.view];
-  [self.view addSubview:HUD];
+  HUD = [[MBProgressHUD alloc] initWithView: self.navigationController.view];
+  [self.navigationController.view addSubview:HUD];
   HUD.mode = MBProgressHUDModeText;
   HUD.delegate = self;
 
@@ -106,6 +107,7 @@
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [HUD removeFromSuperview];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -262,11 +264,6 @@
     [self selectCoverImage];
 }
 
-- (void) onSelectImageButton
-{
-  [self loadImagePicker];
-}
-
 -(void) loadImagePicker
 {
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -344,6 +341,7 @@ destructiveButtonTitle:nil
     [UIImagePNGRepresentation(uploadImage) writeToFile:pngPath atomically:YES];
 
     HUD.labelText = @"上传封面中...";
+    HUD.detailsLabelText = nil;
     [HUD show:YES];
     
     self.uploadOperation = [[[NetManager sharedInstance] hellEngine]
@@ -364,15 +362,14 @@ destructiveButtonTitle:nil
     isCoverUploaded = YES;
     [headImageView setAssociativeObject:resultDic[@"avatar"] forKey:@"cover_img"];
     HUD.labelText = @"上传成功";
+    HUD.detailsLabelText = nil;
     [HUD show:YES];
     [HUD hide:YES afterDelay:2];
   }
   else if (result == GC_AuthAccountInvalid){
     [HUD hide:YES];
   }
-  
 }
-
 
 #pragma mark - Keyboard
 
@@ -452,11 +449,21 @@ destructiveButtonTitle:nil
   
   if ([trimedName isEqualToString:@""]) {
     HUD.labelText = @"菜谱名不能为空";
+    HUD.detailsLabelText = nil;
     [HUD show:YES];
     [HUD hide:YES afterDelay:2.0];
     return;
   }
-  
+
+  BOOL name_result = [trimedName isMatchedByRegex:@"^[0-9a-zA-Z_\\-\\x{4e00}-\\x{9fa5}\\x{ff01}-\\x{ff5e}\\x{2014}\\x{2013}]{2,30}$"];
+  if (!name_result) {
+    HUD.labelText = nil;
+    HUD.detailsLabelText = @"菜谱名必须包含2个及以上英文字母或者汉字，不能有空格";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2.0];
+    return;
+  }
+
   RecipeData* pRecipeData = nil;
   if ([[[User sharedInstance] recipe] getIsCreate]) {
     pRecipeData = [[[User sharedInstance] recipe] getCreateRecipeData];
@@ -473,6 +480,7 @@ destructiveButtonTitle:nil
 
   if (!isCoverUploaded) {
     HUD.labelText = @"必须先上传菜谱封面";
+    HUD.detailsLabelText = nil;
     [HUD show:YES];
     [HUD hide:YES afterDelay:2.0];
     return;

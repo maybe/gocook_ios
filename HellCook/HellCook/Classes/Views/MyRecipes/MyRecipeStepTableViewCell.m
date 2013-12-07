@@ -7,7 +7,7 @@
 //
 
 #import "MyRecipeStepTableViewCell.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+ProgressView.h"
 #import "Recipe.h"
 
 
@@ -95,7 +95,7 @@
       selectImageButton = [[UIButton alloc]init];
       [selectImageButton setFrame:CGRectMake(195, 15, 110, 105)];
       [selectImageButton setBackgroundColor:[UIColor clearColor]];
-      [selectImageButton addTarget:[self viewController] action:@selector(onSelectImageButton:) forControlEvents:UIControlEventTouchUpInside];
+      [selectImageButton addTarget:[self viewController] action:@selector(onSelectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
       [self addSubview:selectImageButton];
 
 
@@ -171,18 +171,14 @@
 
   if ([[dictionary allKeys] containsObject:@"imageState"] && [dictionary[@"imageState"] intValue] == RecipeImage_UPLOADED)
   {
-    [selectButton setTitle:@"替换" forState:UIControlStateNormal];
-    if ([[dictionary allKeys] containsObject:@"tmpImageUrl"]) {
-      [upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:dictionary[@"tmpImageUrl"] withType:RecipeStepImageUrl]]
-                  placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"]];
-    } else {
-      [upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:dictionary[@"imageUrl"] withType:RecipeStepImageUrl]]
-                  placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"]];
-    }
-  } else if ([[dictionary allKeys] containsObject:@"imageState"] && [dictionary[@"imageState"] intValue] == RecipeImage_SELECTED) {
     if ([[dictionary allKeys] containsObject: @"pickRealImage"]) {
       [upImageView setImage:dictionary[@"pickRealImage"]];
-      [selectButton setTitle:@"上传" forState:UIControlStateNormal];
+    } else if ([[dictionary allKeys] containsObject:@"tmpImageUrl"]) {
+      [upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:dictionary[@"tmpImageUrl"] withType:RecipeStepImageUrl]]
+                  placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"] usingProgressView:nil];
+    } else {
+      [upImageView setImageWithURL:[NSURL URLWithString:[Common getUrl:dictionary[@"imageUrl"] withType:RecipeStepImageUrl]]
+                  placeholderImage:[UIImage imageNamed:@"Images/defaultUpload.png"] usingProgressView:nil];
     }
   } else {
     [upImageView setImage:defaultImage];

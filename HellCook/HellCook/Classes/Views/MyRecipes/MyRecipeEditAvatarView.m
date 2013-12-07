@@ -32,7 +32,7 @@
   selectImageButton = [[UIButton alloc]init];
   [selectImageButton setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
   [selectImageButton setBackgroundColor:[UIColor clearColor]];
-  [selectImageButton addTarget:[self viewController] action:@selector(onSelectImageButton) forControlEvents:UIControlEventTouchUpInside];
+  [selectImageButton addTarget:[self viewController] action:@selector(onSelectButton:) forControlEvents:UIControlEventTouchUpInside];
   [self addSubview:selectImageButton];
   
   selectButton = [[UIButton alloc]init];

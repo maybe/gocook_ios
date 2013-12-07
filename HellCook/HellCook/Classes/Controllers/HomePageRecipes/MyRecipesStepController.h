@@ -19,6 +19,7 @@
                                                       UITableViewDelegate,
                                                       MBProgressHUDDelegate,
                                                       UINavigationControllerDelegate,
+                                                      UIActionSheetDelegate,
                                                       UIImagePickerControllerDelegate>
 {
   UITableView* tableView;
@@ -28,6 +29,7 @@
   RecipeData* recipeData;
   BOOL isImagePickerDismiss;
   MBProgressHUD *HUD;
+  UIImage* selectStepImage;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

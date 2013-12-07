@@ -58,13 +58,18 @@
     recipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
   }
 
-  HUD = [[MBProgressHUD alloc] initWithView: self.view];
-  [self.view addSubview:HUD];
+  HUD = [[MBProgressHUD alloc] initWithView: self.navigationController.view];
+  [self.navigationController.view addSubview:HUD];
   HUD.mode = MBProgressHUDModeText;
   HUD.delegate = self;
 
   [self autoLayout];
   [super viewDidLoad];
+}
+
+- (void)dealloc
+{
+  [HUD removeFromSuperview];
 }
 
 - (void)viewWillAppear:(BOOL)animated

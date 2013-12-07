@@ -221,13 +221,18 @@
 #pragma mark - network
 -(void)buyGoods:(NSMutableDictionary*)data
 {
+  HUD.detailsLabelText = @"正在下单";
+  [HUD show:YES];
+
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
                        buyGoodsWithDict:data
                        completionHandler:^(NSMutableDictionary *resultDic){
                          [self buyGoodsCallBack:resultDic];
                        }
-                       errorHandler:^(NSError *error){}];
-  
+                       errorHandler:^(NSError *error){
+                         HUD.detailsLabelText = @"下单超时，请检查网络";
+                         [HUD hide:YES afterDelay:1.0];
+                       }];
 }
 
 -(void)buyGoodsCallBack:(NSMutableDictionary*) resultDic
