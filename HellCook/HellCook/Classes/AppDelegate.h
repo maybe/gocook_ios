@@ -13,6 +13,7 @@
 {
   NSTimer *connectionTimer; //timer对象
   BOOL done;
+  NSTimeInterval mainRefreshTime;
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -22,6 +23,7 @@
 @property (strong, nonatomic) UIImageView *startView;
 @property (nonatomic, retain) NSTimer *connectionTimer;
 @property BOOL done;
+@property NSTimeInterval mainRefreshTime;
 
 + (void)GeneralStyle;
 

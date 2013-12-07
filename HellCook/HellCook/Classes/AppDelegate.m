@@ -32,7 +32,7 @@
 @synthesize leftNavController = _leftNavController;
 @synthesize centerNavController = _centerNavController;
 @synthesize rightNavController = _rightNavController;
-@synthesize connectionTimer, done;
+@synthesize connectionTimer, done, mainRefreshTime;
 
 typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerController, UIGestureRecognizer * gesture);
 
@@ -208,7 +208,8 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
 
   // temp drop here
   [mainController getIOSMainData];
-
+  NSDate* cur_date = [NSDate date];
+  mainRefreshTime = [cur_date timeIntervalSince1970];
 }
 
 

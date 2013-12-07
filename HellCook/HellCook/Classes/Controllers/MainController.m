@@ -5,7 +5,7 @@
 #import "TopListController.h"
 #import "SearchController.h"
 #import "DBHandler.h"
-#import "WebViewController.h"
+#import "AppDelegate.h"
 
 @interface MainController ()
 
@@ -71,6 +71,14 @@
 
   NSInteger shoppingCount = [[DBHandler sharedInstance] getShoppingListCount];
   [rightNumLabel setText: [NSString stringWithFormat:@"%d", shoppingCount]];
+
+  NSDate* cur_date = [NSDate date];
+  NSTimeInterval cur_time = [cur_date timeIntervalSince1970];
+  NSTimeInterval refresh_time = [ApplicationDelegate mainRefreshTime];
+  if (cur_time - refresh_time > 3600.0) {
+    [ApplicationDelegate setMainRefreshTime: cur_time];
+    [self getIOSMainData];
+  }
 
   [super viewWillAppear:animated];
 }
