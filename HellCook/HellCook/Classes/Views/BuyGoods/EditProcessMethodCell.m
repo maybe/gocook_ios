@@ -69,6 +69,7 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
+  [confirmBtn setAssociativeObject:methodTextField.text forKey:@"content"];
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text

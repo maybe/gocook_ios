@@ -151,6 +151,7 @@
   if (buyNum == 0)
   {
     HUD.labelText = @"未选择买入物品！";
+    HUD.detailsLabelText = nil;
     [HUD show:YES];
     [HUD hide:YES afterDelay:2];
   }
@@ -221,7 +222,8 @@
 #pragma mark - network
 -(void)buyGoods:(NSMutableDictionary*)data
 {
-  HUD.detailsLabelText = @"正在下单";
+  HUD.labelText = @"正在下单";
+  HUD.detailsLabelText = nil;
   [HUD show:YES];
 
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
@@ -230,7 +232,8 @@
                          [self buyGoodsCallBack:resultDic];
                        }
                        errorHandler:^(NSError *error){
-                         HUD.detailsLabelText = @"下单超时，请检查网络";
+                         HUD.detailsLabelText = nil;
+                         HUD.labelText = @"下单超时，请检查网络";
                          [HUD hide:YES afterDelay:1.0];
                        }];
 }
@@ -243,6 +246,7 @@
   {
     content = [NSString stringWithFormat:@"下单成功，订单号%@",resultDic[@"order_id"]];
     HUD.detailsLabelText = content;
+    HUD.labelText = nil;
     [HUD show:YES];
     [HUD hide:YES afterDelay:2];
     isOrderSuccess = YES;
@@ -253,6 +257,7 @@
   {
     NSInteger errorCode = [[resultDic valueForKey:@"errorcode"] intValue];
     if (errorCode == GC_AuthAccountInvalid) {
+      [HUD hide:YES];
       LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
       m.callerClassName = NSStringFromClass([self class]);
       if (self.navigationController) {
@@ -260,7 +265,8 @@
       }
     } else {
       content = [NSString stringWithFormat:@"下单失败，错误代码%@",resultDic[@"errorcode"]];
-      HUD.detailsLabelText = content;
+      HUD.labelText = content;
+      HUD.detailsLabelText = nil;
       [HUD show:YES];
       [HUD hide:YES afterDelay:2];
     }

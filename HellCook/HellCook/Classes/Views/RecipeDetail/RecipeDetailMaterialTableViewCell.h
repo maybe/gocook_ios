@@ -11,7 +11,7 @@
 
 @interface RecipeDetailMaterialTableViewCell : RecipeDetailBaseTableViewCell{
   UILabel* mTitleLabel;
-  UILabel* mTemplateMaterialLabel;
+  // UILabel* mTemplateMaterialLabel;
   NSMutableArray* mLineArray;
   NSMutableArray* mMaterialLabelArray;
   NSMutableArray* mWeightLabelArray;
@@ -20,7 +20,7 @@
   CGFloat mTitleLabelHeight;
   
   CGFloat mMaterialTop;
-  CGFloat mMaterialOneHeight;
+  //CGFloat mMaterialOneHeight;
 }
 
 @property (nonatomic, retain) UILabel* mTitleLabel;

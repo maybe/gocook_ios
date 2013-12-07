@@ -23,7 +23,7 @@
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     self.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
     [self addSubview: [self mTitleLabel]];
-    mTemplateMaterialLabel = [self createMaterialLabel];
+    // mTemplateMaterialLabel = [self createMaterialLabel];
     
     mMaterialLabelArray = [[NSMutableArray alloc]init];
     mWeightLabelArray = [[NSMutableArray alloc]init];
@@ -90,12 +90,23 @@
   //计算用料高度
   for (int i = 0; i < mMaterialLabelArray.count; i++) {
     UILabel* label = [mMaterialLabelArray objectAtIndex:i];
-    CGSize materialLabelSize = [label.text sizeWithFont:label.font constrainedToSize:CGSizeMake(256, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+    UILabel* label2 = [mWeightLabelArray objectAtIndex:i];
+    CGSize materialLabelSize = [label.text sizeWithFont:label.font constrainedToSize:CGSizeMake(128, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize weightLabelSize = [label2.text sizeWithFont:label2.font constrainedToSize:CGSizeMake(128, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+    CGFloat label_height;
+    if (materialLabelSize.height >= weightLabelSize.height) {
+      [label setAssociativeObject:[NSNumber valueWithCGSize:materialLabelSize] forKey:@"size"];
+      [label2 setAssociativeObject:[NSNumber valueWithCGSize:materialLabelSize] forKey:@"size"];
+      label_height = materialLabelSize.height;
+    } else {
+      [label setAssociativeObject:[NSNumber valueWithCGSize:weightLabelSize] forKey:@"size"];
+      [label2 setAssociativeObject:[NSNumber valueWithCGSize:weightLabelSize] forKey:@"size"];
+      label_height = weightLabelSize.height;
+    }
+
     mCellHeight += 10;
-    mCellHeight += materialLabelSize.height;
+    mCellHeight += label_height;
     mCellHeight += 10;
-    
-    mMaterialOneHeight = materialLabelSize.height;
   }
   
   mCellHeight += 20;
@@ -107,22 +118,30 @@
   [mTitleLabel setFrame: titleRect];
   
   //计算用料高度
+  CGFloat material_top = mMaterialTop + 10;
   for (int i = 0; i < mMaterialLabelArray.count; i++) {
-    CGFloat y = mMaterialTop + (20 + mMaterialOneHeight) * i + 10;
+    CGFloat label_height = 30;
     UILabel* label1 = [mMaterialLabelArray objectAtIndex:i];
-    [label1 setFrame:CGRectMake(30, y, 128, mMaterialOneHeight)];
-    
     UILabel* label2 = [mWeightLabelArray objectAtIndex:i];
-    [label2 setFrame:CGRectMake(160, y, 130, mMaterialOneHeight)];
+
+    CGSize size = [[label1 associativeObjectForKey:@"size"] CGSizeValue];
+    label_height = size.height;
+
+    [label1 setFrame:CGRectMake(30, material_top, 128, label_height)];
+    
+    [label2 setFrame:CGRectMake(160, material_top, 128, label_height)];
     
     UIImageView* imageView = [mLineArray objectAtIndex:i];
-    [imageView setFrame:CGRectMake(30, y-10, 260, 1)];
-    
+    [imageView setFrame:CGRectMake(30, material_top - 10, 260, 1)];
+
+    material_top = material_top + label_height + 20;
+
     if (i == mMaterialLabelArray.count - 1) {
       UIImageView* lastImageView = [mLineArray objectAtIndex:i+1];
-      CGFloat last_y = mMaterialTop + (20 + mMaterialOneHeight) * (i + 1) + 10;
+      CGFloat last_y = material_top;
       [lastImageView setFrame:CGRectMake(30, last_y - 10, 260, 1)];
     }
+
   }
   
   CGRect selfRect = CGRectMake(0, 0, 320, mCellHeight);
