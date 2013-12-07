@@ -9,7 +9,6 @@
 #import "NewCouponsDetailViewController.h"
 #import "ZXingObjC.h"
 #import "RollMainViewController.h"
-#import "WebViewController.h"
 
 @interface NewCouponsDetailViewController ()
 
@@ -132,8 +131,8 @@
 -(void)showDetail:(UIButton*)btn
 {
   NSString *strUrl = [btn associativeObjectForKey:@"url"];
-  WebViewController *pViewController = [[WebViewController alloc] initWithNibName:@"WebView" withURL:strUrl bundle:nil];
-  [self.navigationController pushViewController:pViewController animated:YES];
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:strUrl]];
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
