@@ -165,7 +165,11 @@
                          authWithData:data AndRnd:rndString
                          completionHandler:^(NSMutableDictionary *resultDic) {
                             [self LoginCallBack:resultDic];}
-                          errorHandler:^(NSError *error) {}
+                          errorHandler:^(NSError *error) {
+                            HUD.labelText = @"登录超时";
+                            [HUD show:YES];
+                            [HUD hide:YES afterDelay:2];
+                          }
                          ];
 }
 

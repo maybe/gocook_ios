@@ -241,7 +241,7 @@
       
       [goBackBtn setFrame:CGRectMake(22, 40+contentSize.height+40, 276, 47)];
     }
-    else if ([resultDic[@"condition"] intValue] == 1)//1费用符合M6券
+    else if ([resultDic[@"condition"] intValue] == GC_Success)//1费用符合M6券
     {
       backgroundView.hidden = YES;
       contentLabel.hidden = NO;
@@ -270,14 +270,17 @@
       [HUD hide:YES afterDelay:2];
     }
   }
-  else if (result == 1)
+  else if (result == GC_Failed)
   {
-    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
-    m.callerClassName = NSStringFromClass([self class]);
-    HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
-    if (self.navigationController)
-    {
-      [self.navigationController presentViewController:nc animated:YES completion:nil];
+    NSInteger errorCode = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (errorCode == GC_AuthAccountInvalid) {
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+
+      if (self.navigationController) {
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+
+      }
     }
   }
 }
@@ -343,12 +346,15 @@
   }
   else if (result == 1)
   {
-    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
-    m.callerClassName = NSStringFromClass([self class]);
-    HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
-    if (self.navigationController)
-    {
-      [self.navigationController presentViewController:nc animated:YES completion:nil];
+    NSInteger errorCode = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (errorCode == GC_AuthAccountInvalid) {
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+
+      if (self.navigationController) {
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+
+      }
     }
   }
 }
@@ -376,7 +382,7 @@
     goBackBtn.hidden = NO;
     
     NSString *content = [[NSString alloc] init];
-    if ([resultDic[@"delay_rst"] intValue] == 0)//延期成功
+    if ([resultDic[@"delay_rst"] intValue] == GC_Success)//延期成功
     {
       NSString *strExpDay = [NSString stringWithString:(NSString*)resultDic[@"exp_day"]];
       NSRange range = [strExpDay rangeOfString:@" "];
@@ -397,14 +403,17 @@
     [contentLabel setText:content];
     [goBackBtn setFrame:CGRectMake(22, 40+contentSize.height+40, 276, 47)];
   }
-  else if (result == 1)
+  else if (result == GC_Failed)
   {
-    LoginController* m = [[LoginController alloc]initWithNibName:@"LoginView" bundle:nil];
-    m.callerClassName = NSStringFromClass([self class]);
-    HCNavigationController* nc = [[HCNavigationController alloc]initWithRootViewController:m];
-    if (self.navigationController)
-    {
-      [self.navigationController presentViewController:nc animated:YES completion:nil];
+    NSInteger errorCode = [[resultDic valueForKey:@"errorcode"] intValue];
+    if (errorCode == GC_AuthAccountInvalid) {
+      LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+      m.callerClassName = NSStringFromClass([self class]);
+
+      if (self.navigationController) {
+        [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+
+      }
     }
   }
 }
