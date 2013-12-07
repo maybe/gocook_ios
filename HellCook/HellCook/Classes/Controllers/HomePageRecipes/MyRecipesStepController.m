@@ -62,13 +62,18 @@
     recipeData = [[[User sharedInstance] recipe] getModifyRecipeData];
   }
 
-  HUD = [[MBProgressHUD alloc] initWithView: self.view];
-  [self.view addSubview:HUD];
+  HUD = [[MBProgressHUD alloc] initWithView: self.navigationController.view];
+  [self.navigationController.view addSubview:HUD];
   HUD.mode = MBProgressHUDModeText;
   HUD.delegate = self;
 
   [self autoLayout];
   [super viewDidLoad];
+}
+
+- (void)dealloc
+{
+  [HUD removeFromSuperview];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -178,18 +183,25 @@
 -(void) onSelectButtonClick:(id)sender
 {
   imagePickerButton = sender;
-  if ([[imagePickerButton titleForState:UIControlStateNormal] isEqualToString:@"+图片"]) {
-    [self loadImagePicker];
-  } else if([[imagePickerButton titleForState:UIControlStateNormal] isEqualToString:@"替换"]) {
-    [self loadImagePicker];
-  } else if([[imagePickerButton titleForState:UIControlStateNormal] isEqualToString:@"上传"]) {
-    [self uploadStepTmpFile];
-  }
+
+  UIActionSheet* actionSheet = [[UIActionSheet alloc]
+              initWithTitle:@"请选择文件来源"
+                   delegate:self
+          cancelButtonTitle:@"取消"
+     destructiveButtonTitle:nil
+          otherButtonTitles:@"照相机",@"本地相簿",nil];
+  [actionSheet setTag:1];
+  [actionSheet showInView:self.view];
 }
 
--(void) onSelectImageButton:(id)sender
-{
-    [self loadImagePicker];
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (actionSheet.tag == 1) {
+    if (buttonIndex == 0) {
+      [self loadCameraPicker];
+    } else if (buttonIndex == 1) {
+      [self loadImagePicker];
+    }
+  }
 }
 
 -(void) loadImagePicker
@@ -204,26 +216,34 @@
   
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary *)info
+-(void)loadCameraPicker {
+
+  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+  picker.delegate = self;
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
+    [picker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+  }
+
+  picker.allowsEditing = NO;
+  [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
   UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+  selectStepImage = image;
   isImagePickerDismiss = YES;
   [self dismissViewControllerAnimated:YES completion:nil];
 
-  MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)[self relatedCell:imagePickerButton];
-
-  NSIndexPath *indexPath = [tableView indexPathForCell: cell];
-  cellContentList[(NSUInteger)indexPath.row][@"pickRealImage"] = image;
-  cellContentList[(NSUInteger)indexPath.row][@"pickImage"] = (NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL];
-  cellContentList[(NSUInteger)indexPath.row][@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_SELECTED];
-
-  [cell setData:cellContentList[(NSUInteger)indexPath.row]];
+  [self uploadStepTmpFile];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
   isImagePickerDismiss = YES;
+  selectStepImage = nil;
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -234,9 +254,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)[self relatedCell:imagePickerButton];
   NSIndexPath *indexPath = [tableView indexPathForCell: cell];
   
-  UIImage* uploadImage = cell.upImageView.image;
-  
-  if (uploadImage!=cell.defaultImage) {
+  UIImage* uploadImage = selectStepImage;
+
+  if (uploadImage != cell.defaultImage) {
     pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploaStepTmp.png"];
     uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(600, 600) interpolationQuality:kCGInterpolationHigh];
     uploadImage = [uploadImage cropToSize:CGSizeMake(600, 600) usingMode:NYXCropModeTopCenter];
@@ -254,7 +274,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
                               [self UploadCallBack:resultDic withIndex:index];}
                             errorHandler:^(NSError *error) {}
                             ];
-
 }
 
 -(void)UploadCallBack:(NSMutableDictionary*)resultDic withIndex:(NSInteger)index
@@ -265,6 +284,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     cellContentList[(NSUInteger)index][@"imageUrl"] = resultDic[@"avatar"];
     cellContentList[(NSUInteger)index][@"tmpImageUrl"] = [NSString stringWithFormat: @"http://%@/images/tmp/%@", [[NetManager sharedInstance] host], resultDic[@"avatar"]];
     cellContentList[(NSUInteger)index][@"imageState"] = [NSString stringWithFormat:@"%d", RecipeImage_UPLOADED];
+    cellContentList[(NSUInteger)index][@"pickRealImage"] = selectStepImage;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     MyRecipeStepTableViewCell* cell = (MyRecipeStepTableViewCell*)[tableView cellForRowAtIndexPath: indexPath];
     [cell setData:cellContentList[(NSUInteger)indexPath.row]];
@@ -272,13 +292,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     HUD.labelText = @"上传成功";
     [HUD show:YES];
     [HUD hide:YES afterDelay:1];
-  }
-  else if (result == 1){
+  } else if (result == 1){
     HUD.labelText = @"上传失败";
     [HUD show:YES];
     [HUD hide:YES afterDelay:1];
   }
-  
 }
 
 #pragma mark - Delete One Step
@@ -363,16 +381,27 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 -(void)returnToPrev
 {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"ResignMyRecipeStepTextView" object:nil];
-  
-  [self setDataToRecipe];
-  [self.navigationController popViewControllerAnimated:YES];
+  BOOL result = [self setDataToRecipe];
+  if (result) {
+    [self.navigationController popViewControllerAnimated:YES];
+  } else {
+    HUD.labelText = @"请为图片输入步骤文字";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
+  }
 }
 
 -(void)onNext
 {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"ResignMyRecipeStepTextView" object:nil];
-  
-  [self setDataToRecipe];
+
+  BOOL result = [self setDataToRecipe];
+  if (!result) {
+    HUD.labelText = @"请为图片输入步骤文字";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
+    return;
+  }
 
   if (recipeData.recipe_steps.count > 0) {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnPushTipsController" object:nil];
@@ -384,7 +413,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 }
 
 #pragma mark - Set Data to Recipe
--(void)setDataToRecipe
+-(BOOL)setDataToRecipe
 {
 
   [recipeData.recipe_steps removeAllObjects];
@@ -413,8 +442,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
       
       [recipeData.recipe_steps addObject:pDic];
+    } else {
+      if (imageUrl && ![imageUrl isEqualToString:@""]) {
+        return NO;
+      }
     }
   }
+  return YES;
 }
 
 - (void)changeInputData:(NSString *)data WithIndex:(NSInteger)index

@@ -11,7 +11,6 @@
 typedef enum {
   RecipeImage_UPLOADED = 0,                      // 已上传
   RecipeImage_UNSELECTED = 1,                    // 未选择
-  RecipeImage_SELECTED = 2,                      // 已选择
 } RecipeImageStatus;
 
 

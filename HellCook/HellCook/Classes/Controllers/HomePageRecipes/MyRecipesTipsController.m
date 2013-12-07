@@ -68,12 +68,17 @@
     [tipsTextView setText:pRecipeData.tips];
   }
 
-  HUD = [[MBProgressHUD alloc] initWithView:self.view];
-  [self.view addSubview:HUD];
+  HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+  [self.navigationController.view addSubview:HUD];
   HUD.mode = MBProgressHUDModeCustomView;
   HUD.delegate = self;
   
   [super viewDidLoad];
+}
+
+- (void)dealloc
+{
+  [HUD removeFromSuperview];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -185,6 +190,9 @@
 {
   UIView* frView = [self.tableView findFirstResponder];
   if ([frView isKindOfClass:[UITextField class]] || [frView isKindOfClass:[SSTextView class]]) {
+    if ([frView isKindOfClass:[SSTextView class]]) {
+      frView = frView.superview;
+    }
     if (delta.height > 0) {
       CGPoint realOrigin = [frView convertPoint:frView.frame.origin toView:nil];
       if (realOrigin.y + frView.frame.size.height  > _screenHeight - delta.height) {
@@ -335,7 +343,11 @@
                           createRecipe: pUploadRecipeDic
                           completionHandler:^(NSMutableDictionary *resultDic) {
                             [self createCallBack:resultDic];}
-                          errorHandler:^(NSError *error) {}
+                          errorHandler:^(NSError *error) {
+                            HUD.labelText = @"发布超时，请检查网络";
+                            HUD.detailsLabelText = nil;
+                            [HUD hide:YES afterDelay:1.0];
+                          }
                           ];
 }
 
