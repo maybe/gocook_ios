@@ -589,12 +589,19 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   if (nameField.text.length!=0 && ![data[@"nickname"] isEqual:nameField.text])
   {
     [pBasicInfoDict setObject:nameField.text forKey:@"nickname"];
-  } else{
-    HUD.labelText = @"用户名不能为空";
-    HUD.detailsLabelText = nil;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:2];
-    return;
+  }
+  else
+  {
+    if (nameField.text.length == 0)
+    {
+      [mLoadingActivity stopAnimating];
+      HUD.labelText = @"用户名不能为空";
+      HUD.detailsLabelText = nil;
+      [HUD show:YES];
+      [HUD hide:YES afterDelay:2];
+      
+      return;
+    }
   }
 
   //年龄
@@ -641,7 +648,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [pBasicInfoDict setObject:cityField.text forKey:@"city"];
   }
   //简介
-  if (introTextView.text.length!=0 && ![data[@"intro"] isEqual:introTextView.text])
+  if (introTextView.text.length!=0 || ![data[@"intro"] isEqual:introTextView.text])
   {
     [pBasicInfoDict setObject:introTextView.text forKey:@"intro"];
   }
@@ -657,6 +664,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   else
   {
     waitCallBack--;
+    [mLoadingActivity stopAnimating];
     if (waitCallBack == 0) {
       HUD.labelText = @"个人信息无改变，不需保存";
       HUD.detailsLabelText = nil;

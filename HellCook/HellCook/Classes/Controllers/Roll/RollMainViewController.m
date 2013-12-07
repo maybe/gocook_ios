@@ -154,8 +154,11 @@
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
   NSLog(@"开始摇动手机");
-  AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-  AudioServicesPlaySystemSound(soundID);
+  if (bInRoll)
+  {
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    AudioServicesPlaySystemSound(soundID);
+  }
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
