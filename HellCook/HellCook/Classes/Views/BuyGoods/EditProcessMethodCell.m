@@ -92,6 +92,9 @@
 {
   UIView* frView = [[self relatedTable] findFirstResponder];
   if ([frView isKindOfClass:[UITextField class]] || [frView isKindOfClass:[SSTextView class]]) {
+    if ([frView isKindOfClass:[SSTextView class]]) {
+      frView = frView.superview;
+    }
     if (delta.height > 0) {
       CGPoint realOrigin = [frView convertPoint:frView.frame.origin toView:nil];
       if (realOrigin.y + frView.frame.size.height  > _screenHeight - delta.height) {

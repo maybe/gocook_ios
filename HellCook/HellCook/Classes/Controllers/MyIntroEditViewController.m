@@ -240,6 +240,8 @@
 
 -(void)Save
 {
+  [self.view endEditing:YES];
+
   [mLoadingActivity startAnimating];
 
   [self uploadAvatar];
@@ -560,6 +562,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
   UIView* frView = [self.myTableView findFirstResponder];
   if ([frView isKindOfClass:[UITextField class]] || [frView isKindOfClass:[SSTextView class]]) {
+    if ([frView isKindOfClass:[SSTextView class]]) {
+      frView = frView.superview;
+    }
     if (delta.height > 0) {
       CGPoint realOrigin = [frView convertPoint:frView.frame.origin toView:nil];
       if (realOrigin.y + frView.frame.size.height  > _screenHeight - delta.height) {
@@ -655,11 +660,21 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   
   if ([pBasicInfoDict count] > 0)
   {
+
+    HUD.labelText = @"修改中";
+    HUD.detailsLabelText = nil;
+    [HUD show:YES];
+
     self.netOperation = [[[NetManager sharedInstance] hellEngine]
                          uploadBasicInfoWithDict:pBasicInfoDict
                          completionHandler:^(NSMutableDictionary *resultDic) {
                            [self changeBasicInfoCallBack:resultDic];}
-                         errorHandler:^(NSError *error){}];
+                         errorHandler:^(NSError *error){
+                           HUD.labelText = @"提交超时，请检查网络";
+                           HUD.detailsLabelText = nil;
+                           [HUD show:YES];
+                           [HUD hide:YES afterDelay:2];
+                         }];
   }
   else
   {
