@@ -76,7 +76,14 @@
 {
   if (dict[@"avatar"]!=[NSNull null] && ![dict[@"avatar"] isEqual:@""])
   {
-    NSString* avatarUrl = [NSString stringWithFormat: @"http://%@/%@", [[NetManager sharedInstance] host], dict[@"avatar"]];
+    NSString* avatarUrl = nil;
+
+    if ([[dict[@"avatar"] substringToIndex:15] isEqualToString:@"images/avatars/"]) {
+      avatarUrl = [NSString stringWithFormat:@"http://%@/%@", [[NetManager sharedInstance] host], dict[@"avatar"]];
+    } else {
+      avatarUrl = [NSString stringWithFormat:@"http://%@/images/avatars/%@", [[NetManager sharedInstance] host], dict[@"avatar"]];
+    }
+
     [avataImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:defaultImage];
     //[bannerImageView setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:defaultImage options:0  andGaussianBlurWithBias:20];
     
