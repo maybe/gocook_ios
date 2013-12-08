@@ -87,6 +87,8 @@
   
   [self initLoadingView];
 
+  isAvatarChanged = NO;
+
   [self autoLayout];
 }
 
@@ -580,6 +582,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   [self dismissViewControllerAnimated:YES completion:nil];
   
   [headImageView setNewImage:image];
+
+  isAvatarChanged = YES;
 }
 
 #pragma mark - MBProgressHUD delegate
@@ -792,7 +796,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
   NSString  *pngPath;
   
   UIImage* uploadImage = headImageView.avataImageView.image;
-  if (uploadImage != headImageView.defaultImage)
+  if (isAvatarChanged)
   {
     pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/uploadtmp.png"];
     uploadImage = [uploadImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(100, 100) interpolationQuality:kCGInterpolationHigh];

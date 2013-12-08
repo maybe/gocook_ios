@@ -38,6 +38,8 @@
   BOOL isChanged;
   UIActivityIndicatorView* mLoadingActivity;
   int waitCallBack;
+
+  BOOL isAvatarChanged;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* myTableView;
