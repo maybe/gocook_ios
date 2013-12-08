@@ -384,14 +384,14 @@
 - (void)delayLotteryCallBack:(NSMutableDictionary*) resultDic
 {
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
-  if (result == 0)
+  if (result == GC_Success)
   {
     confirmBtn.hidden = YES;
     delayBtn.hidden = YES;
     goBackBtn.hidden = NO;
     
     NSString *content = [[NSString alloc] init];
-    if ([resultDic[@"delay_rst"] intValue] == GC_Success)//延期成功
+    if ([resultDic[@"delay_rst"] intValue] == 0)//延期成功
     {
       NSString *strExpDay = [NSString stringWithString:(NSString*)resultDic[@"exp_day"]];
       NSRange range = [strExpDay rangeOfString:@" "];
