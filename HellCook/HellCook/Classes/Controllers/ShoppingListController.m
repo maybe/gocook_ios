@@ -481,7 +481,7 @@
 - (void)emptyShoppingList:(id)sender
 {
   UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"确认清空吗？"
-                                                 message:@"1"
+                                                 message:@""
                                                 delegate:self
                                        cancelButtonTitle:@"取消"
                                        otherButtonTitles:@"确定",nil];
