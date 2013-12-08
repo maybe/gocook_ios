@@ -274,7 +274,8 @@
     }
 
     [self.myTableView reloadData];
-    self.tabBarController.navigationItem.title = [[resultDic valueForKey:@"result_user_info"] valueForKey:@"nickname"];
+    titleName = [[resultDic valueForKey:@"result_user_info"] valueForKey:@"nickname"];
+    self.tabBarController.navigationItem.title = titleName;
   }
   else if (result == GC_Failed)
   {
@@ -392,7 +393,8 @@
     if ([[dictionary allKeys] containsObject:@"nickname"]) {
       pMyInfo[@"nickname"] = dictionary[@"nickname"];
       pPicCell.nameLabel.text = dictionary[@"nickname"];
-      self.title = dictionary[@"nickname"];
+      titleName = dictionary[@"nickname"];
+      self.tabBarController.navigationItem.title = titleName;
     }
     if ([[dictionary allKeys] containsObject:@"intro"]) {
       pMyInfo[@"intro"] = dictionary[@"intro"];
