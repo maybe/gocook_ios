@@ -49,37 +49,37 @@
       self.sepLine3.transform = CGAffineTransformMakeRotation(M_PI_2);
      // [self.sepLine3 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
 
-      countLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(40, 0, 30, 64)];
+      countLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, 40, 64)];
       [self.countLabel1 setBackgroundColor: [UIColor clearColor]];
       [self.countLabel1 setTextAlignment:NSTextAlignmentCenter];
       [self.countLabel1 setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
       [self.countLabel1 setFont: [UIFont boldSystemFontOfSize:22]];
       
-      countLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(180, 0, 30, 64)];
+      countLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(170, 0, 40, 64)];
       countLabel2.backgroundColor = [UIColor clearColor];
       [self.countLabel2 setTextAlignment:NSTextAlignmentCenter];
       [self.countLabel2 setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
       [self.countLabel2 setFont: [UIFont boldSystemFontOfSize:22]];
 
-      countLabel3 = [[UILabel alloc]initWithFrame:CGRectMake(40, 64, 30, 64)];
+      countLabel3 = [[UILabel alloc]initWithFrame:CGRectMake(30, 64, 40, 64)];
       countLabel3.backgroundColor = [UIColor clearColor];
       [self.countLabel3 setTextAlignment:NSTextAlignmentCenter];
       [self.countLabel3 setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
       [self.countLabel3 setFont: [UIFont boldSystemFontOfSize:22]];
 
-      countLabel4 = [[UILabel alloc]initWithFrame:CGRectMake(180, 64, 30, 64)];
+      countLabel4 = [[UILabel alloc]initWithFrame:CGRectMake(170, 64, 40, 64)];
       countLabel4.backgroundColor = [UIColor clearColor];
       [self.countLabel4 setTextAlignment:NSTextAlignmentCenter];
       [self.countLabel4 setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
       [self.countLabel4 setFont: [UIFont boldSystemFontOfSize:22]];
 
-      countLabel5 = [[UILabel alloc]initWithFrame:CGRectMake(40, 128, 30, 64)];
+      countLabel5 = [[UILabel alloc]initWithFrame:CGRectMake(30, 128, 40, 64)];
       countLabel5.backgroundColor = [UIColor clearColor];
       [self.countLabel5 setTextAlignment:NSTextAlignmentCenter];
       [self.countLabel5 setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];
       [self.countLabel5 setFont: [UIFont boldSystemFontOfSize:22]];
 
-      countLabel6 = [[UILabel alloc]initWithFrame:CGRectMake(180, 128, 30, 64)];
+      countLabel6 = [[UILabel alloc]initWithFrame:CGRectMake(170, 128, 40, 64)];
       countLabel6.backgroundColor = [UIColor clearColor];
       [self.countLabel6 setTextAlignment:NSTextAlignmentCenter];
       [self.countLabel6 setTextColor:[UIColor colorWithRed:128.0f/255.0f green:128.0f/255.0f blue:128.0f/255.0f alpha:1.0f]];

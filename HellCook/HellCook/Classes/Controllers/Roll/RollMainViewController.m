@@ -241,7 +241,7 @@
       
       [goBackBtn setFrame:CGRectMake(22, 40+contentSize.height+40, 276, 47)];
     }
-    else if ([resultDic[@"condition"] intValue] == GC_Success)//1费用符合M6券
+    else if ([resultDic[@"condition"] intValue] == 1)//1费用符合M6券
     {
       backgroundView.hidden = YES;
       contentLabel.hidden = NO;
