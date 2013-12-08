@@ -204,12 +204,12 @@
   [labelBackgroundView setContentMode:UIViewContentModeScaleToFill];
   [self.view addSubview:labelBackgroundView];
   //methodLabel
-  methodLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 180, 280-_offset, 40)];
+  methodLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 180, 280-_offset-20, 40)];
   methodLabel.backgroundColor = [UIColor clearColor];
   methodLabel.font = [UIFont boldSystemFontOfSize:16];
   methodLabel.textColor = [UIColor colorWithRed:102.0/255.0 green:102.0/255.0 blue:102.0/255.0 alpha:1];
-  methodLabel.lineBreakMode = NSLineBreakByWordWrapping;
-  methodLabel.numberOfLines = 2;
+  //methodLabel.lineBreakMode = NSLineBreakByWordWrapping;
+   methodLabel.numberOfLines = 2;
   if ([dealMethodArray count] > 0){
     [methodLabel setText:[NSString stringWithFormat:@"%@",[dealMethodArray objectAtIndex:0]]];
   }

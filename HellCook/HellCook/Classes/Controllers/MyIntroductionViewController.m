@@ -386,6 +386,7 @@
     if ([[dictionary allKeys] containsObject:@"nickname"]) {
       pMyInfo[@"nickname"] = dictionary[@"nickname"];
       pPicCell.nameLabel.text = dictionary[@"nickname"];
+      self.title = dictionary[@"nickname"];
     }
     if ([[dictionary allKeys] containsObject:@"intro"]) {
       pMyInfo[@"intro"] = dictionary[@"intro"];
