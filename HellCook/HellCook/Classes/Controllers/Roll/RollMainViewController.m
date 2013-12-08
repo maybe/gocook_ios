@@ -26,6 +26,7 @@
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     bInRoll = TRUE;
+    bDelayToCoupon = FALSE;
     coupID = [NSString stringWithString:couponid];
     
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
@@ -123,8 +124,14 @@
 
 -(void)returnToPrev
 {
-//  [self resignFirstResponder];
-  [self.navigationController popViewControllerAnimated:YES];
+  if (bDelayToCoupon)
+  {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+  }
+  else
+  {
+    [self.navigationController popViewControllerAnimated:YES];
+  }
 }
 
 -(void)confirm

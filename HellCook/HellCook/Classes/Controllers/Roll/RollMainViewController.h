@@ -15,6 +15,7 @@
 {
   UIImageView* backgroundView;
   BOOL bInRoll;
+  BOOL bDelayToCoupon;//延期机会是否抽取到优惠券
   UILabel *contentLabel;
   UIButton *confirmBtn;
   UIButton *delayBtn;
