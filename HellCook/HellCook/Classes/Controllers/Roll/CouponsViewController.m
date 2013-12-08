@@ -339,9 +339,10 @@
       LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
       m.callerClassName = NSStringFromClass([self class]);
 
-      if (self.navigationController) {
+      if (self.mm_drawerController) {
         [self.mm_drawerController.navigationController pushViewController:m animated:YES];
-
+      } else {
+        [self.navigationController pushViewController:m animated:YES];
       }
     }
     // TODO: Other Error

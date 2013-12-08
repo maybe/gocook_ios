@@ -308,9 +308,12 @@
       LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
       m.callerClassName = NSStringFromClass([self class]);
 
-      if (self.navigationController) {
+      if (self.mm_drawerController) {
         [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+      } else {
+        [self.navigationController pushViewController:m animated:YES];
       }
+
     } else if (error_code == GC_AlreadyLikedRecipe) {
       HUD.labelText = @"你已经赞过了！";
       [HUD show:YES];
@@ -337,8 +340,10 @@
       LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
       m.callerClassName = NSStringFromClass([self class]);
 
-      if (self.navigationController) {
+      if (self.mm_drawerController) {
         [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+      } else {
+        [self.navigationController pushViewController:m animated:YES];
       }
     } else if (error_code == GC_NotLikedRecipe) {
       HUD.labelText = @"你还没有赞过！";
@@ -457,9 +462,10 @@
       LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
       m.callerClassName = NSStringFromClass([self class]);
 
-      if (self.navigationController) {
+      if (self.mm_drawerController) {
         [self.mm_drawerController.navigationController pushViewController:m animated:YES];
-
+      } else {
+        [self.navigationController pushViewController:m animated:YES];
       }
     }
   }
