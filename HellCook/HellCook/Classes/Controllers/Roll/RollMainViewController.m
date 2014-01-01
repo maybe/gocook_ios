@@ -26,8 +26,13 @@
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     bInRoll = TRUE;
-    bDelayToCoupon = FALSE;
     coupID = [NSString stringWithString:couponid];
+    if ([coupID isEqualToString:@"0"]) {
+      bDelayToCoupon = FALSE;
+    }
+    else{
+      bDelayToCoupon = TRUE;
+    }
     
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
@@ -328,7 +333,7 @@
       NSRange range = [strExpDay rangeOfString:@" "];
       strExpDay = [strExpDay substringToIndex:range.location];
       
-      NSString *temp = [NSString stringWithFormat:@"祝贺您，您获得价值 %.2f 的 %@，有效期至 %@。券号 %@ 适用门店 %@ \n %@", [dict[@"val"] floatValue],(NSString*)dict[@"name"],strExpDay,(NSString*)dict[@"coupon_id"],(NSString*)dict[@"stores"],(NSString*)dict[@"coupon_remark"]];
+      NSString *temp = [NSString stringWithFormat:@"祝贺您，您获得价值 %.2f 的 %@，有效期至 %@。券号 %@ 适用门店 %@ \n %@", [dict[@"val"] floatValue],(NSString*)dict[@"name"],strExpDay,(NSString*)dict[@"coupon"],(NSString*)dict[@"stores"],(NSString*)dict[@"coupon_remark"]];
       content = [content stringByAppendingString:temp];
       content = [content stringByAppendingString:@"\n\n"];
     }
