@@ -252,7 +252,7 @@
 }
 
 - (void)goSearch
-{
+{  
   if (![[searchBarView getSearchKeyword] isEqualToString:@""])
   {
     //[self.revealSideViewController setIsSwipeEnabled:NO];

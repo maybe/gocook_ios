@@ -172,6 +172,11 @@
 		BA6F2C1D1705DC9B00B2C7C7 /* HellEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C1C1705DC9B00B2C7C7 /* HellEngine.m */; };
 		BA6F2C201705DE9600B2C7C7 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F2C1F1705DE9600B2C7C7 /* NetManager.m */; };
 		BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA73C95416FE37D9008284D8 /* AccountView.xib */; };
+		BA75EA0A18701688008AC2C2 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA75EA0918701688008AC2C2 /* libWeChatSDK.a */; };
+		BA75EA0F18701932008AC2C2 /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EA0D18701932008AC2C2 /* ShareController.m */; };
+		BA75EA1218701C12008AC2C2 /* ShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA75EA1118701C12008AC2C2 /* ShareView.xib */; };
+		BA75EA161871DF61008AC2C2 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA75EA151871DF61008AC2C2 /* libWeiboSDK.a */; };
+		BA75EA181871DF95008AC2C2 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BA75EA171871DF95008AC2C2 /* WeiboSDK.bundle */; };
 		BA79118F1710786500BC77C9 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118E1710786500BC77C9 /* Recipe.m */; };
 		BA7CC61C17AD5BB900A6C8AE /* MyRecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */; };
 		BA7CC61F17AD5BE700A6C8AE /* MyRecipesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA7CC61E17AD5BE600A6C8AE /* MyRecipesView.xib */; };
@@ -750,6 +755,15 @@
 		BA6F2C1E1705DE9600B2C7C7 /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetManager.h; path = Classes/NetWork/NetManager.h; sourceTree = "<group>"; };
 		BA6F2C1F1705DE9600B2C7C7 /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetManager.m; path = Classes/NetWork/NetManager.m; sourceTree = "<group>"; };
 		BA73C95416FE37D9008284D8 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
+		BA75EA061870163D008AC2C2 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		BA75EA071870163D008AC2C2 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		BA75EA0918701688008AC2C2 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = HellCook/Libs/WeiChat/libWeChatSDK.a; sourceTree = "<group>"; };
+		BA75EA0C18701932008AC2C2 /* ShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShareController.h; path = Classes/Controllers/Share/ShareController.h; sourceTree = "<group>"; };
+		BA75EA0D18701932008AC2C2 /* ShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShareController.m; path = Classes/Controllers/Share/ShareController.m; sourceTree = "<group>"; };
+		BA75EA1118701C12008AC2C2 /* ShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareView.xib; sourceTree = "<group>"; };
+		BA75EA141871DF4F008AC2C2 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeiboSDK.h; path = Libs/WeiBo/WeiboSDK.h; sourceTree = "<group>"; };
+		BA75EA151871DF61008AC2C2 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeiboSDK.a; path = HellCook/Libs/WeiBo/libWeiboSDK.a; sourceTree = "<group>"; };
+		BA75EA171871DF95008AC2C2 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = WeiboSDK.bundle; path = Libs/WeiBo/WeiboSDK.bundle; sourceTree = "<group>"; };
 		BA79118D1710786500BC77C9 /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recipe.h; path = Classes/Models/Recipe.h; sourceTree = "<group>"; };
 		BA79118E1710786500BC77C9 /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recipe.m; path = Classes/Models/Recipe.m; sourceTree = "<group>"; };
 		BA7CC60917AD03A300A6C8AE /* MyCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCollectionView.xib; sourceTree = "<group>"; };
@@ -863,6 +877,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA75EA161871DF61008AC2C2 /* libWeiboSDK.a in Frameworks */,
+				BA75EA0A18701688008AC2C2 /* libWeChatSDK.a in Frameworks */,
 				5EA66DF3182F32C400AB6322 /* AudioToolbox.framework in Frameworks */,
 				BA1157E2182FBD9E00EED238 /* libZXingObjC-iOS.a in Frameworks */,
 				BACCF88E16ED0CFB0094F1E5 /* libiconv.dylib in Frameworks */,
@@ -1046,8 +1062,8 @@
 				65809D32FA3D234BCFBEDD79 /* MainTopTableViewCell.m */,
 				65809FAF8932AFE7872BF760 /* MainTopTableViewCell.h */,
 				658099E450638994305DB057 /* SearchTableViewCell.h */,
-				65809D47873547AB59E8DACE /* SearchBarView.m */,
 				65809158A65AA7F54C19730E /* SearchBarView.h */,
+				65809D47873547AB59E8DACE /* SearchBarView.m */,
 				65809AA205CF14C4BC733756 /* TopListTableViewCell.m */,
 				658094784DFB11C219085E23 /* SearchTableViewCell.m */,
 				65809C4F113BFAFCB1551762 /* TopListTableViewCell.h */,
@@ -1130,6 +1146,7 @@
 		BA02634016D756D500298803 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BA75EA0B1870184A008AC2C2 /* Share */,
 				BA6069B11709EE8C0060C251 /* File */,
 				BA02635316D75E5800298803 /* Common */,
 				BAEFA66416E652C20044B36C /* Controller */,
@@ -1145,6 +1162,7 @@
 		BA02634116D756EB00298803 /* Resoueces */ = {
 			isa = PBXGroup;
 			children = (
+				BA75EA171871DF95008AC2C2 /* WeiboSDK.bundle */,
 				5E03A2F7184E1D8D00E4E293 /* yaoyiyao.wav */,
 				BA73C95316FE37D9008284D8 /* NIB */,
 				BA3F5E6616FA297800493260 /* Images */,
@@ -1155,6 +1173,8 @@
 		BA02634216D7570400298803 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				BA75EA131871DF43008AC2C2 /* WeiBo */,
+				BA75EA041870163D008AC2C2 /* WeiChat */,
 				BA1156FE182FB66200EED238 /* ZXingObjC */,
 				BA11527F182F8AB100EED238 /* NYXImagesKit */,
 				BAA892C51820250B006A89BB /* MMDrawerController */,
@@ -1242,6 +1262,8 @@
 		BA0DC16916D4C3A500E4CED9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA75EA151871DF61008AC2C2 /* libWeiboSDK.a */,
+				BA75EA0918701688008AC2C2 /* libWeChatSDK.a */,
 				BA1157E1182FBD9E00EED238 /* libZXingObjC-iOS.a */,
 				5EA66DF2182F32C400AB6322 /* AudioToolbox.framework */,
 				BA115235182F82BB00EED238 /* CoreVideo.framework */,
@@ -1685,6 +1707,7 @@
 		BA73C95316FE37D9008284D8 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
+				BA75EA1118701C12008AC2C2 /* ShareView.xib */,
 				5EA66E131841ABA200AB6322 /* ProcessMethodsView.xib */,
 				5EA66E03183757CE00AB6322 /* NewCouponsDetailView.xib */,
 				5EA66DF91833ACD100AB6322 /* NewCouponsView.xib */,
@@ -1721,6 +1744,33 @@
 			);
 			name = NIB;
 			path = Resources/NIB;
+			sourceTree = "<group>";
+		};
+		BA75EA041870163D008AC2C2 /* WeiChat */ = {
+			isa = PBXGroup;
+			children = (
+				BA75EA061870163D008AC2C2 /* WXApi.h */,
+				BA75EA071870163D008AC2C2 /* WXApiObject.h */,
+			);
+			name = WeiChat;
+			path = Libs/WeiChat;
+			sourceTree = "<group>";
+		};
+		BA75EA0B1870184A008AC2C2 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				BA75EA0C18701932008AC2C2 /* ShareController.h */,
+				BA75EA0D18701932008AC2C2 /* ShareController.m */,
+			);
+			name = Share;
+			sourceTree = "<group>";
+		};
+		BA75EA131871DF43008AC2C2 /* WeiBo */ = {
+			isa = PBXGroup;
+			children = (
+				BA75EA141871DF4F008AC2C2 /* WeiboSDK.h */,
+			);
+			name = WeiBo;
 			sourceTree = "<group>";
 		};
 		BA8705C716FF5AF600BA7039 /* Custom */ = {
@@ -2008,6 +2058,7 @@
 				BA829BE51704880100B0341A /* MainView.xib in Resources */,
 				BA829BEA1704995300B0341A /* LoginView.xib in Resources */,
 				BA6069AD1708E3DA0060C251 /* DebugOption.xib in Resources */,
+				BA75EA181871DF95008AC2C2 /* WeiboSDK.bundle in Resources */,
 				BA81CFA018281AFA001467B1 /* Icon-60@2x.png in Resources */,
 				BAE38C841736997500936382 /* TopListView.xib in Resources */,
 				5EA66E04183757CE00AB6322 /* NewCouponsDetailView.xib in Resources */,
@@ -2033,6 +2084,7 @@
 				5EF9F41F17D47E6A005ABA82 /* MaterialSearchBuyView.xib in Resources */,
 				5EF9F42C17D6DABA005ABA82 /* SearchGoodsView.xib in Resources */,
 				5EF9F45517D855E1005ABA82 /* GoodsDetailView.xib in Resources */,
+				BA75EA1218701C12008AC2C2 /* ShareView.xib in Resources */,
 				5EF9F45C17D8A82C005ABA82 /* BuyView.xib in Resources */,
 				5E001D7A17E2AD5C00BDAC62 /* HistoryDealView.xib in Resources */,
 				5E001D8417E3082700BDAC62 /* DealDetailView.xib in Resources */,
@@ -2160,6 +2212,7 @@
 				658095F3299CFD3EA1F98A79 /* MyFollowTableViewCell.m in Sources */,
 				5EA66E171841AEF400AB6322 /* ProcessMethodCell.m in Sources */,
 				658098EDE0EE4D3FF3A9B19D /* RegisterAvatarView.m in Sources */,
+				BA75EA0F18701932008AC2C2 /* ShareController.m in Sources */,
 				BAA892D818202AB1006A89BB /* MMExampleDrawerVisualStateManager.m in Sources */,
 				65809C6D6905BE2BD5956A43 /* SearchBarView.m in Sources */,
 				65809B0E98D0607A94434404 /* TopListTableViewCell.m in Sources */,
@@ -2293,7 +2346,12 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "HellCook/HellCook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "HellCook/Libs/ZXingObjC/universal/**";
+				LIBRARY_SEARCH_PATHS = (
+					"HellCook/Libs/ZXingObjC/universal/**",
+					/Users/panda/Develop/gocook_ios/HellCook/HellCook/Libs/WeiChat,
+					/Users/panda/Develop/gocook_ios/HellCook/HellCook/Libs/WeiBo,
+				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "D23C6DF1-148F-45F6-8682-BD04D398615C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D23C6DF1-148F-45F6-8682-BD04D398615C";
@@ -2317,7 +2375,12 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "HellCook/HellCook-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "HellCook/Libs/ZXingObjC/universal/**";
+				LIBRARY_SEARCH_PATHS = (
+					"HellCook/Libs/ZXingObjC/universal/**",
+					/Users/panda/Develop/gocook_ios/HellCook/HellCook/Libs/WeiChat,
+					/Users/panda/Develop/gocook_ios/HellCook/HellCook/Libs/WeiBo,
+				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "D23C6DF1-148F-45F6-8682-BD04D398615C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D23C6DF1-148F-45F6-8682-BD04D398615C";

@@ -20,6 +20,9 @@
 #import "HCDrawerController.h"
 #import "MMExampleDrawerVisualStateManager.h"
 #import "RootNavigationController.h"
+#import "WXApi.h"
+#import "WeiboSDK.h"
+#import "ShareController.h"
 
 @interface AppDelegate ()
 @property (nonatomic,strong) HCDrawerController * drawerController;
@@ -33,6 +36,7 @@
 @synthesize centerNavController = _centerNavController;
 @synthesize rightNavController = _rightNavController;
 @synthesize connectionTimer, done, mainRefreshTime;
+@synthesize shareController;
 
 typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerController, UIGestureRecognizer * gesture);
 
@@ -99,6 +103,12 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
   }
   [self.window setRootViewController: rootNC];
   
+  //share
+  self.shareController = [[ShareController alloc]initWithNibName:@"ShareView" bundle:nil];
+  [WXApi registerApp:wAppKey];
+  [WeiboSDK enableDebugMode:YES];
+  [WeiboSDK registerApp:kAppKey];
+  
   self.window.backgroundColor = [UIColor blackColor];
   [self.window makeKeyAndVisible];
   
@@ -109,7 +119,7 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
   [User sharedInstance];
 
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-
+    
   return YES;
 }
 
@@ -131,6 +141,30 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+  NSString *string =[url absoluteString];
+  if ([string hasPrefix:kAppKey]) {
+    return [ WeiboSDK handleOpenURL:url delegate:self.shareController];
+  }else if ([string hasPrefix:wAppKey]){
+    return [WXApi handleOpenURL:url delegate:self.shareController];
+  }else{
+    return NO;
+  }
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+  NSString *string =[url absoluteString];
+  if ([string hasPrefix:kAppKey]) {
+    return [ WeiboSDK handleOpenURL:url delegate:self.shareController];
+  }else if ([string hasPrefix:wAppKey]){
+    return [WXApi handleOpenURL:url delegate:self.shareController];
+  }else{
+    return NO;
+  }
 }
 
 #pragma mark  general style
@@ -215,6 +249,15 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
   mainRefreshTime = [cur_date timeIntervalSince1970];
 }
 
+- (void)showShareView
+{
+  [self.shareController showView: [self.window rootViewController].view];
+}
+
+- (void)hideShareView
+{
+  [self.shareController hideView];
+}
 
 -(void)timerFired:(NSTimer *)timer{
   done=YES;

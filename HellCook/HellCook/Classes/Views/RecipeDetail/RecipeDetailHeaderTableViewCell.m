@@ -50,11 +50,17 @@
     [authorLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
     [authorLabel setTextAlignment:NSTextAlignmentRight];
     authorLabel.textColor = [UIColor colorWithRed:108.0f/255.0f green:146.0f/255.0f blue:75.0f/255.0f alpha:1];
-
+    
+    shareButton = [[UIButton alloc]initWithFrame:CGRectMake(268, 164, 38, 30)];
+    UIImage *shareButtonBg = [UIImage imageNamed:@"Images/recipe_share.png"];
+    [shareButton setBackgroundImage:shareButtonBg forState:UIControlStateNormal];
+    [shareButton addTarget:nil action:@selector(onClickShare:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self addSubview: [self collectButton]];
     [self addSubview: [self buyButton]];
     [self addSubview:authorLabel];
     [self addSubview:authorButton];
+    [self addSubview:shareButton];
 
     UIView *backView = [[UIView alloc] initWithFrame:self.frame];
     backView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];

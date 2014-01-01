@@ -22,6 +22,8 @@
   UIImageView* imageView;
   UIButton* authorButton;
   UILabel * authorLabel;
+  
+  UIButton* shareButton;
 
   CGFloat mTitleLabelTop;
   CGFloat mIntroLabelTop;
