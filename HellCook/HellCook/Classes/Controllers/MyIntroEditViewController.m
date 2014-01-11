@@ -602,8 +602,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
   UIView* frView = [self.myTableView findFirstResponder];
   if ([frView isKindOfClass:[UITextField class]] || [frView isKindOfClass:[SSTextView class]]) {
-    if ([frView isKindOfClass:[SSTextView class]]) {
-      frView = frView.superview;
+    if (HCSystemVersionGreaterOrEqualThan(7.0)) {
+      if ([frView isKindOfClass:[SSTextView class]]) {
+        frView = frView.superview;
+      }
     }
     if (delta.height > 0) {
       CGPoint realOrigin = [frView convertPoint:frView.frame.origin toView:nil];

@@ -21,6 +21,8 @@
   UILabel *processLabel;
   
   UIImageView* backgroundView;
+
+  UIButton* closeButton;
   
   NSString *keyword;
 }
@@ -34,6 +36,8 @@
 @property (nonatomic,retain) UILabel *amountLabel;
 @property (nonatomic,retain) UILabel *priceLabel;
 @property (nonatomic,retain) UILabel *processLabel;
+@property (nonatomic,retain) UIButton* closeButton;
+
 
 - (void)setData:(NSMutableDictionary*)dict withRow:(NSInteger)row;
 

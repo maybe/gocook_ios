@@ -185,7 +185,7 @@
   CGRect titleRect = CGRectMake(32, mTitleLabelTop, 256, mTitleLabelHeight);
   [titleLabel setFrame: titleRect];
 
-  CGRect likeRect = CGRectMake(30, mLikeButtonTop - 12, 36, 36);
+  CGRect likeRect = CGRectMake(30, mLikeButtonTop - 12, 75, 36);
   [likeButton setFrame: likeRect];
   [unlikeButton setFrame: likeRect];
 

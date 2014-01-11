@@ -10,7 +10,7 @@
 #import "MBProgressHUD.h"
 
 @class MBProgressHUD;
-@interface MaterialSearchBuyViewController : UIViewController<MBProgressHUDDelegate>
+@interface MaterialSearchBuyViewController : UIViewController<MBProgressHUDDelegate, UIAlertViewDelegate>
 {
   UITableView *myTableView;
   NSMutableArray *unslashMaterialArray;

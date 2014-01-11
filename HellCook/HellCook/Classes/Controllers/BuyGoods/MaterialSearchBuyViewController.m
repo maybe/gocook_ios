@@ -64,6 +64,8 @@
   HUD.mode = MBProgressHUDModeText;
   HUD.delegate = self;
 
+  [self resetTableHeader];
+
   [self autoLayout];
   [super viewDidLoad];
 }
@@ -92,6 +94,60 @@
   [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
 }
 
+- (void)resetTableHeader {
+  CGRect frame = self.myTableView.tableHeaderView.frame;
+  frame.size.height = 44;
+  self.myTableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
+  CGFloat tableWidth = self.myTableView.frame.size.width;
+
+  UIButton *uploadButton = [[UIButton alloc] initWithFrame:CGRectMake(tableWidth / 2 - 106, 8, 212, 28)];
+  UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/AddOtherMaterialNormal.png"];
+  [uploadButton setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+
+  UIImage *buttonBackgroundImage2 = [UIImage imageNamed:@"Images/AddOtherMaterialHighLight.png"];
+  [uploadButton setBackgroundImage:buttonBackgroundImage2 forState:UIControlStateHighlighted];
+
+  [uploadButton addTarget:self action:@selector(addOtherMaterial) forControlEvents:UIControlEventTouchUpInside];
+
+  [self.myTableView.tableHeaderView addSubview:uploadButton];
+
+  UIImage *dotImage = [UIImage imageNamed:@"Images/homeHeaderSeperator.png"];
+  UIImageView *dotImageView = [[UIImageView alloc] initWithImage:dotImage];
+  [dotImageView setFrame:CGRectMake(0, 43, 320, 1)];
+
+  [self.myTableView.tableHeaderView addSubview:dotImageView];
+}
+
+-(void)addOtherMaterial
+{
+  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"输入食材名称：" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
+  alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+  [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  if (buttonIndex == 0) {
+    // cancel
+  } else if (buttonIndex == 1){
+    UITextField *tf = [alertView textFieldAtIndex:0];
+    NSString* materialStr = [tf.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (![materialStr isEqualToString:@""]) {
+      NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"",@"weight",@"unslash",@"select",@"NotBuy",@"state",materialStr,@"material",nil];
+      [unslashMaterialArray insertObject:dic atIndex:0];
+      [myTableView reloadData];
+    }
+  }
+}
+
+-(void)removeMaterial:(id)sender
+{
+  UIButton *button = sender;
+  NSIndexPath *indexPath = [[self relatedTable:[self relatedCell:button]] indexPathForCell:[self relatedCell:button]];
+  [unslashMaterialArray removeObjectAtIndex: indexPath.row];
+  [myTableView reloadData];
+}
+
 -(void)returnToPrev
 {
 //  NSArray *viewControllers = [NSArray arrayWithArray:self.navigationController.viewControllers];
@@ -115,7 +171,7 @@
 
 -(void)confirm:(NSNotification *)notification
 {
-  NSMutableDictionary *dict = (NSMutableDictionary*)notification.object;
+  NSDictionary *dict = (NSDictionary*)notification.object;
   [[unslashMaterialArray objectAtIndex:selectedRowOfCell] addEntriesFromDictionary:dict];
   [[unslashMaterialArray objectAtIndex:selectedRowOfCell] setObject:@"Buy" forKey:@"state"];
   
@@ -285,5 +341,30 @@
 
 }
 
+- (UITableView *)relatedTable:(UIView *)view
+{
+  if ([view.superview isKindOfClass:[UITableView class]])
+    return (UITableView *)view.superview;
+  else if ([view.superview.superview isKindOfClass:[UITableView class]])
+    return (UITableView *)view.superview.superview;
+  else
+  {
+    NSAssert(NO, @"UITableView shall always be found.");
+    return nil;
+  }
+}
+
+- (UITableViewCell *)relatedCell:(UIView *)view
+{
+  if ([view.superview isKindOfClass:[UITableViewCell class]])
+    return (UITableViewCell *)view.superview;
+  else if ([view.superview.superview isKindOfClass:[UITableViewCell class]])
+    return (UITableViewCell *)view.superview.superview;
+  else
+  {
+    NSAssert(NO, @"UITableViewCell shall always be found.");
+    return nil;
+  }
+}
 
 @end

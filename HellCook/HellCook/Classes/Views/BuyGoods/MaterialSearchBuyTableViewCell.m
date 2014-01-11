@@ -10,7 +10,7 @@
 #import "Common.h"
 
 @implementation MaterialSearchBuyTableViewCell
-@synthesize nameLabel,stateLabel,goBuyBtn,backgroundView,goodsLabel,specLabel,amountLabel,priceLabel,processLabel;
+@synthesize nameLabel,stateLabel,goBuyBtn,backgroundView,goodsLabel,specLabel,amountLabel,priceLabel,processLabel,closeButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -81,6 +81,15 @@
     [processLabel setTextColor:[UIColor colorWithRed:108.0/255.0 green:108.0/255.0 blue:108.0/255.0 alpha:1.0]];
     [processLabel setHidden:YES];
 
+    closeButton = [[UIButton alloc] initWithFrame:CGRectMake(238, 15, 27, 27)];
+    UIImage *closeButtonBackgroundImage = [UIImage imageNamed:@"Images/CloseMaterialSearchBuyNormal.png"];
+    [closeButton setBackgroundImage:closeButtonBackgroundImage forState:UIControlStateNormal];
+
+    UIImage *closeButtonBackgroundImage2 = [UIImage imageNamed:@"Images/CloseMaterialSearchBuyHighLight.png"];
+    [closeButton setBackgroundImage:closeButtonBackgroundImage2 forState:UIControlStateHighlighted];
+
+    [closeButton addTarget:nil action:@selector(removeMaterial:) forControlEvents:UIControlEventTouchUpInside];
+
     [self addSubview:nameLabel];
     [self addSubview:stateLabel];
     [self addSubview:goBuyBtn];
@@ -90,6 +99,8 @@
     [self addSubview:amountLabel];
     [self addSubview:priceLabel];
     [self addSubview:processLabel];
+
+    [self addSubview:closeButton];
   }
   return self;
 }

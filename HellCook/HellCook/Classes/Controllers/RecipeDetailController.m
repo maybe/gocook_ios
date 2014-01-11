@@ -207,9 +207,7 @@
         [ApplicationDelegate.drawerController toggleDrawerSide:MMDrawerSideRight animated:YES completion:nil];
       }];
     }
-
   }
-
 }
 
 - (void)addToShoppingList
