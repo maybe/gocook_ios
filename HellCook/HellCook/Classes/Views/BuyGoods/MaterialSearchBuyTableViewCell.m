@@ -129,6 +129,8 @@
     [processLabel setHidden:YES];
 
     [backgroundView setFrame: CGRectMake(10, 10, 280 - 20, 120)];
+
+    closeButton.hidden = YES;
   }
   else
   {
@@ -170,6 +172,8 @@
     [processLabel setText:[NSString stringWithFormat:@"加工方式：%@",dict[@"Remark"]]];
     
     [backgroundView setFrame:CGRectMake(10, 10, 280 - 20, 244)];
+
+    closeButton.hidden = NO;
   }
 }
 

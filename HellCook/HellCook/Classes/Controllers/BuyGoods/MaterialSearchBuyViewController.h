@@ -19,6 +19,8 @@
   MBProgressHUD *HUD;
 
   BOOL isOrderSuccess;
+
+  NSInteger removeCellIndex;
 }
 
 @property (nonatomic,retain) IBOutlet UITableView *myTableView;

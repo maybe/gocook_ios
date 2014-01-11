@@ -24,6 +24,7 @@
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     selectedRowOfCell = -1;
+    removeCellIndex = -1;
     unslashMaterialArray = [[NSMutableArray alloc] init];
     for (int i=0; i<[data count]; i++)
     {
@@ -122,6 +123,7 @@
 {
   UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"输入食材名称：" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
   alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+  [alert setAssociativeObject:@"1" forKey:@"title"];
   [alert show];
 }
 
@@ -130,13 +132,20 @@
   if (buttonIndex == 0) {
     // cancel
   } else if (buttonIndex == 1){
-    UITextField *tf = [alertView textFieldAtIndex:0];
-    NSString* materialStr = [tf.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (![materialStr isEqualToString:@""]) {
-      NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"",@"weight",@"unslash",@"select",@"NotBuy",@"state",materialStr,@"material",nil];
-      [unslashMaterialArray insertObject:dic atIndex:0];
-      [myTableView reloadData];
+    if ([[alertView associativeObjectForKey:@"title"] isEqualToString:@"1"]) {
+      UITextField *tf = [alertView textFieldAtIndex:0];
+      NSString* materialStr = [tf.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+      if (![materialStr isEqualToString:@""]) {
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"",@"weight",@"unslash",@"select",@"NotBuy",@"state",materialStr,@"material",nil];
+        [unslashMaterialArray insertObject:dic atIndex:0];
+        [myTableView reloadData];
+      }
     }
+    else {
+      [self realRemoveMaterial];
+    }
+
+
   }
 }
 
@@ -144,7 +153,19 @@
 {
   UIButton *button = sender;
   NSIndexPath *indexPath = [[self relatedTable:[self relatedCell:button]] indexPathForCell:[self relatedCell:button]];
-  [unslashMaterialArray removeObjectAtIndex: indexPath.row];
+  removeCellIndex = indexPath.row;
+
+  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"真的要清除本食材购买信息吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
+  [alert setAssociativeObject:@"2" forKey:@"title"];
+  [alert show];
+}
+
+-(void)realRemoveMaterial
+{
+  NSMutableDictionary* origin_dic = [unslashMaterialArray objectAtIndex:removeCellIndex];
+  NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:origin_dic[@"weight"],@"weight",origin_dic[@"select"],@"select",@"NotBuy",@"state",origin_dic[@"material"],@"material",nil];
+  [unslashMaterialArray removeObject:origin_dic];
+  [unslashMaterialArray insertObject:dic atIndex:removeCellIndex];
   [myTableView reloadData];
 }
 
