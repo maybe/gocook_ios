@@ -11,7 +11,7 @@
 #import "NetManager.h"
 
 @implementation RecipeDetailHeaderTableViewCell
-@synthesize titleLabel,imageView,buyButton,collectButton,introLabel,authorButton,authorLabel,likeButton,unlikeButton,likeLabel;
+@synthesize titleLabel,imageView,collectButton,introLabel,authorButton,authorLabel,likeButton,unlikeButton,likeLabel,collectImageButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -57,7 +57,7 @@
     [shareButton addTarget:nil action:@selector(onClickShare:) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview: [self collectButton]];
-    [self addSubview: [self buyButton]];
+    [self addSubview:[self collectImageButton]];
     [self addSubview:authorLabel];
     [self addSubview:authorButton];
     [self addSubview:shareButton];
@@ -99,32 +99,25 @@
   return introLabel;
 }
 
-- (UIButton*)buyButton
+- (UIButton*)collectImageButton
 {
-  if (!buyButton) {
-    buyButton = [[UIButton alloc]initWithFrame:CGRectMake(180, 100, 120, 34)];
-    [buyButton setTitle:@"+ 购买清单" forState:UIControlStateNormal];
-    [buyButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/BuyButton.png"];
-    UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    [buyButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-
-    [buyButton addTarget:nil action:@selector(addToShoppingList) forControlEvents:UIControlEventTouchUpInside];
+  if (!collectImageButton) {
+    collectImageButton = [[UIButton alloc]initWithFrame:CGRectMake(215, 100, 20, 20)];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/CollectEmpty.png"];
+    [collectImageButton setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+    [collectImageButton addTarget:nil action:@selector(collectRecipe:) forControlEvents:UIControlEventTouchUpInside];
   }
 
-  return buyButton;
+  return collectImageButton;
 }
 
 - (UIButton*)collectButton
 {
   if (!collectButton) {
     collectButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 100, 120, 34)];
-    [collectButton setTitle:@"未收藏" forState:UIControlStateNormal];
-    [collectButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/CollectButton.png"];
-    UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    [collectButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-
+    [collectButton setTitle:@"收藏" forState:UIControlStateNormal];
+    [collectButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [collectButton setTitleColor:[UIColor colorWithRed:108.0f/255.0f green:146.0f/255.0f blue:75.0f/255.0f alpha:1] forState:UIControlStateNormal];
     [collectButton addTarget:nil action:@selector(collectRecipe:) forControlEvents:UIControlEventTouchUpInside];
   }
 
@@ -184,9 +177,7 @@
 
   mAuthorButtonTop = mCellHeight + 5;
 
-  mCollButtonTop = mCellHeight + 50;
-
-  mCellHeight += 120;
+  mCellHeight += 60;
 }
 
 - (void)ReformCell
@@ -201,14 +192,17 @@
   CGRect likeLabelRect = CGRectMake(60, mLikeButtonTop, 120, 18);
   [likeLabel setFrame:likeLabelRect];
 
+  CGRect collectImageRect = CGRectMake(215, mLikeButtonTop - 3, 19, 19);
+  [collectImageButton setFrame:collectImageRect];
+
+  CGSize collectButtonSize = [collectButton.titleLabel.text sizeWithFont:collectButton.titleLabel.font constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
+  [collectButton setFrame:CGRectMake(237, mLikeButtonTop, collectButtonSize.width, collectButtonSize.height)];
+
   CGRect introRect = CGRectMake(32, mIntroLabelTop, 256, mIntroLabelHeight);
   [introLabel setFrame: introRect];
 
   [authorButton setFrame:CGRectMake(168, mAuthorButtonTop, 120, 25)];
   [authorLabel setFrame:CGRectMake(168, mAuthorButtonTop, 120, 20)];
-
-  [collectButton setFrame:CGRectMake(30, mCollButtonTop, 120, 34)];
-  [buyButton setFrame:CGRectMake(168, mCollButtonTop, 120, 34)];
 
   CGRect selfRect = CGRectMake(0, 0, 320, mCellHeight);
   [self setFrame:selfRect];
@@ -231,18 +225,16 @@
   {
     if ([dictionary[@"collect"] intValue] == 0)
     {
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/CollectedButton.png"];
-      UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-      [collectButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
       [collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
       [collectButton setAssociativeObject:@"已收藏" forKey:@"title"];
+      [collectImageButton setBackgroundImage:[UIImage imageNamed:@"Images/CollectFull.png"] forState:UIControlStateNormal];
+      [collectImageButton setAssociativeObject:@"已收藏" forKey:@"title"];
     }
     else{
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/CollectButton.png"];
-      UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-      [collectButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-      [collectButton setTitle:@"未收藏" forState:UIControlStateNormal];
+      [collectButton setTitle:@"收藏" forState:UIControlStateNormal];
       [collectButton setAssociativeObject:@"未收藏" forKey:@"title"];
+      [collectImageButton setBackgroundImage:[UIImage imageNamed:@"Images/CollectEmpty.png"] forState:UIControlStateNormal];
+      [collectImageButton setAssociativeObject:@"未收藏" forKey:@"title"];
     }
   }
 

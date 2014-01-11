@@ -13,7 +13,7 @@
 
 
 @implementation RecipeDetailMaterialTableViewCell
-@synthesize mTitleLabel, mWeightLabelArray, mLineArray,mMaterialLabelArray;
+@synthesize mTitleLabel, mWeightLabelArray, mLineArray,mMaterialLabelArray,buyButton,shoppingListButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -23,6 +23,8 @@
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     self.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
     [self addSubview: [self mTitleLabel]];
+    [self addSubview:[self buyButton]];
+    [self addSubview:[self shoppingListButton]];
     // mTemplateMaterialLabel = [self createMaterialLabel];
     
     mMaterialLabelArray = [[NSMutableArray alloc]init];
@@ -61,6 +63,33 @@
   [label setBackgroundColor:[UIColor clearColor]];
   [label setText:@""];
   return label;
+}
+
+- (UIButton*)buyButton
+{
+  if (!buyButton) {
+    buyButton = [[UIButton alloc]initWithFrame:CGRectMake(160, 100, 84, 20)];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RDBuyButtonNormal.png"];
+    [buyButton setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+    [buyButton setAssociativeObject:@"未加入" forKey:@"title"];
+    [buyButton addTarget:nil action:@selector(addToShoppingList) forControlEvents:UIControlEventTouchUpInside];
+  }
+
+  return buyButton;
+}
+
+- (UIButton*)shoppingListButton
+{
+  if (!shoppingListButton) {
+    shoppingListButton = [[UIButton alloc]initWithFrame:CGRectMake(248, 100, 56, 20)];
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RDShopingListButtonNormal.png"];
+    [shoppingListButton setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+    UIImage *buttonBackgroundImage2 = [UIImage imageNamed:@"Images/RDShopingListButtonHighLight.png"];
+    [shoppingListButton setBackgroundImage:buttonBackgroundImage2 forState:UIControlStateHighlighted];
+    [shoppingListButton addTarget:nil action:@selector(gotoShoppingList) forControlEvents:UIControlEventTouchUpInside];
+  }
+
+  return shoppingListButton;
 }
 
 -(UIImageView*)createLine
@@ -116,7 +145,13 @@
 {
   CGRect titleRect = CGRectMake(32, mTitleLabelTop, 256, mTitleLabelHeight);
   [mTitleLabel setFrame: titleRect];
-  
+
+  CGRect buyRect = CGRectMake(145, mTitleLabelTop + 3, 84, 20);
+  [buyButton setFrame: buyRect];
+
+  CGRect slRect = CGRectMake(233, mTitleLabelTop + 3, 56, 20);
+  [shoppingListButton setFrame: slRect];
+
   //计算用料高度
   CGFloat material_top = mMaterialTop + 10;
   for (int i = 0; i < mMaterialLabelArray.count; i++) {

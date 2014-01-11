@@ -18,6 +18,7 @@
 #import "HomePageController.h"
 #import "LoginController.h"
 #import "AppDelegate.h"
+#import "HCDrawerController.h"
 
 @interface RecipeDetailController ()
 
@@ -85,6 +86,7 @@
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnCommentSuccess:) name:@"EVT_OnCommentSuccess" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnRemoveFromShoppingListSuccess:) name:@"EVT_OnRemoveFromShoppingListSuccess" object:nil];
 
   HUD = [[MBProgressHUD alloc] initWithView:self.view];
   [self.view addSubview:HUD];
@@ -164,16 +166,15 @@
   RecipeDetailBaseTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (!cell && [CellIdentifier isEqualToString:@"HeaderCell"]) {
     cell = [[RecipeDetailHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    if ([[DBHandler sharedInstance] isInShoppingList:mRecipeId] ) {
-      [((RecipeDetailHeaderTableViewCell*)cell).buyButton setTitle:@"已加入清单" forState:UIControlStateNormal];
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/CollectedButton.png"];
-      UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-      [((RecipeDetailHeaderTableViewCell*)cell).buyButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-;
-    }
   }
   else if (!cell && [CellIdentifier isEqualToString:@"MaterialCell"]) {
     cell = [[RecipeDetailMaterialTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if ([[DBHandler sharedInstance] isInShoppingList:mRecipeId] ) {
+      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RDBuyButtonHighLight.png"];
+      [((RecipeDetailMaterialTableViewCell*)cell).buyButton setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+      [((RecipeDetailMaterialTableViewCell*)cell).buyButton setAssociativeObject:@"已加入" forKey:@"title"];
+
+    }
   }
   else if (!cell && [CellIdentifier isEqualToString:@"StepCell"]) {
     cell = [[RecipeDetailStepsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -193,6 +194,23 @@
   //[self.navigationController pushViewController:[[RecipeDetailController alloc]initWithNibName:@"RecipeDetailView" bundle:nil] animated:YES];
 }
 
+- (void)gotoShoppingList
+{
+  if (self.mm_drawerController) {
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideRight animated:YES completion:nil];
+  } else {
+    if (ApplicationDelegate.drawerController.openSide == MMDrawerSideRight) {
+      [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+      [self.navigationController popToRootViewControllerAnimated:NO];
+      [ApplicationDelegate.drawerController closeDrawerAnimated:NO completion: ^(BOOL finished){
+        [ApplicationDelegate.drawerController toggleDrawerSide:MMDrawerSideRight animated:YES completion:nil];
+      }];
+    }
+
+  }
+
+}
 
 - (void)addToShoppingList
 {
@@ -200,18 +218,15 @@
     return;
   }
   
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kDetailHeaderCell inSection:0];
-  RecipeDetailHeaderTableViewCell* cell = (RecipeDetailHeaderTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-  if ([[cell.buyButton titleForState:UIControlStateNormal] isEqualToString:@"已加入清单"]) {
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kDetailMaterialCell inSection:0];
+  RecipeDetailMaterialTableViewCell* cell = (RecipeDetailMaterialTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+  if ([[cell.buyButton associativeObjectForKey:@"title"] isEqualToString:@"已加入"]) {
     if ([[DBHandler sharedInstance] isInShoppingList: mRecipeId]) {
       [[DBHandler sharedInstance] removeFromShoppingList:mRecipeId];
     }
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/BuyButton.png"];
-    UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    [cell.buyButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-
-    [cell.buyButton setTitle:@"+ 购买清单" forState:UIControlStateNormal];
-    
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RDBuyButtonNormal.png"];
+    [cell.buyButton setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+    [cell.buyButton setAssociativeObject:@"未加入" forKey:@"title"];
   } else {
     if (![[DBHandler sharedInstance] isInShoppingList: mRecipeId]) {
       NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
@@ -220,11 +235,9 @@
       [dic setObject:recipeDataDic[@"recipe_name"] forKey:@"name"];
       [[DBHandler sharedInstance] addToShoppingList:dic];
 
-      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/CollectedButton.png"];
-      UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-      [cell.buyButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-
-      [cell.buyButton setTitle:@"已加入清单" forState:UIControlStateNormal];
+      UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/RDBuyButtonHighLight.png"];
+      [cell.buyButton setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
+      [cell.buyButton setAssociativeObject:@"已加入" forKey:@"title"];
     }
   }
 
@@ -452,14 +465,14 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kDetailHeaderCell inSection:0];
     RecipeDetailHeaderTableViewCell* cell = (RecipeDetailHeaderTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
     [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
-
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/CollectedButton.png"];
-    UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    [cell.collectButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
+    [cell.collectImageButton setBackgroundImage:[UIImage imageNamed:@"Images/CollectFull.png"] forState:UIControlStateNormal];
 
     [cell.collectButton setAssociativeObject:@"已收藏" forKey:@"title"];
+    [cell.collectImageButton setAssociativeObject:@"已收藏" forKey:@"title"];
 
     recipeDataDic[@"collect"] = @"0";
+
+    [self.tableView reloadData];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
   } else {
@@ -494,15 +507,12 @@
   {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kDetailHeaderCell inSection:0];
     RecipeDetailHeaderTableViewCell* cell = (RecipeDetailHeaderTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-    [cell.collectButton setTitle:@"未收藏" forState:UIControlStateNormal];
+    [cell.collectButton setTitle:@"收藏" forState:UIControlStateNormal];
     [cell.collectButton setAssociativeObject:@"未收藏" forKey:@"title"];
-
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/CollectButton.png"];
-    UIImage *stretchedBackground = [buttonBackgroundImage stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    [cell.collectButton setBackgroundImage:stretchedBackground forState:UIControlStateNormal];
-
+    [cell.collectImageButton setBackgroundImage:[UIImage imageNamed:@"Images/CollectEmpty.png"] forState:UIControlStateNormal];
+    [cell.collectImageButton setAssociativeObject:@"未收藏" forKey:@"title"];
     recipeDataDic[@"collect"] = @"1";
-
+    [self.tableView reloadData];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
   }
 }
@@ -541,6 +551,10 @@
   [self.tableView reloadData];
   [self.tableView.tableFooterView setHidden:YES];
   [self getRecipeDetailData:mRecipeId];
+}
+
+- (void)OnRemoveFromShoppingListSuccess:(NSNotification *)notification {
+  [self.tableView reloadData];
 }
 
 - (void)hudWasHidden:(MBProgressHUD *)hud

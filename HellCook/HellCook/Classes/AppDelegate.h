@@ -14,6 +14,7 @@
 
 @class HCNavigationController;
 @class ShareController;
+@class HCDrawerController;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
   NSTimer *connectionTimer; //timer对象
@@ -30,6 +31,7 @@
 @property (nonatomic, retain) NSTimer *connectionTimer;
 @property BOOL done;
 @property NSTimeInterval mainRefreshTime;
+@property (nonatomic,strong) HCDrawerController * drawerController;
 
 + (void)GeneralStyle;
 

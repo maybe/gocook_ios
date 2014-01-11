@@ -15,7 +15,9 @@
   NSMutableArray* mLineArray;
   NSMutableArray* mMaterialLabelArray;
   NSMutableArray* mWeightLabelArray;
-    
+  UIButton* buyButton;
+  UIButton* shoppingListButton;
+
   CGFloat mTitleLabelTop;
   CGFloat mTitleLabelHeight;
   
@@ -27,6 +29,8 @@
 @property (nonatomic, retain) NSMutableArray* mMaterialLabelArray;
 @property (nonatomic, retain) NSMutableArray* mWeightLabelArray;
 @property (nonatomic, retain) NSMutableArray* mLineArray;
+@property (nonatomic, retain) UIButton* buyButton;
+@property (nonatomic, retain) UIButton* shoppingListButton;
 
 - (UILabel*)mTitleLabel;
 - (UILabel*)createMaterialLabel;

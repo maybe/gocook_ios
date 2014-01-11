@@ -15,7 +15,7 @@
   UILabel* titleLabel;
   TTTAttributedLabel* introLabel;
   UIButton* collectButton;
-  UIButton* buyButton;
+  UIButton* collectImageButton;
   UIButton* likeButton;
   UILabel* likeLabel;
   UIButton* unlikeButton;
@@ -31,14 +31,13 @@
   CGFloat mLikeButtonTop;
   CGFloat mIntroLabelHeight;
   CGFloat mAuthorButtonTop;
-  CGFloat mCollButtonTop;
 }
 
 @property (nonatomic, retain) UILabel* titleLabel;
 @property (nonatomic, retain) TTTAttributedLabel* introLabel;
 @property (nonatomic, retain) UIImageView* imageView;
 @property (nonatomic, retain) UIButton* collectButton;
-@property (nonatomic, retain) UIButton* buyButton;
+@property (nonatomic, retain) UIButton* collectImageButton;
 @property (nonatomic, retain) UIButton* likeButton;
 @property (nonatomic, retain) UIButton* unlikeButton;
 @property (nonatomic, retain) UILabel* likeLabel;
@@ -48,6 +47,5 @@
 - (UILabel*)titleLabel;
 - (TTTAttributedLabel*)introLabel;
 - (UIButton*)collectButton;
-- (UIButton*)buyButton;
 
 @end

@@ -25,7 +25,6 @@
 #import "ShareController.h"
 
 @interface AppDelegate ()
-@property (nonatomic,strong) HCDrawerController * drawerController;
 
 @end
 

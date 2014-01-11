@@ -48,10 +48,6 @@
   bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 138)];
   avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 46, 46)];
 
-  [self.view addSubview:bannerImageView];
-  [self.view addSubview:avatarImageView];
-  [self.view addSubview:nameLabel];
-
   loginTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 56, 280, 30)];
   loginTitleLabel.textAlignment = NSTextAlignmentCenter;
   loginTitleLabel.text = @"分享新鲜 分享美味 分享幸福";
@@ -70,8 +66,7 @@
   [self.view setFrame:viewFrame];
 
   CGRect tableFrame = self.tableView.frame;
-  tableFrame.origin.y = 138;
-  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar - 138;
+  tableFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.tableView setFrame:tableFrame];
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
@@ -141,6 +136,8 @@
   NSMutableDictionary *dic = [cellContentArray objectAtIndex:(NSUInteger) indexPath.row];
   if ([[dic allKeys] containsObject:@"image"]) {
     return 64;
+  } else if ([[dic allKeys] containsObject:@"banner"]) {
+    return 120;
   }
   return 64 * 3;
 }
@@ -148,9 +145,14 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"Cell";
   BOOL isGridCell = NO;
+  BOOL isBannerCell = NO;
 
   NSMutableDictionary *dic = [cellContentArray objectAtIndex:(NSUInteger) indexPath.row];
-  if (![[dic allKeys] containsObject:@"image"]) {
+  if ([[dic allKeys] containsObject:@"banner"]) {
+    CellIdentifier = @"BannerCell";
+    isBannerCell = YES;
+  }
+  else if (![[dic allKeys] containsObject:@"image"]) {
     CellIdentifier = @"GridCell";
     isGridCell = YES;
   }
@@ -162,6 +164,12 @@
   if (!cell) {
     if (isGridCell) {
       cell = [[AccountTableViewGridCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GridCell"];
+    } else if (isBannerCell) {
+      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BannerCell"];
+      [cell setFrame:CGRectMake(0, 0, _sideWindowWidth, 120)];
+      [cell addSubview:bannerImageView];
+      [cell addSubview:avatarImageView];
+      [cell addSubview:nameLabel];
     }
     else {
       cell = [[AccountTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
@@ -184,6 +192,7 @@
     aCell.nameLabel5.text = [dic valueForKey:@"title5"];
     aCell.countLabel6.text = @"";
     aCell.nameLabel6.text = @"";
+  } else if (isBannerCell) {
   }
   else {
     AccountTableViewCell *aCell = (AccountTableViewCell *) cell;
@@ -358,11 +367,15 @@ destructiveButtonTitle:@"确定"
   cellContentArray = [[NSMutableArray alloc] init];
   NSMutableDictionary *cellDic;
   cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-      @"Images/RollLittle.png", @"image", @"摇一摇·我的优惠券", @"title", nil];
+      @"", @"banner", @"", @"title", nil];
   [cellContentArray addObject:cellDic];
 
   cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-      @"Images/leftPageHot.png", @"image", @"今日热门", @"title", nil];
+      @"Images/leftPageHot.png", @"image", @"首页·热门菜谱", @"title", nil];
+  [cellContentArray addObject:cellDic];
+
+  cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+      @"Images/RollLittle.png", @"image", @"摇一摇·我的优惠券", @"title", nil];
   [cellContentArray addObject:cellDic];
 
   cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
