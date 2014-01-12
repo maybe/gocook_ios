@@ -2348,8 +2348,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"HellCook/Libs/ZXingObjC/universal/**",
-					/Users/panda/Develop/gocook_ios/HellCook/HellCook/Libs/WeiChat,
-					/Users/panda/Develop/gocook_ios/HellCook/HellCook/Libs/WeiBo,
+					"HellCook/Libs/WeiChat/**",
+					"HellCook/Libs/WeiBo/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2377,8 +2377,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"HellCook/Libs/ZXingObjC/universal/**",
-					/Users/panda/Develop/gocook_ios/HellCook/HellCook/Libs/WeiChat,
-					/Users/panda/Develop/gocook_ios/HellCook/HellCook/Libs/WeiBo,
+					"HellCook/Libs/WeiChat/**",
+					"HellCook/Libs/WeiBo/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
