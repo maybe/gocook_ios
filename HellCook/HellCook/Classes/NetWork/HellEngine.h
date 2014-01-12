@@ -49,6 +49,7 @@ typedef void (^kitchenInfoResponseBlock)(NSMutableDictionary* resultDic);
 
 typedef void (^likeResponseBlock)(NSMutableDictionary* resultDic);
 typedef void (^unlikeResponseBlock)(NSMutableDictionary* resultDic);
+typedef void (^getM6AuthResponseBlock)(NSMutableDictionary* resultDic);
 
 
 // 设置cookie
@@ -227,4 +228,8 @@ typedef void (^unlikeResponseBlock)(NSMutableDictionary* resultDic);
 - (MKNetworkOperation*)unlikeRecipe:(NSInteger)recipeId
                         completionHandler:(unlikeResponseBlock)completionBlock
                              errorHandler:(MKNKErrorBlock) errorBlock;
+
+- (MKNetworkOperation*)getM6AuthInfoWithCompletionHandler:(getM6AuthResponseBlock)completionBlock
+                       errorHandler:(MKNKErrorBlock) errorBlock;
+
 @end

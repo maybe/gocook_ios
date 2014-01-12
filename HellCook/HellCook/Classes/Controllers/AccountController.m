@@ -22,6 +22,7 @@
 #import "HistoryDealViewController.h"
 #import "HCNavigationController.h"
 #import "NewCouponsViewController.h"
+#import "WebViewController.h"
 
 @interface AccountController ()
 
@@ -494,9 +495,13 @@ destructiveButtonTitle:@"确定"
   }
   else if (sender.tag == 10005)//我的购买
   {
-    if (self.navigationController) {
-      [self.navigationController pushViewController:[[HistoryDealViewController alloc] initWithNibName:@"HistoryDealView" bundle:nil] animated:YES];
-    }
+    self.netOperation = [[[NetManager sharedInstance] hellEngine]
+        getM6AuthInfoWithCompletionHandler:^(NSMutableDictionary *resultDic) {
+           [self getM6AuthInfoCallBack:resultDic];
+         }
+        errorHandler:^(NSError *error) {
+        }
+    ];
   }
 }
 
@@ -567,6 +572,23 @@ destructiveButtonTitle:@"确定"
   }
   else if (result == GC_Failed)
   {
+  }
+}
+
+
+- (void)getM6AuthInfoCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == GC_Success)
+  {
+    WebViewController *controller = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
+    NSString *urlStr = [NSString stringWithFormat:@"http://o2o.m6fresh.com/ws/mobile_myorders.aspx"];
+    [controller loadWeb:urlStr UsingSessionName:[resultDic valueForKey:@"name"] Value:[resultDic valueForKey:@"value"]];
+    [self.navigationController pushViewController:controller animated:YES];
+  }
+  else if (result == GC_Failed)
+  {
+
   }
 }
 

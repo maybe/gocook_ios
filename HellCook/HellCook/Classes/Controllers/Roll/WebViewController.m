@@ -25,6 +25,22 @@
   return self;
 }
 
+- (void)loadWeb:(NSString *)urlString UsingSessionName:(NSString*)nameString Value:(NSString*)valueString {
+  NSURL *url = [NSURL URLWithString:urlString];
+  mutableRequest = [[NSMutableURLRequest alloc]initWithURL: url];
+
+  NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
+  [cookieProperties setObject:nameString forKey:NSHTTPCookieName];
+  [cookieProperties setObject:valueString forKey:NSHTTPCookieValue];
+  [cookieProperties setObject:@"o2o.m6fresh.com" forKey:NSHTTPCookieDomain];
+  [cookieProperties setObject:@"o2o.m6fresh.com" forKey:NSHTTPCookieOriginURL];
+  [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
+  [cookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
+  [cookieProperties setObject:@"30000" forKey:NSHTTPCookieMaximumAge];
+  NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
+  [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+}
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
@@ -34,9 +50,15 @@
   webFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.webView setFrame:webFrame];
   [self.webView setDelegate:self];
-  
-  NSURL* url = [[NSURL alloc] initWithString:strURL];
-  [webView loadRequest:[NSURLRequest requestWithURL: url]];
+
+  if (strURL) {
+    NSURL* url = [[NSURL alloc] initWithString:strURL];
+    [webView loadRequest:[NSURLRequest requestWithURL: url]];
+  }
+
+  if (mutableRequest) {
+    [webView loadRequest:mutableRequest];
+  }
 
   self.title = @"浏览";
 }
@@ -75,6 +97,11 @@
 - (NSUInteger)supportedInterfaceOrientations {
 
   return UIInterfaceOrientationMaskPortrait;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+  mutableRequest.HTTPShouldHandleCookies = YES;
 }
 
 @end
