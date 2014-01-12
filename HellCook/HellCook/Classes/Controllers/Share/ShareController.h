@@ -18,6 +18,11 @@
   UIButton* weixinButton;
   UIButton* weixinFriendButton;
   UIButton* weiboButton;
+  UILabel* wxLabel;
+  UILabel* wxfLabel;
+  UILabel* wbLabel;
+
+  enum WXScene _scene;
 }
 
 @property (nonatomic,retain) UIView* backView;
