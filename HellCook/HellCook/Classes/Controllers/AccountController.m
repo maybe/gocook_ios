@@ -214,7 +214,7 @@
 //  if (indexPath.row == cellContentArray.count - 1) {
 //    [self openDebugOption];
 //  }
-  if (indexPath.row == 3) {
+  if (indexPath.row == 4) {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
         initWithTitle:@"确定要退出吗?"
              delegate:self
@@ -223,7 +223,7 @@ destructiveButtonTitle:@"确定"
      otherButtonTitles:nil];
     [actionSheet showInView:self.mm_drawerController.view];
   }
-  else if (indexPath.row == 0) {
+  else if (indexPath.row == 2) {
     NewCouponsViewController *pViewController = [[NewCouponsViewController alloc] initWithNibName:@"NewCouponsView" bundle:nil];
     [ApplicationDelegate.centerNavController setViewControllers:@[pViewController] animated:NO];
     [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
