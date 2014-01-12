@@ -46,7 +46,7 @@
         [labelBackgroundView setImage:[UIImage imageNamed:@"Images/GreenBar.png"]];
         [labelBackgroundView setContentMode:UIViewContentModeScaleToFill];
         
-        content = [NSString stringWithFormat:@"%@您获得了由提供商%@提供的价值%d元的%@券号%d\n有效期%@至%@。\n适用门店：%@\n",strEffDay,(NSString*)dict[@"supplier"],[dict[@"val"] intValue],(NSString*)dict[@"name"],[dict[@"coupon"] intValue],strEffDay,strExpDay,(NSString*)dict[@"stores"]];
+        content = [NSString stringWithFormat:@"%@您获得了由提供商%@提供的价值%d元的%@券号%@\n有效期%@至%@。\n适用门店：%@\n",strEffDay,(NSString*)dict[@"supplier"],[dict[@"val"] intValue],(NSString*)dict[@"name"],(NSString*)dict[@"coupon"],strEffDay,strExpDay,(NSString*)dict[@"stores"]];
         break;
       }
       case -1://已使用
@@ -57,7 +57,7 @@
         [labelBackgroundView setImage:[UIImage imageNamed:@"Images/GreyBar.png"]];
         [labelBackgroundView setContentMode:UIViewContentModeScaleToFill];
         
-        content = [NSString stringWithFormat:@"%@您获得了由提供商%@提供的价值%d元的%@券号%d\n有效期%@至%@。\n适用门店：%@\n",strEffDay,(NSString*)dict[@"supplier"],[dict[@"val"] intValue],(NSString*)dict[@"name"],[dict[@"coupon"] intValue],strEffDay,strExpDay,(NSString*)dict[@"stores"]];
+        content = [NSString stringWithFormat:@"%@您获得了由提供商%@提供的价值%d元的%@券号%@\n有效期%@至%@。\n适用门店：%@\n",strEffDay,(NSString*)dict[@"supplier"],[dict[@"val"] intValue],(NSString*)dict[@"name"],(NSString*)dict[@"coupon"],strEffDay,strExpDay,(NSString*)dict[@"stores"]];
         break;
       }
       case 1://广告
@@ -83,7 +83,7 @@
         [labelBackgroundView setImage:[UIImage imageNamed:@"Images/YellowBar.png"]];
         [labelBackgroundView setContentMode:UIViewContentModeScaleToFill];
         
-        content = [NSString stringWithFormat:@"%@您获得了由提供商%@提供的价值%d元的%@券号%d\n有效期%@至%@。\n适用门店：%@\n",strEffDay,(NSString*)dict[@"supplier"],[dict[@"val"] intValue],(NSString*)dict[@"name"],[dict[@"coupon"] intValue],strEffDay,strExpDay,(NSString*)dict[@"stores"]];
+        content = [NSString stringWithFormat:@"%@您获得了由提供商%@提供的价值%d元的%@券号%@\n有效期%@至%@。\n适用门店：%@\n",strEffDay,(NSString*)dict[@"supplier"],[dict[@"val"] intValue],(NSString*)dict[@"name"],(NSString*)dict[@"coupon"],strEffDay,strExpDay,(NSString*)dict[@"stores"]];
         break;
       }
     }
@@ -107,6 +107,11 @@
       [contentImage setClipsToBounds:YES];
       NSString *strURL = [NSString stringWithString:(NSString*)dict[@"img"]];
       [contentImage setImageWithURL:[NSURL URLWithString:strURL] placeholderImage:[UIImage imageNamed:@"Images/M6DefaultImage.png"]];
+      
+      contentImage.userInteractionEnabled = YES;
+      UITapGestureRecognizer *tapGestureAva = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapContentImage:)];
+      [contentImage addGestureRecognizer:tapGestureAva];
+      strUrl = [NSString stringWithString:(NSString*)dict[@"url"]];
     }
     //第二段描述
     NSString *content2 = [NSString stringWithString:(NSString*)dict[@"coupon_remark"]];
@@ -166,6 +171,11 @@
   }
   return self;
 }
+
+- (IBAction)tapContentImage:(id)sender {  
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:strUrl]];
+}
+
 
 -(CGFloat)getCellHeight;
 {

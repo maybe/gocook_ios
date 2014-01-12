@@ -17,6 +17,8 @@
   
   UIImageView *contentImage;
   UILabel *contentLabel2;
+  
+  NSString *strUrl;
 }
 
 @property (nonatomic,retain) UILabel *contentLabel;
