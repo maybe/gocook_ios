@@ -326,7 +326,7 @@
     for (int i=0; i<[couponsArray count]; i++)
     {
       NSMutableDictionary *dict = [couponsArray objectAtIndex:i];
-      if ([dict[@"condition"] intValue]==0 || [dict[@"condition"] intValue]==2)
+      if ([dict[@"condition"] intValue]==0/* || [dict[@"condition"] intValue]==2*/)
         continue;
       
       NSString *strExpDay = [NSString stringWithString:(NSString*)dict[@"exp_day"]];

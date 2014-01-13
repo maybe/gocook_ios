@@ -31,6 +31,8 @@
     curPage = 0;
     isPageEnd = FALSE;
     bComeBack = FALSE;
+    bFirstRun = TRUE;
+    bMore = FALSE;
     itmesArray = [[NSMutableArray alloc] init];
   }
   return self;
@@ -71,7 +73,10 @@
   
   [self setLeftButton];
   
-  [self getAllMyCoupons];
+  if (bFirstRun) {
+    [self getAllMyCoupons];
+    bFirstRun = FALSE;
+  }
   
   [self autoLayout];
 }
@@ -106,6 +111,7 @@
 
 -(void)returnToPrev
 {
+  bComeBack = FALSE;
   [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
@@ -120,8 +126,9 @@
 {
   curPage = 0;
   isPageEnd = FALSE;
-//  [itmesArray removeAllObjects];
-    
+
+  
+  
   [self getAllMyCoupons];
 }
 
@@ -178,6 +185,7 @@
   {
     if (![self.netOperation isExecuting] && !isPageEnd) {
       [self showLoadingView];
+      bMore = TRUE;
       [self getAllMyCoupons];
     }
     else
@@ -304,6 +312,13 @@
     [refreshControl endRefreshing];
     [itmesArray removeAllObjects];
     bComeBack = FALSE;
+  }
+  if (bMore) {
+    bMore = FALSE;
+  }
+  else
+  {
+    [itmesArray removeAllObjects];
   }
   
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
