@@ -31,6 +31,8 @@ typedef enum{
   UIActivityIndicatorView* mLoadingActivity;
 
   MBProgressHUD *HUD;
+
+  UIImageView* coverImageView; //不添加到view上，只用来作为分享的图片
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

@@ -16,7 +16,6 @@
 #import "ConfigHandler.h"
 #import "DBHandler.h"
 #import "HCNavigationController.h"
-#import "Encrypt.h"
 #import "HCDrawerController.h"
 #import "MMExampleDrawerVisualStateManager.h"
 #import "RootNavigationController.h"
@@ -145,7 +144,7 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
   NSString *string =[url absoluteString];
-  if ([string hasPrefix:kAppKey]) {
+  if ([string hasPrefix:kAppFullKey]) {
     return [ WeiboSDK handleOpenURL:url delegate:self.shareController];
   }else if ([string hasPrefix:wAppKey]){
     return [WXApi handleOpenURL:url delegate:self.shareController];
@@ -157,7 +156,7 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
   NSString *string =[url absoluteString];
-  if ([string hasPrefix:kAppKey]) {
+  if ([string hasPrefix:kAppFullKey]) {
     return [ WeiboSDK handleOpenURL:url delegate:self.shareController];
   }else if ([string hasPrefix:wAppKey]){
     return [WXApi handleOpenURL:url delegate:self.shareController];

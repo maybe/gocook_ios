@@ -19,6 +19,8 @@
 #import "LoginController.h"
 #import "AppDelegate.h"
 #import "HCDrawerController.h"
+#import "ShareController.h"
+#import "UIImageView+WebCache.h"
 
 @interface RecipeDetailController ()
 
@@ -377,6 +379,18 @@
 
 - (void)onClickShare:(UIButton*)btn
 {
+  NSArray* materialArray = [recipeDataDic[@"materials"] componentsSeparatedByString:@"|"];
+  NSMutableString * material = [[NSMutableString alloc]init];
+  for (NSInteger i = 0; i < materialArray.count; i=i+2) {
+    if (![materialArray[i] isEqualToString:@""]) {
+      [material appendString:materialArray[i]];
+      if (i != materialArray.count-2) {
+        [material appendString:@" "];
+      }
+    }
+  }
+
+  [[ApplicationDelegate shareController] setShareRecipe:mRecipeId withTitle:recipeDataDic[@"recipe_name"] withMaterial:material withCover:coverImageView.image];
   [ApplicationDelegate showShareView];
 }
 
@@ -402,6 +416,12 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0) {
     recipeDataDic = [[NSMutableDictionary alloc]initWithDictionary:resultDic[@"result_recipe"]];
+
+    NetManager* netManager = [NetManager sharedInstance];
+    NSString* imageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, recipeDataDic[@"cover_image"]];
+    coverImageView = [[UIImageView alloc]init];
+    [coverImageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
+
   }
 
   [self.tableView reloadData];

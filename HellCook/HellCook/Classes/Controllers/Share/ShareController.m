@@ -7,6 +7,8 @@
 //
 
 #import "ShareController.h"
+#import "UIImage+Resize.h"
+#import "UIImage+Resizing.h"
 
 @interface ShareController ()
 
@@ -59,6 +61,7 @@
   [weixinFriendButton setFrame:CGRectMake(140, 20, 40, 40)];
   UIImage *wxFriendBgImage = [UIImage imageNamed:@"Images/share_weixin_friends.png"];
   [weixinFriendButton setBackgroundImage:wxFriendBgImage forState:UIControlStateNormal];
+  [weixinFriendButton addTarget:self action:@selector(sendShareMessageToWeiXinCircle) forControlEvents:UIControlEventTouchUpInside];
   wxfLabel = [[UILabel alloc]initWithFrame:CGRectMake(120, 60, 80, 20)];
   [wxfLabel setTextAlignment:NSTextAlignmentCenter];
   [wxfLabel setFont:[UIFont systemFontOfSize:14]];
@@ -81,6 +84,21 @@
   [self.view addSubview:wxLabel];
   [self.view addSubview:wxfLabel];
   [self.view addSubview:wbLabel];
+}
+
+- (void)setShareRecipe:(NSInteger)id withTitle:(NSString *)title withMaterial:(NSString *)material withCover:(UIImage *)cover {
+  recipeId = id;
+  recipeTitle = [[NSString alloc] initWithString:title];
+  recipeMaterial = [[NSString alloc] initWithString:material];
+  if (cover) {
+    recipeCover = [cover resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(100, 100) interpolationQuality:kCGInterpolationHigh];
+
+    recipeCoverOrigin = [cover resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(500, 500) interpolationQuality:kCGInterpolationHigh];
+    recipeCoverOrigin = [recipeCoverOrigin cropToSize:CGSizeMake(500, 360) usingMode:NYXCropModeCenter];
+  } else {
+    recipeCover = [UIImage imageNamed:@"Icon.png"];
+    recipeCoverOrigin = recipeCover;
+  }
 }
 
 - (void)hideView
@@ -135,12 +153,35 @@
 
 - (void)sendShareMessageToWeiXin
 {
+  _scene = WXSceneSession;
+
   WXMediaMessage *message = [WXMediaMessage message];
-  message.title = @"M6分享厨房";
-  message.description = @"试试看嘛";
-  [message setThumbImage:[UIImage imageNamed:@"Icon.png"]];
+  message.title = recipeTitle;
+  message.description = recipeMaterial;
+  [message setThumbImage:recipeCover];
   WXWebpageObject *ext = [WXWebpageObject object];
-  ext.webpageUrl = @"http://o2o.m6fresh.com:8081/index/share?id=2";
+  ext.webpageUrl = [NSString stringWithFormat:@"http://%@/index/share?id=%d", _defaultHostName, recipeId];
+
+  message.mediaObject = ext;
+
+  SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+  req.bText = NO;
+  req.message = message;
+  req.scene = _scene;
+
+  [WXApi sendReq:req];
+}
+
+- (void)sendShareMessageToWeiXinCircle
+{
+  _scene = WXSceneTimeline;
+
+  WXMediaMessage *message = [WXMediaMessage message];
+  message.title = recipeTitle;
+  message.description = recipeMaterial;
+  [message setThumbImage:recipeCover];
+  WXWebpageObject *ext = [WXWebpageObject object];
+  ext.webpageUrl = [NSString stringWithFormat:@"http://%@/index/share?id=%d", _defaultHostName, recipeId];
 
   message.mediaObject = ext;
 
@@ -155,12 +196,6 @@
 - (void)sendShareMessageToWeiBo
 {
   WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:[self weiboMessageToShare]];
-  request.userInfo = @{@"ShareMessageFrom": @"SendMessageToWeiboViewController",
-      @"Other_Info_1": [NSNumber numberWithInt:123],
-      @"Other_Info_2": @[@"obj1", @"obj2"],
-      @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
-  //    request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
-
   [WeiboSDK sendRequest:request];
 }
 
@@ -168,18 +203,11 @@
 {
   WBMessageObject *message = [WBMessageObject message];
 
-  message.text = @"测试通过WeiboSDK发送文字到微博!http://o2o.m6fresh.com:8081/index/share?id=2";
+  message.text = [NSString stringWithFormat:@"『%@』我喜欢这个菜谱 http://%@/index/share?id=%d (分享自 @M6分享厨房 )", recipeTitle, _defaultHostName, recipeId];
   WBImageObject *image = [WBImageObject object];
-  image.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Icon" ofType:@"png"]];
-  message.imageObject = image;
 
-//  WBWebpageObject *webpage = [WBWebpageObject object];
-//  webpage.objectID = @"id2";
-//  webpage.title = @"分享厨房";
-//  webpage.description = [NSString stringWithFormat:@"分享网页内容简介"];
-//  webpage.thumbnailData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Icon" ofType:@"png"]];
-//  webpage.webpageUrl = @"http://o2o.m6fresh.com:8081/index/share?id=2";
-//  message.mediaObject = webpage;
+  image.imageData = UIImagePNGRepresentation(recipeCoverOrigin);
+  message.imageObject = image;
 
   return message;
 }
@@ -191,17 +219,16 @@
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response
 {
-
+  [self hideView];
 }
 
 -(void) onReq:(BaseReq*)req
 {
-
 }
 
 -(void) onResp:(BaseResp*)resp
 {
-
+  [self hideView];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define kAppKey @"4111016334"
+#define kAppFullKey @"wb4111016334"
 #define kredirectURI @"http://www.sina.com"
 #define wAppKey @"wx7f107feec858046e"
 

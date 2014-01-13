@@ -23,6 +23,12 @@
   UILabel* wbLabel;
 
   enum WXScene _scene;
+
+  NSInteger recipeId;
+  NSString* recipeTitle;
+  NSString* recipeMaterial;
+  UIImage* recipeCover;
+  UIImage* recipeCoverOrigin;
 }
 
 @property (nonatomic,retain) UIView* backView;
@@ -32,6 +38,7 @@
 @property (nonatomic,retain) UIButton* weiboButton;
 
 - (void)InitLayout;
+- (void)setShareRecipe:(NSInteger)id withTitle:(NSString *)title withMaterial:(NSString *)material withCover:(UIImage *)cover;
 - (void)showView:(UIView*)superview;
 - (void)hideView;
 
