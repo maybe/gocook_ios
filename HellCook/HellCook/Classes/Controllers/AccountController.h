@@ -8,9 +8,9 @@
 
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-
-@interface AccountController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
+@interface AccountController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,MBProgressHUDDelegate>
 {
   UITableView* tableView;
   UIImageView* bannerImageView;
@@ -22,6 +22,7 @@
   UIButton* debugOptionButton;
   NSMutableArray* cellContentArray;
   BOOL shouldRefreshKitchenInfo;
+  MBProgressHUD *HUD;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

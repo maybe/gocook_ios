@@ -13,12 +13,12 @@
   UIWebView *webView;
   NSString *strURL;
   NSMutableURLRequest* mutableRequest;
+  NSString *title;
 }
 
 @property(nonatomic, retain) IBOutlet UIWebView *webView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil withURL:(NSString*)url bundle:(NSBundle *)nibBundleOrNil;
-
-- (void)loadWeb:(NSString *)urlString UsingSessionName:(NSString*)nameString Value:(NSString*)valueString;
+- (void)loadWebPage:(NSString *)urlString usingSession:(NSString *)nameString withValue:(NSString*)valueString withTitle:(NSString*)titleString;
 
 @end

@@ -19,15 +19,18 @@
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    // Custom initialization
     strURL = [NSString stringWithString:url];
+    title = @"浏览";
   }
   return self;
 }
 
-- (void)loadWeb:(NSString *)urlString UsingSessionName:(NSString*)nameString Value:(NSString*)valueString {
+- (void)loadWebPage:(NSString *)urlString usingSession:(NSString *)nameString withValue:(NSString*)valueString withTitle:(NSString*)titleString{
   NSURL *url = [NSURL URLWithString:urlString];
   mutableRequest = [[NSMutableURLRequest alloc]initWithURL: url];
+  if (titleString) {
+    title = titleString;
+  }
 
   NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
   [cookieProperties setObject:nameString forKey:NSHTTPCookieName];
@@ -44,6 +47,8 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self autoLayout];
+
   [self setLeftButton];
   
   CGRect webFrame = self.webView.frame;
@@ -60,7 +65,7 @@
     [webView loadRequest:mutableRequest];
   }
 
-  self.title = @"浏览";
+  self.title = title;
 }
 
 - (void)setLeftButton
@@ -99,9 +104,8 @@
   return UIInterfaceOrientationMaskPortrait;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)webViewDidFinishLoad:(UIWebView *)aWebView
 {
-  mutableRequest.HTTPShouldHandleCookies = YES;
 }
 
 @end

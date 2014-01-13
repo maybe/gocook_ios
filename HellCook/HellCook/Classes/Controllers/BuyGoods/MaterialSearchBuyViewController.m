@@ -11,6 +11,7 @@
 #import "SearchGoodsViewController.h"
 #import "NetManager.h"
 #import "LoginController.h"
+#import "WebViewController.h"
 
 @interface MaterialSearchBuyViewController ()
 
@@ -321,13 +322,21 @@
   NSString *content;
   if (result == 0)
   {
-    content = [NSString stringWithFormat:@"下单成功，订单号%@",resultDic[@"order_id"]];
-    HUD.detailsLabelText = content;
     HUD.labelText = nil;
+    HUD.detailsLabelText = @"下单成功，打开订单中...";
     [HUD show:YES];
-    [HUD hide:YES afterDelay:2];
-    isOrderSuccess = YES;
+    self.netOperation = [[[NetManager sharedInstance] hellEngine] getM6AuthInfoWithCompletionHandler:^(NSMutableDictionary *resultDic) {
+         [self getM6AuthInfoCallBack:resultDic withOrder:resultDic[@"order_id"]];
+       }
+       errorHandler:^(NSError *error) {
+         HUD.labelText = nil;
+         HUD.detailsLabelText = @"打开页面失败，请去我的订单查看";
+          [HUD show:YES];
+          [HUD hide:YES afterDelay:1.0];
+       }
+    ];
 
+    isOrderSuccess = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
   }
   else
@@ -359,7 +368,6 @@
   if (isOrderSuccess) {
     [self.navigationController popToRootViewControllerAnimated:YES];
   }
-
 }
 
 - (UITableView *)relatedTable:(UIView *)view
@@ -385,6 +393,26 @@
   {
     NSAssert(NO, @"UITableViewCell shall always be found.");
     return nil;
+  }
+}
+
+- (void)getM6AuthInfoCallBack:(NSMutableDictionary*) resultDic withOrder:(NSString *)orderId
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == GC_Success)
+  {
+    WebViewController *controller = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
+    NSString *urlStr = [NSString stringWithFormat:@"http://o2o.m6fresh.com/ws/mobile_myorder0.aspx?code=%@", orderId];
+    [controller loadWebPage:urlStr usingSession:[resultDic valueForKey:@"name"] withValue:[resultDic valueForKey:@"value"] withTitle:@"订单"];
+    [self.mm_drawerController.navigationController pushViewController:controller animated:YES];
+    [HUD hide:NO];
+  }
+  else if (result == GC_Failed)
+  {
+    HUD.labelText = nil;
+    HUD.detailsLabelText = @"打开页面失败，请去我的订单查看";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1.0];
   }
 }
 

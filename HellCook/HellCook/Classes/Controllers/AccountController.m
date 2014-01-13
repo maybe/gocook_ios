@@ -62,6 +62,11 @@
 
   [self initCellContentArray];
 
+  HUD = [[MBProgressHUD alloc] initWithView:self.view];
+  [self.view addSubview:HUD];
+  HUD.mode = MBProgressHUDModeCustomView;
+  HUD.delegate = self;
+
   CGRect viewFrame = self.view.frame;
   viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.view setFrame:viewFrame];
@@ -384,7 +389,7 @@ destructiveButtonTitle:@"确定"
       @"0", @"count2", @"粉丝", @"title2",
       @"0", @"count3", @"收藏", @"title3",
       @"0", @"count4", @"菜谱", @"title4",
-      @"0", @"count5", @"购买", @"title5", nil];
+      @"0", @"count5", @"订单", @"title5", nil];
   [cellContentArray addObject:cellDic];
 
   cellDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -495,11 +500,15 @@ destructiveButtonTitle:@"确定"
   }
   else if (sender.tag == 10005)//我的购买
   {
-    self.netOperation = [[[NetManager sharedInstance] hellEngine]
-        getM6AuthInfoWithCompletionHandler:^(NSMutableDictionary *resultDic) {
+    HUD.labelText = @"正在打开页面...";
+    [HUD show:YES];
+    self.netOperation = [[[NetManager sharedInstance] hellEngine] getM6AuthInfoWithCompletionHandler:^(NSMutableDictionary *resultDic) {
            [self getM6AuthInfoCallBack:resultDic];
          }
         errorHandler:^(NSError *error) {
+          HUD.labelText = @"打开页面失败，请重试";
+          [HUD show:YES];
+          [HUD hide:YES afterDelay:1.0];
         }
     ];
   }
@@ -581,14 +590,17 @@ destructiveButtonTitle:@"确定"
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success)
   {
+    [HUD hide:NO];
     WebViewController *controller = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
     NSString *urlStr = [NSString stringWithFormat:@"http://o2o.m6fresh.com/ws/mobile_myorders.aspx"];
-    [controller loadWeb:urlStr UsingSessionName:[resultDic valueForKey:@"name"] Value:[resultDic valueForKey:@"value"]];
-    [self.navigationController pushViewController:controller animated:YES];
+    [controller loadWebPage:urlStr usingSession:[resultDic valueForKey:@"name"] withValue:[resultDic valueForKey:@"value"] withTitle:@"我的订单"];
+    [self.mm_drawerController.navigationController pushViewController:controller animated:YES];
   }
   else if (result == GC_Failed)
   {
-
+    HUD.labelText = @"打开页面失败，请重试";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1.0];
   }
 }
 
