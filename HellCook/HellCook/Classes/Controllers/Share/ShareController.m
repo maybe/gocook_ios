@@ -40,11 +40,18 @@
   [self hideView];
 }
 
+- (void)tapBackGestureRecognizer
+{
+}
+
 - (void)InitLayout
 {
   [self.view setBackgroundColor:[UIColor colorWithRed:29.0f/255.0f green:29.0f/255.0f blue:29.0f/255.0f alpha:0.5f]];
   backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _screenWidth, 96)];
   [backView setBackgroundColor:[UIColor colorWithRed:222.0f/255.0f green:222.0f/255.0f blue:222.0f/255.0f alpha:1.0f]];
+  backView.userInteractionEnabled = YES;
+  UITapGestureRecognizer* backGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBackGestureRecognizer)];
+  [backView addGestureRecognizer:backGestureRecognizer];
   [self.view addSubview:backView];
   
   weixinButton = [[UIButton alloc]init];

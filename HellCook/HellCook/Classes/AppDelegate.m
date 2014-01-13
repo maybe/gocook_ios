@@ -104,7 +104,7 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
   //share
   self.shareController = [[ShareController alloc]initWithNibName:@"ShareView" bundle:nil];
   [WXApi registerApp:wAppKey];
-  [WeiboSDK enableDebugMode:YES];
+  [WeiboSDK enableDebugMode:NO];
   [WeiboSDK registerApp:kAppKey];
   
   self.window.backgroundColor = [UIColor blackColor];
