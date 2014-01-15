@@ -90,11 +90,13 @@
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl
 {
-  [myFansArray removeAllObjects];
-  curPage = 0;
-  isPageEnd = NO;
-  [self.myTableView reloadData];
-  [self getUserFansData];
+  if ([netOperation isFinished]) {
+    [myFansArray removeAllObjects];
+    curPage = 0;
+    isPageEnd = NO;
+    [self.myTableView reloadData];
+    [self getUserFansData];
+  }
 }
 
 - (void)setLeftButton

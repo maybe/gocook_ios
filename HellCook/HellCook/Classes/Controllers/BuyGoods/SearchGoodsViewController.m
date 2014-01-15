@@ -68,13 +68,15 @@
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
 {
-  [goodsListArray removeAllObjects];
-  curPage = 0;
-  bShouldRefresh = YES;
-  emptyLabel.hidden = YES;
-  [self.myTableView reloadData];
-  [self initLoadingView];
-  [self getGoodsInfo];
+  if ([netOperation isFinished]) {
+    [goodsListArray removeAllObjects];
+    curPage = 0;
+    bShouldRefresh = YES;
+    emptyLabel.hidden = YES;
+    [self.myTableView reloadData];
+    [self initLoadingView];
+    [self getGoodsInfo];
+  }
 }
 
 - (void)setLeftButton

@@ -63,10 +63,12 @@
 }
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl {
-  [self initLoadingView];
-  curPage = 0;
-  bShouldRefresh = YES;
-  [self getMyCollectionData];
+  if ([netOperation isFinished]) {
+    [self initLoadingView];
+    curPage = 0;
+    bShouldRefresh = YES;
+    [self getMyCollectionData];
+  }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

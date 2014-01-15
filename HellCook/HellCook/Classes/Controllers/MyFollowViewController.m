@@ -122,11 +122,13 @@
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl
 {
-  [myFollowsArray removeAllObjects];
-  curPage = 0;
-  isPageEnd = NO;
-  [self.myTableView reloadData];
-  [self getUserFollowData];
+  if ([netOperation isFinished]) {
+    [myFollowsArray removeAllObjects];
+    curPage = 0;
+    isPageEnd = NO;
+    [self.myTableView reloadData];
+    [self getUserFollowData];
+  }
 }
 
 - (void)viewDidUnload {

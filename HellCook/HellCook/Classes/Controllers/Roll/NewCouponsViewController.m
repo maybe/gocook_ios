@@ -124,12 +124,11 @@
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl
 {
-  curPage = 0;
-  isPageEnd = FALSE;
-
-  
-  
-  [self getAllMyCoupons];
+  if ([netOperation isFinished]) {
+    curPage = 0;
+    isPageEnd = FALSE;
+    [self getAllMyCoupons];
+  }
 }
 
 - (void)initLoadingView

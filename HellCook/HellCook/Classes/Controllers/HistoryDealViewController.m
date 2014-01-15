@@ -88,12 +88,14 @@
 }
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl {
-  [ordersArray removeAllObjects];
-  curPage = 0;
-  bShouldRefresh = YES;
-  [self initLoadingView];
-  [self.myTableView reloadData];
-  [self getHistoryDeal];
+  if ([netOperation isFinished]) {
+    [ordersArray removeAllObjects];
+    curPage = 0;
+    bShouldRefresh = YES;
+    [self initLoadingView];
+    [self.myTableView reloadData];
+    [self getHistoryDeal];
+  }
 }
 
 - (void)setLeftButton {
