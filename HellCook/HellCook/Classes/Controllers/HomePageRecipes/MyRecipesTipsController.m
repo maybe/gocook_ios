@@ -358,7 +358,11 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
-    HUD.labelText = @"发布成功";
+    if ([[[User sharedInstance] recipe] getIsCreate]) {
+      HUD.labelText = [NSString stringWithFormat:@"发布成功，获取%@积分", resultDic[@"credit"]];
+    } else {
+      HUD.labelText = @"发布成功";
+    }
     HUD.detailsLabelText = nil;
     [HUD hide:YES afterDelay:1.0];
     isCreate = YES;
