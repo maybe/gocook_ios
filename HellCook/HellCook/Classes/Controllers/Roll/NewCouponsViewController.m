@@ -31,8 +31,8 @@
     curPage = 0;
     isPageEnd = FALSE;
     bComeBack = FALSE;
-    bFirstRun = TRUE;
     bMore = FALSE;
+    bInrequest = FALSE;
     itmesArray = [[NSMutableArray alloc] init];
   }
   return self;
@@ -73,10 +73,7 @@
   
   [self setLeftButton];
   
-  if (bFirstRun) {
-    [self getAllMyCoupons];
-    bFirstRun = FALSE;
-  }
+  [self getAllMyCoupons];
   
   [self autoLayout];
 }
@@ -294,6 +291,15 @@
     return;
   }
 
+  if (bInrequest)
+  {
+    return;
+  }
+  else
+  {
+    bInrequest = TRUE;
+  }
+  
   self.netOperation = [[[NetManager sharedInstance] hellEngine]
                        getAllMyCouponsByPage:(curPage + 1)
                        completionHandler:^(NSMutableDictionary *resultDic) {
@@ -368,6 +374,10 @@
         [self.navigationController pushViewController:m animated:YES];
       }
     }
+  }
+  
+  if (bInrequest) {
+    bInrequest = FALSE;
   }
 }
 
