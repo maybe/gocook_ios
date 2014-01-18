@@ -50,7 +50,11 @@
   [self autoLayout];
 
   [self setLeftButton];
-  
+
+  CGRect viewFrame = self.view.frame;
+  viewFrame.size.height = _screenHeight_NoStBar_NoNavBar;
+  [self.view setFrame:viewFrame];
+
   CGRect webFrame = self.webView.frame;
   webFrame.size.height = _screenHeight_NoStBar_NoNavBar;
   [self.webView setFrame:webFrame];

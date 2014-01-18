@@ -89,8 +89,10 @@
 }
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl {
-  [self initLoadingView];
-  [self reloadRecipeData]; //下拉刷新的话就不显示loadingView的圈了
+  if ([mNetOperation isFinished]) {
+    [self initLoadingView];
+    [self reloadRecipeData]; //下拉刷新的话就不显示loadingView的圈了
+  }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -186,6 +188,7 @@
 - (void)getRecipesResultCallBack:(NSMutableDictionary *)resultDic {
   if ([refreshControl isRefreshing]) {
     [mMyRecipeArray removeAllObjects];
+    [tableView reloadData];
     [refreshControl endRefreshing];
   }
 

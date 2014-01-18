@@ -19,6 +19,7 @@
 @synthesize nameLabel;
 @synthesize followBtn;
 @synthesize placeHolderImage;
+@synthesize creditLabel;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -31,10 +32,15 @@
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
  
       //namelabel
-      nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 65, 160, 30)];
+      nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 50, 160, 30)];
       nameLabel.textColor = [UIColor colorWithRed:101.0 / 255.0 green:107.0 / 255.0 blue:55.0 / 255.0 alpha:0.8];
       nameLabel.font = [UIFont boldSystemFontOfSize:20];
       nameLabel.backgroundColor = [UIColor clearColor];
+      //creditlabel
+      creditLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 72, 160, 30)];
+      creditLabel.textColor = [UIColor colorWithRed:101.0 / 255.0 green:107.0 / 255.0 blue:55.0 / 255.0 alpha:0.8];
+      creditLabel.font = [UIFont systemFontOfSize:17];
+      creditLabel.backgroundColor = [UIColor clearColor];
       //bannerImageView
       bannerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 150)];
       [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
@@ -64,6 +70,7 @@
       [self addSubview:bannerImageView];
       [self addSubview:avataImageView];
       [self addSubview:nameLabel];
+      [self addSubview:creditLabel];
       [self addSubview:followBtn];
       [followBtn setHidden:YES];
 
@@ -101,7 +108,9 @@
   {
     [nameLabel setText:[[[User sharedInstance] account] username]];
   }
-  
+
+  [creditLabel setText:[NSString stringWithFormat:@"积分：%@", dict[@"credit"]]];
+
   if (dict[@"avatar"]!=[NSNull null] && ![dict[@"avatar"] isEqual:@""])
   {
     NSString* avatarUrl = [NSString stringWithFormat: @"http://%@/%@", [[NetManager sharedInstance] host], dict[@"avatar"]];

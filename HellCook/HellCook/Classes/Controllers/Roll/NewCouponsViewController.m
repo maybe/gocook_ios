@@ -121,12 +121,11 @@
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl
 {
-  curPage = 0;
-  isPageEnd = FALSE;
-
-  
-  
-  [self getAllMyCoupons];
+  if ([netOperation isFinished]) {
+    curPage = 0;
+    isPageEnd = FALSE;
+    [self getAllMyCoupons];
+  }
 }
 
 - (void)initLoadingView
@@ -317,6 +316,7 @@
   if ([refreshControl isRefreshing] || bComeBack) {
     [refreshControl endRefreshing];
     [itmesArray removeAllObjects];
+    [myTableView reloadData];
     bComeBack = FALSE;
   }
   if (bMore) {

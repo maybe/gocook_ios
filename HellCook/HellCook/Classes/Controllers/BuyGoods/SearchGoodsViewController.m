@@ -68,13 +68,15 @@
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
 {
-  [goodsListArray removeAllObjects];
-  curPage = 0;
-  bShouldRefresh = YES;
-  emptyLabel.hidden = YES;
-  [self.myTableView reloadData];
-  [self initLoadingView];
-  [self getGoodsInfo];
+  if ([netOperation isFinished]) {
+    [goodsListArray removeAllObjects];
+    curPage = 0;
+    bShouldRefresh = YES;
+    emptyLabel.hidden = YES;
+    [self.myTableView reloadData];
+    [self initLoadingView];
+    [self getGoodsInfo];
+  }
 }
 
 - (void)setLeftButton
@@ -196,11 +198,20 @@
                        completionHandler:^(NSMutableDictionary *resultDic){
                          [self getGoodsInfoCallBack:resultDic];}
                        errorHandler:^(NSError *error){
+                         if ([refreshControl isRefreshing]) {
+                           [refreshControl endRefreshing];
+                         }
                        }];
 }
 
 -(void)getGoodsInfoCallBack:(NSMutableDictionary*) resultDic
 {
+  if ([refreshControl isRefreshing]) {
+    [refreshControl endRefreshing];
+    [goodsListArray removeAllObjects];
+    [[self myTableView] reloadData];
+  }
+
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == 0)
   {
@@ -208,6 +219,7 @@
 
     if (totalCount == 0) {
       emptyLabel.hidden = NO;
+      [self deleteLoadingView];
       return;
     }
 
@@ -224,9 +236,6 @@
       if (originsize == 0)
       {
         [self.myTableView reloadData];
-        if ([refreshControl isRefreshing]){
-          [refreshControl endRefreshing];
-        }
       }
       else
       {

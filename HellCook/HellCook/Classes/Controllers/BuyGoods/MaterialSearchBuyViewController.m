@@ -325,8 +325,8 @@
     HUD.labelText = nil;
     HUD.detailsLabelText = @"下单成功，打开订单中...";
     [HUD show:YES];
-    self.netOperation = [[[NetManager sharedInstance] hellEngine] getM6AuthInfoWithCompletionHandler:^(NSMutableDictionary *resultDic) {
-         [self getM6AuthInfoCallBack:resultDic withOrder:resultDic[@"order_id"]];
+    self.netOperation = [[[NetManager sharedInstance] hellEngine] getM6AuthInfoWithCompletionHandler:^(NSMutableDictionary *resultDic2) {
+         [self getM6AuthInfoCallBack:resultDic2 withOrder:resultDic[@"order_id"]];
        }
        errorHandler:^(NSError *error) {
          HUD.labelText = nil;

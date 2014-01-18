@@ -121,9 +121,6 @@
 		BA0DC16F16D4C3A500E4CED9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0DC16E16D4C3A500E4CED9 /* CoreGraphics.framework */; };
 		BA0DC17516D4C3A500E4CED9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC17316D4C3A500E4CED9 /* InfoPlist.strings */; };
 		BA0DC17716D4C3A500E4CED9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0DC17616D4C3A500E4CED9 /* main.m */; };
-		BA0DC17D16D4C3A500E4CED9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC17C16D4C3A500E4CED9 /* Default.png */; };
-		BA0DC17F16D4C3A500E4CED9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC17E16D4C3A500E4CED9 /* Default@2x.png */; };
-		BA0DC18116D4C3A500E4CED9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0DC18016D4C3A500E4CED9 /* Default-568h@2x.png */; };
 		BA115232182F82AB00EED238 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA115231182F82AB00EED238 /* AVFoundation.framework */; };
 		BA115234182F82B400EED238 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA115233182F82B400EED238 /* CoreMedia.framework */; };
 		BA115236182F82BB00EED238 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA115235182F82BB00EED238 /* CoreVideo.framework */; };
@@ -140,8 +137,6 @@
 		BA1152A6182F8AB100EED238 /* NYXProgressiveImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA115297182F8AB100EED238 /* NYXProgressiveImageView.m */; };
 		BA1152A7182F8AB100EED238 /* NYXImagesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BA11529A182F8AB100EED238 /* NYXImagesHelper.m */; };
 		BA1157E2182FBD9E00EED238 /* libZXingObjC-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1157E1182FBD9E00EED238 /* libZXingObjC-iOS.a */; };
-		BA1CE94E17E60468007F42AA /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA1CE94D17E60468007F42AA /* Icon@2x.png */; };
-		BA1CE95017E60479007F42AA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA1CE94F17E60479007F42AA /* Icon.png */; };
 		BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */; };
 		BA3E043E17B3ECCB007F1E86 /* MyRecipesMaterialController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E043D17B3ECCB007F1E86 /* MyRecipesMaterialController.m */; };
 		BA3E044017B3F572007F1E86 /* MyRecipesMatieralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA3E043F17B3F572007F1E86 /* MyRecipesMatieralView.xib */; };
@@ -180,10 +175,6 @@
 		BA79118F1710786500BC77C9 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79118E1710786500BC77C9 /* Recipe.m */; };
 		BA7CC61C17AD5BB900A6C8AE /* MyRecipesController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */; };
 		BA7CC61F17AD5BE700A6C8AE /* MyRecipesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA7CC61E17AD5BE600A6C8AE /* MyRecipesView.xib */; };
-		BA81CFA018281AFA001467B1 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA81CF9F18281AFA001467B1 /* Icon-60@2x.png */; };
-		BA81CFA318281DEE001467B1 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = BA81CFA118281DEE001467B1 /* Icon-29.png */; };
-		BA81CFA418281DEE001467B1 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA81CFA218281DEE001467B1 /* Icon-29@2x.png */; };
-		BA81CFA618281E23001467B1 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA81CFA518281E23001467B1 /* Icon-40@2x.png */; };
 		BA829BE51704880100B0341A /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE41704880100B0341A /* MainView.xib */; };
 		BA829BE817048E8600B0341A /* UINavigationController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */; };
 		BA829BEA1704995300B0341A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA829BE91704995300B0341A /* LoginView.xib */; };
@@ -229,6 +220,7 @@
 		BACCF88E16ED0CFB0094F1E5 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF88D16ED0CFB0094F1E5 /* libiconv.dylib */; };
 		BACCF89016ED0D090094F1E5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF88F16ED0D090094F1E5 /* libsqlite3.0.dylib */; };
 		BACCF89616ED0D630094F1E5 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BACCF89516ED0D630094F1E5 /* libicucore.dylib */; };
+		BAD8EE2A18897F0100547EEA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAD8EE2918897F0100547EEA /* Images.xcassets */; };
 		BAE38C841736997500936382 /* TopListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE38C831736997500936382 /* TopListView.xib */; };
 		BAE38C8B1736C36000936382 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE38C8A1736C36000936382 /* SearchView.xib */; };
 		BAE38C931737561500936382 /* NSObject+AssociativeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE38C901737561400936382 /* NSObject+AssociativeObject.m */; };
@@ -450,9 +442,6 @@
 		BA0DC17416D4C3A500E4CED9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BA0DC17616D4C3A500E4CED9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BA0DC17816D4C3A500E4CED9 /* HellCook-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HellCook-Prefix.pch"; sourceTree = "<group>"; };
-		BA0DC17C16D4C3A500E4CED9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		BA0DC17E16D4C3A500E4CED9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		BA0DC18016D4C3A500E4CED9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		BA115231182F82AB00EED238 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BA115233182F82B400EED238 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		BA115235182F82BB00EED238 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -706,8 +695,6 @@
 		BA1157DD182FB66400EED238 /* ZXWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXWriter.h; sourceTree = "<group>"; };
 		BA1157DE182FB66400EED238 /* ZXX12Encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXX12Encoder.h; sourceTree = "<group>"; };
 		BA1157E1182FBD9E00EED238 /* libZXingObjC-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libZXingObjC-iOS.a"; path = "HellCook/Libs/ZXingObjC/universal/libZXingObjC-iOS.a"; sourceTree = "<group>"; };
-		BA1CE94D17E60468007F42AA /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		BA1CE94F17E60479007F42AA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingListView.xib; sourceTree = "<group>"; };
 		BA3E043C17B3ECCB007F1E86 /* MyRecipesMaterialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesMaterialController.h; path = Classes/Controllers/HomePageRecipes/MyRecipesMaterialController.h; sourceTree = "<group>"; };
 		BA3E043D17B3ECCB007F1E86 /* MyRecipesMaterialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesMaterialController.m; path = Classes/Controllers/HomePageRecipes/MyRecipesMaterialController.m; sourceTree = "<group>"; };
@@ -770,10 +757,6 @@
 		BA7CC61917AD5BB600A6C8AE /* MyRecipesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesController.h; path = Classes/Controllers/MyRecipesController.h; sourceTree = "<group>"; };
 		BA7CC61A17AD5BB700A6C8AE /* MyRecipesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesController.m; path = Classes/Controllers/MyRecipesController.m; sourceTree = "<group>"; };
 		BA7CC61E17AD5BE600A6C8AE /* MyRecipesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRecipesView.xib; sourceTree = "<group>"; };
-		BA81CF9F18281AFA001467B1 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
-		BA81CFA118281DEE001467B1 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
-		BA81CFA218281DEE001467B1 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
-		BA81CFA518281E23001467B1 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
 		BA829BE41704880100B0341A /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		BA829BE617048E8600B0341A /* UINavigationController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Autorotate.h"; path = "Classes/Common/UINavigationController+Autorotate.h"; sourceTree = "<group>"; };
 		BA829BE717048E8600B0341A /* UINavigationController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Autorotate.m"; path = "Classes/Common/UINavigationController+Autorotate.m"; sourceTree = "<group>"; };
@@ -853,6 +836,7 @@
 		BACCF88D16ED0CFB0094F1E5 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		BACCF88F16ED0D090094F1E5 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		BACCF89516ED0D630094F1E5 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		BAD8EE2918897F0100547EEA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BAE38C831736997500936382 /* TopListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopListView.xib; sourceTree = "<group>"; };
 		BAE38C8A1736C36000936382 /* SearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		BAE38C8F1737561400936382 /* NSObject+AssociativeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AssociativeObject.h"; path = "Classes/Common/NSObject+AssociativeObject.h"; sourceTree = "<group>"; };
@@ -1306,19 +1290,11 @@
 		BA0DC17116D4C3A500E4CED9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				BA81CFA518281E23001467B1 /* Icon-40@2x.png */,
-				BA81CFA118281DEE001467B1 /* Icon-29.png */,
-				BA81CFA218281DEE001467B1 /* Icon-29@2x.png */,
-				BA81CF9F18281AFA001467B1 /* Icon-60@2x.png */,
+				BAD8EE2918897F0100547EEA /* Images.xcassets */,
 				BA0DC17216D4C3A500E4CED9 /* HellCook-Info.plist */,
 				BA0DC17316D4C3A500E4CED9 /* InfoPlist.strings */,
 				BA0DC17616D4C3A500E4CED9 /* main.m */,
 				BA0DC17816D4C3A500E4CED9 /* HellCook-Prefix.pch */,
-				BA1CE94F17E60479007F42AA /* Icon.png */,
-				BA1CE94D17E60468007F42AA /* Icon@2x.png */,
-				BA0DC17C16D4C3A500E4CED9 /* Default.png */,
-				BA0DC17E16D4C3A500E4CED9 /* Default@2x.png */,
-				BA0DC18016D4C3A500E4CED9 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2044,25 +2020,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA0DC17516D4C3A500E4CED9 /* InfoPlist.strings in Resources */,
-				BA0DC17D16D4C3A500E4CED9 /* Default.png in Resources */,
 				5EA66DD518292EFF00AB6322 /* CouponsView.xib in Resources */,
-				BA0DC17F16D4C3A500E4CED9 /* Default@2x.png in Resources */,
-				BA0DC18116D4C3A500E4CED9 /* Default-568h@2x.png in Resources */,
 				BACCF83616ECFC420094F1E5 /* .gitignore in Resources */,
+				BAD8EE2A18897F0100547EEA /* Images.xcassets in Resources */,
 				BA3F5E6716FA297800493260 /* Images in Resources */,
 				5E03A2F8184E1D8D00E4E293 /* yaoyiyao.wav in Resources */,
 				BA73C95516FE37D9008284D8 /* AccountView.xib in Resources */,
 				BA28C7DD16FF65AE006AAC38 /* ShoppingListView.xib in Resources */,
 				BA6CEC9F170229A100EDFC24 /* RegisterView.xib in Resources */,
-				BA81CFA618281E23001467B1 /* Icon-40@2x.png in Resources */,
 				BA829BE51704880100B0341A /* MainView.xib in Resources */,
 				BA829BEA1704995300B0341A /* LoginView.xib in Resources */,
 				BA6069AD1708E3DA0060C251 /* DebugOption.xib in Resources */,
 				BA75EA181871DF95008AC2C2 /* WeiboSDK.bundle in Resources */,
-				BA81CFA018281AFA001467B1 /* Icon-60@2x.png in Resources */,
 				BAE38C841736997500936382 /* TopListView.xib in Resources */,
 				5EA66E04183757CE00AB6322 /* NewCouponsDetailView.xib in Resources */,
-				BA81CFA418281DEE001467B1 /* Icon-29@2x.png in Resources */,
 				5EA66DF1182E0D0C00AB6322 /* WebView.xib in Resources */,
 				BAE38C8B1736C36000936382 /* SearchView.xib in Resources */,
 				BAE38C9B1737984C00936382 /* RecipeDetailView.xib in Resources */,
@@ -2078,7 +2049,6 @@
 				BA3E044017B3F572007F1E86 /* MyRecipesMatieralView.xib in Resources */,
 				BA3E044B17B6B257007F1E86 /* MyRecipesStepView.xib in Resources */,
 				5EEB7E1817B7AE7100BCB1CB /* MyIntroEditView.xib in Resources */,
-				BA81CFA318281DEE001467B1 /* Icon-29.png in Resources */,
 				BA3E045A17B7E9DF007F1E86 /* MyRecipesTipsView.xib in Resources */,
 				5ED7F13517BF837E00223884 /* RecipeCommentView.xib in Resources */,
 				5EF9F41F17D47E6A005ABA82 /* MaterialSearchBuyView.xib in Resources */,
@@ -2088,8 +2058,6 @@
 				5EF9F45C17D8A82C005ABA82 /* BuyView.xib in Resources */,
 				5E001D7A17E2AD5C00BDAC62 /* HistoryDealView.xib in Resources */,
 				5E001D8417E3082700BDAC62 /* DealDetailView.xib in Resources */,
-				BA1CE94E17E60468007F42AA /* Icon@2x.png in Resources */,
-				BA1CE95017E60479007F42AA /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2336,6 +2304,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: YiTian Wang (CL7569E4B6)";
@@ -2353,8 +2322,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D23C6DF1-148F-45F6-8682-BD04D398615C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D23C6DF1-148F-45F6-8682-BD04D398615C";
+				PROVISIONING_PROFILE = "50FC57F7-517C-40B1-BAF8-C154453061F0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50FC57F7-517C-40B1-BAF8-C154453061F0";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -2365,6 +2334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: YiTian Wang (6J5E6QMXJ4)";
@@ -2382,8 +2352,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "80881A16-2F54-4777-A212-6033D2223E71";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "80881A16-2F54-4777-A212-6033D2223E71";
+				PROVISIONING_PROFILE = "DF0952E8-51AF-4D53-A8ED-5ABEF9D72012";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DF0952E8-51AF-4D53-A8ED-5ABEF9D72012";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
