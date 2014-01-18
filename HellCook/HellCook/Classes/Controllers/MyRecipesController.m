@@ -188,6 +188,7 @@
 - (void)getRecipesResultCallBack:(NSMutableDictionary *)resultDic {
   if ([refreshControl isRefreshing]) {
     [mMyRecipeArray removeAllObjects];
+    [tableView reloadData];
     [refreshControl endRefreshing];
   }
 

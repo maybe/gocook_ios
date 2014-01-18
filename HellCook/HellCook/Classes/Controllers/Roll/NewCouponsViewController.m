@@ -310,6 +310,7 @@
   if ([refreshControl isRefreshing] || bComeBack) {
     [refreshControl endRefreshing];
     [itmesArray removeAllObjects];
+    [myTableView reloadData];
     bComeBack = FALSE;
   }
   if (bMore) {

@@ -197,6 +197,7 @@
   if ([refreshControl isRefreshing]) {
     [refreshControl endRefreshing];
     [myCollectionArray removeAllObjects];
+    [[self tableView] reloadData];
   }
 
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
