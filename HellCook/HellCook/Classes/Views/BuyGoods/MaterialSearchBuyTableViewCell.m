@@ -154,7 +154,7 @@
     double price = 0;
     if ([(NSString*)dict[@"unit"] isEqualToString:@"kg"])
     {
-      strAmount = [NSString stringWithFormat:@"￥%.2f/500g × %@市斤(500g)",[dict[@"price"] floatValue]/2,dict[@"Quantity"]];
+      strAmount = [NSString stringWithFormat:@"￥%.2f/kg × %.2fkg",[dict[@"price"] floatValue],[dict[@"Quantity"] floatValue]/2];
       price = [dict[@"price"] floatValue]/2 * [dict[@"Quantity"] floatValue];
     }
     else
