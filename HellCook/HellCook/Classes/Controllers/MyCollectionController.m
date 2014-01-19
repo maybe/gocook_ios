@@ -27,7 +27,7 @@
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     curPage = 0;
-    bShouldRefresh = TRUE;
+    bShouldRefresh = YES;
     myCollectionArray = [[NSMutableArray alloc] init];
   }
   return self;
@@ -48,11 +48,22 @@
   [self setLeftButton];
   [self initLoadingView];
 
+  emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2 - 20, _sideWindowWidth, 44)];
+  emptyLabel.text = @"您还没有收藏菜谱";
+  emptyLabel.numberOfLines = 0;
+  [emptyLabel setBackgroundColor:[UIColor clearColor]];
+  emptyLabel.textAlignment = NSTextAlignmentCenter;
+  emptyLabel.font = [UIFont systemFontOfSize:15];
+  [emptyLabel setTextColor:[UIColor colorWithRed:82.0f/255.0f green:82.0f/255.0f blue:82.0f/255.0f alpha:1.0f]];
+  emptyLabel.hidden = YES;
+  [self.view addSubview:emptyLabel];
+
   refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
   refreshControl.tintColor = [UIColor colorWithRed:120.0 / 255.0 green:120.0 / 255.0 blue:120.0 / 255.0 alpha:1.0];
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnLoginSuccess:) name:@"EVT_OnLoginSuccess" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnShouldRefreshMyColl:) name:@"EVT_OnShouldRefreshMyColl" object:nil];
 
   [self getMyCollectionData];
 
@@ -68,6 +79,7 @@
     curPage = 0;
     bShouldRefresh = YES;
     [self getMyCollectionData];
+    emptyLabel.hidden = YES;
   }
 }
 
@@ -203,6 +215,15 @@
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success) {
     int totalCount = [resultDic[@"total"] intValue];
+
+    if (totalCount == 0) {
+      emptyLabel.hidden = NO;
+      [self deleteLoadingView];
+      return;
+    }
+
+    emptyLabel.hidden = YES;
+
     totalPage = totalCount / 10 + (totalCount % 10 > 0 ? 1 : 0);
     int originSize = myCollectionArray.count;
     int addsize = [(NSArray *) resultDic[@"result_recipes"] count];
@@ -265,6 +286,18 @@
     bShouldRefresh = YES;
     [self.tableView reloadData];
     [self getMyCollectionData];
+  }
+}
+
+- (void)OnShouldRefreshMyColl:(NSNotification *)notification {
+  if ([netOperation isFinished]) {
+    [myCollectionArray removeAllObjects];
+    [tableView reloadData];
+    [self initLoadingView];
+    curPage = 0;
+    bShouldRefresh = YES;
+    [self getMyCollectionData];
+    emptyLabel.hidden = YES;
   }
 }
 

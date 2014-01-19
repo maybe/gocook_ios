@@ -100,9 +100,18 @@
   CGRect frame = self.myTableView.tableHeaderView.frame;
   frame.size.height = 44;
   self.myTableView.tableHeaderView = [[UIView alloc] initWithFrame:frame];
-  CGFloat tableWidth = self.myTableView.frame.size.width;
 
-  UIButton *uploadButton = [[UIButton alloc] initWithFrame:CGRectMake(tableWidth / 2 - 106, 8, 212, 28)];
+  UIButton *orderButton = [[UIButton alloc] initWithFrame:CGRectMake(25, 8, 110, 28)];
+  UIImage *orderButtonBackgroundImage = [UIImage imageNamed:@"Images/OrderManagerNormal.png"];
+  [orderButton setBackgroundImage:orderButtonBackgroundImage forState:UIControlStateNormal];
+
+  UIImage *orderButtonBackgroundImage2 = [UIImage imageNamed:@"Images/OrderManagerHighLight.png"];
+  [orderButton setBackgroundImage:orderButtonBackgroundImage2 forState:UIControlStateHighlighted];
+
+  [orderButton addTarget:self action:@selector(openOrders) forControlEvents:UIControlEventTouchUpInside];
+
+
+  UIButton *uploadButton = [[UIButton alloc] initWithFrame:CGRectMake(145, 8, 110, 28)];
   UIImage *buttonBackgroundImage = [UIImage imageNamed:@"Images/AddOtherMaterialNormal.png"];
   [uploadButton setBackgroundImage:buttonBackgroundImage forState:UIControlStateNormal];
 
@@ -111,6 +120,7 @@
 
   [uploadButton addTarget:self action:@selector(addOtherMaterial) forControlEvents:UIControlEventTouchUpInside];
 
+  [self.myTableView.tableHeaderView addSubview:orderButton];
   [self.myTableView.tableHeaderView addSubview:uploadButton];
 
   UIImage *dotImage = [UIImage imageNamed:@"Images/homeHeaderSeperator.png"];
@@ -126,6 +136,23 @@
   alert.alertViewStyle = UIAlertViewStylePlainTextInput;
   [alert setAssociativeObject:@"1" forKey:@"title"];
   [alert show];
+}
+
+-(void)openOrders
+{
+  HUD.detailsLabelText = nil;
+  HUD.labelText = @"正在打开页面...";
+  [HUD show:YES];
+  self.netOperation = [[[NetManager sharedInstance] hellEngine] getM6AuthInfoWithCompletionHandler:^(NSMutableDictionary *resultDic) {
+        [self getM6AuthInfoCallBack:resultDic];
+      }
+      errorHandler:^(NSError *error) {
+        HUD.detailsLabelText = nil;
+        HUD.labelText = @"打开页面失败，请重试";
+        [HUD show:YES];
+        [HUD hide:YES afterDelay:1.0];
+      }
+  ];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -411,6 +438,26 @@
   {
     HUD.labelText = nil;
     HUD.detailsLabelText = @"打开页面失败，请去我的订单查看";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1.0];
+  }
+}
+
+- (void)getM6AuthInfoCallBack:(NSMutableDictionary*) resultDic
+{
+  NSInteger result = [[resultDic valueForKey:@"result"] intValue];
+  if (result == GC_Success)
+  {
+    [HUD hide:NO];
+    WebViewController *controller = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
+    NSString *urlStr = [NSString stringWithFormat:@"http://o2o.m6fresh.com/ws/mobile_myorders.aspx"];
+    [controller loadWebPage:urlStr usingSession:[resultDic valueForKey:@"name"] withValue:[resultDic valueForKey:@"value"] withTitle:@"我的订单"];
+    [self.mm_drawerController.navigationController pushViewController:controller animated:YES];
+  }
+  else if (result == GC_Failed)
+  {
+    HUD.detailsLabelText = nil;
+    HUD.labelText = @"打开页面失败，请重试";
     [HUD show:YES];
     [HUD hide:YES afterDelay:1.0];
   }

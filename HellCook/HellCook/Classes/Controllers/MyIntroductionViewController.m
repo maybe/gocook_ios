@@ -326,6 +326,13 @@
 {
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success) {
+
+    NSInteger credit = [pMyInfo[@"credit"] intValue];
+    NSInteger addCredit = [resultDic[@"credit"] intValue];
+    pMyInfo[@"credit"] = [NSString stringWithFormat:@"%d", credit + addCredit];
+    pMyInfo[@"watch"] = [NSString stringWithFormat:@"%d", E_IsMyWatch];
+      [self.myTableView reloadData];
+
     [pPicCell.followBtn setTitle:@"已关注" forState:UIControlStateNormal];
 
     [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/GreenButtonNormal136.png"] forState:UIControlStateNormal];
@@ -353,6 +360,13 @@
 {
   NSInteger result = [[resultDic valueForKey:@"result"] intValue];
   if (result == GC_Success) {
+
+    NSInteger credit = [pMyInfo[@"credit"] intValue];
+    NSInteger delCredit = [resultDic[@"credit"] intValue];
+    pMyInfo[@"credit"] = [NSString stringWithFormat:@"%d", credit - delCredit];
+    pMyInfo[@"watch"] = [NSString stringWithFormat:@"%d", E_NotMyWatch];
+    [self.myTableView reloadData];
+
     [pPicCell.followBtn setTitle:@"未关注" forState:UIControlStateNormal];
     [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/AddMaterialLineNormal.png"] forState:UIControlStateNormal];
     [pPicCell.followBtn setBackgroundImage:[UIImage imageNamed:@"Images/AddMaterialLineHighLight.png"] forState:UIControlStateHighlighted];

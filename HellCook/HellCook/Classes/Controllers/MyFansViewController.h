@@ -20,6 +20,7 @@
   ODRefreshControl *refreshControl;
   NSInteger userId;
   NSString* titleName;
+  UILabel * emptyLabel;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;

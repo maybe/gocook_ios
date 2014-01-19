@@ -249,8 +249,13 @@
     [UIView animateWithDuration:0.2 animations:^{
       CGRect endFrame = rect;
       endFrame.size.width = 0;
+      endFrame.origin.x = rect.origin.x + 232;
       middleLine.frame = endFrame;
     } completion:^(BOOL finished) {
+      CGRect frame = middleLine.frame;
+      frame.size.width = 0;
+      frame.origin.x = middleLine.frame.origin.x - 232;
+      middleLine.frame = frame;
       middleLine.hidden = YES;
     }];
   }

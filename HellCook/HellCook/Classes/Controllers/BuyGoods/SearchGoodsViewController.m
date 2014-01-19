@@ -53,7 +53,7 @@
   [self getGoodsInfo];
 
   emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2 - 20, _sideWindowWidth, 44)];
-  emptyLabel.text = @"对不起，我们未提供您需要的商品，\n请选择其他商品";
+  emptyLabel.text = @"对不起，没有找到对应的商品";
   emptyLabel.numberOfLines = 0;
   [emptyLabel setBackgroundColor:[UIColor clearColor]];
   emptyLabel.textAlignment = NSTextAlignmentCenter;

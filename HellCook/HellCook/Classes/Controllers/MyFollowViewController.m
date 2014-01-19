@@ -59,6 +59,16 @@
   [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
   refreshControl.tintColor = [UIColor colorWithRed:120.0/255.0 green:120.0/255.0 blue:120.0/255.0 alpha:1.0];
 
+  emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2 - 20, _screenWidth, 44)];
+  emptyLabel.text = @"还没有关注";
+  emptyLabel.numberOfLines = 0;
+  [emptyLabel setBackgroundColor:[UIColor clearColor]];
+  emptyLabel.textAlignment = NSTextAlignmentCenter;
+  emptyLabel.font = [UIFont systemFontOfSize:15];
+  [emptyLabel setTextColor:[UIColor colorWithRed:82.0f/255.0f green:82.0f/255.0f blue:82.0f/255.0f alpha:1.0f]];
+  emptyLabel.hidden = YES;
+  [self.view addSubview:emptyLabel];
+
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnShouldRefreshHPFollow) name:@"EVT_OnShouldRefreshFollow" object:nil];
 
   [self initLoadingView];
@@ -128,6 +138,7 @@
     isPageEnd = NO;
     [self.myTableView reloadData];
     [self getUserFollowData];
+    emptyLabel.hidden = YES;
   }
 }
 
@@ -248,6 +259,13 @@
   if (result == GC_Success)
   {
     int totalCount = [resultDic[@"total"] intValue];
+
+    if (totalCount == 0) {
+      emptyLabel.hidden = NO;
+    } else {
+      emptyLabel.hidden = YES;
+    }
+
     totalPage = totalCount/10 + (totalCount % 10 > 0 ? 1 : 0);
     int originsize = myFollowsArray.count;
     int addsize = [(NSArray*)resultDic[@"result_users"] count];

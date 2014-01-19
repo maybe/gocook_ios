@@ -16,6 +16,7 @@
   NSMutableArray *myCollectionArray;
 
   ODRefreshControl *refreshControl;
+  UILabel * emptyLabel;
 
   BOOL bShouldRefresh;
   NSInteger totalPage;

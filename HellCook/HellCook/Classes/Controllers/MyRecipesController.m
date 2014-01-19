@@ -66,6 +66,16 @@
   [mLoadingActivity stopAnimating];
   [self initLoadingView];
 
+  emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2 - 20, _screenWidth, 44)];
+  emptyLabel.text = @"还没有上传过菜谱";
+  emptyLabel.numberOfLines = 0;
+  [emptyLabel setBackgroundColor:[UIColor clearColor]];
+  emptyLabel.textAlignment = NSTextAlignmentCenter;
+  emptyLabel.font = [UIFont systemFontOfSize:15];
+  [emptyLabel setTextColor:[UIColor colorWithRed:82.0f/255.0f green:82.0f/255.0f blue:82.0f/255.0f alpha:1.0f]];
+  emptyLabel.hidden = YES;
+  [self.view addSubview:emptyLabel];
+
   mMyRecipeArray = [[NSMutableArray alloc] init];
 
   HUD = [[MBProgressHUD alloc] initWithView:self.view];
@@ -91,6 +101,7 @@
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)aRefreshControl {
   if ([mNetOperation isFinished]) {
     [self initLoadingView];
+    emptyLabel.hidden = YES;
     [self reloadRecipeData]; //下拉刷新的话就不显示loadingView的圈了
   }
 }
@@ -196,6 +207,12 @@
   if (result == GC_Success) {
     int totalCount = [resultDic[@"totalrecipecount"] intValue];
     totalPage = totalCount / 10 + (totalCount % 10 > 0 ? 1 : 0);
+
+    if (totalCount == 0) {
+      emptyLabel.hidden = NO;
+    } else {
+      emptyLabel.hidden = YES;
+    }
 
     curPage++;
 

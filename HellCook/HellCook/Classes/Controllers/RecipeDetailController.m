@@ -532,6 +532,7 @@
     recipeDataDic[@"collect"] = @"1";
     [self.tableView reloadData];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshKitchenInfo" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EVT_OnShouldRefreshMyColl" object:nil];
   }
 }
 

@@ -101,7 +101,7 @@
     [label setBackgroundColor:[UIColor clearColor]];
     [rightView addSubview:label];
 
-    [rightImageView setImage:[UIImage imageNamed:@"Images/tmptophot.png"]];
+    //[rightImageView setImage:[UIImage imageNamed:@"Images/tmptophot.png"]];
 
     [rightView addSubview:maskImageView];
 
@@ -129,9 +129,9 @@
       
   [leftImageView setImageWithURL:[NSURL URLWithString:leftImageUrl] placeholderImage: [UIImage imageNamed:@"Images/topDefaultMask.png"]];
 
-  //NSString* rightImageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, dictionary[@"topnew_img"]];
+  NSString* rightImageUrl = [NSString stringWithFormat: @"http://%@/%@", netManager.host, dictionary[@"topnew_img"]];
   
-  //[rightImageView setImageWithURL:[NSURL URLWithString:rightImageUrl] placeholderImage:[UIImage imageNamed:@"Images/topDefaultMask.png"]];
+  [rightImageView setImageWithURL:[NSURL URLWithString:rightImageUrl] placeholderImage:[UIImage imageNamed:@"Images/topDefaultMask.png"]];
 }
 
 @end

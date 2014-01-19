@@ -24,6 +24,8 @@
   MKNetworkOperation *mNetOperation;
   ODRefreshControl *refreshControl;
 
+  UILabel * emptyLabel;
+
   NSInteger userId;
   NSString* titleName;
 }
