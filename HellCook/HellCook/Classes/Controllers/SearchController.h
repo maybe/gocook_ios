@@ -24,6 +24,8 @@
   bool isPageEnd;//是否全部加载完毕
   NSInteger curPage;
   UIActivityIndicatorView* loadingActivity;
+  
+  UILabel * emptyLabel;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

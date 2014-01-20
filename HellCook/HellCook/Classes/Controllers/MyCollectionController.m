@@ -228,7 +228,14 @@
     int originSize = myCollectionArray.count;
     int addsize = [(NSArray *) resultDic[@"result_recipes"] count];
     if (addsize > 0) {
-      curPage++;
+      
+      curPage = [resultDic[@"cur_page"] intValue]; // cur_page从1开始
+      
+      if (curPage == 1) {
+        [myCollectionArray removeAllObjects];
+        originSize = 0;
+      }
+      
       [myCollectionArray addObjectsFromArray:resultDic[@"result_recipes"]];
 
       if (originSize == 0) {

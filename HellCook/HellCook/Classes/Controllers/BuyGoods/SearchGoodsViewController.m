@@ -230,7 +230,14 @@
     int addsize = [(NSArray*)resultDic[@"wares"] count];
     if (addsize > 0)
     {
-      curPage++;
+
+      curPage = [resultDic[@"page"] intValue]; // cur_page从1开始
+      
+      if (curPage == 1) {
+        [goodsListArray removeAllObjects];
+        originsize = 0;
+      }
+      
       [goodsListArray addObjectsFromArray:resultDic[@"wares"]];
       
       if (originsize == 0)

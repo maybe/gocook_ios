@@ -12,6 +12,7 @@
 #import "NetManager.h"
 #import "LoginController.h"
 #import "WebViewController.h"
+#import "User.h"
 
 @interface MaterialSearchBuyViewController ()
 
@@ -140,10 +141,11 @@
 
 -(void)openOrders
 {
-  HUD.detailsLabelText = nil;
-  HUD.labelText = @"正在打开页面...";
-  [HUD show:YES];
-  self.netOperation = [[[NetManager sharedInstance] hellEngine] getM6AuthInfoWithCompletionHandler:^(NSMutableDictionary *resultDic) {
+  if ([[[User sharedInstance] account] isLogin]) {
+    HUD.detailsLabelText = nil;
+    HUD.labelText = @"正在打开页面...";
+    [HUD show:YES];
+    self.netOperation = [[[NetManager sharedInstance] hellEngine] getM6AuthInfoWithCompletionHandler:^(NSMutableDictionary *resultDic) {
         [self getM6AuthInfoCallBack:resultDic];
       }
       errorHandler:^(NSError *error) {
@@ -152,7 +154,16 @@
         [HUD show:YES];
         [HUD hide:YES afterDelay:1.0];
       }
-  ];
+    ];
+  } else {
+    LoginController *m = [[LoginController alloc] initWithNibName:@"LoginView" bundle:nil];
+    m.callerClassName = NSStringFromClass([self class]);
+    if (self.mm_drawerController) {
+      [self.mm_drawerController.navigationController pushViewController:m animated:YES];
+    } else {
+      [self.navigationController pushViewController:m animated:YES];
+    }
+  }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
