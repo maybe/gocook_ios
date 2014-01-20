@@ -696,6 +696,7 @@
 		BA1157DE182FB66400EED238 /* ZXX12Encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXX12Encoder.h; sourceTree = "<group>"; };
 		BA1157E1182FBD9E00EED238 /* libZXingObjC-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libZXingObjC-iOS.a"; path = "HellCook/Libs/ZXingObjC/universal/libZXingObjC-iOS.a"; sourceTree = "<group>"; };
 		BA28C7DC16FF65AE006AAC38 /* ShoppingListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingListView.xib; sourceTree = "<group>"; };
+		BA2988E2188D937700C31556 /* HellCook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HellCook.entitlements; sourceTree = "<group>"; };
 		BA3E043C17B3ECCB007F1E86 /* MyRecipesMaterialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRecipesMaterialController.h; path = Classes/Controllers/HomePageRecipes/MyRecipesMaterialController.h; sourceTree = "<group>"; };
 		BA3E043D17B3ECCB007F1E86 /* MyRecipesMaterialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecipesMaterialController.m; path = Classes/Controllers/HomePageRecipes/MyRecipesMaterialController.m; sourceTree = "<group>"; };
 		BA3E043F17B3F572007F1E86 /* MyRecipesMatieralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyRecipesMatieralView.xib; sourceTree = "<group>"; };
@@ -1279,6 +1280,7 @@
 		BA0DC17016D4C3A500E4CED9 /* HellCook */ = {
 			isa = PBXGroup;
 			children = (
+				BA2988E2188D937700C31556 /* HellCook.entitlements */,
 				BA02634016D756D500298803 /* Classes */,
 				BA02634116D756EB00298803 /* Resoueces */,
 				BA02634216D7570400298803 /* Libs */,
@@ -1996,6 +1998,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = panda;
+				TargetAttributes = {
+					BA0DC16616D4C3A500E4CED9 = {
+						DevelopmentTeam = 6J5E6QMXJ4;
+					};
+				};
 			};
 			buildConfigurationList = BA0DC16216D4C3A500E4CED9 /* Build configuration list for PBXProject "HellCook" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2307,6 +2314,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = HellCook/HellCook.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: YiTian Wang (CL7569E4B6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YiTian Wang (CL7569E4B6)";
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -2337,6 +2345,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = HellCook/HellCook.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: YiTian Wang (6J5E6QMXJ4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YiTian Wang (6J5E6QMXJ4)";
 				FRAMEWORK_SEARCH_PATHS = "";
