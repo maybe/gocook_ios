@@ -171,12 +171,6 @@
     
     int originsize = recipeArray.count;
     
-    if (originsize == 0) {
-      emptyLabel.hidden = NO;
-    } else {
-      emptyLabel.hidden = YES;
-    }
-    
     int addsize = [(NSArray*)resultDic[@"result_recipes"] count];
     if (addsize>0) {
       [recipeArray addObjectsFromArray:resultDic[@"result_recipes"]];
@@ -197,6 +191,12 @@
         [self.tableView insertRowsAtIndexPaths:indexpathArray withRowAnimation:UITableViewRowAnimationNone];
         [self.tableView endUpdates];
       }
+    }
+    
+    if (curPage == 1 && addsize == 0) {
+      emptyLabel.hidden = NO;
+    } else {
+      emptyLabel.hidden = YES;
     }
 
     
